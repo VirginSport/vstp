@@ -1,0 +1,35 @@
+<?php
+/**
+ * @file
+ * Code for the Lightning Demo feature.
+ */
+
+include_once 'lightning_demo.features.inc';
+
+/**
+ * Implements hook_behat_info().
+ */
+function lightning_demo_behat_info() {
+  $info = array(
+    'paths' => array(
+      'features' => 'features',
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_migrate_api().
+ */
+function lightning_demo_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'migrations' => array(
+      'LightningDemoFilesImage' => array('class_name' => 'LightningDemoFilesImage'),
+      'LightningDemoNodesArticle' => array('class_name' => 'LightningDemoNodesArticle'),
+      'LightningDemoUsers' => array('class_name' => 'LightningDemoUsers'),
+    ),
+  );
+  return $api;
+}
+
