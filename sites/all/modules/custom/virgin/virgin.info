@@ -1,0 +1,31 @@
+name = Virgin
+description = Main module for Virgin Sports website
+package = Virgin Sports
+core = 7.x
+required = TRUE
+
+; required lightning dependencies
+dependencies[] = defaultconfig
+
+; required lightning modules
+dependencies[] = lightning_admin
+dependencies[] = lightning_base
+dependencies[] = lightning_blocks
+dependencies[] = lightning_content
+dependencies[] = lightning_edit
+dependencies[] = lightning_files
+dependencies[] = lightning_filter
+dependencies[] = lightning_forms
+dependencies[] = lightning_fpp
+dependencies[] = lightning_image
+dependencies[] = lightning_media
+dependencies[] = lightning_metatags
+dependencies[] = lightning_moderation
+dependencies[] = lightning_panels
+dependencies[] = lightning_rules
+dependencies[] = lightning_views
+dependencies[] = lightning_token
+dependencies[] = lightning_theme
+dependencies[] = lightning_wysiwyg
+
+; required virgin dependencies
