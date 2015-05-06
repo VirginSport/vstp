@@ -41,3 +41,8 @@ dependencies[] = redirect
 dependencies[] = service_links
 dependencies[] = services
 dependencies[] = xmlsitemap
+
+; required virgin modules
+dependencies[] = virgin_base
+dependencies[] = virgin_rich_page
+dependencies[] = virgin_taxonomy
