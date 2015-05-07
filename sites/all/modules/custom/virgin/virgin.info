@@ -45,4 +45,5 @@ dependencies[] = xmlsitemap
 ; required virgin modules
 dependencies[] = virgin_base
 dependencies[] = virgin_rich_page
+dependencies[] = virgin_roles
 dependencies[] = virgin_taxonomy
