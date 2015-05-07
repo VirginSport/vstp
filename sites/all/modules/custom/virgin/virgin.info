@@ -31,7 +31,7 @@ dependencies[] = lightning_wysiwyg
 ; required virgin dependencies
 dependencies[] = entityform
 dependencies[] = flag
-dependencies[] = google_analytics
+dependencies[] = googleanalytics
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = mollom
