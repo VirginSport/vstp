@@ -2054,6 +2054,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'use text format raw_html',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'filter',
   );
