@@ -306,6 +306,5 @@ features[user_permission][] = view pane admin links
 features[user_permission][] = view private files
 features[user_permission][] = view revisions
 features[user_permission][] = view the administration theme
-features[user_role][] = administrator
 features[user_role][] = editor
 project path = sites/all/modules/custom
