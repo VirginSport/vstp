@@ -26,7 +26,7 @@ function virgin_event_node_info() {
       'base' => 'node_content',
       'description' => t('This type of content represents a race event coming from race events entered in Attendly which are owned by Virgin Sport'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Event Name'),
       'help' => '',
     ),
   );
