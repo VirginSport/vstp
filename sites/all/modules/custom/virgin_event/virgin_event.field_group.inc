@@ -91,7 +91,7 @@ function virgin_event_field_group_info() {
         'classes' => 'group-food field-group-fieldset ',
         'description' => '',
       ),
-      'formatter' => 'collapsible',
+      'formatter' => 'open',
     ),
   );
   $export['group_food|node|event|form'] = $field_group;
