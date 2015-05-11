@@ -145,7 +145,7 @@ function virgin_event_defaultconfig_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 10,
+        'weight' => 11,
       ),
     ),
   );
