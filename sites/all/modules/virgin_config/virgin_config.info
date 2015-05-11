@@ -1,0 +1,15 @@
+name = Virgin Config
+description = Handles the Virgin Sports website global configuration
+core = 7.x
+package = Virgin Sports
+version = 7.x-1.0
+project = virgin_config
+dependencies[] = ctools
+dependencies[] = jquery_update
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = jquery_update_compression_type
+features[variable][] = jquery_update_jquery_admin_version
+features[variable][] = jquery_update_jquery_cdn
+features[variable][] = jquery_update_jquery_version
