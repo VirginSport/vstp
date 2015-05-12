@@ -128,7 +128,7 @@ function virgin_event_defaultconfig_field_default_fields() {
             ),
           ),
         ),
-        'display_summary' => 1,
+        'display_summary' => 0,
         'linkit' => array(
           'button_text' => 'Search',
           'enable' => 0,
@@ -141,7 +141,7 @@ function virgin_event_defaultconfig_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => 20,
+          'rows' => 10,
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
