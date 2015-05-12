@@ -13,259 +13,300 @@ function virgin_event_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_charities|node|event|form';
-  $field_group->group_name = 'group_charities';
+  $field_group->identifier = 'group_about|node|event|form';
+  $field_group->group_name = 'group_about';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Charities',
-    'weight' => '24',
-    'children' => array(),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Charities',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-charities field-group-fieldset ',
-        'description' => '',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_charities|node|event|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_course|node|event|form';
-  $field_group->group_name = 'group_course';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'event';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Course',
-    'weight' => '20',
+    'label' => 'About',
+    'weight' => '36',
     'children' => array(
-      0 => 'field_course_image',
-      1 => 'field_course_link',
-      2 => 'field_course_file',
+      0 => 'body',
+      1 => 'field_what_to_bring',
+      2 => 'field_useful_information',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Course',
+      'formatter' => 'closed',
       'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-course field-group-fieldset ',
         'description' => '',
+        'classes' => 'group-about field-group-htab ',
+        'required_fields' => 1,
       ),
-      'formatter' => 'open',
     ),
   );
-  $export['group_course|node|event|form'] = $field_group;
+  $export['group_about|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_food|node|event|form';
-  $field_group->group_name = 'group_food';
+  $field_group->identifier = 'group_base|node|event|form';
+  $field_group->group_name = 'group_base';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Food',
-    'weight' => '17',
+    'label' => 'Base',
+    'weight' => '35',
     'children' => array(
-      0 => 'field_food_title',
-      1 => 'field_food_description',
-      2 => 'field_food_image',
+      0 => 'field_event_end_date',
+      1 => 'field_event_flag',
+      2 => 'field_event_reg_end_date',
+      3 => 'field_event_start_date',
+      4 => 'field_event_status',
+      5 => 'field_event_type',
+      6 => 'title',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Food',
+      'label' => 'Base',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-food field-group-fieldset ',
+        'classes' => 'group-base field-group-htab ',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_food|node|event|form'] = $field_group;
+  $export['group_base|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_inspiration|node|event|form';
-  $field_group->group_name = 'group_inspiration';
+  $field_group->identifier = 'group_features|node|event|form';
+  $field_group->group_name = 'group_features';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Inspiration',
-    'weight' => '14',
+    'label' => 'Features',
+    'weight' => '39',
     'children' => array(
-      0 => 'field_inspiration_title',
-      1 => 'field_inspiration_description',
-      2 => 'field_inspiration_image',
+      0 => 'field_features',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Inspiration',
+      'label' => 'Features',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-inspiration field-group-fieldset ',
-        'description' => '',
+        'classes' => 'group-features field-group-htab ',
+        'description' => 'In here you describe the kind of features and attractions an attendee can expect when participating in the event.',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_inspiration|node|event|form'] = $field_group;
+  $export['group_features|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_music|node|event|form';
-  $field_group->group_name = 'group_music';
+  $field_group->identifier = 'group_highlights|node|event|form';
+  $field_group->group_name = 'group_highlights';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Music',
-    'weight' => '18',
+    'label' => 'Highlights',
+    'weight' => '38',
     'children' => array(
-      0 => 'field_music',
+      0 => 'field_highlights',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Music',
+      'label' => 'Highlights',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-music field-group-fieldset ',
-        'description' => '',
+        'classes' => 'group-highlights field-group-htab ',
+        'description' => 'In here your describe different highlights of the event. These highlights are meant to be changed throughout the lifecycle of the event. For example: "Register for the event", "What to bring tomorrow" and "See the finish photos"',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_music|node|event|form'] = $field_group;
+  $export['group_highlights|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_pricing|node|event|form';
-  $field_group->group_name = 'group_pricing';
+  $field_group->identifier = 'group_information|node|event|form';
+  $field_group->group_name = 'group_information';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Pricing',
-    'weight' => '22',
+    'label' => 'Information',
+    'weight' => '6',
     'children' => array(
-      0 => 'field_pricing',
-      1 => 'field_volunteer_link',
+      0 => 'group_course',
+      1 => 'group_highlights',
+      2 => 'group_features',
+      3 => 'group_schedule',
+      4 => 'group_transportation',
+      5 => 'group_sponsors',
+      6 => 'group_charities',
+      7 => 'group_base',
+      8 => 'group_integrations',
+      9 => 'group_social',
+      10 => 'group_registration',
+      11 => 'group_about',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htabs',
     'format_settings' => array(
-      'label' => 'Pricing',
+      'label' => 'Information',
       'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-pricing field-group-fieldset ',
-        'description' => '',
+        'classes' => 'group-information field-group-htabs ',
       ),
-      'formatter' => 'open',
     ),
   );
-  $export['group_pricing|node|event|form'] = $field_group;
+  $export['group_information|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_race|node|event|form';
-  $field_group->group_name = 'group_race';
+  $field_group->identifier = 'group_integrations|node|event|form';
+  $field_group->group_name = 'group_integrations';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Race Information',
-    'weight' => '16',
+    'label' => 'Integrations',
+    'weight' => '47',
     'children' => array(
-      0 => 'field_race_tips',
-      1 => 'field_race_schedule',
+      0 => 'field_event_id',
+      1 => 'field_event_parent_id',
+      2 => 'field_vmg_id',
+      3 => 'field_sugar_id',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'tab',
     'format_settings' => array(
-      'label' => 'Race Information',
+      'formatter' => 'closed',
       'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-race field-group-fieldset ',
         'description' => '',
+        'classes' => 'group-integrations field-group-tab ',
+        'required_fields' => 1,
       ),
-      'formatter' => 'open',
     ),
   );
-  $export['group_race|node|event|form'] = $field_group;
+  $export['group_integrations|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_spectators|node|event|form';
-  $field_group->group_name = 'group_spectators';
+  $field_group->identifier = 'group_registration|node|event|form';
+  $field_group->group_name = 'group_registration';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Spectators',
-    'weight' => '15',
+    'label' => 'Registration',
+    'weight' => '40',
     'children' => array(
-      0 => 'field_spectators_title',
-      1 => 'field_spectators_description',
+      0 => 'field_ticket_types',
     ),
-    'format_type' => 'fieldset',
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Spectators',
+      'label' => 'Registration',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-spectators field-group-fieldset ',
-        'description' => '',
+        'classes' => 'group-registration field-group-htab ',
+        'description' => 'In here you describe the different registration options available for this event.',
       ),
-      'formatter' => 'open',
+      'formatter' => 'closed',
     ),
   );
-  $export['group_spectators|node|event|form'] = $field_group;
+  $export['group_registration|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_sponsors|node|event|form';
-  $field_group->group_name = 'group_sponsors';
+  $field_group->identifier = 'group_schedule|node|event|form';
+  $field_group->group_name = 'group_schedule';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_information';
   $field_group->data = array(
-    'label' => 'Sponsors',
-    'weight' => '25',
-    'children' => array(),
-    'format_type' => 'fieldset',
+    'label' => 'Schedule',
+    'weight' => '41',
+    'children' => array(
+      0 => 'field_schedule',
+    ),
+    'format_type' => 'htab',
     'format_settings' => array(
-      'label' => 'Sponsors',
+      'label' => 'Schedule',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => 'group-sponsors field-group-fieldset ',
+        'classes' => 'group-schedule field-group-htab ',
+        'description' => 'In here you configure the schedule for the day of the event, such as specific milestones that take place during a specific time of the day.',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_schedule|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_social|node|event|form';
+  $field_group->group_name = 'group_social';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Social',
+    'weight' => '46',
+    'children' => array(
+      0 => 'field_facebook_link',
+      1 => 'field_twitter_link',
+      2 => 'field_twitter_hashtag',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
         'description' => '',
+        'classes' => 'group-social field-group-htab ',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_social|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_transportation|node|event|form';
+  $field_group->group_name = 'group_transportation';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Transportation',
+    'weight' => '42',
+    'children' => array(
+      0 => 'field_transportation',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Transportation',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-transportation field-group-htab ',
+        'description' => 'In here you configure the transportation available to the event, such as the different means of transportation and parking information.',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_sponsors|node|event|form'] = $field_group;
+  $export['group_transportation|node|event|form'] = $field_group;
 
   return $export;
 }

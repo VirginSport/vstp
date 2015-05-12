@@ -95,7 +95,7 @@ function virgin_event_defaultconfig_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'About',
+      'label' => 'The Race',
       'required' => 0,
       'settings' => array(
         'better_formats' => array(
@@ -145,14 +145,14 @@ function virgin_event_defaultconfig_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => 11,
+        'weight' => 8,
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('About');
+  t('The Race');
 
   return $fields;
 }
