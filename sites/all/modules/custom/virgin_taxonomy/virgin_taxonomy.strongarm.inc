@@ -33,6 +33,16 @@ function virgin_taxonomy_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_defaults_taxonomy_term_faq_topic';
+  $strongarm->value = array(
+    'status' => 0,
+    'view modes' => array(),
+  );
+  $export['panelizer_defaults_taxonomy_term_faq_topic'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'panelizer_defaults_taxonomy_term_target_audience';
   $strongarm->value = array(
     'status' => 0,

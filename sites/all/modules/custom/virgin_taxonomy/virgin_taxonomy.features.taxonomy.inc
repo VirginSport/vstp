@@ -25,6 +25,14 @@ function virgin_taxonomy_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'faq_topic' => array(
+      'name' => 'FAQ Topic',
+      'machine_name' => 'faq_topic',
+      'description' => 'This vocabulary hosts the FAQ Topics used in FAQ. For example: "For the Runner" or "Everybody Else"',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
     'target_audience' => array(
       'name' => 'Target Audience',
       'machine_name' => 'target_audience',
