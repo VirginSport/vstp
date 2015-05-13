@@ -76,6 +76,93 @@ function virgin_event_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_charities|node|event|form';
+  $field_group->group_name = 'group_charities';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Charities',
+    'weight' => '44',
+    'children' => array(
+      0 => 'field_charities',
+      1 => 'field_charity_link',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Charities',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-charities field-group-htab ',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_charities|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_course|node|event|form';
+  $field_group->group_name = 'group_course';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Course',
+    'weight' => '37',
+    'children' => array(
+      0 => 'field_course_file',
+      1 => 'field_course_image',
+      2 => 'field_course_link',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Course',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => 'In here you configure the course information, such as the course map and downloadable file.',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_course|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_faq|node|event|form';
+  $field_group->group_name = 'group_faq';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'FAQ',
+    'weight' => '45',
+    'children' => array(
+      0 => 'field_faq',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'FAQ',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-faq field-group-htab ',
+        'description' => 'In here you add the frequently asked questions and their answers.',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_faq|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_features|node|event|form';
   $field_group->group_name = 'group_features';
   $field_group->entity_type = 'node';
@@ -280,6 +367,35 @@ function virgin_event_field_group_info() {
     ),
   );
   $export['group_social|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_sponsors|node|event|form';
+  $field_group->group_name = 'group_sponsors';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Sponsors',
+    'weight' => '43',
+    'children' => array(
+      0 => 'field_sponsors',
+      1 => 'field_sponsor_link',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Sponsors',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-sponsors field-group-htab ',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_sponsors|node|event|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
