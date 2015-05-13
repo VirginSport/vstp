@@ -154,6 +154,7 @@ function virgin_event_field_group_info() {
       9 => 'group_social',
       10 => 'group_registration',
       11 => 'group_about',
+      12 => 'group_faq',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
