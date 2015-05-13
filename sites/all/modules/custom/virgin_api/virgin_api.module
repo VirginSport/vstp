@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Main file for virgin_api module.
+ */
+
+/**
+ * Implements hook_services_resources().
+ */
+function virgin_api_services_resources() {
+  $resources = array();
+
+  $resources['attendly'] = array(
+    'actions' => array(
+      'webhook' => array(
+        'file' => array('type' => 'inc', 'module' => 'virgin_api', 'name' => 'resources/attendly_resource'),
+        'callback' => '_virgin_api_attendly_webhook_action',
+        'access callback' => 'virgin_api_attendly_access',
+      ),
+    ),
+  );
+
+  return $resources;
+}
+
+/**
+ * Access callback for Attendly
+ *
+ * @return bool
+ *
+ * @todo implement me
+ */
+function virgin_api_attendly_access() {
+  return TRUE;
+}
+
+/**
+ * Implements hook_observer_info().
+ */
+function virgin_api_observer_info() {
+  return array(
+    new VirginApiAttendlyEventListener()
+  );
+}
