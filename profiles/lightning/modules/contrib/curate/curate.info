@@ -1,0 +1,22 @@
+name = Curate
+description = Easy content staging and editorial workflows.
+core = 7.x
+package = Lightning
+version = 7.x-1.0
+project = curate
+datestamp = 1408404197
+
+
+; Information added by drush on 2014-10-29
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "curate"
+datestamp = "1414618766"
+
+
+
+; Information added by drush on 2015-05-02
+version = ""
+project = "curate"
+datestamp = "1430590695"
+

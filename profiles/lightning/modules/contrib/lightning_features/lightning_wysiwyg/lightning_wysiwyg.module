@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Code for the lightning_wysiwyg feature.
+ */
+
+include_once 'lightning_wysiwyg.features.inc';
+
+/**
+ *  Implements hook_post_features_rebuild().
+ */
+function lightning_wysiwyg_post_features_rebuild($component) {
+  // Revert CKEditor profiles as they were rebuilt before all filters
+  // had finished rebuilding (Features a-z index logic bug).
+  if ($component == 'filter') {
+    features_revert(array('lightning_wysiwyg' => array('ckeditor_profile')));
+  }
+}
+
+/**
+ * Implements hook_behat_info().
+ */
+function lightning_wysiwyg_behat_info() {
+  $info = array(
+    'paths' => array(
+      'features' => 'features',
+    ),
+  );
+
+  return $info;
+}
