@@ -24,8 +24,8 @@ function virgin_event_field_group_info() {
     'weight' => '36',
     'children' => array(
       0 => 'body',
-      1 => 'field_what_to_bring',
-      2 => 'field_useful_information',
+      1 => 'field_useful_information',
+      2 => 'field_what_to_bring',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -84,7 +84,7 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_information';
   $field_group->data = array(
     'label' => 'Charities',
-    'weight' => '44',
+    'weight' => '45',
     'children' => array(
       0 => 'field_charities',
       1 => 'field_charity_link',
@@ -143,7 +143,7 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_information';
   $field_group->data = array(
     'label' => 'FAQ',
-    'weight' => '45',
+    'weight' => '46',
     'children' => array(
       0 => 'field_faq',
     ),
@@ -229,19 +229,20 @@ function virgin_event_field_group_info() {
     'label' => 'Information',
     'weight' => '6',
     'children' => array(
-      0 => 'group_course',
-      1 => 'group_highlights',
-      2 => 'group_features',
-      3 => 'group_schedule',
-      4 => 'group_transportation',
-      5 => 'group_sponsors',
-      6 => 'group_charities',
-      7 => 'group_base',
+      0 => 'group_volunteering',
+      1 => 'group_about',
+      2 => 'group_base',
+      3 => 'group_charities',
+      4 => 'group_course',
+      5 => 'group_faq',
+      6 => 'group_features',
+      7 => 'group_highlights',
       8 => 'group_integrations',
-      9 => 'group_social',
-      10 => 'group_registration',
-      11 => 'group_about',
-      12 => 'group_faq',
+      9 => 'group_registration',
+      10 => 'group_schedule',
+      11 => 'group_social',
+      12 => 'group_sponsors',
+      13 => 'group_transportation',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -264,12 +265,12 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_information';
   $field_group->data = array(
     'label' => 'Integrations',
-    'weight' => '47',
+    'weight' => '48',
     'children' => array(
       0 => 'field_event_id',
       1 => 'field_event_parent_id',
-      2 => 'field_vmg_id',
-      3 => 'field_sugar_id',
+      2 => 'field_sugar_id',
+      3 => 'field_vmg_id',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -350,11 +351,11 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_information';
   $field_group->data = array(
     'label' => 'Social',
-    'weight' => '46',
+    'weight' => '47',
     'children' => array(
       0 => 'field_facebook_link',
-      1 => 'field_twitter_link',
-      2 => 'field_twitter_hashtag',
+      1 => 'field_twitter_hashtag',
+      2 => 'field_twitter_link',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -379,10 +380,10 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_information';
   $field_group->data = array(
     'label' => 'Sponsors',
-    'weight' => '43',
+    'weight' => '44',
     'children' => array(
-      0 => 'field_sponsors',
-      1 => 'field_sponsor_link',
+      0 => 'field_sponsor_link',
+      1 => 'field_sponsors',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -424,6 +425,33 @@ function virgin_event_field_group_info() {
     ),
   );
   $export['group_transportation|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_volunteering|node|event|form';
+  $field_group->group_name = 'group_volunteering';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Volunteering',
+    'weight' => '43',
+    'children' => array(
+      0 => 'field_volunteering',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-volunteering field-group-htab ',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_volunteering|node|event|form'] = $field_group;
 
   return $export;
 }
