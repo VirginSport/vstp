@@ -29,3 +29,23 @@ dependencies[] = lightning_theme
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = entityform
+dependencies[] = flag
+dependencies[] = googleanalytics
+dependencies[] = hybridauth
+dependencies[] = i18n
+dependencies[] = mollom
+dependencies[] = oauth_common
+dependencies[] = og
+dependencies[] = redirect
+dependencies[] = service_links
+dependencies[] = services
+dependencies[] = xmlsitemap
+
+; required virgin modules
+dependencies[] = virgin_base
+dependencies[] = virgin_config
+dependencies[] = virgin_event
+dependencies[] = virgin_rich_page
+dependencies[] = virgin_roles
+dependencies[] = virgin_taxonomy
