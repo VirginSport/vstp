@@ -59,6 +59,7 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
    *  A node entity.
    */
   private function transformDataToNode($data) {
+    global $language;
 
     // Shortcut to the required data.
     // TODO validate the presence of required data, or thrown an error now.
@@ -80,6 +81,7 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
     // Fill in the information.
     $node_wrapper = entity_metadata_wrapper('node', $node);
     $node_wrapper->title->set($event->Name);
+    $node_wrapper->language->set($language->language);
     $node_wrapper->field_event_id->set($event->ID);
     $node_wrapper->field_event_parent_id->set($event->GroupID);
     $node_wrapper->field_event_start_date->set(strtotime($event->Start));
