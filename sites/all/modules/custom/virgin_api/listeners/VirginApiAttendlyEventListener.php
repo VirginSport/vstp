@@ -108,6 +108,9 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
       $collection_wrapper->field_value->set($value);
     }
 
+    // Set the log message.
+    $node_wrapper->log->set('Attendly Webhook Synchronization');
+
     return $node;
   }
 }
