@@ -1,9 +1,10 @@
 <?php
-
 /**
  * @file
- * Main file for virgin_api module.
+ * Code for the Virgin API feature.
  */
+
+include_once 'virgin_api.features.inc';
 
 /**
  * Implements hook_services_resources().

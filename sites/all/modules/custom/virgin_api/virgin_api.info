@@ -1,11 +1,11 @@
 name = Virgin API
 description = Handles the Virgin Sports website API
-package = Virgin Sports
 core = 7.x
-
+package = Virgin Sports
+dependencies[] = ctools
 dependencies[] = features
 dependencies[] = services
-
+features[ctools][] = services:services:3
 features[features_api][] = api:2
-
+features[services_endpoint][] = api_v1
 files[] = listeners/VirginApiAttendlyEventListener.php
