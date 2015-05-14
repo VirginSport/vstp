@@ -4,6 +4,7 @@ core = 7.x
 package = Virgin Sports
 dependencies[] = ctools
 dependencies[] = features
+dependencies[] = observer
 dependencies[] = services
 features[ctools][] = services:services:3
 features[features_api][] = api:2
