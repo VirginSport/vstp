@@ -17,7 +17,7 @@ function virgin_api_services_resources() {
       'webhook' => array(
         'file' => array('type' => 'inc', 'module' => 'virgin_api', 'name' => 'resources/attendly_resource'),
         'callback' => '_virgin_api_attendly_webhook_action',
-        'access callback' => 'virgin_api_attendly_access',
+        'access callback' => 'virgin_api_token_access',
       ),
     ),
   );
@@ -38,14 +38,22 @@ function virgin_api_observer_info() {
 // -----------------------------------------------------------------------------
 
 /**
- * Access callback for Attendly
+ * Token access callback
+ *
+ * Validates if the request carries a valid access token.
  *
  * @return bool
- *
- * TODO implement me.
+ *  TRUE the access is valid, FALSE otherwise.
  */
-function virgin_api_attendly_access() {
-  return TRUE;
+function virgin_api_token_access() {
+  $token = empty($_GET['token']) ? FALSE : $_GET['token'];
+  $check_token = variable_get('virgin_api_access_token');
+
+  if ($token && $token == $check_token) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
