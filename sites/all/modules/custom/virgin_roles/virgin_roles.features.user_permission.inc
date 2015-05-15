@@ -607,6 +607,13 @@ function virgin_roles_user_default_permissions() {
     'module' => 'panelizer',
   );
 
+  // Exported permission: 'administer panelizer node event_state defaults'.
+  $permissions['administer panelizer node event_state defaults'] = array(
+    'name' => 'administer panelizer node event_state defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
   // Exported permission: 'administer panelizer node rich_page choice'.
   $permissions['administer panelizer node rich_page choice'] = array(
     'name' => 'administer panelizer node rich_page choice',
@@ -676,6 +683,15 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer panelizer taxonomy_term event_type defaults'] = array(
     'name' => 'administer panelizer taxonomy_term event_type defaults',
     'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer taxonomy_term faq_topic defaults'.
+  $permissions['administer panelizer taxonomy_term faq_topic defaults'] = array(
+    'name' => 'administer panelizer taxonomy_term faq_topic defaults',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'panelizer',
   );
 
@@ -966,6 +982,13 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create event_state content'.
+  $permissions['create event_state content'] = array(
+    'name' => 'create event_state content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create fieldable content'.
   $permissions['create fieldable content'] = array(
     'name' => 'create fieldable content',
@@ -1152,6 +1175,13 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete any event_state content'.
+  $permissions['delete any event_state content'] = array(
+    'name' => 'delete any event_state content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any image files'.
   $permissions['delete any image files'] = array(
     'name' => 'delete any image files',
@@ -1293,6 +1323,13 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete own event_state content'.
+  $permissions['delete own event_state content'] = array(
+    'name' => 'delete own event_state content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete own image files'.
   $permissions['delete own image files'] = array(
     'name' => 'delete own image files',
@@ -1363,6 +1400,15 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete terms in event_type'.
   $permissions['delete terms in event_type'] = array(
     'name' => 'delete terms in event_type',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'delete terms in faq_topic'.
+  $permissions['delete terms in faq_topic'] = array(
+    'name' => 'delete terms in faq_topic',
     'roles' => array(
       'administrator' => 'administrator',
     ),
@@ -1521,6 +1567,13 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
       'editor' => 'editor',
     ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any event_state content'.
+  $permissions['edit any event_state content'] = array(
+    'name' => 'edit any event_state content',
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1684,6 +1737,13 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own event_state content'.
+  $permissions['edit own event_state content'] = array(
+    'name' => 'edit own event_state content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit own image files'.
   $permissions['edit own image files'] = array(
     'name' => 'edit own image files',
@@ -1744,6 +1804,15 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'edit terms in event_type'.
   $permissions['edit terms in event_type'] = array(
     'name' => 'edit terms in event_type',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in faq_topic'.
+  $permissions['edit terms in faq_topic'] = array(
+    'name' => 'edit terms in faq_topic',
     'roles' => array(
       'administrator' => 'administrator',
     ),
