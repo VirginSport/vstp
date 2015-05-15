@@ -89,7 +89,7 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
     $state_wrapper->field_event_reg_end_date->set(strtotime($event->Deadline));
     $state_wrapper->field_twitter_hashtag->set($event->Hashtag);
     $state_wrapper->field_link->set(array('url' => $event->URL));
-    $state_wrapper->body->set(array('value' => $event->Description, 'format' => 'full_html'));
+    $state_wrapper->field_description->set(array('value' => $event->Description, 'format' => 'full_html'));
 
     // Purge all previously set ticket types.
     $state_wrapper->field_ticket_types->set(array());
