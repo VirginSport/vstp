@@ -1278,7 +1278,7 @@ function virgin_event_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field sets this ticket as having an early bird pricing.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1315,7 +1315,7 @@ function virgin_event_field_default_field_instances() {
   $field_instances['field_collection_item-field_ticket_types-field_earlybird_date'] = array(
     'bundle' => 'field_ticket_types',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The date where the early bird mode ends.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1367,7 +1367,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'field_ticket_types',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The value of this ticket type on early bird mode.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1441,7 +1441,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'field_ticket_types',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The mode of this ticket on Attendly.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1589,7 +1589,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'field_ticket_types',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The Ticket Type ID on Attendly',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1737,7 +1737,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'field_ticket_types',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The type of this ticket on Attendly.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -3753,7 +3753,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The description of this event as it\'s available on Attendly.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -3845,7 +3845,7 @@ function virgin_event_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This "Event" node content-type facade on Drupal.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -3907,7 +3907,7 @@ function virgin_event_field_default_field_instances() {
   $field_instances['node-event_state-field_event_end_date'] = array(
     'bundle' => 'event_state',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The event end date.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -3967,7 +3967,7 @@ function virgin_event_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -3976,7 +3976,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The ID of this event on Attendly.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4067,7 +4067,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The Group ID on Attendly for this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4157,7 +4157,7 @@ function virgin_event_field_default_field_instances() {
   $field_instances['node-event_state-field_event_reg_end_date'] = array(
     'bundle' => 'event_state',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The date when the registration ends for this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4225,7 +4225,7 @@ function virgin_event_field_default_field_instances() {
   $field_instances['node-event_state-field_event_start_date'] = array(
     'bundle' => 'event_state',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The event start date.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4285,7 +4285,7 @@ function virgin_event_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -4294,7 +4294,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The URL where users can register for this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4372,7 +4372,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The SugarCRM ID of this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4521,7 +4521,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The Twitter hashtag of this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4612,7 +4612,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The Virgin Money Giving ID of this event.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -4738,15 +4738,32 @@ function virgin_event_field_default_field_instances() {
   t('Sponsor List');
   t('Start Date');
   t('SugarCRM ID');
+  t('The Group ID on Attendly for this event.');
+  t('The ID of this event on Attendly.');
   t('The Race');
+  t('The SugarCRM ID of this event.');
+  t('The Ticket Type ID on Attendly');
+  t('The Twitter hashtag of this event.');
+  t('The URL where users can register for this event.');
+  t('The Virgin Money Giving ID of this event.');
+  t('The date when the registration ends for this event.');
+  t('The date where the early bird mode ends.');
+  t('The description of this event as it\'s available on Attendly.');
+  t('The event end date.');
+  t('The event start date.');
   t('The link to the Event\'s Facebook profile page');
   t('The link to the Event\'s Twitter profile page');
+  t('The mode of this ticket on Attendly.');
   t('The ticket value. For example: £ 20.00');
   t('The time for this event. For example: 10:00AM');
   t('The title of the feature, for example: "World Food", "Great Music" or "Fun for the Kids"');
+  t('The type of this ticket on Attendly.');
   t('The type of ticket. For example: Affiliate');
   t('The type of transportation. For example: "Bus" or "Parking"');
+  t('The value of this ticket type on early bird mode.');
+  t('This "Event" node content-type facade on Drupal.');
   t('This field is used to denote the flag under which this event occurs. An example would be "Vitality Run Series".');
+  t('This field sets this ticket as having an early bird pricing.');
   t('This is the file a visitor can download with the course details.');
   t('This is the image of the course to be shown to the visitor.');
   t('This is the link where a visitor can click to view information on how to register as a charity of this event.');
