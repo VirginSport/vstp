@@ -8,6 +8,9 @@
 /**
  * Listens for attendly event webhook events
  *
+ * This class creates and updates event information on Drupal when Attendly
+ * triggers event related webhooks.
+ *
  * @see _virgin_api_attendly_webhook_action()
  */
 class VirginApiAttendlyEventListener implements ObserverObserverInterface {
