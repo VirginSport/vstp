@@ -32,6 +32,14 @@ function virgin_event_node_info() {
       'title_label' => t('Event Name'),
       'help' => '',
     ),
+    'event_state' => array(
+      'name' => t('Event State'),
+      'base' => 'node_content',
+      'description' => t('This content-type represents the cross-revision state of an event.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;

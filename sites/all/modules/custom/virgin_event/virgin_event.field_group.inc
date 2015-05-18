@@ -257,64 +257,6 @@ function virgin_event_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_integrations|node|event|form';
-  $field_group->group_name = 'group_integrations';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'event';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_information';
-  $field_group->data = array(
-    'label' => 'Integrations',
-    'weight' => '48',
-    'children' => array(
-      0 => 'field_event_id',
-      1 => 'field_event_parent_id',
-      2 => 'field_sugar_id',
-      3 => 'field_vmg_id',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-integrations field-group-tab ',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $export['group_integrations|node|event|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_registration|node|event|form';
-  $field_group->group_name = 'group_registration';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'event';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_information';
-  $field_group->data = array(
-    'label' => 'Registration',
-    'weight' => '40',
-    'children' => array(
-      0 => 'field_ticket_types',
-    ),
-    'format_type' => 'htab',
-    'format_settings' => array(
-      'label' => 'Registration',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-registration field-group-htab ',
-        'description' => 'In here you describe the different registration options available for this event.',
-      ),
-      'formatter' => 'closed',
-    ),
-  );
-  $export['group_registration|node|event|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_schedule|node|event|form';
   $field_group->group_name = 'group_schedule';
   $field_group->entity_type = 'node';

@@ -43,6 +43,7 @@ dependencies[] = services
 dependencies[] = xmlsitemap
 
 ; required virgin modules
+dependencies[] = virgin_api
 dependencies[] = virgin_base
 dependencies[] = virgin_config
 dependencies[] = virgin_event
