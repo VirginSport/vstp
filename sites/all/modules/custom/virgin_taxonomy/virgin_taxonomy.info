@@ -1,0 +1,16 @@
+name = Virgin Taxonomy
+description = Handles taxonomy vocabularies for Virgin Sports
+core = 7.x
+package = Virgin Sports
+version = 7.x-1.0
+project = virgin_taxonomy
+dependencies[] = features
+dependencies[] = taxonomy
+features[defaultconfig][] = strongarm:panelizer_defaults_taxonomy_term_target_audience
+features[defaultconfig][] = taxonomy_default_vocabularies:target_audience
+features[defaultconfig][] = user_default_permissions:administer panelizer taxonomy_term target_audience defaults
+features[defaultconfig][] = user_default_permissions:delete terms in target_audience
+features[defaultconfig][] = user_default_permissions:edit terms in target_audience
+features[features_api][] = api:2
+features[taxonomy][] = target_audience
+features_exclude[dependencies][defaultconfig] = defaultconfig

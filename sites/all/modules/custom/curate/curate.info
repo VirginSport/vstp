@@ -1,0 +1,8 @@
+; Overrides original lightning distribution curate module.
+; The original module installation behavior was nullified as
+; that responsability has been delegated to 'virgin' module.
+
+name = Curate
+description = Easy content staging and editorial workflows.
+core = 7.x
+package = Lightning
