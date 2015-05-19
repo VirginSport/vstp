@@ -44,7 +44,11 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    * @param \ObserverEventInterface $event
    */
   private function onCreate(ObserverEventInterface $event) {
-    $data = $this->transformNodeToData($event->getData());
+    $node = $event->getData();
+    $sugar_id = $this->getSugarID($node);
+    $data = $this->transformNodeToData($node);
+
+    $this->save($data, $sugar_id);
   }
 
   /**
@@ -53,7 +57,11 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    * @param \ObserverEventInterface $event
    */
   private function onUpdate(ObserverEventInterface $event) {
-    $data = $this->transformNodeToData($event->getData());
+    $node = $event->getData();
+    $sugar_id = $this->getSugarID($node);
+    $data = $this->transformNodeToData($node);
+
+    $this->save($data, $sugar_id);
   }
 
   /**
@@ -87,5 +95,44 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     );
 
     return $data;
+  }
+
+  /**
+   * Get the SugarCRM ID from the given Event State
+   *
+   * @param $node
+   *  The event state node.
+   * @return string|null
+   *  Either a string with the SugarCRM ID, or NULL if there is none.
+   */
+  private function getSugarID($node) {
+    $state_wrapper = entity_metadata_wrapper('node', $node);
+    $sugar_id = $state_wrapper->field_sugar_id->value();
+
+    if (!empty($sugar_id)) {
+      return (string) $sugar_id;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Saves an Event to SugarCRM
+   *
+   * If the Event already exists, instead of creating it, it's updated.
+   *
+   * @param $data
+   *  The data to be posted to SugarCRM
+   * @param string $sugar_id
+   *  The Event SugarCRM ID.
+   * @return string
+   *  The SugarCRM ID for passed Event.
+   */
+  private function save($data, $sugar_id = NULL) {
+    if (empty($sugar_id)) {
+      $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
+    } else {
+      sugarcrm_client()->putEndpoint('EM_Event/' . $sugar_id, $data);
+    }
   }
 }
