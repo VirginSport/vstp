@@ -2,6 +2,7 @@ name = Virgin API
 description = Handles the Virgin Sports website API
 core = 7.x
 package = Virgin Sports
+dependencies[] = composer_manager
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = observer
