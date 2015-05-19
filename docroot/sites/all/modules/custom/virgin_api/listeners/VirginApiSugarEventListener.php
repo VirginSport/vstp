@@ -47,8 +47,8 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     $node = $event->getData();
     $sugar_id = $this->getSugarID($node);
     $data = $this->transformNodeToData($node);
-
-    $this->save($data, $sugar_id);
+    $sugar_id = $this->save($data, $sugar_id);
+    $this->setSugarId($node, $sugar_id);
   }
 
   /**
@@ -60,8 +60,8 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     $node = $event->getData();
     $sugar_id = $this->getSugarID($node);
     $data = $this->transformNodeToData($node);
-
-    $this->save($data, $sugar_id);
+    $sugar_id = $this->save($data, $sugar_id);
+    $this->setSugarId($node, $sugar_id);
   }
 
   /**
@@ -117,6 +117,21 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
   }
 
   /**
+   * Sets the SugarCRM ID on a given Event State
+   *
+   * @param $node
+   *  The event state node.
+   * @param $sugar_id
+   *  The sugar id.
+   */
+  private function setSugarId($node, $sugar_id) {
+    $state_wrapper = entity_metadata_wrapper('node', $node);
+    $state_wrapper->field_sugar_id->set($sugar_id);
+
+    node_save($node);
+  }
+
+  /**
    * Saves an Event to SugarCRM
    *
    * If the Event already exists, instead of creating it, it's updated.
@@ -132,7 +147,9 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     if (empty($sugar_id)) {
       $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
     } else {
-      sugarcrm_client()->putEndpoint('EM_Event/' . $sugar_id, $data);
+      $response = sugarcrm_client()->putEndpoint('EM_Event/' . $sugar_id, $data);
     }
+
+    return $response['id'];
   }
 }
