@@ -13,6 +13,7 @@
  *
  * @see VirginApiAttendlyEventListener::onCreate()
  * @see VirginApiAttendlyEventListener::onUpdate()
+ * @see virgin_api_node_update()
  */
 class VirginApiSugarEventListener implements ObserverObserverInterface {
 
@@ -29,39 +30,44 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     switch ($event->getType()) {
 
       case 'drupal:event_state:create':
-        $this->onCreate($event);
+      case 'drupal:event_state:update':
+        $this->onEventStateCreateOrUpdate($event);
         break;
 
-      case 'drupal:event_state:update':
-        $this->onUpdate($event);
+      case 'drupal:event:update':
+        $this->onEventUpdate($event);
         break;
     }
   }
 
   /**
-   * Executed when an event is created on Drupal
+   * Executed when an Event State is created on Drupal
    *
    * @param \ObserverEventInterface $event
    */
-  private function onCreate(ObserverEventInterface $event) {
-    $node = $event->getData();
-    $sugar_id = $this->getSugarID($node);
-    $data = $this->transformNodeToData($node);
-    $sugar_id = $this->save($data, $sugar_id);
-    $this->setSugarId($node, $sugar_id);
+  private function onEventStateCreateOrUpdate(ObserverEventInterface $event) {
+    $event_state = $event->getData();
+    $sugar_id = $this->getSugarID($event_state);
+    $data = $this->transformNodeToData($event_state);
+    $sugar_id = $this->saveDataToSugar($data, $sugar_id);
+    $this->setSugarId($event_state, $sugar_id);
   }
 
   /**
-   * Executed when an event is updated on Drupal
+   * Executed when an Event is updated on Drupal
    *
    * @param \ObserverEventInterface $event
    */
-  private function onUpdate(ObserverEventInterface $event) {
-    $node = $event->getData();
-    $sugar_id = $this->getSugarID($node);
-    $data = $this->transformNodeToData($node);
-    $sugar_id = $this->save($data, $sugar_id);
-    $this->setSugarId($node, $sugar_id);
+  private function onEventUpdate(ObserverEventInterface $event) {
+
+    // Get the event state from the event node.
+    $event_state = $this->getEventEventState($event->getData());
+
+    // Run the update on SugarCRM.
+    $sugar_id = $this->getSugarID($event_state);
+    $data = $this->transformNodeToData($event_state);
+    $sugar_id = $this->saveDataToSugar($data, $sugar_id);
+    $this->setSugarId($event_state, $sugar_id);
   }
 
   /**
@@ -143,7 +149,7 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    * @return string
    *  The SugarCRM ID for passed Event.
    */
-  private function save($data, $sugar_id = NULL) {
+  private function saveDataToSugar($data, $sugar_id = NULL) {
     if (empty($sugar_id)) {
       $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
     } else {
@@ -151,5 +157,31 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     }
 
     return $response['id'];
+  }
+
+  /**
+   * Gets the Event State of an Event
+   *
+   * @param $node
+   *  The "Event" node.
+   * @return stdClass
+   *  The "Event State" node.
+   */
+  private function getEventEventState($node) {
+    $query = new EntityFieldQuery();
+
+    $query
+      ->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'event_state')
+      ->fieldCondition('field_event', 'target_id', $node->nid, '=')
+      ->execute()
+    ;
+
+    if (!empty($query->ordered_results)) {
+      $entity_id = $query->ordered_results[0]->entity_id;
+      $entity = entity_load_single('node', $entity_id);
+    }
+
+    return empty($entity) ? FALSE : $entity;
   }
 }
