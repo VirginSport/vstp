@@ -35,6 +35,15 @@ function virgin_api_observer_info() {
   );
 }
 
+/**
+ * Implements hook_node_update().
+ */
+function virgin_api_node_update($node) {
+  if ($node->type == 'event') {
+    observer_notify('drupal:event:update', $node);
+  }
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 
