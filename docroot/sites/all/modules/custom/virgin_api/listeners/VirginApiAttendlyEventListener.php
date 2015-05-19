@@ -116,12 +116,11 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
       $ticket_type_wrapper->field_mode->set($ticket->Mode);
 
       // Store value field with as formatted currency strings.
-      $formatter = new NumberFormatter(locale_get_default(), NumberFormatter::CURRENCY);
-
-      $value = $formatter->formatCurrency($ticket->Price, $event->Currency);
+      // TODO improve number formatting without the use of PHP Intl.
+      $value = $event->Currency . ' ' . $ticket->Price;
       $ticket_type_wrapper->field_value->set($value);
 
-      $earlybird_value = $formatter->formatCurrency($ticket->Price, $event->Currency);
+      $earlybird_value = $event->Currency . ' ' . $ticket->EarlybirdPrice;
       $ticket_type_wrapper->field_earlybird_value->set($earlybird_value);
     }
 
