@@ -21,6 +21,7 @@ function _virgin_api_attendly_webhook_action() {
   try {
     observer_notify('attendly:webhook:' . $data->Type, $data);
   } catch (Exception $e) {
+    watchdog_exception('virgin_api', $e, 'Attendly Webhook Failed!', array(), WATCHDOG_CRITICAL);
     services_error('Service Unavailable', 503, new stdClass());
   }
 
