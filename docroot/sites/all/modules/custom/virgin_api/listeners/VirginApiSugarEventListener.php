@@ -160,8 +160,8 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     // If there's no Sugar ID it's because we haven't synced the event before.
     if (empty($sugar_id)) {
       $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
-
-    } else {
+    }
+    else {
       // In case we have the Sugar ID, attempt to update it instead on Sugar.
       // If it fails with a 404 it's because the event was not found on Sugar.
       // In this case, we'll create it there instead.
@@ -170,7 +170,8 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
       } catch (\Guzzle\Http\Exception\ClientErrorResponseException $e) {
         if ($e->getResponse()->getStatusCode() == 404) {
           $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
-        } else {
+        }
+        else {
           throw $e;
         }
       }
