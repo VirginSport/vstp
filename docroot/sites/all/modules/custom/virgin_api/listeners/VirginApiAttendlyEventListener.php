@@ -40,6 +40,8 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
     $node = $this->transformDataToNode($event->getData());
 
     node_save($node);
+
+    observer_notify('drupal:event_state:create', $node);
   }
 
   /**
@@ -51,6 +53,8 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
     $node = $this->transformDataToNode($event->getData());
 
     node_save($node);
+
+    observer_notify('drupal:event_state:update', $node);
   }
 
   /**

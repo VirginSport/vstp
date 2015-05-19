@@ -30,7 +30,8 @@ function virgin_api_services_resources() {
  */
 function virgin_api_observer_info() {
   return array(
-    new VirginApiAttendlyEventListener()
+    new VirginApiAttendlyEventListener(),
+    new VirginApiSugarEventListener(),
   );
 }
 
