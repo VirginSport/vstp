@@ -60,8 +60,14 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    */
   private function onEventUpdate(ObserverEventInterface $event) {
 
+    $event_node = $event->getData();
+
     // Get the event state from the event node.
-    $event_state = $this->getEventEventState($event->getData());
+    $event_state = $this->getEventEventState($event_node);
+
+    // Drupal might be using information from cache. This might create sync
+    // problems. Ensure the relevant nodes are reloaded again from the database.
+    entity_get_controller('node')->resetCache(array($event_node->nid, $event_state->nid));
 
     // Run the update on SugarCRM.
     $sugar_id = $this->getSugarID($event_state);
