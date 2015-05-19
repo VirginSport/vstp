@@ -1,0 +1,6 @@
+name = SugarCRM
+description = Eases the integration between SugarCRM and Drupal.
+package = SugarCRM
+core = 7.x
+
+dependencies[] = composer_manager
