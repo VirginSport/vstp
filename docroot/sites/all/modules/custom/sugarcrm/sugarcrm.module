@@ -47,3 +47,21 @@ function sugarcrm_client() {
 
   return $client;
 }
+
+/**
+ * Checks if SugarCRM module is configured.
+ *
+ * @return bool
+ *  TRUE SugarCRM module is configured, FALSE otherwise.
+ */
+function sugarcrm_is_configured() {
+  $url = variable_get('sugarcrm_url', '');
+  $username = variable_get('sugarcrm_username', '');
+  $password = variable_get('sugarcrm_password', '');
+
+  if (!empty($url) && !empty($username) && !empty($password)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}

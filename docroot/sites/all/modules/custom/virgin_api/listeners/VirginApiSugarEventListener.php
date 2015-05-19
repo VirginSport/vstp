@@ -20,6 +20,12 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    * {@inheritdoc}
    */
   public function onNotify(ObserverEventInterface $event) {
+
+    // If SugarCRM is not configured, do not attempt to do anything.
+    if (!sugarcrm_is_configured()) {
+      return;
+    }
+
     switch ($event->getType()) {
 
       case 'drupal:event_state:create':
