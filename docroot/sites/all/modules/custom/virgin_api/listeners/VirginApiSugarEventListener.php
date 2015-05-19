@@ -156,10 +156,24 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    *  The SugarCRM ID for passed Event.
    */
   private function saveDataToSugar($data, $sugar_id = NULL) {
+
+    // If there's no Sugar ID it's because we haven't synced the event before.
     if (empty($sugar_id)) {
       $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
+
     } else {
-      $response = sugarcrm_client()->putEndpoint('EM_Event/' . $sugar_id, $data);
+      // In case we have the Sugar ID, attempt to update it instead on Sugar.
+      // If it fails with a 404 it's because the event was not found on Sugar.
+      // In this case, we'll create it there instead.
+      try {
+        $response = sugarcrm_client()->putEndpoint('EM_Event/' . $sugar_id, $data);
+      } catch (\Guzzle\Http\Exception\ClientErrorResponseException $e) {
+        if ($e->getResponse()->getStatusCode() == 404) {
+          $response = sugarcrm_client()->postEndpoint('EM_Event', $data);
+        } else {
+          throw $e;
+        }
+      }
     }
 
     return $response['id'];
