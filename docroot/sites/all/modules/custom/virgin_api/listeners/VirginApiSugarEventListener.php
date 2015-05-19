@@ -57,6 +57,8 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
    *  The Drupal 'event_state' node entity.
    * @return stdClass
    *  The data to be posted to SugarCRM.
+   *
+   * @TODO format_date() uses the website timezone. Ensure consistent timezone handling in all systems.
    */
   private function transformNodeToData($node) {
     $state_wrapper = entity_metadata_wrapper('node', $node);
@@ -65,7 +67,7 @@ class VirginApiSugarEventListener implements ObserverObserverInterface {
     $start_date = $state_wrapper->field_event_start_date->value();
     $end_date = $state_wrapper->field_event_end_date->value();
     $registration_date = $state_wrapper->field_event_reg_end_date->value();
-    $date_format = 'c';
+    $date_format = 'c'; // ISO 8601 - 2004-02-12T15:19:21+00:00
 
     $data = array(
       'name' => $state_wrapper->title->value(),
