@@ -41,6 +41,7 @@ dependencies[] = og
 dependencies[] = redirect
 dependencies[] = service_links
 dependencies[] = services
+dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
 
 ; required virgin modules
