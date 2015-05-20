@@ -1,0 +1,20 @@
+{
+    "name": "spinegar/sugar7wrapper",
+    "description": "SugarCRM 7 REST API Wrapper",
+    "authors": [
+        {
+            "name": "Sean Pinegar",
+            "email": "spinegar@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "guzzle/guzzle": "v3.8.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Spinegar\\Sugar7Wrapper": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
