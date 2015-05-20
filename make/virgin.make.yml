@@ -1,0 +1,66 @@
+
+api: 2
+core: 7.x
+
+defaults:
+  projects:
+    subdir: "contrib"
+
+projects:
+
+  acquia_connector:
+    version: "2.15"
+
+  coder:
+    version: "2.5"
+
+  entityform:
+    version: "2.0-rc1"
+
+  field_collection:
+    version: "1.0-beta8"
+
+  flag:
+    version: "3.6"
+
+  google_analytics:
+    version: "2.1"
+
+  hybridauth:
+    version: "2.12"
+
+  i18n:
+    version: "1.12"
+
+  mollom:
+    version: "2.13"
+
+  oauth:
+    version: "3.2"
+
+  observer:
+    version: "1.0"
+
+  og:
+    version: "2.7"
+
+  redirect:
+    version: "1.0-rc1"
+
+  service_links:
+    version: "2.3"
+
+  services:
+    version: "3.12"
+
+  shield:
+    version: "1.2"
+
+  variable:
+    version: "2.5"
+
+  view_unpublished:
+    version: "1.2"
+
+  xmlsitemap:
+    version: "2.2"
