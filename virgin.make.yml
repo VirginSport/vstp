@@ -6,6 +6,9 @@ defaults:
   projects:
     subdir: "contrib"
 
+includes:
+  - "http://cgit.drupalcode.org/lightning/plain/build-lightning.make"
+
 projects:
 
   acquia_connector:
