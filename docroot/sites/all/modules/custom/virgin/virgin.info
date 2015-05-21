@@ -29,6 +29,7 @@ dependencies[] = lightning_theme
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = composer_manager
 dependencies[] = entityform
 dependencies[] = flag
 dependencies[] = googleanalytics
@@ -40,6 +41,7 @@ dependencies[] = og
 dependencies[] = redirect
 dependencies[] = service_links
 dependencies[] = services
+dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
 
 ; required virgin modules
