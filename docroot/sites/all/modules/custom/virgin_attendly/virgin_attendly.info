@@ -1,4 +1,0 @@
-name = Attendly
-description = Handles integration with Attendly
-package = Virgin Sports
-core = 7.x
