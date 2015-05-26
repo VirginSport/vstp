@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin User feature.
+ */
+
+include_once 'virgin_user.features.inc';
