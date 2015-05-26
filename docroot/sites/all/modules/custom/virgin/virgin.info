@@ -52,3 +52,4 @@ dependencies[] = virgin_event
 dependencies[] = virgin_rich_page
 dependencies[] = virgin_roles
 dependencies[] = virgin_taxonomy
+dependencies[] = virgin_user
