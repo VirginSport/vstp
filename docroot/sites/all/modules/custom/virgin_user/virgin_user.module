@@ -24,6 +24,9 @@ function virgin_user_username_alter(&$name, $account) {
     if (empty($full_name)) {
       $name = '(' . $account->uid . ') ' . $name;
     }
+    else {
+      $name = $full_name;
+    }
   }
 }
 
