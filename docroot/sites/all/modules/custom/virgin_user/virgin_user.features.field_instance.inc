@@ -558,53 +558,6 @@ function virgin_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_picture'
-  $field_instances['user-user-field_picture'] = array(
-    'bundle' => 'user',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'image',
-        'weight' => 8,
-      ),
-    ),
-    'entity_type' => 'user',
-    'field_name' => 'field_picture',
-    'label' => 'Picture',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => 0,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => 6,
-    ),
-  );
-
   // Exported field_instance: 'user-user-field_shipping_address'
   $field_instances['user-user-field_shipping_address'] = array(
     'bundle' => 'user',
@@ -812,7 +765,6 @@ function virgin_user_field_default_field_instances() {
   t('Gender');
   t('Name');
   t('Phone');
-  t('Picture');
   t('Relation');
   t('Shipping Address');
   t('SugarCRM ID');

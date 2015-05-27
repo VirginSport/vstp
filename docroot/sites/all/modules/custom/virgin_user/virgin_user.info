@@ -25,7 +25,6 @@ features[field_instance][] = user-user-field_gender
 features[field_instance][] = user-user-field_given_name
 features[field_instance][] = user-user-field_marketing_enabled
 features[field_instance][] = user-user-field_phone
-features[field_instance][] = user-user-field_picture
 features[field_instance][] = user-user-field_shipping_address
 features[field_instance][] = user-user-field_sugar_id
 features[field_instance][] = user-user-field_surname

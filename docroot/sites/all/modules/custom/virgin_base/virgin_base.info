@@ -48,7 +48,6 @@ features[field_base][] = field_link
 features[field_base][] = field_marketing_enabled
 features[field_base][] = field_mode
 features[field_base][] = field_phone
-features[field_base][] = field_picture
 features[field_base][] = field_relation
 features[field_base][] = field_schedule
 features[field_base][] = field_shipping_address
