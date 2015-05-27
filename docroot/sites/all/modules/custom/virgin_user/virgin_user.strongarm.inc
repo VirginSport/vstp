@@ -31,7 +31,7 @@ function virgin_user_strongarm() {
           'weight' => '16',
         ),
         'account' => array(
-          'weight' => '0',
+          'weight' => '6',
         ),
         'timezone' => array(
           'weight' => '12',
@@ -82,8 +82,15 @@ function virgin_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'user_default_timezone';
+  $strongarm->value = '0';
+  $export['user_default_timezone'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'user_email_verification';
-  $strongarm->value = 1;
+  $strongarm->value = FALSE;
   $export['user_email_verification'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -186,6 +193,13 @@ password: Your password
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_no_approval_required_notify';
+  $strongarm->value = FALSE;
+  $export['user_mail_register_no_approval_required_notify'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_subject';
   $strongarm->value = 'Account details for [user:name] at [site:name]';
   $export['user_mail_register_no_approval_required_subject'] = $strongarm;
@@ -205,6 +219,13 @@ Thank you for registering at [site:name]. Your application for an account is cur
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_pending_approval_notify';
+  $strongarm->value = FALSE;
+  $export['user_mail_register_pending_approval_notify'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_pending_approval_subject';
   $strongarm->value = 'Account details for [user:name] at [site:name] (pending admin approval)';
   $export['user_mail_register_pending_approval_subject'] = $strongarm;
@@ -217,18 +238,12 @@ Thank you for registering at [site:name]. Your application for an account is cur
 
 Your account at [site:name] has been activated.
 
-You may now log in by clicking this link or copying and pasting it into your browser:
-
-[user:one-time-login-url]
-
-This link can only be used once to log in and will lead you to a page where you can set your password.
-
-After setting your password, you will be able to log in at [site:login-url] in the future using:
+You will be able to log in to [site:login-url] in the future using:
 
 username: [user:name]
-password: Your password
+password: your password.
 
---  [site:name] team';
+-- [site:name] team';
   $export['user_mail_status_activated_body'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -242,7 +257,7 @@ password: Your password
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_status_activated_subject';
-  $strongarm->value = 'Account details for [user:name] at [site:name] (approved)';
+  $strongarm->value = 'Account details for [user:name] at [site:name]';
   $export['user_mail_status_activated_subject'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -348,8 +363,44 @@ Your account on [site:name] has been canceled.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_register';
-  $strongarm->value = '1';
+  $strongarm->value = 1;
   $export['user_register'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_registrationpassword_registration';
+  $strongarm->value = 'with-pass';
+  $export['user_registrationpassword_registration'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_registrationpassword_user_mail_status_activated_body_original';
+  $strongarm->value = '[user:name],
+
+Your account at [site:name] has been activated.
+
+You may now log in by clicking this link or copying and pasting it into your browser:
+
+[user:one-time-login-url]
+
+This link can only be used once to log in and will lead you to a page where you can set your password.
+
+After setting your password, you will be able to log in at [site:login-url] in the future using:
+
+username: [user:name]
+password: Your password
+
+--  [site:name] team';
+  $export['user_registrationpassword_user_mail_status_activated_body_original'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_registrationpassword_user_mail_status_activated_subject_original';
+  $strongarm->value = 'Account details for [user:name] at [site:name] (approved)';
+  $export['user_registrationpassword_user_mail_status_activated_subject_original'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
