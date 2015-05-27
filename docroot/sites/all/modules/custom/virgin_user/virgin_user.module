@@ -5,3 +5,18 @@
  */
 
 include_once 'virgin_user.features.inc';
+
+/**
+ * Implements hook_username_alter().
+ */
+function virgin_user_username_alter(&$name, $account) {
+
+  // Set the visible username from the user's given name and surname.
+  if ($account->uid) {
+    $account_wrapper = entity_metadata_wrapper('user', $account);
+    $given_name = $account_wrapper->field_given_name->value();
+    $surname = $account_wrapper->field_surname->value();
+    $name = trim($given_name . ' ' . $surname);
+  }
+}
+
