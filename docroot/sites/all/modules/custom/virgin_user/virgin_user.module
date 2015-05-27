@@ -20,3 +20,12 @@ function virgin_user_username_alter(&$name, $account) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for user_profile_form.
+ */
+function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+
+  // The user cannot change his SugarCRM ID as this is entirely
+  // managed automatically by the system.
+  $form['field_sugar_id']['#access'] = FALSE;
+}
