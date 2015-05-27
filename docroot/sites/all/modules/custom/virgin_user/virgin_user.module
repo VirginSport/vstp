@@ -60,7 +60,6 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
     'birthDay' => null,
     'birthMonth' => null,
     'birthYear' => null,
-    'photoUrl' => null
   );
 
   $data = $data + $defaults;
