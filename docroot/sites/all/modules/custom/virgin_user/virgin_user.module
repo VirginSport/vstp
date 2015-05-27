@@ -16,7 +16,14 @@ function virgin_user_username_alter(&$name, $account) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
     $given_name = $account_wrapper->field_given_name->value();
     $surname = $account_wrapper->field_surname->value();
-    $name = trim($given_name . ' ' . $surname);
+    $full_name = trim($given_name . ' ' . $surname);
+
+    // In some cases, such as the user administration view, the account object
+    // might not be fully loaded. In those cases, fallback to the username with
+    // the user ID.
+    if (empty($full_name)) {
+      $name = '(' . $account->uid . ') ' . $name;
+    }
   }
 }
 
