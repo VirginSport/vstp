@@ -38,6 +38,10 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   // The user cannot change his SugarCRM ID as this is entirely
   // managed automatically by the system.
   $form['field_sugar_id']['#access'] = FALSE;
+
+  // The e-mail address is unique and cannot be changed after the user account
+  // was created.
+  $form['account']['mail']['#access'] = FALSE;
 }
 
 /**
