@@ -7,6 +7,23 @@
 include_once 'virgin_user.features.inc';
 
 /**
+ * Implements hook_menu_alter().
+ */
+function virgin_user_menu_alter(&$items) {
+
+  // Restrict certain user administration routes to website administrators.
+  $admin_routes = array(
+    'user/%user/hybridauth',
+    'user/%user/hybridauth/delete'
+  );
+
+  foreach ($admin_routes as $route) {
+    $items[$route]['access callback'] = 'user_access';
+    $items[$route]['access arguments'] = array('administer site configuration');
+  }
+}
+
+/**
  * Implements hook_username_alter().
  */
 function virgin_user_username_alter(&$name, $account) {
