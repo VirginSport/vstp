@@ -4,3 +4,24 @@
  * @file
  * Main file for virgin module.
  */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function virgin_ctools_plugin_directory($module, $plugin) {
+  if (in_array($module, array('panelizer', 'ctools', 'page_manager'))) {
+    return 'plugins/' . $plugin;
+  }
+}
+
+// Helpers
+// -----------------------------------------------------------------------------
+
+/**
+ * Form API e-mail validation callback
+ */
+function virgin_element_email_validate($element, &$form_state, $form) {
+  if (!valid_email_address($element['#value'])) {
+    form_error($element, t('The e-mail address you inserted is not valid.'));
+  }
+}
