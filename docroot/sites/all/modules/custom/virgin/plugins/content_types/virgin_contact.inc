@@ -25,7 +25,8 @@ function virgin_virgin_contact_content_type_render($subtype, $conf, $panel_args,
 
   $form_state = array(
     'contact' => array(
-      'name' => '',
+      'given_name' => '',
+      'surname' => '',
       'email' => '',
       'phone' => '',
     )
@@ -37,7 +38,8 @@ function virgin_virgin_contact_content_type_render($subtype, $conf, $panel_args,
     $email = $account_wrapper->mail->value();
     $phone = $account_wrapper->field_phone->value();
 
-    $form_state['contact']['name'] = trim($given_name . ' ' . $surname);
+    $form_state['contact']['given_name'] = $given_name;
+    $form_state['contact']['surname'] = $surname;
     $form_state['contact']['email'] = $email;
     $form_state['contact']['phone'] = $phone;
   }
@@ -59,15 +61,28 @@ function virgin_virgin_contact_content_type_form($form, &$form_state) {
 
   $contact = $form_state['contact'];
 
-  $form['name'] = array(
-    '#title' => t('Your Name'),
+  $form['given_name'] = array(
+    '#title' => t('Given Name'),
     '#type' => 'textfield',
     '#required' => TRUE
   );
 
-  if (!empty($contact['name'])) {
-    $form['name'] += array(
-      '#value' => $contact['name'],
+  if (!empty($contact['given_name'])) {
+    $form['given_name'] += array(
+      '#value' => $contact['given_name'],
+      '#disabled' => TRUE,
+    );
+  }
+
+  $form['surname'] = array(
+    '#title' => t('Surname'),
+    '#type' => 'textfield',
+    '#required' => TRUE
+  );
+
+  if (!empty($contact['surname'])) {
+    $form['surname'] += array(
+      '#value' => $contact['surname'],
       '#disabled' => TRUE,
     );
   }
@@ -129,7 +144,8 @@ function virgin_virgin_contact_content_type_form_validate($form, &$form_state) {
   $values = $form_state['values'];
 
   $data = array(
-    'name' => $values['name'],
+    'given_name' => $values['given_name'],
+    'surname' => $values['surname'],
     'company_name' => $values['company_name'],
     'email' => $values['email'],
     'phone' => $values['phone'],
@@ -142,12 +158,16 @@ function virgin_virgin_contact_content_type_form_validate($form, &$form_state) {
   try {
     observer_notify('virgin:contact:request', $data);
   } catch (VirginException $e) {
+    watchdog_exception('virgin', $e);
+
     if ($e->hasUserMessage()) {
       $error_message = $e->getUserMessage();
     }
 
     $error = TRUE;
+
   } catch (Exception $e) {
+    watchdog_exception('virgin', $e);
     $error = TRUE;
   }
 
