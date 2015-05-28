@@ -55,3 +55,6 @@ dependencies[] = virgin_rich_page
 dependencies[] = virgin_roles
 dependencies[] = virgin_taxonomy
 dependencies[] = virgin_user
+
+; required files
+files[] = exceptions/VirginException.php
