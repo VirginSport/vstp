@@ -38,6 +38,7 @@ dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = mollom
 dependencies[] = oauth_common
+dependencies[] = observer
 dependencies[] = og
 dependencies[] = redirect
 dependencies[] = service_links
