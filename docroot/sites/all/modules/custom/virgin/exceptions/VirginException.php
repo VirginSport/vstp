@@ -27,7 +27,7 @@ class VirginException extends Exception {
    * @param string $userMessage
    *  A safe message to be shown to the users
    */
-  public function __construct($message, $userMessage = '') {
+  public function __construct($message = '', $userMessage = '') {
     $this->userMessage = $userMessage;
 
     parent::__construct($message);
