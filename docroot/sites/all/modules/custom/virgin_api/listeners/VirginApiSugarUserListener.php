@@ -27,10 +27,28 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
 
     switch ($event->getType()) {
 
+      case 'drupal:user:create':
+        $this->onUserCreate($event);
+        break;
+
       case 'virgin:contact:request':
         $this->onContactRequest($event);
         break;
     }
+  }
+
+  /**
+   * Executed when a User is created on Drupal
+   *
+   * @param \ObserverEventInterface $event
+   */
+  private function onUserCreate(ObserverEventInterface $event) {
+    $account = $event->getData();
+
+    $sugar_id = $this->getEmailSugarId($account->mail);
+    $contact_data = $this->transformUserAccountToUserData($account);
+    $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+    $this->setUserSugarId($account, $sugar_id);
   }
 
   /**
@@ -58,7 +76,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
       $sugar_id = $this->saveContactToSugar($contact_data);
 
       if (user_is_logged_in()) {
-        $this->setUserSugarId($account, $sugar_id);
+        $this->setUserSugarId($account, $sugar_id, TRUE);
       }
     }
 
@@ -126,6 +144,22 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   }
 
   /**
+   * @param stdClass $account
+   * @return array
+   */
+  private function transformUserAccountToUserData($account) {
+    $account_wrapper = entity_metadata_wrapper('user', $account);
+
+    return array(
+      'first_name' => $account_wrapper->field_given_name->value(),
+      'last_name' => $account_wrapper->field_surname->value(),
+      'phone' => $account_wrapper->field_phone->value(),
+      'email1' => $account_wrapper->mail->value(),
+      // TODO virgin sports ID mapping is missing from Sugar
+    );
+  }
+
+  /**
    * Generates the data structure for a Contact in SugarCRM
    *
    * @param $contact
@@ -153,6 +187,17 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
     );
   }
 
+  /**
+   * Creates or Updates a Contact on SugarCRM
+   *
+   * @param $data
+   *  The contact data
+   * @param null|string $sugar_id
+   *  If null a new contact will be created on Sugar, if filled it will try to
+   *  create a new contact.
+   * @return string
+   *  The ID of the contact
+   */
   private function saveContactToSugar($data, $sugar_id = NULL) {
 
     // If there's no Sugar ID it's because we haven't synced the event before.
@@ -181,16 +226,20 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   /**
    * Sets the SugarCRM ID on a given User
    *
-   * @param $account
+   * @param stdClass $account
    *  The user account to have the Sugar ID set.
-   * @param $sugar_id
+   * @param string $sugar_id
    *  The sugar id.
+   * @param bool $save
+   *  If true the account will be saved.
    */
-  private function setUserSugarId($account, $sugar_id) {
+  private function setUserSugarId($account, $sugar_id, $save = FALSE) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
     $account_wrapper->field_sugar_id->set($sugar_id);
 
-    user_save($account);
+    if ($save) {
+      user_save($account);
+    }
   }
 
   /**
