@@ -6,6 +6,15 @@
  */
 
 /**
+ * Implements hook_boot().
+ */
+function virgin_boot() {
+
+  // Provides a more graceful exception handler than what Drupal core provides.
+  set_exception_handler('_virgin_exception_handler');
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_ctools_plugin_directory($module, $plugin) {
@@ -23,5 +32,33 @@ function virgin_ctools_plugin_directory($module, $plugin) {
 function virgin_element_email_validate($element, &$form_state, $form) {
   if (!valid_email_address($element['#value'])) {
     form_error($element, t('The e-mail address you inserted is not valid.'));
+  }
+}
+
+/**
+ * Provides a custom PHP exception handler for Virgin Sports
+ *
+ * Uncaught exceptions are those not enclosed in a try/catch block. They are
+ * always fatal: the execution of the script will stop as soon as the exception
+ * handler exits.
+ *
+ * @param $exception
+ *   The exception object that was thrown.
+ *
+ * @see virgin_boot().
+ */
+function _virgin_exception_handler($exception) {
+
+  // If it's an unhandled VirginException, attempt to handle it "gracefully".
+  if ($exception instanceof VirginException) {
+    if ($exception->hasUserMessage()) {
+      drupal_set_message($exception->getUserMessage(), 'error');
+    }
+
+    drupal_goto('<front>');
+  }
+  else {
+    // Otherwise fallback to Drupal core behavior.
+    _drupal_exception_handler($exception);
   }
 }
