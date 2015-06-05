@@ -45,15 +45,21 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
    * Executed when a User is created on Drupal
    *
    * @param \ObserverEventInterface $event
+   * @throws \VirginException
+   *  Thrown if the user creation failed while attempting to contact SugarCRM.
    */
   private function onUserCreate(ObserverEventInterface $event) {
     $account = $event->getData();
 
     if ($this->canSynchronizeAccount($account)) {
-      $sugar_id = $this->getEmailSugarId($account->mail);
-      $contact_data = $this->transformUserAccountToUserData($account);
-      $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-      $this->setUserSugarId($account, $sugar_id);
+      try {
+        $sugar_id = $this->getEmailSugarId($account->mail);
+        $contact_data = $this->transformUserAccountToUserData($account);
+        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $this->setUserSugarId($account, $sugar_id);
+      } catch (Exception $e) {
+        throw new VirginException($e->getMessage(), t('An error occurred while creating the account. Please try again at a later time.'));
+      }
     }
   }
 
@@ -61,15 +67,21 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
    * Executed when a User is update on Drupal
    *
    * @param \ObserverEventInterface $event
+   * @throws \VirginException
+   *  Thrown if the user update failed while attempting to contact SugarCRM.
    */
   private function onUserUpdate(ObserverEventInterface $event) {
     $account = $event->getData();
 
     if ($this->canSynchronizeAccount($account)) {
-      $sugar_id = $this->getEmailSugarId($account->mail);
-      $contact_data = $this->transformUserAccountToUserData($account);
-      $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-      $this->setUserSugarId($account, $sugar_id);
+      try {
+        $sugar_id = $this->getEmailSugarId($account->mail);
+        $contact_data = $this->transformUserAccountToUserData($account);
+        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $this->setUserSugarId($account, $sugar_id);
+      } catch (Exception $e) {
+        throw new VirginException($e->getMessage(), t('An error occurred while updating the account. Please try again at a later time.'));
+      }
     }
   }
 
