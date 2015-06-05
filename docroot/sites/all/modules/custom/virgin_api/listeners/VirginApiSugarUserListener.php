@@ -49,10 +49,12 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   private function onUserCreate(ObserverEventInterface $event) {
     $account = $event->getData();
 
-    $sugar_id = $this->getEmailSugarId($account->mail);
-    $contact_data = $this->transformUserAccountToUserData($account);
-    $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-    $this->setUserSugarId($account, $sugar_id);
+    if ($this->canSynchronizeAccount($account)) {
+      $sugar_id = $this->getEmailSugarId($account->mail);
+      $contact_data = $this->transformUserAccountToUserData($account);
+      $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+      $this->setUserSugarId($account, $sugar_id);
+    }
   }
 
   /**
@@ -63,10 +65,12 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   private function onUserUpdate(ObserverEventInterface $event) {
     $account = $event->getData();
 
-    $sugar_id = $this->getEmailSugarId($account->mail);
-    $contact_data = $this->transformUserAccountToUserData($account);
-    $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-    $this->setUserSugarId($account, $sugar_id);
+    if ($this->canSynchronizeAccount($account)) {
+      $sugar_id = $this->getEmailSugarId($account->mail);
+      $contact_data = $this->transformUserAccountToUserData($account);
+      $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+      $this->setUserSugarId($account, $sugar_id);
+    }
   }
 
   /**
@@ -280,6 +284,20 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
     );
 
     sugarcrm_client()->postEndpoint('Tasks', $data);
+  }
+
+  /**
+   * Checks whether the given account can be synchronized to SugarCRM
+   *
+   * @param $account
+   *  The user account object.
+   * @return bool
+   *  TRUE if the account can be synchronized, FALSE otherwise.
+   */
+  private function canSynchronizeAccount($account) {
+
+    // Accounts that were not enabled, are not synchronized.
+    return !empty($account->status);
   }
 
 }
