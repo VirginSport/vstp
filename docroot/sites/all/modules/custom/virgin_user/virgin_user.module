@@ -99,3 +99,10 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
 function virgin_user_user_insert(&$edit, $account, $category) {
   observer_notify('drupal:user:create', $account);
 }
+
+/**
+ * Implements hook_user_update().
+ */
+function virgin_user_user_update(&$edit, $account, $category) {
+  observer_notify('drupal:user:update', $account);
+}

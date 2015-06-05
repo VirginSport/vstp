@@ -31,6 +31,10 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
         $this->onUserCreate($event);
         break;
 
+      case 'drupal:user:update':
+        $this->onUserUpdate($event);
+        break;
+
       case 'virgin:contact:request':
         $this->onContactRequest($event);
         break;
@@ -43,6 +47,20 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
    * @param \ObserverEventInterface $event
    */
   private function onUserCreate(ObserverEventInterface $event) {
+    $account = $event->getData();
+
+    $sugar_id = $this->getEmailSugarId($account->mail);
+    $contact_data = $this->transformUserAccountToUserData($account);
+    $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+    $this->setUserSugarId($account, $sugar_id);
+  }
+
+  /**
+   * Executed when a User is update on Drupal
+   *
+   * @param \ObserverEventInterface $event
+   */
+  private function onUserUpdate(ObserverEventInterface $event) {
     $account = $event->getData();
 
     $sugar_id = $this->getEmailSugarId($account->mail);
@@ -144,6 +162,8 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   }
 
   /**
+   * Generates the data structure for a Contact in SugarCRM via a User account
+   *
    * @param stdClass $account
    * @return array
    */
