@@ -181,10 +181,10 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->api_version = 1;
   $strongarm->name = 'hybridauth_provider_Facebook_scope';
   $strongarm->value = array(
-    'user_about_me' => 'user_about_me',
-    'user_birthday' => 'user_birthday',
     'email' => 'email',
+    'user_about_me' => 0,
     'user_activities' => 0,
+    'user_birthday' => 0,
     'user_checkins' => 0,
     'user_education_history' => 0,
     'user_events' => 0,
