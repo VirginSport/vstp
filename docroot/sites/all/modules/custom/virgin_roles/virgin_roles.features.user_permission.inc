@@ -2211,6 +2211,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'use hybridauth',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
     ),
     'module' => 'hybridauth',
   );
