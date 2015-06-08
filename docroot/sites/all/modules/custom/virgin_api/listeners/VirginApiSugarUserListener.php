@@ -186,12 +186,23 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   private function transformUserAccountToUserData($account) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
 
+    $address = $account_wrapper->field_address->value();
+    $countries = country_get_list();
+    $birth_date = $account_wrapper->field_birth_date->value();
+
     return array(
+      'virgin_sport_id' => $account_wrapper->uid->value(),
       'first_name' => $account_wrapper->field_given_name->value(),
       'last_name' => $account_wrapper->field_surname->value(),
+      'date_of_birth' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
       'phone' => $account_wrapper->field_phone->value(),
       'email1' => $account_wrapper->mail->value(),
-      // TODO virgin sports ID mapping is missing from Sugar
+      'primary_address_street' => $address['thoroughfare'],
+      'primary_address_city' => $address['premise'],
+      'primary_address_state' => $address['locality'],
+      'primary_address_postalcode' => $address['postal_code'],
+      'primary_address_country' => empty($address['country']) ? '' : $countries[$address['country']],
+      'accepts_marketing' => $account_wrapper->field_marketing_enabled->value(),
     );
   }
 
