@@ -301,7 +301,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
    */
   private function saveTaskInSugar($contact_id, $message) {
     $data = array(
-      'name' => 'Contact Request (via Website)',
+      'name' => 'Get in Touch',
       'contact_id' => $contact_id,
       'description' => $message,
       'date_start' => date('c')
