@@ -78,7 +78,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
         $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
         $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-        $this->setUserSugarId($account, $sugar_id);
+        $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
         throw new VirginException($e->getMessage(), t('An error occurred while updating the account. Please try again at a later time.'));
       }
@@ -285,7 +285,8 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
     $account_wrapper->field_sugar_id->set($sugar_id);
 
     if ($save) {
-      user_save($account);
+      // Save the changes to the user without triggering a hook_user_update().
+      field_attach_update('user', $account);
     }
   }
 
