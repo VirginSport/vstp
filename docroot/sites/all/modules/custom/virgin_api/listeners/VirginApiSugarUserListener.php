@@ -195,7 +195,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
       'first_name' => $account_wrapper->field_given_name->value(),
       'last_name' => $account_wrapper->field_surname->value(),
       'date_of_birth' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
-      'phone' => $account_wrapper->field_phone->value(),
+      'mobile' => $account_wrapper->field_phone->value(),
       'email1' => $account_wrapper->mail->value(),
       'primary_address_street' => $address['thoroughfare'],
       'primary_address_city' => $address['premise'],
@@ -203,6 +203,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
       'primary_address_postalcode' => $address['postal_code'],
       'primary_address_country' => empty($address['country']) ? '' : $countries[$address['country']],
       'accepts_marketing' => $account_wrapper->field_marketing_enabled->value(),
+      'gender' => $account_wrapper->field_gender->value(),
     );
   }
 
@@ -229,7 +230,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
       'first_name' => $contact['given_name'],
       'last_name' => $contact['surname'],
       'email1' => $contact['email'],
-      'phone_home' => $contact['phone']
+      'mobile' => $contact['phone']
       // TODO company name is missing a mapping in SugarCRM
     );
   }
