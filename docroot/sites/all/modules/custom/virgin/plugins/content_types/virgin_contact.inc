@@ -141,6 +141,12 @@ function virgin_virgin_contact_content_type_form($form, &$form_state) {
  * @see virgin_virgin_contact_content_type_form()
  */
 function virgin_virgin_contact_content_type_form_validate($form, &$form_state) {
+
+  // If the form has field errors, do not notify observers.
+  if (form_get_errors()) {
+    return;
+  }
+
   $values = $form_state['values'];
 
   $data = array(
