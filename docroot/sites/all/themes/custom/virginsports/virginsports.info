@@ -1,0 +1,30 @@
+name = Virgin Sports Theme
+description = The Virgin Sports website theme
+core = 7.x
+base theme = bootstrap
+
+; Regions
+regions[content] = 'Content'
+
+; Stylesheets
+stylesheets[all][] = css/style.css
+
+; Scripts
+scripts[] = 'js/bootstrap/bootstrap/affix.js'
+scripts[] = 'js/bootstrap/bootstrap/alert.js'
+scripts[] = 'js/bootstrap/bootstrap/button.js'
+scripts[] = 'js/bootstrap/bootstrap/carousel.js'
+scripts[] = 'js/bootstrap/bootstrap/collapse.js'
+scripts[] = 'js/bootstrap/bootstrap/dropdown.js'
+scripts[] = 'js/bootstrap/bootstrap/modal.js'
+scripts[] = 'js/bootstrap/bootstrap/tooltip.js'
+scripts[] = 'js/bootstrap/bootstrap/popover.js'
+scripts[] = 'js/bootstrap/bootstrap/scrollspy.js'
+scripts[] = 'js/bootstrap/bootstrap/tab.js'
+scripts[] = 'js/bootstrap/bootstrap/transition.js'
+
+; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
+settings[bootstrap_cdn] = ''
+
+; Register the theme panels layouts folder
+plugins[panels][layouts] = layouts
