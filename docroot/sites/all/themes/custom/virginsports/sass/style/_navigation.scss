@@ -1,0 +1,187 @@
+
+.menu {
+  display: block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  &.horizontal {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.nav-tabs {
+  margin-bottom: 24px;
+}
+
+// Account Navigation Bar
+// ----------------------------------------------------------------------------
+
+#account-nav {
+  background-color: $c-gray;
+  height: $account-nav-height;
+  line-height: $account-nav-height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $nav-z-index;
+
+  li {
+    padding-left: 12px;
+  }
+}
+
+// Main Navigation Bar
+// ----------------------------------------------------------------------------
+
+#main-nav {
+  @include box-sizing(border-box);
+  height: $main-nav-height;
+  position: fixed;
+  overflow: hidden;
+  top: $account-nav-height;
+  right: 0;
+  left: 0;
+  z-index: $nav-z-index;
+
+  &.main-nav-open {
+    height: 100%;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  // Logo
+  // ------------------------------------------------------
+  .logo {
+    display: block;
+    height: 60px;
+    width: 123px;
+    margin-top: 20px;
+    background: transparent url('../img/logo.svg') no-repeat 0 0;
+    overflow: hidden;
+    text-indent: -200em;
+  }
+
+  // Burger
+  // ------------------------------------------------------
+  .burger {
+    @include transition(all 0.3s);
+    position: absolute;
+    top: 34px;
+    right: 32px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: -22px;
+      bottom: -22px;
+      width: 1px;
+      background-color: white;
+      opacity: 0.3;
+    }
+
+    .burger-bar {
+      @include transition(all 0.3s);
+      height: 3px;
+      width: 30px;
+      background-color: white;
+      display: block;
+      position: absolute;
+      left: 0;
+      opacity: 1;
+
+      &.top {
+        top: 0px;
+      }
+
+      &.middle {
+        top: 10px;
+      }
+
+      &.bottom {
+        top: 20px;
+      }
+    }
+  }
+
+  &.main-nav-open .burger {
+    .burger-bar {
+      top: 10px;
+    }
+
+    .burger-bar.top,
+    .burger-bar.bottom {
+      @include transform(rotateZ(135deg));
+    }
+
+    .burger-bar.middle {
+      @include transform(rotateZ(-135deg));
+    }
+
+    .burger-bar.bottom {
+      opacity: 0;
+    }
+  }
+}
+
+.main-nav-header {
+  height: $main-nav-height;
+}
+
+.main-nav-menu {
+  ul {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  li {
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    line-height: 48px;
+  }
+
+  a {
+    color: white;
+  }
+}
+
+// Administration Toolbar Adjustments
+// ----------------------------------------------------------------------------
+
+body.navbar-vertical {
+  $navbar-vertical-offset: 39px;
+
+  #account-nav {
+    top:  $navbar-vertical-offset;
+  }
+
+  #main-nav {
+    top: $account-nav-height + $navbar-vertical-offset;
+  }
+}
+
+body.navbar-horizontal {
+  $navbar-horizontal-offset: 79px;
+
+  #account-nav {
+    top: $navbar-horizontal-offset;
+  }
+
+  #main-nav {
+    top: $account-nav-height + $navbar-horizontal-offset;
+  }
+}

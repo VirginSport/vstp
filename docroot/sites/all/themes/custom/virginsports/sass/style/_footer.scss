@@ -1,0 +1,50 @@
+
+.footer-navigation,
+.footer-meta {
+  a {
+    color: white;
+  }
+}
+
+.footer-navigation {
+  color: white;
+  background-color: $c-red;
+  padding: 32px 0;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (min-width: $screen-md-min) {
+    line-height: 60px;
+  }
+
+  .logo {
+    display: block;
+    height: 60px;
+    width: 123px;
+    background: transparent url('../img/logo.svg') no-repeat 0 0;
+    overflow: hidden;
+    text-indent: -200em;
+
+    @media (max-width: $screen-sm-max) {
+      margin-bottom: 32px;
+    }
+  }
+
+  .menu.horizontal {
+    li {
+      padding-right: 32px;
+
+      @media (max-width: $screen-sm-max) {
+        display: block;
+      }
+    }
+  }
+}
+
+.footer-meta {
+  color: white;
+  background-color: $c-red-dark;
+  text-align: right;
+  line-height: 60px;
+  height: 60px;
+}

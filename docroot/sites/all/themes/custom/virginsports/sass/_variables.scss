@@ -3,9 +3,18 @@
 // Variables
 // --------------------------------------------------
 
+$account-nav-height: 34px;
+$main-nav-height: 96px;
+$nav-z-index: 10;
 
 //== Colors
 //
+
+$c-blue: blue;
+$c-gray: #222;
+$c-red: #fd0d1b;
+$c-red-dark: #e50c19;
+
 //## Gray and brand colors for use across Bootstrap.
 
 //$gray-base:              #000;
@@ -27,7 +36,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-//$body-bg:               #fff;
+$body-bg:               $c-red-dark;
 //** Global text color on `<body>`.
 //$text-color:            $gray-dark;
 
@@ -324,7 +333,7 @@
 //** Number of columns in the grid.
 //$grid-columns:              12;
 //** Padding between columns. Gets divided in half for the left and right.
-//$grid-gutter-width:         30px;
+$grid-gutter-width:         32px;
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
 //$grid-float-breakpoint:     $screen-sm-min;
@@ -430,7 +439,7 @@
 
 //$nav-tabs-link-hover-border-color:          $gray-lighter;
 
-//$nav-tabs-active-link-hover-bg:             $body-bg;
+$nav-tabs-active-link-hover-bg:             white;
 //$nav-tabs-active-link-hover-color:          $gray;
 //$nav-tabs-active-link-hover-border-color:   #ddd;
 

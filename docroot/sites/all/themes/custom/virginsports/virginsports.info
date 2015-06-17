@@ -22,6 +22,7 @@ scripts[] = 'js/bootstrap/bootstrap/popover.js'
 scripts[] = 'js/bootstrap/bootstrap/scrollspy.js'
 scripts[] = 'js/bootstrap/bootstrap/tab.js'
 scripts[] = 'js/bootstrap/bootstrap/transition.js'
+scripts[] = 'js/main-nav.js'
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''

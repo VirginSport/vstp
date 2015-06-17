@@ -18,6 +18,7 @@
 @import "bootstrap/bootstrap-compass";
 
 // Style Partials
+@import "style/base";
 @import "style/footer";
 @import "style/forms";
 @import "style/navigation";
@@ -26,6 +27,9 @@
 
 // Style Features
 // @import "style/features/event"
+
+// Style Attributes
+@import "style/attributes/color";
 
 // Cross Browser
 // @import "style/crossbrowser/ie9"
