@@ -1,0 +1,108 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin User feature.
+ */
+
+include_once 'virgin_user.features.inc';
+
+/**
+ * Implements hook_menu_alter().
+ */
+function virgin_user_menu_alter(&$items) {
+
+  // Restrict certain user administration routes to website administrators.
+  $admin_routes = array(
+    'user/%user/hybridauth',
+    'user/%user/hybridauth/delete'
+  );
+
+  foreach ($admin_routes as $route) {
+    $items[$route]['access callback'] = 'user_access';
+    $items[$route]['access arguments'] = array('administer site configuration');
+  }
+}
+
+/**
+ * Implements hook_username_alter().
+ */
+function virgin_user_username_alter(&$name, $account) {
+
+  // Set the visible username from the user's given name and surname.
+  if ($account->uid) {
+    $account_wrapper = entity_metadata_wrapper('user', $account);
+    $given_name = $account_wrapper->field_given_name->value();
+    $surname = $account_wrapper->field_surname->value();
+    $full_name = trim($given_name . ' ' . $surname);
+
+    // In some cases, such as the user administration view, the account object
+    // might not be fully loaded. In those cases, fallback to the username with
+    // the user ID.
+    if (empty($full_name)) {
+      $name = '(' . $account->uid . ') ' . $name;
+    }
+    else {
+      $name = $full_name;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_profile_form.
+ */
+function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+
+  // The user cannot change his SugarCRM ID as this is entirely
+  // managed automatically by the system.
+  $form['field_sugar_id']['#access'] = FALSE;
+
+  // The e-mail address is unique and cannot be changed after the user account
+  // was created.
+  $form['account']['mail']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_hybridauth_userinfo_alter().
+ *
+ * Maps the user profile information from the social network at registration
+ * time to the fields in the user's Drupal profile.
+ */
+function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
+
+  // If the authentication is not being done via Facebook, bail out.
+  if (empty($data['provider']) || $data['provider'] != 'Facebook') {
+    return;
+  }
+
+  $defaults = array(
+    'firstName' => null,
+    'lastName' => null,
+    'gender' => null,
+    'birthDay' => null,
+    'birthMonth' => null,
+    'birthYear' => null,
+  );
+
+  $data = $data + $defaults;
+
+  $birth_date = strtotime($data['birthYear'] . '/' . $data['birthMonth'] . '/' . $data['birthDay']);
+
+  $userinfo['field_given_name'][LANGUAGE_NONE][0]['value'] = $data['firstName'];
+  $userinfo['field_surname'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
+  $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
+  $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function virgin_user_user_insert(&$edit, $account, $category) {
+  observer_notify('drupal:user:create', $account);
+}
+
+/**
+ * Implements hook_user_update().
+ */
+function virgin_user_user_update(&$edit, $account, $category) {
+  observer_notify('drupal:user:update', $account);
+}

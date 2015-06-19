@@ -29,17 +29,22 @@ dependencies[] = lightning_theme
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = composer_manager
 dependencies[] = entityform
+dependencies[] = email_registration
 dependencies[] = flag
 dependencies[] = googleanalytics
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = mollom
 dependencies[] = oauth_common
+dependencies[] = observer
 dependencies[] = og
 dependencies[] = redirect
 dependencies[] = service_links
 dependencies[] = services
+dependencies[] = user_registrationpassword
+dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
 
 ; required virgin modules
@@ -50,3 +55,7 @@ dependencies[] = virgin_event
 dependencies[] = virgin_rich_page
 dependencies[] = virgin_roles
 dependencies[] = virgin_taxonomy
+dependencies[] = virgin_user
+
+; required files
+files[] = exceptions/VirginException.php

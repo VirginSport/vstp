@@ -2211,6 +2211,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'use hybridauth',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
     ),
     'module' => 'hybridauth',
   );
@@ -2367,6 +2368,53 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'entityform',
+  );
+
+  // Exported permission: 'view any unpublished content'.
+  $permissions['view any unpublished content'] = array(
+    'name' => 'view any unpublished content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished event content'.
+  $permissions['view any unpublished event content'] = array(
+    'name' => 'view any unpublished event content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished event_state content'.
+  $permissions['view any unpublished event_state content'] = array(
+    'name' => 'view any unpublished event_state content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished rich_page content'.
+  $permissions['view any unpublished rich_page content'] = array(
+    'name' => 'view any unpublished rich_page content',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished webform content'.
+  $permissions['view any unpublished webform content'] = array(
+    'name' => 'view any unpublished webform content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'view_unpublished',
   );
 
   // Exported permission: 'view bean page'.

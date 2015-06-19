@@ -35,10 +35,27 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
    * Executed when an event is created on Attendly
    *
    * @param \ObserverEventInterface $event
+   * @throws \Exception
    */
   private function onCreate(ObserverEventInterface $event) {
     $node = $this->transformDataToNode($event->getData());
 
+    try {
+      observer_notify('drupal:event_state:create', $node);
+    } catch (Exception $e) {
+
+      // In case it's a new Event State, delete the Event that was created
+      // during the data to node transformation.
+      if (empty($node->nid)) {
+        $state_wrapper = entity_metadata_wrapper('node', $node);
+
+        node_delete($state_wrapper->field_event->nid->value());
+      }
+
+      throw $e;
+    }
+
+    // No error was detected, it's safe to store the entity.
     node_save($node);
   }
 
@@ -46,10 +63,27 @@ class VirginApiAttendlyEventListener implements ObserverObserverInterface {
    * Executed when an event is updated on Attendly
    *
    * @param \ObserverEventInterface $event
+   * @throws \Exception
    */
   private function onUpdate(ObserverEventInterface $event) {
     $node = $this->transformDataToNode($event->getData());
 
+    try {
+      observer_notify('drupal:event_state:update', $node);
+    } catch (Exception $e) {
+
+      // In case it's a new Event State, delete the Event that was created
+      // during the data to node transformation.
+      if (empty($node->nid)) {
+        $state_wrapper = entity_metadata_wrapper('node', $node);
+
+        node_delete($state_wrapper->field_event->nid->value());
+      }
+
+      throw $e;
+    }
+
+    // No error was detected, it's safe to store the entity.
     node_save($node);
   }
 
