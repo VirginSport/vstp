@@ -6,16 +6,26 @@ defaults:
   projects:
     subdir: "contrib"
 
-includes:
-  - "http://cgit.drupalcode.org/lightning/plain/build-lightning.make"
-
 projects:
+
+  lightning:
+    type: "core"
+    version: "7.x-1.x"
+
+  addressfield:
+    version: "1.1"
 
   acquia_connector:
     version: "2.15"
 
   coder:
     version: "2.5"
+
+  composer_manager:
+    version: "1.7"
+
+  email_registration:
+    version: "1.2"
 
   entityform:
     version: "2.0-rc1"
@@ -58,6 +68,9 @@ projects:
 
   shield:
     version: "1.2"
+
+  user_registrationpassword:
+    version: "1.4"
 
   variable:
     version: "2.5"
