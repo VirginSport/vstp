@@ -2,18 +2,18 @@
 
 /**
  * @file
- * Main file for the virginsports theme.
+ * Main file for the virginsport theme.
  */
 
 
 /**
  * Implements hook_preprocess_HOOK() for page theme.
  */
-function virginsports_preprocess_page(&$vars) {
+function virginsport_preprocess_page(&$vars) {
 
   // Menus
-  $vars['main_menu'] = virginsports_get_menu_tree('main-menu', 1);
-  $vars['footer_menu'] = virginsports_get_menu_tree('menu-footer-menu', 2);
+  $vars['main_menu'] = virginsport_get_menu_tree('main-menu', 1);
+  $vars['footer_menu'] = virginsport_get_menu_tree('menu-footer-menu', 2);
 
   unset($vars['main_menu']['#theme_wrappers']);
   unset($vars['footer_menu']['#theme_wrappers']);
@@ -33,7 +33,7 @@ function virginsports_preprocess_page(&$vars) {
  *   A structured array representing the specified menu on the current page, to
  *   be rendered by drupal_render().
  */
-function virginsports_get_menu_tree($menu_name, $max_depth = NULL) {
+function virginsport_get_menu_tree($menu_name, $max_depth = NULL) {
   $menu_output = &drupal_static(__FUNCTION__, array());
   $index = empty($max_depth) ? 0 : $max_depth;
   $menu_key = $menu_name + '-' + $index;
