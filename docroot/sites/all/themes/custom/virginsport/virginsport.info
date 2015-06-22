@@ -1,5 +1,5 @@
-name = Virgin Sports Theme
-description = The Virgin Sports website theme
+name = Virgin Sport Theme
+description = The Virgin Sport website theme
 core = 7.x
 base theme = bootstrap
 
