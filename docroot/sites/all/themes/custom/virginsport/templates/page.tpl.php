@@ -106,7 +106,7 @@
 
   <div class="main-nav-menu">
     <ul>
-      <?php print render($main_menu); ?>
+      <?php if (!empty($main_menu)) print render($main_menu); ?>
     </ul>
   </div>
 </div>
@@ -149,7 +149,7 @@
 
         <div class="col-xs-12 col-md-9">
           <ul class="horizontal menu">
-            <?php print render($footer_menu); ?>
+            <?php if (!empty($footer_menu)) print render($footer_menu); ?>
           </ul>
         </div>
       </div>
