@@ -5,18 +5,49 @@
  * Main file for the virginsport theme.
  */
 
-
 /**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
-
   // Menus
-  $vars['main_menu'] = virginsport_get_menu_tree('main-menu', 1);
-  $vars['footer_menu'] = virginsport_get_menu_tree('menu-footer-menu', 2);
+  $vars['main_menu'] = virginsport_get_menu_tree('main-menu', 2);
+  $vars['footer_menu'] = virginsport_get_menu_tree('menu-footer-menu', 1);
 
   unset($vars['main_menu']['#theme_wrappers']);
   unset($vars['footer_menu']['#theme_wrappers']);
+}
+
+// Template Overrides
+// -----------------------------------------------------------------------------
+
+/**
+ * Overrides theme_menu_tree().
+ *
+ * @see bootstrap_menu_tree()
+ */
+function virginsport_menu_tree(&$variables) {
+  return '<ul class="menu">' . $variables['tree'] . '</ul>';
+}
+
+/**
+ * Overrides theme_menu_link().
+ *
+ * @see bootstrap_menu_link()
+ */
+function virginsport_menu_link(&$vars) {
+  $element = $vars['element'];
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  // On primary navigation menu, class 'active' is not set on active menu item.
+  // @see https://drupal.org/node/1896674
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+    $element['#attributes']['class'][] = 'active';
+  }
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 // Helpers

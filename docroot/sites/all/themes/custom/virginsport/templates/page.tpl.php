@@ -75,7 +75,7 @@
 ?>
 <span id="top"></span>
 
-<div id="account-nav">
+<div id="account-menu">
   <div class="container">
     <ul class="horizontal menu pull-right">
       <?php if (user_is_anonymous()): ?>
@@ -90,32 +90,43 @@
     </ul>
   </div>
 </div>
+<!-- /#account-menu -->
 
-<div id="main-nav" color-target="red-blue">
+<div id="header-background" color-target="red-blue">
+  <div color-fill="red-blue"></div>
+</div>
+<!-- /#header-background -->
+
+<div id="header" color-target="red-blue">
   <div color-fill="red-blue"></div>
 
-  <div class="main-nav-header container">
+  <div class="container">
     <a href="<?php print url('<front>'); ?>" class="logo"><?php print $site_name; ?></a>
 
-    <span class="burger">
-      <span class="burger-bar top"></span>
-      <span class="burger-bar middle"></span>
-      <span class="burger-bar bottom"></span>
+    <span id="burger">
+      <span class="burger-bars">
+        <span class="burger-bar top"></span>
+        <span class="burger-bar middle"></span>
+        <span class="burger-bar bottom"></span>
+      </span>
     </span>
   </div>
+</div>
+<!-- /#header -->
 
-  <div class="main-nav-menu">
-    <ul>
+<nav id="main-menu" color-target="red-blue">
+  <div color-container>
+    <div color-fill="red-blue"></div>
+
+    <ul class="menu-parent">
       <?php if (!empty($main_menu)) print render($main_menu); ?>
     </ul>
   </div>
-</div>
+</nav>
+<!-- /#main-menu -->
 
 <section id="content">
   <div class="container">
-    <?php if (!empty($page['highlighted'])): ?>
-      <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-    <?php endif; ?>
     <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
     <a id="main-content"></a>
     <?php print render($title_prefix); ?>
@@ -127,15 +138,13 @@
     <?php if (!empty($tabs)): ?>
       <?php print render($tabs); ?>
     <?php endif; ?>
-    <?php if (!empty($page['help'])): ?>
-      <?php print render($page['help']); ?>
-    <?php endif; ?>
     <?php if (!empty($action_links)): ?>
       <ul class="action-links"><?php print render($action_links); ?></ul>
     <?php endif; ?>
     <?php print render($page['content']); ?>
   </div>
 </section>
+<!-- /#content -->
 
 <footer id="footer">
   <div class="footer-navigation">
@@ -164,3 +173,4 @@
     </div>
   </div>
 </footer>
+<!-- /#footer -->

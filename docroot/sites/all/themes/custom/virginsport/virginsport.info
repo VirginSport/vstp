@@ -10,19 +10,10 @@ regions[content] = 'Content'
 stylesheets[all][] = css/style.css
 
 ; Scripts
-scripts[] = 'js/bootstrap/bootstrap/affix.js'
-scripts[] = 'js/bootstrap/bootstrap/alert.js'
-scripts[] = 'js/bootstrap/bootstrap/button.js'
-scripts[] = 'js/bootstrap/bootstrap/carousel.js'
-scripts[] = 'js/bootstrap/bootstrap/collapse.js'
-scripts[] = 'js/bootstrap/bootstrap/dropdown.js'
-scripts[] = 'js/bootstrap/bootstrap/modal.js'
-scripts[] = 'js/bootstrap/bootstrap/tooltip.js'
-scripts[] = 'js/bootstrap/bootstrap/popover.js'
-scripts[] = 'js/bootstrap/bootstrap/scrollspy.js'
-scripts[] = 'js/bootstrap/bootstrap/tab.js'
-scripts[] = 'js/bootstrap/bootstrap/transition.js'
-scripts[] = 'js/main-nav.js'
+scripts[] = 'js/libraries/bootstrap/bootstrap.js'
+scripts[] = 'js/libraries/fastclick.js'
+scripts[] = 'js/custom/main.js'
+scripts[] = 'js/custom/main-menu.js'
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''

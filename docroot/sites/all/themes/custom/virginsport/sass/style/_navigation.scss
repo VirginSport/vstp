@@ -19,7 +19,7 @@
 // Account Navigation Bar
 // ----------------------------------------------------------------------------
 
-#account-nav {
+#account-menu {
   background-color: $c-gray;
   height: $account-nav-height;
   line-height: $account-nav-height;
@@ -34,21 +34,32 @@
   }
 }
 
-// Main Navigation Bar
+// Header
 // ----------------------------------------------------------------------------
 
-#main-nav {
-  @include box-sizing(border-box);
-  height: $main-nav-height;
+#header-background,
+#header {
+  height: $main-nav-height-mobile;
   position: fixed;
   overflow: hidden;
   top: $account-nav-height;
   right: 0;
   left: 0;
+
+  @media (min-width: $screen-sm-min) {
+    height: $main-nav-height;
+  }
+}
+
+#header {
   z-index: $nav-z-index;
 
-  &.main-nav-open {
-    height: 100%;
+  [color-fill] {
+    opacity: 0.5;
+
+    @media (min-width: $screen-sm-min) {
+      opacity: 0;
+    }
   }
 
   .container {
@@ -59,47 +70,98 @@
   // ------------------------------------------------------
   .logo {
     display: block;
-    height: 60px;
-    width: 123px;
-    margin-top: 20px;
+    height: 40px;
+    width: 82px;
+    margin-top: 15px;
     background: transparent url('../img/logo.svg') no-repeat 0 0;
+    background-size: 100%;
     overflow: hidden;
     text-indent: -200em;
+    z-index: 15;
+
+    @media (min-width: $screen-sm-min) {
+      height: 60px;
+      width: 122px;
+      margin-top: 20px;
+    }
+  }
+}
+
+// Burger
+// ------------------------------------------------------
+#burger {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 50px;
+  height: $main-nav-height-mobile;
+  display: block;
+  cursor: pointer;
+  z-index: 2;
+
+  @media (min-width: $screen-sm-min) {
+    height: $main-nav-height;
+    width: 105px;
   }
 
-  // Burger
-  // ------------------------------------------------------
-  .burger {
-    @include transition(all 0.3s);
+  &:before {
+    content: "";
     position: absolute;
-    top: 34px;
-    right: 32px;
-    width: 30px;
-    height: 30px;
-    display: block;
-    cursor: pointer;
-    z-index: 2;
+    left: 0px;
+    top: 15px;
+    bottom: 15px;
+    width: 1px;
+    background-color: white;
+    opacity: 0.5;
+  }
 
-    &:before {
-      content: "";
-      position: absolute;
-      left: -32px;
-      top: -22px;
-      bottom: -22px;
-      width: 1px;
-      background-color: white;
-      opacity: 0.3;
+  &:hover {
+    .burger-bars {
+      @include scale(0.8);
+    }
+  }
+
+  .burger-bars {
+    @include transition(all 0.3s);
+    @include scale(1);
+    @include transform-origin(10px 6px);
+    position: absolute;
+    top: 30px;
+    left: 16px;
+    display: block;
+
+    @media (min-width: $screen-sm-min) {
+      @include transform-origin(19px 10px);
+      top: 38px;
+      left: 35px;
+    }
+  }
+
+  .burger-bar {
+    @include transition(all 0.3s);
+    height: 2px;
+    width: 20px;
+    background-color: white;
+    display: block;
+    position: absolute;
+    left: 0;
+    opacity: 1;
+
+    &.top {
+      top: 0px;
     }
 
-    .burger-bar {
-      @include transition(all 0.3s);
-      height: 3px;
-      width: 30px;
-      background-color: white;
-      display: block;
-      position: absolute;
-      left: 0;
-      opacity: 1;
+    &.middle {
+      top: 5px;
+    }
+
+    &.bottom {
+      top: 10px;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      height: 4px;
+      width: 38px;
 
       &.top {
         top: 0px;
@@ -115,9 +177,13 @@
     }
   }
 
-  &.main-nav-open .burger {
+  &.open {
     .burger-bar {
-      top: 10px;
+      top: 5px;
+
+      @media (min-width: $screen-sm-min) {
+        top: 10px;
+      }
     }
 
     .burger-bar.top,
@@ -136,26 +202,100 @@
 }
 
 .main-nav-header {
-  height: $main-nav-height;
+  height: $main-nav-height-mobile;
+
+  @media (min-width: $screen-sm-min) {
+    height: $main-nav-height;
+  }
 }
 
-.main-nav-menu {
-  ul {
-    display: block;
-    padding: 0;
-    margin: 0;
+// Main Menu
+// ----------------------------------------------------------------------------
+#main-menu {
+  @include transition(all 0.5s);
+  @include translate3d(0, -100%, 0);
+  will-change: transform;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $nav-z-index - 1;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  &.open {
+    @include translate3d(0,0,0);
+
+    .menu-parent {
+      opacity: 1;
+      @include transform3d(translate3d(0, 0, 0));
+    }
+  }
+
+  .menu-parent {
+    @include transition(all 0.8s);
+    @include transform3d(translate3d(0, -50px, 0));
+    will-change: transform;
     width: 100%;
+    opacity: 0;
+    padding: $account-nav-height + $main-nav-height-mobile 0 $main-nav-height-mobile 0;
+
+    @media (min-width: $screen-sm-min) {
+      padding: $account-nav-height + $main-nav-height 0 $main-nav-height 0;
+    }
   }
 
   li {
     display: block;
     text-align: center;
-    font-size: 28px;
-    line-height: 48px;
+    font-size: 22px;
+    line-height: 46px;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   a {
+    @include transition(all 0.3s);
+    @include scale(1);
     color: white;
+    text-decoration: none;
+    display: inline-block;
+
+    @media (min-width: $screen-sm-min) {
+      &:hover {
+        @include scale(1.1);
+      }
+    }
+  }
+
+  li ul {
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+  }
+
+  li li {
+    font-weight: 400;
+
+    &:first-child {
+      margin-top: 46px;
+    }
+
+    &:last-child {
+      margin-bottom: 46px;
+    }
+  }
+
+  li.open {
+    > a {
+      opacity: 0.5;
+    }
+
+    ul {
+      opacity: 1;
+      max-height: 1000px;
+    }
   }
 }
 
