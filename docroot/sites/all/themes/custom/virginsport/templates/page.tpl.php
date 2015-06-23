@@ -150,17 +150,37 @@
   <div class="footer-navigation">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-3">
+
+        <div class="col-xs-12 col-md-3 col-lg-3">
           <span class="logo">
             <?php print t('Virgin Sport'); ?>
           </span>
         </div>
 
-        <div class="col-xs-12 col-md-9">
-          <ul class="horizontal menu">
-            <?php if (!empty($footer_menu)) print render($footer_menu); ?>
-          </ul>
+        <div class="col-xs-12 col-md-9 col-lg-9">
+          <div class="row">
+
+            <div class="col-xs-12 col-md-7">
+              <ul id="footer-menu" class="horizontal menu">
+                <?php if (!empty($footer_menu)) print render($footer_menu); ?>
+              </ul>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+              <ul id="social-networks" class="horizontal menu">
+                <?php foreach ($social_networks as $network): ?>
+                  <li>
+                    <a href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
+                      <span class="sr-only"><?php print $network['label']; ?></span>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <a id="goto-top" href="#"><?php print t('TOP'); ?></a>
       </div>
     </div>
   </div>

@@ -6,6 +6,10 @@
     [color-target="#{$color}"] & {
       opacity: 1;
     }
+
+    #header[color-target="#{$color}"] & {
+      opacity: 0.5;
+    }
   }
 }
 

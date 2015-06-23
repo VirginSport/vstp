@@ -51,16 +51,12 @@
   }
 }
 
+#header-background {
+  z-index: $nav-z-index - 1;
+}
+
 #header {
   z-index: $nav-z-index;
-
-  [color-fill] {
-    opacity: 0.5;
-
-    @media (min-width: $screen-sm-min) {
-      opacity: 0;
-    }
-  }
 
   .container {
     position: relative;
@@ -305,23 +301,33 @@
 body.navbar-vertical {
   $navbar-vertical-offset: 39px;
 
-  #account-nav {
+  #account-menu {
     top:  $navbar-vertical-offset;
   }
 
-  #main-nav {
+  #header,
+  #header-background {
     top: $account-nav-height + $navbar-vertical-offset;
+  }
+
+  #main-menu .menu-parent {
+    margin-top: $navbar-vertical-offset;
   }
 }
 
 body.navbar-horizontal {
   $navbar-horizontal-offset: 79px;
 
-  #account-nav {
+  #account-menu {
     top: $navbar-horizontal-offset;
   }
 
-  #main-nav {
+  #header,
+  #header-background {
     top: $account-nav-height + $navbar-horizontal-offset;
+  }
+
+  #main-menu .menu-parent {
+    margin-top: $navbar-horizontal-offset;
   }
 }
