@@ -9,12 +9,29 @@
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
+
   // Menus
   $vars['main_menu'] = virginsport_get_menu_tree('main-menu', 2);
   $vars['footer_menu'] = virginsport_get_menu_tree('menu-footer-menu', 1);
 
   unset($vars['main_menu']['#theme_wrappers']);
   unset($vars['footer_menu']['#theme_wrappers']);
+
+  // Social Networks
+  $vars['social_networks'] = array();
+  $networks = virgin_social_networks();
+
+  foreach ($networks as $key => $network) {
+    $url = variable_get('virgin_social_network_' . $key);
+
+    if (empty($url)) continue;
+
+    $vars['social_networks'][] = array(
+      'key' => check_plain($key),
+      'label' => check_plain($network),
+      'url' => check_plain($url),
+    );
+  }
 }
 
 // Template Overrides
