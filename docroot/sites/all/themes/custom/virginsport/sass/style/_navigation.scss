@@ -29,6 +29,16 @@
   right: 0;
   z-index: $nav-z-index;
 
+  a {
+    @include transition(color 0.3s);
+    color: $c-gray-light;
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+    }
+  }
+
   li {
     padding-left: 12px;
   }
