@@ -175,7 +175,7 @@
               <ul id="social-networks" class="horizontal menu">
                 <?php foreach ($social_networks as $network): ?>
                   <li>
-                    <a href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
+                    <a target="_blank" href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
                       <span class="sr-only"><?php print $network['label']; ?></span>
                     </a>
                   </li>
