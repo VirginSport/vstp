@@ -52,6 +52,21 @@ function virgin_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_themes_enabled().
+ */
+function virgin_themes_enabled($theme_list) {
+
+  // Lightning distribution automatically enables lightningdemo theme at
+  // install time. Disable the theme and force virginsport theme enabled.
+  // @see lightning_install()
+  if (in_array('lightningdemo', $theme_list)) {
+    variable_set('theme_default', 'virginsport');
+    theme_enable(array('virginsport'));
+    theme_disable(array('lightningdemo'));
+  }
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 
