@@ -9,6 +9,17 @@
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
+  global $user;
+
+  // User information
+  if (user_is_logged_in()) {
+    $account = user_load($user->uid);
+    $account_wrapper = entity_metadata_wrapper('user', $account);
+
+    $vars['account'] = array(
+      'first_name' => $account_wrapper->field_given_name->value()
+    );
+  }
 
   // Menus
   $vars['main_menu'] = virginsport_get_menu_tree('main-menu', 2);

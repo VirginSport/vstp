@@ -85,7 +85,12 @@
 
       <?php if (user_is_logged_in()): ?>
         <li><a href="<?php print url('user'); ?>"><?php print t('My Account'); ?></a></li>
-        <li><a href="<?php print url('user/logout'); ?>"><?php print t('Logout'); ?></a></li>
+        <li>
+          <a href="<?php print url('user/logout'); ?>">
+            <span><?php print t('Hi @name!', array('@name' => $account['first_name'])); ?></span>
+            (<?php print t('Logout'); ?>)
+          </a>
+        </li>
       <?php endif; ?>
     </ul>
   </div>

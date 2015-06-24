@@ -34,6 +34,10 @@
     color: $c-gray-light;
     text-decoration: none;
 
+    span {
+      color: #b8fbfb;
+    }
+
     &:hover {
       color: white;
     }
