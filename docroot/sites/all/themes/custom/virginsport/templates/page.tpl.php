@@ -97,13 +97,17 @@
 </div>
 <!-- /#account-menu -->
 
-<div id="header-background" color-target="red-blue">
-  <div color-fill="red-blue"></div>
+<div id="header-background" color-target>
+  <?php foreach ($color_fills as $color): ?>
+    <div color-fill="<?php print $color; ?>"></div>
+  <?php endforeach; ?>
 </div>
 <!-- /#header-background -->
 
-<div id="header" color-target="red-blue">
-  <div color-fill="red-blue"></div>
+<div id="header" color-target>
+  <?php foreach ($color_fills as $color): ?>
+    <div color-fill="<?php print $color; ?>"></div>
+  <?php endforeach; ?>
 
   <div class="container">
     <a href="<?php print url('<front>'); ?>" class="logo"><?php print $site_name; ?></a>
@@ -119,9 +123,11 @@
 </div>
 <!-- /#header -->
 
-<nav id="main-menu" color-target="red-blue">
+<nav id="main-menu" color-target>
   <div color-container>
-    <div color-fill="red-blue"></div>
+    <?php foreach ($color_fills as $color): ?>
+      <div color-fill="<?php print $color; ?>"></div>
+    <?php endforeach; ?>
 
     <ul class="menu-parent">
       <?php if (!empty($main_menu)) print render($main_menu); ?>
