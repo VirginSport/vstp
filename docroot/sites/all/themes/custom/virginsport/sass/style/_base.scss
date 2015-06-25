@@ -1,0 +1,10 @@
+
+#content {
+  margin-top: $account-nav-height + $main-nav-height-mobile;
+  background-color: white;
+  padding: 24px 0 48px 0;
+
+  @media (min-width: $screen-sm-min) {
+    margin-top: $account-nav-height + $main-nav-height;
+  }
+}

@@ -6,6 +6,35 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function virgin_menu() {
+  $items = array();
+
+  $items['admin/config/virgin'] = array(
+    'title' => 'Virgin Sport',
+    'description' => 'Configure virgin sport website.',
+    'position' => 'left',
+    'weight' => -30,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  $items['admin/config/virgin/social-networks'] = array(
+    'title' => 'Social Networks',
+    'description' => 'Social networks configuration for the Virgin Sport website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('virgin_admin_social_networks_settings'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'virgin.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_boot().
  */
 function virgin_boot() {
@@ -23,8 +52,42 @@ function virgin_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_themes_enabled().
+ */
+function virgin_themes_enabled($theme_list) {
+
+  // Lightning distribution automatically enables lightningdemo theme at
+  // install time. Disable the theme and force virginsport theme enabled.
+  // @see lightning_install()
+  if (in_array('lightningdemo', $theme_list)) {
+    variable_set('theme_default', 'virginsport');
+    theme_enable(array('virginsport'));
+    theme_disable(array('lightningdemo'));
+  }
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
+
+/**
+ * Get the list of available social networks for Virgin Sport.
+ *
+ * @return array
+ *  An array of social network names keyed by identifier.
+ */
+function virgin_social_networks() {
+  return array(
+    'facebook' => 'Facebook',
+    'google' => 'Google',
+    'instagram' => 'Instagram',
+    'linkedin' => 'LinkedIn',
+    'pinterest' => 'Pinterest',
+    'tumbler' => 'Tumbler',
+    'twitter' => 'Twitter',
+    'youtube' => 'Youtube',
+  );
+}
 
 /**
  * Form API e-mail validation callback

@@ -43,7 +43,7 @@ function virgin_config_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'foundation_2col_stacked';
+  $display->layout = 'onecol';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -52,6 +52,7 @@ function virgin_config_default_page_manager_pages() {
       'left' => NULL,
       'right' => NULL,
       'bottom' => NULL,
+      'middle' => NULL,
     ),
   );
   $display->cache = array();
@@ -60,8 +61,8 @@ function virgin_config_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-87efbe74-f7a1-4fdf-bbae-3294a8503832';
-    $pane->panel = 'left';
+    $pane->pid = 'new-bda641d2-ef10-4bf2-a9f4-2472b88377b7';
+    $pane->panel = 'middle';
     $pane->type = 'virgin_contact';
     $pane->subtype = 'virgin_contact';
     $pane->shown = TRUE;
@@ -75,9 +76,9 @@ function virgin_config_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '87efbe74-f7a1-4fdf-bbae-3294a8503832';
-    $display->content['new-87efbe74-f7a1-4fdf-bbae-3294a8503832'] = $pane;
-    $display->panels['left'][0] = 'new-87efbe74-f7a1-4fdf-bbae-3294a8503832';
+    $pane->uuid = 'bda641d2-ef10-4bf2-a9f4-2472b88377b7';
+    $display->content['new-bda641d2-ef10-4bf2-a9f4-2472b88377b7'] = $pane;
+    $display->panels['middle'][0] = 'new-bda641d2-ef10-4bf2-a9f4-2472b88377b7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

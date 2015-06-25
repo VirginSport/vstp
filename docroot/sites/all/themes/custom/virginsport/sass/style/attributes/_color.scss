@@ -1,0 +1,39 @@
+
+@mixin color-fill ($color, $gradient...) {
+  [color-fill="#{$color}"] {
+    @include background-image(linear-gradient($gradient...));
+
+    [color-target="#{$color}"] & {
+      opacity: 1;
+    }
+
+    #header[color-target="#{$color}"] & {
+      opacity: 0.5;
+    }
+  }
+}
+
+[color-container] {
+  position: absolute;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+[color-target] {
+  position: relative;
+}
+
+[color-fill] {
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+@include color-fill('red-blue', to right, $c-red, $c-blue);
