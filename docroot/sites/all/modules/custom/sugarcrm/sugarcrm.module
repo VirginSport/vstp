@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Main file for sugarcrm module.
+ */
+
+use Spinegar\Sugar7Wrapper\Rest as SugarRest;
+
+/**
+ * Implements hook_menu().
+ */
+function sugarcrm_menu() {
+  $items = array();
+
+  $items['admin/config/services/sugarcrm'] = array(
+    'title' => 'SugarCRM',
+    'description' => 'Configuration for SugarCRM module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sugarcrm_config_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'sugarcrm.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Gets the SugarCRM Rest client
+ *
+ * @return \Spinegar\Sugar7Wrapper\Rest
+ */
+function sugarcrm_client() {
+  $client = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$client) {
+    $client = new SugarRest();
+
+    $client
+      ->setUrl(variable_get('sugarcrm_url') . '/rest/v10/')
+      ->setPlatform('api')
+      ->setUsername(variable_get('sugarcrm_username', ''))
+      ->setPassword(variable_get('sugarcrm_password', ''))
+    ;
+  }
+
+  return $client;
+}
+
+/**
+ * Checks if SugarCRM module is configured.
+ *
+ * @return bool
+ *  TRUE SugarCRM module is configured, FALSE otherwise.
+ */
+function sugarcrm_is_configured() {
+  $url = variable_get('sugarcrm_url', '');
+  $username = variable_get('sugarcrm_username', '');
+  $password = variable_get('sugarcrm_password', '');
+
+  if (!empty($url) && !empty($username) && !empty($password)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}

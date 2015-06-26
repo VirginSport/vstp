@@ -1,0 +1,25 @@
+
+.icon {
+  $socicons: (
+    facebook: 'b',
+    google: 'c',
+    instagram: 'x',
+    linkedin: 'j',
+    pinterest: 'd',
+    tumbler: 'z',
+    twitter: 'a',
+    youtube: 'r',
+  );
+
+  @each $network, $character in $socicons {
+    &.#{$network} {
+      &:before {
+        content: $character
+      }
+    }
+  }
+
+  &:before {
+    font-family: "Socicon";
+  }
+}

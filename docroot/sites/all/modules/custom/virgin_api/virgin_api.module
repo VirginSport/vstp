@@ -1,0 +1,103 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin API feature.
+ */
+
+include_once 'virgin_api.features.inc';
+
+/**
+ * Implements hook_services_resources().
+ */
+function virgin_api_services_resources() {
+  $resources = array();
+
+  $resources['attendly'] = array(
+    'actions' => array(
+      'webhook' => array(
+        'file' => array('type' => 'inc', 'module' => 'virgin_api', 'name' => 'resources/attendly_resource'),
+        'callback' => '_virgin_api_attendly_webhook_action',
+        'access callback' => 'virgin_api_token_access',
+      ),
+    ),
+  );
+
+  return $resources;
+}
+
+/**
+ * Implements hook_observer_info().
+ */
+function virgin_api_observer_info() {
+  return array(
+    new VirginApiAttendlyEventListener(),
+    new VirginApiSugarEventListener(),
+    new VirginApiSugarUserListener(),
+  );
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function virgin_api_node_update($node) {
+  if ($node->type == 'event') {
+    observer_notify('drupal:event:update', $node);
+  }
+}
+
+// Helpers
+// -----------------------------------------------------------------------------
+
+/**
+ * Token access callback
+ *
+ * Validates if the request carries a valid access token.
+ *
+ * @return bool
+ *  TRUE the access is valid, FALSE otherwise.
+ */
+function virgin_api_token_access() {
+  $token = empty($_GET['token']) ? FALSE : $_GET['token'];
+  $check_token = variable_get('virgin_api_access_token');
+
+  if ($token && $token == $check_token) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Gets an entity of a given type by its Attendly ID
+ *
+ * This method bypasses node access security checks, as such DO NOT use this
+ * method for use cases other than very specific API use cases, such as updating
+ * unpublished nodes.
+ *
+ * @param $entity_type
+ *  The entity type, for example: node
+ * @param $bundle
+ *  The bundle, for example: event
+ * @param $attendly_id
+ *  The ID of the event on Attendly
+ * @return stdClass|bool
+ *  A fully loaded entity or FALSE if the entity was not found.
+ */
+function virgin_api_get_entity_by_attendly_id($entity_type, $bundle, $attendly_id) {
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle)
+    ->fieldCondition('field_event_id', 'value', $attendly_id, '=')
+    ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT') // opting out from node_access
+    ->execute()
+  ;
+
+  if (!empty($query->ordered_results)) {
+    $entity_id = $query->ordered_results[0]->entity_id;
+    $entity = entity_load_single($entity_type, $entity_id);
+  }
+
+  return empty($entity) ? FALSE : $entity;
+}
