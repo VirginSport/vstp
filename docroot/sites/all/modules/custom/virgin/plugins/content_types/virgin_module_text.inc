@@ -2,7 +2,7 @@
 
 /**
  * @file
- * CTools content-type plugin file. Adds a custom title pane.
+ * CTools content-type plugin file. Adds the virgin module text.
  */
 
 $plugin = array(
@@ -11,7 +11,7 @@ $plugin = array(
   'description' => '',
   'category' => 'Virgin Sport',
   'defaults' => array(),
-  'all contexts' => TRUE,
+  'required context' => new ctools_context_required(t('Node'), 'node'),
 );
 
 /**
@@ -19,21 +19,34 @@ $plugin = array(
  */
 function virgin_virgin_module_text_content_type_render($subtype, $conf, $panel_args, $context) {
 
+  // If the context is empty, bailout.
+  if (empty($context->data)) {
+    return;
+  }
+
+  $node_wrapper = entity_metadata_wrapper('node', $context->data);
+
+  $title = $node_wrapper->field_hp_text_title->value();
+  $sub_title = $node_wrapper->field_hp_text_description->value();
+  $link = $node_wrapper->field_hp_text_link->value();
+  $raw_images = $node_wrapper->field_hp_text_images->value();
+
   $images = array();
 
-  for ($i = 0; $i < 8; $i++) {
+  foreach ($raw_images as $image) {
     $images[] = array(
-      'url' => 'http://lorempixel.com/400/' . rand(300, 600),
-      'alt' => 'Hello world',
+      'url' => image_style_url('one_fourth', $image['uri']),
+      'alt' => $image['alt'],
+      'title' => $image['title'],
     );
   }
 
   $variables = array(
-    'title' => "Sport will never be the same again",
-    'sub_title' => "At virgin sport, we're all about the good times, not just the fast times. Come and see how we're redefining the way we exercise together.",
-    'link' => "http://google.com",
-    'link_title' => "Find out more",
-    'images' => $images
+    'title' => check_plain($title),
+    'sub_title' => check_plain($sub_title),
+    'link' => $link['url'],
+    'link_title' => $link['title'],
+    'images' => $images,
   );
 
   $content = theme('virgin_module_text', $variables);
