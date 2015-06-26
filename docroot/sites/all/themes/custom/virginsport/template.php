@@ -11,6 +11,9 @@
 function virginsport_preprocess_page(&$vars) {
   global $user;
 
+  // Check if page manager is handling the current page.
+  $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
+
   // User information
   if (user_is_logged_in()) {
     $account = user_load($user->uid);
@@ -43,6 +46,16 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  // Color fills
+  $vars['color_fills'] = array(
+    'blue-red',
+    'green-blue',
+    'orange-yellow',
+    'purple-blue',
+    'red-pink',
+    'yellow-green',
+  );
 }
 
 // Template Overrides

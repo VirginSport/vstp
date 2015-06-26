@@ -44,6 +44,29 @@ function virgin_boot() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function virgin_theme($existing, $type, $theme, $path) {
+  $base = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme',
+  );
+
+  return array(
+    'virgin_module_text' => array(
+      'variables' => array(
+        'title' => '',
+        'sub_title' => '',
+        'link' => '',
+        'link_title' => '',
+        'images' => array()
+      ),
+      'template' => 'virgin-module-text',
+    ) + $base
+  );
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_ctools_plugin_directory($module, $plugin) {
