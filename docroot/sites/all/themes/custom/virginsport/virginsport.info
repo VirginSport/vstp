@@ -20,6 +20,7 @@ scripts[] = 'js/libraries/scrollmagic/plugins/animation.gsap.js'
 scripts[] = 'js/libraries/scrollmagic/plugins/jquery.ScrollMagic.js'
 scripts[] = 'js/custom/main.js'
 scripts[] = 'js/custom/main-menu.js'
+scripts[] = 'js/custom/attributes/color.js'
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''
