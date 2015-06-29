@@ -32,8 +32,12 @@
 ?>
 
 <section id="virgin-module-signup" color-trigger="green-blue">
-  <div class="container">
+  <div class="container floater-container">
     <h1><?php print $title; ?></h1>
+
+    <span floater="0" class="visible-xs"></span>
+    <span floater="1"></span>
+    <span floater="2"></span>
   </div>
 
   <div class="signup-slider">
@@ -45,26 +49,41 @@
     <?php endforeach; ?>
   </div>
 
-  <div class="container">
+  <div class="container floater-container">
     <p class="sub-title"><?php print $sub_title; ?></p>
     <div class="text-center">
       <a class="signup-link action-link" href="<?php print url('user'); ?>"><span><?php print t('Sign Up'); ?></span></a>
     </div>
+
+    <span floater="3"></span>
+    <span floater="4"></span>
+  </div>
+
+  <div class="container">
     <h2 class="facts-title"><?php print $facts_title; ?></h2>
-    <ul class="facts">
-      <?php foreach ($facts as $fact): ?>
-        <li class="fact">
-          <span><?php print $fact; ?></span>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+
+    <div class="floater-container">
+      <ul class="facts">
+        <?php foreach ($facts as $fact): ?>
+          <li class="fact">
+            <span><?php print $fact; ?></span>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+
+      <span floater="5"></span>
+      <span floater="6"></span>
+      <span floater="7"></span>
+      <span floater="8"></span>
+      <span floater="9"></span>
+      <span floater="10"></span>
+      <span floater="11"></span>
+      <span floater="12"></span>
+    </div>
+
     <p class="facts-sub-title"><?php print $facts_sub_title; ?></p>
     <div class="text-center">
       <a class="fact-link action-link" href="#"><span><?php print $facts_button_label; ?></span></a>
     </div>
   </div>
-
-  <?php for ($i = 0; $i < 11; $i++): ?>
-    <span floater="<?php print $i + 1; ?>"></span>
-  <?php endfor; ?>
 </section>

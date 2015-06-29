@@ -38,7 +38,7 @@
     @include color-gradient(left, #24cdfe, #0a37b2);
     font-size: 16px;
     font-weight: 700;
-    padding-top: 9%;
+    padding-top: 40px;
     text-align: center;
     margin: 0 auto;
     width: 90%;
@@ -157,16 +157,17 @@
     }
   }
 
-  h2 {
+  .facts-title {
     @include color-gradient(left, #0f4bfc, #7b26ec);
     text-transform: uppercase;
     font-weight: 700;
     text-align: center;
-    padding-top: 17%;
-    margin-bottom: 7%;
+    padding-top: 60px;
+    margin-bottom: 20px;
     font-size: 20px;
 
     @media (min-width: $screen-sm-min) {
+      padding-top: 17%;
       margin-bottom: 3%;
       font-size: 18px;
     }
@@ -186,6 +187,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    z-index: 3;
 
     .slick-slide {
       @include transition(opacity 0.3s);
@@ -230,7 +232,7 @@
     @include color-gradient(left, #0f4bfc, #7b26ec);
     font-size: 16px;
     font-weight: 700;
-    padding-top: 14%;
+    padding-top: 50px;
     text-align: center;
     margin: 0 auto;
     width: 90%;
@@ -299,7 +301,7 @@
   }
 
   .signup-link {
-    margin-top: 10%;
+    margin-top: 40px;
 
     @media (min-width: $screen-sm-min) {
       margin-top: 5%;
@@ -319,8 +321,8 @@
   }
 
   .fact-link {
-    margin-top: 8%;
-    margin-bottom: 26%;
+    margin-top: 30px;
+    margin-bottom: 90px;
 
     @media (min-width: $screen-sm-min) {
       margin-top: 6%;
@@ -346,34 +348,193 @@
     }
   }
 
+  .floater-container {
+    @include clearfix;
+    position: relative;
+  }
+
   [floater] {
+    @include transform(scale(0.15));
     position: absolute;
     width: 50px;
     height: 50px;
     margin-left: -25px;
     display: block;
-    background: black;
-    z-index: 1;
+    z-index: 2;
+
+    @media (min-width: $screen-sm-min) {
+      @include transform(scale(0.52));
+    }
+  }
+
+  // Triangles
+  [floater="0"],
+  [floater="1"],
+  [floater="3"],
+  [floater="5"],
+  [floater="6"],
+  [floater="7"],
+  [floater="9"],
+  [floater="10"] {
+    border-style: solid;
+    border-width: 25px 50px 25px 0;
+    border-color: transparent #007bff transparent transparent;
+  }
+
+  // Circles
+  [floater="2"],
+  [floater="4"],
+  [floater="8"],
+  [floater="11"] {
+    @include border-radius(50px);
+    background-color: blue;
+  }
+
+  // Positioning
+  [floater="0"] {
+    @include transform(scale(0.3));
+    bottom: 10%;
+    left: 10%;
+    border-right-color: #23c9e8;
   }
 
   [floater="1"] {
-    top: 12%;
-    left: 32%;
+    top: 80%;
+    left: 29%;
+    border-right-color: #23c9e8;
+
+    @media (max-width: $screen-xs-max) {
+      left: 20%;
+      top: 35%;
+    }
   }
 
   [floater="2"] {
-    top: 13%;
-    left: 66%;
+    top: 84%;
+    left: 70%;
+    background-color: #0829a4;
+
+    @media (max-width: $screen-xs-max) {
+      left: 75%;
+      top: 70%;
+    }
   }
 
   [floater="3"] {
-    top: 36%;
-    left: 38%;
+    top: -7%;
+    left: 37%;
+    border-right-color: #881dc9;
+
+    @media (max-width: $screen-xs-max) {
+      left: 5%;
+      top: 14%;
+    }
   }
 
   [floater="4"] {
-    top: 38%;
-    right: 15%;
+    top: 18%;
+    right: 5%;
+    background-color: #49dbf3;
+
+    @media (max-width: $screen-xs-max) {
+      top: -3%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      right: 15%;
+    }
+  }
+
+  [floater="5"] {
+    top: -15%;
+    left: 25%;
+    border-right-color: #a53eb8;
+
+    @media (max-width: $screen-xs-max) {
+      top: -30%;
+      left: 20%;
+    }
+  }
+
+  [floater="6"] {
+    @include transform(scale(1));
+    top: 5%;
+    left: 5%;
+    border-right-color: #873df0;
+
+    @media (max-width: $screen-xs-max) {
+      @include transform(scale(0.25));
+      top: -15%;
+      left: 8%;
+    }
+  }
+
+  [floater="7"] {
+    top: 30%;
+    left: 13%;
+    border-right-color: #23c5da;
+
+    @media (max-width: $screen-xs-max) {
+      left: 9%;
+      top: 14%;
+    }
+  }
+
+  [floater="8"] {
+    bottom: -3%;
+    left: 9%;
+    background-color: #d37cf9;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 13%;
+      left: 18%;
+    }
+  }
+
+  [floater="9"] {
+    bottom: -12%;
+    right: 18%;
+    border-right-color: #3af7c4;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: -19%;
+    }
+  }
+
+  [floater="10"] {
+    bottom: 18%;
+    right: 3%;
+    border-right-color: #a53eb9;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 35%;
+      right: 0;
+    }
+  }
+
+  [floater="11"] {
+    top: 18%;
+    right: -2%;
+    background-color: #6436d5;
+
+    @media (max-width: $screen-xs-max) {
+      top: 2%;
+      right: -5%;
+    }
+  }
+
+  [floater="12"] {
+    @include transform(rotateZ(29deg));
+    height: 3px;
+    width: 95%;
+    top: 41%;
+    left: 5%;
+    background-color: #a9f3f2;
+    z-index: 1;
+
+    @media (max-width: $screen-xs-max) {
+      height: 2px;
+    }
   }
 
 }
