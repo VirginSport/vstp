@@ -32,34 +32,36 @@
 ?>
 
 <section id="virgin-module-signup" color-trigger="green-blue">
-  <div class="container floater-container">
-    <h1><?php print $title; ?></h1>
+  <div class="signup-container">
+    <div class="container floater-container">
+      <h1><?php print $title; ?></h1>
 
-    <span floater="0" class="visible-xs"></span>
-    <span floater="1"></span>
-    <span floater="2"></span>
-  </div>
-
-  <div class="signup-slider">
-    <?php foreach ($images as $image): ?>
-      <div class="signup-slide">
-        <div class="signup-image" style="background-image: url(<?php print $image['url']; ?>)"></div>
-        <img src="<?php print $image['url']; ?>" alt="<?php print $image['alt']; ?>" title="<?php print $image['title']; ?>">
-      </div>
-    <?php endforeach; ?>
-  </div>
-
-  <div class="container floater-container">
-    <p class="sub-title"><?php print $sub_title; ?></p>
-    <div class="text-center">
-      <a class="signup-link action-link" href="<?php print url('user'); ?>"><span><?php print t('Sign Up'); ?></span></a>
+      <span floater="0" class="visible-xs"></span>
+      <span floater="1"></span>
+      <span floater="2"></span>
     </div>
 
-    <span floater="3"></span>
-    <span floater="4"></span>
+    <div class="signup-slider">
+      <?php foreach ($images as $image): ?>
+        <div class="signup-slide">
+          <div class="signup-image" style="background-image: url(<?php print $image['url']; ?>)"></div>
+          <img src="<?php print $image['url']; ?>" alt="<?php print $image['alt']; ?>" title="<?php print $image['title']; ?>">
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <div class="container floater-container">
+      <p class="sub-title"><?php print $sub_title; ?></p>
+      <div class="text-center">
+        <a class="signup-link action-link" href="<?php print url('user'); ?>"><span><?php print t('Sign Up'); ?></span></a>
+      </div>
+
+      <span floater="3"></span>
+      <span floater="4"></span>
+    </div>
   </div>
 
-  <div class="container">
+  <div class="container facts-container">
     <h2 class="facts-title"><?php print $facts_title; ?></h2>
 
     <div class="floater-container">
