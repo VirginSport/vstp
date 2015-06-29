@@ -331,7 +331,8 @@ body.navbar-vertical {
 }
 
 body.navbar-horizontal {
-  $navbar-horizontal-offset: 79px;
+  $navbar-horizontal-offset: 39px;
+  $navbar-horizontal-offset-tray: 79px;
 
   #account-menu {
     top: $navbar-horizontal-offset;
@@ -344,5 +345,20 @@ body.navbar-horizontal {
 
   #main-menu .menu-parent {
     margin-top: $navbar-horizontal-offset;
+  }
+
+  &.navbar-tray-open {
+    #account-menu {
+      top: $navbar-horizontal-offset-tray;
+    }
+
+    #header,
+    #header-background {
+      top: $account-nav-height + $navbar-horizontal-offset-tray;
+    }
+
+    #main-menu .menu-parent {
+      margin-top: $navbar-horizontal-offset-tray;
+    }
   }
 }
