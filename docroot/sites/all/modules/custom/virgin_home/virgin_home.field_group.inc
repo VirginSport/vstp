@@ -24,6 +24,7 @@ function virgin_home_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'group_text',
+      1 => 'group_signup',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(

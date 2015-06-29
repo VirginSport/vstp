@@ -25,34 +25,26 @@ function virgin_virgin_module_signup_content_type_render($subtype, $conf, $panel
   }
 
   $node_wrapper = entity_metadata_wrapper('node', $context->data);
-  $raw_images = array();
+  $raw_images = $node_wrapper->field_hp_signup_images->value();
 
   $images = array();
 
-  for ($i = 0; $i < 6; $i++) {
-  //foreach ($raw_images as $image) {
+  foreach ($raw_images as $image) {
     $images[] = array(
-      'url' => 'http://lorempixel.com/400/' . rand(300, 600),
-      'alt' => '',
-      'title' => '',
-      //'url' => image_style_url('one_fourth', $image['uri']),
-      //'alt' => $image['alt'],
-      //'title' => $image['title'],
+      'url' => image_style_url('one_half', $image['uri']),
+      'alt' => $image['alt'],
+      'title' => $image['title'],
     );
   }
 
   $variables = array(
-    'title' => 'Sign up today',
-    'sub_title' => "Virgin Sport members are part of a family. So naturally, they're the first to know everything and we shower them affection and Virgin Sport rewards.",
+    'title' => $node_wrapper->field_hp_signup_title->value(),
+    'sub_title' => $node_wrapper->field_hp_signup_desc->value(),
     'images' => $images,
-    'facts_title' => 'Did you know?',
-    'facts_sub_title' => "Interesting huh?\n There's more where that came from.",
-    'facts_button_label' => 'Gimme Another',
-    'facts' => array(
-      "That 72% of our 10k's were finished in over 1:30hrs.",
-      "That most runners usually make the same mistake?",
-      "That we organized 3 races just last month?",
-    ),
+    'facts_title' => $node_wrapper->field_hp_signup_facts_title->value(),
+    'facts_sub_title' => $node_wrapper->field_hp_signup_facts_desc->value(),
+    'facts_button_label' => t('Gimme Another'),
+    'facts' => $node_wrapper->field_hp_signup_facts->value(),
   );
 
   $content = theme('virgin_module_signup', $variables);

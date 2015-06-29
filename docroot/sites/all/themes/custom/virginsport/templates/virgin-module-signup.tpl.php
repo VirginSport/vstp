@@ -34,7 +34,7 @@
 <section id="virgin-module-signup" color-trigger="green-blue">
   <div class="signup-container">
     <div class="container floater-container">
-      <h1><?php print $title; ?></h1>
+      <h1><?php print check_plain($title); ?></h1>
 
       <span floater="0" class="visible-xs"></span>
       <span floater="1"></span>
@@ -51,7 +51,9 @@
     </div>
 
     <div class="container floater-container">
-      <p class="sub-title"><?php print $sub_title; ?></p>
+      <p class="sub-title">
+        <?php print nl2br(check_plain($sub_title)); ?>
+      </p>
       <div class="text-center">
         <a class="signup-link action-link" href="<?php print url('user'); ?>"><span><?php print t('Sign Up'); ?></span></a>
       </div>
@@ -62,13 +64,13 @@
   </div>
 
   <div class="container facts-container">
-    <h2 class="facts-title"><?php print $facts_title; ?></h2>
+    <h2 class="facts-title"><?php print check_plain($facts_title); ?></h2>
 
     <div class="floater-container">
       <ul class="facts">
         <?php foreach ($facts as $fact): ?>
           <li class="fact">
-            <span><?php print $fact; ?></span>
+            <span><?php print check_plain($fact); ?></span>
           </li>
         <?php endforeach; ?>
       </ul>
@@ -83,7 +85,9 @@
       <span floater="12"></span>
     </div>
 
-    <p class="facts-sub-title"><?php print $facts_sub_title; ?></p>
+    <p class="facts-sub-title">
+      <?php print nl2br(check_plain($facts_sub_title)); ?>
+    </p>
     <div class="text-center">
       <a class="fact-link action-link" href="#"><span><?php print $facts_button_label; ?></span></a>
     </div>
