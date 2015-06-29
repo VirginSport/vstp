@@ -5,6 +5,11 @@
   function run () {
     var $module = $('#virgin-module-signup');
 
+    // If the module does not exist, bail out.
+    if (!$module.length) {
+      return;
+    }
+
     // Slider
     var $slider = $module.find('.signup-slider');
 

@@ -3,9 +3,16 @@
   $(document).ready(run);
 
   function run () {
-    var controller = new ScrollMagic.Controller();
 
     var $module = $('#virgin-module-text');
+
+    // If the module does not exist, bail out.
+    if (!$module.length) {
+      return;
+    }
+
+    var controller = new ScrollMagic.Controller();
+
     var $title = $module.find('h1');
     var $images = $module.find('img');
 
