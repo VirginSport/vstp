@@ -38,5 +38,21 @@ function virgin_config_image_default_styles() {
     ),
   );
 
+  // Exported image style: one_half.
+  $styles['one_half'] = array(
+    'label' => 'One Half',
+    'effects' => array(
+      4 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 800,
+          'height' => 500,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
