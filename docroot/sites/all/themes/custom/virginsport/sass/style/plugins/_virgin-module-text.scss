@@ -67,6 +67,11 @@
       padding: 1.5% 3%;
     }
 
+    @media (min-width: $screen-md-min) {
+      font-size: 16px;
+      padding: 2% 4%;
+    }
+
     &:hover {
       @include box-shadow(inset 0px 0px 0px 3px white);
     }

@@ -18,9 +18,11 @@ scripts[] = 'js/libraries/gsap/TimelineMax.js'
 scripts[] = 'js/libraries/scrollmagic/ScrollMagic.js'
 scripts[] = 'js/libraries/scrollmagic/plugins/animation.gsap.js'
 scripts[] = 'js/libraries/scrollmagic/plugins/jquery.ScrollMagic.js'
+scripts[] = 'js/libraries/slick.js'
 scripts[] = 'js/custom/main.js'
 scripts[] = 'js/custom/main-menu.js'
 scripts[] = 'js/custom/attributes/color.js'
+scripts[] = 'js/custom/plugins/virgin-module-signup.js'
 scripts[] = 'js/custom/plugins/virgin-module-text.js'
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.

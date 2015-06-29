@@ -1,0 +1,379 @@
+#virgin-module-signup {
+  position: relative;
+
+  h1 {
+    @include color-gradient(left, #25abef, #0a37b2);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 15%;
+    padding-bottom: 9%;
+    width: 80%;
+    font-size: 42px;
+    line-height: 0.9em;
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 0;
+      margin-bottom: -0.6em;
+      padding-top: 18%;
+      font-size: 60px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 80px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      font-size: 100px;
+      width: 60%;
+    }
+  }
+
+  .sub-title {
+    @include color-gradient(left, #24cdfe, #0a37b2);
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 9%;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 5%;
+      width: 65%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 20px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: 50%;
+    }
+  }
+
+  .signup-slider {
+    overflow: hidden;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      display: none;
+      background-color: transparent;
+      background-repeat: repeat-x;
+      background-position: top center;
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+      }
+    }
+
+    &:before {
+      top: 0;
+      background-image: url('../img/pattern-triangles-down.svg');
+      height: 59px;
+
+      @media (min-width: $screen-md-min) {
+        background-image: url('../img/pattern-triangles-down-2x.svg');
+        height: 70px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        background-image: url('../img/pattern-triangles-down-3x.svg');
+        height: 82px;
+      }
+    }
+
+    &:after {
+      bottom: 0;
+      background-image: url('../img/pattern-triangles-up.svg');
+      height: 59px;
+
+      @media (min-width: $screen-md-min) {
+        background-image: url('../img/pattern-triangles-up-2x.svg');
+        height: 70px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        background-image: url('../img/pattern-triangles-up-3x.svg');
+        height: 82px;
+      }
+    }
+  }
+
+  .signup-slide {
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    padding: 15px;
+    position: relative;
+
+    .signup-image {
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+    }
+
+    img {
+      display: none;
+      height: 100%;
+      width: auto;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+      padding: 0;
+      height: 320px;
+
+      .signup-image {
+        display: none;
+      }
+
+      img {
+        display: block;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      height: 400px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      height: 500px;
+    }
+  }
+
+  h2 {
+    @include color-gradient(left, #0f4bfc, #7b26ec);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 17%;
+    margin-bottom: 7%;
+    font-size: 20px;
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 3%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      margin-bottom: 3%;
+      font-size: 23px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-bottom: 3%;
+      font-size: 25px;
+    }
+  }
+
+  .facts {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    .slick-slide {
+      @include transition(opacity 0.3s);
+      opacity: 0 !important;
+    }
+
+    .slick-active {
+      opacity: 1 !important;
+    }
+  }
+
+  .fact {
+    display: block;
+
+    span {
+      @include color-gradient(left, #0f4bfc, #7b26ec);
+      font-size: 43px;
+      font-weight: 700;
+      line-height: 1.2em;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      width: 85%;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 60px;
+        width: 70%;
+      }
+
+      @media (min-width: $screen-md-min) {
+        font-size: 80px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        font-size: 100px;
+        width: 75%;
+      }
+    }
+  }
+
+  .facts-sub-title {
+    @include color-gradient(left, #0f4bfc, #7b26ec);
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 14%;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 3%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 20px;
+    }
+  }
+
+  .action-link {
+    padding: 20px 35px;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    z-index: 0;
+
+    @media (min-width: $screen-md-min) {
+      padding: 2% 5%;
+      font-size: 18px;
+    }
+
+    span {
+      padding: 0 1px; // prevent -webkit-background-clip from clipping a pixel
+    }
+
+    &:before,
+    &:after {
+      transition: all 0.1s ease-in-out;
+      position: absolute;
+      display: block;
+      content: "";
+      z-index: -1;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &:after {
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      background: white;
+    }
+
+    &:hover {
+      &:after {
+        top: 6px;
+        left: 6px;
+        bottom: 6px;
+        right: 6px
+      }
+    }
+  }
+
+  .signup-link {
+    margin-top: 10%;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 5%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-top: 4%;
+    }
+
+    span {
+      @include color-gradient(left, #25abef, #0a37b2);
+    }
+
+    &:before {
+      @include background-image(linear-gradient(to right, #24cdfe, #0a37b2));
+    }
+  }
+
+  .fact-link {
+    margin-top: 8%;
+    margin-bottom: 26%;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 6%;
+      margin-bottom: 21%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      margin-top: 5%;
+      margin-bottom: 19%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-top: 4%;
+      margin-bottom: 16%;
+    }
+
+    span {
+      @include color-gradient(left, #0f4bfc, #7b26ec);
+    }
+
+    &:before {
+      @include background-image(linear-gradient(to right, #0f4bfc, #7b26ec));
+    }
+  }
+
+  [floater] {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    display: block;
+    background: black;
+    z-index: 1;
+  }
+
+  [floater="1"] {
+    top: 12%;
+    left: 32%;
+  }
+
+  [floater="2"] {
+    top: 13%;
+    left: 66%;
+  }
+
+  [floater="3"] {
+    top: 36%;
+    left: 38%;
+  }
+
+  [floater="4"] {
+    top: 38%;
+    right: 15%;
+  }
+
+}
