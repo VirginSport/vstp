@@ -16,9 +16,8 @@
       variableWidth: true,
       mobileFirst: true,
       arrows: false,
-      //autoplay: true,
+      autoplay: true,
       autoplaySpeed: 600,
-      //cssEase: 'linear',
       speed: 800,
       pauseOnHover: false,
       infinite: true
@@ -52,7 +51,7 @@
       triggerElement: $signupContainer,
       triggerHook: 'onEnter',
       duration: function () {
-        return Math.round($signupContainer.height());
+        return Math.round($signupContainer.height() * 2);
       }
     });
 
@@ -78,7 +77,7 @@
       triggerElement: $factsContainer,
       triggerHook: 'onEnter',
       duration: function () {
-        return Math.round($factsContainer.height());
+        return Math.round($factsContainer.height() * 2);
       }
     });
 
