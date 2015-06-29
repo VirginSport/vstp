@@ -1,5 +1,6 @@
 #virgin-module-signup {
   position: relative;
+  overflow: hidden;
 
   h1 {
     @include color-gradient(left, #25abef, #0a37b2);
