@@ -21,6 +21,7 @@ features[ctools][] = panelizer:panelizer:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_group][] = group_container|node|home_page|form
+features[field_group][] = group_signup|node|home_page|form
 features[field_group][] = group_text|node|home_page|form
 features[field_instance][] = node-home_page-field_hp_signup_desc
 features[field_instance][] = node-home_page-field_hp_signup_facts

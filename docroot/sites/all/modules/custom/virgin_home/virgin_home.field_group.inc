@@ -39,6 +39,38 @@ function virgin_home_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_signup|node|home_page|form';
+  $field_group->group_name = 'group_signup';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'home_page';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_container';
+  $field_group->data = array(
+    'label' => 'Sign Up',
+    'weight' => '44',
+    'children' => array(
+      0 => 'field_hp_signup_title',
+      1 => 'field_hp_signup_images',
+      2 => 'field_hp_signup_facts_title',
+      3 => 'field_hp_signup_facts_desc',
+      4 => 'field_hp_signup_desc',
+      5 => 'field_hp_signup_facts',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-signup field-group-htab ',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_signup|node|home_page|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_text|node|home_page|form';
   $field_group->group_name = 'group_text';
   $field_group->entity_type = 'node';
