@@ -1,0 +1,541 @@
+#virgin-module-signup {
+  position: relative;
+  overflow: hidden;
+
+  h1 {
+    @include color-gradient(left, #25abef, #0a37b2);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 15%;
+    padding-bottom: 9%;
+    width: 80%;
+    font-size: 42px;
+    line-height: 0.9em;
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 0;
+      margin-bottom: -0.6em;
+      padding-top: 18%;
+      font-size: 60px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 80px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      font-size: 100px;
+      width: 60%;
+    }
+  }
+
+  .sub-title {
+    @include color-gradient(left, #24cdfe, #0a37b2);
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 40px;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 5%;
+      width: 65%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 20px;
+      width: 60%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: 50%;
+    }
+  }
+
+  .signup-slider {
+    overflow: hidden;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      display: none;
+      background-color: transparent;
+      background-repeat: repeat-x;
+      background-position: top center;
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+      }
+    }
+
+    &:before {
+      top: 0;
+      background-image: url('../img/pattern-triangles-down.svg');
+      height: 59px;
+
+      @media (min-width: $screen-md-min) {
+        background-image: url('../img/pattern-triangles-down-2x.svg');
+        height: 70px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        background-image: url('../img/pattern-triangles-down-3x.svg');
+        height: 82px;
+      }
+    }
+
+    &:after {
+      bottom: 0;
+      background-image: url('../img/pattern-triangles-up.svg');
+      height: 59px;
+
+      @media (min-width: $screen-md-min) {
+        background-image: url('../img/pattern-triangles-up-2x.svg');
+        height: 70px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        background-image: url('../img/pattern-triangles-up-3x.svg');
+        height: 82px;
+      }
+    }
+  }
+
+  .signup-slide {
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    padding: 15px;
+    position: relative;
+
+    .signup-image {
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+    }
+
+    img {
+      display: none;
+      height: 100%;
+      width: auto;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+      padding: 0;
+      height: 320px;
+
+      .signup-image {
+        display: none;
+      }
+
+      img {
+        display: block;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      height: 400px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      height: 500px;
+    }
+  }
+
+  .facts-title {
+    @include color-gradient(left, #0f4bfc, #7b26ec);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 60px;
+    margin-bottom: 20px;
+    font-size: 20px;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 17%;
+      margin-bottom: 3%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      margin-bottom: 3%;
+      font-size: 23px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-bottom: 3%;
+      font-size: 25px;
+    }
+  }
+
+  .facts {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    z-index: 3;
+
+    .slick-slide {
+      @include transition(opacity 0.3s);
+      opacity: 0 !important;
+    }
+
+    .slick-active {
+      opacity: 1 !important;
+    }
+  }
+
+  .fact {
+    display: block;
+
+    span {
+      @include color-gradient(left, #0f4bfc, #7b26ec);
+      font-size: 43px;
+      font-weight: 700;
+      line-height: 1.2em;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      width: 85%;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 60px;
+        width: 70%;
+      }
+
+      @media (min-width: $screen-md-min) {
+        font-size: 80px;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        font-size: 100px;
+        width: 75%;
+      }
+    }
+  }
+
+  .facts-sub-title {
+    @include color-gradient(left, #0f4bfc, #7b26ec);
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 50px;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 3%;
+      font-size: 18px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 20px;
+    }
+  }
+
+  .action-link {
+    padding: 20px 35px;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    z-index: 0;
+
+    @media (min-width: $screen-md-min) {
+      padding: 2% 5%;
+      font-size: 18px;
+    }
+
+    span {
+      padding: 0 1px; // prevent -webkit-background-clip from clipping a pixel
+    }
+
+    &:before,
+    &:after {
+      transition: all 0.1s ease-in-out;
+      position: absolute;
+      display: block;
+      content: "";
+      z-index: -1;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &:after {
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      background: white;
+    }
+
+    &:hover {
+      &:after {
+        top: 6px;
+        left: 6px;
+        bottom: 6px;
+        right: 6px
+      }
+    }
+  }
+
+  .signup-link {
+    margin-top: 40px;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 5%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-top: 4%;
+    }
+
+    span {
+      @include color-gradient(left, #25abef, #0a37b2);
+    }
+
+    &:before {
+      @include background-image(linear-gradient(to right, #24cdfe, #0a37b2));
+    }
+  }
+
+  .fact-link {
+    margin-top: 30px;
+    margin-bottom: 90px;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 6%;
+      margin-bottom: 21%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      margin-top: 5%;
+      margin-bottom: 19%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      margin-top: 4%;
+      margin-bottom: 16%;
+    }
+
+    span {
+      @include color-gradient(left, #0f4bfc, #7b26ec);
+    }
+
+    &:before {
+      @include background-image(linear-gradient(to right, #0f4bfc, #7b26ec));
+    }
+  }
+
+  .floater-container {
+    @include clearfix;
+    position: relative;
+  }
+
+  [floater] {
+    @include transform(scale(0.15));
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    display: block;
+    z-index: 2;
+
+    @media (min-width: $screen-sm-min) {
+      @include transform(scale(0.52));
+    }
+  }
+
+  // Triangles
+  [floater="0"],
+  [floater="1"],
+  [floater="3"],
+  [floater="5"],
+  [floater="6"],
+  [floater="7"],
+  [floater="9"],
+  [floater="10"] {
+    border-style: solid;
+    border-width: 25px 50px 25px 0;
+    border-color: transparent #007bff transparent transparent;
+  }
+
+  // Circles
+  [floater="2"],
+  [floater="4"],
+  [floater="8"],
+  [floater="11"] {
+    @include border-radius(50px);
+    background-color: blue;
+  }
+
+  // Positioning
+  [floater="0"] {
+    @include transform(scale(0.3));
+    bottom: 10%;
+    left: 10%;
+    border-right-color: #23c9e8;
+  }
+
+  [floater="1"] {
+    top: 80%;
+    left: 29%;
+    border-right-color: #23c9e8;
+
+    @media (max-width: $screen-xs-max) {
+      left: 20%;
+      top: 35%;
+    }
+  }
+
+  [floater="2"] {
+    top: 84%;
+    left: 70%;
+    background-color: #0829a4;
+
+    @media (max-width: $screen-xs-max) {
+      left: 75%;
+      top: 70%;
+    }
+  }
+
+  [floater="3"] {
+    top: -7%;
+    left: 37%;
+    border-right-color: #881dc9;
+
+    @media (max-width: $screen-xs-max) {
+      left: 5%;
+      top: 14%;
+    }
+  }
+
+  [floater="4"] {
+    top: 18%;
+    right: 5%;
+    background-color: #49dbf3;
+
+    @media (max-width: $screen-xs-max) {
+      top: -3%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      right: 15%;
+    }
+  }
+
+  [floater="5"] {
+    top: -15%;
+    left: 25%;
+    border-right-color: #a53eb8;
+
+    @media (max-width: $screen-xs-max) {
+      top: -30%;
+      left: 20%;
+    }
+  }
+
+  [floater="6"] {
+    @include transform(scale(1));
+    top: 5%;
+    left: 5%;
+    border-right-color: #873df0;
+
+    @media (max-width: $screen-xs-max) {
+      @include transform(scale(0.25));
+      top: -15%;
+      left: 8%;
+    }
+  }
+
+  [floater="7"] {
+    top: 30%;
+    left: 13%;
+    border-right-color: #23c5da;
+
+    @media (max-width: $screen-xs-max) {
+      left: 9%;
+      top: 14%;
+    }
+  }
+
+  [floater="8"] {
+    bottom: -3%;
+    left: 9%;
+    background-color: #d37cf9;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 13%;
+      left: 18%;
+    }
+  }
+
+  [floater="9"] {
+    bottom: -12%;
+    right: 18%;
+    border-right-color: #3af7c4;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: -19%;
+    }
+  }
+
+  [floater="10"] {
+    bottom: 18%;
+    right: 3%;
+    border-right-color: #a53eb9;
+
+    @media (max-width: $screen-xs-max) {
+      bottom: 35%;
+      right: 0;
+    }
+  }
+
+  [floater="11"] {
+    top: 18%;
+    right: -2%;
+    background-color: #6436d5;
+
+    @media (max-width: $screen-xs-max) {
+      top: 2%;
+      right: -5%;
+    }
+  }
+
+  [floater="12"] {
+    @include transform(rotateZ(29deg));
+    height: 3px;
+    width: 95%;
+    top: 41%;
+    left: 5%;
+    background-color: #a9f3f2;
+    z-index: 1;
+
+    @media (max-width: $screen-xs-max) {
+      height: 2px;
+    }
+  }
+
+}

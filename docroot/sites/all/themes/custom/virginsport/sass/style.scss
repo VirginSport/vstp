@@ -14,9 +14,13 @@
 // Variables
 @import "variables";
 
+// Mixins
+@import "mixins";
+
 // Libraries
-@import "bootstrap/bootstrap";
-@import "bootstrap/bootstrap-compass";
+@import "libraries/bootstrap/bootstrap";
+@import "libraries/bootstrap/bootstrap-compass";
+@import "libraries/slick";
 
 // Fonts
 @import "fonts/euclid-flex";
@@ -32,6 +36,7 @@
 @import "style/typography";
 
 // Style Plugins
+@import "style/plugins/virgin-module-signup";
 @import "style/plugins/virgin-module-text";
 
 // Style Features

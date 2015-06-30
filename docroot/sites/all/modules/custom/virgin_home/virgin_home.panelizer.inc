@@ -63,6 +63,25 @@ function virgin_home_panelizer_defaults() {
     $pane->uuid = 'b6a0e8a9-52a0-4f3c-90a1-72a577b019aa';
     $display->content['new-b6a0e8a9-52a0-4f3c-90a1-72a577b019aa'] = $pane;
     $display->panels['content'][0] = 'new-b6a0e8a9-52a0-4f3c-90a1-72a577b019aa';
+    $pane = new stdClass();
+    $pane->pid = 'new-39db26bf-9c60-4c0a-b7f0-6a404e7c0527';
+    $pane->panel = 'content';
+    $pane->type = 'virgin_module_signup';
+    $pane->subtype = 'virgin_module_signup';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '39db26bf-9c60-4c0a-b7f0-6a404e7c0527';
+    $display->content['new-39db26bf-9c60-4c0a-b7f0-6a404e7c0527'] = $pane;
+    $display->panels['content'][1] = 'new-39db26bf-9c60-4c0a-b7f0-6a404e7c0527';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;
