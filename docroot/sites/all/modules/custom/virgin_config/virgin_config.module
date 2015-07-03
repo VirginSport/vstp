@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Config feature.
+ */
+
+include_once 'virgin_config.features.inc';

@@ -1,0 +1,11 @@
+; Overrides original lightning distribution assemble module.
+; The original module installation behavior was nullified as
+; that responsability has been delegated to 'virgin' module.
+
+name = Assemble
+description = Build flexible pages as fast as lightning.
+core = 7.x
+package = Lightning
+
+; Delegate the dependencies activation to the main virgin module
+dependencies[] = virgin

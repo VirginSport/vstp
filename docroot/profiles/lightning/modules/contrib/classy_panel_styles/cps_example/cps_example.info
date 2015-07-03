@@ -1,0 +1,13 @@
+name = Classy Panel Styles Example
+description = Provides example style presets for the Classy Panel Styles module.
+core = 7.x
+package = "Panels"
+dependencies[] = ctools
+dependencies[] = classy_panel_styles
+
+; Information added by Drupal.org packaging script on 2014-12-22
+version = "7.x-1.0-alpha1"
+core = "7.x"
+project = "classy_panel_styles"
+datestamp = "1419263264"
+

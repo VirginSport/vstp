@@ -1,0 +1,8 @@
+/* Panels Preview Styles */
+#modal-content .widget-preview-single.panels-preview-full {
+  width: 100%;
+}
+
+#modal-content .vertical-tabs {
+  display: none;
+}

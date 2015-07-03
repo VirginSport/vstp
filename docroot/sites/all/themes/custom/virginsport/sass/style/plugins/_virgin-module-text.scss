@@ -1,0 +1,110 @@
+#virgin-module-text {
+  @include clearfix;
+  background: transparent url('../img/pattern-triangles.svg') repeat-y top center;
+  background-size: 100%;
+  color: white;
+  padding-top: 15%;
+
+  h1 {
+    width: 80%;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 0.9em;
+    margin-bottom: 7%;
+
+    @media (min-width: $screen-sm-min) {
+      width: 60%;
+      font-size: 60px;
+      margin-bottom: 4%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 80px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      font-size: 95px;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-weight: 600;
+    width: 70%;
+    margin: 0 auto;
+    font-size: 14px;
+    margin-bottom: 10%;
+
+    @media (min-width: $screen-sm-min) {
+      width:60%;
+      font-size: 18px;
+      margin-bottom: 5%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width:40%;
+      font-size: 20px;
+    }
+  }
+
+  a {
+    @include transition(all 0.1s);
+    margin: 0 auto;
+    display: inline-block;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 4% 8%;
+    font-weight: 600;
+    font-size: 14px;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 16px;
+      padding: 1.5% 3%;
+    }
+
+    @media (min-width: $screen-md-min) {
+      font-size: 16px;
+      padding: 2% 4%;
+    }
+
+    &:hover {
+      @include box-shadow(inset 0px 0px 0px 3px white);
+    }
+
+    &:active {
+      background-color: white;
+      color: #7724fb;
+    }
+  }
+
+  .image-columns {
+    @include clearfix;
+    margin-top: 8%;
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+
+    .image-column {
+      width: 33.333%;
+      float: left;
+
+      @media (min-width: $screen-sm-min) {
+        width: 25%;
+      }
+
+      @media (max-width: $screen-xs-max) {
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+
+    img {
+      margin-bottom: 5%;
+    }
+  }
+}

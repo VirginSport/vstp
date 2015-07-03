@@ -1,0 +1,16 @@
+{
+    "require": {
+        "php": ">=5.3.0",
+        "spinegar/sugar7wrapper": "dev-master#aa32869a6c9c9d3fbf465388e09ad7dd457f3f6b"
+    },
+    "config": {
+        "autoloader-suffix": "ComposerManager",
+        "vendor-dir": "docroot/../vendor/"
+    },
+    "require-dev": {
+        "drupal/drupal-extension": "~1.0.1",
+        "pdepend/pdepend": "~1.0",
+        "phploc/phploc": "~2.0",
+        "phpunit/phpunit": "~3.0"
+    }
+}
