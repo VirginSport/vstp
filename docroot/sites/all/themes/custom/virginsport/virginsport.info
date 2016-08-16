@@ -7,23 +7,10 @@ base theme = bootstrap
 regions[content] = 'Content'
 
 ; Stylesheets
-stylesheets[all][] = css/style.css
+; stylesheets[all][] = css/style.css
 
 ; Scripts
-scripts[] = 'js/libraries/bootstrap/bootstrap.js'
-scripts[] = 'js/libraries/fastclick.js'
-scripts[] = 'js/libraries/gsap/jquery.gsap.js'
-scripts[] = 'js/libraries/gsap/TweenMax.js'
-scripts[] = 'js/libraries/gsap/TimelineMax.js'
-scripts[] = 'js/libraries/scrollmagic/ScrollMagic.js'
-scripts[] = 'js/libraries/scrollmagic/plugins/animation.gsap.js'
-scripts[] = 'js/libraries/scrollmagic/plugins/jquery.ScrollMagic.js'
-scripts[] = 'js/libraries/slick.js'
-scripts[] = 'js/custom/main.js'
-scripts[] = 'js/custom/main-menu.js'
-scripts[] = 'js/custom/attributes/color.js'
-scripts[] = 'js/custom/plugins/virgin-module-signup.js'
-scripts[] = 'js/custom/plugins/virgin-module-text.js'
+; scripts[] = 'js/script.js'
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''

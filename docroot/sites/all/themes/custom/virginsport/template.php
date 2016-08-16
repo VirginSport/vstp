@@ -46,16 +46,6 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
-
-  // Color fills
-  $vars['color_fills'] = array(
-    'blue-red',
-    'green-blue',
-    'orange-yellow',
-    'purple-blue',
-    'red-pink',
-    'yellow-green',
-  );
 }
 
 // Template Overrides

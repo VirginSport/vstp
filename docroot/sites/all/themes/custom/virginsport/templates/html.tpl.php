@@ -45,11 +45,9 @@
  */
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<!DOCTYPE html>
 
-<!--[if IE 8 ]><html class="ie ie8" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>> <![endif]-->
-<!--[if IE 9 ]><html class="ie ie9" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>> <![endif]-->
-<!--[if (gte IE 10)|!(IE)]><!--><html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>> <!--<![endif]-->
+<html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>>
   <head profile="<?php print $grddl_profile; ?>">
     <?php print $head; ?>
     <title><?php print $head_title; ?></title>

@@ -73,139 +73,77 @@
  * @ingroup themeable
  */
 ?>
+
 <span id="top"></span>
 
 <div id="account-menu">
-  <div class="container">
-    <ul class="horizontal menu pull-right">
-      <?php if (user_is_anonymous()): ?>
-        <li><a href="<?php print url('user/register'); ?>"><?php print t('Register'); ?></a></li>
-        <li><a href="<?php print url('user/login'); ?>"><?php print t('Login'); ?></a></li>
-      <?php endif; ?>
+  <ul>
+    <?php if (user_is_anonymous()): ?>
+      <li><a href="<?php print url('user/register'); ?>"><?php print t('Register'); ?></a></li>
+      <li><a href="<?php print url('user/login'); ?>"><?php print t('Login'); ?></a></li>
+    <?php endif; ?>
 
-      <?php if (user_is_logged_in()): ?>
-        <li><a href="<?php print url('user'); ?>"><?php print t('My Account'); ?></a></li>
-        <li>
-          <a href="<?php print url('user/logout'); ?>">
-            <span><?php print t('Hi @name!', array('@name' => $account['first_name'])); ?></span>
-            (<?php print t('Logout'); ?>)
-          </a>
-        </li>
-      <?php endif; ?>
-    </ul>
-  </div>
+    <?php if (user_is_logged_in()): ?>
+      <li><a href="<?php print url('user'); ?>"><?php print t('My Account'); ?></a></li>
+      <li>
+        <a href="<?php print url('user/logout'); ?>">
+          <span><?php print t('Hi @name!', array('@name' => $account['first_name'])); ?></span>
+          (<?php print t('Logout'); ?>)
+        </a>
+      </li>
+    <?php endif; ?>
+  </ul>
 </div>
 <!-- /#account-menu -->
 
-<div id="header-background" color-target>
-  <?php foreach ($color_fills as $color): ?>
-    <div color-fill="<?php print $color; ?>"></div>
-  <?php endforeach; ?>
-</div>
-<!-- /#header-background -->
-
-<div id="header" color-target>
-  <?php foreach ($color_fills as $color): ?>
-    <div color-fill="<?php print $color; ?>"></div>
-  <?php endforeach; ?>
-
-  <div class="container">
-    <a href="<?php print url('<front>'); ?>" class="logo"><?php print $site_name; ?></a>
-
-    <span id="burger">
-      <span class="burger-bars">
-        <span class="burger-bar top"></span>
-        <span class="burger-bar middle"></span>
-        <span class="burger-bar bottom"></span>
-      </span>
-    </span>
-  </div>
+<div id="header">
+  <a href="<?php print url('<front>'); ?>" class="logo"><?php print $site_name; ?></a>
 </div>
 <!-- /#header -->
 
-<nav id="main-menu" color-target>
-  <div color-container>
-    <?php foreach ($color_fills as $color): ?>
-      <div color-fill="<?php print $color; ?>"></div>
-    <?php endforeach; ?>
-
-    <ul class="menu-parent">
-      <?php if (!empty($main_menu)) print render($main_menu); ?>
-    </ul>
-  </div>
+<nav id="main-menu">
+  <ul>
+    <?php if (!empty($main_menu)) print render($main_menu); ?>
+  </ul>
 </nav>
 <!-- /#main-menu -->
 
+<?php if (!empty($messages)): ?>
+  <div id="messages">
+    <?php print render($messages); ?>
+  </div>
+  <!-- /#messages -->
+<?php endif; ?>
+
+<?php if (!empty($tabs)): ?>
+  <div id="tabs">
+    <?php print render($tabs); ?>
+  </div>
+  <!-- /#tabs -->
+<?php endif; ?>
+
 <section id="content">
-  <?php if (!$page_manager): ?>
-    <div class="container">
-    <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-    <a id="main-content"></a>
-    <?php print render($title_prefix); ?>
-    <?php if (!empty($title)): ?>
-      <h1 class="page-header"><?php print $title; ?></h1>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
-    <?php print $messages; ?>
-    <?php if (!empty($tabs)): ?>
-      <?php print render($tabs); ?>
-    <?php endif; ?>
-    <?php if (!empty($action_links)): ?>
-      <ul class="action-links"><?php print render($action_links); ?></ul>
-    <?php endif; ?>
-  <?php endif; ?>
   <?php print render($page['content']); ?>
-  <?php if (!$page_manager): ?>
-    </div>
-  <?php endif; ?>
 </section>
 <!-- /#content -->
 
 <footer id="footer">
-  <div class="footer-navigation">
-    <div class="container">
-      <div class="row">
+  <ul id="footer-menu" class="horizontal menu">
+    <?php if (!empty($footer_menu)) print render($footer_menu); ?>
+  </ul>
 
-        <div class="col-xs-12 col-md-3 col-lg-3">
-          <span class="logo">
-            <?php print t('Virgin Sport'); ?>
-          </span>
-        </div>
+  <ul id="social-networks">
+    <?php foreach ($social_networks as $network): ?>
+      <li>
+        <a target="_blank" href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
+          <span class="sr-only"><?php print $network['label']; ?></span>
+        </a>
+      </li>
+    <?php endforeach; ?>
+  </ul>
 
-        <div class="col-xs-12 col-md-9 col-lg-9">
-          <div class="row">
+  <p id="copyright"><?php print t('© @year Virgin Sport. All rights reserved.', array('@year' => date('Y'))); ?></p>
 
-            <div class="col-xs-12 col-md-7">
-              <ul id="footer-menu" class="horizontal menu">
-                <?php if (!empty($footer_menu)) print render($footer_menu); ?>
-              </ul>
-            </div>
-
-            <div class="col-xs-12 col-md-4">
-              <ul id="social-networks" class="horizontal menu">
-                <?php foreach ($social_networks as $network): ?>
-                  <li>
-                    <a target="_blank" href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
-                      <span class="sr-only"><?php print $network['label']; ?></span>
-                    </a>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <a id="goto-top" href="#"><?php print t('TOP'); ?></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-meta">
-    <div class="container">
-      <span class="copyright">
-        <?php print t('© @year Virgin Sport. All rights reserved.', array('@year' => date('Y'))); ?>
-      </span>
-    </div>
-  </div>
+  <a id="goto-top" href="#top"><?php print t('TOP'); ?></a>
 </footer>
 <!-- /#footer -->

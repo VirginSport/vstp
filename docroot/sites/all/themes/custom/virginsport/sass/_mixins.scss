@@ -1,7 +1,0 @@
-
-@mixin color-gradient($direction, $start-color, $end-color) {
-  color: $start-color;
-  background: -webkit-linear-gradient($direction, $start-color, $end-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
