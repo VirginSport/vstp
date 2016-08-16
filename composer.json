@@ -7,6 +7,7 @@
         "autoloader-suffix": "ComposerManager",
         "vendor-dir": "docroot/../vendor/"
     },
+    "prefer-stable": true,
     "require-dev": {
         "drupal/drupal-extension": "~1.0.1",
         "pdepend/pdepend": "~1.0",
