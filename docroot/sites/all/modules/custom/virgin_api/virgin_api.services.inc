@@ -34,15 +34,7 @@ function virgin_api_default_services_endpoint() {
       'text/xml' => FALSE,
     ),
   );
-  $endpoint->resources = array(
-    'attendly' => array(
-      'actions' => array(
-        'webhook' => array(
-          'enabled' => '1',
-        ),
-      ),
-    ),
-  );
+  $endpoint->resources = array();
   $endpoint->debug = 0;
   $export['api_v1'] = $endpoint;
 
