@@ -7,10 +7,10 @@ base theme = bootstrap
 regions[content] = 'Content'
 
 ; Stylesheets
-; stylesheets[all][] = css/style.css
+stylesheets[all][] = build/app.css
 
 ; Scripts
-; scripts[] = 'js/script.js'
+scripts[] = build/app.js
 
 ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''

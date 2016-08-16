@@ -1,0 +1,25 @@
+{
+  "name": "virgin-sport",
+  "version": "0.0.1",
+  "description": "Virgin Sport theme front-end dependencies",
+  "license": "-",
+  "repository": {},
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "clean-webpack-plugin": "^0.1.10",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-livereload-plugin": "^0.8.1"
+  },
+  "scripts": {
+    "watch": "webpack --progress --colors --watch",
+    "build": "webpack --optimize-minimize"
+  }
+}
