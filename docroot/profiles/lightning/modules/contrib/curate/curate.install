@@ -27,6 +27,7 @@ function curate_enable() {
     'lightning_files',
     'lightning_filter',
     'lightning_image',
+    'lightning_lite',
     'lightning_media',
     'lightning_moderation',
     'lightning_page',

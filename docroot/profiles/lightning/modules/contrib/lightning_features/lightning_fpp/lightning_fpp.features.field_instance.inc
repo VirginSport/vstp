@@ -10,7 +10,7 @@
 function lightning_fpp_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'fieldable_panels_pane-content-field_content'
+  // Exported field_instance: 'fieldable_panels_pane-content-field_content'.
   $field_instances['fieldable_panels_pane-content-field_content'] = array(
     'bundle' => 'content',
     'default_value' => NULL,
@@ -46,24 +46,22 @@ function lightning_fpp_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'inline_entity_form',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'fields' => array(),
-        'type_settings' => array(
-          'allow_existing' => 1,
-          'delete_references' => 0,
-          'label_plural' => 'content',
-          'label_singular' => 'content',
-          'match_operator' => 'CONTAINS',
-          'override_labels' => 1,
-        ),
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'entity_reference_view_widget_nodes|entityreference_view_widget_1',
+        'view_mode' => 'full',
       ),
-      'type' => 'inline_entity_form',
+      'type' => 'entityreference_view_widget',
       'weight' => -4,
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-map-field_map_address'
+  // Exported field_instance: 'fieldable_panels_pane-map-field_map_address'.
   $field_instances['fieldable_panels_pane-map-field_map_address'] = array(
     'bundle' => 'map',
     'default_value' => NULL,
@@ -115,7 +113,7 @@ function lightning_fpp_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-map-field_map_information'
+  // Exported field_instance: 'fieldable_panels_pane-map-field_map_information'.
   $field_instances['fieldable_panels_pane-map-field_map_information'] = array(
     'bundle' => 'map',
     'default_value' => NULL,
@@ -156,7 +154,8 @@ function lightning_fpp_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-media_pane-field_add_media'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-media_pane-field_add_media'.
   $field_instances['fieldable_panels_pane-media_pane-field_add_media'] = array(
     'bundle' => 'media_pane',
     'deleted' => 0,
@@ -216,7 +215,8 @@ function lightning_fpp_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-quick_links-field_quick_links_links'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-quick_links-field_quick_links_links'.
   $field_instances['fieldable_panels_pane-quick_links-field_quick_links_links'] = array(
     'bundle' => 'quick_links',
     'default_value' => NULL,
@@ -272,7 +272,7 @@ function lightning_fpp_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-raw_html-field_raw_html'
+  // Exported field_instance: 'fieldable_panels_pane-raw_html-field_raw_html'.
   $field_instances['fieldable_panels_pane-raw_html-field_raw_html'] = array(
     'bundle' => 'raw_html',
     'default_value' => NULL,
@@ -299,36 +299,6 @@ function lightning_fpp_field_default_field_instances() {
     'label' => 'HTML',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'filtered_html' => 0,
-          'full_html' => 0,
-          'plain_text' => 0,
-          'raw_html' => 'raw_html',
-        ),
-        'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 1,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-            'raw_html' => array(
-              'weight' => -8,
-            ),
-          ),
-        ),
-      ),
-      'linkit' => array(
-        'enable' => 0,
-        'insert_plugin' => '',
-      ),
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -343,7 +313,8 @@ function lightning_fpp_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-text-field_basic_text_text'
+  // Exported field_instance:
+  // 'fieldable_panels_pane-text-field_basic_text_text'.
   $field_instances['fieldable_panels_pane-text-field_basic_text_text'] = array(
     'bundle' => 'text',
     'default_value' => NULL,
@@ -354,9 +325,6 @@ function lightning_fpp_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
-          'edit' => array(
-            'editor' => 'direct',
-          ),
           'quickedit' => array(
             'editor' => 'plain_text',
           ),

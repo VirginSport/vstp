@@ -787,7 +787,7 @@
               executeDecisionCallbacks(agent_name, point, decisions);
               return;
             }
-            Drupal.personalize.debug('Requesting decision for ' + agent_name + ' :' + point, 2000);
+            Drupal.personalize.debug('Requesting decision for ' + agent_name + ': ' + point, 2000);
             decisionAgent.getDecisionsForPoint(agent_name, agent.visitorContext, agent.decisionPoints[point].choices, point, agent.decisionPoints[point].fallbacks, callback);
           }
         }
@@ -952,7 +952,7 @@
     if (option_set.selector.length > 0 && $option_set.length == 0 && agent_info.active) {
       // Add a debug message to say there's a decision happening for an option set with
       // no DOM element on hte page.
-      Drupal.personalize.debug('No DOM element for the following selector in the ' + agent_name + ' campaign: "' + option_set.selector + '"', 3002);
+      Drupal.personalize.debug('No DOM element for the following selector in the ' + agent_name + ' personalization: "' + option_set.selector + '"', 3002);
     }
     // Determine any pre-selected option to display.
     if (option_set.hasOwnProperty('winner') && option_set.winner !== null) {
@@ -960,7 +960,8 @@
     }
     // If we have a pre-selected decision for this option set, just
     // use that.
-    if (selection = getPreselection(osid)) {
+    var selection = getPreselection(osid);
+    if (selection !== false) {
       chosenOption = selection;
       Drupal.personalize.debug('Preselected option being shown for ' + agent_name, 2002);
     }
@@ -977,7 +978,7 @@
     // ... or if the campaign is not running.
     else if (!agent_info.active) {
       chosenOption = choices[fallbackIndex];
-      Drupal.personalize.debug('Fallback option being shown for ' + agent_name + ' because the campaign is not running.', 2005);
+      Drupal.personalize.debug('Fallback option being shown for ' + agent_name + ' because the personalization is not running.', 2005);
     }
     // If we now have a chosen option, just call the executor and be done.
     if (chosenOption !== null) {
@@ -1072,7 +1073,7 @@
     // Define the callback function.
     var callback = (function(inner_executor, $inner_option_set, inner_osid, inner_agent_name) {
       return function(decision) {
-        Drupal.personalize.debug('Calling the executor for ' + inner_agent_name + ': ' + inner_osid, 2020);
+        Drupal.personalize.debug('Calling the executor for ' + inner_agent_name + ': ' + inner_osid + ': ' + decision, 2020);
         Drupal.personalize.executors[inner_executor].execute($inner_option_set, decision, inner_osid);
         // Fire an event so other code can respond to the decision.
         $(document).trigger('personalizeDecision', [$inner_option_set, decision, inner_osid, inner_agent_name ]);
@@ -1321,7 +1322,9 @@
    */
   Drupal.personalize.storage.bucket = function(bucketName, bucketType, expiration) {
     this.bucketName = bucketName;
-    this.store = bucketType === 'session' ? sessionStorage : localStorage;
+    if (Drupal.personalize.storage.utilities.supportsLocalStorage()) {
+      this.store = bucketType === 'session' ? sessionStorage : localStorage;
+    }
     this.expiration = expiration;
 
   }

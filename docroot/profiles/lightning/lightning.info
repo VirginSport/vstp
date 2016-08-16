@@ -12,9 +12,9 @@ dependencies[] = curate
 php = 5.4
 php_memory_limit = 128M
 
-; Information added by Drupal.org packaging script on 2015-05-02
-version = "7.x-1.x-dev"
+; Information added by Drupal.org packaging script on 2016-08-15
+version = "7.x-1.0-beta15+2-dev"
 core = "7.x"
 project = "lightning"
-datestamp = "1430590692"
+datestamp = "1471242687"
 

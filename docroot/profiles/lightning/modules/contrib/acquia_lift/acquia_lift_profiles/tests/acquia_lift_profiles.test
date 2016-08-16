@@ -26,40 +26,20 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     variable_set('user_register', USER_REGISTER_VISITORS);
     variable_set('user_email_verification', FALSE);
     $this->admin_user = $this->drupalCreateUser(array('access administration pages', 'administer acquia_lift_profiles configuration', 'administer content types', 'administer nodes', 'bypass node access', 'administer visitor actions'));
+    variable_set('acquia_lift_profiles_web_test_data', array('segments' => array('segment1', 'segment2')));
   }
 
-  function testBasicConfig() {
-    $this->drupalLogin($this->admin_user);
+  function tearDown() {
+    variable_del('acquia_lift_profiles_web_test_data');
+    parent::tearDown();
+  }
 
+  function testAdminLink() {
     // Verify that the Acquia Lift Web Admin link is the default.
     $this->assertAcquiaLiftWebAdminLink('http://lift.acquia.com');
+    $this->configureALProfiles();
 
-    $edit = array(
-      'acquia_lift_profiles_account_name' => 'MYALPROFILESACCOUNT',
-      'acquia_lift_profiles_site_name' => 'MYALPROFILESSITE',
-      'acquia_lift_profiles_api_url' => 'api.example.com',
-      'acquia_lift_profiles_access_key' => 'abc123',
-      'acquia_lift_profiles_secret_key' => 'xyz987',
-      'acquia_lift_profiles_js_path' => 'acquia_lift_profiles.example.com/path/to.js',
-    );
-    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
-
-    // Since this is not a system_settings_form we need to assert that the
-    // variables do in fact get set.
-    foreach (array('acquia_lift_profiles_account_name', 'acquia_lift_profiles_site_name', 'acquia_lift_profiles_api_url', 'acquia_lift_profiles_access_key', 'acquia_lift_profiles_secret_key', 'acquia_lift_profiles_js_path') as $key) {
-      $variable = variable_get($key);
-      $this->assertEqual($edit[$key], $variable);
-    }
-
-    // Now verify that protocols are stripped from configuration URLs.
-    $edit['acquia_lift_profiles_api_url'] = 'http://api.example.com';
-    $edit['acquia_lift_profiles_js_path'] = 'https://acquia_lift_profiles.example.com/path/to.js';
-    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
-
-    $this->assertEqual(variable_get('acquia_lift_profiles_api_url', ''), 'api.example.com');
-    $this->assertEqual(variable_get('acquia_lift_profiles_js_path', ''), 'acquia_lift_profiles.example.com/path/to.js');
-
-    // Assert that the web admin link was also updated.
+    // Assert that the web admin link was updated.
     $this->assertAcquiaLiftWebAdminLink('http://api.example.com');
   }
 
@@ -91,7 +71,7 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     // Login as admin again and set the "capture identity" setting.
     $this->drupalLogin($this->admin_user);
     $edit = array(
-      'acquia_lift_profiles_capture_identity' => TRUE,
+      'acquia_lift_profiles_identity[acquia_lift_profiles_capture_identity]' => TRUE,
     );
     $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
     $this->drupalLogout();
@@ -119,6 +99,20 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     $settings = $this->drupalGetSettings();
     $this->assertTrue($settings['acquia_lift_profiles']['captureIdentity']);
     $this->assertEqual(array('form_submit', 'user_login', 'user_register'), array_keys($settings['acquia_lift_profiles']['serverSideActions']));
+    $this->drupalLogout();
+
+    // When registration process requires user email verification,
+    // identity should not be captured.
+    variable_set('user_email_verification', TRUE);
+    $user_name_3 = $this->randomName();
+    $new_user_fields = array(
+      'name' => $user_name_3,
+      'mail' => $user_name_3 . '@example.com',
+    );
+    $this->drupalPost('user/register', $new_user_fields, t('Create new account'));
+    $settings = $this->drupalGetSettings();
+    $this->assertTrue($settings['acquia_lift_profiles']['captureIdentity']);
+    $this->assertEqual(array('form_submit'), array_keys($settings['acquia_lift_profiles']['serverSideActions']));
   }
 
   function testThumbnailImage() {
@@ -222,7 +216,9 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     $this->configureALProfiles();
     $this->drupalLogin($this->admin_user);
     // Test specifying a querystring param to use for capturing identity.
-    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', array('acquia_lift_profiles_identity_param' => 'ali'), t('Save'));
+    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', array(
+      'acquia_lift_profiles_identity[acquia_lift_profiles_identity_param]' => 'ali',
+    ), t('Save'));
     $this->drupalLogout();
 
     // Now visit the site as anon without passing any querystring params.
@@ -237,26 +233,51 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     $settings = $this->drupalGetSettings();
     $alp_settings = $settings['acquia_lift_profiles'];
     $this->assertEqual($alp_settings['identity'], $my_id);
-    $this->assertEqual($alp_settings['identityType'], 'email');
+    $this->assertEqual($alp_settings['identityType'], ACQUIA_LIFT_PROFILES_DEFAULT_IDENTITY_TYPE_DEFAULT);
 
     // Set the identity type param
     $this->drupalLogin($this->admin_user);
-    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', array('acquia_lift_profiles_identity_type_param' => 'alit'), t('Save'));
+    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', array(
+      'acquia_lift_profiles_identity[acquia_lift_profiles_identity_type_param]' => 'alit',
+    ), t('Save'));
     $this->drupalLogout();
+
     // Pass the configured identity param and the identity_type param
-    $my_id = 'ohai';
-    $this->drupalGet('', array('query' => array('ali' => $my_id, 'alit' => 'socialtastic')));
+    $my_type = 'socialtastic';
+    $this->drupalGet('', array('query' => array('ali' => $my_id, 'alit' => $my_type)));
     $settings = $this->drupalGetSettings();
     $alp_settings = $settings['acquia_lift_profiles'];
     $this->assertEqual($alp_settings['identity'], $my_id);
-    $this->assertEqual($alp_settings['identityType'], 'socialtastic');
+    $this->assertEqual($alp_settings['identityType'], $my_type);
 
     // Pass the configured identity type param without the identity param
-    $this->drupalGet('', array('query' => array('alit' => 'socialtastic')));
+    $this->drupalGet('', array('query' => array('alit' => $my_type)));
     $settings = $this->drupalGetSettings();
     $alp_settings = $settings['acquia_lift_profiles'];
     $this->assertFalse(isset($alp_settings['identity']));
     $this->assertFalse(isset($alp_settings['identityType']));
+
+    // Set the default identity type
+    $default_type = 'tknr';
+    $this->drupalLogin($this->admin_user);
+    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', array(
+      'acquia_lift_profiles_identity[acquia_lift_profiles_default_identity_type]' => $default_type,
+    ), t('Save'));
+    $this->drupalLogout();
+
+    // Pass the configured identity param but without the identity_type param
+    $this->drupalGet('', array('query' => array('ali' => $my_id)));
+    $settings = $this->drupalGetSettings();
+    $alp_settings = $settings['acquia_lift_profiles'];
+    $this->assertEqual($alp_settings['identity'], $my_id);
+    $this->assertEqual($alp_settings['identityType'], $default_type);
+
+    // Pass the configured identity param and with the identity_type param
+    $this->drupalGet('', array('query' => array('ali' => $my_id, 'alit' => $my_type)));
+    $settings = $this->drupalGetSettings();
+    $alp_settings = $settings['acquia_lift_profiles'];
+    $this->assertEqual($alp_settings['identity'], $my_id);
+    $this->assertEqual($alp_settings['identityType'], $my_type);
   }
 
   // Tests that configuring events to track in Acquia Lift Profiles makes the required calls to
@@ -302,34 +323,32 @@ class ALProfilesWebTest extends DrupalWebTestCase {
 
     // Check that the DELETE request has been made to the API.
     $requests = DummyALProfilesHttpClient::getLoggedRequests();
-    $this->assertEqual('http://api.example.com/dashboard/rest/TESTACCOUNT/events/my_action_with_label', $requests[0]['uri']);
+    $this->assertEqual('http://api.example.com/dashboard/rest/TESTACCOUNT/events/my_action_with_label?customerSite=TESTSITE', $requests[0]['uri']);
     $this->assertEqual('delete', $requests[0]['type']);
 
 
   }
 
-  function testUDFMappings() {
+  function testFieldMappings() {
     $this->configureALProfiles();
     $this->drupalLogin($this->admin_user);
     $this->createUserProfileField('test_user_field_1');
     $this->createUserProfileField('test_user_field_2');
     $this->resetAll();
     $edit = array(
-      'acquia_lift_profiles_udf_mappings[person][person_udf1]' => 'user_profile_context__test_user_field_1',
-      'acquia_lift_profiles_udf_mappings[touch][touch_udf20]' => 'user_profile_context__test_user_field_2'
+      'acquia_lift_profiles_field_mappings[content_section]' => 'user_profile_context__test_user_field_1',
+      'acquia_lift_profiles_field_mappings[content_keywords]' => 'user_profile_context__test_user_field_2'
     );
     $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
     $this->drupalGet('');
     $settings = $this->drupalGetSettings();
     $expected = array(
-      'person' => array(
-        'person_udf1' => 'user_profile_context__test_user_field_1',
-      ),
-      'touch' => array(
-        'touch_udf20' => 'user_profile_context__test_user_field_2',
+      'field' => array(
+        'content_section' => 'user_profile_context__test_user_field_1',
+        'content_keywords' => 'user_profile_context__test_user_field_2',
       )
     );
-    $this->assertEqual($expected, $settings['acquia_lift_profiles']['udfMappings']);
+    $this->assertEqual($expected, $settings['acquia_lift_profiles']['mappings']);
 
     // Confirm that the context value is available in the settings
     $this->drupalLogout();
@@ -357,22 +376,123 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     $this->assertEqual($expected, $settings['personalize_user_profile_context']);
   }
 
+  function testUDFMappings() {
+    $this->configureALProfiles();
+    $this->drupalLogin($this->admin_user);
+    $this->createUserProfileField('test_user_field_1');
+    $this->createUserProfileField('test_user_field_2');
+    $this->resetAll();
+    $edit = array(
+      'acquia_lift_profiles_udf_mappings[person][person_udf1]' => 'user_profile_context__test_user_field_1',
+      'acquia_lift_profiles_udf_mappings[touch][touch_udf20]' => 'user_profile_context__test_user_field_2'
+    );
+    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
+    $this->drupalGet('');
+    $settings = $this->drupalGetSettings();
+    $expected = array(
+      'person' => array(
+        'person_udf1' => 'user_profile_context__test_user_field_1',
+      ),
+      'touch' => array(
+        'touch_udf20' => 'user_profile_context__test_user_field_2',
+      )
+    );
+    $this->assertEqual($expected, $settings['acquia_lift_profiles']['mappings']);
+
+    // Confirm that the context value is available in the settings
+    $this->drupalLogout();
+    $regular_user = $this->drupalCreateUser(array('access content'));
+    $pass_raw = $regular_user->pass_raw;
+    unset($regular_user->pass_raw);
+
+    $edit = array(
+      'field_test_user_field_1' => array(
+        'und' => array(
+          array('value' => 'ohai')
+        )
+      )
+    );
+    user_save($regular_user, $edit);
+    $this->resetAll();
+
+    $regular_user->pass_raw = $pass_raw;
+    $this->drupalLogin($regular_user);
+    $this->drupalGet('');
+    $settings = $this->drupalGetSettings();
+    $expected = array(
+      'test_user_field_1' => 'ohai'
+    );
+    $this->assertEqual($expected, $settings['personalize_user_profile_context']);
+  }
+
+  function testLiftEventValuesConfig() {
+    $this->drupalLogin($this->admin_user);
+    $this->createVisitorActions();
+
+    // Set some engagement score global values.
+    $edit = array(
+      'acquia_lift_profiles_lift_event_values[scroll_to_bottom][global_value]' => 123,
+      'acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_click][engagement_score]' => 456,
+      'acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_hover][global_value]' => 789,
+    );
+    $this->drupalPost('admin/config/content/personalize/lift_event_values', $edit, t('Save configuration'));
+    // Assert no error message, and the new values are correctly set on the form.
+    $this->assertNoText('must be a positive integer.');
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[scroll_to_bottom][engagement_score]', 1);
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[scroll_to_bottom][global_value]', 123);
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_click][engagement_score]', 456);
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_click][global_value]', 1);
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_hover][engagement_score]', 1);
+    $this->assertFieldByName('acquia_lift_profiles_lift_event_values[acquia_lift_profiles_form_hover][global_value]', 789);
+    // Assert system actions don't have "Edit" links, and custom actions do.
+    $this->assertNoLinkByHref('admin/structure/acquia_lift/visitor_action/scroll_to_bottom/edit');
+    $this->assertLinkByHref('admin/structure/acquia_lift/visitor_action/acquia_lift_profiles_form_click/edit');
+    $this->assertLinkByHref('admin/structure/acquia_lift/visitor_action/acquia_lift_profiles_form_hover/edit');
+    // Assert the values are set in the DB.
+    $lift_event_values = variable_get('acquia_lift_profiles_lift_event_values', array());
+    $this->assertEqual($lift_event_values['scroll_to_bottom']['engagement_score'], 1);
+    $this->assertEqual($lift_event_values['scroll_to_bottom']['global_value'], 123);
+    $this->assertEqual($lift_event_values['acquia_lift_profiles_form_click']['engagement_score'], 456);
+    $this->assertEqual($lift_event_values['acquia_lift_profiles_form_click']['global_value'], 1);
+    $this->assertEqual($lift_event_values['acquia_lift_profiles_form_hover']['engagement_score'], 1);
+    $this->assertEqual($lift_event_values['acquia_lift_profiles_form_hover']['global_value'], 789);
+
+    // Attempt to set an unacceptable value.
+    $edit = array(
+      'acquia_lift_profiles_lift_event_values[scroll_to_bottom][engagement_score]' => -1,
+    );
+    $this->drupalPost('admin/config/content/personalize/lift_event_values', $edit, t('Save configuration'));
+    // Assert the error message, as well as the values were unchanged.
+    $this->assertText('must be a positive integer.');
+    $lift_event_values = variable_get('acquia_lift_profiles_lift_event_values', array());
+    $this->assertEqual($lift_event_values['scroll_to_bottom']['global_value'], 123);
+
+    // Assert the engagement score and global value settings are now on the page.
+    $this->drupalGet('node');
+    $this->assertEqual($this->drupalSettings['acquia_lift_profiles']['engagement_scores']['scroll_to_bottom'], 1);
+    $this->assertEqual($this->drupalSettings['acquia_lift_profiles']['global_values']['scroll_to_bottom'], 123);
+    $this->assertEqual($this->drupalSettings['acquia_lift_profiles']['engagement_scores']['acquia_lift_profiles_form_click'], 456);
+    $this->assertEqual($this->drupalSettings['acquia_lift_profiles']['global_values']['acquia_lift_profiles_form_click'], 1);
+    // Because the action does not apply to the "node" page, we should not see its settings.
+    $this->assertFalse(isset($this->drupalSettings['acquia_lift_profiles']['engagement_scores']['acquia_lift_profiles_form_hover']));
+    $this->assertFalse(isset($this->drupalSettings['acquia_lift_profiles']['global_values']['acquia_lift_profiles_form_hover']));
+  }
+
   /**
    * Helper function to configure acquia_lift_profiles settings.
    */
-  function configureALProfiles() {
-    $this->drupalLogin($this->admin_user);
-
-    $edit = array(
+  protected function configureALProfiles() {
+    $settings = array(
+      'acquia_lift_profiles_js_path' => 'acquia_lift_profiles.example.com/path/to.js',
       'acquia_lift_profiles_account_name' => 'MYALPROFILESACCOUNT',
       'acquia_lift_profiles_site_name' => 'MYALPROFILESSITE',
-      'acquia_lift_profiles_js_path' => 'acquia_lift_profiles.example.com/path/to.js',
       'acquia_lift_profiles_api_url' => 'api.example.com',
       'acquia_lift_profiles_access_key' => 'abc123',
       'acquia_lift_profiles_secret_key' => 'xyz987',
     );
-    $this->drupalPost('admin/config/content/personalize/acquia_lift_profiles', $edit, t('Save'));
-    $this->drupalLogout();
+    foreach ($settings as $setting => $value) {
+      variable_set($setting, $value);
+    }
   }
 
   /**
@@ -417,6 +537,38 @@ class ALProfilesWebTest extends DrupalWebTestCase {
   }
 
   /**
+   * Create a list of visitor actions as test fixtures.
+   */
+  protected function createVisitorActions() {
+    $actions = array(
+      'acquia_lift_profiles_form_click' => array(
+        'machine_name' => 'acquia_lift_profiles_form_click',
+        'plugin' => 'link',
+        'label' => t('clicks the click-test link'),
+        'client_side' => TRUE,
+        'pages' => 'node',
+        'identifier' => '.click-test',
+        'data' => array(),
+        'event' => 'click'
+      ),
+      'acquia_lift_profiles_form_hover' => array(
+        'machine_name' => 'acquia_lift_profiles_form_hover',
+        'plugin' => 'link',
+        'label' => t('hovers over the hover-test link'),
+        'client_side' => TRUE,
+        'pages' => 'node/1',
+        'identifier' => '.hover-test',
+        'data' => array(),
+        'event' => 'mouseenter'
+      ),
+    );
+    foreach ($actions as $action) {
+      visitor_actions_save_action($action);
+    }
+  }
+
+
+  /**
    * Helper function to assert that the Acquia Lift Web Admin link is set to a
    * specific href.
    *
@@ -439,4 +591,5 @@ class ALProfilesWebTest extends DrupalWebTestCase {
     }
     $this->assertEqual('Link not found', $check_href);
   }
+
 }

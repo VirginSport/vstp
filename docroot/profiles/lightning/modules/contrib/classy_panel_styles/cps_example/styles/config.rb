@@ -19,12 +19,12 @@ javascripts_dir = "js"
 # Require any additional compass plugins installed on your system.
 require 'compass'
 require 'toolkit'
+require 'brevis'
 require 'singularitygs'
-require 'sass-globbing'
 
 
-# Compass will automatically add cache busters to your images based on image timestamps. 
-# This will keep browser caches from displaying the wrong image if you change the image but not the url. 
+# Compass will automatically add cache busters to your images based on image timestamps.
+# This will keep browser caches from displaying the wrong image if you change the image but not the url.
 # If you don’t want this behavior, it's easy to configure or disable:
 # UNCOMMENT THE NEXT THREE LINES
 asset_cache_buster do |http_path, real_path|

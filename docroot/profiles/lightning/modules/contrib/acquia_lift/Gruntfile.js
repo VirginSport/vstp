@@ -31,10 +31,25 @@ module.exports = function(grunt) {
         'src/js/menu/acquia_lift.personalize.models.js',
         'src/js/menu/acquia_lift.personalize.collections.js',
         'src/js/menu/acquia_lift.personalize.views.js',
-        'src/js/menu/acquia_lift.personalize.factories.js',
         'src/js/menu/acquia_lift.personalize.commands.js',
         'src/js/menu/acquia_lift.personalize.behaviors.js'
       ];
+
+  var inputjs = [
+        'src/js/inputs/acquia_lift.inputs.revealing.js'
+  ];
+
+  var cardsjs = [
+        'src/js/cards/elemental-card.js',
+        'src/js/cards/acquia_lift.cards.js'
+  ];
+
+  var debuggerjs = [
+        'src/js/debugger/acquia_lift.debugger.app.js',
+        'src/js/debugger/acquia_lift.debugger.angularAutocomplete.js',
+        'src/js/debugger/acquia_lift.debugger.angularMultiSelect.js',
+        'src/js/debugger/acquia_lift.debugger.angularResizable.js'
+  ];
 
   // Project configuration.
   grunt.initConfig({
@@ -72,6 +87,18 @@ module.exports = function(grunt) {
       unibar: {
         src: unibarjs,
         dest: 'js/acquia_lift.personalize.js'
+      },
+      inputs: {
+        src: inputjs,
+        dest: 'js/acquia_lift.inputs.js'
+      },
+      cards: {
+        src: cardsjs,
+        dest: 'js/acquia_lift.card.js'
+      },
+      debugger: {
+        src: debuggerjs,
+        dest: 'js/acquia_lift.debugger.js'
       }
     },
     concurrent: {
@@ -92,7 +119,8 @@ module.exports = function(grunt) {
           'css/acquia_lift.help.css': 'src/css/acquia_lift.help.scss',
           'css/acquia_lift.reports.css': 'src/css/acquia_lift.reports.scss',
           'css/acquia_lift.navbar.css': 'src/css/acquia_lift.navbar.scss',
-          'css/acquia_lift.navbar_1-5.css': 'src/css/acquia_lift.navbar_1-5.scss'
+          'css/acquia_lift.navbar_1-5.css': 'src/css/acquia_lift.navbar_1-5.scss',
+          'css/acquia_lift.debugger.css': 'src/css/acquia_lift.debugger.scss'
         }
       }
     },

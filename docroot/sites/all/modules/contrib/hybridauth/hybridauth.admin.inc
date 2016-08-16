@@ -12,7 +12,7 @@
  * @ingroup forms
  */
 function hybridauth_admin_settings($form, &$form_state) {
-  if (!variable_get('hybridauth_register', 0) && variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) == USER_REGISTER_ADMINISTRATORS_ONLY) {
+  if (variable_get('hybridauth_register', 0) == 0 && variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) == USER_REGISTER_ADMINISTRATORS_ONLY) {
     drupal_set_message(t('Currently only administrators can create new user accounts. Either change the "Who can register accounts?" option under "Account settings" tab or at the core <a href="!link">Account settings</a>.',
       array('!link' => url('admin/config/people/accounts'))), 'warning');
   }
@@ -36,14 +36,19 @@ function hybridauth_admin_settings($form, &$form_state) {
   );
   $options = array();
   $weight = -50;
-  $providers = hybridauth_providers_list();
+  // Clear the providers cache here to get any new ones.
+  $providers = hybridauth_providers_list(TRUE);
   $enabled_providers = array_filter(variable_get('hybridauth_providers', array()));
+  $available_providers = hybridauth_providers_files();
   $form['vtabs']['fset_providers']['hybridauth_providers'] = array();
+  // $icon_pack = variable_get('hybridauth_widget_icon_pack', 'hybridauth_32');
+  $icon_pack = 'hybridauth_16';
+  _hybridauth_add_icon_pack_files($icon_pack, $form);
   foreach (array_keys($enabled_providers + $providers) as $provider_id) {
-    $available = array_key_exists($provider_id, hybridauth_providers_files());
+    $available = array_key_exists($provider_id, $available_providers);
     $options[$provider_id] = array(
       'name' => $providers[$provider_id],
-      'icon' => theme('hybridauth_provider_icon', array('provider_id' => $provider_id, 'icon_pack' => 'hybridauth_16')),
+      'icon' => theme('hybridauth_provider_icon', array('icon_pack' => $icon_pack, 'provider_id' => $provider_id, 'provider_name' => $providers[$provider_id])),
       'available' => $available ? t('Yes') : t('No'),
       'settings' => l(t('Settings'), 'admin/config/people/hybridauth/provider/' . $provider_id, array('query' => drupal_get_destination())),
       '#attributes' => array('class' => array('draggable')),
@@ -320,14 +325,21 @@ function hybridauth_admin_settings($form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Other settings'),
   );
+  $destination_description = t('Drupal path to redirect to, like "node/1". Leave empty to return to the same page (set to [HTTP_REFERER] for widget in modal dialogs loaded by AJAX).') . '<br/>'
+    . t('You can use any user or global tokens here.') . ' '
+    . t('Install !link module to get list of all available tokens.',
+      array('!link' => l(t('Token'), 'http://drupal.org/project/token', array('attributes' => array('target' => '_blank')))));
   $form['vtabs']['fset_other']['hybridauth_destination'] = array(
     '#type' => 'textfield',
     '#title' => t('Redirect after login'),
     '#default_value' => variable_get('hybridauth_destination', ''),
-    '#description' => t('Drupal path to redirect to, like "node/1". Leave empty to return to the same page (set to [HTTP_REFERER] for widget in modal dialogs loaded by AJAX).') . '<br/>'
-      . t('You can use any user or global tokens here.') . ' '
-      . t('Install !link module to get list of all available tokens.',
-        array('!link' => l(t('Token'), 'http://drupal.org/project/token', array('attributes' => array('target' => '_blank'))))),
+    '#description' => $destination_description,
+  );
+  $form['vtabs']['fset_other']['hybridauth_destination_error'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Redirect after error on login'),
+    '#default_value' => variable_get('hybridauth_destination_error', ''),
+    '#description' => $destination_description,
   );
   if (module_exists('token')) {
     $form['vtabs']['fset_other']['fset_token'] = array(
@@ -355,6 +367,12 @@ function hybridauth_admin_settings($form, &$form_state) {
     '#default_value' => variable_get('hybridauth_duplicate_emails', 1),
     '#description' => t('Select how to handle duplicate email addresses. '
       . 'This situation occurs when the same user is trying to authenticate using different authentication providers, but with the same email address.'),
+  );
+  $form['vtabs']['fset_other']['hybridauth_proxy'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Proxy'),
+    '#default_value' => variable_get('hybridauth_proxy', NULL),
+    '#description' => t('The HTTP proxy to tunnel requests through. For example <strong>1.2.3.4:8080</strong>.'),
   );
   $form['vtabs']['fset_other']['hybridauth_debug'] = array(
     '#type' => 'checkbox',
@@ -542,12 +560,12 @@ function hybridauth_report() {
     );
   }
 
-  $form = array();
-  $form['report'] = array(
+  $build = array();
+  $build['report'] = array(
     '#theme' => 'table',
     '#header' => $header,
     '#rows' => $rows,
     '#empty' => t('There are no HybridAuth identities yet.'),
   );
-  return $form;
+  return $build;
 }

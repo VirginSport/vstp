@@ -34,10 +34,15 @@ function workbench_moderation_router_item_page_callback($node) {
     require_once DRUPAL_ROOT . '/' . $router_item['include_file'];
   }
 
+  // Replace node argument by correct revision.
+  $last_index = count($router_item['page_arguments']) - 1;
+  $last = $router_item['page_arguments'][$last_index];
+  $router_item['page_arguments'][$last_index] = $node;
+
   // Call whatever function is assigned to the main node path but pass the
   // current node as an argument. This approach allows for the reuse of of Panel
   // definition acting on node/%node.
-  return $router_item['page_callback']($node);
+  return call_user_func_array($router_item['page_callback'], $router_item['page_arguments']);
 
 }
 /**

@@ -24,9 +24,9 @@ function classy_panel_styles_admin_settings_form($form, &$form_state) {
   );
 
   // @TODO Allow disabling of Kendall's "Panels admin styling improvements"?
+  // @TODO Change to bitmask to support distinct on/off states for backend +IPE.
   //
-  // Allows disabling the back-end style application.
-  // @TODO Change to a bitmask once you implement IPE support.
+  // Whether to apply CPS styles in the editor.
   $form[CLASSY_PANEL_STYLES_EDITOR_STYLING] = array(
     '#type' => 'radios',
     '#required' => TRUE,
@@ -39,6 +39,7 @@ function classy_panel_styles_admin_settings_form($form, &$form_state) {
     '#default_value' => variable_get(CLASSY_PANEL_STYLES_EDITOR_STYLING),
   );
 
+  // Let the user choose which region style to use as the base.
   $options = array();
   ctools_form_include($form_state, 'plugins', 'panels');
   foreach (panels_get_styles() as $style) {
@@ -52,9 +53,22 @@ function classy_panel_styles_admin_settings_form($form, &$form_state) {
     '#type' => 'select',
     '#required' => TRUE,
     '#title' => t('Base region style'),
-    '#description' => t('The base region style to use when rendering regions. Your @name classes get wrapped around this style.', array('@name' => 'CPS')),
+    '#description' => t('The base region style to use when rendering regions. Your @name classes get wrapped around this style. "No style" is the Panels default and includes pane separators (div). "No markup at all" is the same but without pane separators.', array('@name' => 'CPS')),
     '#options' => $options,
     '#default_value' => variable_get(CLASSY_PANEL_STYLES_REGION_STYLE),
+  );
+
+  // Whether to set CPS as the default style on new Display objects.
+  $form[CLASSY_PANEL_STYLES_DISPLAY_DEFAULT] = array(
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#title' => t('Make @cps the default style on new Display objects?', array('@cps' => 'CPS')),
+    '#description' => t('By default, regions inherit their style from the Display object. So this means all regions will use the @cps region markup unless you set their style to something else. This setting does not affect existing displays.', array('@cps' => 'CPS')),
+    '#options' => array(
+      1 => t('Yes'),
+      0 => t('No'),
+    ),
+    '#default_value' => variable_get(CLASSY_PANEL_STYLES_DISPLAY_DEFAULT),
   );
 
   // Send to system_settings_form() to add submit buttons, etc.

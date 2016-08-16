@@ -1,13 +1,7 @@
 <?php
-
 /**
- * Implements hook_behat_info().
+ * @file
+ * Code for the Lightning Tags feature.
  */
-function lightning_tags_behat_info() {
-  $info = array(
-    'paths' => array(
-      'features' => 'features',
-    ),
-  );
-  return $info;
-}
+
+include_once 'lightning_tags.features.inc';

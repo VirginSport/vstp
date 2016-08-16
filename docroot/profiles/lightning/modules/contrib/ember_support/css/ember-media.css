@@ -72,3 +72,24 @@
 .field-widget-media-generic table td:first-child {
   width: 300px;
 }
+
+/*generic styles to ensure basic slider will display*/
+.slide-image.ui-widget-content {
+  background: #ccc;
+  min-width: 15em;
+  margin-top: 20px;
+}
+
+.slide-image a {
+  background-color: #303;
+}
+
+/*set a default generic width of 200 (center of slider min and max)*/
+#media-browser-library-list li {
+  width: 200px;
+}
+
+.view-id-media_default .views-exposed-form .views-exposed-widget {
+  float: left;
+  padding-right: 10px;
+}

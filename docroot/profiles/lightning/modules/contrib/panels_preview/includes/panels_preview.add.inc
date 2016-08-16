@@ -31,7 +31,7 @@ function panels_preview_preprocess_panels_add_content_modal(&$vars) {
   }
 }
 
-/** 
+/**
  * Process the panels_add_content_modal() adjusting preview presentaton.
  */
 function panels_preview_process_panels_add_content_modal(&$vars) {
@@ -43,28 +43,32 @@ function panels_preview_process_panels_add_content_modal(&$vars) {
   }
   else {
     $titles = array_keys($content);
-    natcasesort($titles);
-    $col_size = count($titles) / $vars['column_count'];
 
     // Zero out the existing column data.
-    $count = 0;
-    foreach ($titles as $title) {
-      $which = floor($count++ / $col_size) + 1;
-      $vars['columns'][$which] = '';
-    }
+    unset($vars['columns']);
+    $vars['columns'] = array();
 
     // Read the column data with our preview functionality.
-    $count = 0;
     foreach ($titles as $title) {
-      $which = floor($count++ / $col_size) + 1;
-
       // Use title if description is empty.
       if (empty($content[$title]['description'])) {
         $content[$title]['description'] = $title;
       }
       $content[$title]['title'] = 'Add';
-      $vars['columns'][$which] .= '<fieldset class="widget-preview"><legend><div class="widget-preview-title">' . theme('panels_add_content_link', array('renderer' => $vars['renderer'], 'region' => $vars['region'], 'content_type' => $content[$title])) . '</div><span class="fieldset-legend">' . $title . '</span></legend><div class="fieldset-wrapper">' . (!empty($content[$title]['preview']) ? $content[$title]['preview'] : t('No Preview')) . '</div></fieldset>';
+      $legend_title = !empty($title) ? $title : 'Untitled ' . $content[$title]['type_name'];
+      // Check if there is a preview
+      $classes = 'collapsed';
+      if (!empty($content[$title]['preview'])) {
+        $classes .= ' collapsible';
+      }
+      // Empty, do not allow user to expand preview and update title
+      else {
+        $legend_title .= ' (' . t('No Preview') . ')';
+      }
+      $vars['columns'][0] .= '<fieldset class="' . $classes .' widget-preview"><legend><div class="widget-preview-title">' . theme('panels_add_content_link', array('renderer' => $vars['renderer'], 'region' => $vars['region'], 'content_type' => $content[$title])) . '</div><span class="fieldset-legend">' . $legend_title . '</span></legend><div class="fieldset-wrapper">' . (!empty($content[$title]['preview']) ? $content[$title]['preview'] : t('No Preview')) . '</div></fieldset>';
     }
+
+    // Make sure the collapse library is added
+    drupal_add_library('system', 'drupal.collapse');
   }
 }
-

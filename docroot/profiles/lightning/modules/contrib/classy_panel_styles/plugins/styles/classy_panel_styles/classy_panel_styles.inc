@@ -16,12 +16,53 @@ $plugin = array(
 );
 
 /**
- * Implements template_preprocess_HOOK().
+ * Implements MODULE_preprocess_HOOK() for panels_pane.
  *
- * Adds our CPS classes to Panels' default array.
+ * It would be cleaner to just preprocess the CPS pane theme hook, but that
+ * doesn't work because Panels overwrites the 'classes_array' variable, grr!
  */
-function template_preprocess_classy_panel_styles_render_pane(&$vars) {
-  // Add Classy Panels CSS.
+function classy_panel_styles_preprocess_panels_pane(&$vars) {
+  if (isset($vars['pane']->style['style']) &&
+      _classy_panel_styles_is($vars['pane']->style['style'])) {
+    _classy_panel_styles_preprocess(
+      $vars,
+      $vars['classes_array'],
+      'pane',
+      $vars['pane']->pid);
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for classy_panel_styles_region.
+ */
+function template_preprocess_classy_panel_styles_region(&$vars) {
+  if (!isset($vars['attributes_array']['class'])) {
+    $vars['attributes_array']['class'] = array();
+  }
+  _classy_panel_styles_preprocess(
+    $vars,
+    $vars['attributes_array']['class'],
+    'region',
+    $vars['region_id']);
+
+  // Add a helpful class.
+  $vars['content_attributes_array']['class'][] = 'cps-region-inner';
+}
+
+/**
+ * Adds CSS to response; Adds classes to the template variable or JS settings.
+ *
+ * @param array $vars
+ *   The template variables.
+ * @param array $classes
+ *   The subelement of $vars to be updated with CPS classes.
+ * @param string $type
+ *   Pane or region.
+ * @param string $id
+ *   The unique ID of the pane or region.
+ */
+function _classy_panel_styles_preprocess(array &$vars, array &$classes, $type, $id) {
+  // Add Classy Panel Styles CSS.
   _classy_panel_styles_add_css();
 
   // For IPE, let javascript inject the classes.
@@ -29,68 +70,67 @@ function template_preprocess_classy_panel_styles_render_pane(&$vars) {
     drupal_add_js(drupal_get_path('module', 'classy_panel_styles')
       . '/js/classy_panel_styles.js');
     _classy_panel_styles_apply(
-      'pane',
-      $vars['pane']->pid,
-      'classy_panel_styles',
+      $type,
+      $id,
+      'classy_panel_styles:cps_default',
       $vars['settings'],
       'panels_renderer_ipe'
     );
     return;
   }
 
-  // Add the CPS classes to the standard Panels template variables.
-  $classes = _classy_panel_styles_filter_conf($vars['settings']);
-  $vars['classes_array']
-    = array_unique(array_merge($vars['classes_array'], $classes));
+  // Filter out disabled styles.
+  $filtered = _classy_panel_styles_filter_conf($vars['settings']);
+
+  // Combine with existing classes, if any.
+  $classes = empty($classes) ? $filtered : array_unique(array_merge($classes, $filtered));
 }
 
 /**
- * Renders Panels regions.
- *
- * Wraps CPS styles around a default region style.
+ * Implements template_process_HOOK() for classy_panel_styles_pane.
  */
-function theme_classy_panel_styles_render_region($vars) {
+function template_process_classy_panel_styles_pane(&$vars) {
+  $vars['content'] = theme('panels_pane', $vars);
+}
+
+/**
+ * Implements template_process_HOOK() for classy_panel_styles_region.
+ */
+function template_process_classy_panel_styles_region(&$vars) {
   // Determine in which style to render this region.
   $hook = variable_get(CLASSY_PANEL_STYLES_REGION_STYLE,
     'panels_default_style_render_region');
 
   // Generate the standard region markup.
-  $markup = theme($hook, $vars);
+  $vars['content'] = theme($hook, $vars);
+}
 
-  // If there's no markup, follow Panels default style and return nothing to
-  // prevent rendering an empty region.
-  if (empty($markup)) {
+/**
+ * Theme callback for classy_panel_styles_pane.
+ */
+function theme_classy_panel_styles_pane(&$vars) {
+  return $vars['content'];
+}
+
+/**
+ * Theme callback for classy_panel_styles_region.
+ */
+function theme_classy_panel_styles_region(&$vars) {
+  if (empty($vars['content'])) {
     return;
   }
-
-  // Add Classy Panels CSS.
-  _classy_panel_styles_add_css();
-
-  // Adding an inner div for Kendall. Do not commit to CPS project.
-  // @TODO Consider implementing a theme hook that uses a template, which can
-  // then be overridden without changes to the module.
-  $markup = '<div class="region-inner">' . $markup . '</div>';
-
-  // For IPE, let javascript inject the classes.
-  if ($vars['display']->renderer_handler instanceof panels_renderer_ipe) {
-    drupal_add_js(drupal_get_path('module', 'classy_panel_styles')
-      . '/js/classy_panel_styles.js');
-    _classy_panel_styles_apply(
-      'region',
-      $vars['region_id'],
-      'classy_panel_styles',
-      $vars['settings'],
-      'panels_renderer_ipe'
-    );
-    return $markup;
+  $markup   = $vars['content'];
+  $wrappers = array(
+    'content_attributes_array',
+    'attributes_array',
+  );
+  foreach ($wrappers as $wrapper) {
+    if (!empty($vars[$wrapper])) {
+      $attributes = drupal_attributes($vars[$wrapper]);
+      $markup     = "<div$attributes>$markup</div>";
+    }
   }
-
-  // Wrap our CPS classes around the region.
-  $classes_array = array_filter($vars['settings']);
-  $classes = drupal_attributes(array('class' => $classes_array));
-  return '<div' . $classes . '>'
-       . $markup
-       . '</div>';
+  return $markup;
 }
 
 /**
@@ -170,6 +210,7 @@ function classy_panel_styles_settings_form($settings, $panel_obj, $pane_id, $typ
     '#required' => FALSE,
     '#default_value' => isset($settings[CLASSY_PANEL_STYLES_CUSTOM_CLASSES]) ? $settings[CLASSY_PANEL_STYLES_CUSTOM_CLASSES] : '',
   );
+  // Add some default classes.
   $form['classy_panel_styles_flag'] = array(
     '#type'  => 'value',
     '#value' => "classy-panel-styles $type",
@@ -270,14 +311,13 @@ function classy_panel_styles_get_substyles($plugin, $style_name) {
  *   The result of merging the parent plugin with the sub-style definition.
  */
 function classy_panel_styles_merge_plugin(array $plugin, $style_name, array $substyle) {
-  $plugin['name'] = $style_name . ':' . $substyle['name'];
-  $plugin['title'] = check_plain($substyle['title']);
-  $plugin['substyle'] = $substyle;
-  $plugin['description'] = check_plain($substyle['description']);
-  $plugin['weight'] = $substyle['weight'];
-
-  $plugin['render pane'] = 'classy_panel_styles_render_pane';
-  $plugin['render region'] = 'classy_panel_styles_render_region';
-
-  return $plugin;
+  return array(
+    'name'          => $style_name . ':' . $substyle['name'],
+    'title'         => check_plain($substyle['title']),
+    'substyle'      => $substyle,
+    'description'   => check_plain($substyle['description']),
+    'weight'        => $substyle['weight'],
+    'render pane'   => 'classy_panel_styles_pane',
+    'render region' => 'classy_panel_styles_region',
+  ) + $plugin;
 }

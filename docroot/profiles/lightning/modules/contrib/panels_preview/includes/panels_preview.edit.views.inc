@@ -216,7 +216,7 @@ function panels_preview_form_views_content_views_panes_content_type_edit_form_al
     unset($form['exposed']['sort_by']);
   }
 
-  // Adjust the field setting options
+  // Adjust the field setting options.
   if (isset($form['fields_override'])) {
     $form['fields_override']['#title'] = t('Field Settings');
     $form['fields_override']['#collapsible'] = FALSE;
@@ -227,7 +227,7 @@ function panels_preview_form_views_content_views_panes_content_type_edit_form_al
     }
   }
 
-  // Determine if this is a fielded view. If so, add magic display type changer
+  // Determine if this is a fielded view. If so, add the display type toggle.
   $view_handler = $form_state['view']->display_handler;
   if ($view_handler->options['row_plugin'] == 'fields') {
     // Set to default view settings if there isn't one.
@@ -244,7 +244,7 @@ function panels_preview_form_views_content_views_panes_content_type_edit_form_al
     // that other entity types can be included.
     $conf['view_settings'] = panels_preview_convert_view_settings($conf['view_settings']);
 
-    // Add information about the View Mode
+    // Add information about the View Mode.
     $form['display_settings']['view_settings'] = array(
       '#type' => 'radios',
       '#prefix' => '<div class="view-settings-wrapper"><span class="field-prefix">' . t('Display Type') . '</span>',

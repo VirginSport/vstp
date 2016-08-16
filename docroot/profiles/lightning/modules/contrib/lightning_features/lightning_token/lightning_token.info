@@ -1,16 +1,15 @@
 name = Lightning Token
 description = Enable the rich tokenization of data objects.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_token
+core = 7.x
+
 dependencies[] = features
 dependencies[] = token
-datestamp = 1408404197
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

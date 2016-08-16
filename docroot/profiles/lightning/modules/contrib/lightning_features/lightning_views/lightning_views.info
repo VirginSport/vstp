@@ -1,16 +1,15 @@
 name = Lightning Views
 description = Basic Views module configurations.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_views
+core = 7.x
+
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_content
-datestamp = 1411763263
+
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = views_exposed_filter_any_label
@@ -28,8 +27,9 @@ features[variable][] = views_ui_show_sql_query
 features[variable][] = views_ui_show_sql_query_where
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

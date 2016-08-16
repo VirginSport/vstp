@@ -1,24 +1,21 @@
 name = Lightning WYSIWYG
 description = WYSIWIG editor configurations.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_wysiwyg
+core = 7.x
+
 dependencies[] = ctools
-dependencies[] = ckeditor
+dependencies[] = dialog
+dependencies[] = editor
+dependencies[] = editor_ckeditor
+dependencies[] = editor_ckeditor_widgets
 dependencies[] = features
-dependencies[] = linkit
-datestamp = 1408404197
-features[ckeditor_profile][] = Advanced
-features[ckeditor_profile][] = CKEditor Global Profile
-features[ckeditor_profile][] = Full
-features[ckeditor_profile][] = User
-features[ctools][] = linkit:linkit_profiles:1
+
 features[features_api][] = api:2
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

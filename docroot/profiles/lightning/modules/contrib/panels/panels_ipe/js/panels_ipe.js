@@ -276,6 +276,11 @@ function DrupalPanelsIPE(cache_key, cfg) {
 
     $('.panels-ipe-editing').removeClass('panels-ipe-editing');
     $('div.panels-ipe-sort-container.ui-sortable', ipe.topParent).sortable("destroy");
+
+    // If the workbench moderation block exists, attempt to refresh it
+    if (Drupal.behaviors.workbenchModerationBlockRefresh && typeof Drupal.behaviors.workbenchModerationBlockRefresh.refreshBlock == 'function') {
+      Drupal.behaviors.workbenchModerationBlockRefresh.refreshBlock();
+    }
   };
 
   this.saveEditing = function() {

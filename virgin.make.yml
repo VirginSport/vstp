@@ -13,7 +13,7 @@ projects:
     version: "7.x-1.x"
 
   addressfield:
-    version: "1.1"
+    version: "1.2"
 
   acquia_connector:
     version: "2.15"
@@ -22,31 +22,31 @@ projects:
     version: "2.5"
 
   composer_manager:
-    version: "1.7"
+    version: "1.8"
 
   email_registration:
-    version: "1.2"
+    version: "1.3"
 
   entityform:
     version: "2.0-rc1"
 
   field_collection:
-    version: "1.0-beta8"
+    version: "1.0-beta11"
 
   flag:
-    version: "3.6"
+    version: "3.7"
 
   google_analytics:
-    version: "2.1"
+    version: "2.3"
 
   hybridauth:
-    version: "2.12"
+    version: "2.15"
 
   i18n:
-    version: "1.12"
+    version: "1.13"
 
   mollom:
-    version: "2.13"
+    version: "2.15"
 
   oauth:
     version: "3.2"
@@ -55,16 +55,16 @@ projects:
     version: "1.0"
 
   og:
-    version: "2.7"
+    version: "2.9"
 
   redirect:
-    version: "1.0-rc1"
+    version: "1.0-rc3"
 
   service_links:
     version: "2.3"
 
   services:
-    version: "3.12"
+    version: "3.16"
 
   shield:
     version: "1.2"
@@ -79,4 +79,4 @@ projects:
     version: "1.2"
 
   xmlsitemap:
-    version: "2.2"
+    version: "2.3"

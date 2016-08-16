@@ -1,25 +1,38 @@
 name = Lightning Forms
 description = Dynamic form building tools.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_forms
+core = 7.x
+
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = form_builder
 dependencies[] = form_builder_webform
-dependencies[] = node
 dependencies[] = options
+dependencies[] = strongarm
 dependencies[] = webform
-datestamp = 1411763263
+
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[node][] = webform
+features[variable][] = comment_anonymous_webform
+features[variable][] = comment_default_mode_webform
+features[variable][] = comment_default_per_page_webform
+features[variable][] = comment_form_location_webform
+features[variable][] = comment_preview_webform
+features[variable][] = comment_subject_field_webform
 features[variable][] = comment_webform
+features[variable][] = menu_options_webform
+features[variable][] = menu_parent_webform
+features[variable][] = node_options_webform
+features[variable][] = node_preview_webform
+features[variable][] = node_submitted_webform
+features[variable][] = webform_node_webform
+features[variable][] = workbench_moderation_default_state_webform
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

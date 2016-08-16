@@ -3,7 +3,7 @@
 api = 2
 core = 7.x
 projects[drupal][type] = core
-projects[drupal][version] = 7.36
+projects[drupal][version] = 7.50
 
 ; CORE PATCHES
 
@@ -33,6 +33,10 @@ projects[drupal][patch][] = "http://drupal.org/files/issues/drupal-2289493-3-ima
 ; http://drupal.org/node/2400287
 projects[drupal][patch][] = "http://drupal.org/files/issues/Issue-2400287-by-hass-Remove-JS-source-and-source-map-D7_0.patch"
 
-; _filter_xss_split() fails on custom HTML elements with dashes in the name
-; http://drupal.org/node/2315255
-projects[drupal][patch][] = "https://drupal.org/files/issues/xss-split-custom-element-dash-tag-name-2315255-11.patch"
+; Pass $page_callback_result through hook_page_delivery_callback_alter().
+; http://drupal.org/node/897504
+projects[drupal][patch][] = "http://drupal.org/files/issues/pass-page-callback-result-897504-2.patch"
+
+; Xss filter() ignores malicious content in data-attributes and mangles image captions.
+; http://drupal.org/node/2105841
+projects[drupal][patch][] = "http://drupal.org/files/issues/do-2105841_no_protocol_filter-90.patch"

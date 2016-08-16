@@ -1,4 +1,9 @@
 @import "utilities"
+*
+  box-sizing: border-box
+
+.panels-ipe-dragbar-admin-title
+  display: none
 
 // CSS for modal window
 #classy-panel-styles-pane-form,
@@ -6,6 +11,7 @@
   .form-item
     margin-bottom: 2px
     width: 100%
+    clear: both
 
   .form-item label
     width: 20%
@@ -44,7 +50,7 @@
     clear: both
     text-align: left
     padding: 0
-    margin: 2px 2% 2px 22%
+    margin: 1px 2% 10px 22%
     font-weight: bold
     line-height: 1.1
     width: 78%
@@ -122,7 +128,7 @@
   // ****************************
   // ****  PANEL PANE
   .panel-panel .panel-pane
-    padding: 0 !important
+    //padding: 0 !important
     width: 100%
     display: inline-block
     +box-sizing(border-box)
@@ -131,8 +137,10 @@
     position: relative
     //float: left
     .pane-content
-      margin: 0 10px
+      //margin: 0 10px
       position: relative
     .pane-title:after
       display: inline
 
+#page .panels-ipe-editing .panels-ipe-portlet-content
+  margin: 0

@@ -1,16 +1,16 @@
 name = Lightning Metatags
 description = Metatag setup and configuration.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_metatags
+core = 7.x
+
 dependencies[] = metatag
-datestamp = 1411763263
+
 features[features_api][] = api:2
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

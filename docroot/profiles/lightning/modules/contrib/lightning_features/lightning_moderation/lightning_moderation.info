@@ -1,9 +1,8 @@
 name = Lightning Moderation
 description = Workflow configurations for content creation.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_moderation
+core = 7.x
+
 dependencies[] = ctools
 dependencies[] = diff
 dependencies[] = features
@@ -13,9 +12,7 @@ dependencies[] = revision_scheduler
 dependencies[] = strongarm
 dependencies[] = workbench
 dependencies[] = workbench_moderation
-dependencies[] = workbench_moderation_buttons
-dependencies[] = workbench_moderation_notes
-datestamp = 1426609636
+
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = workbench_moderation_default_state_article
@@ -26,12 +23,13 @@ features[workbench_moderation_states][] = published
 features[workbench_moderation_transitions][] = draft:needs_review
 features[workbench_moderation_transitions][] = needs_review:draft
 features[workbench_moderation_transitions][] = needs_review:published
+
 files[] = lightning_moderation.nodes.inc
-mtime = 1426611062
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

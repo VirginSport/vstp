@@ -1,18 +1,22 @@
 name = Lightning Tags
 description = Tags taxonomy configurations.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_tags
+core = 7.x
+
+dependencies[] = ctools
 dependencies[] = features
+dependencies[] = strongarm
 dependencies[] = taxonomy
+
+features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = field_tags
 features[taxonomy][] = tags
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-15
+version = "7.x-1.0-beta15+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471242694"
 

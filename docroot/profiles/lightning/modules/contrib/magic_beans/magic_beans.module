@@ -13,10 +13,15 @@ function magic_beans_form_ctools_block_content_type_edit_form_alter(&$form, &$fo
   $delta = substr($form_state['pane']->subtype, 5);
   $result = _magic_beans_lookup($delta);
   if (isset($result['bean'])) {
+    // Load the bean itself so that we can retrieve its form.
     $bean = reset($result['bean']);
     $bean = bean_load($bean->bid);
     include_once drupal_get_path('module', 'bean') . '/includes/bean.pages.inc';
     $bean_form = drupal_get_form('bean_form', $bean);
+    unset($bean_form['actions']);
+    unset($bean_form['form_build_id']);
+    unset($bean_form['form_token']);
+    unset($bean_form['form_id']);
     // Combine forms in a somewhat ill-advised manner.
     foreach($bean_form as $key => $values) {
       if (!isset($form[$key])) {
