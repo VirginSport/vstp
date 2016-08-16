@@ -52,30 +52,7 @@ function virgin_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme',
   );
 
-  return array(
-    'virgin_module_text' => array(
-      'variables' => array(
-        'title' => '',
-        'sub_title' => '',
-        'link' => '',
-        'link_title' => '',
-        'images' => array()
-      ),
-      'template' => 'virgin-module-text',
-    ) + $base,
-    'virgin_module_signup' => array(
-      'variables' => array(
-        'title' => '',
-        'sub_title' => '',
-        'images' => array(),
-        'facts_title' => '',
-        'facts_sub_title' => '',
-        'facts_button_label' => '',
-        'facts' => array(),
-      ),
-      'template' => 'virgin-module-signup'
-    ) + $base,
-  );
+  return array();
 }
 
 /**
