@@ -1,18 +1,18 @@
 <?php
 /**
  * @file
- * virgin_rich_page.features.field_instance.inc
+ * virgin_page.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function virgin_rich_page_field_default_field_instances() {
+function virgin_page_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-rich_page-body'
-  $field_instances['node-rich_page-body'] = array(
-    'bundle' => 'rich_page',
+  // Exported field_instance: 'node-page-body'
+  $field_instances['node-page-body'] = array(
+    'bundle' => 'page',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -109,9 +109,9 @@ function virgin_rich_page_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-rich_page-field_target_audience'
-  $field_instances['node-rich_page-field_target_audience'] = array(
-    'bundle' => 'rich_page',
+  // Exported field_instance: 'node-page-field_target_audience'
+  $field_instances['node-page-field_target_audience'] = array(
+    'bundle' => 'page',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',

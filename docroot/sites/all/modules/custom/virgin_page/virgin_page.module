@@ -4,4 +4,4 @@
  * Code for the Virgin Rich Page feature.
  */
 
-include_once 'virgin_rich_page.features.inc';
+include_once 'virgin_page.features.inc';

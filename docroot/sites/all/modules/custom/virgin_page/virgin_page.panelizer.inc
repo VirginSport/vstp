@@ -1,22 +1,22 @@
 <?php
 /**
  * @file
- * virgin_rich_page.panelizer.inc
+ * virgin_page.panelizer.inc
  */
 
 /**
  * Implements hook_panelizer_defaults().
  */
-function virgin_rich_page_panelizer_defaults() {
+function virgin_page_panelizer_defaults() {
   $export = array();
 
   $panelizer = new stdClass();
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
-  $panelizer->name = 'node:rich_page:default';
+  $panelizer->name = 'node:page:default';
   $panelizer->title = 'Default';
   $panelizer->panelizer_type = 'node';
-  $panelizer->panelizer_key = 'rich_page';
+  $panelizer->panelizer_key = 'page';
   $panelizer->no_blocks = FALSE;
   $panelizer->css_id = '';
   $panelizer->css = '';
@@ -142,7 +142,7 @@ function virgin_rich_page_panelizer_defaults() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-ca75c61e-d750-4120-a2b8-ff41a10ee30e';
   $panelizer->display = $display;
-  $export['node:rich_page:default'] = $panelizer;
+  $export['node:page:default'] = $panelizer;
 
   return $export;
 }
