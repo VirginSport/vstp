@@ -40,6 +40,8 @@ module.exports = {
     }),
   
     // Add support for live reload
-    new LiveReloadPlugin()
+    new LiveReloadPlugin({
+      ignore: /\.js$/ // Ignore js files as we only want to livereload css
+    })
   ]
 };
