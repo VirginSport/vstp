@@ -23,7 +23,7 @@ module.exports = {
       // Preprocess SCSS files to CSS
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style", "css", "sass")
+        loader: ExtractTextPlugin.extract("style", "css!postcss!sass!")
       }
     ]
   },
