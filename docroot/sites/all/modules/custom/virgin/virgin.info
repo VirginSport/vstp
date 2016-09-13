@@ -50,7 +50,6 @@ dependencies[] = xmlsitemap
 dependencies[] = virgin_api
 dependencies[] = virgin_base
 dependencies[] = virgin_config
-dependencies[] = virgin_page
 dependencies[] = virgin_roles
 dependencies[] = virgin_user
 
