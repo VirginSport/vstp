@@ -68,9 +68,9 @@ settings[zurb_foundation_messages_modal] = 0
 settings[zurb_foundation_pager_center] = 1
 
 
-; Information added by drush on 2016-08-15
+; Information added by drush on 2016-08-22
 version = "7.x-5.0-rc6+1-dev"
 core = "7.x"
 project = "zurb-foundation"
-datestamp = "1471242694"
+datestamp = "1471880980"
 

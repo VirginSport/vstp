@@ -52,9 +52,9 @@ features[variable][] = panelizer_node:landing_default
 features[variable][] = workbench_moderation_default_state_landing
 
 
-; Information added by drush on 2016-08-15
-version = "7.x-1.0-beta15+0-dev"
+; Information added by drush on 2016-08-22
+version = "7.x-1.0-beta16+0-dev"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1471242694"
+datestamp = "1471880979"
 

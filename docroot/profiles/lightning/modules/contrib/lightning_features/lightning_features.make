@@ -61,7 +61,7 @@ projects[context_admin][download][type] = "git"
 projects[context_admin][download][revision] = "0e5bf6a"
 projects[context_admin][download][branch] = "7.x-1.x"
 
-projects[ctools][version] = "1.9"
+projects[ctools][version] = "1.10"
 projects[ctools][type] = "module"
 projects[ctools][subdir] = "contrib"
 ; should entity view hooks be triggered unconditionally in node_view, term_view and user_view pages?
@@ -303,16 +303,14 @@ projects[pathauto][version] = "1.3"
 projects[pathauto][type] = "module"
 projects[pathauto][subdir] = "contrib"
 
-projects[panelizer][version] = "3.2"
+projects[panelizer][version] = "3.3"
+projects[panelizer][type] = "module"
 projects[panelizer][subdir] = "contrib"
-;projects[panelizer][download][type] = "git"
-;projects[panelizer][download][revision] = "071ee2d"
-;projects[panelizer][download][branch] = "7.x-3.x"
 ; Better Revision Handling inside and outside of Workbench Moderation
 ; http://drupal.org/node/2457113
-projects[panelizer][patch][2457113] = "http://drupal.org/files/issues/2457113_0.diff"
+projects[panelizer][patch][2457113] = "http://drupal.org/files/issues/panelizer-n2457113-69.patch"
 
-projects[panels][version] = "3.5"
+projects[panels][version] = "3.6"
 projects[panels][type] = "module"
 projects[panels][subdir] = "contrib"
 ; Fix IPE JS alert (Panelizer is Incompatible with Moderation)
@@ -321,9 +319,6 @@ projects[panels][patch][1402860] = "http://drupal.org/files/issues/panelizer_is-
 ; IPE Insufficient for working with Panelizer Revisioning
 ; https://www.drupal.org/node/2462331#comment-9778921
 projects[panels][patch][2462331] = "http://www.drupal.org/files/issues/2462331-7.patch"
-; Allow modules to alter IPE buttons w/o hook_page_alter implementation
-; https://www.drupal.org/node/2465193#comment-9791045
-projects[panels][patch][2465193] = "http://www.drupal.org/files/issues/2465193-1.patch"
 ; Refresh the Workbench block after editing with Panels IPE
 ; https://www.drupal.org/node/2485837
 projects[panels][patch][2485837] = "http://www.drupal.org/files/issues/panels-ipe-workbench-block-2485837-1.patch"
