@@ -53,7 +53,6 @@ dependencies[] = virgin_config
 dependencies[] = virgin_event
 dependencies[] = virgin_page
 dependencies[] = virgin_roles
-dependencies[] = virgin_taxonomy
 dependencies[] = virgin_user
 
 ; required files
