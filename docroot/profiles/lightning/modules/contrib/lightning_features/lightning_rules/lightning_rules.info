@@ -1,17 +1,16 @@
 name = Lightning Rules
 description = Endable the Rules workflow system.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_rules
+core = 7.x
+
 dependencies[] = features
 dependencies[] = lightning_token
 dependencies[] = rules
-datestamp = 1408404197
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-22
+version = "7.x-1.0-beta16+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471880979"
 

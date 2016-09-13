@@ -110,6 +110,14 @@ function workbench_moderation_menu() {
     'weight' => 10,
   );
 
+  // Supports re-loading the current workbench block, if a draft is somehow created via AJAX (ex: Quickedit or Panels IPE)
+  $items['node/%node/moderation/block/ajax'] = array(
+    'page callback' => 'workbench_moderation_workbench_block_ajax',
+    'page arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
   // If the diff module is present, replicate its pages under the moderation tab.
   if (module_exists('diff')) {
     $diff_menu_items  = diff_menu();
@@ -2188,6 +2196,39 @@ function workbench_moderation_workbench_block() {
   return $output;
 }
 
+/**
+ * Implements hook_block_view_MODULE_DELTA_alter().
+ *
+ * Attach our Javascript logic that allows for the reloading of the Workbench block.
+ */
+function workbench_moderation_block_view_workbench_block_alter(&$data, $block) {
+  // Add our inline editing compatability scripts if the block is present
+  if (!empty($data['content'])) {
+    $node = menu_get_object();
+    // Check to see if the current object is a valid node
+    if ($node && isset($node->nid)) {
+      $data['content']['#attached']['js'][] = drupal_get_path('module', 'workbench_moderation') . '/js/workbench_moderation_block.js';
+      $data['content']['#attached']['js'][] = array(
+        'type' => 'setting',
+        'data' => array('workbench_moderation' => array('nid' => $node->nid))
+      );
+    }
+  }
+}
+
+/**
+ * Page callback to render the Workbench block via ajax for a draft.
+ *
+ * @param stdClass $node The current node
+ */
+function workbench_moderation_workbench_block_ajax($node) {
+  // Load the current draft
+  if ($node = workbench_moderation_node_current_load($node)) {
+    workbench_moderation_messages('view', $node);
+    $block = module_invoke('workbench', 'block_view');
+    print render($block);
+  }
+}
 
 /**
  * Implementation of hook_workbench_moderation_transition().

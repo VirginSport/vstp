@@ -3,8 +3,8 @@ description = Adds a note field to workbench moderation.
 package = Workbench
 core = 7.x
 
-; Information added by drush on 2015-05-02
+; Information added by drush on 2016-08-22
 version = ""
 project = "workbench_moderation_notes"
-datestamp = "1430590701"
+datestamp = "1471881000"
 

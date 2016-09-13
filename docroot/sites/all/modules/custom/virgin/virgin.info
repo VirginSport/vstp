@@ -16,7 +16,6 @@ dependencies[] = lightning_edit
 dependencies[] = lightning_files
 dependencies[] = lightning_filter
 dependencies[] = lightning_forms
-dependencies[] = lightning_fpp
 dependencies[] = lightning_image
 dependencies[] = lightning_media
 dependencies[] = lightning_metatags
@@ -51,11 +50,7 @@ dependencies[] = xmlsitemap
 dependencies[] = virgin_api
 dependencies[] = virgin_base
 dependencies[] = virgin_config
-dependencies[] = virgin_event
-dependencies[] = virgin_home
-dependencies[] = virgin_rich_page
 dependencies[] = virgin_roles
-dependencies[] = virgin_taxonomy
 dependencies[] = virgin_user
 
 ; required files

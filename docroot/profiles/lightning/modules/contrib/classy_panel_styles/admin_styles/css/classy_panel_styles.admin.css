@@ -1,7 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.panels-ipe-dragbar-admin-title {
+  display: none;
+}
+
 #classy-panel-styles-pane-form .form-item,
 #panels-edit-style-settings-form .form-item {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   width: 100%;
+  clear: both;
 }
 #classy-panel-styles-pane-form .form-item label,
 #panels-edit-style-settings-form .form-item label {
@@ -49,7 +58,7 @@
   clear: both;
   text-align: left;
   padding: 0;
-  margin: -1px 2% 4px 22%;
+  margin: 1px 2% 10px 22%;
   font-weight: bold;
   line-height: 1.1;
   width: 78%;
@@ -126,7 +135,6 @@ body div.panel-region .panel-pane {
 }
 .panels-ipe-display-container .panel-display .panel-panel .panel-pane,
 body .panel-panel .panel-pane {
-  padding: 0 !important;
   width: 100%;
   display: inline-block;
   -moz-box-sizing: border-box;
@@ -138,10 +146,13 @@ body .panel-panel .panel-pane {
 }
 .panels-ipe-display-container .panel-display .panel-panel .panel-pane .pane-content,
 body .panel-panel .panel-pane .pane-content {
-  margin: 0 10px;
   position: relative;
 }
 .panels-ipe-display-container .panel-display .panel-panel .panel-pane .pane-title:after,
 body .panel-panel .panel-pane .pane-title:after {
   display: inline;
+}
+
+#page .panels-ipe-editing .panels-ipe-portlet-content {
+  margin: 0;
 }

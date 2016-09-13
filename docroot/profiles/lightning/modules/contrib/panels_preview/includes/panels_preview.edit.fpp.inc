@@ -16,6 +16,10 @@ function _panels_preview_fieldable_panels_panes_fieldable_panels_pane_content_ty
  */
 function panels_preview_render_fieldable_panels_pane_preview($type, $subtype, $conf, $keywords, $args, $context) {
   $entity = $conf['fieldable_panels_pane'];
+  // Prevents PHP notice when not admin user (see issue #2463389).
+  if (!isset($entity->view_access)) {
+   $entity->view_access = NULL;
+  }
   if ($entity && fieldable_panels_panes_access('view', $entity)) {
     $settings = field_bundle_settings('fieldable_panels_pane', $entity->bundle);
     $block = new stdClass();
@@ -28,9 +32,8 @@ function panels_preview_render_fieldable_panels_pane_preview($type, $subtype, $c
       }
     }
 
-    // Some magic necessary to make sure fields are in the same state they
-    // would be in if they were loaded from the database. Found this by looking
-    // at how node generates it's previews in node_preview().
+    // Make sure fields are in the same state they would be in if they were
+    // loaded from the database.
     _field_invoke_multiple('load', 'fieldable_panels_pane', array($entity->fpid => $entity));
 
     $view_mode = isset($conf['view_mode']) ? $conf['view_mode'] : 'full';

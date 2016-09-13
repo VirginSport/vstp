@@ -20,7 +20,7 @@ function virginsport_preprocess_page(&$vars) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
 
     $vars['account'] = array(
-      'first_name' => $account_wrapper->field_given_name->value()
+      'first_name' => $account_wrapper->field_first_name->value()
     );
   }
 
@@ -46,16 +46,6 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
-
-  // Color fills
-  $vars['color_fills'] = array(
-    'blue-red',
-    'green-blue',
-    'orange-yellow',
-    'purple-blue',
-    'red-pink',
-    'yellow-green',
-  );
 }
 
 // Template Overrides

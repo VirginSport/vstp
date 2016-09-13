@@ -5,9 +5,55 @@
  */
 
 /**
- * Implements hook_install().
+ * Implements hook_enable().
  */
-function acquia_lift_profiles_install() {
+function acquia_lift_profiles_enable() {
+  // Clear the action subscriber cache.
+  visitor_actions_clear_subscribers();
+  // Create the menu link if it's missing.
+  $item = _acquia_lift_profiles_get_menu_link();
+  if (empty($item)) {
+    _acquia_lift_profiles_build_menu_link();
+  }
+}
+
+/**
+ * Implements hook_disable().
+ */
+function acquia_lift_profiles_disable() {
+  // Clear the action subscriber cache.
+  visitor_actions_clear_subscribers();
+
+  // Disable the Profiles web admin link.
+  $item = _acquia_lift_profiles_get_menu_link();
+  if (!empty($item)) {
+    menu_link_delete($item['mlid']);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function acquia_lift_profiles_uninstall() {
+  $vars = array(
+    'acquia_lift_profiles_capture_identity',
+    'acquia_lift_profiles_default_identity_type',
+    'acquia_lift_profiles_field_mappings',
+    'acquia_lift_profiles_identity_param',
+    'acquia_lift_profiles_identity_type_param',
+    'acquia_lift_profiles_lift_event_values',
+    'acquia_lift_profiles_segments',
+    'acquia_lift_profiles_udf_mappings',
+  );
+  foreach ($vars as $var) {
+    variable_del($var);
+  }
+}
+
+/**
+ * Adds the menu link for web admin.
+ */
+function _acquia_lift_profiles_build_menu_link() {
   $menu_name = 'acquia-lift-controls';
   // Create a link for accessing the Profiles web admin.
   $item = array(
@@ -16,7 +62,7 @@ function acquia_lift_profiles_install() {
     'menu_name' => $menu_name,
     'options' => array(
       'attributes' => array(
-        'class' => array('visitor-actions-ui-ignore', 'acquia-lift-menu-link', 'acquia-lift-web-admin'),
+        'class' => array('visitor-actions-ui-ignore', 'acquia-lift-menu-link', 'acquia-lift-web-admin', 'acquia-lift-navbar-secondary'),
         'target' => '_blank'
       ),
       'alter' => TRUE,
@@ -27,71 +73,6 @@ function acquia_lift_profiles_install() {
   );
   menu_link_save($item);
   menu_rebuild();
-}
-
-/**
- * Implements hook_enable().
- */
-function acquia_lift_profiles_enable() {
-  // If the module were previously enabled and actions set to be tracked,
-  // the list of subscribers to those actions will need to be rebuilt.
-  rebuild_subscribers_for_tracked_actions();
-  // Unhide the menu link if it's hidden.
-  $item = _acquia_lift_profiles_get_menu_link();
-  if (!empty($item) && $item['hidden'] == 1) {
-    $item['hidden'] = 0;
-    menu_link_save($item);
-    // Update the menu router information.
-    menu_rebuild();
-  }
-}
-
-/**
- * Implements hook_disable().
- */
-function acquia_lift_profiles_disable() {
-  rebuild_subscribers_for_tracked_actions();
-
-  // Disable the Profiles web admin link.
-  $item = _acquia_lift_profiles_get_menu_link();
-  if (!empty($item) && $item['hidden'] == 0) {
-    $item['hidden'] = 1;
-    menu_link_save($item);
-    menu_rebuild();
-  }
-}
-
-/**
- * Implements hook_uninstall().
- */
-function acquia_lift_profiles_uninstall() {
-  variable_del('acquia_lift_profiles_account_name');
-  variable_del('acquia_lift_profiles_site_name');
-  variable_del('acquia_lift_profiles_api_url');
-  variable_del('acquia_lift_profiles_access_key');
-  variable_del('acquia_lift_profiles_secret_key');
-  variable_del('acquia_lift_profiles_capture_identity');
-  variable_del('acquia_lift_profiles_js_path');
-  variable_del('acquia_lift_profiles_vocabulary_mappings');
-  variable_del('acquia_lift_profiles_tracked_actions');
-  variable_del('acquia_lift_profiles_udf_mappings');
-  variable_del('acquia_lift_profiles_identity_param');
-  variable_del('acquia_lift_profiles_identity_type_param');
-
-  // Delete the menu link
-  $item = _acquia_lift_profiles_get_menu_link();
-  if (!empty($item)) {
-    menu_link_delete($item['mlid']);
-  }
-}
-
-/**
- * Rebuilds the list of subscribers for each action tracked.
- */
-function rebuild_subscribers_for_tracked_actions() {
-  foreach (variable_get('acquia_lift_profiles_tracked_actions', array()) as $action) {
-    visitor_actions_clear_subscribers($action);
-  }
 }
 
 /**
@@ -178,4 +159,53 @@ function acquia_lift_profiles_update_7002(&$sandbox) {
   if ($sandbox['#finished']) {
     return t('All actions were synchronized to Lift Web');
   }
+}
+
+/**
+ * Convert existing vocabulary mappings to use taxonomy context module.
+ */
+function acquia_lift_profiles_update_7003() {
+  // 1) Enable the personalize taxonomy context module.
+  $result = module_enable(array('personalize_taxonomy_context'));
+  if (empty($result)) {
+    throw new DrupalUpdateException('There was a problem enabling "personalize_taxonomy_context" module. Please ensure you have "personalize" module version 7.x-1.0-rc11 or higher, and then try updating again.');
+  }
+
+  // 2) Convert existing mappings (if not already). Example:
+  //
+  // * Before migration:
+  //   $acquia_lift_profiles_vocabulary_mappings = array (
+  //     'content_section' => '2',
+  //     'content_keywords' => '',
+  //     'persona' => '4',
+  //   )
+  // * After migration:
+  //   $acquia_lift_profiles_field_mappings = array (
+  //     'content_section' => 'taxonomy_context__people',
+  //     'persona' => 'taxonomy_context__country',
+  //   )
+  $vocabulary_mappings = variable_get('acquia_lift_profiles_vocabulary_mappings', array());
+  $field_mappings = array();
+  foreach ($vocabulary_mappings as $type => $vocabulary_mapping) {
+    if (empty($vocabulary_mapping) || !is_numeric($vocabulary_mapping)) {
+      continue;
+    }
+    $vocabulary = taxonomy_vocabulary_load($vocabulary_mapping);
+    $field_mappings[$type] = 'taxonomy_context' . PERSONALIZE_TARGETING_ADMIN_SEPARATOR . $vocabulary->machine_name;
+  }
+  if (!empty($field_mappings)) {
+    variable_set('acquia_lift_profiles_field_mappings', $field_mappings);
+  }
+  variable_del('acquia_lift_profiles_vocabulary_mappings');
+}
+
+/**
+ * Update the styling for the web administration link.
+ */
+function acquia_lift_profiles_update_7004() {
+  $item = _acquia_lift_profiles_get_menu_link();
+  if (!empty($item)) {
+    menu_link_delete($item['mlid']);
+  }
+  _acquia_lift_profiles_build_menu_link();
 }

@@ -1,22 +1,27 @@
 api = 2
 core = 7.x
 
-projects[acquia_lift][version] = "1.0-rc12"
+projects[acquia_connector][version] = "2.17"
+projects[acquia_connector][type] = "module"
+projects[acquia_connector][subdir] = "contrib"
+
+projects[acquia_lift][version] = "2.0-rc3"
 projects[acquia_lift][type] = "module"
 projects[acquia_lift][subdir] = "contrib"
 
-projects[personalize][version] = "1.0-rc10"
+projects[personalize][version] = "2.0-rc2"
 projects[personalize][type] = "module"
 projects[personalize][subdir] = "contrib"
-; Personalized Fields break preview inside Panels
-; http://drupal.org/node/2303111
-projects[personalize][patch][2303111] = "http://drupal.org/files/issues/personalize-panels-fix-2303111-4.patch"
 
-projects[visitor_actions][version] = "1.0-rc4"
+projects[visitor_actions][version] = "1.4"
 projects[visitor_actions][type] = "module"
 projects[visitor_actions][subdir] = "contrib"
 
 ; Libraries
+libraries[chosen][destination] = "libraries"
+libraries[chosen][download][type] = "get"
+libraries[chosen][download][url] = "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip"
+
 ;libraries[d3][destination] = "libraries"
 ;libraries[d3][download][type] = "get"
 ;libraries[d3][download][url] = https://github.com/mbostock/d3/releases/download/v3.4.11/d3.zip

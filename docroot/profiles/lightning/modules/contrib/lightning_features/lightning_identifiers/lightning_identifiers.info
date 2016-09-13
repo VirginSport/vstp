@@ -1,19 +1,21 @@
 name = Lightning Identifiers
 description = Taxonomy for marketing campaign identifiers.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_identifiers
+core = 7.x
+
+dependencies[] = ctools
 dependencies[] = features
+dependencies[] = strongarm
 dependencies[] = taxonomy
-datestamp = 1411763263
+
+features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[taxonomy][] = identifiers
-mtime = 1418775026
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-22
+version = "7.x-1.0-beta16+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471880979"
 

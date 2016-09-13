@@ -16,25 +16,46 @@ function cps_example_classy_panel_styles() {
   $style = new stdClass();
   $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
   $style->api_version = 1;
-  $style->name = 'cps_example_width';
-  $style->visibility = 1;
+  $style->name = 'cps_example_region_layout';
+  $style->visibility = 2;
   $style->groups = $groups;
-  $style->title = 'Pane Width';
+  $style->title = 'CPS Region Layout';
   $style->required = FALSE;
-  $style->description = 'Choose a width for the panel pane at the desktop size.';
+  $style->description = '';
   $style->options = serialize(array(
-    'width-25' => '25% width',
-    'width-33' => '33% width',
-    'width-50' => '50% width',
-    'width-50-100' => '50% width; mobile 100%',
-    'width-66' => '66% width',
-    'width-75' => '75% width',
-    'width-100' => '100% width',
+    'region-1col' => '1 Column',
+    'region-2col' => '2 Columns',
+    'region-2col-1x3' => '2 Columns: 1 item in the 1st column, 3 items in the 2nd',
+    'region-3col' => '3 Columns',
+    'region-4col' => '4 Columns',
+    'region-1col-2col' => 'Multi: 1st row is 1 column, additional rows are in 2 columns',
+    'region-1col-3col' => 'Multi: 1st row is 1 column, additional rows are in 3 columns',
   ));
   $style->default_value = '';
   $style->layouts_setting = 0;
-  $style->layouts = serialize(array());
-  $export['cps_example_width'] = $style;
+  $style->layouts = 'a:0:{}';
+  $export['cps_example_region_layout'] = $style;
+
+  $style = new stdClass();
+  $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
+  $style->api_version = 1;
+  $style->name = 'cps_spacing';
+  $style->visibility = 3;
+  $style->groups = $groups;
+  $style->title = 'CPS Spacing';
+  $style->required = FALSE;
+  $style->description = '';
+  $style->options = serialize(array(
+    'no-padding' => 'No Padding',
+    'double-padding' => 'Double Padding',
+    'no-margin' => 'No Margin',
+    'no-margin-top' => 'No Top Margin',
+    'no-padding-no-margin' => 'No Padding, No Margin',
+  ));
+  $style->default_value = '';
+  $style->layouts_setting = 0;
+  $style->layouts = 'a:0:{}';
+  $export['region_layout'] = $style;
 
   $style = new stdClass();
   $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
@@ -42,7 +63,7 @@ function cps_example_classy_panel_styles() {
   $style->name = 'cps_example_image_layout';
   $style->visibility = 1;
   $style->groups = $groups;
-  $style->title = 'Image Layout';
+  $style->title = 'CPS Image Layout';
   $style->required = FALSE;
   $style->description = '';
   $style->options = serialize(array(
@@ -58,47 +79,10 @@ function cps_example_classy_panel_styles() {
   $style = new stdClass();
   $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
   $style->api_version = 1;
-  $style->name = 'cps_example_panel_pane_float';
-  $style->visibility = 1;
-  $style->groups = $groups;
-  $style->title = 'Panel Pane Float';
-  $style->required = FALSE;
-  $style->description = '';
-  $style->options = serialize(array(
-    'float-left' => 'Float Left',
-    'float-right' => 'Float Right',
-  ));
-  $style->default_value = '';
-  $style->layouts_setting = 0;
-  $style->layouts = serialize(array());
-  $export['cps_example_panel_pane_float'] = $style;
-
-  $style = new stdClass();
-  $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
-  $style->api_version = 1;
-  $style->name = 'cps_example_clear_floats';
-  $style->visibility = 1;
-  $style->groups = $groups;
-  $style->title = 'Clear Floats';
-  $style->required = FALSE;
-  $style->description = '';
-  $style->options = serialize(array(
-    'clear-left' => 'clear left',
-    'clear-right' => 'clear right',
-    'clear-both' => 'clear both',
-  ));
-  $style->default_value = '';
-  $style->layouts_setting = 0;
-  $style->layouts = serialize(array());
-  $export['cps_example_clear_floats'] = $style;
-
-  $style = new stdClass();
-  $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
-  $style->api_version = 1;
   $style->name = 'cps_example_text_columns';
   $style->visibility = 1;
   $style->groups = $groups;
-  $style->title = 'Text Columns';
+  $style->title = 'CPS Text Columns';
   $style->required = FALSE;
   $style->description = '';
   $style->options = serialize(array(
@@ -117,41 +101,24 @@ function cps_example_classy_panel_styles() {
   $style->name = 'cps_example_background';
   $style->visibility = 1;
   $style->groups = $groups;
-  $style->title = 'Background';
+  $style->title = 'CPS Background';
   $style->required = FALSE;
   $style->description = 'Add some color to your panel pane';
   $style->options = serialize(array(
-    'bg-blue' => 'Blue with white text',
-    'bg-black' => 'Black with white text',
+    'bg-one' => 'Color one',
+    'bg-two' => 'Color two',
+    'bg-three' => 'Color three',
+    'bg-four' => 'Color four',
+    'bg-five' => 'Color five',
     'bg-white' => 'White',
     'bg-gray' => 'Light Gray',
-    'bg-green' => 'Green',
-    'bg-borders' => 'Double Borders on top & bottom of pane',
-    'bg-thin-border' => 'Thin Borders on all sides',
+    'bg-black' => 'Black',
+
   ));
   $style->default_value = '';
   $style->layouts_setting = 0;
   $style->layouts = serialize(array());
   $export['cps_example_background'] = $style;
-
-  $style = new stdClass();
-  $style->disabled = FALSE; /* Edit this to true to make a default style disabled initially */
-  $style->api_version = 1;
-  $style->name = 'cps_example_region_color';
-  $style->visibility = 2;
-  $style->groups = $groups;
-  $style->title = 'Region Background Color';
-  $style->required = FALSE;
-  $style->description = 'Choose a background color for the panel region';
-  $style->options = serialize(array(
-    'region-bg-black' => 'Black',
-    'region-bg-white' => 'White',
-    'region-bg-navy' => 'Navy',
-  ));
-  $style->default_value = '';
-  $style->layouts_setting = 0;
-  $style->layouts = serialize(array());
-  $export['cps_example_region_color'] = $style;
 
   return $export;
 }

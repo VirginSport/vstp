@@ -35,7 +35,13 @@
 
       // Store the actual value of this field. We'll need this to restore the
       // original value when the user discards his modifications.
-      this.$textElement = this.$el.find('.field-item:first');
+      var $fieldItems = this.$el.find('.quickedit-field');
+      if ($fieldItems.length) {
+        this.$textElement = $fieldItems.eq(0);
+      }
+      else {
+        this.$textElement = this.$el;
+      }
       this.model.set('originalValue', this.$textElement.html());
     },
 
@@ -62,6 +68,14 @@
           // of the states where it could have been attached.
           if (from !== 'inactive' && from !== 'highlighted') {
             this._ckeditor_detach(this.$textElement.get(0), 'unload');
+          }
+          // A field model's editor view revert() method is invoked when an
+          // 'active' field becomes a 'candidate' field. But, in the case of
+          // this in-place editor, the content will have been *replaced* if the
+          // text format has transformation filters. Therefore, if we stop
+          // in-place editing this entity, revert explicitly.
+          if (from === 'active' && this.textFormatHasTransformations) {
+            this.revert();
           }
           if (from === 'invalid') {
             this.removeValidationErrors();
@@ -179,6 +193,8 @@
 
     // @see Drupal 8's Drupal.editors.ckeditor.attachInlineEditor().
     _ckeditor_attachInlineEditor: function (element, ckeditorSettings, mainToolbarId, floatedToolbarId) {
+      this._ckeditor_loadExternalPlugins(ckeditorSettings);
+
       var settings = $.extend(true, {}, ckeditorSettings);
 
       // If a toolbar is already provided for "true WYSIWYG" (in-place editing),

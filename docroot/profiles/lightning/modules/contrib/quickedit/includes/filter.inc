@@ -55,6 +55,10 @@ function quickedit_filter_info_alter(&$info) {
     'caption_filter' => FILTER_TYPE_TRANSFORM_IRREVERSIBLE,
     // https://drupal.org/project/ckeditor_link
     'ckeditor_link_filter' => FILTER_TYPE_TRANSFORM_REVERSIBLE,
+    // http://drupal.org/project/editor
+    'editor_align' => FILTER_TYPE_TRANSFORM_REVERSIBLE,
+    // http://drupal.org/project/editor
+    'editor_caption' => FILTER_TYPE_TRANSFORM_REVERSIBLE,
     // https://drupal.org/project/emptyparagraphkiller
     'emptyparagraphkiller' => FILTER_TYPE_HTML_RESTRICTOR,
     // https://drupal.org/project/entity_embed
@@ -143,7 +147,7 @@ function check_markup2($text, $format_id = NULL, $langcode = '', $cache = FALSE,
   $cache_id = '';
   if ($cache) {
     $cache_id = $format->format . ':' . $langcode . ':' . hash('sha256', $text);
-    if ($cached = cache('filter')->get($cache_id)) {
+    if ($cached = cache_get($cache_id, 'cache_filter')) {
       return $cached->data;
     }
   }
@@ -159,7 +163,7 @@ function check_markup2($text, $format_id = NULL, $langcode = '', $cache = FALSE,
   // Give filters the chance to escape HTML-like data such as code or formulas.
   foreach ($filters as $name => $filter) {
     // If necessary, skip filters of a certain type.
-    if (in_array($filter_info[$name]['type'], $filter_types_to_skip)) {
+    if (isset($filter_info[$name]['type']) && in_array($filter_info[$name]['type'], $filter_types_to_skip)) {
       continue;
     }
     if (!empty($filter->status) && isset($filter_info[$name]['prepare callback'])) {
@@ -171,7 +175,7 @@ function check_markup2($text, $format_id = NULL, $langcode = '', $cache = FALSE,
   // Perform filtering.
   foreach ($filters as $name => $filter) {
     // If necessary, skip filters of a certain type.
-    if (in_array($filter_info[$name]['type'], $filter_types_to_skip)) {
+    if (isset($filter_info[$name]['type']) && in_array($filter_info[$name]['type'], $filter_types_to_skip)) {
       continue;
     }
     if (!empty($filter->status) && isset($filter_info[$name]['process callback'])) {
@@ -185,7 +189,7 @@ function check_markup2($text, $format_id = NULL, $langcode = '', $cache = FALSE,
   // automatically flushed when the text format is updated.
   // @see filter_format_save()
   if ($cache) {
-    cache('filter')->set($cache_id, $text);
+    cache_set($cache_id, $text, 'cache_filter');
   }
 
   return $text;

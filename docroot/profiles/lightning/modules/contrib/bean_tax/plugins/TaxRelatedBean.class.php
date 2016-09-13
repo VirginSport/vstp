@@ -417,6 +417,12 @@ class TaxRelatedBean extends BeanPlugin {
       // Create a generic cache id for use otherwise.
       $cid = date('Y:m:d:i');
     }
+    // Append language prefix to end of cache id.
+    global $language;
+    if ($language->prefix != '') {
+      $cid = $cid . ':' . $language->prefix;
+    }
+    // Set the cache name.
     $cache_name = 'bean_tax:related:' . $bean->delta . ':' . $cid;
     
     // Check for cached content.

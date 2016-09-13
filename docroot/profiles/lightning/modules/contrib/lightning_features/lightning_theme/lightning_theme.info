@@ -1,18 +1,19 @@
 name = Lightning Theme
 description = Administration theme configuration.
-core = 7.x
 package = Lightning
-version = 7.x-1.0
-project = lightning_theme
-dependencies[] = system
-datestamp = 1408404197
+core = 7.x
+
+dependencies[] = ctools
+dependencies[] = strongarm
+
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = theme_ember_settings
 
 
-; Information added by drush on 2015-05-02
-version = ""
+; Information added by drush on 2016-08-22
+version = "7.x-1.0-beta16+0-dev"
+core = "7.x"
 project = "lightning_features"
-datestamp = "1430590696"
+datestamp = "1471880979"
 

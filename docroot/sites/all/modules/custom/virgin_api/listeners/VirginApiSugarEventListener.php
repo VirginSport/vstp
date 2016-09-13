@@ -11,8 +11,6 @@
  * This class creates and updates event information on SugarCRM when Events are
  * modified on Drupal.
  *
- * @see VirginApiAttendlyEventListener::onCreate()
- * @see VirginApiAttendlyEventListener::onUpdate()
  * @see virgin_api_node_update()
  */
 class VirginApiSugarEventListener implements ObserverObserverInterface {

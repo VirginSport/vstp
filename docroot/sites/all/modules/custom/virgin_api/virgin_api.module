@@ -12,15 +12,7 @@ include_once 'virgin_api.features.inc';
 function virgin_api_services_resources() {
   $resources = array();
 
-  $resources['attendly'] = array(
-    'actions' => array(
-      'webhook' => array(
-        'file' => array('type' => 'inc', 'module' => 'virgin_api', 'name' => 'resources/attendly_resource'),
-        'callback' => '_virgin_api_attendly_webhook_action',
-        'access callback' => 'virgin_api_token_access',
-      ),
-    ),
-  );
+  // Standing as a placeholder for future API endpoints
 
   return $resources;
 }
@@ -30,7 +22,6 @@ function virgin_api_services_resources() {
  */
 function virgin_api_observer_info() {
   return array(
-    new VirginApiAttendlyEventListener(),
     new VirginApiSugarEventListener(),
     new VirginApiSugarUserListener(),
   );
@@ -65,39 +56,4 @@ function virgin_api_token_access() {
   }
 
   return FALSE;
-}
-
-/**
- * Gets an entity of a given type by its Attendly ID
- *
- * This method bypasses node access security checks, as such DO NOT use this
- * method for use cases other than very specific API use cases, such as updating
- * unpublished nodes.
- *
- * @param $entity_type
- *  The entity type, for example: node
- * @param $bundle
- *  The bundle, for example: event
- * @param $attendly_id
- *  The ID of the event on Attendly
- * @return stdClass|bool
- *  A fully loaded entity or FALSE if the entity was not found.
- */
-function virgin_api_get_entity_by_attendly_id($entity_type, $bundle, $attendly_id) {
-  $query = new EntityFieldQuery();
-
-  $query
-    ->entityCondition('entity_type', $entity_type)
-    ->entityCondition('bundle', $bundle)
-    ->fieldCondition('field_event_id', 'value', $attendly_id, '=')
-    ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT') // opting out from node_access
-    ->execute()
-  ;
-
-  if (!empty($query->ordered_results)) {
-    $entity_id = $query->ordered_results[0]->entity_id;
-    $entity = entity_load_single($entity_type, $entity_id);
-  }
-
-  return empty($entity) ? FALSE : $entity;
 }

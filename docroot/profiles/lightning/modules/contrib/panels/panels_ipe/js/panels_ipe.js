@@ -2,12 +2,7 @@
 // Ensure the $ alias is owned by jQuery.
 (function($) {
 
-// randomly lock a pane.
-// @debug only
 Drupal.settings.Panels = Drupal.settings.Panels || {};
-Drupal.settings.Panels.RegionLock = {
-  10: { 'top': false, 'left': true, 'middle': true }
-}
 
 Drupal.PanelsIPE = {
   editors: {},
@@ -235,7 +230,7 @@ function DrupalPanelsIPE(cache_key, cfg) {
     // it clears out inline styles.
     $('.panels-ipe-on').show();
     ipe.showForm();
-    ipe.topParent.addClass('panels-ipe-editing');
+    $('body').add(ipe.topParent).addClass('panels-ipe-editing');
 
   };
 
@@ -276,6 +271,11 @@ function DrupalPanelsIPE(cache_key, cfg) {
 
     $('.panels-ipe-editing').removeClass('panels-ipe-editing');
     $('div.panels-ipe-sort-container.ui-sortable', ipe.topParent).sortable("destroy");
+
+    // If the workbench moderation block exists, attempt to refresh it
+    if (Drupal.behaviors.workbenchModerationBlockRefresh && typeof Drupal.behaviors.workbenchModerationBlockRefresh.refreshBlock == 'function') {
+      Drupal.behaviors.workbenchModerationBlockRefresh.refreshBlock();
+    }
   };
 
   this.saveEditing = function() {

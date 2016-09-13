@@ -138,6 +138,7 @@ function theme_acquia_lift_percentage($variables) {
 
   // Add classes for percentage control and collapsible details.
   $element['#attributes']['class'][] = 'acquia-lift-percentage-control';
+  $element['#attributes']['class'][] = 'clearfix';
   if (isset($element['#collapsible']) && $element['#collapsible']) {
     $element['#attributes']['class'][] = 'acquia-lift-collapsible';
     if (isset($element['#collapsed']) && $element['#collapsed']) {
@@ -166,40 +167,6 @@ function theme_acquia_lift_percentage($variables) {
     $output .= '</div>';
   }
   // Close the wrapping div.
-  $output .= '</div>';
-  return $output;
-}
-
-/**
- * Theme function to show a percentage difference as a label.
- *
- * The percentage is shown as a line filled to the set percentage with optional
- * labels for the percentage indicated (and rest of percentage).
- *
- * @param $variables
- *   The theme variables that will include:
- *   - percent_label: The label for the main percentage selected
- *   - rest_label: The label for the rest of the percentage selected
- *   - percent: The required percentage selected as a float.
- */
-function theme_acquia_lift_percentage_label($variables) {
-  $percent = round($variables['percent'], 2);
-  $rest_percent = 100 - $percent;
-
-  $output = '<div class="acquia-lift-distribution form-item">';
-  if (!empty($variables['percent_label'])) {
-    $output .= '<div class="distribution-set">';
-    $output .= $variables['percent_label'] . ' (' . $variables['percent'] . '%)';
-    $output .= '</div>';
-  }
-  if (!empty($variables['rest_label'])) {
-    $output .= '<div class="distribution-rest">';
-    $output .= $variables['rest_label'] . ' (' . $rest_percent . '%)';
-    $output .= '</div>';
-  }
-  $output .= '<div class="distribution-graphic">';
-  $output .= '<div class="fill" data-acquia-lift-fill="' . $percent . '"></div>';
-  $output .= '</div>';
   $output .= '</div>';
   return $output;
 }
@@ -265,7 +232,9 @@ function theme_acquia_lift_report_overview($variables) {
  *   - items: An array of types with the following keys
  *     - type:  What to display for the type
  *     - description: What to display as the description of the type
- *     - url: The url to create a new item of that type.
+ *     - path: The path to create a new item of that type.
+ *     - url_options: An optional array of options to pass when generating
+ *       the url from the path above.
  *     - logo: Logo to denote the type.
  *     - modal: true if url should continue in a modal, false if a new page
  *     - ctools_style: The ctools modal style to use for the next url (if
@@ -289,7 +258,7 @@ function theme_acquia_lift_type_list($variables) {
     $html .= '<div class="acquia-lift-type-logo">' . $type['logo'] . '</div>';
     $html .= '<div class="acquia-lift-type-title">';
     $url_options = isset($type['url_options']) ? $type['url_options'] : array();
-    if ($type['modal']) {
+    if (!empty($type['modal'])) {
       $path_parts = explode('/', $type['path']);
       $last = end($path_parts);
       if ($last != 'nojs') {
@@ -339,4 +308,142 @@ function theme_acquia_lift_create_type_change($variables) {
   }
   $html .= ' class="acquia-lift-form-type">' . $variables['type'] . '</span>&nbsp;' . $variables['change_link'];
   return $html;
+}
+
+
+/**
+ * Theme function to return the markup required for the personalize debugger.
+ */
+function theme_acquia_lift_debugger() {
+  $markup = <<<EOT
+<div id="debuggerSpacer"></div>
+<div ng-app="debuggerModule" ng-controller="DebuggerController">
+
+<div id="debugger" >
+  <div class="debugger__navigation">
+  <div class="debugger__actions">
+          <span class="debugger__action__maximize" id="debugger__action__maximize">
+              <i class="debugger__icon"></i>
+          </span>
+          <span class="debugger__action__close" id="debugger__action__close">
+              <i class="debugger__icon"></i>
+          </span>
+          <span class="debugger__action__destroy" id="debugger__action__destroy">
+              <i class="debugger__icon"></i>
+          </span>
+  </div>
+    <ul class="debugger__navigation__top__bar">
+      <li><a id="liftProfileTabLabel" class="debugger__navigation__item" ng-click="tab = 'profile';buttonClick()" ng-class="profileButton">Lift Profile</a></li>
+      <li><a id="sitePreviewTabLabel" class="debugger__navigation__item" ng-click="tab = 'preview';buttonClick()" ng-class="previewButton">Site Preview</a></li>
+      <li><a id="eventLogTabLabel" class="debugger__navigation__item" ng-click="tab = 'log';buttonClick()" ng-class="logButton">Event Log</a></li>
+    </ul>
+  </div>
+  <div class="debugger__content" resizable r-directions="['top']" r-flex="false">
+  <div ng-show="tab=='preview'">
+  <div class="debugger__preview">
+    <div class="debugger__secondary__navigation"> <div class="previewBox">
+            <button id="debugger__stopPreview" ng-click="stopPreview()" data-ng-disabled="!isPreview()" ng-class="previewButtonStop">Stop Preview</button>
+            <button id="debugger__startPreview" ng-click="startPreview()" data-ng-disabled="isPreview()" ng-class="previewButtonStart">Start Preview</button>
+          </div>
+          <div class="debugger__preview__notification"></div>
+          </div>
+      <table>
+        <tr>
+          <td>
+            <div id="sitePreviewSegmentsLabel"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul ng-repeat="item in profile.overrideSegments | orderBy: 'toString()'" class="overrideSegments">
+              <li class="float"><span>{{item}}</span> <span class="clickable" ng-class="previewActive" ng-click="deletePreviewItem(item)">&#10006;</span></div>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="addBox" ng-class="previewActive">
+              <autocomplete class="float" ng-model="overrideSegmentChoice" data="allSegments" on-select="addPreview"></autocomplete>
+              <button ng-click="addPreviewItem(null)">Add</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <div ng-show="tab == 'log'">
+      <div class="debugger__secondary__navigation">
+        <div class="debugger__filter__label"><b>Filters: </b></div>
+        <div>
+          <div
+          isteven-multi-select
+          input-model="severityFilter"
+          output-model="severity"
+          button-label="name"
+          item-label="name maker"
+          tick-property="ticked"
+          output-model-name="Severity &#9662;">
+          </div>
+          <div
+          isteven-multi-select
+          input-model="typeFilter"
+          output-model="type"
+          button-label="name"
+          item-label="name maker"
+          tick-property="ticked"
+          output-model-name="Type &#9662;">
+          </div>
+         </div>
+      </div>
+      <div class="debugger__log">
+        <table id="debugger__log__table">
+          <colgroup>
+            <col span="1" style="width: 25px;">
+            <col span="1" style="width: 50%;">
+            <col span="1">
+            <col span="1">
+            <col span="1">
+          </colgroup>
+          <th>
+          <th>Message</th>
+          <th>Type</th>
+          <th>Time</th>
+          <th>Page</th>
+          </th>
+          <tr ng-repeat="item in items | filter:search | orderBy: '-timestamp'" class="minheight">
+            <td ng-bind-html="item.severity | to_icon"></td>
+            <td>{{item.message | cut:true:200:'...':item}}</td>
+            <td>{{item.type | cut:true:15:'...':item}}</td>
+            <td>{{item.timestamp |  date:'MM/dd/yyyy h:mma'}}</td>
+            <td>{{item.page | cut:true:40:'...':item}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div ng-show="tab == 'profile'">
+      <div class="debugger__secondary__navigation"></div>
+      <div class="debugger__profile">
+        <table>
+           <b><h5>Tracking ID: {{profile.personId}}</h5></b>
+          <tr>
+            <td>
+                <b>Touch ID: </b>{{profile.touchId}}
+            </td>
+          </tr><tr>
+            <td> <div id="profileSegmentLabel"></div>
+                <ul ng-repeat="item in profile.curSegments | orderBy: 'toString()'">
+                  <li> {{item}} </li>
+                </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</div>
+EOT;
+  return $markup;
 }

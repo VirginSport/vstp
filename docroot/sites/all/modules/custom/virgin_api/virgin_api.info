@@ -11,6 +11,5 @@ dependencies[] = rest_server
 features[ctools][] = services:services:3
 features[features_api][] = api:2
 features[services_endpoint][] = api_v1
-files[] = listeners/VirginApiAttendlyEventListener.php
 files[] = listeners/VirginApiSugarEventListener.php
 files[] = listeners/VirginApiSugarUserListener.php

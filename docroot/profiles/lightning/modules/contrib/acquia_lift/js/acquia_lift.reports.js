@@ -135,14 +135,16 @@ Rickshaw.Graph.ClickDetail = Rickshaw.Class.create(Rickshaw.Graph.HoverDetail, {
         nameKey = columns[options.columnName - 1],
         data = this.graph.rawData.groups,
         time = new Date(x * 1000),
-        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-        humanDate = months[time.getUTCMonth()] + ' ' + time.getDate() + ', ' + time.getFullYear()
+        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        humanDate = months[time.getUTCMonth()] + ' ' + time.getDate() + ', ' + time.getFullYear(),
         head = function () {
           var date = '<th>' + humanDate + '</th>',
               variations = '';
 
-          for (var i = 0; i < self.graph.series.length; i++) {
-            variations += '<th style="background-color: ' + self.graph.series[i].color + ';">' + self.graph.series[i].shortName + '</th>';
+          if (self.graph.series.length > 1) {
+            for (var i = 0; i < self.graph.series.length; i++) {
+              variations += '<th style="background-color: ' + self.graph.series[i].color + ';">' + self.graph.series[i].shortName + '</th>';
+            }
           }
 
           return '<thead><tr>' + date + variations + '</tr></thead>';
@@ -469,7 +471,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
     this.$element = null
 
     this.init('liftGraph', element, options);
-  }
+  };
 
   // Define the plugin defaults.
   liftGraph.DEFAULTS = {
@@ -489,33 +491,33 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
 
   // Initialize the plugin functionality.
   liftGraph.prototype.init = function (type, element, options) {
-    this.type = type
-    this.$element = $(element)
-    this.options = this.getOptions(options)
-    this.enabled = true
+    this.type = type;
+    this.$element = $(element);
+    this.options = this.getOptions(options);
+    this.enabled = true;
 
     this.render();
-  }
+  };
 
   // Enable the graph.
   liftGraph.prototype.enable = function () {
     this.enabled = true;
-  }
+  };
 
   // Disable the graph.
   liftGraph.prototype.disable = function () {
     this.enabled = false;
-  }
+  };
 
   // Get the option value of a data attribute.
   liftGraph.prototype.dataAttr = function (key) {
     return this.$element.attr('data-' + this.type + '-' + key);
-  }
+  };
 
   // Get default values.
   liftGraph.prototype.getDefaults = function () {
     return liftGraph.DEFAULTS;
-  }
+  };
 
   // Get options.
   liftGraph.prototype.getOptions = function (options) {
@@ -524,7 +526,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       options[i] = this.dataAttr(i) || options[i];
     }
     return options;
-  }
+  };
 
   // Update options.
   liftGraph.prototype.updateOptions = function () {
@@ -533,7 +535,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       options[i] = this.dataAttr(i) || options[i];
     }
     return options;
-  }
+  };
 
   // Collect the data from the table.
   liftGraph.prototype.getData = function () {
@@ -574,7 +576,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
 
     this.columns = columns;
     this.groups = grouped;
-  }
+  };
 
   // Build graphing coordinates.
   liftGraph.prototype.buildSeries = function (columnX, columnY, columnName) {
@@ -609,7 +611,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
     }
 
     this.series = series;
-  }
+  };
 
   // Get the optimal number of palette colors.
   liftGraph.prototype.getPalette = function () {
@@ -630,7 +632,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
     }
 
     this.palette = new Rickshaw.Color.Palette(configuration);
-  }
+  };
 
   // Get the graph object.
   liftGraph.prototype.getGraph = function () {
@@ -698,7 +700,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
 
     // Add the raw data to the
     this.graph.rawData = this;
-  }
+  };
 
   // Get the x-axis.
   liftGraph.prototype.setAxisX = function () {
@@ -706,7 +708,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       graph: this.graph,
       ticksTreatment: 'label-below'
     });
-  }
+  };
 
   // Get the y-axis.
   liftGraph.prototype.setAxisY = function () {
@@ -718,7 +720,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       label: this.columns[this.options.columnY - 1],
       graph: this.graph
     });
-  }
+  };
 
   // Get the legend.
   liftGraph.prototype.setLegend = function () {
@@ -726,14 +728,14 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       element: this.$legend[0],
       graph: this.graph
     });
-  }
+  };
 
   // Activate hover details.
   liftGraph.prototype.setHoverDetail = function () {
     this.hoverDetail = new Rickshaw.Graph.ClickDetail({
       graph: this.graph
     });
-  }
+  };
 
   // Allow the narowing of data with a range slider.
   liftGraph.prototype.setRangeSlider = function () {
@@ -741,6 +743,55 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       graph: this.graph,
       element: this.$rangeSlider[0]
     });
+
+    /**
+     * This is necessary due to a bug in the Rickshaw range slider.
+     * https://github.com/shutterstock/rickshaw/issues/499
+     */
+    this.rangeSlider.build = function() {
+
+      var element = this.element;
+      var graph = this.graph;
+      var $ = jQuery;
+
+      var domain = graph.dataDomain();
+      var self = this;
+
+      $(element).slider( {
+        range: true,
+        min: domain[0],
+        max: domain[1],
+        values: [
+          domain[0],
+          domain[1]
+        ],
+        slide: function( event, ui ) {
+
+          if (ui.values[1] <= ui.values[0]) return;
+
+          graph.window.xMin = ui.values[0];
+          graph.window.xMax = ui.values[1];
+          graph.update();
+
+          var domain = graph.dataDomain();
+
+          // if we're at an extreme, stick there
+          if (domain[0] == ui.values[0]) {
+            graph.window.xMin = undefined;
+          }
+
+          if (domain[1] == ui.values[1]) {
+            graph.window.xMax = undefined;
+          }
+
+          self.slideCallbacks.forEach(function(callback) {
+            callback(graph, graph.window.xMin, graph.window.xMax);
+          });
+        }
+      } );
+
+      $(element)[0].style.width = graph.width + 'px';
+    },
 
     this.rangeSlider.update = function() {
       var element = this.element,
@@ -776,7 +827,9 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       $handles.first().children('.acquia-lift-handle-value').text(text[0]);
       $handles.last().children('.acquia-lift-handle-value').text(text[1]);
     }
-  }
+
+    this.rangeSlider.build();
+  };
 
   // Allow a user to toggle graph data via the legend.
   liftGraph.prototype.setSeriesToggle = function () {
@@ -785,7 +838,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       graph: this.graph,
       legend: this.legend
     });
-  }
+  };
 
   // Format the elements of the graph.
   liftGraph.prototype.build = function () {
@@ -799,17 +852,17 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       .before(this.$axisY)
       .before(this.$graph)
       .before(this.$rangeSlider);
-  }
+  };
 
   // Hide the table.
   liftGraph.prototype.hideTable = function () {
     this.$element.hide();
-  }
+  };
 
   // Show the table.
   liftGraph.prototype.showTable = function () {
     this.$element.show();
-  }
+  };
 
   // Render the graph.
   liftGraph.prototype.render = function () {
@@ -825,7 +878,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
     this.setRangeSlider();
     this.graph.render();
     this.hideTable();
-  }
+  };
 
   liftGraph.prototype.update = function () {
     // Rebuild the data.
@@ -846,7 +899,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
     this.axisY.label = this.columns[this.options.columnY - 1];
 
     this.graph.update();
-  }
+  };
 
   // Define the jQuery plugin.
   var old = $.fn.railroad;
@@ -859,7 +912,7 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       if (!data) $this.data('lift.graph', (data = new liftGraph(this, option)));
       if (typeof option == 'string') data[option]($this);
     });
-  }
+  };
 
   $.fn.liftGraph.Constrictor = liftGraph;
 
@@ -882,7 +935,8 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
       $('.lift-statistics').once('acquiaLiftReports', function () {
         var $statistics = $(this),
             $data = $statistics.find('table[data-lift-statistics]'),
-            campaign = $data.attr('data-acquia-lift-campaign'),
+            personalization = $data.attr('data-acquia-lift-personalization'),
+            audience = $data.attr('data-acquia-lift-audience'),
             $goalSelect = $('.acquia-lift-report-section-options .form-item-goal select'),
             $metricSelect = $('.acquia-lift-report-section-options .form-item-metric select'),
             metric = $metricSelect.val(),
@@ -901,22 +955,23 @@ Rickshaw.Graph.TableLegend = Rickshaw.Class.create(Rickshaw.Graph.Legend, {
         $goalSelect.change(function() {
           // Construct the GET path.
           var args = {
-                campaign: campaign,
+                personalization: personalization,
+                audience: audience,
                 goal: $(this).val()
               },
-              path = Drupal.settings.basePath + Drupal.settings.pathPrefix + 'acquia_lift/reports/conversion?' + $.param(args);
+              path = Drupal.settings.basePath + Drupal.settings.pathPrefix + 'acquia_lift/reports/conversions-by-goal?' + $.param(args);
 
           // Get the new report and replace the existing report(s) with it.
           $.get(path, function (html) {
             var $html = $(html);
-            $statistics.find('.lift-statistic-category').remove();
-            $statistics.prepend($html);
+            $statistics.find('#acquia-lift-daily-report-data').remove();
+            $statistics.append($html);
             // Simultaneously replace $data with the new table.
             $data = $html.find('table[data-lift-statistics]');
             // Make sure the proper metric column is set and render the graph.
             $data.attr('data-liftgraph-columny', metricColumn()).liftGraph();
           });
-        })
+        });
 
         // Attach a data column to a metric option.
         // Change the data fed to the y-axis and update the graph.

@@ -371,8 +371,8 @@ function virgin_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_given_name'
-  $field_instances['user-user-field_given_name'] = array(
+  // Exported field_instance: 'user-user-field_first_name'
+  $field_instances['user-user-field_first_name'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -391,7 +391,7 @@ function virgin_user_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'user',
-    'field_name' => 'field_given_name',
+    'field_name' => 'field_first_name',
     'label' => 'Name',
     'required' => 1,
     'settings' => array(
@@ -683,8 +683,8 @@ function virgin_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_surname'
-  $field_instances['user-user-field_surname'] = array(
+  // Exported field_instance: 'user-user-field_last_name'
+  $field_instances['user-user-field_last_name'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
@@ -703,7 +703,7 @@ function virgin_user_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'user',
-    'field_name' => 'field_surname',
+    'field_name' => 'field_last_name',
     'label' => 'Surname',
     'required' => 1,
     'settings' => array(

@@ -17,16 +17,34 @@ function quickedit_tab_library() {
     ),
     'js' => array(
       $path . '/js/quickedit-tab.js' => $options,
-      $path . '/js/contextual.js' => $options,
     ),
     'dependencies' => array(
       array('quickedit', 'quickedit'),
       array('system', 'jquery'),
       array('navbar', 'underscore'),
       array('navbar', 'backbone'),
+      array('contextual', 'contextual-links'),
     ),
   );
   return $libraries;
+}
+
+/**
+ * Implements hook_library_alter().
+ *
+ * Replaces Drupal's built in contextual link library with ours.
+ */
+function quickedit_tab_library_alter(&$libraries, $module) {
+  $path = drupal_get_path('module', 'quickedit_tab');
+  $options = array(
+    'scope' => 'footer',
+    'defer' => TRUE,
+  );
+  if ($module == 'contextual' && isset($libraries['contextual-links'])) {
+    $libraries['contextual-links']['js'] = array(
+      $path . '/js/contextual.js' => $options,
+    );
+  }
 }
 
 /**
@@ -43,10 +61,17 @@ function quickedit_tab_navbar() {
     return;
   }
 
+  // In-place editing should not register for non-admin node add/edit paths.
+  if (variable_get('node_admin_path') == 0 && $path = current_path()) {
+    if (fnmatch('node/*/edit', $path) || fnmatch('node/add/*', $path)) {
+      return;
+    }
+  }
+
   // In-place editing is only supported for Workbench Moderation drafts.
   if (module_exists('workbench_moderation')) {
     $menu_object = menu_get_object();
-    if (isset($menu_object->entity_type) && ($menu_object->entity_type == 'node') && isset($menu_object->workbench_moderation) && $path = current_path()) {
+    if (isset($menu_object->nid) && isset($menu_object->workbench_moderation) && $path = current_path()) {
       if (!fnmatch('node/*/draft', $path)) {
         return;
       }
