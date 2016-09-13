@@ -34,7 +34,6 @@ features[field_base][] = field_event_parent_id
 features[field_base][] = field_event_reg_end_date
 features[field_base][] = field_event_start_date
 features[field_base][] = field_event_status
-features[field_base][] = field_event_type
 features[field_base][] = field_facebook_link
 features[field_base][] = field_faq
 features[field_base][] = field_faq_topic
