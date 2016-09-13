@@ -72,6 +72,9 @@ projects:
   shield:
     version: "1.2"
 
+  title:
+    version: "1.0-alpha8"
+
   user_registrationpassword:
     version: "1.4"
 
