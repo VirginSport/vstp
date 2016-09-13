@@ -30,6 +30,9 @@ projects:
   entityform:
     version: "2.0-rc1"
 
+  entity_translation:
+    version: "1.0-beta5"
+
   field_collection:
     version: "1.0-beta11"
 
