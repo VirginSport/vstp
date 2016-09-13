@@ -31,8 +31,8 @@ function virgin_user_username_alter(&$name, $account) {
   // Set the visible username from the user's given name and surname.
   if ($account->uid) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
-    $given_name = $account_wrapper->field_given_name->value();
-    $surname = $account_wrapper->field_surname->value();
+    $given_name = $account_wrapper->field_first_name->value();
+    $surname = $account_wrapper->field_last_name->value();
     $full_name = trim($given_name . ' ' . $surname);
 
     // In some cases, such as the user administration view, the account object
@@ -55,10 +55,6 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   // The user cannot change his SugarCRM ID as this is entirely
   // managed automatically by the system.
   $form['field_sugar_id']['#access'] = FALSE;
-
-  // The e-mail address is unique and cannot be changed after the user account
-  // was created.
-  $form['account']['mail']['#access'] = FALSE;
 }
 
 /**
@@ -87,8 +83,8 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
 
   $birth_date = strtotime($data['birthYear'] . '/' . $data['birthMonth'] . '/' . $data['birthDay']);
 
-  $userinfo['field_given_name'][LANGUAGE_NONE][0]['value'] = $data['firstName'];
-  $userinfo['field_surname'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
+  $userinfo['field_first_name'][LANGUAGE_NONE][0]['value'] = $data['firstName'];
+  $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
 }

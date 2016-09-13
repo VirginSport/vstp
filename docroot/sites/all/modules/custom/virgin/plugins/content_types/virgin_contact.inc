@@ -33,8 +33,8 @@ function virgin_virgin_contact_content_type_render($subtype, $conf, $panel_args,
   );
 
   if (!empty($account)) {
-    $given_name = $account_wrapper->field_given_name->value();
-    $surname = $account_wrapper->field_surname->value();
+    $given_name = $account_wrapper->field_first_name->value();
+    $surname = $account_wrapper->field_last_name->value();
     $email = $account_wrapper->mail->value();
     $phone = $account_wrapper->field_phone->value();
 

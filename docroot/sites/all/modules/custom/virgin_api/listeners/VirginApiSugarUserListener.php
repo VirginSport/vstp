@@ -192,8 +192,8 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
 
     return array(
       'virgin_sport_id' => $account_wrapper->uid->value(),
-      'first_name' => $account_wrapper->field_given_name->value(),
-      'last_name' => $account_wrapper->field_surname->value(),
+      'first_name' => $account_wrapper->field_first_name->value(),
+      'last_name' => $account_wrapper->field_last_name->value(),
       'date_of_birth' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
       'mobile' => $account_wrapper->field_phone->value(),
       'email1' => $account_wrapper->mail->value(),
