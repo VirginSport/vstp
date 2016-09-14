@@ -33,6 +33,9 @@ projects:
   entity_translation:
     version: "1.0-beta5"
 
+  field_group:
+    version: "1.5"
+
   field_collection:
     version: "1.0-beta11"
 

@@ -32,6 +32,7 @@ dependencies[] = composer_manager
 dependencies[] = entityform
 dependencies[] = email_registration
 dependencies[] = flag
+dependencies[] = field_group
 dependencies[] = googleanalytics
 dependencies[] = hybridauth
 dependencies[] = i18n
