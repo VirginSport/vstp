@@ -63,6 +63,17 @@ projects:
   redirect:
     version: "1.0-rc3"
 
+  scald:
+    version: "1.8"
+
+  scald_extra:
+    type: module
+    download:
+      type: git
+      url: git@gitlab.driven.pt:drupal/scald-extra.git
+      revision: a533ce55518b8f7a620da494684a2f93cd487aab
+      branch: master
+
   service_links:
     version: "2.3"
 
