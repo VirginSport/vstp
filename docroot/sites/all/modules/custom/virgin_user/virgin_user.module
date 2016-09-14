@@ -55,6 +55,29 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   // The user cannot change his SugarCRM ID as this is entirely
   // managed automatically by the system.
   $form['field_sugar_id']['#access'] = FALSE;
+
+  // The other medical conditions field is only visible when
+  // the user has picked the 'Other' option in the medical
+  // conditions field.
+  $form['field_medical_conditions_other']['#states'] = array(
+    'visible' => array(
+      ':input[name="field_medical_conditions[und]"]' => array('value' => 'Other')
+    )
+  );
+
+  // If any medical information has been submitted, then
+  // the user must agree to share his medical info.
+  $form['field_agree_share_medical_info']['#states'] = array(
+    'required' => array(
+      ':input[name="field_medical_conditions[und]"]' => array('!value' => "_none"),
+      ':input[name="field_medical_conditions_other[und]"]' => array('filled' => TRUE),
+      ':input[name="field_medications[und]"]' => array('filled' => TRUE),
+      ':input[name="field_allergies[und]"]' => array('filled' => TRUE),
+    )
+  );
+
+  // Add custom validation callback
+  $form['#validate'][] = 'virgin_user_form_user_profile_form_validate';
 }
 
 /**
@@ -101,4 +124,46 @@ function virgin_user_user_insert(&$edit, $account, $category) {
  */
 function virgin_user_user_update(&$edit, $account, $category) {
   observer_notify('drupal:user:update', $account);
+}
+
+
+// Helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * Validation callback for the user_profile_form form.
+ *
+ * @see virgin_user_form_user_profile_form_alter()
+ */
+function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
+
+  // Utility anonymous function to fetch field values
+  $value = function ($field_name) use ($form_state) {
+    return empty($form_state['values'][$field_name]['und'][0]['value']) ? null : $form_state['values'][$field_name]['und'][0]['value'];
+  };
+
+  // Validate the user cannot save profile form with medical info if he does
+  // not agreee to share that information
+  $has_medical_conditions = false;
+
+  $medical_fields = array(
+    'field_medical_conditions',
+    'field_medical_conditions_other',
+    'field_medications',
+    'field_allergies'
+  );
+
+  // If any field is filled, then the user has medical conditions
+  foreach ($medical_fields as $field) {
+    if ($value($field)) {
+      $has_medical_conditions = TRUE;
+      break;
+    }
+  }
+
+  $agree_share = (bool) $value('field_agree_share_medical_info');
+
+  if (!$agree_share && $has_medical_conditions) {
+    form_set_error('field_agree_share_medical_info', t('You must agree to share your medical information if you fill any of the medical fields.'));
+  }
 }
