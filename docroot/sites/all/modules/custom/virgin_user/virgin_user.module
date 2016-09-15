@@ -56,6 +56,12 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   // managed automatically by the system.
   $form['field_sugar_id']['#access'] = FALSE;
 
+  // The user cannot modify these fields after registration, as
+  // such remove them from the profile form.
+  $form['field_first_name']['#access'] = FALSE;
+  $form['field_last_name']['#access'] = FALSE;
+  $form['field_gender']['#access'] = FALSE;
+
   // The other medical conditions field is only visible when
   // the user has picked the 'Other' option in the medical
   // conditions field.
@@ -125,7 +131,6 @@ function virgin_user_user_insert(&$edit, $account, $category) {
 function virgin_user_user_update(&$edit, $account, $category) {
   observer_notify('drupal:user:update', $account);
 }
-
 
 // Helpers
 // ----------------------------------------------------------------------------
