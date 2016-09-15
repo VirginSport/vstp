@@ -7,7 +7,7 @@
 /**
  * Interface VirginSyncSugarHandlerInterface
  *
- * Defines the interface implemented by all sugar syncable mechanisms
+ * Defines the interface implemented by all sugar sync handlers
  */
 interface VirginSyncSugarHandlerInterface extends VirginSyncHandlerInterface {
 

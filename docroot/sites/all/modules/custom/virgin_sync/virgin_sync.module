@@ -151,7 +151,7 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
 
   // Fetch data from Sugar if it's a Sugar handler. As it stands
   // there are only Sugar handlers at the moment. This specific part
-  // of might have to be rethought if more types of handlers are added.
+  // might have to be rethought if more types of handlers are added.
   if ($handler instanceof VirginSyncSugarHandlerInterface) {
     $client = sugarcrm_client();
     $data = $client->retrieve($handler->bean(), $external_id);
