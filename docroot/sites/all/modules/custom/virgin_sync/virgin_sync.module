@@ -10,6 +10,11 @@
 define('VIRGIN_SYNC_PERM_EXECUTE', 'execute virgin sync');
 
 /**
+ * Last sync timestamp variable
+ */
+define('VIRGIN_SYNC_VAR_LAST_SYNC', 'virgin_sync_last_sync');
+
+/**
  * Implements hook_menu().
  */
 function virgin_sync_menu() {
@@ -41,7 +46,7 @@ function virgin_sync_permission() {
 // ----------------------------------------------------------------------------
 
 /**
- * Gets the list of all registers sync handlers
+ * Gets the list of all registered sync handlers
  *
  * @return VirginSyncHandlerInterface[]
  */
@@ -53,12 +58,14 @@ function virgin_sync_handlers() {
  * Executes the sync batch operation
  */
 function virgin_sync_batch() {
+  $last_sync = variable_get(VIRGIN_SYNC_VAR_LAST_SYNC, 0);
+
   $batch = array(
     'title' => t('Virgin Sync'),
     'init_message' => t('Synchronization process is starting'),
     'progress_message' => t('Processed @current out of @total.'),
     'error_message' => t('An error ocurred while syncing'),
-    'operations' => _virgin_sync_batch_sugar_operations(), // For now only sugar ops exist
+    'operations' => _virgin_sync_batch_sugar_operations($last_sync), // For now only sugar ops exist
     'finished' => '_virgin_sync_batch_finished',
   );
 
@@ -103,6 +110,13 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
     $path = sprintf('%s/modified-since/%d', $bean_name, $sync_from);
     $ids = $sugar->getEndpoint($path);
 
+    // Note: this guard needed to be added as for some reason the
+    // sugar lib author decided empty arrays should be cast to
+    // false. Go figure.
+    if (!$ids) {
+      continue;
+    }
+
     // Create a batch operation per id/handler
     foreach ($ids as $id) {
       foreach ($handlers as $handler) {
@@ -121,11 +135,19 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
  *  The handler that will process the object with the given external id
  * @param $external_id
  *  The external ID of the object to be handled
+ * @param $context
+ *  The batch context array
  *
  * @see virgin_sync_batch()
  */
-function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $external_id) {
+function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $external_id, &$context) {
   $data = null;
+
+  // Setup the status messages
+  $args = array('@name' => get_class($handler), '@id' => $external_id);
+  $create_message = t("Create [@name] (@id)", $args);
+  $update_message = t("Update [@name] (@id)", $args);
+  $ignore_message = t("Ignore [@name] (@id)", $args);
 
   // Fetch data from Sugar if it's a Sugar handler. As it stands
   // there are only Sugar handlers at the moment. This specific part
@@ -135,15 +157,19 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
     $data = $client->retrieve($handler->bean(), $external_id);
   }
 
-  // If there's data to be processed, execute the handler operations.
+  // And finally handle the data, if it exists
   if ($data) {
     $grapher = new VirginGrapher($data);
 
     if ($handler->exists($external_id)) {
+      $context['message'] = $update_message;
       $handler->update($grapher);
     } else {
+      $context['message'] = $create_message;
       $handler->create($grapher);
     }
+  } else {
+    $context['message'] = $ignore_message;
   }
 }
 
@@ -153,5 +179,10 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
  * @see virgin_sync_batch()
  */
 function _virgin_sync_batch_finished() {
+
+  // Store the timestamp of the last successful sync
+  variable_set(VIRGIN_SYNC_VAR_LAST_SYNC, time());
+
+  // And let the user know the sync has finished
   drupal_set_message(t("Content synchronization sucessfully finished."));
 }
