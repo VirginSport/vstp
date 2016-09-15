@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Event feature.
+ */
+
+include_once 'virgin_event.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function virgin_event_form_event_node_form_alter(&$form, &$form_state) {
+  // As this field will be handled by the system remove it from ui form
+  $form['field_event_state']['#access'] = FALSE;
+}
