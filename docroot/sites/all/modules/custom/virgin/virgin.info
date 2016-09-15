@@ -37,6 +37,7 @@ dependencies[] = googleanalytics
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = mollom
+dependencies[] = money
 dependencies[] = oauth_common
 dependencies[] = observer
 dependencies[] = og

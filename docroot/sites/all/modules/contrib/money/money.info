@@ -1,0 +1,11 @@
+name = Money Field
+description = Defines a field with an amount and a currency.
+dependencies[] = currency_api
+package = Fields
+core = 7.x
+files[] = money.module
+
+; Information added by drush on 2014-04-17
+version = "7.x-1.x-dev"
+project = "money"
+datestamp = "1397737287"
