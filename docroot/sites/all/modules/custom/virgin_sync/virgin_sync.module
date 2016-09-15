@@ -1,0 +1,157 @@
+<?php
+/**
+ * @file
+ * Main file for the Virgin Sync module.
+ */
+
+/**
+ * Execute permission
+ */
+define('VIRGIN_SYNC_PERM_EXECUTE', 'execute virgin sync');
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_sync_menu() {
+  $items = array();
+
+  $items['admin/content/virgin-sync'] = array(
+    'title' => 'Sync Content',
+    'page callback' => 'virgin_sync_batch',
+    'access arguments' => array(VIRGIN_SYNC_PERM_EXECUTE),
+    'type' => MENU_LOCAL_ACTION,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function virgin_sync_permission() {
+  return array(
+    VIRGIN_SYNC_PERM_EXECUTE =>  array(
+      'title' => t('Execute Sync'),
+      'description' => t('Allows the user to execute the sync mechanism.'),
+    ),
+  );
+}
+
+// Helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * Gets the list of all registers sync handlers
+ *
+ * @return VirginSyncHandlerInterface[]
+ */
+function virgin_sync_handlers() {
+  return module_invoke_all('virgin_sync_handlers');
+}
+
+/**
+ * Executes the sync batch operation
+ */
+function virgin_sync_batch() {
+  $batch = array(
+    'title' => t('Virgin Sync'),
+    'init_message' => t('Synchronization process is starting'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('An error ocurred while syncing'),
+    'operations' => _virgin_sync_batch_sugar_operations(), // For now only sugar ops exist
+    'finished' => '_virgin_sync_batch_finished',
+  );
+
+  batch_set($batch);
+
+  // In CLI mode batch processing is handled by Drush
+  if (!drupal_is_cli()) {
+    batch_process('admin/content');
+  }
+}
+
+/**
+ * Gets a list of sugar sync operations to be executed in batch
+ *
+ * @param int $sync_from
+ *  Timestamp of the time the beans should be fetched from
+ * @return array
+ *  An array of batch operations
+ *
+ * @see virgin_sync_batch()
+ */
+function _virgin_sync_batch_sugar_operations($sync_from = 0) {
+  $operations = array();
+
+  // Get all sugar handlers
+  $handlers = array_filter(virgin_sync_handlers(), function ($handler) {
+    return $handler instanceof VirginSyncSugarHandlerInterface;
+  });
+
+  // Get all handlers by bean name
+  $bean_handlers = array();
+
+  foreach ($handlers as $handler) {
+    $bean_name = $handler->bean();
+    $bean_handlers[$bean_name][] = $handler;
+  };
+
+  // Call sugarcrm to fetch the latest changes per identified bean
+  $sugar = sugarcrm_client();
+
+  foreach ($bean_handlers as $bean_name => $handlers) {
+    $path = sprintf('%s/modified-since/%d', $bean_name, $sync_from);
+    $ids = $sugar->getEndpoint($path);
+
+    // Create a batch operation per id/handler
+    foreach ($ids as $id) {
+      foreach ($handlers as $handler) {
+        $operations[] = array('_virgin_sync_batch_process', array($handler, $id));
+      }
+    }
+  }
+
+  return $operations;
+}
+
+/**
+ * Sync batch process callback
+ *
+ * @param \VirginSyncHandlerInterface $handler
+ *  The handler that will process the object with the given external id
+ * @param $external_id
+ *  The external ID of the object to be handled
+ *
+ * @see virgin_sync_batch()
+ */
+function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $external_id) {
+  $data = null;
+
+  // Fetch data from Sugar if it's a Sugar handler. As it stands
+  // there are only Sugar handlers at the moment. This specific part
+  // of might have to be rethought if more types of handlers are added.
+  if ($handler instanceof VirginSyncSugarHandlerInterface) {
+    $client = sugarcrm_client();
+    $data = $client->retrieve($handler->bean(), $external_id);
+  }
+
+  // If there's data to be processed, execute the handler operations.
+  if ($data) {
+    $grapher = new VirginGrapher($data);
+
+    if ($handler->exists($external_id)) {
+      $handler->update($grapher);
+    } else {
+      $handler->create($grapher);
+    }
+  }
+}
+
+/**
+ * Sync batch finish callback
+ *
+ * @see virgin_sync_batch()
+ */
+function _virgin_sync_batch_finished() {
+  drupal_set_message(t("Content synchronization sucessfully finished."));
+}
