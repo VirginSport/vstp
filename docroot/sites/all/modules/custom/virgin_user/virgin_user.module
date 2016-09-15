@@ -148,7 +148,7 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
   };
 
   // Validate the user cannot save profile form with medical info if he does
-  // not agreee to share that information
+  // not agree to share that information.
   $has_medical_conditions = false;
 
   $medical_fields = array(
