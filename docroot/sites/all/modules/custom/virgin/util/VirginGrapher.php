@@ -16,8 +16,7 @@ class VirginGrapher {
    * @param $data
    *  The data to be navigated by the grapher
    */
-  public function __construct($data)
-  {
+  public function __construct($data) {
     $this->data = $data;
   }
 
@@ -29,8 +28,7 @@ class VirginGrapher {
    * @return VirginGrapher
    *  The property grapher
    */
-  public function get($name)
-  {
+  public function get($name) {
     $data = (empty($this->data) || !isset($this->data[$name])) ? null : $this->data[$name];
     return new VirginGrapher($data);
   }
@@ -43,8 +41,7 @@ class VirginGrapher {
    * @return VirginGrapher[]
    *  A list of grapher instances
    */
-  public function all(\Closure $callback = null)
-  {
+  public function all(\Closure $callback = null) {
     $all = array();
 
     if (!is_array($this->data)) {
@@ -71,8 +68,7 @@ class VirginGrapher {
    * @return VirginGrapher
    *  The grapher object at that position
    */
-  public function index($position)
-  {
+  public function index($position) {
     if (!is_array($this->data) || empty($this->data[$position])) {
       return new VirginGrapher(null);
     }
@@ -86,8 +82,7 @@ class VirginGrapher {
    * @return VirginGrapher
    *  The grapher object at the first position
    */
-  public function first()
-  {
+  public function first() {
     return new VirginGrapher(reset($this->data));
   }
 
@@ -97,8 +92,7 @@ class VirginGrapher {
    * @return VirginGrapher
    *  The grapher object at the last position
    */
-  public function last()
-  {
+  public function last() {
     return new VirginGrapher(end($this->data));
   }
 
@@ -110,8 +104,7 @@ class VirginGrapher {
    *  returns will be kept.
    * @return VirginGrapher[]
    */
-  public function filter(\Closure $callback = null)
-  {
+  public function filter(\Closure $callback = null) {
     $filtered = array();
 
     foreach ($this->all() as $item) {
@@ -133,8 +126,7 @@ class VirginGrapher {
    * @return bool|float|int|string
    *  The value of the grapher instance
    */
-  public function value($default = '')
-  {
+  public function value($default = '') {
     return is_scalar($this->data) ? $this->data : $default;
   }
 
@@ -143,8 +135,7 @@ class VirginGrapher {
    *
    * @return mixed
    */
-  public function raw()
-  {
+  public function raw() {
     return $this->data;
   }
 }
