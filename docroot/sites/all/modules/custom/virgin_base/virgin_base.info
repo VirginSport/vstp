@@ -46,4 +46,5 @@ features[field_base][] = field_status
 features[field_base][] = field_sugar_id
 features[field_base][] = field_timezone
 features[field_base][] = title_field
+features[variable][] = features_default_export_path
 features_exclude[dependencies][entityreference] = entityreference
