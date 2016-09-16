@@ -60,3 +60,4 @@ features[variable][] = node_preview_festival
 features[variable][] = node_preview_festival_state
 features[variable][] = node_submitted_festival
 features[variable][] = node_submitted_festival_state
+files[] = sync/VirginFestivalSyncHandler.php
