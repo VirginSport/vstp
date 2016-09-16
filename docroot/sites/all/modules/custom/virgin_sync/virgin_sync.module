@@ -99,8 +99,7 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
   $bean_handlers = array();
 
   foreach ($handlers as $handler) {
-    $bean_name = $handler->bean();
-    $bean_handlers[$bean_name][] = $handler;
+    $bean_handlers[$handler->bean()][] = $handler;
   };
 
   // Call sugarcrm to fetch the latest changes per identified bean
@@ -153,23 +152,24 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
   // there are only Sugar handlers at the moment. This specific part
   // might have to be rethought if more types of handlers are added.
   if ($handler instanceof VirginSyncSugarHandlerInterface) {
-    $client = sugarcrm_client();
-    $data = $client->retrieve($handler->bean(), $external_id);
+    $data = sugarcrm_client()->retrieve($handler->bean(), $external_id);
   }
 
-  // And finally handle the data, if it exists
-  if ($data) {
-    $grapher = new VirginGrapher($data);
-
-    if ($handler->exists($external_id)) {
-      $context['message'] = $update_message;
-      $handler->update($grapher);
-    } else {
-      $context['message'] = $create_message;
-      $handler->create($grapher);
-    }
-  } else {
+  // If data is still empty, bailout as there's nothing to be handled.
+  if (!$data) {
     $context['message'] = $ignore_message;
+    return;
+  }
+
+  // Finally, pass the data to the handler itself.
+  $grapher = new VirginGrapher($data);
+
+  if ($handler->exists($external_id)) {
+    $context['message'] = $update_message;
+    $handler->update($grapher);
+  } else {
+    $context['message'] = $create_message;
+    $handler->create($grapher);
   }
 }
 

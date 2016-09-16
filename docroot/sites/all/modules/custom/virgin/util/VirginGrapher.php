@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Contains the VirginGrapher class
+ */
 
 /**
  * VirginGrapher is an helper class to navigate over an array graph
