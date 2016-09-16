@@ -27,6 +27,7 @@ features[field_instance][] = node-package_state-field_sugar_id
 features[field_instance][] = node-package_state-title_field
 features[node][] = package
 features[node][] = package_state
+features[variable][] = entity_translation_settings_node__package
 features[variable][] = field_bundle_settings_node__package
 features[variable][] = field_bundle_settings_node__package_state
 features[variable][] = language_content_type_package

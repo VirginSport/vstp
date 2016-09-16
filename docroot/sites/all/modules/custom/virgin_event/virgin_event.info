@@ -40,6 +40,7 @@ features[field_instance][] = node-event_state-field_timezone
 features[field_instance][] = node-event_state-title_field
 features[node][] = event
 features[node][] = event_state
+features[variable][] = entity_translation_settings_node__event
 features[variable][] = field_bundle_settings_node__event
 features[variable][] = field_bundle_settings_node__event_state
 features[variable][] = language_content_type_event
