@@ -22,19 +22,19 @@ function virgin_user_strongarm() {
           'weight' => '15',
         ),
         'googleanalytics' => array(
-          'weight' => '13',
+          'weight' => '7',
         ),
         'metatags' => array(
-          'weight' => '17',
+          'weight' => '20',
         ),
         'redirect' => array(
-          'weight' => '16',
+          'weight' => '21',
         ),
         'account' => array(
-          'weight' => '6',
+          'weight' => '0',
         ),
         'timezone' => array(
-          'weight' => '12',
+          'weight' => '22',
         ),
         'picture' => array(
           'weight' => '12',
@@ -353,6 +353,7 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->name = 'panelizer_defaults_user_user';
   $strongarm->value = array(
     'status' => 0,
+    'help' => '',
     'view modes' => array(),
   );
   $export['panelizer_defaults_user_user'] = $strongarm;
@@ -368,7 +369,7 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_admin_role';
-  $strongarm->value = '4';
+  $strongarm->value = '3';
   $export['user_admin_role'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -613,7 +614,7 @@ Your account on [site:name] has been canceled.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_pictures';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['user_pictures'] = $strongarm;
 
   $strongarm = new stdClass();
