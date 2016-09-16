@@ -55,3 +55,4 @@ dependencies[] = virgin_user
 
 ; required files
 files[] = exceptions/VirginException.php
+files[] = util/VirginGrapher.php
