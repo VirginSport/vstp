@@ -123,6 +123,7 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
     $w = entity_metadata_wrapper('node', $node);
 
     $fields = array(
+      'title' => $g->get('name')->value(),
       'title_field' => $g->get('name')->value(),
       'field_description' => array(
         'value' => $g->get('description')->value(),
