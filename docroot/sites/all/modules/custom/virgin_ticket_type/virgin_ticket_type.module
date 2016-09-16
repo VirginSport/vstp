@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Ticket Type feature.
+ */
+
+include_once 'virgin_ticket_type.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function virgin_ticket_type_form_ticket_type_node_form_alter(&$form, &$form_state) {
+  // As this field will be handled by the system remove it from ui form
+  $form['field_ticket_type_state']['#access'] = FALSE;
+}

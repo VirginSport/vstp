@@ -34,6 +34,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'City',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -72,6 +76,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Country',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 0,
     ),
     'widget' => array(
@@ -107,6 +112,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Address Line 1',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -145,6 +154,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Address Line 2',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -183,6 +196,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Postcode',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -221,6 +238,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'State',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -263,6 +284,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Agree sharing medical information and allergies with Virgin Sport',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 0,
     ),
     'widget' => array(
@@ -300,6 +322,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Any allergies? Please list below',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 0,
     ),
@@ -347,6 +373,7 @@ function virgin_user_field_default_field_instances() {
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 1,
     ),
     'widget' => array(
@@ -390,6 +417,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Contact Number',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -428,6 +459,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'First Name',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -466,6 +501,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Gender',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 1,
     ),
     'widget' => array(
@@ -501,6 +537,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Last Name',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 1,
     ),
@@ -543,6 +583,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Marketing Opt-in',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 0,
     ),
     'widget' => array(
@@ -580,6 +621,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Any medical conditions?',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => 0,
     ),
     'widget' => array(
@@ -615,6 +657,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Other medical conditions',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 0,
     ),
@@ -653,6 +699,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Any medications? Please list below',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 0,
     ),
@@ -691,6 +741,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'SugarCRM ID',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 0,
     ),
@@ -729,6 +783,10 @@ function virgin_user_field_default_field_instances() {
     'label' => 'UK Athletics Number',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'user_register_form' => 0,
     ),

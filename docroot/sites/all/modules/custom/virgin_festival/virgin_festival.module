@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Festival feature.
+ */
+
+include_once 'virgin_festival.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function virgin_festival_form_festival_node_form_alter(&$form, &$form_state) {
+  // As this field will be handled by the system remove it from ui form
+  $form['field_festival_state']['#access'] = FALSE;
+}

@@ -79,6 +79,18 @@ function virgin_themes_enabled($theme_list) {
   }
 }
 
+/**
+ * Implements hook_scald_extra_modes().
+ */
+function virgin_scald_extra_modes() {
+  return array(
+    'virgin_full' => array(
+      'title' => t('Full'),
+      'formats'    => array(),
+    ),
+  );
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 
