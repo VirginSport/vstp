@@ -41,3 +41,4 @@ features[variable][] = node_preview_ticket_type
 features[variable][] = node_preview_ticket_type_state
 features[variable][] = node_submitted_ticket_type
 features[variable][] = node_submitted_ticket_type_state
+files[] = sync/VirginTicketTypeSyncHandler.php
