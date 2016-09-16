@@ -13,3 +13,12 @@ function virgin_ticket_type_form_ticket_type_node_form_alter(&$form, &$form_stat
   // As this field will be handled by the system remove it from ui form
   $form['field_ticket_type_state']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_virgin_sync_handlers().
+ */
+function virgin_ticket_type_virgin_sync_handlers() {
+  return array(
+    new VirginTicketTypeSyncHandler()
+  );
+}
