@@ -844,8 +844,8 @@ function virgin_package_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-package_state-field_event_state'.
-  $field_instances['node-package_state-field_event_state'] = array(
+  // Exported field_instance: 'node-package_state-field_festival_state'.
+  $field_instances['node-package_state-field_festival_state'] = array(
     'bundle' => 'package_state',
     'default_value' => NULL,
     'default_value_function' => '',
@@ -884,8 +884,8 @@ function virgin_package_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_event_state',
-    'label' => 'Event State',
+    'field_name' => 'field_festival_state',
+    'label' => 'Festival State',
     'required' => 1,
     'settings' => array(
       'behaviors' => array(
@@ -1037,7 +1037,7 @@ function virgin_package_field_default_field_instances() {
   t('Card Image');
   t('Card Pattern');
   t('Description');
-  t('Event State');
+  t('Festival State');
   t('Name');
   t('Package State');
   t('Price');

@@ -45,16 +45,16 @@ function virgin_package_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'title' => array(
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '5',
         ),
         'language' => array(
           'weight' => '5',
