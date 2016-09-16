@@ -42,3 +42,4 @@ features[variable][] = node_preview_package
 features[variable][] = node_preview_package_state
 features[variable][] = node_submitted_package
 features[variable][] = node_submitted_package_state
+files[] = sync/VirginPackageSyncHandler.php
