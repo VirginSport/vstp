@@ -89,7 +89,7 @@ class VirginEventSyncHandler implements VirginSyncSugarHandlerInterface {
       'title' => $g->get('name')->value(),
       'title_field' => $g->get('name')->value(),
       'field_sugar_id' => $g->get('id')->value(),
-      'field_attendly_id' => $g->get('id')->value(),
+      'field_attendly_id' => $g->get('attendly_event_id')->value(),
       'field_description' => array(
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
