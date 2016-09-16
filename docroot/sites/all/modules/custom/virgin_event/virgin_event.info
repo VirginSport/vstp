@@ -55,3 +55,4 @@ features[variable][] = node_preview_event
 features[variable][] = node_preview_event_state
 features[variable][] = node_submitted_event
 features[variable][] = node_submitted_event_state
+files[] = sync/VirginEventSyncHandler.php

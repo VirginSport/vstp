@@ -13,3 +13,12 @@ function virgin_event_form_event_node_form_alter(&$form, &$form_state) {
   // As this field will be handled by the system remove it from ui form
   $form['field_event_state']['#access'] = FALSE;
 }
+
+/**
+ * Implements hook_virgin_sync_handlers().
+ */
+function virgin_event_virgin_sync_handlers() {
+  return array(
+    new VirginEventSyncHandler()
+  );
+}
