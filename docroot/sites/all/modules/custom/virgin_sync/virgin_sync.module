@@ -166,10 +166,10 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
 
   if ($handler->exists($external_id)) {
     $context['message'] = $update_message;
-    $handler->update($grapher);
+    $handler->update($grapher, $external_id);
   } else {
     $context['message'] = $create_message;
-    $handler->create($grapher);
+    $handler->create($grapher, $external_id);
   }
 }
 

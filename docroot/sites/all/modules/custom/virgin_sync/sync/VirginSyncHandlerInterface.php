@@ -29,14 +29,18 @@ interface VirginSyncHandlerInterface {
    *
    * @param \VirginGrapher $g
    *  A grapher object containing the external entity payload
+   * @param $external_id
+   *  The external ID of the entity being synced
    */
-  public function create(VirginGrapher $g);
+  public function create(VirginGrapher $g, $external_id);
 
   /**
    * Called when the external entity already exists in Drupal
    *
    * @param \VirginGrapher $g
    *  A grapher object containing the external entity payload
+   * @param $external_id
+   *  The external ID of the entity being synced
    */
-  public function update(VirginGrapher $g);
+  public function update(VirginGrapher $g, $external_id);
 }
