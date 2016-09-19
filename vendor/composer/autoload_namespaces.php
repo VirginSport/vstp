@@ -33,4 +33,5 @@ return array(
     'Behat\\MinkExtension' => array($vendorDir . '/behat/mink-extension/src'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
     'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
+    'BartFeenstra' => array($vendorDir . '/bartfeenstra/cldr/src', $vendorDir . '/bartfeenstra/currency/src'),
 );
