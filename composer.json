@@ -2,7 +2,7 @@
     "require": {
         "php": ">=5.3.0",
         "bartfeenstra/cldr": "~1.0",
-        "bartfeenstra/currency": "~1.0",
+        "bartfeenstra/currency": "dev-master#a1b4db3393dc2e7fa567d28a7722ae85bf587035",
         "symfony/yaml": "~2.1",
         "spinegar/sugar7wrapper": "dev-master#aa32869a6c9c9d3fbf465388e09ad7dd457f3f6b"
     },

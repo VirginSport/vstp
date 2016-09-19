@@ -6,12 +6,12 @@
         "target-dir": "Symfony/Component/EventDispatcher",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/EventDispatcher.git",
+            "url": "https://github.com/symfony/event-dispatcher.git",
             "reference": "672593bc4b0043a0acf91903bb75a1c82d8f2e02"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/672593bc4b0043a0acf91903bb75a1c82d8f2e02",
+            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/672593bc4b0043a0acf91903bb75a1c82d8f2e02",
             "reference": "672593bc4b0043a0acf91903bb75a1c82d8f2e02",
             "shasum": ""
         },
@@ -152,7 +152,8 @@
             "http client",
             "rest",
             "web service"
-        ]
+        ],
+        "abandoned": "guzzlehttp/guzzle"
     },
     {
         "name": "spinegar/sugar7wrapper",
@@ -735,12 +736,12 @@
         "target-dir": "Symfony/Component/DomCrawler",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/DomCrawler.git",
+            "url": "https://github.com/symfony/dom-crawler.git",
             "reference": "adef13fb8d305d95e1fb8324d6b5895c8e79d332"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/adef13fb8d305d95e1fb8324d6b5895c8e79d332",
+            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/adef13fb8d305d95e1fb8324d6b5895c8e79d332",
             "reference": "adef13fb8d305d95e1fb8324d6b5895c8e79d332",
             "shasum": ""
         },
@@ -791,12 +792,12 @@
         "target-dir": "Symfony/Component/CssSelector",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/CssSelector.git",
+            "url": "https://github.com/symfony/css-selector.git",
             "reference": "189cf0f7f56d7c4be3b778df15a7f16a29f3680d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/CssSelector/zipball/189cf0f7f56d7c4be3b778df15a7f16a29f3680d",
+            "url": "https://api.github.com/repos/symfony/css-selector/zipball/189cf0f7f56d7c4be3b778df15a7f16a29f3680d",
             "reference": "189cf0f7f56d7c4be3b778df15a7f16a29f3680d",
             "shasum": ""
         },
@@ -847,12 +848,12 @@
         "target-dir": "Symfony/Component/BrowserKit",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/BrowserKit.git",
+            "url": "https://github.com/symfony/browser-kit.git",
             "reference": "cf950c42947ea2f29c36a1f443202b6134f5c303"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/cf950c42947ea2f29c36a1f443202b6134f5c303",
+            "url": "https://api.github.com/repos/symfony/browser-kit/zipball/cf950c42947ea2f29c36a1f443202b6134f5c303",
             "reference": "cf950c42947ea2f29c36a1f443202b6134f5c303",
             "shasum": ""
         },
@@ -963,12 +964,12 @@
         "target-dir": "Symfony/Component/Filesystem",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Filesystem.git",
+            "url": "https://github.com/symfony/filesystem.git",
             "reference": "f73904bd2dae525c42ea1f0340c7c98480ecacde"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Filesystem/zipball/f73904bd2dae525c42ea1f0340c7c98480ecacde",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/f73904bd2dae525c42ea1f0340c7c98480ecacde",
             "reference": "f73904bd2dae525c42ea1f0340c7c98480ecacde",
             "shasum": ""
         },
@@ -1015,12 +1016,12 @@
         "target-dir": "Symfony/Component/Config",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Config.git",
+            "url": "https://github.com/symfony/config.git",
             "reference": "b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Config/zipball/b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25",
+            "url": "https://api.github.com/repos/symfony/config/zipball/b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25",
             "reference": "b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25",
             "shasum": ""
         },
@@ -1186,12 +1187,12 @@
         "target-dir": "Symfony/Component/DependencyInjection",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/DependencyInjection.git",
+            "url": "https://github.com/symfony/dependency-injection.git",
             "reference": "b575c160af001d3525ee733085bcc4ec7c8e1b51"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/b575c160af001d3525ee733085bcc4ec7c8e1b51",
+            "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/b575c160af001d3525ee733085bcc4ec7c8e1b51",
             "reference": "b575c160af001d3525ee733085bcc4ec7c8e1b51",
             "shasum": ""
         },
@@ -1249,12 +1250,12 @@
         "target-dir": "Symfony/Component/Console",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Console.git",
+            "url": "https://github.com/symfony/console.git",
             "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Console/zipball/ebc5679854aa24ed7d65062e9e3ab0b18a917272",
+            "url": "https://api.github.com/repos/symfony/console/zipball/ebc5679854aa24ed7d65062e9e3ab0b18a917272",
             "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272",
             "shasum": ""
         },
@@ -2025,5 +2026,90 @@
         ],
         "description": "A tool for quickly measuring the size of a PHP project.",
         "homepage": "https://github.com/sebastianbergmann/phploc"
+    },
+    {
+        "name": "bartfeenstra/cldr",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bartfeenstra/cldr.git",
+            "reference": "256a058858f423bcc1fcdde837888bcd3a8034ca"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bartfeenstra/cldr/zipball/256a058858f423bcc1fcdde837888bcd3a8034ca",
+            "reference": "256a058858f423bcc1fcdde837888bcd3a8034ca",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2013-01-08 22:29:58",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "BartFeenstra": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bart Feenstra",
+                "email": "bart@mynameisbart.com",
+                "homepage": "http://mynameisbart.com",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "bartfeenstra/currency",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bartfeenstra/currency.git",
+            "reference": "a1b4db3393dc2e7fa567d28a7722ae85bf587035"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bartfeenstra/currency/zipball/a1b4db3393dc2e7fa567d28a7722ae85bf587035",
+            "reference": "a1b4db3393dc2e7fa567d28a7722ae85bf587035",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "suggest": {
+            "php": "To use the PHP helpers, you need PHP 5.3 or higher.",
+            "symfony/yaml": "To use the PHP helpers, you need symfony/yaml 2.1."
+        },
+        "time": "2013-07-11 08:54:09",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "BartFeenstra": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bart Feenstra",
+                "email": "bart@mynameisbart.com",
+                "homepage": "http://mynameisbart.com",
+                "role": "Developer"
+            }
+        ]
     }
 ]
