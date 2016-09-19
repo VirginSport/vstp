@@ -55,11 +55,12 @@ function virgin_page_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Content',
+    'required' => 0,
     'settings' => array(
-      'context' => '',
-      'display_summary' => TRUE,
+      'context' => 'title',
+      'context_default' => 'virgin_full',
+      'display_summary' => 1,
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -67,6 +68,7 @@ function virgin_page_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -327,7 +329,7 @@ function virgin_page_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Acts as sub-page of Festival');
-  t('Body');
+  t('Content');
   t('Does not apply to Festival');
   t('Header Image');
   t('Show share buttons');
