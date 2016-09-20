@@ -106,12 +106,24 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
     'birthDay' => null,
     'birthMonth' => null,
     'birthYear' => null,
+    'phone' => null,
+    'city' => null,
+    'country' => null,
+    'address' => null,
+    'region' => null,
+    'zip' => null,
   );
 
   $data = $data + $defaults;
 
   $birth_date = strtotime($data['birthYear'] . '/' . $data['birthMonth'] . '/' . $data['birthDay']);
 
+  $userinfo['field_address_city'][LANGUAGE_NONE][0]['value'] = $data['city'];
+  $userinfo['field_address_country'][LANGUAGE_NONE][0]['value'] = $data['country'];
+  $userinfo['field_address_line_1'][LANGUAGE_NONE][0]['value'] = $data['address'];
+  $userinfo['field_address_postcode'][LANGUAGE_NONE][0]['value'] = $data['zip'];
+  $userinfo['field_address_state'][LANGUAGE_NONE][0]['value'] = $data['region'];
+  $userinfo['field_contact_number'][LANGUAGE_NONE][0]['value'] = $data['phone'];
   $userinfo['field_first_name'][LANGUAGE_NONE][0]['value'] = $data['firstName'];
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
