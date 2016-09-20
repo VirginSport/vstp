@@ -52,6 +52,7 @@ dependencies[] = virgin_base
 dependencies[] = virgin_config
 dependencies[] = virgin_event
 dependencies[] = virgin_festival
+dependencies[] = virgin_page
 dependencies[] = virgin_package
 dependencies[] = virgin_region
 dependencies[] = virgin_roles
