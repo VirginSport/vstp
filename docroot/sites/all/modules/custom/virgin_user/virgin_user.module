@@ -119,21 +119,47 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
 }
 
 /**
- * Implements hook_user_insert().
+ * Implements hook_observer_info().
  */
-function virgin_user_user_insert(&$edit, $account, $category) {
-  observer_notify('drupal:user:create', $account);
+function virgin_user_observer_info() {
+  return array(
+    new VirginUserSugarListener(),
+  );
 }
 
 /**
- * Implements hook_user_update().
+ * Implements hook_entity_presave().
  */
-function virgin_user_user_update(&$edit, $account, $category) {
-  observer_notify('drupal:user:update', $account);
+function virgin_user_entity_presave($entity, $type) {
+  // If entity is of type user and come's from hybridauth notify observer
+  // Used entity_presave because entity fields are already populated
+  if ($type == 'user') {
+    virgin_user_observer_notify($entity);
+  }
 }
 
 // Helpers
 // ----------------------------------------------------------------------------
+
+/**
+ * Notify observer for user events
+ *
+ * @param $account
+ * @throws \VirginException
+ */
+function virgin_user_observer_notify($account) {
+  try {
+    // Based on account type we trigger create or update events
+    if ($account->is_new) {
+      observer_notify('drupal:user:create', $account);
+    } else {
+      observer_notify('drupal:user:update', $account);
+    }
+  } catch (\Exception $e) {
+    // If an error ocurred send generic message to user
+    throw new VirginException('SugarCRM synchronization problem.', t('Could not complete your request, please try again later'));
+  }
+}
 
 /**
  * Validation callback for the user_profile_form form.
