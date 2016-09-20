@@ -20,15 +20,23 @@ class VirginException extends Exception {
   protected $userMessage;
 
   /**
+   * @var string
+   */
+  protected $redirectPath;
+
+  /**
    * Constructor
    *
    * @param string $message
    *  The error message
    * @param string $userMessage
    *  A safe message to be shown to the users
+   * @param string $redirectPath
+   *  Path to redirect user on exception
    */
-  public function __construct($message = '', $userMessage = '') {
+  public function __construct($message = '', $userMessage = '', $redirectPath = '') {
     $this->userMessage = $userMessage;
+    $this->redirectPath = $redirectPath;
 
     parent::__construct($message);
   }
@@ -50,5 +58,12 @@ class VirginException extends Exception {
    */
   public function getUserMessage() {
     return $this->userMessage;
+  }
+
+  /**
+   * @return string
+   */
+  public function getRedirectPath() {
+    return $this->redirectPath;
   }
 }
