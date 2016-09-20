@@ -23,7 +23,6 @@ function virgin_api_services_resources() {
 function virgin_api_observer_info() {
   return array(
     new VirginApiSugarEventListener(),
-    new VirginApiSugarUserListener(),
   );
 }
 
