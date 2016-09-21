@@ -142,15 +142,12 @@ function _virgin_exception_handler($exception) {
       drupal_set_message($exception->getUserMessage(), 'error');
     }
 
-    // If path has a destination delete it
-    unset($_GET['destination']);
-
     // If redirect path configured send user to it, otherwise send 500 error
     if ($exception->getRedirectPath()) {
       // Redirect to configured path
       drupal_goto($exception->getRedirectPath());
     } else {
-      drupal_goto(current_path());
+      drupal_goto('<front>');
     }
   }
   else {

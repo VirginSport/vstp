@@ -138,6 +138,17 @@ function virgin_user_entity_presave($entity, $type) {
   }
 }
 
+/**
+ * Implements hook_virgin_exception_redirect_paths().
+ */
+function virgin_user_virgin_exception_redirect_paths() {
+  // user/%/edit path doesn't create a redirect loop, because sugarcrm
+  // synchronization only occurs on form submit, not on page load
+  return array(
+    'user/%/edit'
+  );
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
@@ -157,7 +168,7 @@ function virgin_user_observer_notify($account) {
     }
   } catch (\Exception $e) {
     // If an error ocurred send generic message to user
-    throw new VirginException('SugarCRM synchronization problem.', t('Could not complete your request, please try again later'));
+    throw new VirginException('SugarCRM synchronization problem.', t('Could not complete your request, please try again later'), current_path());
   }
 }
 
