@@ -181,45 +181,45 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->api_version = 1;
   $strongarm->name = 'hybridauth_provider_Facebook_scope';
   $strongarm->value = array(
-    'user_birthday' => 'user_birthday',
     'email' => 'email',
+    'user_birthday' => 'user_birthday',
+    'public_profile' => 0,
+    'user_friends' => 0,
+    'manage_notifications' => 0,
+    'manage_pages' => 0,
+    'publish_actions' => 0,
+    'publish_pages' => 0,
+    'read_custom_friendlists' => 0,
+    'read_insights' => 0,
+    'read_mailbox' => 0,
+    'read_page_mailboxes' => 0,
+    'read_stream' => 0,
+    'rsvp_event' => 0,
     'user_about_me' => 0,
-    'user_activities' => 0,
-    'user_checkins' => 0,
+    'user_actions.books' => 0,
+    'user_actions.fitness' => 0,
+    'user_actions.music' => 0,
+    'user_actions.news' => 0,
+    'user_actions.video' => 0,
+    'user_actions:{app_namespace}' => 0,
     'user_education_history' => 0,
     'user_events' => 0,
+    'user_games_activity' => 0,
     'user_groups' => 0,
     'user_hometown' => 0,
-    'user_interests' => 0,
     'user_likes' => 0,
     'user_location' => 0,
-    'user_notes' => 0,
-    'user_online_presence' => 0,
+    'user_managed_groups' => 0,
     'user_photos' => 0,
-    'user_questions' => 0,
-    'user_relationships' => 0,
+    'user_posts' => 0,
     'user_relationship_details' => 0,
+    'user_relationships' => 0,
     'user_religion_politics' => 0,
     'user_status' => 0,
+    'user_tagged_places' => 0,
     'user_videos' => 0,
     'user_website' => 0,
     'user_work_history' => 0,
-    'read_friendlists' => 0,
-    'read_insights' => 0,
-    'read_mailbox' => 0,
-    'read_requests' => 0,
-    'read_stream' => 0,
-    'xmpp_login' => 0,
-    'ads_management' => 0,
-    'create_event' => 0,
-    'manage_friendlists' => 0,
-    'manage_notifications' => 0,
-    'offline_access' => 0,
-    'publish_checkins' => 0,
-    'publish_stream' => 0,
-    'rsvp_event' => 0,
-    'sms' => 0,
-    'publish_actions' => 0,
   );
   $export['hybridauth_provider_Facebook_scope'] = $strongarm;
 
@@ -493,13 +493,6 @@ password: Your password
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'user_mail_register_no_approval_required_notify';
-  $strongarm->value = FALSE;
-  $export['user_mail_register_no_approval_required_notify'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_subject';
   $strongarm->value = 'Account details for [user:name] at [site:name]';
   $export['user_mail_register_no_approval_required_subject'] = $strongarm;
@@ -515,13 +508,6 @@ Thank you for registering at [site:name]. Your application for an account is cur
 
 --  [site:name] team';
   $export['user_mail_register_pending_approval_body'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'user_mail_register_pending_approval_notify';
-  $strongarm->value = FALSE;
-  $export['user_mail_register_pending_approval_notify'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -670,7 +656,7 @@ Your account on [site:name] has been canceled.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_registrationpassword_registration';
-  $strongarm->value = 'with-pass';
+  $strongarm->value = 'none';
   $export['user_registrationpassword_registration'] = $strongarm;
 
   $strongarm = new stdClass();
