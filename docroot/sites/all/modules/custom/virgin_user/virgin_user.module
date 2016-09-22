@@ -138,17 +138,6 @@ function virgin_user_entity_presave($entity, $type) {
   }
 }
 
-/**
- * Implements hook_virgin_exception_redirect_paths().
- */
-function virgin_user_virgin_exception_redirect_paths() {
-  // user/%/edit path doesn't create a redirect loop, because sugarcrm
-  // synchronization only occurs on form submit, not on page load
-  return array(
-    'user/%/edit'
-  );
-}
-
 // Helpers
 // ----------------------------------------------------------------------------
 
@@ -159,16 +148,19 @@ function virgin_user_virgin_exception_redirect_paths() {
  * @throws \VirginException
  */
 function virgin_user_observer_notify($account) {
-  try {
-    // Based on account type we trigger create or update events
-    if ($account->is_new) {
-      observer_notify('drupal:user:create', $account);
-    } else {
-      observer_notify('drupal:user:update', $account);
+  // Based on account type we trigger create or update events
+  if ($account->is_new) {
+    try {
+        observer_notify('drupal:user:create', $account);
+    } catch (\Exception $e) {
+      throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot register you at this moment, please try again later'), url('user'));
     }
-  } catch (\Exception $e) {
-    // If an error ocurred send generic message to user
-    throw new VirginException('SugarCRM synchronization problem.', t('Could not complete your request, please try again later'), current_path());
+  } else {
+    try {
+      observer_notify('drupal:user:update', $account);
+    } catch (\Exception $e) {
+      throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot update your profile at this moment, please try again later'), url('user'));
+    }
   }
 }
 

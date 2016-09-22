@@ -61,30 +61,11 @@ class VirginException extends Exception {
   }
 
   /**
+   * Gets the redirect path for the exception
+   *
    * @return string
    */
   public function getRedirectPath() {
-    // If current path is not the same as redirectPath simply redirect it
-    if (current_path() != $this->redirectPath) {
-      return $this->redirectPath;
-    }
-
-    // Otherwise we have to handle paths to avoid redirect loops
-    $menu_path = menu_get_item($this->redirectPath);
-
-    $handledPaths = module_invoke_all('virgin_exception_redirect_paths');
-
-    // Defaults to front path
-    $redirectPath = '<front>';
-
-    // If current menu path is in handled paths
-    if (!empty($menu_path['path']) && in_array($menu_path['path'], $handledPaths)) {
-      // Remove destination because we want to redirect to a specific path
-      unset($_GET['destination']);
-
-      $redirectPath = $this->redirectPath;
-    }
-
-    return $redirectPath;
+    return $this->redirectPath;
   }
 }
