@@ -22,7 +22,7 @@ class VirginUserSugarListener implements ObserverObserverInterface {
 
     // If SugarCRM is not configured, do not attempt to do anything.
     if (!sugarcrm_is_configured()) {
-      throw new VirginException('SugarCRM not configured.', t('SugarCRM not configured'));
+      return;
     }
 
     switch ($event->getType()) {
