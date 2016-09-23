@@ -131,8 +131,6 @@ function virgin_user_observer_info() {
  * Implements hook_entity_presave().
  */
 function virgin_user_entity_presave($entity, $type) {
-  // If entity is of type user and come's from hybridauth notify observer
-  // Used entity_presave because entity fields are already populated
   if ($type == 'user') {
     virgin_user_observer_notify($entity);
   }
