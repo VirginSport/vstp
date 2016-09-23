@@ -13,7 +13,7 @@
  *
  * @see virgin_virgin_contact_content_type_form_validate()
  */
-class VirginApiSugarUserListener implements ObserverObserverInterface {
+class VirginUserSugarListener implements ObserverObserverInterface {
 
   /**
    * {@inheritdoc}
@@ -56,7 +56,7 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
         $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
         $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
-        $this->setUserSugarId($account, $sugar_id);
+        $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
         throw new VirginException($e->getMessage(), t('An error occurred while creating the account. Please try again at a later time.'));
       }
@@ -186,24 +186,28 @@ class VirginApiSugarUserListener implements ObserverObserverInterface {
   private function transformUserAccountToUserData($account) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
 
-    $address = $account_wrapper->field_address->value();
-    $countries = country_get_list();
     $birth_date = $account_wrapper->field_birth_date->value();
 
     return array(
       'virgin_sport_id' => $account_wrapper->uid->value(),
       'first_name' => $account_wrapper->field_first_name->value(),
       'last_name' => $account_wrapper->field_last_name->value(),
-      'date_of_birth' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
-      'mobile' => $account_wrapper->field_phone->value(),
-      'email1' => $account_wrapper->mail->value(),
-      'primary_address_street' => $address['thoroughfare'],
-      'primary_address_city' => $address['premise'],
-      'primary_address_state' => $address['locality'],
-      'primary_address_postalcode' => $address['postal_code'],
-      'primary_address_country' => empty($address['country']) ? '' : $countries[$address['country']],
-      'accepts_marketing' => $account_wrapper->field_marketing_enabled->value(),
       'gender' => $account_wrapper->field_gender->value(),
+      'birthdate' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
+      'phone_mobile' => $account_wrapper->field_contact_number->value(),
+      'email1' => $account_wrapper->mail->value(),
+      'primary_address_street' => $account_wrapper->field_address_line_1->value(),
+      'primary_address_city' => $account_wrapper->field_address_city->value(),
+      'primary_address_state' => $account_wrapper->field_address_state->value(),
+      'primary_address_postalcode' => $account_wrapper->field_address_postcode->value(),
+      'primary_address_country' => $account_wrapper->field_address_country->value(),
+      'marketing_email_opt_ins' => $account_wrapper->field_marketing_optin->value(),
+      'affiliated_uk_athlete' => $account_wrapper->field_uk_athletics_number->value(),
+      'medical_conditions' => $account_wrapper->field_medical_conditions->value(),
+      'medical_conditions_other' => $account_wrapper->field_medical_conditions_other->value(),
+      'medications' => $account_wrapper->field_medications->value(),
+      'allergies' => $account_wrapper->field_allergies->value(),
+      'share_info_with_vs' => $account_wrapper->field_agree_share_medical_info->value(),
     );
   }
 
