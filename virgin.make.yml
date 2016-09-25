@@ -19,7 +19,10 @@ projects:
     version: "2.5"
 
   composer_manager:
-    version: "1.8"
+    download:
+      type: git
+      revision: d0f3eb4f6e4a2ce5f9a59498d409a8bb3ff19dd2
+      branch: 7.x-1.x
 
   currency:
     version: "2.6"
