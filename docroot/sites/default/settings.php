@@ -570,3 +570,10 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/virginsport01/virginsport01-settings.inc';
 }
+
+$conf['composer_manager_vendor_dir'] = '../vendor';
+$conf['composer_manager_file_dir'] = '../';
+if (isset($_ENV['AH_SITE_GROUP']) && isset($_SERVER['SCRIPT_FILENAME']) && strpos($_SERVER['SCRIPT_FILENAME'], 'livedev') === FALSE) {
+  $conf['composer_manager_autobuild_file'] = 0;
+  $conf['composer_manager_autobuild_packages'] = 0;
+}
