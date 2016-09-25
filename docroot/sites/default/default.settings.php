@@ -566,7 +566,24 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  */
 # $conf['allow_authorize_operations'] = FALSE;
 
-# Acquia
+/**
+ * Acquia Cloud Settings
+ *
+ */
 if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/virginsport01/virginsport01-settings.inc';
+}
+
+/**
+ * Resolves composer_manager file permission issue, a critical bug fix bug
+ * was recently addressed that was fixed in the latest Dev release.
+ *
+ * @see https://docs.acquia.com/article/configuring-composer-manager-module-d7-acquia-hosting
+ *
+ */
+$conf['composer_manager_vendor_dir'] = '../vendor';
+$conf['composer_manager_file_dir'] = '../';
+if (isset($_ENV['AH_SITE_GROUP']) && isset($_SERVER['SCRIPT_FILENAME']) && strpos($_SERVER['SCRIPT_FILENAME'], 'livedev') === FALSE) {
+    $conf['composer_manager_autobuild_file'] = 0;
+    $conf['composer_manager_autobuild_packages'] = 0;
 }
