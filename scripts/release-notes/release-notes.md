@@ -1,0 +1,15 @@
+# Release notes for September 25, 2016
+
+* September 23, 2016: [#VS16-498 SugarCRM and Drupal user profile synchronization](https://github.com/acquia-pso/vstp/pull/23) 
+* September 20, 2016: [#VS16-407 - Facebook Fields Mapping to user profile](https://github.com/acquia-pso/vstp/pull/22) 
+* September 20, 2016: [#VS16-415 - Add basic page feature](https://github.com/acquia-pso/vstp/pull/21) 
+* September 19, 2016: [#VS16-78 - Currency module dependencies](https://github.com/acquia-pso/vstp/pull/20) 
+* September 16, 2016: [#VS16-438 - feature/ticket-type-sync](https://github.com/acquia-pso/vstp/pull/19) 
+* September 16, 2016: [#VS16-436 - feature/package-sync](https://github.com/acquia-pso/vstp/pull/18) 
+* September 16, 2016: [Remove deprecated modules](https://github.com/acquia-pso/vstp/pull/17) 
+* September 16, 2016: [#VS16-437 - feature/festival-sync](https://github.com/acquia-pso/vstp/pull/16) 
+* September 16, 2016: [#VS16-435 - feature/event-sync](https://github.com/acquia-pso/vstp/pull/15) 
+* September 16, 2016: [#VS16-422 - feature/sugar-sync](https://github.com/acquia-pso/vstp/pull/14) 
+* September 16, 2016: [#VS16-414, #VS16-413, #VS16-412, #VS16-411 - feature/content-types](https://github.com/acquia-pso/vstp/pull/13) 
+* September 16, 2016: [#VS16-406 - feature/user-profile](https://github.com/acquia-pso/vstp/pull/12) 
+* September 13, 2016: [#VS16-141 - feature/2016-clean-up](https://github.com/acquia-pso/vstp/pull/11) 
