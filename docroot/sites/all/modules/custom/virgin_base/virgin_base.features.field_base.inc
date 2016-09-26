@@ -850,8 +850,8 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'timed' => 'Timed',
-        'untimed' => 'Untimed',
+        'timed_event' => 'Timed',
+        'untimed_event' => 'Untimed',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
