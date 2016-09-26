@@ -380,9 +380,9 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * We check for the existence of this function before calling in case this
  * settings file has been included without bootstrapping Drupal.
  */
-if (function_exists('drupal_fast_404')) {
-    drupal_fast_404();
-}
+# if (function_exists('drupal_fast_404')) {
+#     drupal_fast_404();
+# }
 
 
 /**
