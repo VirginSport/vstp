@@ -55,8 +55,28 @@ function virgin_region_init() {
   }
 }
 
+/**
+ * Implements hook_node_insert().
+ */
+function virgin_region_node_insert($node) {
+  virgin_region_clear_cache($node);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function virgin_region_node_update($node) {
+  virgin_region_clear_cache($node);
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
+
+function virgin_region_clear_cache($node) {
+  if ($node->type == 'region') {
+    cache_clear_all(VIRGIN_REGION_CACHE, 'cache');
+  }
+}
 
 /**
  * Get the list of active regions
