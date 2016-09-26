@@ -5,3 +5,109 @@
  */
 
 include_once 'virgin_region.features.inc';
+
+/**
+ * The region cache key
+ */
+define('VIRGIN_REGION_CACHE', 'virgin_region:cache');
+
+/**
+ * Implements hook_init().
+ */
+function virgin_region_init() {
+
+  // Fetch the current active region
+  $region = virgin_region_current();
+
+  // Build the front-page URL from the current region node it exists or fallback
+  // to the splash page path if no region host matches the current hostname.
+  if ($region) {
+    $front_page = sprintf('node/%d', $region['nid']);
+  } else {
+    $front_page = 'splash';
+  }
+
+  // Finally, override the q path that's used by drupal routing system if we're
+  // viewing the page that's set as the front page variable.
+  if ($_GET['q'] == variable_get('site_frontpage')) {
+    $_GET['q'] = $front_page;
+  }
+}
+
+// Helpers
+// -----------------------------------------------------------------------------
+
+/**
+ * Get the list of active regions
+ *
+ * @return array
+ *  An array of structured arrays with the following keys:
+ *  - nid: The nid of the region
+ *  - title: The original title of the region
+ *  - flag: The atom object of the flag
+ */
+function virgin_region_regions() {
+
+  // Return the list of regions from cache
+  $cache = cache_get(VIRGIN_REGION_CACHE);
+
+  if (!empty($cache)) {
+    return $cache->data;
+  }
+
+  // If the cache is empty, fetch the list from the database
+  $q = new EntityFieldQuery();
+
+  $results = $q
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'region')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->execute()
+  ;
+
+  // And build the required data structure and store it in cache
+  $regions = array();
+
+  if (!empty($results['node'])) {
+    foreach ($results['node'] as $node) {
+      $node_wrapper = entity_metadata_wrapper('node', $node->nid);
+      $region_url = $node_wrapper->field_hostname->value();
+
+      $regions[$region_url] = array(
+        'nid' => $node->nid,
+        'title' => $node_wrapper->title_field->value(),
+        'flag' => $node_wrapper->field_flag_image->value()
+      );
+    }
+
+    cache_set(VIRGIN_REGION_CACHE, $regions);
+  }
+
+  return $regions;
+}
+
+/**
+ * Get the current active region
+ *
+ * @return array|null
+ *  NULL if no region matches the current URL or a structured array with the
+ *  following keys if does:
+ *  - nid: The nid of the region
+ *  - title: The original title of the region
+ *  - flag: The atom object of the flag
+ */
+function virgin_region_current() {
+  $regions = &drupal_static(__FUNCTION__, array());
+
+  if (!$regions) {
+    $regions = virgin_region_regions();
+  }
+
+  foreach ($regions as $domain => $region) {
+    if ($domain == $_SERVER['HTTP_HOST']) {
+      return $region;
+    }
+  }
+
+  return null;
+}
