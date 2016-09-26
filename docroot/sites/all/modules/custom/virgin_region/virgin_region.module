@@ -12,6 +12,27 @@ include_once 'virgin_region.features.inc';
 define('VIRGIN_REGION_CACHE', 'virgin_region:cache');
 
 /**
+ * The splash page path
+ */
+define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_region_menu() {
+  $items = array();
+
+  $items[VIRGIN_REGION_ROUTE_SPLASH] = array(
+    'title' => 'Splash Page',
+    'page callback' => 'virgin_region_page_splash',
+    'access callback' => TRUE,
+    'file' => 'virgin_region.page.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_init().
  */
 function virgin_region_init() {
@@ -24,7 +45,7 @@ function virgin_region_init() {
   if ($region) {
     $front_page = sprintf('node/%d', $region['nid']);
   } else {
-    $front_page = 'splash';
+    $front_page = VIRGIN_REGION_ROUTE_SPLASH;
   }
 
   // Finally, override the q path that's used by drupal routing system if we're
