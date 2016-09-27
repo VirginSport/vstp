@@ -53,26 +53,26 @@ if ($is_ah_env) {
   // Memcache stampede protection can be disabled for entire bins, specific cid's
   // in specific bins, or cid's starting with a specific prefix in specific bins.
   // see: https://www.drupal.org/node/2419757
-    $conf['memcache_stampede_protection_ignore'] = array(
-      // Ignore some cids in 'cache_bootstrap'.
-      'cache_bootstrap' => array(
-        'module_implements',
-        'variables',
-        'lookup_cache',
-        'schema:runtime:*',
-        'theme_registry:runtime:*',
-      ),
-      // Ignore all cids in the 'cache' bin starting with 'i18n:string:'
-      'cache' => array(
-        'i18n:string:*',
-      ),
-      // Disable stampede protection for the entire 'cache_path' and 'cache_rules'
-      // bins.
-      'cache_path',
-      'cache_rules',
-      // Ignore stampede protection for cache_views because of delayed cache_set.
-      'cache_views',
-    );
+  $conf['memcache_stampede_protection_ignore'] = array(
+    // Ignore some cids in 'cache_bootstrap'.
+    'cache_bootstrap' => array(
+      'module_implements',
+      'variables',
+      'lookup_cache',
+      'schema:runtime:*',
+      'theme_registry:runtime:*',
+    ),
+    // Ignore all cids in the 'cache' bin starting with 'i18n:string:'
+    'cache' => array(
+      'i18n:string:*',
+    ),
+    // Disable stampede protection for the entire 'cache_path' and 'cache_rules'
+    // bins.
+    'cache_path',
+    'cache_rules',
+    // Ignore stampede protection for cache_views because of delayed cache_set.
+    'cache_views',
+  );
 
   // The 'cache_form' bin must be assigned to non-volatile storage.
   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
