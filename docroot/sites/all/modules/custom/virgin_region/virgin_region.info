@@ -20,3 +20,4 @@ features[variable][] = menu_parent_region
 features[variable][] = node_options_region
 features[variable][] = node_preview_region
 features[variable][] = node_submitted_region
+files[] = views/virgin_region_handler_filter_region.inc

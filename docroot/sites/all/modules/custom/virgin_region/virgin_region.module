@@ -17,6 +17,16 @@ define('VIRGIN_REGION_CACHE', 'virgin_region:cache');
 define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 
 /**
+ * Implements hook_views_api().
+ */
+function virgin_region_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'virgin_region') . '/views',
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function virgin_region_menu() {
