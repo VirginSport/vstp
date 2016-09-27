@@ -94,8 +94,8 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
-      'field_start_date' => strtotime($g->get('start_time')->value()),
-      'field_end_date' => strtotime($g->get('stop_time')->value()),
+      'field_start_date' => strtotime($g->get('start_time')->value('1990')),
+      'field_end_date' => strtotime($g->get('stop_time')->value('2030')),
       'field_timezone' => $g->get('timezone')->value(false),
     );
 
