@@ -95,8 +95,8 @@ class VirginEventSyncHandler implements VirginSyncSugarHandlerInterface {
         'format' => filter_default_format()
       ),
       'field_event_type' => $g->get('event_type')->value(),
-      'field_start_date' => strtotime($g->get('start_time')->value(0)),
-      'field_end_date' => strtotime($g->get('stop_time')->value(0)),
+      'field_start_date' => strtotime($g->get('start_time')->value('1990')),
+      'field_end_date' => strtotime($g->get('stop_time')->value('2030')),
       'field_timezone' => $g->get('timezone')->value(false),
       'field_has_merchandise' => $g->get('merchandise_available')->value(false),
       'field_has_teams' => $g->get('teams_available')->value(false),
