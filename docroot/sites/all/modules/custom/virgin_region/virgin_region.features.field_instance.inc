@@ -77,7 +77,7 @@ function virgin_region_field_default_field_instances() {
     'bundle' => 'region',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -114,7 +114,8 @@ function virgin_region_field_default_field_instances() {
     'label' => 'Hostname',
     'required' => 1,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -196,6 +197,7 @@ function virgin_region_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Flag Image');
   t('Hostname');
+  t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
   t('Name');
 
   return $field_instances;
