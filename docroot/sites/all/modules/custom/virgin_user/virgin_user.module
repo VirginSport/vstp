@@ -7,6 +7,16 @@
 include_once 'virgin_user.features.inc';
 
 /**
+ * The minimum age a user can have to register to Virgin Sport
+ */
+define('VIRGIN_USER_MIN_AGE', 13);
+
+/**
+ * The minimum password length required for Virgin Sport
+ */
+define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
+
+/**
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
@@ -48,6 +58,29 @@ function virgin_user_username_alter(&$name, $account) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for user_register_form.
+ */
+function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+
+  // Add an e-mail confirm input
+  $form['account']['mail_confirm'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Confirm E-mail'),
+    '#required' => TRUE
+  );
+
+  // Ensure the email fields ordering
+  $form['account']['mail']['#weight'] = -2;
+  $form['account']['mail_confirm']['#weight'] = -1;
+
+  // Ensure the password follows certain criteria
+  $form['account']['pass']['#element_validate'][] = 'virgin_user_password_validate';
+
+  // Add custom validation callback
+  $form['#validate'][] = 'virgin_user_form_user_register_form_validate';
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for user_profile_form.
  */
 function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
@@ -61,6 +94,7 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   $form['field_first_name']['#access'] = FALSE;
   $form['field_last_name']['#access'] = FALSE;
   $form['field_gender']['#access'] = FALSE;
+  $form['field_birth_date']['#access'] = FALSE;
 
   // The other medical conditions field is only visible when
   // the user has picked the 'Other' option in the medical
@@ -161,7 +195,7 @@ function virgin_user_observer_notify($account) {
   // Based on account type we trigger create or update events
   if ($account->is_new) {
     try {
-        observer_notify('drupal:user:create', $account);
+      observer_notify('drupal:user:create', $account);
     } catch (\Exception $e) {
       throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot register you at this moment, please try again later'), url('user'));
     }
@@ -175,16 +209,44 @@ function virgin_user_observer_notify($account) {
 }
 
 /**
+ * Validation callback for the user_register_form form.
+ *
+ * @see virgin_user_form_user_register_form_alter()
+ */
+function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
+
+  // Users must be at least of a certain age to register to Virgin Sport
+  $birth_date = virgin_form_value('field_birth_date', $form_state);
+
+  if (!$birth_date || (date('Y', time()) - date('Y', strtotime($birth_date))) < VIRGIN_USER_MIN_AGE) {
+    form_set_error('field_birth_date', t("You must have at least @min years of age to have a Virgin Sport account.", array('@min' => VIRGIN_USER_MIN_AGE)));
+  }
+
+  // Confirm that the user entered e-mails match
+  $mail = virgin_form_value('mail', $form_state);
+  $mail_confirm = virgin_form_value('mail_confirm', $form_state);
+
+  if ($mail != $mail_confirm) {
+    form_set_error('mail', t("The e-mails you entered do not match"));
+  }
+
+  // Check password fits the requirements
+  $pass = virgin_form_value('pass', $form_state);
+
+  if (!preg_match("#[0-9]+#", $pass)) {
+    form_set_error('pass', t("The password must have at least one number"));
+  }
+  if (count($pass) < VIRGIN_USER_MIN_PASS_LENGTH) {
+    form_set_error('pass', t("The password must have at least @min characters", array('@min' => VIRGIN_USER_MIN_PASS_LENGTH)));
+  }
+}
+
+/**
  * Validation callback for the user_profile_form form.
  *
  * @see virgin_user_form_user_profile_form_alter()
  */
 function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
-
-  // Utility anonymous function to fetch field values
-  $value = function ($field_name) use ($form_state) {
-    return empty($form_state['values'][$field_name]['und'][0]['value']) ? null : $form_state['values'][$field_name]['und'][0]['value'];
-  };
 
   // Validate the user cannot save profile form with medical info if he does
   // not agree to share that information.
@@ -199,13 +261,13 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 
   // If any field is filled, then the user has medical conditions
   foreach ($medical_fields as $field) {
-    if ($value($field)) {
+    if (virgin_form_value($field, $form_state)) {
       $has_medical_conditions = TRUE;
       break;
     }
   }
 
-  $agree_share = (bool) $value('field_agree_share_medical_info');
+  $agree_share = (bool) virgin_form_value('field_agree_share_medical_info', $form_state);
 
   if (!$agree_share && $has_medical_conditions) {
     form_set_error('field_agree_share_medical_info', t('You must agree to share your medical information if you fill any of the medical fields.'));

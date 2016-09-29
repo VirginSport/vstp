@@ -155,3 +155,30 @@ function _virgin_exception_handler($exception) {
     _drupal_exception_handler($exception);
   }
 }
+
+/**
+ * Get a field value from a given form state
+ *
+ * @param $field_name
+ *  The field name to get the value from
+ * @param $form_state
+ *  The form state where the field value is to be extracted from
+ * @param $default
+ *  (optional) The default value to be returned, defaults to NULL
+ * @param int $index
+ *  (optional) The field index value, defaults to 0
+ * @param string $language
+ *  (optional) The language of the field, defaults to 'und'
+ * @return mixed|null
+ */
+function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0, $language = LANGUAGE_NONE) {
+  if (!empty($form_state['values'][$field_name])) {
+    if (is_scalar($form_state['values'][$field_name])) {
+      return $form_state['values'][$field_name];
+    } else {
+      return empty($form_state['values'][$field_name][$language][$index]['value']) ? $default : $form_state['values'][$field_name][$language][$index]['value'];
+    }
+  }
+
+  return $default;
+}
