@@ -162,7 +162,7 @@ function virgin_user_observer_notify($account) {
   // Based on account type we trigger create or update events
   if ($account->is_new) {
     try {
-        observer_notify('drupal:user:create', $account);
+      observer_notify('drupal:user:create', $account);
     } catch (\Exception $e) {
       throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot register you at this moment, please try again later'), url('user'));
     }
