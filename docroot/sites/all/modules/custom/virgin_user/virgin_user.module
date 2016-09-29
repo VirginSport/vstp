@@ -182,11 +182,6 @@ function virgin_user_observer_notify($account) {
  */
 function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 
-  // Utility anonymous function to fetch field values
-  $value = function ($field_name) use ($form_state) {
-    return empty($form_state['values'][$field_name]['und'][0]['value']) ? null : $form_state['values'][$field_name]['und'][0]['value'];
-  };
-
   // Validate the user cannot save profile form with medical info if he does
   // not agree to share that information.
   $has_medical_conditions = false;
@@ -200,13 +195,13 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 
   // If any field is filled, then the user has medical conditions
   foreach ($medical_fields as $field) {
-    if ($value($field)) {
+    if (virgin_form_value($field, $form_state)) {
       $has_medical_conditions = TRUE;
       break;
     }
   }
 
-  $agree_share = (bool) $value('field_agree_share_medical_info');
+  $agree_share = (bool) virgin_form_value('field_agree_share_medical_info', $form_state);
 
   if (!$agree_share && $has_medical_conditions) {
     form_set_error('field_agree_share_medical_info', t('You must agree to share your medical information if you fill any of the medical fields.'));
