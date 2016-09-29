@@ -172,5 +172,13 @@ function _virgin_exception_handler($exception) {
  * @return mixed|null
  */
 function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0, $language = LANGUAGE_NONE) {
-  return empty($form_state['values'][$field_name][$language][$index]['value']) ? $default : $form_state['values'][$field_name][$language][$index]['value'];
+  if (!empty($form_state['values'][$field_name])) {
+    if (is_scalar($form_state['values'][$field_name])) {
+      return $form_state['values'][$field_name];
+    } else {
+      return empty($form_state['values'][$field_name][$language][$index]['value']) ? $default : $form_state['values'][$field_name][$language][$index]['value'];
+    }
+  }
+
+  return $default;
 }
