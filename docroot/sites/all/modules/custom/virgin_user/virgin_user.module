@@ -78,6 +78,9 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_register_form_validate';
+
+  // Region is defined by system on user registration
+  $form['field_region']['#access'] = FALSE;
 }
 
 /**
