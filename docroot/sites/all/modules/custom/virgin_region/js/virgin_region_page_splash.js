@@ -17,12 +17,12 @@
         // Global drupal cookie domain variable provided by virgin_Region
         var cookieDomain = Drupal.settings.virgin_region.cookie_domain;
 
-        // Set the expires
+        // Set the cookie parameters
         var cookieParts = [
             (encodeURIComponent(name) + "=" + encodeURIComponent(value)),
             "; expires=" + date.toGMTString(),
             "; path=/",
-            "; domain=" + Drupal.settings.virgin_region.cookie_domain
+            "; domain=" + cookieDomain
         ];
 
         // Save the cookie
@@ -36,7 +36,7 @@
         /**
          * Click event for every anchor with region-hostname attribute defined
          */
-        $('a[region-hostname*=]').click(function() {
+        $('a[region-hostname]').click(function() {
             // Save cookie valid for one year
             createCookie('virgin_sport_region_hostname', $(this).attr('region-hostname'), 365);
         });
