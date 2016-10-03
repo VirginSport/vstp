@@ -79,6 +79,8 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_register_form_validate';
 
+  array_unshift($form['#submit'], 'virgin_user_form_user_register_form_submit');
+
   // Region is defined by system on user registration
   $form['field_region']['#access'] = FALSE;
 }
@@ -152,6 +154,12 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   );
 
   $data = $data + $defaults;
+
+  // Add current region to user profile
+  $current_region = virgin_region_current();
+  if (!empty($current_region['nid'])) {
+    $userinfo['field_region'][LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+  }
 
   $birth_date = strtotime($data['birthYear'] . '/' . $data['birthMonth'] . '/' . $data['birthDay']);
 
@@ -245,6 +253,18 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
 }
 
 /**
+ * Submission callback for the user_register_form form.
+ *
+ * @see virgin_user_form_user_register_form_alter()
+ */
+function virgin_user_form_user_register_form_submit(&$form, &$form_state) {
+  $current_region = virgin_region_current();
+
+  if (!empty($current_region['nid'])) {
+    $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+  }
+}
+
  * Validation callback for the user_profile_form form.
  *
  * @see virgin_user_form_user_profile_form_alter()
