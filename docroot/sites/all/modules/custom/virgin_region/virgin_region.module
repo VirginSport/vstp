@@ -17,6 +17,11 @@ define('VIRGIN_REGION_CACHE', 'virgin_region:cache');
 define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 
 /**
+ * The region hostname cookie key
+ */
+define('VIRGIN_REGION_COOKIE', 'virgin_sport_region_hostname');
+
+/**
  * Implements hook_views_api().
  */
 function virgin_region_views_api() {
@@ -216,6 +221,9 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
 
   if ($current_region) {
     $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+
+    // Set current user region cookie on registration
+    virgin_region_region_cookie_set($current_region);
   }
 }
 
@@ -235,6 +243,11 @@ function virgin_region_form_user_login_submit(&$form, &$form_state) {
  */
 function virgin_region_user_login_submit($uid) {
   $current_region = virgin_region_current();
+
+  if ($current_region) {
+    // Set current user region cookie on registration
+    virgin_region_region_cookie_set($current_region);
+  }
 
   // Redirect user to its region on login
   virgin_region_user_redirect($uid, $current_region);
@@ -275,5 +288,19 @@ function virgin_region_user_redirect($uid, $current_region) {
     unset($_GET['destination']);
 
     drupal_goto($url);
+  }
+}
+
+/**
+ *  Set the region cookie hostname
+ *  @param $current_region
+ *  The Region array
+ */
+function virgin_region_region_cookie_set($current_region) {
+  global $cookie_domain;
+
+  if ($current_region) {
+    // Set cookie with one year expire in milliseconds (365 * 24 * 60 * 60)
+    setcookie(VIRGIN_REGION_COOKIE, $current_region['hostname'], time() + 31536000, "/", $cookie_domain);
   }
 }
