@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function virgin_user_schema() {
+  $schema = array();
+
+  $schema['virgin_user_tickets'] = array(
+    'description' => 'Stores the tickets that have been acquired by a given user.',
+    'fields' => array(
+      'attendly_rego_id' => array(
+        'description' => 'The Attendly unique Registration Number of this ticket.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ),
+      'sugar_id' => array(
+        'description' => 'The SugarCRM ID of this ticket.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'name' => array(
+        'description' => 'The name of the ticket.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'attendly_ticket_id' => array(
+        'description' => 'The Attendly ID of this ticket.',
+        'type' => 'int',
+        'length' => 11,
+      ),
+      'attendly_attendee_id' => array(
+        'description' => 'The Attendly ID of the Attendee of this ticket.',
+        'type' => 'int',
+        'length' => 11,
+      ),
+      'ticket_status' => array(
+        'description' => 'The status of this ticket.',
+        'type' => 'varchar',
+        'length' => 25,
+      ),
+      'start_time' => array(
+        'description' => 'The requested event start time for this ticket.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'target_time' => array(
+        'description' => 'The self reported event target time for this ticket.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'contact_id' => array(
+        'description' => 'The SugarCRM ID of the Contact who owns this ticket.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'event_id' => array(
+        'description' => 'The SugarCRM ID of the Event this ticket belongs to.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'package_id' => array(
+        'description' => 'The SugarCRM ID of the Package this ticket belongs to.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'partner_account_id' => array(
+        'description' => 'The SugarCRM ID of the Account on whose behalf the ticket was acquired.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'purchaser_contact_id' => array(
+        'description' => 'The SugarCRM ID of the Contact who acquired the ticket.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'ticket_type_id' => array(
+        'description' => 'The SugarCRM ID of this Ticket Type.',
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => '',
+      ),
+      'first_name' => array(
+        'description' => 'The first name of the person this ticket is for.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'last_name' => array(
+        'description' => 'The last name of the person this ticket is for.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'date_of_birth' => array(
+        'description' => 'The date of birth of the ticket owner in ISO 8601 date format YYYY-MM-DD',
+        'type' => 'varchar',
+        'length' => 10,
+        'default' => '',
+      ),
+      'whos_ticket_for' => array(
+        'description' => 'A key that sets for whom this ticket is for.',
+        'type' => 'varchar',
+        'length' => 10,
+      ),
+      'club_number' => array(
+        'description' => 'The membership number of the club that the ticket owner is representing',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'club_name' => array(
+        'description' => 'The name of the club that the ticket owner is representing',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'team_name' => array(
+        'description' => 'The name of the team that the ticket owner is representing',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'uid' => array(
+        'description' => 'The {users}.uid that owns this ticket',
+        'type' => 'int',
+      ),
+      'is_wheelchair_user' => array(
+        'description' => 'Boolean indicating whether this ticket is for a wheelchair participant.',
+        'type' => 'int',
+        'default' => 0,
+      ),
+      'is_placeholder' => array(
+        'description' => 'Boolean indicating whether this ticket is a missing ticket placeholder.',
+        'type' => 'int',
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('attendly_rego_id'),
+    'foreign keys' => array(
+      'user' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid'),
+      ),
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Adds user ticket schema.
+ */
+function virgin_user_update_7001() {
+  $schema = virgin_user_schema();
+  db_create_table('virgin_user_tickets', $schema['virgin_user_tickets']);
+}
