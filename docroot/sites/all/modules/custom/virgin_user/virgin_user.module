@@ -86,6 +86,13 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for user_login.
+ */
+function virgin_user_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = 'virgin_user_form_user_login_submit';
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for user_profile_form.
  */
 function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
@@ -173,6 +180,13 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
+}
+
+/**
+ * Implements hook_hybridauth_user_login().
+ */
+function virgin_user_hybridauth_user_login($account, $data) {
+  virgin_user_redirect_region($account->uid);
 }
 
 /**
@@ -265,6 +279,54 @@ function virgin_user_form_user_register_form_submit(&$form, &$form_state) {
   }
 }
 
+/**
+ * Submission callback for the user_login form.
+ *
+ * @see virgin_user_form_user_login_alter()
+ */
+function virgin_user_form_user_login_submit(&$form, &$form_state) {
+  virgin_user_redirect_region($form_state['uid']);
+}
+
+/**
+ * Login Callback, redirect user to its region.
+ *
+ * @param $uid
+ * The account uid
+ */
+function virgin_user_redirect_region($uid) {
+  global $is_https;
+
+  $account_wrapper = entity_metadata_wrapper('user', $uid);
+
+  // Redirect user to its correspondent region if available
+  if ($account_wrapper->field_region && $account_wrapper->field_region->getIdentifier()) {
+
+    // Load account region
+    $region = $account_wrapper->field_region->value();
+
+    // Get the hostname for the loaded region
+    $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
+
+    // If the user is already on his region, bailout now.
+    $current_region = virgin_region_current();
+
+    if ($current_region && $current_region['hostname'] == $hostname) {
+      return;
+    }
+
+    // Otherwise redirect the user to his profile page on his host region
+    $protocol = $is_https ? 'https' : 'http';
+    $url = sprintf('%s://%s/user', $protocol, $hostname);
+
+    // Unset destination, otherwise url is ignored
+    unset($_GET['destination']);
+
+    drupal_goto($url);
+  }
+}
+
+/**
  * Validation callback for the user_profile_form form.
  *
  * @see virgin_user_form_user_profile_form_alter()
