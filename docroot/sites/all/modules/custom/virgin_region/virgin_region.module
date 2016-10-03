@@ -96,6 +96,7 @@ function virgin_region_clear_cache($node) {
  *  - nid: The nid of the region
  *  - title: The original title of the region
  *  - flag: The atom object of the flag
+ *  - hostname: The hostname of the region
  */
 function virgin_region_regions() {
 
@@ -122,12 +123,13 @@ function virgin_region_regions() {
   if (!empty($results['node'])) {
     foreach ($results['node'] as $node) {
       $node_wrapper = entity_metadata_wrapper('node', $node->nid);
-      $region_url = $node_wrapper->field_hostname->value();
+      $hostname = $node_wrapper->field_hostname->value();
 
-      $regions[$region_url] = array(
+      $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
-        'flag' => $node_wrapper->field_flag_image->value()
+        'flag' => $node_wrapper->field_flag_image->value(),
+        'hostname' => $hostname
       );
     }
 
@@ -146,6 +148,7 @@ function virgin_region_regions() {
  *  - nid: The nid of the region
  *  - title: The original title of the region
  *  - flag: The atom object of the flag
+ *  - hostname: The hostname of the region
  */
 function virgin_region_current() {
   $regions = &drupal_static(__FUNCTION__, array());
