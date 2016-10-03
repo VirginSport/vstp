@@ -8,6 +8,7 @@ function virgin_region_page_splash () {
 
   drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
   drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash_redirect.js');
+  drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash.js');
 
   // TODO implement splash page
   $links = '';
