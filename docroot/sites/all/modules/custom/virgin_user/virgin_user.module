@@ -236,7 +236,7 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
   if (!preg_match("#[0-9]+#", $pass)) {
     form_set_error('pass', t("The password must have at least one number"));
   }
-  if (count($pass) < VIRGIN_USER_MIN_PASS_LENGTH) {
+  if (strlen($pass) < VIRGIN_USER_MIN_PASS_LENGTH) {
     form_set_error('pass', t("The password must have at least @min characters", array('@min' => VIRGIN_USER_MIN_PASS_LENGTH)));
   }
 }
