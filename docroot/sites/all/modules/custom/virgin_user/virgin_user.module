@@ -169,7 +169,7 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
  */
 function virgin_user_observer_info() {
   return array(
-    new VirginUserSugarListener(),
+    new VirginUserSugarPushListener(),
   );
 }
 

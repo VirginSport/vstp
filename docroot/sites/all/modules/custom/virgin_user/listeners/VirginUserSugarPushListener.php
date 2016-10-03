@@ -2,18 +2,18 @@
 
 /**
  * @file
- * Contains the VirginApiSugarUserListener class
+ * Contains the VirginApiSugarPushListener class
  */
 
 /**
- * Listens for Drupal user related events and syncs information to SugarCRM
+ * Listens for Drupal user related events and pushes information to SugarCRM
  *
  * This class creates and updates user information on SugarCRM when Users are
  * modified on Drupal and contact requests are made on their behalf in Sugar.
  *
  * @see virgin_virgin_contact_content_type_form_validate()
  */
-class VirginUserSugarListener implements ObserverObserverInterface {
+class VirginUserSugarPushListener implements ObserverObserverInterface {
 
   /**
    * {@inheritdoc}
