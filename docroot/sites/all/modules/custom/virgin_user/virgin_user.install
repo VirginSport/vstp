@@ -135,6 +135,11 @@ function virgin_user_schema() {
         'description' => 'The {users}.uid that owns this ticket',
         'type' => 'int',
       ),
+      'has_answered_mkt_questions' => array(
+        'description' => 'Boolean indicating the owner of this ticket has answered marketing questions.',
+        'type' => 'int',
+        'default' => 0,
+      ),
       'is_wheelchair_user' => array(
         'description' => 'Boolean indicating whether this ticket is for a wheelchair participant.',
         'type' => 'int',
