@@ -17,6 +17,11 @@ define('VIRGIN_REGION_CACHE', 'virgin_region:cache');
 define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 
 /**
+ * The region hostname cookie key
+ */
+define('VIRGIN_REGION_COOKIE', 'virgin_sport_region_hostname');
+
+/**
  * Implements hook_views_api().
  */
 function virgin_region_views_api() {
@@ -79,6 +84,46 @@ function virgin_region_node_update($node) {
   virgin_region_clear_cache($node);
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for user_register_form.
+ */
+function virgin_region_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  // Add submission callback handler
+  array_unshift($form['#submit'], 'virgin_region_form_user_register_form_submit');
+
+  // Region is defined by system on user registration
+  $form['field_region']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_login.
+ */
+function virgin_region_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = 'virgin_region_form_user_login_submit';
+}
+
+/**
+ * Implements hook_hybridauth_userinfo_alter().
+ *
+ * Maps the user profile information from the social network at registration
+ * time to the fields in the user's Drupal profile.
+ */
+function virgin_region_hybridauth_userinfo_alter(&$userinfo, $data) {
+  // Add current region to user profile
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    $userinfo['field_region'][LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+  }
+}
+
+/**
+ * Implements hook_hybridauth_user_login().
+ */
+function virgin_region_hybridauth_user_login($account, $data) {
+  virgin_region_user_login_submit($account->uid);
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 
@@ -96,6 +141,7 @@ function virgin_region_clear_cache($node) {
  *  - nid: The nid of the region
  *  - title: The original title of the region
  *  - flag: The atom object of the flag
+ *  - hostname: The hostname of the region
  */
 function virgin_region_regions() {
 
@@ -122,12 +168,13 @@ function virgin_region_regions() {
   if (!empty($results['node'])) {
     foreach ($results['node'] as $node) {
       $node_wrapper = entity_metadata_wrapper('node', $node->nid);
-      $region_url = $node_wrapper->field_hostname->value();
+      $hostname = $node_wrapper->field_hostname->value();
 
-      $regions[$region_url] = array(
+      $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
-        'flag' => $node_wrapper->field_flag_image->value()
+        'flag' => $node_wrapper->field_flag_image->value(),
+        'hostname' => $hostname
       );
     }
 
@@ -146,6 +193,7 @@ function virgin_region_regions() {
  *  - nid: The nid of the region
  *  - title: The original title of the region
  *  - flag: The atom object of the flag
+ *  - hostname: The hostname of the region
  */
 function virgin_region_current() {
   $regions = &drupal_static(__FUNCTION__, array());
@@ -161,4 +209,98 @@ function virgin_region_current() {
   }
 
   return null;
+}
+
+/**
+ * Submission callback for the user_register_form form.
+ *
+ * @see virgin_region_form_user_register_form_alter()
+ */
+function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+
+    // Set current user region cookie on registration
+    virgin_region_region_cookie_set($current_region);
+  }
+}
+
+/**
+ * Submission callback for the user_login form.
+ *
+ * @see virgin_region_form_user_login_alter()
+ */
+function virgin_region_form_user_login_submit(&$form, &$form_state) {
+  virgin_region_user_login_submit($form_state['uid']);
+}
+
+/**
+ * Login Callback for drupal login and hybridauth login
+ *
+ * @param $uid
+ */
+function virgin_region_user_login_submit($uid) {
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    // Set current user region cookie on registration
+    virgin_region_region_cookie_set($current_region);
+  }
+
+  // Redirect user to its region on login
+  virgin_region_user_redirect($uid, $current_region);
+}
+
+/**
+ * Redirect user to its region.
+ *
+ * @param $uid
+ * The account uid
+ * @param $current_region
+ * The Region array
+ */
+function virgin_region_user_redirect($uid, $current_region) {
+  global $is_https;
+
+  $account_wrapper = entity_metadata_wrapper('user', $uid);
+
+  // Redirect user to its correspondent region if available
+  if ($account_wrapper->field_region && $account_wrapper->field_region->getIdentifier()) {
+
+    // Load account region
+    $region = $account_wrapper->field_region->value();
+
+    // Get the hostname for the loaded region
+    $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
+
+    // If the user is already on his region, bailout now.
+    if ($current_region && $current_region['hostname'] == $hostname) {
+      return;
+    }
+
+    // Otherwise redirect the user to his profile page on his host region
+    $protocol = $is_https ? 'https' : 'http';
+    $url = sprintf('%s://%s/user', $protocol, $hostname);
+
+    // Unset destination, otherwise url is ignored
+    unset($_GET['destination']);
+
+    drupal_goto($url);
+  }
+}
+
+/**
+ *  Set the region cookie hostname
+ *  @param $current_region
+ *  The Region array
+ */
+function virgin_region_region_cookie_set($current_region) {
+  global $cookie_domain;
+
+  if ($current_region) {
+    // Set cookie with one year expire in milliseconds (365 * 24 * 60 * 60)
+    setcookie(VIRGIN_REGION_COOKIE, $current_region['hostname'], time() + 31536000, "/", $cookie_domain);
+  }
 }

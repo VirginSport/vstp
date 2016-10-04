@@ -25,16 +25,16 @@ function virgin_user_strongarm() {
           'weight' => '7',
         ),
         'metatags' => array(
-          'weight' => '20',
+          'weight' => '22',
         ),
         'redirect' => array(
-          'weight' => '21',
+          'weight' => '23',
         ),
         'account' => array(
           'weight' => '0',
         ),
         'timezone' => array(
-          'weight' => '22',
+          'weight' => '24',
         ),
         'picture' => array(
           'weight' => '12',
