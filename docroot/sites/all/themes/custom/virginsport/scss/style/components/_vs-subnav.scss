@@ -1,0 +1,148 @@
+
+/*
+/* Class "vs-subnav--reversed" should be applied to subnav to:
+/* revert the nav color to black and white
+*/
+
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-subnav,
+.vs-subnav {
+  @include clearfix();
+  @include transition(all .5s ease-in-out);
+  display: block;
+  background-color: transparent;
+  text-align: center;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  z-index: 2;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-subnav__list {
+  margin: 0;
+  padding: 0 20px;
+}
+
+.vs-subnav__overlay {
+  @include transition(all .5s ease-in-out);
+  background-image: linear-gradient(-90deg, #F0F0F0 10%, rgba(240,240,240,0.00) 100%);
+  content: '';
+  height: 52px;
+  position: fixed;
+  width: 60px;
+  right: 0;
+  z-index: 3;
+}
+
+.vs-subnav__item {
+  display: inline-block;
+  padding-left: .9375rem;
+  padding-right: .9375rem;
+
+  &:last-child {
+    padding-right: 2.5rem;
+  }
+}
+
+.vs-subnav__link {
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: .75rem;
+  color: $c-black;
+  display: block;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 0.4rem;
+
+  &:before {
+    @include transition(all .4s);
+    content: '';
+    background-color: transparent;
+    position: absolute;
+    left: 0;
+    right:0;
+    height: 2px;
+    bottom: 0rem;
+  }
+
+  &:hover,
+  &:active,
+  &:focus,
+  &.vs-subnav__link--active {
+    color: $c-black;
+
+    &:before {
+      background-color: $c-black;
+    }
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-subnav--reversed {
+
+  .vs-subnav__link {
+    color: $c-white;
+
+    &:hover:before {
+      background-color: $c-white;
+    }
+  }
+
+  .vs-subnav__link--active:before {
+    background-color: $c-white;
+  }
+}
+
+.vs-subnav__overlay--reversed {
+  background-image: linear-gradient(-90deg, $c-black 0%, rgba($c-black, 0) 100%);
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-subnav__overlay {
+    height: 61px;
+  }
+
+  .vs-subnav__overlay--header-scroll {
+    top: 60px;
+  }
+
+  .vs-subnav__item {
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
+  }
+
+  .vs-subnav__link {
+    font-size: $font-size-base;
+  }
+}
+
+
+@include media-breakpoint-up(lg) {
+  .vs-subnav__item:last-child {
+    padding-right: 1.875rem;
+  }
+
+}
+
+@media screen and (min-width: $main-nav-breakpoint) {
+  .vs-subnav__overlay--fixed-header {
+    top: 0;
+  }
+}

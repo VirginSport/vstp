@@ -1,0 +1,274 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+label {
+  font-weight: 500;
+  color: $c-black;
+  margin-bottom: .3125rem;
+  font-size: 14px;
+}
+
+.form-control {
+  font-size: 14px;
+  color: $c-black;
+  max-width: 20.625rem;
+
+  &:focus ~ .vs-focus-label,
+  &.vs-form-control--not-empty ~ .vs-focus-label {
+    top: 5px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  &:focus {
+    color: $c-black;
+  }
+}
+
+.vs-form-header {
+  font-family: $font-family-serif;
+  color: $c-orange-bright;
+  text-transform: uppercase;
+  font-size: 1.625rem;
+  margin-bottom: .625rem;
+  margin-top: 2rem;
+}
+
+.vs-form-group {
+  position: relative;
+  margin-bottom: .625rem;
+
+  .form-control {
+    padding: 15px 10px 0;
+    height: 3.125rem;
+    display: inline-block;
+  }
+
+  .vs-textarea {
+    height: 8.75rem;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    resize: none;
+  }
+}
+
+.vs-focus-label {
+  @include transition(all .2s ease);
+  color: #767676;
+  cursor: text;
+  font-weight: 400;
+  position: absolute;
+  left: 10px;
+  top: 15px;
+}
+
+
+// Select group
+// ----------------------------------------------------------------------------
+
+.vs-select-wrapper {
+  display: inline-block;
+  color: $c-black;
+  font-size: 14px;
+  width: 100%;
+  max-width: 20.625rem;
+  border: 1px solid rgba($c-black, .2);
+  border-radius: 4px;
+  padding: .0625rem .625rem;
+  position: relative;
+
+  > label {
+    font-size: 12px;
+    color: #767676;
+  }
+}
+
+.vs-select-group {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vs-select-group__select {
+  @include transition(all .2s);
+  border: 0;
+  background-color: transparent;
+  height: 1.875rem;
+  text-align: center;
+  text-align-last: center;
+  width: 100%;
+  color: $c-black;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.vs-select-group__label--day {
+  width: 20%;
+}
+
+.vs-select-group__label--month,
+.vs-select-group__label--year {
+  width: 38.7%;
+}
+
+.vs-select-group__label--full {
+  width: 100%;
+
+  > .vs-select-group__select {
+    text-align-last: left;
+  }
+}
+
+.vs-select-group__select--empty {
+  .selectize-dropdown,
+  .selectize-input,
+  .selectize-input input {
+    color: #767676;
+  }
+}
+
+
+// Inline forms
+// ----------------------------------------------------------------------------
+
+.vs-form-group--inline > div {
+  display: inline-block;
+
+  & {
+    padding-right: 1.875rem
+  }
+
+  &:last-child,
+  &:only-child {
+    padding-right: 0;
+  }
+}
+
+
+// Disabled forms
+// ----------------------------------------------------------------------------
+
+.vs-form--disabled {
+
+  .vs-form-label {
+    color: rgba($c-black, .7);
+    cursor: not-allowed;
+  }
+}
+
+
+// Radio buttons
+// ----------------------------------------------------------------------------
+
+.vs-form-input--radio {
+  display: none;
+}
+
+.vs-form-label--radio {
+  padding-left: 30px;
+  position: relative;
+  cursor: pointer;
+}
+
+.vs-form-label--radio:before {
+  @include transition(all .2s);
+  @include box-shadow(0 0 0 1px rgba($c-black, .2));
+  content: '';
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}
+
+.vs-form-label--radio:after {
+  @include transition(all .2s);
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+.vs-form-input--radio:checked + .vs-form-label--radio:after {
+  background-color: $c-orange-bright;
+}
+
+
+// Checkboxes
+// ----------------------------------------------------------------------------
+
+.vs-form-input--check {
+  display: none;
+}
+
+.vs-form-label--check {
+  padding-left: 30px;
+  position: relative;
+  cursor: pointer;
+}
+
+.vs-form-label--check:before {
+  @include transition(all .2s);
+  content: '';
+  border: 1px solid rgba($c-black, .2);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}
+
+.vs-form-label--check:after {
+  @include transition(all .2s);
+  content: '';
+  background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxMnB4IiB2aWV3Qm94PSIwIDAgMTQgMTIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+ICAgICAgICA8dGl0bGU+R3JvdXA8L3RpdGxlPiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4gICAgPGRlZnM+PC9kZWZzPiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj4gICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMi4wMDAwMDAsIDIuMDAwMDAwKSIgc3Ryb2tlPSIjRkYwMDQwIiBzdHJva2Utd2lkdGg9IjIiPiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zLDggTDEwLDAiIGlkPSJMaW5lIj48L3BhdGg+ICAgICAgICAgICAgPHBhdGggZD0iTTMsOCBMMCw1IiBpZD0iTGluZSI+PC9wYXRoPiAgICAgICAgPC9nPiAgICA8L2c+PC9zdmc+') no-repeat center center;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+}
+
+.vs-form-input--check:checked + .vs-form-label--check:after {
+  opacity: 1;
+}
+
+
+// Validations
+// ----------------------------------------------------------------------------
+
+.vs-has-error {
+  .form-control,
+  .vs-select-wrapper,
+  .vs-form-label--check:before {
+    border-color: $state-danger;
+  }
+
+  .vs-form-label--radio:before {
+    @include box-shadow(0 0 0 1px $state-danger);
+  }
+
+  .vs-form--disabled .vs-form-label--radio:before {
+    @include box-shadow(0 0 0 1px rgba($c-black, .2));
+  }
+
+  .vs-form--disabled .vs-form-label--check:before {
+    border-color: rgba($c-black, .2);
+  }
+}
+
+.vs-error-label {
+  color: $state-danger;
+  font-size: .625rem;
+  padding: .3125rem 0;
+}

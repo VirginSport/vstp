@@ -1,0 +1,333 @@
+/*
+/* Class "vs-menu-open" should be applied to body element to trigger:
+/* button transition
+/* menu overlay visibility
+/* Mobile menu visibility
+*/
+
+/*
+/* Class "vs-header--small" should be applied to header element to trigger:
+/* header transitions making it smaller
+*/
+
+
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-header,
+.vs-header {
+  @include transition(all .5s ease-in-out);
+  @include clearfix;
+  display: block;
+  padding: .75rem calc(.75rem - 15px);
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-header__logo-wrapper {
+  position: relative;
+  float: left;
+  z-index: 1;
+}
+
+.vs-header__logo {
+  @include transition(all .5s ease-in-out);
+  position: absolute;
+  background: transparent url('../img/vs-logo.svg') no-repeat left center;
+  background-size: contain;
+  width: 5.05625rem;
+  height: 1.875rem;
+  top: -3px;
+  z-index: -1;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.vs-header__nav-wrapper {
+  float: right;
+  position: relative;
+}
+
+.vs-header__nav {
+  margin-bottom: 0;
+  font-size: 0;
+  display: none;
+}
+
+.vs-header__nav-item {
+  display: inline-block;
+  padding-right: 2.5rem;
+}
+
+.vs-header__nav-link {
+  @include transition(all .2s);
+  font-family: $font-family-serif;
+  color: $c-white;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1rem;
+
+  &:hover {
+    opacity: .7;
+    color: $c-white;
+    text-decoration: none;
+  }
+}
+
+.vs-header__basket {
+  background: transparent url('../img/basket.svg') no-repeat 0 0;
+  background-size: contain;
+  display: inline-block;
+  text-align: center;
+  color: $c-white;
+  width: 1.25rem;
+  height: 1.5625rem;
+  margin-right: 2.9375rem;
+  position: relative;
+  top: -1px;
+}
+
+.vs-header__basket__value {
+  font-size: .625rem;
+  position: relative;
+  top: 2px;
+}
+
+
+// Responsive menu trigger
+// ----------------------------------------------------------------------------
+
+.vs-menu-trigger {
+  @include appearance(none);
+  @include box-shadow(none);
+  @include transition(all .5s ease-in-out);
+  background-color: transparent;
+  overflow: hidden;
+  width: 3.375rem;
+  height: 3.125rem;
+  padding: 1rem;
+  font-size: 0;
+  border-radius: 0;
+  cursor: pointer;
+  z-index: 1000;
+  border: 0;
+  position: fixed;
+  right: 4px;
+  top: 0;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  .vs-menu-open & {
+    .vs-menu-trigger__bar {
+      background-color: transparent;
+
+      &:before {
+        @include transition-delay(0s, .3s);
+        @include transform(rotate(45deg));
+        top: 0;
+      }
+
+      &:after {
+        @include transition-delay(0s, .3s);
+        @include transform(rotate(-45deg));
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.vs-menu-trigger__bar {
+  @include transition(background 0s 0.3s);
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 1.375rem;
+  background-color: $c-white;
+
+  &:before,
+  &:after {
+    @include transition-delay(0.3s, 0s);
+    @include transition-duration(0.3s, 0.3s);
+    background-color: $c-white;
+    position: absolute;
+    content: '';
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+
+  &:before {
+    @include transition-property(top, transform);
+    top: -8px;
+  }
+
+  &:after {
+    @include transition-property(bottom, transform);
+    bottom: -8px;
+  }
+}
+
+
+// Mobile menu
+// ----------------------------------------------------------------------------
+
+.vs-mobile-menu {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.vs-mobile-menu__inner {
+  @include transition(all 0.3s ease-in-out);
+  @include transform(scale(0.8));
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  opacity: 0;
+
+  .vs-menu-open & {
+    @include transition(all 0.3s ease-in-out 0.3s);
+    @include transform(scale(1));
+    opacity: 1;
+  }
+}
+
+.vs-mobile-menu__menu {
+  font-family: $font-family-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.vs-mobile-menu__item {
+  list-style-type: none;
+}
+
+.vs-mobile-menu__link {
+  @include transition(all .2s);
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $c-white;
+  padding: .85rem 0;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $c-white;
+    opacity: .7;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-header--small {
+  .vs-header__logo {
+    background-image: url('../img/vs-logo-alternate.svg');
+  }
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+
+  vs-header,
+  .vs-header {
+    padding: 3rem calc(3.125rem - 15px) 3rem calc(2.1875rem - 15px);
+  }
+
+  .vs-menu-trigger {
+    @include transform(translate(-26px, 40px));
+    right: 15px;
+  }
+
+  .vs-menu-trigger--header-scroll {
+    @include transform(translate(-26px, 3px));
+  }
+
+  .vs-menu-trigger__bar {
+    width: 29px;
+  }
+
+  .vs-header__logo {
+    height: 4.125rem;
+    width: 11.25rem;
+    top: -.8125rem;
+  }
+
+  .vs-header--small {
+    padding-top: .625rem;
+    padding-bottom: 0.625rem;
+
+    .vs-header__logo {
+      width: 7.75rem;
+      height: 2.8125rem;
+      top: -3px;
+    }
+  }
+
+  .vs-header__basket {
+    width: 1.8125rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+    margin-right: 54px;
+    position: relative;
+    top: -4px;
+  }
+
+  .vs-header__basket__value {
+    font-size: .9375rem;
+    top: 6px;
+  }
+
+  .vs-menu-trigger__bar {
+    &:before {
+      top: -10px;
+    }
+
+    &:after {
+      bottom: -10px;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-header__nav-link {
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (min-width: $main-nav-breakpoint) {
+  .vs-menu-trigger {
+    display: none;
+  }
+
+  .vs-header__nav {
+    display: inline-block;
+  }
+
+  .vs-header__basket {
+    margin-right: 0;
+  }
+
+  .vs-header--fixed-header {
+    @include transform(translateY(-136px));
+
+    &.vs-header--small {
+      @include transform(translateY(-60px));
+    }
+  }
+}

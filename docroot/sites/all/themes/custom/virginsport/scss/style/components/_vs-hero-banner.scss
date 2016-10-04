@@ -1,0 +1,156 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-hero-banner,
+.vs-hero-banner {
+  @include transition(all .5s ease-in-out);
+  @include clearfix();
+  display: block;
+  background-color: #303241;
+  min-height: 17.125rem;
+  position: relative;
+  text-align: center;
+  color: $c-white;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-hero-banner__background {
+  @include transition(padding .5s ease-in-out);
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  background-attachment: scroll;
+  background-position: center top;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.vs-hero-banner__days-left-wrapper {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1;
+  font-size: .625rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-hero-banner__title {
+  @include transition(all .5s ease-in-out);
+  font-family: $font-family-serif;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-hero-banner__date {
+  @include transition(all .5s ease-in-out);
+  font-family: $font-family-serif;
+  font-size: 1.125rem;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-hero-banner__button-wrapper {
+  margin-bottom: .5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-hero-banner__button {
+  background-color: rgba($c-black, .4);
+}
+
+.vs-hero-banner__link {
+  @include transition(all .5s ease-in-out);
+  color: $c-white;
+  font-size: .625rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid $c-white;
+
+  &:hover {
+    opacity: .7;
+    color: $c-white;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  vs-hero-banner,
+  .vs-hero-banner {
+    min-height: 34rem;
+  }
+
+  .vs-hero-banner__background {
+    padding-top: 3.5rem;
+  }
+
+  .vs-hero-banner__days-left-wrapper {
+    @include box-shadow(inset 0 0 0 2px $c-white);
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    position: absolute;
+    right: 2.8125rem;
+    top: 8.4375rem;
+    margin-bottom: 0;
+  }
+
+  .vs-hero-banner__days-left {
+    font-size: 2.5rem;
+    line-height: 1;
+    padding-top: 1.35rem;
+    display: block;
+  }
+
+  .vs-hero-banner__days-label {
+    font-size: .8125rem;
+    opacity: .8;
+  }
+
+  .vs-hero-banner__link {
+    font-size: .75rem;
+  }
+
+  .vs-hero-banner__title {
+    font-size: 3.125rem;
+  }
+
+  .vs-hero-banner__date {
+    font-size: 2.1875rem;
+    margin-bottom: 1.125rem;
+  }
+}

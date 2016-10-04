@@ -1,0 +1,103 @@
+
+body:before {
+  content: 'xs';
+  padding: 0 4px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: auto;
+  font-size: 12px;
+  z-index: 9999;
+  @include media-breakpoint-up(sm) { content: 'sm'; }
+  @include media-breakpoint-up(md) { content: 'md'; }
+  @include media-breakpoint-up(lg) { content: 'lg'; }
+  @include media-breakpoint-up(xl) { content: 'xl'; }
+}
+
+body,
+html {
+  @include font-smoothing();
+}
+
+.page-wrapper {
+  position: relative;
+  min-height: 100%;
+  margin-bottom: -15.625rem;
+
+  &:after {
+    content: '';
+    display: block;
+    height: 15.625rem;
+  }
+}
+
+@mixin paragraph {
+  margin-bottom: 1.875rem;
+  font-weight: 300;
+  font-size: .75rem;
+  line-height: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-base;
+  }
+}
+
+p,
+.prose {
+  @include paragraph;
+}
+
+.prose {
+  font-weight: 300;
+}
+
+.vs-menu-open {
+  overflow: hidden;
+}
+
+.vs-invisible-element {
+  display: none;
+}
+
+@media screen and (max-width: 1160px) {
+  .trigger-fixed-menu:after {
+    content: ' (no effect until 1160px wide)';
+  }
+}
+
+
+// Gradient variations
+
+%vs-gradient-blue {
+  @include gradient-x(#1F85FF, #4231CB, 0%, 100%);
+}
+
+%vs-gradient-teal {
+  @include gradient-x(#01B9C0, #001642, 0%, 100%);
+}
+
+%vs-gradient-orange {
+  @include gradient-x(#FF5858, #FFE386, 0%, 100%);
+}
+
+%vs-gradient-purple {
+  @include gradient-x(#9D50BB, #3A2899, 0%, 100%);
+}
+
+%vs-gradient-brown {
+  @include gradient-x(#840324, #061161, 0%, 100%);
+}
+
+%vs-gradient-rose {
+  @include gradient-x(#F857A6, #FF5858, 0%, 100%);
+}
+
+%vs-gradient-violet {
+  @include gradient-x(#FB8B5F, #504EA1, 0%, 100%);
+}

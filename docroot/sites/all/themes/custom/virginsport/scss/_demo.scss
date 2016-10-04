@@ -1,0 +1,19 @@
+
+// Css file pro demo purpose only
+// ----------------------------------------------------------------------------
+
+
+.vs-region--demo {
+  @include transition(all .5s ease-in-out);
+  padding-top: 9rem;
+}
+
+@include media-breakpoint-up(md) {
+  .vs-region--demo {
+    padding-top: 16rem;
+  }
+
+  .vs-region-demo--header-scroll {
+    padding-top: 11rem;
+  }
+}
