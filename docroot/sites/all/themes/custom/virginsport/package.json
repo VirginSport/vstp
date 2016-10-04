@@ -26,6 +26,7 @@
   },
   "scripts": {
     "watch": "webpack --progress --colors --watch",
-    "build": "webpack --optimize-minimize"
+    "build": "webpack --optimize-minimize",
+    "frontend-sync": "git clone git@github.com:acquia-pso/vstp-frontend.git .temp-sync --depth=1 --branch=develop --single-branch && rm -rf scss/ && rm -rf img/ && rm -rf fonts && cp -R .temp-sync/src/css scss && cp -R .temp-sync/src/img img && cp -R .temp-sync/src/fonts fonts && rm -rf .temp-sync echo 'Sync finished!'"
   }
 }
