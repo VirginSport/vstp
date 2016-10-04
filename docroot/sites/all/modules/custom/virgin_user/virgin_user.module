@@ -193,7 +193,9 @@ function virgin_user_entity_presave($entity, $type) {
  */
 function virgin_user_observer_notify($account) {
 
-  // Do not trigger observer events for the admin user
+  // Do not trigger observer events for the admin user, given that the admin
+  // user should not neither be synced to SugarCRM or be conditioned by other
+  // effects that happen to normal user accounts.
   if ($account->uid === "1") {
     return;
   }
