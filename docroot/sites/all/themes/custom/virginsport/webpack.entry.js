@@ -1,3 +1,3 @@
 // Webpack JS entry file
-require('./scss/main.scss')
-require('./js/main.js')
+require('./src/scss/main.scss')
+require('./src/js/main.js')
