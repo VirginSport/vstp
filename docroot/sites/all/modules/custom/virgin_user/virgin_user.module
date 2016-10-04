@@ -192,6 +192,14 @@ function virgin_user_entity_presave($entity, $type) {
  * @throws \VirginException
  */
 function virgin_user_observer_notify($account) {
+
+  // Do not trigger observer events for the admin user, given that the admin
+  // user should neither be synced to SugarCRM or be conditioned by other
+  // effects that apply to normal user accounts.
+  if ($account->uid === "1") {
+    return;
+  }
+
   // Based on account type we trigger create or update events
   if ($account->is_new) {
     try {
