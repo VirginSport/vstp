@@ -1,0 +1,51 @@
+
+// Default elements
+// ----------------------------------------------------------------------------
+
+.tooltip-inner {
+  text-align: left;
+  font-size: .75rem;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-tooltip-trigger {
+  margin-left: 1.125rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  z-index: 1;
+  color: $c-white;
+  background-color: #999999;
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1.7rem;
+  display: none;
+
+  &:hover {
+    color: $c-white;
+  }
+
+  &:focus {
+    color: $c-white;
+    outline: 0;
+  }
+}
+
+input[type="text"] + label + .vs-tooltip-trigger,
+.vs-select-wrapper + .vs-tooltip-trigger {
+  position: relative;
+  top: -6px;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(lg) {
+  .vs-tooltip-trigger {
+    display: inline-block;
+  }
+}

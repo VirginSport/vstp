@@ -1,0 +1,66 @@
+
+// Selectize elements override
+// ----------------------------------------------------------------------------
+
+.selectize-input input {
+  position: absolute !important;
+  top: -9999px;
+  left: -9999px;
+}
+
+.selectize-input {
+  border: 0;
+  padding-left: 0;
+
+  &.focus {
+    @include box-shadow(none);
+  }
+}
+
+.selectize-control.single
+.selectize-input:after {
+  border-top-color: rgba($c-black, .2);
+  right: 6px;
+}
+
+.selectize-dropdown,
+.selectize-dropdown.form-control {
+  @include box-shadow(none);
+}
+
+.selectize-dropdown .active {
+  background-color: #f2f9fc;
+  color: #333;
+}
+
+.selectize-dropdown-content {
+  @include box-shadow(none);
+  background-color: $c-white;
+  border: 1px solid rgba($c-black, .2);
+  border-radius: 0 0 4px 4px;
+  border-top-color: transparent;
+  margin-top: -3px;
+  max-height: 200px;
+  text-align-last: left;
+}
+
+.selectize-control.single .selectize-input,
+.selectize-control.single .selectize-input input {
+  border: 1px solid transparent;
+}
+
+.selectize-control.single .selectize-input.input-active,
+.selectize-control.single .selectize-input.input-active input {
+  cursor: pointer;
+  border: 1px solid rgba($c-black, .2);
+  border-bottom-width: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.vs-select-group__label--full .selectize-input {
+  padding-left: 12px;
+}
+
+.selectize-dropdown-content{
+  color: #767676;
+}

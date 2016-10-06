@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'virgin-sport-icons';
+  src:  url('../fonts/icons/virgin-sport-icons.eot?pk7sff');
+  src:  url('../fonts/icons/virgin-sport-icons.eot?pk7sff#iefix') format('embedded-opentype'),
+  url('../fonts/icons/virgin-sport-icons.ttf?pk7sff') format('truetype'),
+  url('../fonts/icons/virgin-sport-icons.woff?pk7sff') format('woff'),
+  url('../fonts/icons/virgin-sport-icons.svg?pk7sff#virgin-sport-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin icons() {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'virgin-sport-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  @include icons;
+}
+
+.icon-high-five:before {
+  content: $icon-high-five;
+}
+.icon-join-team:before {
+  content: $icon-join-team;
+}
+.icon-tell-us:before {
+  content: $icon-tell-us;
+}
+.icon-buy-gear:before {
+  content: $icon-buy-gear;
+}
+.icon-share:before {
+  content: $icon-share;
+}
+.icon-event-selfie:before {
+  content: $icon-event-selfie;
+}
+.icon-review:before {
+  content: $icon-review;
+}
+.icon-results-medal:before {
+  content: $icon-results-medal;
+}
+.icon-results-cup:before {
+  content: $icon-results-cup;
+}
+.icon-replay:before {
+  content: $icon-replay;
+}
+.icon-team-member:before {
+  content: $icon-team-member;
+}
+.icon-country-landing-uk:before {
+  content: $icon-country-landing-uk;
+}
+.icon-country-landing-us:before {
+  content: $icon-country-landing-us;
+}
+.icon-confirmation:before {
+  content: $icon-confirmation;
+}
+.icon-average-pace:before {
+  content: $icon-average-pace;
+}
+.icon-finish-time:before {
+  content: $icon-finish-time;
+}
+.icon-celebration:before {
+  content: $icon-celebration;
+}
+.icon-basket:before {
+  content: $icon-basket;
+}
+.icon-avatar:before {
+  content: $icon-avatar;
+}
+.icon-email-share:before {
+  content: $icon-email-share;
+}
+.icon-email-filled:before {
+  content: $icon-icon-email-filled;
+}
+.icon-facebook:before {
+  content: $icon-facebook;
+}
+.icon-instagram:before {
+  content: $icon-instagram;
+}
+.icon-snapchat:before {
+  content: $icon-snapchat;
+}
+.icon-twitter:before {
+  content: $icon-twitter;
+}

@@ -1,0 +1,179 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.btn:focus,
+.btn:active:focus {
+  outline: 0;
+}
+
+.vs-btn {
+  text-transform: uppercase;
+  font-size: $font-size-sm;
+  background-color: $c-orange-bright;
+  color: $c-white;
+
+  &:hover {
+    opacity: $button-hover;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-btn--sm {
+  min-height: 2.25rem;
+  font-size: $font-size-sm;
+}
+
+.vs-btn--lg {
+  font-size: 1rem;
+  min-height: 3.125rem;
+  border-width: 0;
+}
+
+[class*=vs-btn--min-] {
+  padding-left: 0;
+  padding-right: 0;}
+
+.vs-btn--min-sm {
+  min-width: 11.875rem;
+}
+
+.vs-btn--min-lg {
+  min-width: 13.75rem;
+}
+
+.vs-btn--min-xl {
+  min-width: 16.6875rem;
+}
+
+.vs-btn--min-xxl {
+  width: 100%;
+  text-transform: none;
+}
+
+.vs-btn--gradient-blue {
+  @extend %vs-gradient-blue;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-blue;
+  }
+}
+
+.vs-btn--gradient-teal {
+  @extend %vs-gradient-teal;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-teal;
+  }
+}
+
+.vs-btn--gradient-orange {
+  @extend %vs-gradient-orange;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-orange;
+  }
+}
+
+.vs-btn--gradient-purple {
+  @extend %vs-gradient-purple;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-purple;
+  }
+}
+
+.vs-btn--gradient-brown {
+  @extend %vs-gradient-brown;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-brown;
+  }
+}
+
+.vs-btn--gradient-rose {
+  @extend %vs-gradient-rose;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-rose;
+  }
+}
+
+.vs-btn--gradient-violet {
+  @extend %vs-gradient-violet;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-violet;
+  }
+}
+
+.vs-btn--transparent {
+  opacity: .4;
+  background-color: $c-black;
+
+  &:hover {
+    background-color: $c-black;
+    opacity: .2;
+  }
+}
+
+.vs-btn--orange {
+  background-color: $c-orange;
+}
+
+.vs-btn--outline-black {
+  @include button-outline-variant(rgba($c-black, .4));
+  border-width: 2px;
+
+  &:hover,
+  &:active,
+  &:active:focus,
+  &:focus {
+    background-color: transparent;
+    color: rgba($c-black, .4);
+  }
+}
+
+.vs-btn--outline-white {
+  @include button-outline-variant($c-white);
+  border-width: 2px;
+
+  &:hover,
+  &:active,
+  &:active:focus,
+  &:focus {
+    background-color: transparent;
+    color: $c-white;
+    border-color: $c-white;
+  }
+}
+
+.vs-btn--link {
+  background-color: transparent;
+  border-color: transparent;
+  color: $c-black;
+  text-align: left;
+  text-transform: uppercase;
+  padding-left: 1.875rem;
+  padding-right: 1.875rem;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+@include media-breakpoint-up(md) {
+  .vs-btn--min-xxl {
+    min-width: 21.875rem;
+    width: auto;
+  }
+}
