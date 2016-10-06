@@ -27,3 +27,21 @@
     <?php endif; ?>
   </div>
 </div>
+
+<style type="text/css">
+  body.page-splash { display: none; }
+  body.page-splash.page-splash--ready { display: block; }
+</style>
+
+<noscript>
+  <style type="text/css">
+    body { display: block !important; }
+  </style>
+</noscript>
+
+<script>
+  // Delay to avoid flash on redirection
+  window.setTimeout(function() {
+    document.body.classList.add("page-splash--ready");
+  }, 500);
+</script>
