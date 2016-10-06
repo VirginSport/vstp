@@ -244,11 +244,6 @@ function virgin_region_form_user_login_submit(&$form, &$form_state) {
 function virgin_region_user_login_submit($uid) {
   $current_region = virgin_region_current();
 
-  if ($current_region) {
-    // Set current user region cookie on registration
-    virgin_region_region_cookie_set($current_region);
-  }
-
   // Redirect user to its region on login
   virgin_region_user_redirect($uid, $current_region);
 }
