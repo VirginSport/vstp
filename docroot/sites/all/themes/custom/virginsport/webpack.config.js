@@ -23,7 +23,19 @@ module.exports = {
       // Preprocess SCSS files to CSS
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style", "css!postcss!sass!")
+        loader: ExtractTextPlugin.extract("style", "css!resolve-url!postcss!sass!")
+      },
+
+      // Preprocess Font files
+      {
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
+        loader: 'file?name=public/fonts/[name].[ext]'
+      },
+
+      // Preprocess Image files
+      {
+        test: /\.(png|jpg|jpeg|svg)$/,
+        loader: 'file?name=public/img/[name].[ext]'
       }
     ]
   },

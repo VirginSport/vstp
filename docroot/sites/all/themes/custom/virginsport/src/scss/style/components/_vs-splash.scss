@@ -1,0 +1,124 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+.vs-splash__wrapper {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  background: transparent url('../img/splash-page-pattern.png') no-repeat center center;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.vs-splash__container {
+  display: block;
+}
+
+.vs-splash__logo {
+  background: transparent url('../img/vs-logo-red.png') no-repeat center center;
+  background-size: cover;
+  width: 11.8757rem;
+  height: 4.375rem;
+  margin: 0 auto 3.5rem;
+}
+
+.vs-splash__text {
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 400;
+  margin-bottom: 2.8125rem;
+}
+
+.vs-splash__uk-flag-wrapper {
+  margin-bottom: 2.9375rem;
+}
+
+.vs-splash__link {
+  display: block;
+}
+
+.vs-splash__uk-flag {
+  @include transition(all .2s);
+  @include grayscale();
+  background: transparent url('../img/vs-uk-flag.svg') no-repeat center center;
+  background-size: cover;
+  width: 6.25rem;
+  height: 3.75rem;
+  margin: 0 auto .9375rem;
+  display: block;
+
+  &:hover,
+  .vs-splash__link:hover & {
+    @include grayscale(off);
+  }
+}
+
+.vs-splash__us-flag {
+  @include transition(all .2s);
+  @include grayscale();
+  background: transparent url('../img/vs-us-flag.svg') no-repeat center center;
+  background-size: cover;
+  width: 6.25rem;
+  height: 3.75rem;
+  margin: 0 auto .9375rem;
+  display: block;
+
+  &:hover,
+  .vs-splash__link:hover & {
+    @include grayscale(off);
+  }
+}
+
+.vs-splash__flag-label {
+  color: $c-black;
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-splash__wrapper {
+    background-size: cover;
+  }
+
+  .vs-splash__logo {
+    width: 22.5rem;
+    height: 8.1875rem;
+    margin-bottom: 7.8125rem;
+  }
+
+  .vs-splash__text {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 4.5rem;
+  }
+
+  .vs-splash__uk-flag-wrapper,
+  .vs-splash__us-flag-wrapper {
+    display: inline-block;
+    margin: 0 2.25rem;
+  }
+
+  .vs-splash__uk-flag,
+  .vs-splash__us-flag {
+    width: 9.75rem;
+    height: 5.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .vs-splash__flag-label {
+    font-size: 1.125rem;
+  }
+}

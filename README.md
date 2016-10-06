@@ -1,5 +1,28 @@
 # Virgin Sport
 
+## Theming
+This project have a custom theme called virginsport.
+```
+   cd /docroot/sites/all/themes/custom/virginsport
+   npm install
+```
+### Sync with Frontend Reference
+To synchronize frontend repo run: 
+```
+   npm sync
+```
+### Build
+To build css, javascript and asset files run:
+```
+   npm build
+```
+### Development Mode
+For dev environment run: 
+```
+   npm watch
+```
+This command will watch for every changes you made to css, javascript and asset files.
+
 ## Update Drupal Core and Contrib Modules
 This Drupal installation follows Acquia Lightning distribution, Drupal core and and some contributed modules are handled by the Lightning distribution. All other contrib modules and themes are handled via the virgin.make.yml file.
 

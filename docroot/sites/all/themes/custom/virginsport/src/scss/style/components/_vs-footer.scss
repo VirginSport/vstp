@@ -1,0 +1,185 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-footer,
+.vs-footer {
+  @include clearfix();
+  background-color: $c-white;
+  display: block;
+  min-height: 15.625rem;
+  position: relative;
+  padding: 1.875rem 0;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-footer__language {
+  margin-bottom: 2.5rem;
+  padding: 0 .9375rem;
+}
+
+.vs-footer__language-toggle {
+  background: transparent url('../img/vs-footer-uk-flag.png') no-repeat left center;
+  border: 0;
+  border-radius: 0;
+  color: #606060;
+  font-size: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 20px;
+  position: relative;
+
+  &:after {
+    content: '';
+    border-bottom: 6px solid #606060 !important;
+    border-left: 6px solid transparent;
+    position: absolute;
+    border-right: 6px solid transparent;
+    margin-top: -4px;
+    width: 0;
+    height: 0;
+    right: 0;
+    top: 50%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: transparent !important;
+    background-image: url('../img/vs-footer-uk-flag.png') !important;
+  }
+}
+
+.vs-footer__menu {
+  margin: 0 0 3.25rem;
+  padding: 0 .9375rem;
+}
+
+.vs-footer__menu-item {
+  list-style-type: none;
+  margin-bottom: .875rem;
+}
+
+.vs-footer__menu-item__link {
+  @include transition(all .5s);
+  font-family: $font-family-serif;
+  font-size: .75rem;
+  font-weight: 500;
+  color: #606060;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $c-black;
+  }
+}
+
+.vs-footer__social-list {
+  padding: 0 .9375rem;
+  font-size: 0;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.vs-footer__social-item {
+  display: inline-block;
+  margin-right: 1.25rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.vs-footer__social {
+  @include transition(all .5s);
+  background-color: rgba($c-black, .2);
+  border-radius: 50%;
+  line-height: 4.6rem;
+  color: $c-white;
+  width: 3.125rem;
+  height: 3.125rem;
+  display: block;
+  text-align: center;
+
+  &:before {
+    font-size: 1.5625rem;
+  }
+
+  &:hover {
+    opacity: .7;
+    color: $c-white;
+  }
+}
+
+.vs-footer__social--twitter {
+  &:before {
+    @include icons();
+    content: $icon-twitter;
+  }
+}
+
+.vs-footer__social--facebook {
+  &:before {
+    @include icons();
+    content: $icon-facebook;
+  }
+}
+
+.vs-footer__social--instagram {
+  &:before {
+    @include icons();
+    content: $icon-instagram;
+  }
+}
+
+.vs-footer__social--snapchat {
+  &:before {
+    @include icons();
+    content: $icon-snapchat;
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+
+  .vs-footer__language,
+  .vs-footer__menu {
+    padding: 0;
+  }
+
+  .vs-footer__social-item {
+    display: inline-block;
+    margin-right: .625rem;
+    margin-bottom: .625rem;
+  }
+
+  .vs-footer__social-list {
+    padding: 0;
+  }
+
+  .vs-footer__menu-item__link {
+    font-size: $font-size-base;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+
+  .vs-footer__social-item {
+    display: inline-block;
+    margin-right: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .vs-footer__menu-item {
+    float: left;
+    width: 50%;
+  }
+}
