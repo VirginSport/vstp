@@ -10,13 +10,20 @@
  *
  * This callback overrides the core drupal user edit route to ensure the user
  * profile is synced before the form is rendered.
+ *
+ * @param $form
+ *  The user edit profile form
+ * @param $account
+ *  The account being edited
+ * @return array
+ *  A drupal render array
  */
-function virgin_user_page_user_edit($account) {
+function virgin_user_page_user_edit($form, $account) {
 
   // Trigger the event that's going to sync the user profile
   observer_notify(VirginUserEvents::BEFORE_USER_EDITS, $account);
 
   // And after the profile is synced render the user profile form
   module_load_include('inc', 'user', 'user.pages');
-  drupal_get_form('user_profile_form', $account);
+  return drupal_get_form($form, $account);
 }
