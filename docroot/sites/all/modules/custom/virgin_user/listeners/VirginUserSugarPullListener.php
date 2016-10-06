@@ -39,9 +39,11 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
-    $this->sync($account, function (\Exception $e) {
-      // A sync problem during login is not critical, do nothing here.
-    });
+    $failureCallback = function (\Exception $e) {
+      // A sync problem during login is not critical, do nothing here
+    };
+
+    $this->sync($account, $failureCallback);
   }
 
   /**
