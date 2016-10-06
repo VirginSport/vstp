@@ -62,37 +62,37 @@ function virgin_user_schema() {
       'contact_id' => array(
         'description' => 'The SugarCRM ID of the Contact who owns this ticket.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'event_id' => array(
         'description' => 'The SugarCRM ID of the Event this ticket belongs to.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'package_id' => array(
         'description' => 'The SugarCRM ID of the Package this ticket belongs to.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'partner_account_id' => array(
         'description' => 'The SugarCRM ID of the Account on whose behalf the ticket was acquired.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'purchaser_contact_id' => array(
         'description' => 'The SugarCRM ID of the Contact who acquired the ticket.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'ticket_type_id' => array(
         'description' => 'The SugarCRM ID of this Ticket Type.',
         'type' => 'varchar',
-        'length' => 32,
+        'length' => 36,
         'default' => '',
       ),
       'first_name' => array(
