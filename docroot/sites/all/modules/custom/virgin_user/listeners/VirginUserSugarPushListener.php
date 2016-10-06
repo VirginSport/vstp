@@ -27,11 +27,11 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
 
     switch ($event->getType()) {
 
-      case 'drupal:user:create':
+      case VirginUserEvents::USER_CREATED:
         $this->onUserCreate($event);
         break;
 
-      case 'drupal:user:update':
+      case VirginUserEvents::USER_UPDATED:
         $this->onUserUpdate($event);
         break;
 
