@@ -131,3 +131,15 @@ function virginsport_get_menu_tree($menu_name, $max_depth = NULL) {
 
   return $menu_output[$menu_key];
 }
+
+/**
+ * Gets the base url path relative to the theme
+ *
+ * @param $path
+ *  The path without a / prefix
+ * @return string
+ *  The url path
+ */
+function virgin_sport_path($path) {
+  return drupal_get_path('theme', 'virginsport') . '/' . $path;
+}
