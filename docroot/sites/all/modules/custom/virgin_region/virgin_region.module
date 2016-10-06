@@ -48,6 +48,25 @@ function virgin_region_menu() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function virgin_region_theme($existing, $type, $theme, $path) {
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  return array(
+    'virgin_region_page_splash' => array(
+        'template' => 'virgin-region-page-splash',
+        'variables' => array(
+          'regions' => array(),
+        )
+      ) + $default,
+  );
+}
+
+/**
  * Implements hook_init().
  */
 function virgin_region_init() {
