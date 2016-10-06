@@ -77,6 +77,10 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner__date + .vs-hero-banner__button-wrapper {
+  padding-top: .125rem;
+}
+
 .vs-hero-banner__button {
   background-color: rgba($c-black, .4);
 }
@@ -152,5 +156,17 @@ vs-hero-banner,
   .vs-hero-banner__date {
     font-size: 2.1875rem;
     margin-bottom: 1.125rem;
+  }
+
+  .vs-hero-banner__button {
+    font-size: 1rem;
+    min-height: 3.125rem;
+    min-width: 13.75rem;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
+  }
+
+  .vs-hero-banner__date + .vs-hero-banner__button-wrapper {
+    padding-top: .25rem;
   }
 }

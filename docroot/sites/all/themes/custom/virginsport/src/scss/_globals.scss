@@ -45,6 +45,7 @@ html {
 
   @include media-breakpoint-up(md) {
     font-size: $font-size-base;
+    line-height: 1.5rem;
   }
 }
 

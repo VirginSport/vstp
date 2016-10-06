@@ -9,9 +9,10 @@
 
 .vs-btn {
   text-transform: uppercase;
-  font-size: $font-size-sm;
+  font-size: .75rem;
   background-color: $c-orange-bright;
   color: $c-white;
+  line-height: 1;
 
   &:hover {
     opacity: $button-hover;
@@ -118,8 +119,7 @@
 }
 
 .vs-btn--transparent {
-  opacity: .4;
-  background-color: $c-black;
+  background-color: rgba($c-black, .4);
 
   &:hover {
     background-color: $c-black;
@@ -129,6 +129,11 @@
 
 .vs-btn--orange {
   background-color: $c-orange;
+}
+
+.vs-btn--white {
+  background-color: $c-white;
+  color: $c-blue;
 }
 
 .vs-btn--outline-black {
@@ -172,6 +177,15 @@
 // Responsive
 // ----------------------------------------------------------------------------
 @include media-breakpoint-up(md) {
+  .vs-btn {
+    font-size: $font-size-base;
+  }
+
+  .vs-btn--min-sm {
+    font-size: .875rem;
+    line-height: .9;
+  }
+
   .vs-btn--min-xxl {
     min-width: 21.875rem;
     width: auto;

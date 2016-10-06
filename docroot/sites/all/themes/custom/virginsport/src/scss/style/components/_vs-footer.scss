@@ -17,7 +17,7 @@ vs-footer,
 // ----------------------------------------------------------------------------
 
 .vs-footer__language {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.875rem;
   padding: 0 .9375rem;
 }
 
@@ -78,7 +78,6 @@ vs-footer,
   padding: 0 .9375rem;
   font-size: 0;
   margin-bottom: 0;
-  text-align: right;
 }
 
 .vs-footer__social-item {
@@ -155,14 +154,14 @@ vs-footer,
     padding: 0;
   }
 
-  .vs-footer__social-item {
-    display: inline-block;
-    margin-right: .625rem;
-    margin-bottom: .625rem;
-  }
-
   .vs-footer__social-list {
     padding: 0;
+    text-align: right;
+  }
+
+  .vs-footer__social-item {
+    display: inline-block;
+    margin: 0 0 .625rem .625rem;
   }
 
   .vs-footer__menu-item__link {
@@ -174,8 +173,7 @@ vs-footer,
 
   .vs-footer__social-item {
     display: inline-block;
-    margin-right: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.25rem 1.25rem;
   }
 
   .vs-footer__menu-item {
