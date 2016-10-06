@@ -16,6 +16,7 @@
 
 .vs-splash__container {
   display: block;
+  width: 100%;
 }
 
 .vs-splash__logo-wrapper {
@@ -35,6 +36,16 @@
 .vs-splash__link {
   display: block;
   margin-bottom: 2.9375rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-splash__flag-wrapper {
+  overflow-x: auto;
+  max-height: 17rem;
+  white-space: nowrap;
 }
 
 .vs-splash__flag {
@@ -52,6 +63,8 @@
 }
 
 .vs-splash__flag-label {
+  font-family: $font-family-serif;
+  font-weight: 500;
   color: $c-black;
   font-size: .75rem;
   text-transform: uppercase;
@@ -65,6 +78,18 @@
 
 // Responsive
 // ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  .vs-splash__flag-wrapper {
+    max-height: 7.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .vs-splash__link {
+    display: inline-block;
+    margin: 0 2.25rem;
+  }
+}
 
 @include media-breakpoint-up(md) {
   .vs-splash__wrapper {
@@ -83,9 +108,10 @@
     margin-bottom: 4.5rem;
   }
 
-  .vs-splash__link {
-    display: inline-block;
-    margin: 0 2.25rem 2.9375rem;
+  .vs-splash__flag-wrapper {
+    padding-bottom: 0;
+    max-height: 36rem;
+    white-space: normal;
   }
 
   .vs-splash__flag {
@@ -96,5 +122,22 @@
 
   .vs-splash__flag-label {
     font-size: 1.125rem;
+  }
+
+  .vs-splash__link {
+    margin: 0 2.25rem 2.9375rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-splash__flag-wrapper {
+    max-height: 21rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-splash__flag-wrapper {
+    max-width: 80vw;
+    margin: 0 auto;
   }
 }
