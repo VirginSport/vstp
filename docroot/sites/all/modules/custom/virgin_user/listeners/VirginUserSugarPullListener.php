@@ -35,10 +35,28 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
+    $this->sync($account, function (\Exception $e) {
+      // A sync problem during login is not critical, do nothing here.
+    });
+  }
+
+  /**
+   * Syncs a given user account and tickets from SugarCRM
+   *
+   * @param stdClass $account
+   *  The user object for whom data is being fetched for
+   * @param callable $failureCallback
+   *  A callback that is executed when there has been a sync problem with
+   *  SugarCRM. The exception of this failure is passed to the callback.
+   * @return string[]
+   *  The rego IDs to the tickets that have been synced from SugarCRM
+   */
+  protected function sync($account, callable $failureCallback) {
+
     // If it's the admin user, bailout now as we don't sync anything for him
     // from SugarCRM.
     if ($account->uid === "1") {
-      return;
+      return array();
     }
 
     $account = user_load($account->uid);
@@ -48,20 +66,34 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // If for some reason the user does not have a SugarID, then bailout as
     // there's nothing to fetch from SugarCRM.
     if (empty($sugar_id)) {
-      return;
+      return array();
     }
 
     // Fetch the digest from SugarCRM
-    $g = $this->fetchDigest($sugar_id, $modified_since);
-    $contact = $g->get('contact');
-    $tickets = $g->get('tickets');
+    try {
+      $g = $this->fetchDigest($sugar_id, $modified_since);
+    } catch (\Exception $e) {
+
+      // In case of a sync failure with SugarCRM, log the problem
+      watchdog('virgin_user','SugarCRM user digest sync failure: @msg', array('@msg' => $e->getMessage()), WATCHDOG_ERROR);
+
+      // And then execute the failure callback and let callers handle the
+      // exception as they have different levels of acceptance to failure
+      // scenario.
+      $failureCallback($e);
+
+      return array();
+    }
 
     // Update the ticket cache and update the profile fields accordingly
-    $this->syncTickets($account, $tickets);
-    $has_changed = $this->syncProfile($account, $contact);
+    $synced_regos = $this->syncTickets($account, $g->get('tickets'));
+    $has_changed = $this->syncProfile($account, $g->get('contact'));
 
-    // And flush any profile changes
+    // Flush any profile changes
     $this->saveProfileChanges($account, $has_changed);
+
+    // And return the list of the rego IDs of the tickets that have been synced
+    return $synced_regos;
   }
 
   /**
