@@ -24,6 +24,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       case ObserverEventTypes::USER_LOGIN:
         $this->onUserLogin($event);
         break;
+
+      case VirginUserEvents::BEFORE_USER_EDITS:
+        $this->onBeforeUserEdits($event);
+        break;
     }
   }
 
@@ -38,6 +42,24 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     $this->sync($account, function (\Exception $e) {
       // A sync problem during login is not critical, do nothing here.
     });
+  }
+
+  /**
+   * Executed when a user goes to his edit profile page in Drupal
+   *
+   * @param \ObserverEventInterface $event
+   */
+  protected function onBeforeUserEdits(ObserverEventInterface $event) {
+    $account = $event->getData();
+
+    // A sync problem during edit profile is critical as the user might be
+    // editing stale data. Redirect him to his profile in case of error.
+    $failureCallback = function (\Exception $e) {
+      drupal_set_message(t("Ooops! It's not possible to edit your account at this time, please try again at a later time."), 'error');
+      drupal_goto('/user');
+    };
+
+    $this->sync($account, $failureCallback);
   }
 
   /**
