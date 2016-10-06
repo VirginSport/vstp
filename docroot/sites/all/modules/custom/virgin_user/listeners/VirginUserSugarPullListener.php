@@ -78,7 +78,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       watchdog('virgin_user','SugarCRM user digest sync failure: @msg', array('@msg' => $e->getMessage()), WATCHDOG_ERROR);
 
       // And then execute the failure callback and let callers handle the
-      // exception as they have different levels of acceptance to failure
+      // exception as they have different levels of acceptance to a failure
       // scenario.
       $failureCallback($e);
 
