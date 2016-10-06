@@ -5,7 +5,10 @@
  * Main file for sugarcrm module.
  */
 
-use Spinegar\Sugar7Wrapper\Rest as SugarRest;
+/**
+ * The variable that stores sugar OAuth token for re-use between page requests
+ */
+define('SUGARCRM_VAR_OAUTH_TOKEN', 'sugarcrm_oauth_token');
 
 /**
  * Implements hook_menu().
@@ -35,7 +38,7 @@ function sugarcrm_client() {
   $client = &drupal_static(__FUNCTION__, FALSE);
 
   if (!$client) {
-    $client = new SugarRest();
+    $client = new SugarcrmClient();
 
     $client
       ->setUrl(variable_get('sugarcrm_url') . '/rest/v10/')
