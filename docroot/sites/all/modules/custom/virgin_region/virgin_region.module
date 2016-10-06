@@ -262,7 +262,7 @@ function virgin_region_user_redirect($uid, $current_region) {
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
-  if ($account_wrapper->field_region && $account_wrapper->field_region->getIdentifier()) {
+  if (!empty($account_wrapper->field_region->value())) {
 
     // Load account region
     $region = $account_wrapper->field_region->value();
