@@ -262,8 +262,6 @@ function virgin_region_user_login_submit($uid) {
  * The Region array
  */
 function virgin_region_user_redirect($uid, $current_region) {
-  global $is_https;
-
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
@@ -281,14 +279,26 @@ function virgin_region_user_redirect($uid, $current_region) {
     }
 
     // Otherwise redirect the user to his profile page on his host region
-    $protocol = $is_https ? 'https' : 'http';
-    $url = sprintf('%s://%s/user', $protocol, $hostname);
+    $url = virgin_region_add_hostname_protocol($hostname . '/user');
 
     // Unset destination, otherwise url is ignored
     unset($_GET['destination']);
 
     drupal_goto($url);
   }
+}
+
+/**
+ * @param $hostname
+ *  An hostname without the protocol e.g. uk.virginsport.com
+ * @return string
+ *  The hostname with the protocol e.g. http://uk.virginsport.com
+ */
+function virgin_region_add_hostname_protocol($hostname) {
+  global $is_https;
+
+  $protocol = $is_https ? 'https' : 'http';
+  return sprintf('%s://%s', $protocol, $hostname);
 }
 
 /**
