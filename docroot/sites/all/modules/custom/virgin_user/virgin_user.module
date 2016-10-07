@@ -17,9 +17,21 @@ define('VIRGIN_USER_MIN_AGE', 13);
 define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 
 /**
+ * The name of the user data property that stores the timestamp with the
+ * timestamp of the last successful data pull from SugarCRM.
+ */
+define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
+
+/**
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
+
+  // Override the user edit page callback to ensure the use profile is synced
+  // with SugarCRM before the form is rendered.
+  $items['user/%user/edit']['page callback'] = 'virgin_user_page_user_edit';
+  $items['user/%user/edit']['file'] = 'virgin_user.pages.inc';
+  $items['user/%user/edit']['file path'] = drupal_get_path('module', 'virgin_user');
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
@@ -169,7 +181,8 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
  */
 function virgin_user_observer_info() {
   return array(
-    new VirginUserSugarListener(),
+    new VirginUserSugarPushListener(),
+    new VirginUserSugarPullListener(),
   );
 }
 
@@ -203,13 +216,13 @@ function virgin_user_observer_notify($account) {
   // Based on account type we trigger create or update events
   if ($account->is_new) {
     try {
-      observer_notify('drupal:user:create', $account);
+      observer_notify(VirginUserEvents::USER_CREATED, $account);
     } catch (\Exception $e) {
       throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot register you at this moment, please try again later'), url('user'));
     }
   } else {
     try {
-      observer_notify('drupal:user:update', $account);
+      observer_notify(VirginUserEvents::USER_UPDATED, $account);
     } catch (\Exception $e) {
       throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot update your profile at this moment, please try again later'), url('user'));
     }

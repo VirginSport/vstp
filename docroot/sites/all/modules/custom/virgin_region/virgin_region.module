@@ -263,11 +263,6 @@ function virgin_region_form_user_login_submit(&$form, &$form_state) {
 function virgin_region_user_login_submit($uid) {
   $current_region = virgin_region_current();
 
-  if ($current_region) {
-    // Set current user region cookie on registration
-    virgin_region_region_cookie_set($current_region);
-  }
-
   // Redirect user to its region on login
   virgin_region_user_redirect($uid, $current_region);
 }
@@ -284,7 +279,7 @@ function virgin_region_user_redirect($uid, $current_region) {
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
-  if ($account_wrapper->field_region && $account_wrapper->field_region->getIdentifier()) {
+  if (!empty($account_wrapper->field_region->value())) {
 
     // Load account region
     $region = $account_wrapper->field_region->value();

@@ -25,10 +25,10 @@ function virgin_user_strongarm() {
           'weight' => '7',
         ),
         'metatags' => array(
-          'weight' => '22',
+          'weight' => '21',
         ),
         'redirect' => array(
-          'weight' => '23',
+          'weight' => '22',
         ),
         'account' => array(
           'weight' => '0',

@@ -2,18 +2,18 @@
 
 /**
  * @file
- * Contains the VirginApiSugarUserListener class
+ * Contains the VirginApiSugarPushListener class
  */
 
 /**
- * Listens for Drupal user related events and syncs information to SugarCRM
+ * Listens for Drupal user related events and pushes information to SugarCRM
  *
  * This class creates and updates user information on SugarCRM when Users are
  * modified on Drupal and contact requests are made on their behalf in Sugar.
  *
  * @see virgin_virgin_contact_content_type_form_validate()
  */
-class VirginUserSugarListener implements ObserverObserverInterface {
+class VirginUserSugarPushListener implements ObserverObserverInterface {
 
   /**
    * {@inheritdoc}
@@ -27,11 +27,11 @@ class VirginUserSugarListener implements ObserverObserverInterface {
 
     switch ($event->getType()) {
 
-      case 'drupal:user:create':
+      case VirginUserEvents::USER_CREATED:
         $this->onUserCreate($event);
         break;
 
-      case 'drupal:user:update':
+      case VirginUserEvents::USER_UPDATED:
         $this->onUserUpdate($event);
         break;
 
@@ -193,10 +193,10 @@ class VirginUserSugarListener implements ObserverObserverInterface {
       'first_name' => $account_wrapper->field_first_name->value(),
       'last_name' => $account_wrapper->field_last_name->value(),
       'gender' => $account_wrapper->field_gender->value(),
-      'birthdate' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'c'),
+      'birthdate' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'Y-m-d'),
       'phone_mobile' => $account_wrapper->field_contact_number->value(),
       'email1' => $account_wrapper->mail->value(),
-      'primary_address_street' => $account_wrapper->field_address_line_1->value(),
+      'primary_address_street' => $account_wrapper->field_address_line_1->value() . PHP_EOL . $account_wrapper->field_address_line_2->value(),
       'primary_address_city' => $account_wrapper->field_address_city->value(),
       'primary_address_state' => $account_wrapper->field_address_state->value(),
       'primary_address_postalcode' => $account_wrapper->field_address_postcode->value(),
