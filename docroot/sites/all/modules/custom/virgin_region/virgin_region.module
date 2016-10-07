@@ -281,8 +281,11 @@ function virgin_region_user_redirect($uid, $current_region) {
   // Redirect user to its correspondent region if available
   if (!empty($account_wrapper->field_region->value())) {
 
-    // Load account region
-    $region = $account_wrapper->field_region->value();
+    // Load account regions array
+    $regions = $account_wrapper->field_region->value();
+
+    // We just want the first position of the array
+    $region = reset($regions);
 
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
