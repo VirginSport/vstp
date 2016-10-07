@@ -37,8 +37,7 @@ function virgin_image_image_styles_alter(&$styles) {
     }
 
     // Suffix the image style label and machine name for the HDPI version
-    $new_style['name'] .= VIRGIN_IMAGE_HDPI_SUFFIX;
-    $new_style['label'] .= VIRGIN_IMAGE_HDPI_SUFFIX;
+    $new_style['name'] = $new_style['label'] = $key.VIRGIN_IMAGE_HDPI_SUFFIX;
 
     // Then add new style as a new image style
     $hdpi_styles[$key.VIRGIN_IMAGE_HDPI_SUFFIX] = $new_style;
