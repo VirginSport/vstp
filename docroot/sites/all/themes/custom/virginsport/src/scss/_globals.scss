@@ -1,19 +1,19 @@
 
 body:before {
-  content: 'xs';
-  padding: 0 4px;
-  background-color: black;
-  color: white;
-  position: fixed;
-  top: 0px;
-  left: 0;
-  width: auto;
-  font-size: 12px;
-  z-index: 9999;
-  @include media-breakpoint-up(sm) { content: 'sm'; }
-  @include media-breakpoint-up(md) { content: 'md'; }
-  @include media-breakpoint-up(lg) { content: 'lg'; }
-  @include media-breakpoint-up(xl) { content: 'xl'; }
+//  content: 'xs';
+//  padding: 0 4px;
+//  background-color: black;
+//  color: white;
+//  position: fixed;
+//  top: 0px;
+//  left: 0;
+//  width: auto;
+//  font-size: 12px;
+//  z-index: 9999;
+//  @include media-breakpoint-up(sm) { content: 'sm'; }
+//  @include media-breakpoint-up(md) { content: 'md'; }
+//  @include media-breakpoint-up(lg) { content: 'lg'; }
+//  @include media-breakpoint-up(xl) { content: 'xl'; }
 }
 
 body,
@@ -45,6 +45,7 @@ html {
 
   @include media-breakpoint-up(md) {
     font-size: $font-size-base;
+    line-height: 1.5rem;
   }
 }
 

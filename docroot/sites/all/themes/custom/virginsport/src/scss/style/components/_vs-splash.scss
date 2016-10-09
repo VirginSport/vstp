@@ -16,11 +16,11 @@
 
 .vs-splash__container {
   display: block;
+  width: 100%;
 }
 
-.vs-splash__logo {
-  background: transparent url('../img/vs-logo-red.png') no-repeat center center;
-  background-size: cover;
+.vs-splash__logo-wrapper {
+  display: block;
   width: 11.8757rem;
   height: 4.375rem;
   margin: 0 auto 3.5rem;
@@ -33,35 +33,24 @@
   margin-bottom: 2.8125rem;
 }
 
-.vs-splash__uk-flag-wrapper {
-  margin-bottom: 2.9375rem;
-}
-
 .vs-splash__link {
   display: block;
-}
+  margin-bottom: 2.9375rem;
 
-.vs-splash__uk-flag {
-  @include transition(all .2s);
-  @include grayscale();
-  background: transparent url('../img/vs-uk-flag.svg') no-repeat center center;
-  background-size: cover;
-  width: 6.25rem;
-  height: 3.75rem;
-  margin: 0 auto .9375rem;
-  display: block;
-
-  &:hover,
-  .vs-splash__link:hover & {
-    @include grayscale(off);
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-.vs-splash__us-flag {
+.vs-splash__flag-wrapper {
+  overflow-x: auto;
+  max-height: 17rem;
+  white-space: nowrap;
+}
+
+.vs-splash__flag {
   @include transition(all .2s);
   @include grayscale();
-  background: transparent url('../img/vs-us-flag.svg') no-repeat center center;
-  background-size: cover;
   width: 6.25rem;
   height: 3.75rem;
   margin: 0 auto .9375rem;
@@ -74,6 +63,8 @@
 }
 
 .vs-splash__flag-label {
+  font-family: $font-family-serif;
+  font-weight: 500;
   color: $c-black;
   font-size: .75rem;
   text-transform: uppercase;
@@ -88,12 +79,24 @@
 // Responsive
 // ----------------------------------------------------------------------------
 
+@include media-breakpoint-up(sm) {
+  .vs-splash__flag-wrapper {
+    max-height: 7.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .vs-splash__link {
+    display: inline-block;
+    margin: 0 2.25rem;
+  }
+}
+
 @include media-breakpoint-up(md) {
   .vs-splash__wrapper {
     background-size: cover;
   }
 
-  .vs-splash__logo {
+  .vs-splash__logo-wrapper {
     width: 22.5rem;
     height: 8.1875rem;
     margin-bottom: 7.8125rem;
@@ -105,14 +108,13 @@
     margin-bottom: 4.5rem;
   }
 
-  .vs-splash__uk-flag-wrapper,
-  .vs-splash__us-flag-wrapper {
-    display: inline-block;
-    margin: 0 2.25rem;
+  .vs-splash__flag-wrapper {
+    padding-bottom: 0;
+    max-height: 36rem;
+    white-space: normal;
   }
 
-  .vs-splash__uk-flag,
-  .vs-splash__us-flag {
+  .vs-splash__flag {
     width: 9.75rem;
     height: 5.875rem;
     margin-bottom: 1.5rem;
@@ -120,5 +122,22 @@
 
   .vs-splash__flag-label {
     font-size: 1.125rem;
+  }
+
+  .vs-splash__link {
+    margin: 0 2.25rem 2.9375rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-splash__flag-wrapper {
+    max-height: 21rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-splash__flag-wrapper {
+    max-width: 80vw;
+    margin: 0 auto;
   }
 }

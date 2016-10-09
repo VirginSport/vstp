@@ -48,6 +48,25 @@ function virgin_region_menu() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function virgin_region_theme($existing, $type, $theme, $path) {
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  return array(
+    'virgin_region_page_splash' => array(
+        'template' => 'virgin-region-page-splash',
+        'variables' => array(
+          'regions' => array(),
+        )
+      ) + $default,
+  );
+}
+
+/**
  * Implements hook_init().
  */
 function virgin_region_init() {
@@ -257,15 +276,16 @@ function virgin_region_user_login_submit($uid) {
  * The Region array
  */
 function virgin_region_user_redirect($uid, $current_region) {
-  global $is_https;
-
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
   if (!empty($account_wrapper->field_region->value())) {
 
-    // Load account region
-    $region = $account_wrapper->field_region->value();
+    // Load account regions array
+    $regions = $account_wrapper->field_region->value();
+
+    // We just want the first position of the array
+    $region = reset($regions);
 
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
@@ -276,14 +296,26 @@ function virgin_region_user_redirect($uid, $current_region) {
     }
 
     // Otherwise redirect the user to his profile page on his host region
-    $protocol = $is_https ? 'https' : 'http';
-    $url = sprintf('%s://%s/user', $protocol, $hostname);
+    $url = virgin_region_add_hostname_protocol($hostname . '/user');
 
     // Unset destination, otherwise url is ignored
     unset($_GET['destination']);
 
     drupal_goto($url);
   }
+}
+
+/**
+ * @param $hostname
+ *  An hostname without the protocol e.g. uk.virginsport.com
+ * @return string
+ *  The hostname with the protocol e.g. http://uk.virginsport.com
+ */
+function virgin_region_add_hostname_protocol($hostname) {
+  global $is_https;
+
+  $protocol = $is_https ? 'https' : 'http';
+  return sprintf('%s://%s', $protocol, $hostname);
 }
 
 /**

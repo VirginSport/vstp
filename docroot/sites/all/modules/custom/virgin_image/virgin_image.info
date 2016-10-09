@@ -1,0 +1,5 @@
+name = Virgin Image
+description = Handles the Virgin Sports images
+core = 7.x
+package = Virgin Sports
+version = 7.x-1.0

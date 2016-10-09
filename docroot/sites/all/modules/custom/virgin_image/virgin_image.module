@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin image module.
+ */
+
+/**
+ * The image style hdpi suffix
+ */
+define('VIRGIN_IMAGE_HDPI_SUFFIX', '_hdpi');
+
+/**
+ * Implements hook_image_styles_alter().
+ */
+function virgin_image_image_styles_alter(&$styles) {
+  $hdpi_styles = array();
+
+  // Loop every image styles already created
+  foreach ($styles as $key => $style) {
+    $new_style = $style;
+
+    // If this image style has no effects bail out
+    if (empty($new_style['effects'])) {
+      continue;
+    }
+
+    // Duplicate the with and height data properties in the
+    // effect for the custom hdpi style if they exist.
+    foreach ($new_style['effects'] as &$effect) {
+      if (!empty($effect['data']['width'])) {
+        $effect['data']['width'] *= 2;
+      }
+
+      if (!empty($effect['data']['height'])) {
+        $effect['data']['height'] *= 2;
+      }
+    }
+
+    // Suffix the image style label and machine name for the HDPI version
+    $new_style['name'] = $new_style['label'] = $key.VIRGIN_IMAGE_HDPI_SUFFIX;
+
+    // Then add new style as a new image style
+    $hdpi_styles[$key.VIRGIN_IMAGE_HDPI_SUFFIX] = $new_style;
+  }
+
+  // Merge hdpi styles with default styles
+  $styles += $hdpi_styles;
+}
+
+/**
+ * Get hdpi correspondent image style
+ *
+ * @param $image_style
+ *  The default image style
+ * @return string
+ *  The hdpi image style
+ */
+function virgin_image_image_style_hdpi($image_style) {
+  return $image_style . VIRGIN_IMAGE_HDPI_SUFFIX;
+}

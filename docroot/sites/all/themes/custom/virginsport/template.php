@@ -6,6 +6,29 @@
  */
 
 /**
+ * Implements hook_theme().
+ */
+function virginsport_theme($existing, $type, $theme, $path) {
+  $themes = array();
+
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  $themes['virginsport_picture'] = array(
+      'template' => 'virginsport-picture',
+      'variables' => array(
+        'image_style' => '',
+        'classes' => '',
+        'atom_id' => array(),
+      )
+    ) + $default;
+
+  return $themes;
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
@@ -107,4 +130,16 @@ function virginsport_get_menu_tree($menu_name, $max_depth = NULL) {
   }
 
   return $menu_output[$menu_key];
+}
+
+/**
+ * Gets the base url path relative to the theme
+ *
+ * @param $path
+ *  The path without a / prefix
+ * @return string
+ *  The url path
+ */
+function virgin_sport_path($path) {
+  return drupal_get_path('theme', 'virginsport') . '/' . $path;
 }

@@ -4,12 +4,22 @@
  * Page callback for the splash page
  */
 function virgin_region_page_splash () {
-  $links = '';
+  global $cookie_domain;
 
-  // Placeholder for the final splash page implementation.
-  foreach (virgin_region_regions() as $host => $region) {
-    $links .= sprintf('<a href="http://%s">%s</a><br>', $host, check_plain($region['title']));
-  }
+  // Add Javascript files to handle region cookie and redirection to correct region
+  drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
+  drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash_redirect.js');
+  drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash.js');
 
-  return $links;
+  // We don't want to use template page.tpl.php which includes elements
+  // like navbars, logo and other things that we don't want on this page,
+  // so we're printing directly the html theme with page splash theme as a children
+  // the html theme with t
+  print theme('html', array(
+    'page' => array(
+      'page_top' => array(),
+      'page_bottom' => array(),
+      '#children' => theme('virgin_region_page_splash', array('regions' => virgin_region_regions()))
+    )
+  ));
 }

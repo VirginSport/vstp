@@ -88,17 +88,17 @@ vs-header,
   display: inline-block;
   text-align: center;
   color: $c-white;
-  width: 1.25rem;
-  height: 1.5625rem;
+  width: 2.1875rem;
+  height: 1.6875rem;
   margin-right: 2.9375rem;
   position: relative;
-  top: -1px;
+  top: -2px;
 }
 
 .vs-header__basket__value {
   font-size: .625rem;
   position: relative;
-  top: 2px;
+  top: 4px;
 }
 
 
@@ -280,17 +280,17 @@ vs-header,
   }
 
   .vs-header__basket {
-    width: 1.8125rem;
-    height: 2.25rem;
+    width: 3.125rem;
+    height: 2.375rem;
     font-size: 1.25rem;
-    margin-right: 54px;
+    margin-right: 3.375rem;
     position: relative;
-    top: -4px;
+    top: -6px;
   }
 
   .vs-header__basket__value {
     font-size: .9375rem;
-    top: 6px;
+    top: 7px;
   }
 
   .vs-menu-trigger__bar {
