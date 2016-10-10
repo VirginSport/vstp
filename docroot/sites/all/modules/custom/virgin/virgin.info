@@ -31,6 +31,7 @@ dependencies[] = lightning_wysiwyg
 dependencies[] = composer_manager
 dependencies[] = email_registration
 dependencies[] = field_group
+dependencies[] = fieldable_panels_panes
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = mollom

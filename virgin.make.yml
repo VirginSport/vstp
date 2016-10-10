@@ -36,6 +36,9 @@ projects:
   field_group:
     version: "1.5"
 
+  fieldable_panels_panes:
+    version: "1.10"
+
   hybridauth:
     version: "2.15"
 
