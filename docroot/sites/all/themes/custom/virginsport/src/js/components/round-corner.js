@@ -1,4 +1,4 @@
-import colors from '../vars/colors';
+import classColors from '../vars/class-colors';
 
 /**
  * Adjustment value to the gradient rotation so that
@@ -180,8 +180,8 @@ function getGradient(el) {
   let classes = el.classList;
   
   for (let i = 0; i < classes.length; i++) {
-    if (colors.hasOwnProperty(classes[i])) {
-      return colors[classes[i]];
+    if (classColors.hasOwnProperty(classes[i])) {
+      return classColors[classes[i]];
     }
   }
   
