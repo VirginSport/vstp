@@ -52,6 +52,7 @@ dependencies[] = paragraphs
 dependencies[] = virgin_api
 dependencies[] = virgin_base
 dependencies[] = virgin_config
+dependencies[] = virgin_components
 dependencies[] = virgin_event
 dependencies[] = virgin_festival
 dependencies[] = virgin_image
