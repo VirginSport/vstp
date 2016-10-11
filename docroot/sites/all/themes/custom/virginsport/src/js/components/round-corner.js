@@ -65,6 +65,8 @@ export default class RoundCorner {
     this.pathID = id();
     this.gradientID = id();
     
+    // Given the SVG is position absolutely inside the parent element
+    // the parent element must be relatively positioned.
     setAttributes(this.el, {
       style: 'position: relative;'
     });
