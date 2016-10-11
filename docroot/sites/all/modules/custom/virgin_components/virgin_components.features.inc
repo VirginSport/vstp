@@ -29,6 +29,11 @@ function virgin_components_paragraphs_info() {
       'bundle' => 'vs_package_card',
       'locked' => '1',
     ),
+    'vs_slide' => array(
+      'name' => 'Slide',
+      'bundle' => 'vs_slide',
+      'locked' => '1',
+    ),
     'vs_teaser' => array(
       'name' => 'Teaser',
       'bundle' => 'vs_teaser',
