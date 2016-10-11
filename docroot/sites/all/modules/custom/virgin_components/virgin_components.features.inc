@@ -9,6 +9,11 @@
  */
 function virgin_components_paragraphs_info() {
   $items = array(
+    'vs_accordion_item' => array(
+      'name' => 'Accordion Item',
+      'bundle' => 'vs_accordion_item',
+      'locked' => '1',
+    ),
     'vs_cta_block' => array(
       'name' => 'CTA_Block',
       'bundle' => 'vs_cta_block',

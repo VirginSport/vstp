@@ -26,6 +26,7 @@ features[field_base][] = field_address_state
 features[field_base][] = field_agree_share_medical_info
 features[field_base][] = field_alignment
 features[field_base][] = field_allergies
+features[field_base][] = field_answer
 features[field_base][] = field_attendly_id
 features[field_base][] = field_birth_date
 features[field_base][] = field_body
