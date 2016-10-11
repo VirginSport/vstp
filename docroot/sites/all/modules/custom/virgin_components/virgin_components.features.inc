@@ -39,6 +39,11 @@ function virgin_components_paragraphs_info() {
       'bundle' => 'vs_ticket_card',
       'locked' => '1',
     ),
+    'vs_untimed_event_card' => array(
+      'name' => 'Untimed Event Card',
+      'bundle' => 'vs_untimed_event_card',
+      'locked' => '1',
+    ),
   );
   return $items;
 }
