@@ -60,6 +60,9 @@ projects:
   observer:
     version: "1.0"
 
+  paragraphs:
+    version: "1.0-rc4"
+
   redirect:
     version: "1.0-rc3"
 
