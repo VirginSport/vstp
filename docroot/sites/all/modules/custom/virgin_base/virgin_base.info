@@ -105,6 +105,7 @@ features[field_base][] = field_ticket_reference
 features[field_base][] = field_ticket_type_state
 features[field_base][] = field_timezone
 features[field_base][] = field_uk_athletics_number
+features[field_base][] = field_untimed_event_cards
 features[field_base][] = field_untimed_event_reference
 features[field_base][] = title_field
 features[image][] = virgin_flag
