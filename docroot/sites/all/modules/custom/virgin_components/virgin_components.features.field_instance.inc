@@ -620,6 +620,206 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_cta_links'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_cta_links'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_cta_links',
+    'label' => 'Call to action button',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 1,
+        'configurable_title' => 1,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_description'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_description'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_description',
+    'label' => 'Subheading',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'display_summary' => 0,
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -8,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_hero_image'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_hero_image'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_image',
+    'label' => 'Hero Banner Image',
+    'required' => 1,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => -6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-title_field'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-title_field'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Banner Image Title',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => 0,
+        'page' => 0,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -10,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_promo_banner-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_promo_banner-field_component_heading'] = array(
     'bundle' => 'vs_promo_banner',
@@ -1069,8 +1269,8 @@ function virgin_components_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
+        'configurable_class' => 1,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -1410,7 +1610,7 @@ function virgin_components_field_default_field_instances() {
       'attributes' => array(
         'class' => '',
         'configurable_class' => 1,
-        'configurable_title' => 0,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -2089,7 +2289,7 @@ function virgin_components_field_default_field_instances() {
       'attributes' => array(
         'class' => '',
         'configurable_class' => 1,
-        'configurable_title' => 0,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -2370,6 +2570,7 @@ function virgin_components_field_default_field_instances() {
   t('A field replacing fieldable panel pane title.');
   t('Align content');
   t('Alignment');
+  t('Banner Image Title');
   t('Banners');
   t('Brand Color');
   t('CTA Blocks');
@@ -2386,6 +2587,7 @@ function virgin_components_field_default_field_instances() {
   t('Component Heading');
   t('Content');
   t('Heading');
+  t('Hero Banner Image');
   t('Hero Image');
   t('Hero Image Caption');
   t('Hero Image Size');
