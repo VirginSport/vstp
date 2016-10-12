@@ -88,6 +88,7 @@ features[field_base][] = field_start_date
 features[field_base][] = field_status
 features[field_base][] = field_sugar_id
 features[field_base][] = field_teaser_layout
+features[field_base][] = field_teasers
 features[field_base][] = field_ticket_level
 features[field_base][] = field_ticket_reference
 features[field_base][] = field_ticket_type_state
