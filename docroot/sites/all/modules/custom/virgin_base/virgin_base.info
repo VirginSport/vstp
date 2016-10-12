@@ -80,6 +80,7 @@ features[field_base][] = field_hero_image
 features[field_base][] = field_hero_image_results
 features[field_base][] = field_hero_image_size
 features[field_base][] = field_hero_image_title
+features[field_base][] = field_hootsuite_campaing_url
 features[field_base][] = field_hostname
 features[field_base][] = field_image_effect
 features[field_base][] = field_last_name

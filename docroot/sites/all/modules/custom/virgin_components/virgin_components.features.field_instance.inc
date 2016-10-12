@@ -1475,6 +1475,96 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaing_url'.
+  $field_instances['fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaing_url'] = array(
+    'bundle' => 'vs_hootsuite_feed',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hootsuite_campaing_url',
+    'label' => 'Hootsuite Campaing URL',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -9,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hootsuite_feed-title_field'.
+  $field_instances['fieldable_panels_pane-vs_hootsuite_feed-title_field'] = array(
+    'bundle' => 'vs_hootsuite_feed',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -10,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_package_cards-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_package_cards-field_component_heading'] = array(
     'bundle' => 'vs_package_cards',
@@ -4001,6 +4091,7 @@ function virgin_components_field_default_field_instances() {
   t('Hero Image Caption');
   t('Hero Image Size');
   t('Hero Image Title');
+  t('Hootsuite Campaing URL');
   t('Image');
   t('Image Effect');
   t('Images');
