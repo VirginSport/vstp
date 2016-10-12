@@ -2354,6 +2354,139 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_block-field_component_heading'.
+  $field_instances['fieldable_panels_pane-vs_video_block-field_component_heading'] = array(
+    'bundle' => 'vs_video_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -8,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_block-field_video_poster_image'.
+  $field_instances['fieldable_panels_pane-vs_video_block-field_video_poster_image'] = array(
+    'bundle' => 'vs_video_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_video_poster_image',
+    'label' => 'Video Poster Image',
+    'required' => 1,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => -7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_block-field_video_url'.
+  $field_instances['fieldable_panels_pane-vs_video_block-field_video_url'] = array(
+    'bundle' => 'vs_video_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_video_url',
+    'label' => 'Video URL',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -6,
+    ),
+  );
+
   // Exported field_instance: 'paragraphs_item-vs_accordion_item-field_answer'.
   $field_instances['paragraphs_item-vs_accordion_item-field_answer'] = array(
     'bundle' => 'vs_accordion_item',
@@ -3881,6 +4014,8 @@ function virgin_components_field_default_field_instances() {
   t('Tickets');
   t('Title');
   t('Untimed Events');
+  t('Video Poster Image');
+  t('Video URL');
 
   return $field_instances;
 }
