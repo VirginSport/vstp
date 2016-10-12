@@ -466,6 +466,195 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-vs_carousel-field_banners'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_banners'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'paragraphs',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+          'view_mode' => 'full',
+        ),
+        'type' => 'paragraphs_view',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_banners',
+    'label' => 'Banners',
+    'required' => 0,
+    'settings' => array(
+      'add_mode' => 'button',
+      'allowed_bundles' => array(
+        'vs_accordion_item' => -1,
+        'vs_cta_block' => -1,
+        'vs_custom_banner' => 'vs_custom_banner',
+        'vs_event_festival_banner' => 'vs_event_festival_banner',
+        'vs_package_card' => -1,
+        'vs_slide' => 'vs_slide',
+        'vs_teaser' => -1,
+        'vs_ticket_card' => -1,
+        'vs_untimed_event_card' => -1,
+      ),
+      'bundle_weights' => array(
+        'vs_accordion_item' => 2,
+        'vs_cta_block' => 3,
+        'vs_custom_banner' => 4,
+        'vs_event_festival_banner' => 5,
+        'vs_package_card' => 6,
+        'vs_slide' => 7,
+        'vs_teaser' => 8,
+        'vs_ticket_card' => 9,
+        'vs_untimed_event_card' => 10,
+      ),
+      'default_edit_mode' => 'open',
+      'entity_translation_sync' => FALSE,
+      'title' => 'Paragraph',
+      'title_multiple' => 'Paragraphs',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'paragraphs',
+      'settings' => array(),
+      'type' => 'paragraphs_embed',
+      'weight' => -6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_carousel-field_carousel_style'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_carousel_style'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_carousel_style',
+    'label' => 'Carousel Style',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => -7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_carousel-field_component_heading'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_component_heading'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -8,
+    ),
+  );
+
+  // Exported field_instance: 'fieldable_panels_pane-vs_carousel-title_field'.
+  $field_instances['fieldable_panels_pane-vs_carousel-title_field'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -10,
+    ),
+  );
+
   // Exported field_instance:
   // 'fieldable_panels_pane-vs_cta_block-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_cta_block-field_component_heading'] = array(
@@ -3312,6 +3501,7 @@ function virgin_components_field_default_field_instances() {
   t('Call to action buttons');
   t('Card Image');
   t('Card Title');
+  t('Carousel Style');
   t('Choose a Festival or Event to promote');
   t('Choose a Hero Event');
   t('Choose a Package');
