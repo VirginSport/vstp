@@ -2213,6 +2213,23 @@ function virgin_base_field_default_field_bases() {
     'type' => 'image',
   );
 
+  // Exported field_base: 'field_slides'.
+  $field_bases['field_slides'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_slides',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'paragraphs',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'paragraphs',
+  );
+
   // Exported field_base: 'field_start_date'.
   $field_bases['field_start_date'] = array(
     'active' => 1,
