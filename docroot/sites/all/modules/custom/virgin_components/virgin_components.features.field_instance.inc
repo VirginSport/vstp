@@ -433,7 +433,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 9,
     ),
   );
 
@@ -441,47 +441,43 @@ function virgin_components_field_default_field_instances() {
   // 'fieldable_panels_pane-vs_basic_content_block-field_hero_image'.
   $field_instances['fieldable_panels_pane-vs_basic_content_block-field_hero_image'] = array(
     'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 1,
+        'type' => 'title',
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_hero_image',
     'label' => 'Hero Image',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
+      'type' => 'atom_reference_textfield',
       'weight' => 2,
     ),
   );
@@ -613,7 +609,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -1192,7 +1188,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => -4,
+      'weight' => 3,
     ),
   );
 
@@ -1238,7 +1234,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -8,
+      'weight' => 1,
     ),
   );
 
@@ -1246,21 +1242,22 @@ function virgin_components_field_default_field_instances() {
   // 'fieldable_panels_pane-vs_hero_banner_block-field_hero_image'.
   $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_hero_image'] = array(
     'bundle' => 'vs_hero_banner_block',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 2,
+        'type' => 'title',
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
@@ -1268,26 +1265,21 @@ function virgin_components_field_default_field_instances() {
     'label' => 'Hero Banner Image',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
-      'weight' => -6,
+      'type' => 'atom_reference_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -1335,7 +1327,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -10,
+      'weight' => 0,
     ),
   );
 
@@ -2947,21 +2939,22 @@ function virgin_components_field_default_field_instances() {
   // 'paragraphs_item-vs_cta_block-field_cta_card_image'.
   $field_instances['paragraphs_item-vs_cta_block-field_cta_card_image'] = array(
     'bundle' => 'vs_cta_block',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 1,
+        'type' => 'title',
+        'weight' => 6,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -2975,25 +2968,20 @@ function virgin_components_field_default_field_instances() {
     'label' => 'Card Image',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
+      'type' => 'atom_reference_textfield',
       'weight' => 1,
     ),
   );
@@ -3284,7 +3272,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 5,
     ),
   );
 
@@ -3333,7 +3321,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 3,
     ),
   );
 
@@ -3396,7 +3384,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 7,
+      'weight' => 4,
     ),
   );
 
@@ -3448,7 +3436,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 1,
     ),
   );
 
@@ -3456,21 +3444,22 @@ function virgin_components_field_default_field_instances() {
   // 'paragraphs_item-vs_custom_banner-field_hero_image'.
   $field_instances['paragraphs_item-vs_custom_banner-field_hero_image'] = array(
     'bundle' => 'vs_custom_banner',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 2,
+        'type' => 'title',
+        'weight' => 6,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -3484,26 +3473,21 @@ function virgin_components_field_default_field_instances() {
     'label' => 'Hero Image',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
-      'weight' => 5,
+      'type' => 'atom_reference_textfield',
+      'weight' => 2,
     ),
   );
 
@@ -3552,7 +3536,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 0,
     ),
   );
 
@@ -3812,28 +3796,29 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 1,
     ),
   );
 
   // Exported field_instance: 'paragraphs_item-vs_slide-field_slide_image'.
   $field_instances['paragraphs_item-vs_slide-field_slide_image'] = array(
     'bundle' => 'vs_slide',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 0,
+        'type' => 'title',
+        'weight' => 2,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -3844,29 +3829,24 @@ function virgin_components_field_default_field_instances() {
     ),
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_slide_image',
-    'label' => 'Image',
+    'label' => 'Photo',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
-      'weight' => 1,
+      'type' => 'atom_reference_textfield',
+      'weight' => 0,
     ),
   );
 
@@ -3966,21 +3946,22 @@ function virgin_components_field_default_field_instances() {
   // Exported field_instance: 'paragraphs_item-vs_teaser-field_card_images'.
   $field_instances['paragraphs_item-vs_teaser-field_card_images'] = array(
     'bundle' => 'vs_teaser',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
           'quickedit' => array(
             'editor' => 'form',
           ),
         ),
-        'type' => 'image',
-        'weight' => 2,
+        'type' => 'title',
+        'weight' => 8,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -3994,25 +3975,20 @@ function virgin_components_field_default_field_instances() {
     'label' => 'Images',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 1,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'virgin_full',
       ),
-      'type' => 'image_image',
+      'type' => 'atom_reference_textfield',
       'weight' => 2,
     ),
   );
@@ -4361,13 +4337,13 @@ function virgin_components_field_default_field_instances() {
   t('Hero Image Size');
   t('Hero Image Title');
   t('Hootsuite Campaing URL');
-  t('Image');
   t('Image Effect');
   t('Images');
   t('Layout arrangement');
   t('MyLaps ID');
   t('Outline Title');
   t('Packages');
+  t('Photo');
   t('Photo Description');
   t('Short Description');
   t('Slide');

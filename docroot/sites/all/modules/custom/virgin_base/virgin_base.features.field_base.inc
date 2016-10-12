@@ -790,21 +790,17 @@ function virgin_base_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_card_images',
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'sid' => array(
+        0 => 'sid',
       ),
     ),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'atom_reference',
     'settings' => array(
-      'default_image' => 0,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_carousel_style'.
@@ -1002,21 +998,17 @@ function virgin_base_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_cta_card_image',
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'sid' => array(
+        0 => 'sid',
       ),
     ),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'atom_reference',
     'settings' => array(
-      'default_image' => 0,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_cta_links'.
@@ -1720,21 +1712,17 @@ function virgin_base_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_hero_image',
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'sid' => array(
+        0 => 'sid',
       ),
     ),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'atom_reference',
     'settings' => array(
-      'default_image' => 0,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_hero_image_results'.
@@ -2257,21 +2245,17 @@ function virgin_base_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_slide_image',
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'sid' => array(
+        0 => 'sid',
       ),
     ),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'atom_reference',
     'settings' => array(
-      'default_image' => 0,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_slides'.
