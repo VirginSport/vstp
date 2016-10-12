@@ -11,6 +11,462 @@ function virgin_components_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_component_heading'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_component_heading'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_content_align_to'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_content_align_to'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => array(
+      0 => array(
+        'value' => 'left',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_content_align_to',
+    'label' => 'Align content',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_content_heading'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_content_heading'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_content_heading',
+    'label' => 'Heading',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_content_subheading'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_content_subheading'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_content_subheading',
+    'label' => 'Subheading',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_cta_links'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_cta_links'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 9,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_cta_links',
+    'label' => 'Call to action buttons',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 1,
+        'configurable_title' => 1,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_hero_image'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_hero_image'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'image',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_image',
+    'label' => 'Hero Image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_hero_image_size'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_hero_image_size'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => array(
+      0 => array(
+        'value' => 'scale_to_fit',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_image_size',
+    'label' => 'Hero Image Size',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_hero_image_title'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_hero_image_title'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_image_title',
+    'label' => 'Hero Image Title',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_page_body'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_page_body'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_page_body',
+    'label' => 'Content',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'display_summary' => 0,
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-title_field'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-title_field'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_cta_block-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_cta_block-field_component_heading'] = array(
     'bundle' => 'vs_cta_block',
@@ -1912,6 +2368,7 @@ function virgin_components_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('A field replacing fieldable panel pane title.');
+  t('Align content');
   t('Alignment');
   t('Banners');
   t('Brand Color');
@@ -1928,8 +2385,11 @@ function virgin_components_field_default_field_instances() {
   t('Choose an Untimed Event');
   t('Component Heading');
   t('Content');
+  t('Heading');
   t('Hero Image');
   t('Hero Image Caption');
+  t('Hero Image Size');
+  t('Hero Image Title');
   t('Image');
   t('Image Effect');
   t('Images');
@@ -1937,6 +2397,7 @@ function virgin_components_field_default_field_instances() {
   t('Outline Title');
   t('Photo Description');
   t('Short Description');
+  t('Subheading');
   t('Title');
 
   return $field_instances;
