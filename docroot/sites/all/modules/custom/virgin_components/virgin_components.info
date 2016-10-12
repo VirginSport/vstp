@@ -128,3 +128,6 @@ features[paragraphs][] = vs_slide
 features[paragraphs][] = vs_teaser
 features[paragraphs][] = vs_ticket_card
 features[paragraphs][] = vs_untimed_event_card
+files[] = components/VirginComponentsInterface.php
+files[] = components/VirginComponentsAccordion.php
+files[] = components/VirginComponentHeroEventCard.php
