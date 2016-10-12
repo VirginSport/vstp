@@ -85,6 +85,7 @@ features[field_base][] = field_medical_conditions_other
 features[field_base][] = field_medications
 features[field_base][] = field_mylaps_id
 features[field_base][] = field_outline_title
+features[field_base][] = field_package_cards
 features[field_base][] = field_package_reference
 features[field_base][] = field_package_state
 features[field_base][] = field_page_body
