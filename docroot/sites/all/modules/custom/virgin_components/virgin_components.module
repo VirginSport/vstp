@@ -67,6 +67,7 @@ function virgin_components_list() {
       new VirginComponentBasicCustomBlock(),
       new VirginComponentHeroBannerBlock(),
       new VirginComponentCTABlock(),
+      new VirginComponentPackageCards(),
       new VirginComponentUntimedEventCards(),
       new VirginComponentCarousel(),
       new VirginComponentPhotoGallery(),
