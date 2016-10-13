@@ -135,6 +135,17 @@ class VirginGrapher {
   }
 
   /**
+   * Gets the array value of the grapher object
+   *
+   * If the grapher raw data is not an array, an empty array will be returned.
+   *
+   * @return array
+   */
+  public function items() {
+    return is_array($this->data) ? $this->data : array();
+  }
+
+  /**
    * Returns the raw value contained in the grapher object
    *
    * @return mixed
