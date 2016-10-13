@@ -134,3 +134,4 @@ files[] = components/VirginComponentHeroEventCard.php
 files[] = components/VirginComponentBasicCustomBlock.php
 files[] = components/VirginComponentCTABlock.php
 files[] = components/VirginComponentCarousel.php
+files[] = components/VirginComponentPhotoGallery.php
