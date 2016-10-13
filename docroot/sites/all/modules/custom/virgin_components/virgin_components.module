@@ -81,6 +81,7 @@ function virgin_components_list() {
       new VirginComponentEventFestivalBannerItem(),
       new VirginComponentTeaserItem(),
       new VirginComponentCTABlockItem(),
+      new VirginComponentTicketCardItem(),
     );
   }
 

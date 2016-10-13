@@ -148,3 +148,5 @@ files[] = components/VirginComponentMyLapsTrackMyRunner.php
 files[] = components/VirginComponentEventFestivalBannerItem.php
 files[] = components/VirginComponentTeaserItem.php
 files[] = components/VirginComponentCTABlockItem.php
+files[] = components/VirginComponentTicketCardItem.php
+
