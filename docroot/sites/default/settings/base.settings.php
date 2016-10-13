@@ -31,6 +31,18 @@ $is_local_env = !$is_ah_env;
 
 if ($ah_env) {
   switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+    prod:
+      $domain = "www.virginsport.com";
+      break;
+    prelaunch:
+      $domain = "prelaunch.virginsport.com";
+      break;
+    test:
+      $domain = "stg.virginsport.com";
+      break;
+    dev:
+      $domain = "dev.virginsport.com";
+      break;
     default:
       // Dynamically set base url based on Acquia environment variable.
       $domain_prefix = $is_ah_dev_cloud ? 'devcloud' : 'prod';
