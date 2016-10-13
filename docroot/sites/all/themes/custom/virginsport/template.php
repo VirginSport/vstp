@@ -17,13 +17,13 @@ function virginsport_theme($existing, $type, $theme, $path) {
   );
 
   $themes['virginsport_picture'] = array(
-      'template' => 'virginsport-picture',
-      'variables' => array(
-        'image_style' => '',
-        'classes' => '',
-        'atom_id' => array(),
-      )
-    ) + $default;
+    'template' => 'virginsport-picture',
+    'variables' => array(
+      'image_style' => '',
+      'classes' => '',
+      'atom_id' => array(),
+    )
+  ) + $default;
 
   return $themes;
 }
