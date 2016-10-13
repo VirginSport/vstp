@@ -80,13 +80,13 @@ function virgin_components_list() {
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
 
-	    // Paragraphs Handlers
-	    new VirginComponentEventFestivalBannerItem(),
+      // Paragraphs Handlers
+      new VirginComponentEventFestivalBannerItem(),
       new VirginComponentTeaserItem(),
       new VirginComponentCTABlockItem(),
       new VirginComponentTicketCardItem(),
       new VirginComponentPackageCardItem(),
-	    new VirginComponentCustomBannerItem(),
+      new VirginComponentCustomBannerItem(),
       new VirginComponentUntimedEventCardItem(),
       new VirginComponentSlideItem(),
       new VirginComponentAccordionItem(),
