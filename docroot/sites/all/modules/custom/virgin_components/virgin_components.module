@@ -86,6 +86,7 @@ function virgin_components_list() {
       new VirginComponentTicketCardItem(),
       new VirginComponentPackageCardItem(),
 	  new VirginComponentCustomBannerItem()
+      new VirginComponentUntimedEventCardItem(),
     );
   }
 
