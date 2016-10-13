@@ -44,7 +44,7 @@ function virginsport_js_alter(&$js) {
 function virginsport_preprocess_page(&$vars) {
   global $user;
 
-  // Check if page manager is handling the current page.
+  // Check if page manager is handling the current page
   $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
 
   // Setup the user information
@@ -65,14 +65,16 @@ function virginsport_preprocess_page(&$vars) {
   $vars['main_menu'] = virginsport_menu_items('main-menu');
   $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
 
-  // Social Networks
+  // Setup the social networks
   $vars['social_networks'] = array();
   $networks = virgin_social_networks();
 
   foreach ($networks as $key => $network) {
     $url = variable_get('virgin_social_network_' . $key);
 
-    if (empty($url)) continue;
+    if (empty($url)) {
+      continue;
+    }
 
     $vars['social_networks'][] = array(
       'key' => check_plain($key),
