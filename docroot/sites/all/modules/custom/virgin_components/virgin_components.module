@@ -79,8 +79,12 @@ function virgin_components_list() {
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
-      // Paragraphs Handlers
-      new VirginComponentCustomBanner()
+	  // Paragraphs Handlers
+	  new VirginComponentEventFestivalBannerItem(),
+      new VirginComponentTeaserItem(),
+      new VirginComponentCTABlockItem(),
+      new VirginComponentTicketCardItem(),
+	  new VirginComponentCustomBanner()
     );
   }
 
