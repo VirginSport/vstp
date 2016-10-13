@@ -131,3 +131,4 @@ features[paragraphs][] = vs_untimed_event_card
 files[] = components/VirginComponentsInterface.php
 files[] = components/VirginComponentsAccordion.php
 files[] = components/VirginComponentHeroEventCard.php
+files[] = components/VirginComponentBasicCustomBlock.php

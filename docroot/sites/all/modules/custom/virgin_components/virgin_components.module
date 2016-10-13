@@ -64,6 +64,7 @@ function virgin_components_list() {
     $list = array(
       new VirginComponentHeroEventCard(),
       new VirginComponentAccordion(),
+      new VirginComponentBasicCustomBlock(),
     );
   }
 
