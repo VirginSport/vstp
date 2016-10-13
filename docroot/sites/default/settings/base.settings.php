@@ -31,16 +31,16 @@ $is_local_env = !$is_ah_env;
 
 if ($ah_env) {
   switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-    prod:
+    case prod:
       $domain = "www.virginsport.com";
       break;
-    prelaunch:
+    case prelaunch:
       $domain = "prelaunch.virginsport.com";
       break;
-    test:
+    case test:
       $domain = "stg.virginsport.com";
       break;
-    dev:
+    case dev:
       $domain = "dev.virginsport.com";
       break;
     default:
