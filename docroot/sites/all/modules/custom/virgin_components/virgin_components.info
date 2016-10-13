@@ -149,5 +149,6 @@ files[] = components/VirginComponentEventFestivalBannerItem.php
 files[] = components/VirginComponentTeaserItem.php
 files[] = components/VirginComponentCTABlockItem.php
 files[] = components/VirginComponentTicketCardItem.php
+files[] = components/VirginComponentPackageCardItem.php
 files[] = components/VirginComponentCustomBannerItem.php
 files[] = components/VirginComponentSlideItem.php

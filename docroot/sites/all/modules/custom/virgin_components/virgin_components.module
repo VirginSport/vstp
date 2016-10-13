@@ -84,8 +84,9 @@ function virgin_components_list() {
       new VirginComponentTeaserItem(),
       new VirginComponentCTABlockItem(),
       new VirginComponentTicketCardItem(),
-	  new VirginComponentCustomBannerItem(),
-	  new VirginComponentSlideItem(),
+      new VirginComponentPackageCardItem(),
+      new VirginComponentCustomBannerItem(),
+      new VirginComponentSlideItem(),
     );
   }
 
