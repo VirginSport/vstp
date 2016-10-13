@@ -136,6 +136,7 @@ files[] = components/VirginComponentPromotionalBanner.php
 files[] = components/VirginComponentTeaserBlock.php
 files[] = components/VirginComponentHeroBannerBlock.php
 files[] = components/VirginComponentCTABlock.php
+files[] = components/VirginComponentTicketCards.php
 files[] = components/VirginComponentPackageCards.php
 files[] = components/VirginComponentUntimedEventCards.php
 files[] = components/VirginComponentCarousel.php
