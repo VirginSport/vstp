@@ -138,4 +138,5 @@ files[] = components/VirginComponentUntimedEventCards.php
 files[] = components/VirginComponentCarousel.php
 files[] = components/VirginComponentPhotoGallery.php
 files[] = components/VirginComponentVideoBlock.php
+files[] = components/VirginComponentHootsuiteSocialFeed.php
 files[] = components/VirginComponentGamefacePhotoGallery.php
