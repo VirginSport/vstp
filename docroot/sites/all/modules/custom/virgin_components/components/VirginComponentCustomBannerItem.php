@@ -8,7 +8,7 @@
 /**
  * Class VirginComponentCustomBanner
  */
-class VirginComponentCustomBanner implements VirginComponentsInterface {
+class VirginComponentCustomBannerItem implements VirginComponentsInterface {
 
   /**
    * {@inheritdoc}
