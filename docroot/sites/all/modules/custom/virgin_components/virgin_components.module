@@ -69,6 +69,7 @@ function virgin_components_list() {
       new VirginComponentCTABlock(),
       new VirginComponentCarousel(),
       new VirginComponentPhotoGallery(),
+      new VirginComponentGamefacePhotoGallery(),
     );
   }
 

@@ -136,3 +136,4 @@ files[] = components/VirginComponentHeroBannerBlock.php
 files[] = components/VirginComponentCTABlock.php
 files[] = components/VirginComponentCarousel.php
 files[] = components/VirginComponentPhotoGallery.php
+files[] = components/VirginComponentGamefacePhotoGallery.php
