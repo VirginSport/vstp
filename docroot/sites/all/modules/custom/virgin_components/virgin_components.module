@@ -73,6 +73,7 @@ function virgin_components_list() {
       new VirginComponentVideoBlock(),
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
+      new VirginComponentMyLapsTrackMyRunner(),
     );
   }
 
