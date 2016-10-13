@@ -47,13 +47,17 @@ function virginsport_preprocess_page(&$vars) {
   // Check if page manager is handling the current page.
   $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
 
-  // User information
+  // Setup the user information
   if (user_is_logged_in()) {
     $account = user_load($user->uid);
     $account_wrapper = entity_metadata_wrapper('user', $account);
+    $first_name = $account_wrapper->field_first_name->value();
+    $last_name = $account_wrapper->field_last_name->value();
 
     $vars['account'] = array(
-      'first_name' => $account_wrapper->field_first_name->value()
+      'first_name' => check_plain($first_name),
+      'last_name' => check_plain($last_name),
+      'initials' => check_plain(substr($first_name, 0, 1) . substr($last_name, 0, 1))
     );
   }
 
