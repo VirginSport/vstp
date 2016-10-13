@@ -34,7 +34,7 @@ function virgin_components_preprocess(&$variables) {
   );
 
   // If hook is not supported bail out
-  if (!in_array($variables['theme_hook_original'], $supported)) {
+  if (empty($variables['elements']['#entity_type']) || !in_array($variables['elements']['#entity_type'], $supported)) {
     return;
   }
 
