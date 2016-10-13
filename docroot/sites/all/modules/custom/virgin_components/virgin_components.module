@@ -62,6 +62,7 @@ function virgin_components_list() {
 
   if (empty($list)) {
     $list = array(
+      // Fieldable Panel Panes Handlers
       new VirginComponentHeroEventCard(),
       new VirginComponentAccordion(),
       new VirginComponentBasicCustomBlock(),
@@ -78,6 +79,8 @@ function virgin_components_list() {
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
+      // Paragraphs Handlers
+      new VirginComponentCustomBanner()
     );
   }
 
