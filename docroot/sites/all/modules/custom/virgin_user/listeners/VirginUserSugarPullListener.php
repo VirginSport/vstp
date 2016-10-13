@@ -233,7 +233,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       'field_allergies' => $g->get('allergies')->value(),
       'field_agree_share_medical_info' => $g->get('share_info_with_vs')->value(),
       'field_birth_date' => strtotime($g->get('birth_date')->value('1900')),
-      'field_medical_conditions' => $g->get('medical_conditions')->value(),
+      'field_medical_conditions' => $g->get('medical_conditions')->items(),
     );
 
     $w = entity_metadata_wrapper('user', $account);
