@@ -80,6 +80,7 @@ function virgin_components_list() {
       new VirginComponentMyLapsTrackMyRunner(),
       new VirginComponentEventFestivalBannerItem(),
       new VirginComponentTeaserItem(),
+      new VirginComponentCTABlockItem(),
     );
   }
 
