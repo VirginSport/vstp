@@ -150,3 +150,4 @@ files[] = components/VirginComponentTeaserItem.php
 files[] = components/VirginComponentCTABlockItem.php
 files[] = components/VirginComponentTicketCardItem.php
 files[] = components/VirginComponentCustomBanner.php
+files[] = components/VirginComponentPackageCardItem.php
