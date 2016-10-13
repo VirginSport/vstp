@@ -29,6 +29,16 @@ function virginsport_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_js_alter().
+ */
+function virginsport_js_alter(&$js) {
+  // Forcefully remove the bootstrap js file that's added by the
+  // parent bootstrap theme as the code contained is deprecated
+  // for the bootstrap version in use by virginsport.
+  unset($js['sites/all/themes/contrib/bootstrap/js/bootstrap.js']);
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
