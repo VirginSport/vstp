@@ -42,6 +42,12 @@ projects:
   i18n:
     version: "1.13"
 
+  mailsystem:
+    version: "2.34"
+
+  mimemail:
+    version: "1.0-beta4"
+
   mollom:
     version: "2.15"
 
@@ -79,6 +85,9 @@ projects:
 
   shield:
     version: "1.2"
+
+  smtp:
+    version: "1.4"
 
   title:
     version: "1.0-alpha8"
