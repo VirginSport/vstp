@@ -59,7 +59,7 @@ function virgin_theme($existing, $type, $theme, $path) {
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_ctools_plugin_directory($module, $plugin) {
-  if (in_array($module, array('panelizer', 'ctools', 'page_manager'))) {
+  if (in_array($module, array('panels', 'panelizer', 'ctools', 'page_manager'))) {
     return 'plugins/' . $plugin;
   }
 }
