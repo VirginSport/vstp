@@ -33,6 +33,7 @@ dependencies[] = email_registration
 dependencies[] = field_group
 dependencies[] = hybridauth
 dependencies[] = i18n
+dependencies[] = i18n_menu
 dependencies[] = mollom
 dependencies[] = money
 dependencies[] = mailsystem

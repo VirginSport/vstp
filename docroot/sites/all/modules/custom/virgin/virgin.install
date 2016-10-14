@@ -11,3 +11,10 @@
 function virgin_update_7001() {
   module_enable(array('mimemail', 'mailsystem', 'smtp'));
 }
+
+/**
+ * Enables i18n_menu module.
+ */
+function virgin_update_7002() {
+  module_enable(array('i18n_menu'));
+}
