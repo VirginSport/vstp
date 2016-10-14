@@ -433,7 +433,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -592,8 +592,8 @@ function virgin_components_field_default_field_instances() {
     'label' => 'Content',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => 'virgin_full',
+      'context_default' => 'virgin_full',
       'display_summary' => 0,
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
@@ -610,6 +610,51 @@ function virgin_components_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_basic_content_block-field_scrollable_image'.
+  $field_instances['fieldable_panels_pane-vs_basic_content_block-field_scrollable_image'] = array(
+    'bundle' => 'vs_basic_content_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 11,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_scrollable_image',
+    'label' => 'Horizontal Scrolling Image',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 9,
     ),
   );
 
@@ -4337,6 +4382,7 @@ function virgin_components_field_default_field_instances() {
   t('Hero Image Size');
   t('Hero Image Title');
   t('Hootsuite Campaing URL');
+  t('Horizontal Scrolling Image');
   t('Image Effect');
   t('Images');
   t('Layout arrangement');
