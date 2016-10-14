@@ -103,25 +103,18 @@ class VirginEntityGrapher {
   }
 
   /**
-   * Returns all the row values of a property of a a given field
+   * Returns all the row values of a given field
    *
    * @param $name
    *  The field name
-   * @param string $property
-   *  The property of the field to be returned
-   * @return bool|float|int|string
-   *  The value of the property in the field or the default if empty
+   * @return []
    */
-  public function fieldGetAll($name, $property = 'value') {
+  public function fieldGetAll($name) {
     $language = $this->fieldLanguage($name);
     $values = array();
 
     if (!empty($this->entity->{$name}[$language])) {
-      foreach ($this->entity->{$name}[$language] as $row) {
-        if (!empty($row[$property])) {
-          $values[] = $row[$property];
-        }
-      }
+      return $this->entity->{$name}[$language];
     }
 
     return $values;
@@ -143,12 +136,24 @@ class VirginEntityGrapher {
     // Load wrapper for current entity
     $entity_wrapper = $this->entity_wrapper->language($language);
 
-    // If relationship exists on index return a new VirginEntityGrapher with it
-    if (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index]->value())) {
-      // Get relationship entity type
-      $entity_type = $entity_wrapper->{$name}[$index]->type();
+    // If property relationship does not exist return current grapher
+    if (empty($entity_wrapper->{$name})) {
+      return $this;
+    }
 
-      return new VirginEntityGrapher($entity_type, $entity_wrapper->{$name}[$index]->value());
+    $entity = $entity_wrapper->{$name};
+
+    // If field is multiple get the index
+    if (!empty($this->entity->{$name}[$language]) && count($this->entity->{$name}[$language]) > 1) {
+      $entity = $this->entity->{$name}[$language][$index];
+    }
+
+    // If relationship exists on index return a new VirginEntityGrapher with it
+    if (!empty($entity->value())) {
+      // Get relationship entity type
+      $entity_type = $entity->type();
+
+      return new VirginEntityGrapher($entity_type, $entity->value());
     }
 
     // If entity relationship not found return current VirginEntityGrapher
@@ -207,5 +212,23 @@ class VirginEntityGrapher {
     }
 
     return $language;
+  }
+
+  /**
+   * Return entity object
+   *
+   * @return stdClass
+   */
+  public function getEntity() {
+    return $this->entity;
+  }
+
+  /**
+   * Return entity type
+   *
+   * @return string
+   */
+  public function getEntityType() {
+    return $this->entity_type;
   }
 }
