@@ -80,7 +80,7 @@
                       <table cellpadding="20" cellspacing="0" border="0">
                         <tr>
                           <td>
-                            <h3 style="color:#4c4c4c!important;line-height:120%;font-size:13px;font-weight:normal;margin:0;font-family:arial,helvetica,sans-serif">The Battleship Building, 179 Harrow Road, London, W2 6NB</h3>
+                            <h3 style="color:#4c4c4c!important;line-height:120%;font-size:13px;font-weight:normal;margin:0;font-family:arial,helvetica,sans-serif">65 Bleecker Street New York, NY USA 10023</h3>
                             <p style="margin:1em 0;color:#7f7f7f;line-height:120%;font-size:10px;font-family:arial,helvetica,sans-serif"><?php print t('This message was sent to !email: We hope you found it relevant.', array('!email' => '<a href="#" style="color:#7f7f7f;text-decoration:none">' . $recipient->mail . '</a>')); ?></td>
                         </tr>
                       </table>
