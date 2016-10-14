@@ -45,6 +45,9 @@ projects:
   mailsystem:
     version: "2.34"
 
+  mimemail:
+    version: "1.0-beta4"
+
   mollom:
     version: "2.15"
 
