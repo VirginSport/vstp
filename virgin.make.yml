@@ -42,6 +42,9 @@ projects:
   i18n:
     version: "1.13"
 
+  mailsystem:
+    version: "2.34"
+
   mollom:
     version: "2.15"
 
