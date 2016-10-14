@@ -33,6 +33,5 @@ function virgin_config_menu_default_menu_custom() {
   t('The <em>Main</em> menu is used on many sites to show the major sections of the site, often in a top navigation bar.');
   t('The Footer menu is shown on the bottom of the page.');
 
-
   return $menus;
 }
