@@ -462,7 +462,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_hero_image',
     'label' => 'Hero Image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'allow_override' => 0,
       'entity_translation_sync' => FALSE,
