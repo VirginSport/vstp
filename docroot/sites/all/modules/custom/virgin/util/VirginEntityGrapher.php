@@ -103,25 +103,18 @@ class VirginEntityGrapher {
   }
 
   /**
-   * Returns all the row values of a property of a a given field
+   * Returns all the row values of a given field
    *
    * @param $name
    *  The field name
-   * @param string $property
-   *  The property of the field to be returned
-   * @return bool|float|int|string
-   *  The value of the property in the field or the default if empty
+   * @return []
    */
-  public function fieldGetAll($name, $property = 'value') {
+  public function fieldGetAll($name) {
     $language = $this->fieldLanguage($name);
     $values = array();
 
     if (!empty($this->entity->{$name}[$language])) {
-      foreach ($this->entity->{$name}[$language] as $row) {
-        if (!empty($row[$property])) {
-          $values[] = $row[$property];
-        }
-      }
+      return $this->entity->{$name}[$language];
     }
 
     return $values;
