@@ -86,6 +86,9 @@ projects:
   shield:
     version: "1.2"
 
+  smtp:
+    version: "1.4"
+
   title:
     version: "1.0-alpha8"
 
