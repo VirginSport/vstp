@@ -23,6 +23,8 @@ function virgin_config_menu_default_menu_custom() {
     'menu_name' => 'menu-footer-menu',
     'title' => 'Footer Menu',
     'description' => 'The Footer menu is shown on the bottom of the page.',
+    'language' => 'und',
+    'i18n_mode' => 5,
   );
   // Translatables
   // Included for use with string extractors like potx.
