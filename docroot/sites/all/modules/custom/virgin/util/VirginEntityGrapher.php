@@ -143,12 +143,24 @@ class VirginEntityGrapher {
     // Load wrapper for current entity
     $entity_wrapper = $this->entity_wrapper->language($language);
 
-    // If relationship exists on index return a new VirginEntityGrapher with it
-    if (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index]->value())) {
-      // Get relationship entity type
-      $entity_type = $entity_wrapper->{$name}[$index]->type();
+    // If property relationship does not exist return current grapher
+    if (empty($entity_wrapper->{$name})) {
+      return $this;
+    }
 
-      return new VirginEntityGrapher($entity_type, $entity_wrapper->{$name}[$index]->value());
+    $entity = $entity_wrapper->{$name};
+
+    // If field is multiple get the index
+    if (!empty($this->entity->{$name}[$language]) && count($this->entity->{$name}[$language]) > 1) {
+      $entity = $this->entity->{$name}[$language][$index];
+    }
+
+    // If relationship exists on index return a new VirginEntityGrapher with it
+    if (!empty($entity->value())) {
+      // Get relationship entity type
+      $entity_type = $entity->type();
+
+      return new VirginEntityGrapher($entity_type, $entity->value());
     }
 
     // If entity relationship not found return current VirginEntityGrapher
