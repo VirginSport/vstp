@@ -220,4 +220,22 @@ class VirginEntityGrapher {
 
     return $language;
   }
+
+  /**
+   * Return entity object
+   *
+   * @return stdClass
+   */
+  public function getEntity() {
+    return $this->entity;
+  }
+
+  /**
+   * Return entity type
+   *
+   * @return string
+   */
+  public function getEntityType() {
+    return $this->entity_type;
+  }
 }
