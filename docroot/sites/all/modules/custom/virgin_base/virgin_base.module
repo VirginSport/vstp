@@ -5,3 +5,48 @@
  */
 
 include_once 'virgin_base.features.inc';
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function virgin_element_info_alter(&$elements) {
+  if (!empty($elements['link_field'])) {
+    $elements['link_field']['#process'][] = 'virgin_link_field_process';
+  }
+}
+
+/**
+ * Convert the link field class to a select
+ *
+ * @see link_field_process
+ */
+function virgin_link_field_process($element, $form_state, $complete_form) {
+  // The supported link fields to override class textfield with a select list
+  $supported = array(
+    'field_cta_links'
+  );
+
+  // If current element is not on supported list do not make changes
+  if (!in_array($element['#field_name'], $supported)) {
+    return $element;
+  }
+
+  if (!empty($element['attributes']['class'])) {
+    // Field brand color has the virgin brand colors
+    $field = field_info_field('field_brand_color');
+    $allowed_values = $field['settings']['allowed_values'];
+
+    // Load element attributes
+    $attributes = empty($element['#value']['attributes']) ? '' : $element['#value']['attributes'];
+
+    // Render a select element for link class, instead of a textfield
+    $element['attributes']['class'] = array(
+      '#type' => 'select',
+      '#title' => t('Button Color'),
+      '#options' => empty($allowed_values) ? array() : $allowed_values,
+      '#default_value' => isset($attributes['class']) ? $attributes['class'] : '',
+    );
+  }
+
+  return $element;
+}
