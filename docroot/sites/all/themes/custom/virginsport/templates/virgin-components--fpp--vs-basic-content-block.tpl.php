@@ -77,14 +77,14 @@
               <?php endif; ?>
             <?php endif; ?>
 
-            <?php foreach ($cta_links as $cta_link): ?>
-              <a
-                href="<?php print url($cta_link['url']); ?>"
-                class="btn vs-btn vs-btn--min vs-btn--gradient-blue <?php print !empty($cta_link['attributes']['class']) ? $cta_link['attributes']['class'] : ''; ?>"
-              >
-                <?php print $cta_link['title']; ?>
-              </a>
-            <?php endforeach; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-btn--min'
+                )
+              );
+            ?>
           </div>
         </div>
       </div>
