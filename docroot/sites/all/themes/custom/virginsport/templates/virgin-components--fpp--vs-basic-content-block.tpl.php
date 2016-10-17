@@ -62,9 +62,7 @@
             <?php endif; ?>
 
             <?php if (!empty($page_body)): ?>
-              <p>
-                <?php print $page_body ?>
-              </p>
+              <?php print $page_body ?>
             <?php endif; ?>
 
             <?php if(!empty($scrollable_image->property('sid'))): ?>
