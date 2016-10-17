@@ -36,6 +36,9 @@ projects:
   field_group:
     version: "1.5"
 
+  fieldable_panels_panes:
+    version: "1.10"
+
   hybridauth:
     version: "2.15"
 
@@ -62,6 +65,9 @@ projects:
 
   observer:
     version: "1.0"
+
+  paragraphs:
+    version: "1.0-rc4"
 
   redirect:
     version: "1.0-rc3"

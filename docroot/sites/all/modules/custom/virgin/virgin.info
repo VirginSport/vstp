@@ -31,6 +31,7 @@ dependencies[] = lightning_wysiwyg
 dependencies[] = composer_manager
 dependencies[] = email_registration
 dependencies[] = field_group
+dependencies[] = fieldable_panels_panes
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = i18n_menu
@@ -49,11 +50,13 @@ dependencies[] = smtp
 dependencies[] = user_registrationpassword
 dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
+dependencies[] = paragraphs
 
 ; required virgin modules
 dependencies[] = virgin_api
 dependencies[] = virgin_base
 dependencies[] = virgin_config
+dependencies[] = virgin_components
 dependencies[] = virgin_event
 dependencies[] = virgin_festival
 dependencies[] = virgin_image
@@ -68,3 +71,4 @@ dependencies[] = virgin_user
 ; required files
 files[] = exceptions/VirginException.php
 files[] = util/VirginGrapher.php
+files[] = util/VirginEntityGrapher.php
