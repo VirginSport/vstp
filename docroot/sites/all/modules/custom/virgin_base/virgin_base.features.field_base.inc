@@ -690,7 +690,7 @@ function virgin_base_field_default_field_bases() {
   // Exported field_base: 'field_card_colour'.
   $field_bases['field_card_colour'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_card_colour',
@@ -1794,13 +1794,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_hootsuite_campaing_url'.
-  $field_bases['field_hootsuite_campaing_url'] = array(
+  // Exported field_base: 'field_hootsuite_campaign_url'.
+  $field_bases['field_hootsuite_campaign_url'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_hootsuite_campaing_url',
+    'field_name' => 'field_hootsuite_campaign_url',
     'indexes' => array(
       'format' => array(
         0 => 'format',

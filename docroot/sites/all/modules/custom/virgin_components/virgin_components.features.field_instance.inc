@@ -420,7 +420,7 @@ function virgin_components_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
+      'title' => 'required',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
@@ -462,7 +462,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_hero_image',
     'label' => 'Hero Image',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'allow_override' => 0,
       'entity_translation_sync' => FALSE,
@@ -1208,8 +1208,8 @@ function virgin_components_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
+        'configurable_class' => 1,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -1220,7 +1220,7 @@ function virgin_components_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
+      'title' => 'required',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
@@ -1646,8 +1646,8 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaing_url'.
-  $field_instances['fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaing_url'] = array(
+  // 'fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaign_url'.
+  $field_instances['fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaign_url'] = array(
     'bundle' => 'vs_hootsuite_feed',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1666,8 +1666,8 @@ function virgin_components_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_hootsuite_campaing_url',
-    'label' => 'Hootsuite Campaing URL',
+    'field_name' => 'field_hootsuite_campaign_url',
+    'label' => 'Hootsuite Campaign URL',
     'required' => 1,
     'settings' => array(
       'context' => 'title',
@@ -3064,8 +3064,8 @@ function virgin_components_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
+        'configurable_class' => 1,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -3076,7 +3076,7 @@ function virgin_components_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
+      'title' => 'required',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
@@ -3405,7 +3405,7 @@ function virgin_components_field_default_field_instances() {
       'attributes' => array(
         'class' => '',
         'configurable_class' => 1,
-        'configurable_title' => 0,
+        'configurable_title' => 1,
         'rel' => '',
         'target' => 'default',
         'title' => '',
@@ -4381,7 +4381,7 @@ function virgin_components_field_default_field_instances() {
   t('Hero Image Caption');
   t('Hero Image Size');
   t('Hero Image Title');
-  t('Hootsuite Campaing URL');
+  t('Hootsuite Campaign URL');
   t('Horizontal Scrolling Image');
   t('Image Effect');
   t('Images');
