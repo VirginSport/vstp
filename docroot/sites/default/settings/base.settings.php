@@ -31,18 +31,6 @@ $is_local_env = !$is_ah_env;
 
 if ($ah_env) {
   switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-    case "prod":
-      $domain = "www.virginsport.com";
-      break;
-    case "prelaunch":
-      $domain = "prelaunch.virginsport.com";
-      break;
-    case "test":
-      $domain = "stg.virginsport.com";
-      break;
-    case "dev":
-      $domain = "dev.virginsport.com";
-      break;
     default:
       // Dynamically set base url based on Acquia environment variable.
       $domain_prefix = $is_ah_dev_cloud ? 'devcloud' : 'prod';
@@ -70,8 +58,8 @@ if ($ah_env) {
    * It is not allowed to have a trailing slash; Drupal will add it
    * for you.
    */
-  $protocol = 'http://';
-  $base_url = $protocol . $domain;
+//  $protocol = 'http://';
+//  $base_url = $protocol . $domain;
 
   /**
    * Drupal automatically generates a unique session cookie name for each site
@@ -82,7 +70,7 @@ if ($ah_env) {
    * between your various domains. Make sure to always start the $cookie_domain
    * with a leading dot, as per RFC 2109.
    */
-  $cookie_domain = ".virginsport.com";
+//  $cookie_domain = ".$domain";
 }
 
 /**
