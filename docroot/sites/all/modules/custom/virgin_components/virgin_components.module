@@ -65,7 +65,7 @@ function virgin_components_list() {
       // Fieldable Panel Panes Handlers
       new VirginComponentHeroEventCard(),
       new VirginComponentAccordion(),
-      new VirginComponentBasicCustomBlock(),
+      new VirginComponentBasicContentBlock(),
       new VirginComponentPromotionalBanner(),
       new VirginComponentTeaserBlock(),
       new VirginComponentHeroBannerBlock(),
