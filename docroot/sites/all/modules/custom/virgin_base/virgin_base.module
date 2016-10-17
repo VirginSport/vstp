@@ -9,9 +9,9 @@ include_once 'virgin_base.features.inc';
 /**
  * Implements hook_element_info_alter().
  */
-function virgin_element_info_alter(&$elements) {
+function virgin_base_element_info_alter(&$elements) {
   if (!empty($elements['link_field'])) {
-    $elements['link_field']['#process'][] = 'virgin_link_field_process';
+    $elements['link_field']['#process'][] = 'virgin_base_link_field_process';
   }
 }
 
@@ -20,7 +20,7 @@ function virgin_element_info_alter(&$elements) {
  *
  * @see link_field_process
  */
-function virgin_link_field_process($element, $form_state, $complete_form) {
+function virgin_base_link_field_process($element, $form_state, $complete_form) {
   // The supported link fields to override class textfield with a select list
   $supported = array(
     'field_cta_links'
