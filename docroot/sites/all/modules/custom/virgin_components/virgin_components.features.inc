@@ -24,7 +24,7 @@ function virgin_components_paragraphs_info() {
       'locked' => '1',
     ),
     'vs_cta_block' => array(
-      'name' => 'CTA_Block',
+      'name' => 'CTA Block',
       'bundle' => 'vs_cta_block',
       'locked' => '1',
     ),
