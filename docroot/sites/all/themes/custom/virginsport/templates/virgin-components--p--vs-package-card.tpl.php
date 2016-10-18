@@ -23,7 +23,7 @@
           </div>
 
           <div class="vs-package-card-footer">
-            <div class="vs-package-card__price"></div>
+            <div class="vs-package-card__price"><?php print $package_price; ?></div>
             <div class="vs-package-card__button-wrapper">
               <a class="btn vs-btn vs-btn--sm vs-btn--transparent vs-package-card__button">details</a>
             </div>
