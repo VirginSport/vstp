@@ -701,23 +701,23 @@ $tooltip-arrow-width:         10px;
 // $modal-dialog-margin:         10px;
 // $modal-dialog-sm-up-margin-y: 30px;
 
-// $modal-title-padding:         15px;
+$modal-title-padding:         1.5rem;
 // $modal-title-line-height:     $line-height-base;
 
 // $modal-content-bg:               #fff;
 // $modal-content-border-color:     rgba(0,0,0,.2);
-// $modal-content-border-width:     $border-width;
-// $modal-content-xs-box-shadow:    0 3px 9px rgba(0,0,0,.5);
-// $modal-content-sm-up-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+$modal-content-border-width:     0;
+$modal-content-xs-box-shadow:    none;
+$modal-content-sm-up-box-shadow: none;
 
-// $modal-backdrop-bg:           #000;
-// $modal-backdrop-opacity:      .5;
+$modal-backdrop-bg:           $c-black;
+$modal-backdrop-opacity:      .8;
 // $modal-header-border-color:   #e5e5e5;
 // $modal-footer-border-color:   $modal-header-border-color;
 // $modal-header-border-width:   $modal-content-border-width;
 // $modal-footer-border-width:   $modal-header-border-width;
 
-// $modal-lg:                    900px;
+$modal-lg:                    1100px;
 // $modal-md:                    600px;
 // $modal-sm:                    300px;
 
