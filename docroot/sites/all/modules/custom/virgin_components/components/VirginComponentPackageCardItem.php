@@ -43,7 +43,7 @@ class VirginComponentPackageCardItem implements VirginComponentsInterface {
     $variables['package_description'] = $package_grapher->fieldRendered('field_description');
     $variables['card_image'] = $package_grapher->relation('field_card_image');
     $variables['package_price'] = $package_grapher->fieldGetOne('field_price','', 'amount');
-    //$variables['package_price'] = $package_grapher->fieldGetOne('field_price', 'currency');
-    //$x = 0;
+    $variables['package_currency'] = $package_grapher->fieldGetOne('field_price','', 'currency');
+    $variables['package_nid'] = $package_grapher->property('nid');
   }
 }
