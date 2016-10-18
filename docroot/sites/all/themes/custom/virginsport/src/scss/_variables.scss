@@ -35,6 +35,45 @@ $c-brown:                     #AB0041;
 $c-rose:                      #F857A6;
 $c-violet:                    #645BB4;
 
+// Brand color schemes
+$color-schemes: (
+  blue: (
+    from: #1F85FF,
+    to: #4231CB,
+    rotate: 135deg
+  ),
+  teal: (
+    from: #01B9C0,
+    to: #001642,
+    rotate: 135deg
+  ),
+  orange: (
+    from: #FF5858,
+    to: #FFE386,
+    rotate: 135deg
+  ),
+  purple: (
+    from: #9D50BB,
+    to: #3A2899,
+    rotate: 135deg
+  ),
+  brown: (
+    from: #840324,
+    to: #061161,
+    rotate: 135deg
+  ),
+  rose: (
+    from: #F857A6,
+    to: #FF5858,
+    rotate: 135deg
+  ),
+  violet: (
+    from: #FB8B5F,
+    to: #504EA1,
+    rotate: 135deg
+  )
+);
+
 $state-danger:                #EA2322;
 
 // Custom variables
@@ -829,3 +868,7 @@ $tooltip-arrow-width:         10px;
 // $pre-color:                   $gray-dark;
 // $pre-border-color:            #ccc;
 // $pre-scrollable-max-height:   340px;
+
+// CTA Block
+$cta-block-min-opacity:             .6;
+$cta-block-max-opacity-limited:     .8;
