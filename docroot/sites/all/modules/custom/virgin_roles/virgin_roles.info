@@ -1,7 +1,13 @@
 name = Virgin Roles
-description = Handles  Virgin Sports user roles and permissions configuration
+description = Handles roles and permissions for virgin sport website
 core = 7.x
 package = Virgin Sports
 version = 7.x-1.0
-project = virgin_roles
-project path = sites/all/modules/custom
+dependencies[] = features
+dependencies[] = node
+dependencies[] = nra
+dependencies[] = workbench_moderation
+features[features_api][] = api:2
+features[user_role][] = administrator
+features[user_role][] = editor
+features[user_role][] = manager
