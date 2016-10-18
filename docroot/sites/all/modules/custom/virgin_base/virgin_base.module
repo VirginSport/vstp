@@ -16,6 +16,28 @@ function virgin_base_element_info_alter(&$elements) {
 }
 
 /**
+ * Implements hook_field_attach_validate().
+ */
+function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
+  // Make field_cta_links url required if title is not empty and virgin_type
+  // field has link option selected
+  if (!empty($entity->field_cta_links[LANGUAGE_NONE])) {
+    foreach ($entity->field_cta_links[LANGUAGE_NONE] as $delta => $cta_link) {
+      if ($cta_link['attributes']['virgin_type'] == 'link' && !empty($cta_link['title']) && empty($cta_link['url'])) {
+        $errors['field_cta_links'][LANGUAGE_NONE][$delta][] = array(
+          'error' => 'link_required',
+          'message' => t('Url must be provided with Link type'),
+          'error_element' => array('url' => TRUE),
+        );
+      }
+    }
+  }
+}
+
+// Helpers
+// -----------------------------------------------------------------------------
+
+/**
  * Convert the link field class to a select
  *
  * @see link_field_process
@@ -31,22 +53,50 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     return $element;
   }
 
-  if (!empty($element['attributes']['class'])) {
-    // Field brand color has the virgin brand colors
-    $field = field_info_field('field_brand_color');
-    $allowed_values = $field['settings']['allowed_values'];
+  // Field brand color has the virgin brand colors
+  $field = field_info_field('field_brand_color');
 
-    // Load element attributes
-    $attributes = empty($element['#value']['attributes']) ? '' : $element['#value']['attributes'];
+  $allowed_values = $field['settings']['allowed_values'];
 
-    // Render a select element for link class, instead of a textfield
-    $element['attributes']['class'] = array(
-      '#type' => 'select',
-      '#title' => t('Button Color'),
-      '#options' => empty($allowed_values) ? array() : $allowed_values,
-      '#default_value' => isset($attributes['class']) ? $attributes['class'] : '',
-    );
-  }
+  // Load element attributes
+  $attributes = empty($element['#value']['attributes']) ? '' : $element['#value']['attributes'];
+
+  // Add a new field to choose the button style
+  $element['attributes']['virgin_class'] = array(
+    '#type' => 'select',
+    '#title' => t('Button Style'),
+    '#options' => empty($allowed_values) ? array() : $allowed_values,
+    '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
+  );
+
+  // The type field options
+  $types = array(
+    'link' => 'Link',
+    'get_in_touch' => 'Get in Touch',
+    'register_interest' => 'Register Interest'
+  );
+
+  // Generate a unique id for this field to add #states based on it
+  $id = drupal_html_id('link_' . $element['#field_name'] . '_attributes_virgin_type_ ' . $element['#delta']);
+
+  // Add a new field to choose between a link field and CTA buttons
+  $element['attributes']['virgin_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#options' => $types,
+    '#default_value' => isset($attributes['virgin_type']) ? $attributes['virgin_type'] : '',
+    '#attributes' => array(
+      'id' => $id,
+    ),
+  );
+
+  // Show url field if virgin_type value is link
+  $element['url']['#states'] = array(
+    // Hide the settings when the cancel notify checkbox is disabled.
+    'visible' => array(
+      '#' . $id => array('value' => 'link'),
+    )
+  );
 
   return $element;
 }
