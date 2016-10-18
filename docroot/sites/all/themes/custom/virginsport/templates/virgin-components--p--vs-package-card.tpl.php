@@ -15,11 +15,11 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <div class="vs-package-card-wrapper materialShadow" style="<?php print virginsport_atom_background($event_image->getEntity()); ?>">
+        <div class="vs-package-card-wrapper materialShadow" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>">
 
           <div class="vs-package-card-content">
-            <h2 class="vs-package-card__title"><?php print $event_title; ?></h2>
-            <p class="vs-package-card__description"><?php print $event_description; ?></p>
+            <h2 class="vs-package-card__title"><?php print $package_title; ?></h2>
+            <p class="vs-package-card__description"><?php print $package_description; ?></p>
           </div>
 
           <div class="vs-package-card-footer">

@@ -34,11 +34,11 @@ class VirginComponentPackageCardItem implements VirginComponentsInterface {
 
     $variables['title'] = $virgin->fieldGetOne('title_field');
     $variables['description'] = $virgin->fieldRendered('field_description');
-    $event_grapher = $virgin->relation('field_package_reference');
+    $package_grapher = $virgin->relation('field_package_reference');
 
-    $variables['event_title'] = $event_grapher->fieldGetOne('title_field');
-    $variables['event_description'] = $event_grapher->fieldRendered('field_description');
-    $variables['event_image'] = $event_grapher->relation('field_card_image');
-
+    $variables['package_title'] = $package_grapher->fieldGetOne('title_field');
+    $variables['package_description'] = $package_grapher->fieldRendered('field_description');
+    $variables['card_image'] = $package_grapher->relation('field_card_image');
+    //$variables['package_price'] = $package_grapher->fieldGetOne('field_price');
   }
 }
