@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the virgin module.
+ */
+
+/**
+ * Enables mimemail, mailsystem and smtp modules.
+ */
+function virgin_update_7001() {
+  module_enable(array('mimemail', 'mailsystem', 'smtp'));
+}
+
+/**
+ * Enables i18n_menu module.
+ */
+function virgin_update_7002() {
+  module_enable(array('i18n_menu'));
+}
