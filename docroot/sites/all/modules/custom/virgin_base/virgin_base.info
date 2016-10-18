@@ -118,6 +118,7 @@ features[field_base][] = field_video_poster_image
 features[field_base][] = field_video_url
 features[field_base][] = title_field
 features[image][] = virgin_flag
+features[image][] = virgin_original
 features[user_permission][] = view any atom
 features[variable][] = features_default_export_path
 features[views_view][] = event_reference
