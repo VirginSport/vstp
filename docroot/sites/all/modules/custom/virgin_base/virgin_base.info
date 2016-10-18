@@ -122,5 +122,6 @@ features[user_permission][] = view any atom
 features[variable][] = features_default_export_path
 features[views_view][] = event_reference
 features[views_view][] = festival_event_reference
+features[views_view][] = package_reference
 features_exclude[dependencies][entityreference] = entityreference
 features_exclude[dependencies][paragraphs] = paragraphs

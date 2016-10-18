@@ -2033,7 +2033,7 @@ function virgin_base_field_default_field_bases() {
   // Exported field_base: 'field_package_cards'.
   $field_bases['field_package_cards'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_package_cards',
@@ -2073,7 +2073,7 @@ function virgin_base_field_default_field_bases() {
         'view' => array(
           'args' => array(),
           'display_name' => 'entityreference_1',
-          'view_name' => 'festival_event_reference',
+          'view_name' => 'package_reference',
         ),
       ),
       'target_type' => 'node',
