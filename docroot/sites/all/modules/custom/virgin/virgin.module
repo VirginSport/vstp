@@ -103,13 +103,9 @@ function virgin_scald_extra_modes() {
 function virgin_social_networks() {
   return array(
     'facebook' => 'Facebook',
-    'google' => 'Google',
     'instagram' => 'Instagram',
-    'linkedin' => 'LinkedIn',
-    'pinterest' => 'Pinterest',
-    'tumbler' => 'Tumbler',
+    'snapchat' => 'Snapchat',
     'twitter' => 'Twitter',
-    'youtube' => 'Youtube',
   );
 }
 
