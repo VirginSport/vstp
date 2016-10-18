@@ -8,4 +8,8 @@
  */
 ?>
 
-Package Cards Template
+<div class="vs-region vs-region--light-gray">
+  <?php
+    print $paragraphs;
+  ?>
+</div>
