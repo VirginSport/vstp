@@ -11,10 +11,10 @@
 <div class="vs-region">
   <div class="vs-cta-block">
     <div class="container-fluid">
-      <div class="row vs-cta-block__row--with1items">
-        <div class="col-xs-12 col-lg-12 vs-cta-block__item">
-          <?php print $paragraphs; ?>
-        </div>
+      <div class="row">
+          <?php
+            print $paragraphs;
+          ?>
       </div>
     </div>
   </div>

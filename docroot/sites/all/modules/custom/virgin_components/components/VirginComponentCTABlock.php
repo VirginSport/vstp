@@ -35,6 +35,7 @@ class VirginComponentCTABlock implements VirginComponentsInterface {
     $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
     $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
 
+    $variables['heading'] = $virgin->fieldGetOne('field_component_heading');
     $variables['paragraphs'] = $virgin->fieldRendered('field_cta_blocks');
     $x=0;
   }

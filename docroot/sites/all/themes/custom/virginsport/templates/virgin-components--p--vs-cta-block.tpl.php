@@ -4,15 +4,24 @@
  * Main template for virgin components paragraph vs_cta_block_item
  *
  * Variables available:
- * TODO
+ * $title
+ * $description
+ * $cta_type
+ * $card_image
+ * $image_effect
+
  */
 
 ?>
 
-  <div class="vs-cta-block__background--with-image-limited-opacity" style="background-image: url(&quot;../img/vs-cta-block/vs-cta-block-1col-example1.png&quot;); background-color: rgb(48, 50, 65);"></div>
-  <h1 class="vs-cta-block__title">create a team</h1>
-  <p class="vs-cta-block__content">Praesent et magna sit amet libero semper<br>facilisis vel ac enim.Aliquam consectetur tellus<br>ipsum, vel aliquet nibh elementum vitae.</p>
+<div class="col-xs-12 col-lg-12 vs-cta-block__item">
+  <div class="vs-cta-block__background--with-image-limited-opacity" style="background-color: rgb(48, 50, 65);"></div>
+  <h1 class="vs-cta-block__title"><?php print $title; ?></h1>
+  <p class="vs-cta-block__content"><?php print $description; ?></p>
   <div class="vs-cta-block__cta-wrapper">
     <button class="btn vs-btn vs-btn--sm vs-btn--outline-white vs-cta-block__cta">learn more</button>
+    <button class="btn vs-btn vs-btn--sm vs-btn--outline-white vs-cta-block__cta">learn more</button>
   </div>
+</div>
+
 
