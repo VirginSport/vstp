@@ -34,8 +34,36 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
+ *
+ * Modifies the fieldable panel panes edit form for improved editing interface.
+ */
+function virgin_base_form_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_alter(&$form, &$form_state, $form_id) {
+  $form['extra_config'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Extra Configuration'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#tree' => FALSE,
+    '#group' => 'additional_settings',
+    '#weight' => 100
+  );
+
+  $move_to_extra = array(
+    'view_mode',
+    'link',
+    'language'
+  );
+
+  foreach ($move_to_extra as $field_name) {
+    $form['extra_config'][$field_name] = $form[$field_name];
+    unset($form[$field_name]);
+  }
+}
+
 // Helpers
-// -----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 /**
  * Convert the link field class to a select
