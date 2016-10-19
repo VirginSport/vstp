@@ -80,7 +80,7 @@ projects:
     download:
       type: git
       url: git@gitlab.driven.pt:drupal/scald-extra.git
-      revision: a533ce55518b8f7a620da494684a2f93cd487aab
+      revision: f16debef129d247fb9931399ec645d0e7152c625
       branch: master
 
   service_links:
