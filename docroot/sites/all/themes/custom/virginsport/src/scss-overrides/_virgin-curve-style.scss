@@ -1,0 +1,64 @@
+// Variables
+@import "../scss/variables";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// The different overlap sizes and breakpoints supported by the region style.
+$vs-region-overlap-sizes: (
+  'small': (
+    'xs': 0,
+    'sm': 0,
+    'md': 20px,
+    'lg': 40px,
+    'xl': 80px,
+  ),
+  'medium': (
+    'xs': 0,
+    'sm': 20px,
+    'md': 40px,
+    'lg': 80px,
+    'xl': 160px,
+  ),
+  'large': (
+    'xs': 20px,
+    'sm': 40px,
+    'md': 80px,
+    'lg': 160px,
+    'xl': 320px,
+  )
+);
+
+.vs-region > * {
+  z-index: 1;
+  position: relative;
+}
+
+.vs-region--overlap-large {
+  > :first-child {
+    margin-top: -300px;
+  }
+}
+
+.vs-region__bg-spacer[data-vs-region-curved="0"] {
+  max-height: 0;
+}
+
+@each $size-name in map-keys($vs-region-overlap-sizes) {
+  $size: map_get($vs-region-overlap-sizes, $size-name);
+
+  .vs-region[data-vs-region-overlap="#{$size-name}"] > :first-child {
+    @each $break-point in map-keys($size) {
+      @include media-breakpoint-only($break-point) {
+        margin-top: -(map-get($size, $break-point));
+      }
+    }
+  }
+
+  .vs-region__bg-spacer[data-vs-region-overlap="#{$size-name}"] {
+    @each $break-point in map-keys($size) {
+      @include media-breakpoint-only($break-point) {
+        padding-bottom: map-get($size, $break-point);
+      }
+    }
+  }
+}
