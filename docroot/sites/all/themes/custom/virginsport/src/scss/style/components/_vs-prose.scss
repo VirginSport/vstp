@@ -1,0 +1,77 @@
+
+// Block
+// ----------------------------------------------------------------------------
+
+vs-prose,
+.vs-prose {
+  @include clearfix();
+  display: block;
+  margin-bottom: 3rem;
+  background-color: $c-white;
+  border-radius: .625rem;
+  margin: 0 -.3125rem;
+  padding: 1.5625rem 1.25rem;
+  font-weight: 300;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+vs-prose,
+.vs-prose {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-serif;
+    color: $c-black;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+.vs-btn--cta {
+  display: block;
+  min-height: 2.25rem;
+  font-size: .75rem;
+  line-height: 2.125rem;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  vs-prose,
+  .vs-prose {
+    margin: 0;
+  }
+
+  .vs-btn--cta {
+    display: inline-block;
+  }
+
+  p + {
+    h1, h2, h3, h4, h5, h6 {
+      padding-top: .5rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  vs-prose,
+  .vs-prose {
+    padding-top: 2.6875rem;
+    padding-bottom: 1.875rem;
+
+    h2 {
+      font-size: 1.5625rem;
+      margin-bottom: .9375rem;
+    }
+  }
+}

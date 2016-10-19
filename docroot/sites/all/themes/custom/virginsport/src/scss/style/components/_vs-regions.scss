@@ -8,7 +8,6 @@
   padding: 2rem 0;
 }
 
-
 // Modifiers
 // ----------------------------------------------------------------------------
 
@@ -24,6 +23,10 @@
   background-color: #f0f0f0;
 }
 
+.vs-region--blue {
+  background-color: $c-blue;
+}
+
 .vs-region--invisible {
   display: none;
 }
@@ -35,7 +38,6 @@
     @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
   }
 }
-
 
 // Responsive
 // ----------------------------------------------------------------------------

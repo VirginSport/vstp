@@ -1,6 +1,11 @@
 // Blocks
 // ----------------------------------------------------------------------------
 
+.vs-package-card-list-heading {
+  margin-bottom: 0.625rem;
+  padding-left: 1.25rem;
+}
+
 vs-package-card,
 .vs-package-card {
   display: block;
@@ -126,6 +131,10 @@ vs-package-card,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(md) {
+  
+  .vs-package-card-list-heading {
+    margin-bottom: 0.9375rem;
+  }
 
   vs-package-card,
   .vs-package-card {
@@ -135,7 +144,6 @@ vs-package-card,
   .vs-package-card-wrapper {
     min-height: 10.1875rem;
   }
-
 }
 
 @include media-breakpoint-up(lg) {
@@ -185,7 +193,7 @@ vs-package-card,
   .vs-package-card-descriptive-wrapper {
     min-height: 16.875rem;
     margin-top: 0;
-    margin-left: 2.8125rem;
+    margin-left: 3.125rem;
 
     @include flexbox();
     @include flex-direction(column);
@@ -216,12 +224,17 @@ vs-package-card,
 }
 
 @include media-breakpoint-up(xl) {
+
+  .vs-package-card-list-heading {
+    padding-left: 1.875rem;
+  }
+
   .vs-package-card-wrapper {
     width: 34.375rem;
 
     min-height: 16.875rem;
     padding: 1.5625rem;
-    margin-left: 0;
+    margin-left: 0.3125rem;
     margin-right: 0;
   }
 }
