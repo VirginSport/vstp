@@ -171,6 +171,27 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
 }
 
 /**
+ * Generates an HTML style attribute with background-image from an atom object.
+ *
+ * @param $atom
+ *  The asset id-
+ * @param $style
+ *  The image style.
+ * @return string
+ *  HTML style attribute with background-image. For example: background-image: url(...);"
+ */
+function virginsport_atom_background($atom, $style = 'virgin_original') {
+
+  if (empty($atom->file_source)) {
+    $atom = scald_atom_load($atom->sid);
+  }
+
+  $image_url = image_style_url($style, $atom->file_source);
+
+  return 'background-image: url(' . $image_url . ');';
+}
+
+/**
  * Gets the base url path relative to the theme
  *
  * @param $path
