@@ -1,4 +1,4 @@
-import classColors from '../vars/class-colors';
+import brandColors from '../vars/brand-colors';
 import onResize from '../helper/on-resize';
 import $ from '../lib/jquery';
 
@@ -18,6 +18,11 @@ const GRADIENT_ROTATE_ADJUST = -90;
  */
 const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
 
+/**
+ * The list of regions being tracked
+ *
+ * @type {Region[]}
+ */
 const regions = [];
 
 export default () => {
@@ -252,13 +257,11 @@ function setAttributes(el, attrs) {
  * @param {Element} el
  */
 function getGradient(el) {
-  let classes = el.classList;
+  let color = el.getAttribute('data-vs-region-color');
   
-  for (let i = 0; i < classes.length; i++) {
-    if (classColors.hasOwnProperty(classes[i])) {
-      return classColors[classes[i]];
-    }
+  if (brandColors.hasOwnProperty(color)) {
+    return brandColors[color];
   }
   
-  return classColors['default'];
+  return brandColors['default'];
 }
