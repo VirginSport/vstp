@@ -33,7 +33,7 @@
             <div class="row">
               <div class="col-xs-10 offset-xs-1">
                 <h2 class="vs-basic-content-block__hero-title">
-                  <?php print $hero_image_title; ?>
+                  <?php print check_plain($hero_image_title); ?>
                 </h2>
               </div>
             </div>
@@ -47,7 +47,7 @@
         <?php if(!empty($content_heading)): ?>
           <div class="col-xs-12 col-md-3">
             <h4 class="vs-basic-content-block__static-title">
-              <?php print $content_heading ?>
+              <?php print check_plain($content_heading); ?>
             </h4>
           </div>
         <div class="col-xs-12 col-md-9">
@@ -55,9 +55,9 @@
         <div class="col-xs-12">
         <?php endif; ?>
           <div class="vs-basic-content-block__text-wrapper <?php print $content_align_to == 'left' ? '' : 'text-xs-center'; ?>">
-            <?php if (!empty($page_body)): ?>
+            <?php if (!empty($content_sub_heading)): ?>
               <h5 class="vs-basic-content-block__date">
-                <?php print $content_sub_heading ?>
+                <?php print check_plain($content_sub_heading); ?>
               </h5>
             <?php endif; ?>
 
@@ -77,14 +77,14 @@
               <?php endif; ?>
             <?php endif; ?>
 
-            <?php foreach ($cta_links as $cta_link): ?>
-              <a
-                href="<?php print url($cta_link['url']); ?>"
-                class="btn vs-btn vs-btn--min vs-btn--gradient-blue <?php print !empty($cta_link['attributes']['class']) ? $cta_link['attributes']['class'] : ''; ?>"
-              >
-                <?php print $cta_link['title']; ?>
-              </a>
-            <?php endforeach; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-btn--min'
+                )
+              );
+            ?>
           </div>
         </div>
       </div>

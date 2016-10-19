@@ -1,0 +1,10 @@
+
+.navbar-administration {
+  .vs-overlay-blur {
+    padding-top: 40px;
+  }
+
+  &.navbar-tray-open.navbar-fixed .vs-overlay-blur {
+    padding-top: 80px;
+  }
+}
