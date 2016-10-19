@@ -91,6 +91,19 @@ function virgin_scald_extra_modes() {
   );
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for panels_edit_style_type_form.
+ *
+ * Ensures only virgin curve panels region style is available for selection
+ * in the region style select form.
+ */
+function virgin_form_panels_edit_style_type_form_alter(&$form, &$form_state) {
+  $form['style']['#options'] = array(
+    'curve' => t('Virgin Curve')
+  );
+
+  $form['style']['#default_value'] = 'curve';
+}
 // Helpers
 // -----------------------------------------------------------------------------
 
