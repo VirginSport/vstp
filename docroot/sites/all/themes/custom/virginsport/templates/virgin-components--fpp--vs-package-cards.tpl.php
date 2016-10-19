@@ -8,7 +8,14 @@
  */
 ?>
 
-<div class="vs-region vs-region--light-gray">
+<div class="vs-region vs-region--blue">
+  <div class="container">
+    <div class="row">
+      <div class="vs-component-heading--white vs-package-card-list-heading">
+        <?php print check_plain($component_heading); ?>
+      </div>
+    </div>
+  </div>
   <?php
     print $paragraphs;
   ?>
