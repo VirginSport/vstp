@@ -95,6 +95,10 @@ function virgin_styles_curve_settings_form($settings, $display) {
     '#default_value' => $get_value('overlap', '')
   );
 
+  $form['notice'] = array(
+    '#markup' => t('<p>The changes to the region style are only visible after saving the current page.</p>')
+  );
+
   return $form;
 }
 
