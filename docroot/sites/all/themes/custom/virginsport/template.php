@@ -30,12 +30,19 @@ function virginsport_theme($existing, $type, $theme, $path) {
 
 /**
  * Implements hook_js_alter().
+ *
+ * TODO remove this alter once bootstrap is extracted as the parent theme
  */
 function virginsport_js_alter(&$js) {
   // Forcefully remove the bootstrap js file that's added by the
   // parent bootstrap theme as the code contained is deprecated
   // for the bootstrap version in use by virginsport.
   unset($js['sites/all/themes/contrib/bootstrap/js/bootstrap.js']);
+
+  // Restore default drupal vertical tabs behaviour overriden
+  // by bootstrap theme.
+  unset($js['sites/all/themes/contrib/bootstrap/js/misc/_vertical-tabs.js']);
+  $js['misc/vertical-tabs.js'] = drupal_js_defaults('misc/vertical-tabs.js');
 }
 
 /**
