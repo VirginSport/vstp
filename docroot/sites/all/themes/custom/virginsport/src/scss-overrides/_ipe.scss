@@ -1,0 +1,298 @@
+
+.panels-ipe .ctools-modal-dialog {
+  height: auto !important;
+  width: auto !important;
+  max-width: 1280px !important;
+
+  .modal-title {
+    line-height: 1em;
+  }
+
+  .modal-body {
+    padding: 0;
+    overflow: scroll;
+    max-width: 1270px;
+    border: none;
+  }
+
+  .modal-content {
+    padding: 0;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .panels-categories-box {
+    border-top: none;
+    margin-top: 15px;
+  }
+
+  .panels-section-columns .panels-section-column {
+    padding-top: 15px;
+    width: 50%;
+    padding-left: 15px;
+    float: left;
+
+    .inside {
+      padding: 0;
+    }
+  }
+
+  .panels-section-columns-quickfilter {
+    padding: 15px;
+    margin: 0;
+    border-bottom: 1px solid $gray-lighter;
+    background: rgba($gray-lightest, 0.8);
+    overflow: hidden;
+
+    label {
+      float: left;
+      margin: 0 10px 0 0;
+      line-height: 32px;
+      color: $gray-light;
+    }
+
+    input {
+      float: left;
+      width: 300px;
+      margin-top: 0;
+      border-radius: 3px;
+      border: 1px solid #dddddd;
+      line-height: 30px;
+      padding: 0 10px;
+      color: $gray;
+    }
+  }
+
+  .panels-add-content-modal {
+    margin: 0;
+    padding-bottom: 0;
+    background: none;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 175px;
+      background-color: $gray-lightest;
+      border-right: 1px solid $gray-lighter;
+    }
+
+    .panels-section-column {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .panels-modal-add-category {
+    padding-left: 17px;
+    font-weight: 500;
+    border-top: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-lighter;
+
+    &.active {
+      background-color: white;
+    }
+  }
+
+  .panels-add-content-modal .content-type-button {
+    position: relative;
+    height: auto;
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    overflow: hidden;
+
+    a {
+      width: 100%;
+      display: block;
+      padding: 10px 15px;
+      font-size: 14px;
+      border: 1px solid $gray-lighter;
+
+      &:hover,
+      &:focus {
+        background-color: $brand-primary;
+        border-color: $brand-primary;
+        color: white;
+      }
+
+      img {
+        display: none;
+      }
+
+      span {
+        position: relative;
+        top: inherit;
+        left: inherit;
+      }
+    }
+
+    .ajax-progress {
+      position: absolute;
+      right: 8px;
+      top: 7px;
+      left: auto;
+      width: 19px;
+      height: 19px;
+      border-radius: 15px;
+      background-color: white;
+
+      .throbber {
+        position: relative;
+        top: 2px;
+        float: none;
+        width: 15px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .panels-categories-description {
+    padding-top: 20px;
+    text-align: left;
+    color: $gray-light;
+  }
+
+  .modal-body form {
+    padding: 30px;
+  }
+
+  .form-control {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  select.form-control:not([size]):not([multiple]) {
+    height: 40px;
+  }
+
+  .sticky-header {
+    display: none;
+  }
+
+  .modal-body {
+    .tips,
+    .help-block {
+      margin-left: 0;
+      font-weight: 300;
+      font-size: 12px;
+    }
+
+    .help-block {
+      padding-top: 10px;
+    }
+
+    .tips {
+      padding-top: 20px;
+      padding-left: 15px;
+    }
+
+    .form-type-checkbox .help-block {
+      padding-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .tabledrag-changed-warning,
+    form .description {
+      padding: 5px 10px;
+      background-color: rgba($brand-primary, 0.1);
+      border: 1px solid rgba($brand-primary, 0.7);
+      color: $brand-primary;
+      font-weight: normal;
+      border-radius: 3px;
+    }
+
+    .tabledrag-changed-warning {
+      margin-top: 30px;
+      background-color: $state-warning-bg;
+      border: 1px solid $state-warning-border;
+      color: $state-warning-text;
+    }
+
+    form .description {
+      margin-bottom: 20px;
+    }
+
+    .form-control,
+    .help-block,
+    form .description {
+      max-width: 500px;
+    }
+
+    .filter-wrapper {
+      padding-bottom: 0;
+    }
+
+    .tabledrag-toggle-weight-wrapper {
+      display: none; // No value added
+    }
+
+    .filter-guidelines {
+      display: none; // Occupy way too much space, and not needed atm.
+    }
+  }
+
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: $gray-lightest;
+  }
+
+  .tabledrag-processed th {
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .field-multiple-drag {
+    border-top: none;
+    border-right: 1px solid #dddddd;
+    position: relative;
+    background-color: white;
+
+    a {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      bottom: 5px;
+      right: 5px;
+      vertical-align: middle;
+      display: block;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      float: none;
+      background-color: $gray-light;
+      border-radius: 20px;
+
+      &:hover {
+        background-color: $brand-primary;
+      }
+    }
+  }
+
+  .panels-ipe-display-container {
+    position: relative;
+    z-index: 30;
+  }
+
+  #panels-edit-style-type-form,
+  #panels-edit-style-settings-form {
+    padding-top: 30px;
+  }
+}
+
+.panels-ipe-placeholder-content {
+  padding-left: 40px;
+}
+
+.panels-ipe-linkbar {
+  display: block;
+  padding-right: 40px;
+
+  li {
+    float: left;
+  }
+}

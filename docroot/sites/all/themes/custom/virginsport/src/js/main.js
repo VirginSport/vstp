@@ -1,2 +1,3 @@
+import vsHeader from './components/vs-header';
 
-console.log('Virgin Sport');
+vsHeader();

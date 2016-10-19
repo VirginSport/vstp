@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/variables";
+@import "../scss/variables";
+
+// Fixes per module/feature
+@import "ipe";
+@import "navbar";
+@import "vertical-tabs";

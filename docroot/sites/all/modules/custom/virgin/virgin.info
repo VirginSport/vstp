@@ -8,23 +8,8 @@ required = TRUE
 dependencies[] = defaultconfig
 
 ; required lightning modules
-dependencies[] = lightning_admin
-dependencies[] = lightning_base
-dependencies[] = lightning_blocks
-dependencies[] = lightning_content
-dependencies[] = lightning_edit
-dependencies[] = lightning_files
 dependencies[] = lightning_filter
-dependencies[] = lightning_forms
-dependencies[] = lightning_image
-dependencies[] = lightning_media
-dependencies[] = lightning_metatags
 dependencies[] = lightning_moderation
-dependencies[] = lightning_panels
-dependencies[] = lightning_rules
-dependencies[] = lightning_views
-dependencies[] = lightning_token
-dependencies[] = lightning_theme
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
@@ -34,8 +19,11 @@ dependencies[] = field_group
 dependencies[] = fieldable_panels_panes
 dependencies[] = hybridauth
 dependencies[] = i18n
+dependencies[] = i18n_menu
 dependencies[] = mollom
 dependencies[] = money
+dependencies[] = mailsystem
+dependencies[] = mimemail
 dependencies[] = oauth_common
 dependencies[] = observer
 dependencies[] = redirect
@@ -43,6 +31,7 @@ dependencies[] = scald_extra
 dependencies[] = scald_image
 dependencies[] = service_links
 dependencies[] = services
+dependencies[] = smtp
 dependencies[] = user_registrationpassword
 dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
