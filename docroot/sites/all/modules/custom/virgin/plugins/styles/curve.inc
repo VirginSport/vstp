@@ -20,6 +20,12 @@ $plugin = array(
  * @return string
  */
 function theme_virgin_styles_curve_render_region($vars) {
+
+  // If there are no panes to be rendered, then don't render anything
+  if (empty($vars['panes'])) {
+    return;
+  }
+
   $get_value = function ($name, $default = '') use($vars) {
     return !isset($vars['settings'][$name]) ? $default : $vars['settings'][$name];
   };
