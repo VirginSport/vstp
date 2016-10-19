@@ -36,6 +36,7 @@ dependencies[] = user_registrationpassword
 dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
 dependencies[] = paragraphs
+dependencies[] = honeypot
 
 ; required virgin modules
 dependencies[] = virgin_api

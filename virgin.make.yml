@@ -75,6 +75,9 @@ projects:
   scald:
     version: "1.8"
 
+  honeypot:
+    version: "1.22"
+
   scald_extra:
     type: module
     download:
