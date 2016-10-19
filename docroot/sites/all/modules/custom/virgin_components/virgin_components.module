@@ -1,0 +1,97 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Components feature.
+ */
+
+include_once 'virgin_components.features.inc';
+
+/**
+ * Implements hook_theme()
+ *
+ * This need to be added so that we can override default fieldable_panel_panes
+ * and paragraphs items hook suggestions
+ *
+ * @see virgin_components_preprocess()
+ */
+function virgin_components_theme() {
+  return array(
+    'virgin_components' => array(
+      'render element' => 'elements',
+      'template'  => 'virgin-components',
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function virgin_components_preprocess(&$variables) {
+  // The supported hooks list
+  $supported = array(
+    'paragraphs_item',
+    'fieldable_panels_pane'
+  );
+
+  // If hook is not supported bail out
+  if (empty($variables['elements']['#entity_type']) || !in_array($variables['elements']['#entity_type'], $supported)) {
+    return;
+  }
+
+  // Loop between components list and if any of the components supports this
+  // entity_type and bundle preprocess it and override theme suggestion
+  foreach (virgin_components_list() as $component) {
+    if ($component->supports($variables['elements']['#entity_type'], $variables['elements']['#bundle'])) {
+      $component->preProcess($variables);
+
+      $variables['theme_hook_suggestions'] = array($component->themeSuggestion());
+    }
+  }
+}
+
+// Helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * Get list of components
+ *
+ * @return VirginComponentsInterface[]
+ */
+function virgin_components_list() {
+  $list = &drupal_static(__FUNCTION__);
+
+  if (empty($list)) {
+    $list = array(
+      // Fieldable Panel Panes Handlers
+      new VirginComponentHeroEventCard(),
+      new VirginComponentAccordion(),
+      new VirginComponentBasicCustomBlock(),
+      new VirginComponentPromotionalBanner(),
+      new VirginComponentTeaserBlock(),
+      new VirginComponentHeroBannerBlock(),
+      new VirginComponentCTABlock(),
+      new VirginComponentTicketCards(),
+      new VirginComponentPackageCards(),
+      new VirginComponentUntimedEventCards(),
+      new VirginComponentCarousel(),
+      new VirginComponentPhotoGallery(),
+      new VirginComponentVideoBlock(),
+      new VirginComponentHootsuiteSocialFeed(),
+      new VirginComponentGamefacePhotoGallery(),
+      new VirginComponentMyLapsTrackMyRunner(),
+
+      // Paragraphs Handlers
+      new VirginComponentEventFestivalBannerItem(),
+      new VirginComponentTeaserItem(),
+      new VirginComponentCTABlockItem(),
+      new VirginComponentTicketCardItem(),
+      new VirginComponentPackageCardItem(),
+      new VirginComponentCustomBannerItem(),
+      new VirginComponentUntimedEventCardItem(),
+      new VirginComponentSlideItem(),
+      new VirginComponentAccordionItem(),
+    );
+  }
+
+  return $list;
+}
