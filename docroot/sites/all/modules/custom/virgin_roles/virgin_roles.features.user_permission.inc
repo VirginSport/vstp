@@ -34,6 +34,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create event content'] = array(
     'name' => 'create event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -52,6 +54,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create festival content'] = array(
     'name' => 'create festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -70,6 +74,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create package content'] = array(
     'name' => 'create package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -88,9 +94,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['create page content'] = array(
     'name' => 'create page content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -99,6 +105,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create region content'] = array(
     'name' => 'create region content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -108,6 +116,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create ticket_type content'] = array(
     'name' => 'create ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -126,6 +136,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any event content'] = array(
     'name' => 'delete any event content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -144,6 +155,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any festival content'] = array(
     'name' => 'delete any festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -162,6 +175,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any package content'] = array(
     'name' => 'delete any package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -180,9 +195,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -191,6 +206,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any region content'] = array(
     'name' => 'delete any region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -200,6 +216,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any ticket_type content'] = array(
     'name' => 'delete any ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -227,6 +245,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own event content'] = array(
     'name' => 'delete own event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -245,6 +265,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own festival content'] = array(
     'name' => 'delete own festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -263,6 +285,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own package content'] = array(
     'name' => 'delete own package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -281,9 +305,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -292,6 +316,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own region content'] = array(
     'name' => 'delete own region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -301,6 +326,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own ticket_type content'] = array(
     'name' => 'delete own ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -328,6 +355,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -346,6 +375,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any festival content'] = array(
     'name' => 'edit any festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -364,6 +395,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any package content'] = array(
     'name' => 'edit any package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -382,9 +415,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -393,9 +426,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any region content'] = array(
     'name' => 'edit any region content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -404,6 +437,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any ticket_type content'] = array(
     'name' => 'edit any ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -422,6 +457,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own event content'] = array(
     'name' => 'edit own event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -440,6 +477,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own festival content'] = array(
     'name' => 'edit own festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -458,6 +497,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own package content'] = array(
     'name' => 'edit own package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -476,9 +517,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own page content'] = array(
     'name' => 'edit own page content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'editor' => 'editor',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -487,8 +528,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own region content'] = array(
     'name' => 'edit own region content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'manager' => 'manager',
     ),
     'module' => 'node',
   );
@@ -497,6 +539,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own ticket_type content'] = array(
     'name' => 'edit own ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
