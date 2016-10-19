@@ -18,3 +18,27 @@ function virgin_update_7001() {
 function virgin_update_7002() {
   module_enable(array('i18n_menu'));
 }
+
+/**
+ * Disables lightning modules.
+ */
+function virgin_update_7003() {
+  module_disable(array(
+    'lightning_admin',
+    'lightning_base',
+    'lightning_blocks',
+    'lightning_content',
+    'lightning_edit',
+    'lightning_files',
+    'lightning_forms',
+    'lightning_image',
+    'lightning_media',
+    'lightning_metatags',
+    'lightning_views',
+    'lightning_token',
+    'lightning_theme',
+    'lightning_rules',
+    'panels_preview',
+    'ember_support'
+  ));
+}
