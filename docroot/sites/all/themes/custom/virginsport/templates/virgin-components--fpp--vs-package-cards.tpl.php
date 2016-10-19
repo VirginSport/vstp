@@ -4,7 +4,7 @@
  * Main template for virgin components fieldable panel panes vs_package_cards
  *
  * Variables available:
- * TODO
+ * $paragraphs - an array of paragraphs
  */
 ?>
 
