@@ -42,7 +42,7 @@ function theme_virgin_styles_curve_render_region($vars) {
       'vs-region--gradient-'. $get_value('brand_color', 'default'),
     ),
     'data-vs-region-overlap' => $get_value('overlap', 'default'),
-    'data-vs-region-gradient' => $get_value('brand_color', 'default'),
+    'data-vs-region-color' => $get_value('brand_color', 'default'),
     'data-vs-region-curved' => $get_value('is_curved', false),
   );
 
@@ -109,7 +109,10 @@ function virgin_styles_curve_settings_form($settings, $display) {
  */
 function virgin_styles_curve_brand_options() {
   $options = array(
-    'default' => t('Default')
+    'default' => t('Default'),
+    'black' => t('Black'),
+    'gray' => t('Gray'),
+    'white' => t('White')
   );
 
   $info = field_info_field('field_brand_color');
