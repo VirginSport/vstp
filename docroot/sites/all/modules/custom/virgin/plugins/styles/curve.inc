@@ -36,7 +36,16 @@ function theme_virgin_styles_curve_render_region($vars) {
     'vs-region--overlap-' . $get_value('overlap', 'default'),
   );
 
-  $attr = array('class' => $classes);
+  $attr = array(
+    'class' => array(
+      'vs-region',
+      'vs-region--gradient-'. $get_value('brand_color', 'default'),
+    ),
+    'data-vs-region-overlap' => $get_value('overlap', 'default'),
+    'data-vs-region-gradient' => $get_value('brand_color', 'default'),
+    'data-vs-region-curved' => $get_value('is_curved', false),
+  );
+
   $content = implode($vars['panes']);
 
   return sprintf('<div %s>%s</div>', drupal_attributes($attr), $content);
