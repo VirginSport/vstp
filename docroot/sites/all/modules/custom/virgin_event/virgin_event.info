@@ -17,6 +17,7 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_instance][] = node-event-field_brand_color
 features[field_instance][] = node-event-field_brand_pattern
+features[field_instance][] = node-event-field_caption
 features[field_instance][] = node-event-field_card_image
 features[field_instance][] = node-event-field_description
 features[field_instance][] = node-event-field_description_results
