@@ -55,7 +55,7 @@
         <div class="col-xs-12">
         <?php endif; ?>
           <div class="vs-basic-content-block__text-wrapper <?php print $content_align_to == 'left' ? '' : 'text-xs-center'; ?>">
-            <?php if (!empty($page_body)): ?>
+            <?php if (!empty($content_sub_heading)): ?>
               <h5 class="vs-basic-content-block__date">
                 <?php print check_plain($content_sub_heading); ?>
               </h5>
