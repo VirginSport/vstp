@@ -89,6 +89,13 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  // If Panels IPE is being rendered, ensure CKEDITOR PATH is set so that
+  // the editor properly loads via IPE.
+  if (!empty($vars['page']['page_bottom']['panels_ipe'])) {
+    $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
+    drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
+  }
 }
 
 // Template Overrides
