@@ -24,6 +24,9 @@ projects:
       revision: d0f3eb4f6e4a2ce5f9a59498d409a8bb3ff19dd2
       branch: 7.x-1.x
 
+  chosen:
+    version: "2.0"
+
   currency:
     version: "2.6"
 
