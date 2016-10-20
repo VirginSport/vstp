@@ -8,20 +8,11 @@
   padding: 2rem 0;
 }
 
-
 // Modifiers
 // ----------------------------------------------------------------------------
 
 .vs-region--no-padding {
   padding: 0;
-}
-
-.vs-region--dark {
-  background-color: $c-black;
-}
-
-.vs-region--light-gray {
-  background-color: #f0f0f0;
 }
 
 .vs-region--invisible {
@@ -35,7 +26,6 @@
     @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
   }
 }
-
 
 // Responsive
 // ----------------------------------------------------------------------------

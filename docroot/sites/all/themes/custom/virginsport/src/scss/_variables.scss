@@ -34,40 +34,76 @@ $c-purple:                    #9A32C9;
 $c-brown:                     #AB0041;
 $c-rose:                      #F857A6;
 $c-violet:                    #645BB4;
+$c-gray-light:                #FAFAFA;
 
 // Brand color schemes
 $color-schemes: (
+  black: (
+    solid-color: $c-black,
+    text-color: $c-white,
+    from: $c-black,
+    to: $c-black,
+    rotate: 0deg
+  ),
+  gray: (
+    solid-color: #F0F0F0,
+    text-color: $c-black,
+    from: #F0F0F0,
+    to: #F0F0F0,
+    rotate: 0deg
+  ),
+  white: (
+    solid-color: $c-white,
+    text-color: $c-black,
+    from: $c-white,
+    to: $c-white,
+    rotate: 0deg
+  ),
   blue: (
+    solid-color: $c-blue,
+    text-color: $c-white,
     from: #1F85FF,
     to: #4231CB,
     rotate: 135deg
   ),
   teal: (
+    solid-color: $c-teal,
+    text-color: $c-white,
     from: #01B9C0,
     to: #001642,
     rotate: 135deg
   ),
   orange: (
+    solid-color: $c-orange,
+    text-color: $c-white,
     from: #FF5858,
     to: #FFE386,
     rotate: 135deg
   ),
   purple: (
+    solid-color: $c-purple,
+    text-color: $c-white,
     from: #9D50BB,
     to: #3A2899,
     rotate: 135deg
   ),
   brown: (
+    solid-color: $c-brown,
+    text-color: $c-white,
     from: #840324,
     to: #061161,
     rotate: 135deg
   ),
   rose: (
+    solid-color: $c-rose,
+    text-color: $c-white,
     from: #F857A6,
     to: #FF5858,
     rotate: 135deg
   ),
   violet: (
+    solid-color: $c-violet,
+    text-color: $c-white,
     from: #FB8B5F,
     to: #504EA1,
     rotate: 135deg
