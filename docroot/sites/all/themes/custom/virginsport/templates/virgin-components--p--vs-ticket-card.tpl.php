@@ -4,13 +4,13 @@
  * Main template for virgin components paragraph vs_ticket_card
  *
  * Variables available:
- * $title
- * $description
- * $card_color
- * $card_pattern
- * $price
- * $currency
- * $nid
+ * $title - The ticket title
+ * $description - The ticket description
+ * $card_color - The ticket card color
+ * $card_pattern - The ticket card pattern
+ * $price - The ticket price
+ * $currency - The package currency iso code of the package price
+ * $nid - The ticket ID
  */
 
 ?>
