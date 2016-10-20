@@ -6,7 +6,13 @@ export default () => {
       $('.panels-ipe-portlet-wrapper').each((idx, el) => {
         let $wrapper = $(el);
         let $first = $wrapper.find('.panels-ipe-portlet-content > *').first();
-        let classes = $first.attr("class").split(' ');
+        let classes = $first.attr("class");
+        
+        if (classes && classes.length) {
+          classes = classes.split(' ');
+        } else {
+          return;
+        }
         
         classes = classes.map((c) => {
           return 'panels-ipe--' + c;
