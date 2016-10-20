@@ -98,6 +98,19 @@ function virgin_scald_extra_modes() {
  * in the region style select form.
  */
 function virgin_form_panels_edit_style_type_form_alter(&$form, &$form_state) {
+
+  // Currently we do not allow users to select styles for panes and only for
+  // regions. If the user is attempting to modify the style of a pane, block
+  // him.
+  if ($form_state['type'] == 'pane') {
+    $form['notice']['#markup'] = t('There are no styles available for panes. Only regions can be styled at this moment.');
+    $form['style']['#access'] = FALSE;
+    $form['submit']['#access'] = FALSE;
+    return;
+  }
+
+  // Otherwise, override the style options to only allow him to select the
+  // virgin curve region style.
   $form['style']['#options'] = array(
     'curve' => t('Virgin Curve')
   );
