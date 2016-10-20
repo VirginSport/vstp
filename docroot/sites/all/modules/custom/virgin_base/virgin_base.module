@@ -84,7 +84,28 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   // Field brand color has the virgin brand colors
   $field = field_info_field('field_brand_color');
 
-  $allowed_values = $field['settings']['allowed_values'];
+  $options = array();
+
+  // Append gradient prefix to all brand colors
+  foreach ($field['settings']['allowed_values'] as $key => $value) {
+    $options['gradient-' . $key] = $value;
+  }
+
+  // Extra button color options not covered by brand colors
+  $options += array(
+    'transparent' => t('Transparent'),
+    'orange' => t('Orange'),
+    'link' => t('Link'),
+    'gradient-blue' => t('Gradient-blue'),
+    'gradient-teal' => t('Gradient-teal'),
+    'gradient-orange' => t('Gradient-orange'),
+    'gradient-purple' => t('Gradient-purple'),
+    'gradient-brown' => t('Gradient-brown'),
+    'gradient-rose' => t('Gradient-rose'),
+    'gradient-violet' => t('Gradient-violet'),
+    'outline-black' => t('Outline-black'),
+    'outline-white' => t('Outline-white'),
+  );
 
   // Load element attributes
   $attributes = empty($element['#value']['attributes']) ? '' : $element['#value']['attributes'];
@@ -93,7 +114,7 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   $element['attributes']['virgin_class'] = array(
     '#type' => 'select',
     '#title' => t('Button Style'),
-    '#options' => empty($allowed_values) ? array() : $allowed_values,
+    '#options' => empty($options) ? array() : $options,
     '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
   );
 
