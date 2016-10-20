@@ -12,7 +12,7 @@
         'class' => array(
           'btn vs-btn',
           $classes,
-          empty($link['attributes']['class']) ? '' : 'vs-btn--gradient-' . $link['attributes']['class'],
+          empty($link['attributes']['virgin_class']) ? '' : 'vs-btn--' . $link['attributes']['virgin_class'],
         )
       )), $link['title']);
     ?>  

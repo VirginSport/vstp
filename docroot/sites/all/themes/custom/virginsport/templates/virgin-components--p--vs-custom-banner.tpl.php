@@ -43,7 +43,7 @@
                 theme('virginsport_cta_links',
                   array(
                     'links' => $cta_links,
-                    'classes' => 'vs-btn--min vs-promo-banner__ctaButton'
+                    'classes' => 'vs-btn--min-sm vs-promo-banner__ctaButton'
                   )
                 );
               ?>

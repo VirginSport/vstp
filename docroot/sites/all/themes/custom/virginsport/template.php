@@ -202,3 +202,31 @@ function virginsport_atom_background($atom, $style = 'virgin_original') {
 function virgin_sport_path($path) {
   return drupal_get_path('theme', 'virginsport') . '/' . $path;
 }
+
+/**
+ * Get a properly formatted currency string
+ *
+ * @param $iso_code
+ *  The currency ISO Code
+ * @param $value
+ *  The currency value
+ * @return string
+ *  The formatted currency value
+ */
+function virginsport_currency($iso_code, $value) {
+  $symbols = array(
+    'none' => '%s',
+    'GBP' => '£%s',
+    'USD' => '$%s',
+    'EUR' => '€%s'
+  );
+
+  $format = empty($symbols[$iso_code]) ? $symbols['none'] : $symbols[$iso_code];
+
+  // Remove cents from the value if their value is 0
+  if (substr($value, -3) == '.00') {
+    $value = substr($value, 0, -3);
+  }
+
+  return check_plain(sprintf($format, $value));
+}

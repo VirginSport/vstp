@@ -4,8 +4,16 @@
  * Main template for virgin components fieldable panel panes vs_package_cards
  *
  * Variables available:
- * TODO
+ * $paragraphs - an array of paragraphs
  */
 ?>
 
-Package Cards Template
+<div class="container">
+  <div class="row">
+    <div class="vs-component-heading vs-package-card-list-heading">
+      <?php print check_plain($component_heading); ?>
+    </div>
+  </div>
+</div>
+<?php print $paragraphs; ?>
+
