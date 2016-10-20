@@ -118,6 +118,22 @@ vs-promo-banner,
   text-align: right;  
 }
 
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-promo-banner--color-#{$color} {
+
+    .vs-promo-banner__title:after {
+      background-color: map_get($map, 'solid-color');
+    }
+    
+  }
+}
+
+
 // Responsive
 // ----------------------------------------------------------------------------
 

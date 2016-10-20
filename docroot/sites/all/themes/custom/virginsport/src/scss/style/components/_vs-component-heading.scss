@@ -2,8 +2,7 @@
 // Elements
 // ----------------------------------------------------------------------------
 
-.vs-component-heading, 
-.vs-component-heading--black {
+.vs-component-heading {
   display: block;
   color: $c-black;
 
@@ -18,9 +17,14 @@
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-component-heading--white {
-  @extend .vs-component-heading;
-  color: $c-white;
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} .vs-component-heading {
+
+      color: map_get($map, 'text-color');
+
+  }
 }
 
 // Responsive

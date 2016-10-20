@@ -1,0 +1,109 @@
+
+// Block
+// ----------------------------------------------------------------------------
+
+vs-attendly-header,
+.vs-attendly-header {
+  @include clearfix();
+  display: block;
+  position: relative;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-attendly-header__background {
+  @include transition(all .5s ease-in-out);
+  background: $c-white url('../img/splash-page-pattern.png') no-repeat center top;
+  background-size: 125%;
+  min-height: 3.625rem;
+  margin-left: -$grid-gutter-width/2;
+  margin-right: -$grid-gutter-width/2;
+}
+
+.vs-attendly-header__logo {
+  @include transition(all .5s ease-in-out);
+  background: transparent url('../img/vs-logo-alternate.png') no-repeat left center;
+  background-size: cover;
+  position: absolute;
+  width: 5.125rem;
+  height: 1.875rem;
+  left: .8125rem;
+  top: .8125rem;
+  z-index: 1;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.vs-attendly-header__title {
+  font-family: $font-family-serif;
+  margin: 0;
+  text-align: center;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  margin-top: 1.375rem;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  .vs-attendly-header__background {
+    min-height: 6.25rem;
+  }
+
+  .vs-attendly-header__logo {
+    width: 6.5625rem;
+    height: 2.375rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .vs-attendly-header__background {
+    background-size: cover;
+    min-height: 9.375rem;
+  }
+
+  .vs-attendly-header__logo {
+    width: 8.125rem;
+    height: 3rem;
+    left: 2.5rem;
+    top: 2.1875rem;
+  }
+
+  .vs-attendly-header__title {
+    @include transition(all .5s ease-in-out);
+    //@include transform(translateY(-6.625rem));
+    font-size: 1.875rem;
+    position: absolute;
+    width: calc(100% - 1.875rem);
+    margin-top: 0;
+    top: 2.6875rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-attendly-header__background {
+    min-height: 12.5rem;
+  }
+
+  .vs-attendly-header__logo {
+    width: 11.25rem;
+    height: 4.125rem;
+  }
+
+  .vs-attendly-header__title {
+    @include transition(all .5s ease-in-out);
+    @include transform(translateY(.625rem));
+  }
+}
