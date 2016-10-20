@@ -40,8 +40,13 @@ div.panels-ipe-placeholder {
   width: auto !important;
   max-width: 1280px !important;
 
+  .modal-header {
+    border-bottom: 1px solid $gray-lighter;
+  }
+
   .modal-title {
     line-height: 1em;
+    margin-bottom: 0;
   }
 
   .modal-body {
@@ -206,6 +211,10 @@ div.panels-ipe-placeholder {
     margin-top: 0;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .form-actions {
+    margin-bottom: 0;
   }
 
   select.form-control:not([size]):not([multiple]) {
