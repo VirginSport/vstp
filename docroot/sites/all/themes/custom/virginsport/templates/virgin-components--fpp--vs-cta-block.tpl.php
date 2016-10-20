@@ -8,14 +8,10 @@
  */
 ?>
 
-<div class="vs-region">
-  <div class="vs-cta-block">
-    <div class="container-fluid">
-      <div class="row">
-          <?php
-            print $paragraphs;
-          ?>
-      </div>
+<div class="vs-cta-block vs-cta-block--col-2">
+  <div class="container-fluid">
+    <div class="row vs-cta-block__row">
+      <?php print $paragraphs; ?>
     </div>
   </div>
 </div>
