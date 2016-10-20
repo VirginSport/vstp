@@ -12,11 +12,13 @@
  * @var int $package_nid - The package content id
  * @var string $title - The package title
  * @var string $description - The package description
+ * @var string $card_color - The card color
+ * @var string card_pattern - The card pattern
  */
 
 ?>
 
-<div class="vs-package-card">
+<div class="vs-package-card vs-package-card--color-<?php print $card_color;?>">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6">
@@ -48,7 +50,7 @@
           <h2 class="vs-package-card__descriptive-title"><?php print check_plain($title); ?></h2>
           <?php endif; ?>
           <?php if (!empty($description)): ?>
-          <p class="vs-package-card__descriptive-content"><?php print $description; ?></p>
+          <div class="vs-package-card__descriptive-content"><?php print $description; ?></div>
           <?php endif; ?>
         </div>
       </div>

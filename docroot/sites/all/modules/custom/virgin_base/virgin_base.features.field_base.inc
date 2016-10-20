@@ -625,11 +625,11 @@ function virgin_base_field_default_field_bases() {
       'allowed_values' => array(
         'blue' => 'Blue',
         'teal' => 'Teal',
-        'orange-yellow' => 'Orange-yellow',
+        'orange' => 'Orange',
         'purple' => 'Purple',
-        'crimson-purple' => 'Crimson-purple',
-        'pink' => 'Pink',
-        'yellow-violet' => 'Yellow-violet',
+        'brown' => 'Brown',
+        'rose' => 'Rose',
+        'violet' => 'Violet'
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
