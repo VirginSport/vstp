@@ -8,4 +8,4 @@
  */
 ?>
 
-Untimed Event Cards Template
+<?php print $paragraphs; ?>
