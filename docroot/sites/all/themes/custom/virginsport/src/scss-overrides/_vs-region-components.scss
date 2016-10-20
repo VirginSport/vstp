@@ -1,0 +1,32 @@
+// This file is responsabile for adjusting the spacing
+// between components inside regions
+
+// List of components that do not have margin bottom when
+// they are the last child
+$last-child-count: 3;
+
+.vs-hero-banner,
+.panels-ipe--vs-hero-banner,
+.vs-cta-block,
+.panels-ipe--vs-cta-block {
+  &:last-child,
+  &:nth-last-child(#{$last-child-count}) {
+    margin-bottom: 0;
+  }
+}
+
+// Component margin adjustments
+.vs-hero-banner,
+.panels-ipe--vs-hero-banner {
+  margin-bottom: 80px;
+}
+
+.vs-cta-block,
+.panels-ipe--vs-cta-block {
+  margin-bottom: 80px;
+}
+
+.vs-basic-content-block,
+.panels-ipe--vs-basic-content-block {
+  margin-bottom: 80px;
+}
