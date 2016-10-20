@@ -25,17 +25,32 @@ function virginsport_theme($existing, $type, $theme, $path) {
     )
   ) + $default;
 
+  $themes['virginsport_cta_links'] = array(
+    'template' => 'virginsport-cta-links',
+    'variables' => array(
+      'links' => '',
+      'classes' => '',
+    )
+  ) + $default;
+
   return $themes;
 }
 
 /**
  * Implements hook_js_alter().
+ *
+ * TODO remove this alter once bootstrap is extracted as the parent theme
  */
 function virginsport_js_alter(&$js) {
   // Forcefully remove the bootstrap js file that's added by the
   // parent bootstrap theme as the code contained is deprecated
   // for the bootstrap version in use by virginsport.
   unset($js['sites/all/themes/contrib/bootstrap/js/bootstrap.js']);
+
+  // Restore default drupal vertical tabs behaviour overriden
+  // by bootstrap theme.
+  unset($js['sites/all/themes/contrib/bootstrap/js/misc/_vertical-tabs.js']);
+  $js['misc/vertical-tabs.js'] = drupal_js_defaults('misc/vertical-tabs.js');
 }
 
 /**
@@ -81,6 +96,13 @@ function virginsport_preprocess_page(&$vars) {
       'label' => check_plain($network),
       'url' => check_plain($url),
     );
+  }
+
+  // If Panels IPE is being rendered, ensure CKEDITOR PATH is set so that
+  // the editor properly loads via IPE.
+  if (!empty($vars['page']['page_bottom']['panels_ipe'])) {
+    $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
+    drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
   }
 }
 
@@ -146,6 +168,27 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
   }
 
   return $menu_output[$menu_key];
+}
+
+/**
+ * Generates an HTML style attribute with background-image from an atom object.
+ *
+ * @param $atom
+ *  The asset id-
+ * @param $style
+ *  The image style.
+ * @return string
+ *  HTML style attribute with background-image. For example: background-image: url(...);"
+ */
+function virginsport_atom_background($atom, $style = 'virgin_original') {
+
+  if (empty($atom->file_source)) {
+    $atom = scald_atom_load($atom->sid);
+  }
+
+  $image_url = image_style_url($style, $atom->file_source);
+
+  return 'background-image: url(' . $image_url . ');';
 }
 
 /**
