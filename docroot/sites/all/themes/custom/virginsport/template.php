@@ -216,7 +216,7 @@ function virgin_sport_path($path) {
 function virginsport_currency($iso_code, $value) {
   $symbols = array(
     'none' => '%s',
-    'GBP' => '%s£',
+    'GBP' => '£%s',
     'USD' => '$%s',
     'EUR' => '€%s'
   );
