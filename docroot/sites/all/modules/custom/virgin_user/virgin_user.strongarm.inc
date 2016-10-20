@@ -423,24 +423,23 @@ This link expires in one day and nothing will happen if it is not used.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_password_reset_body';
-  $strongarm->value = '[user:name],
+  $strongarm->value = 'Hi [user:field-first-name],
 
-A request to reset the password for your account has been made at [site:name].
+Forgotten your [site:name] password? Need a new one? No problem. Click or copy and paste the link below and grab a fresh one. They cost 5 press ups... just kidding. They\'re free. Or are they?...
 
-You may now log in by clicking this link or copying and pasting it to your browser:
+Free password link: [user:one-time-login-url]
 
-[user:one-time-login-url]
+Just a heads up, this link can only be used once and runs out after one day.
 
-This link can only be used once to log in and will lead you to a page where you can set your password. It expires after one day and nothing will happen if it\'s not used.
-
---  [site:name] team';
+See you soon,
+';
   $export['user_mail_password_reset_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_password_reset_subject';
-  $strongarm->value = 'Replacement login information for [user:name] at [site:name]';
+  $strongarm->value = 'Password Reset';
   $export['user_mail_password_reset_subject'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -474,27 +473,20 @@ password: Your password
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_body';
-  $strongarm->value = '[user:name],
+  $strongarm->value = 'Hi [user:field-first-name]!
 
-Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it to your browser:
+Welcome to the newest way to play. From this day on, you are officially a part of the Virgin Sport movement. So when you’re ready, head over to virginsport.com and take a gander at what we’re up to.
 
-[user:one-time-login-url]
+Welcome to the team, [user:field-first-name].
 
-This link can only be used once to log in and will lead you to a page where you can set your password.
-
-After setting your password, you will be able to log in at [site:login-url] in the future using:
-
-username: [user:name]
-password: Your password
-
---  [site:name] team';
+See you soon!';
   $export['user_mail_register_no_approval_required_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_subject';
-  $strongarm->value = 'Account details for [user:name] at [site:name]';
+  $strongarm->value = 'Oi Oi! New member alert!';
   $export['user_mail_register_no_approval_required_subject'] = $strongarm;
 
   $strongarm = new stdClass();
