@@ -142,6 +142,8 @@
 @include media-breakpoint-up(md) {
   .vs-btn {
     font-size: $font-size-base;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
   }
 
   .vs-btn--sm {

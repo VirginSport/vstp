@@ -1,12 +1,16 @@
 // Blocks
 // ----------------------------------------------------------------------------
 
+.vs-package-card-list-heading {
+  margin-bottom: 0.625rem;
+  padding-left: 1.25rem;
+}
+
 vs-package-card,
 .vs-package-card {
   display: block;
   margin-bottom: 3.125rem;
 }
-
 
 // Elements
 // ----------------------------------------------------------------------------
@@ -15,7 +19,7 @@ vs-package-card,
   @include flexbox();
   @include flex-direction(column);
   @include align-items(strech);
-  
+
   min-height: 9.0625rem;
   margin-left: -0.3125rem;
   margin-right: -0.3125rem;
@@ -41,12 +45,11 @@ vs-package-card,
   font-weight: 500;
   line-height: 1.25rem;
   text-transform: uppercase;
-  
+
   margin-bottom: 0.3125rem;
 }
 
 .vs-package-card__description {
-  display: block;
   max-width: 12.25rem;
 
   font-family: $font-family-sans-serif;
@@ -83,9 +86,9 @@ vs-package-card,
   font-weight: 500;
   line-height: 0.625rem;
   letter-spacing: 0;
-  
+
   padding: 0 .778rem 0 .778rem;
-  min-height: auto;
+  min-height: none;
   height: 1.375rem;
 }
 
@@ -122,10 +125,39 @@ vs-package-card,
   letter-spacing: 0;
 }
 
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-package-card--color-#{$color} {
+
+    .vs-package-card__descriptive-title:after {
+      background-color: map_get($map, 'solid-color');
+    }
+
+  }
+
+  .vs-region--gradient-#{$color} vs-package-card,
+  .vs-region--gradient-#{$color} .vs-package-card {
+
+    .vs-package-card__descriptive-title,
+    .vs-package-card__descriptive-content {
+      color: map_get($map, 'text-color');
+    }
+
+  }
+}
+
 // Responsive
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(md) {
+
+  .vs-package-card-list-heading {
+    margin-bottom: 0.9375rem;
+  }
 
   vs-package-card,
   .vs-package-card {
@@ -135,7 +167,6 @@ vs-package-card,
   .vs-package-card-wrapper {
     min-height: 10.1875rem;
   }
-
 }
 
 @include media-breakpoint-up(lg) {
@@ -185,7 +216,7 @@ vs-package-card,
   .vs-package-card-descriptive-wrapper {
     min-height: 16.875rem;
     margin-top: 0;
-    margin-left: 2.8125rem;
+    margin-left: 3.125rem;
 
     @include flexbox();
     @include flex-direction(column);
@@ -216,12 +247,17 @@ vs-package-card,
 }
 
 @include media-breakpoint-up(xl) {
+
+  .vs-package-card-list-heading {
+    padding-left: 1.875rem;
+  }
+
   .vs-package-card-wrapper {
     width: 34.375rem;
 
     min-height: 16.875rem;
     padding: 1.5625rem;
-    margin-left: 0;
+    margin-left: 0.3125rem;
     margin-right: 0;
   }
 }

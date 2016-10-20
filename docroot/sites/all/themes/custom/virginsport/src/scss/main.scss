@@ -43,6 +43,7 @@
 
 
 // Components
+@import "style/components/vs-attendly-header";
 @import "style/components/vs-button";
 @import "style/components/vs-basic-content-block";
 @import "style/components/vs-header";
@@ -57,9 +58,14 @@
 @import "style/components/vs-footer";
 @import "style/components/vs-cta-block";
 @import "style/components/vs-package-card";
+@import "style/components/vs-ticket-type";
 @import "style/components/vs-promo-banner";
+@import "style/components/vs-prose";
 @import "style/components/vs-card-untimed-event";
 @import "style/components/vs-claim-ticket";
+@import "style/components/vs-component-heading";
+
+
 
 // Pages
 @import "style/components/vs-splash";
