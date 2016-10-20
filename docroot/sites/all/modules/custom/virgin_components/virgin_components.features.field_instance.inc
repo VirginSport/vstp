@@ -1544,13 +1544,14 @@ function virgin_components_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
@@ -3628,13 +3629,14 @@ function virgin_components_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
@@ -3734,13 +3736,9 @@ function virgin_components_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
@@ -4283,13 +4281,14 @@ function virgin_components_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
@@ -4337,13 +4336,14 @@ function virgin_components_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'match_operator' => 'CONTAINS',
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete',
+      'type' => 'options_select',
       'weight' => 1,
     ),
   );
