@@ -1,0 +1,88 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-modal-overlay,
+.vs-modal-overlay {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.modal-title {
+  text-transform: uppercase;
+  margin-bottom: .75rem;
+  color: $c-orange-bright;
+
+  .vs-modal--message & {
+    color: $c-blue;
+  }
+}
+
+.modal-dialog {
+  margin-left: .3125rem;
+  margin-right: .3125rem;
+}
+
+.modal-footer {
+  text-align: center;
+  padding-bottom: 4.375rem;
+}
+
+.modal-header .close {
+  @include transition(all .2s);
+  margin-top: -.625rem;
+  margin-right: -.625rem;
+  background: transparent url('../img/close.svg') no-repeat 0 0;
+  background-size: cover;
+  width: .75rem;
+  height: .75rem;
+  font-size: 0;
+  color: $c-black;
+  opacity: 1;
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  .modal-dialog {
+    margin: 30px;
+    max-width: 90%;
+    //margin-left: auto;
+    //margin-right: auto;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .modal-dialog {
+    max-width: $modal-md;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .modal-header .close {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 4px;
+    margin-right: 0;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .modal-dialog {
+    max-width: $modal-lg;
+  }
+}
