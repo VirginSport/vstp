@@ -19,6 +19,7 @@
  * @var string $link_label
  *  The label of the link that appears below the button
  */
+?>
 
 <div class="vs-hero-banner">
   <div class="vs-hero-banner__background" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>">
