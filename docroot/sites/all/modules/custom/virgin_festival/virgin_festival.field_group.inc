@@ -23,14 +23,14 @@ function virgin_festival_field_group_info() {
     'label' => 'Global',
     'weight' => '12',
     'children' => array(
-      0 => 'title_field',
-      1 => 'field_description',
-      2 => 'field_region',
-      3 => 'field_status',
+      0 => 'field_brand_color',
+      1 => 'field_brand_pattern',
+      2 => 'field_description',
+      3 => 'field_hashtag',
       4 => 'field_header_image',
-      5 => 'field_brand_color',
-      6 => 'field_brand_pattern',
-      7 => 'field_hashtag',
+      5 => 'field_region',
+      6 => 'field_status',
+      7 => 'title_field',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -57,8 +57,8 @@ function virgin_festival_field_group_info() {
     'label' => 'Past State',
     'weight' => '14',
     'children' => array(
-      0 => 'field_description_short_past',
-      1 => 'field_card_image_past',
+      0 => 'field_card_image_past',
+      1 => 'field_description_short_past',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -86,8 +86,9 @@ function virgin_festival_field_group_info() {
     'weight' => '15',
     'children' => array(
       0 => 'field_card_image_results',
-      1 => 'field_hero_image_results',
-      2 => 'field_description_results',
+      1 => 'field_description_results',
+      2 => 'field_hero_image_results',
+      3 => 'field_caption',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -115,9 +116,9 @@ function virgin_festival_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_global',
-      1 => 'group_upcoming_state',
-      2 => 'group_past_state',
-      3 => 'group_results',
+      1 => 'group_past_state',
+      2 => 'group_results',
+      3 => 'group_upcoming_state',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -143,8 +144,8 @@ function virgin_festival_field_group_info() {
     'label' => 'Upcoming State',
     'weight' => '13',
     'children' => array(
-      0 => 'field_description_short',
-      1 => 'field_card_image',
+      0 => 'field_card_image',
+      1 => 'field_description_short',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
