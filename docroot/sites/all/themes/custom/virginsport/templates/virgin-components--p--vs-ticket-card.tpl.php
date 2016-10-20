@@ -33,7 +33,13 @@
           <?php if(!empty($price)): ?>
           <span class="vs-ticket-type__price"><?php print virginsport_currency($currency, $price); ?></span>
           <?php endif; ?>
-          <?php print l(t('Select tickets'), 'node/'.$nid, array('attributes' => array('class' => array('btn vs-btn vs-btn--sm vs-btn--transparent vs-ticket-type__cta')))); ?>
+
+          <a
+            href="<?php print url('node/' . $nid); ?>"
+            class="btn vs-btn vs-btn--sm vs-btn--transparent vs-ticket-type__cta"
+          >
+            <?php print t('Select tickets');?>
+          </a>
         </div>
       </div>
     </div>
