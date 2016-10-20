@@ -84,21 +84,20 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   // Field brand color has the virgin brand colors
   $field = field_info_field('field_brand_color');
 
-  $options = array();
-
-  // Append gradient prefix to all brand colors
-  foreach ($field['settings']['allowed_values'] as $key => $value) {
-    $options['gradient-' . $key] = $value;
-  }
-
   // Extra button color options not covered by brand colors
-  $options += array(
+  $options = array(
+    '' => t('Default'),
     'transparent' => t('Transparent'),
     'orange' => t('Solid Orange'),
     'link' => t('Link'),
     'outline-black' => t('Outline-black'),
     'outline-white' => t('Outline-white'),
   );
+
+  // Append gradient prefix to all brand colors
+  foreach ($field['settings']['allowed_values'] as $key => $value) {
+    $options['gradient-' . $key] = $value;
+  }
 
   // Load element attributes
   $attributes = empty($element['#value']['attributes']) ? '' : $element['#value']['attributes'];
