@@ -24,6 +24,7 @@ features[field_group][] = group_tabs|node|festival|form
 features[field_group][] = group_upcoming_state|node|festival|form
 features[field_instance][] = node-festival-field_brand_color
 features[field_instance][] = node-festival-field_brand_pattern
+features[field_instance][] = node-festival-field_caption
 features[field_instance][] = node-festival-field_card_image
 features[field_instance][] = node-festival-field_card_image_past
 features[field_instance][] = node-festival-field_card_image_results

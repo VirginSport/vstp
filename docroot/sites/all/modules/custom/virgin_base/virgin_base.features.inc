@@ -42,5 +42,11 @@ function virgin_base_image_default_styles() {
     ),
   );
 
+  // Exported image style: virgin_original.
+  $styles['virgin_original'] = array(
+    'label' => 'Virgin Original',
+    'effects' => array(),
+  );
+
   return $styles;
 }

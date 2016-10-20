@@ -8,7 +8,6 @@
   padding: 2rem 0;
 }
 
-
 // Modifiers
 // ----------------------------------------------------------------------------
 
@@ -24,38 +23,21 @@
   background-color: #f0f0f0;
 }
 
+.vs-region--blue {
+  background-color: $c-blue;
+}
+
 .vs-region--invisible {
   display: none;
 }
 
-.vs-region--gradient-blue {
-  @include gradient-directional(#1F85FF, #4231CB, 90deg);
-}
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
 
-.vs-region--gradient-teal {
-  @include gradient-directional(#01B9C0, #001642, 90deg);
+  .vs-region--gradient-#{$color} {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
+  }
 }
-
-.vs-region--gradient-orange {
-  @include gradient-directional(#FF5858, #FFE386, 90deg);
-}
-
-.vs-region--gradient-purple {
-  @include gradient-directional(#9D50BB, #3A2899, 90deg);
-}
-
-.vs-region--gradient-brown {
-  @include gradient-directional(#840324, #061161, 90deg);
-}
-
-.vs-region--gradient-rose {
-  @include gradient-directional(#F857A6, #FF5858, 90deg);
-}
-
-.vs-region--gradient-violet {
-  @include gradient-directional(#FB8B5F, #504EA1, 90deg);
-}
-
 
 // Responsive
 // ----------------------------------------------------------------------------
