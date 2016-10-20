@@ -11,3 +11,27 @@ if (!$is_ah_env || !in_array($ah_env, array('prod'))) {
     'default-system' => 'DevelMailLog',
   );
 }
+
+// SMTP Configuration
+// ------------------------------------
+
+// SMTP module behaviour
+
+//$conf['smpt_on'] = TRUE; // Enables sending e-mails via SMTP
+//$conf['smtp_allowhtml'] = TRUE;
+//$conf['smtp_deliver'] = TRUE;
+//$conf['smtp_queue'] = FALSE; // If the e-mail should be queued before sending
+
+// SMTP email settings
+
+//$conf['smtp_from'] = ''; // The e-mail that is sending the e-mail
+//$conf['smtp_fromname'] = ''; // The name that should appear in the e-mail
+
+// SMTP access
+
+//$conf['smtp_host'] = '';
+//$conf['smtp_hostbackup'] = '';
+//$conf['smtp_username'] = '';
+//$conf['smtp_password'] = '';
+//$conf['smtp_port'] = 465;
+//$conf['smtp_protocol'] = 'ssl'; // options: ssl/tls

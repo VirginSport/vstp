@@ -1,0 +1,39 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-component-heading {
+  display: block;
+  color: $c-black;
+
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+
+  text-transform: uppercase;
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} .vs-component-heading {
+
+      color: map_get($map, 'text-color');
+
+  }
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+
+  .vs-component-heading {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}

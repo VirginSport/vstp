@@ -14,6 +14,13 @@ function virgin_base_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function virgin_base_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_image_default_styles().
  */
 function virgin_base_image_default_styles() {
@@ -33,6 +40,12 @@ function virgin_base_image_default_styles() {
         'weight' => 1,
       ),
     ),
+  );
+
+  // Exported image style: virgin_original.
+  $styles['virgin_original'] = array(
+    'label' => 'Virgin Original',
+    'effects' => array(),
   );
 
   return $styles;

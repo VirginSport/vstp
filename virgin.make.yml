@@ -36,11 +36,20 @@ projects:
   field_group:
     version: "1.5"
 
+  fieldable_panels_panes:
+    version: "1.10"
+
   hybridauth:
     version: "2.15"
 
   i18n:
     version: "1.13"
+
+  mailsystem:
+    version: "2.34"
+
+  mimemail:
+    version: "1.0-beta4"
 
   mollom:
     version: "2.15"
@@ -57,6 +66,9 @@ projects:
   observer:
     version: "1.0"
 
+  paragraphs:
+    version: "1.0-rc4"
+
   redirect:
     version: "1.0-rc3"
 
@@ -68,7 +80,7 @@ projects:
     download:
       type: git
       url: git@gitlab.driven.pt:drupal/scald-extra.git
-      revision: a533ce55518b8f7a620da494684a2f93cd487aab
+      revision: f16debef129d247fb9931399ec645d0e7152c625
       branch: master
 
   service_links:
@@ -79,6 +91,9 @@ projects:
 
   shield:
     version: "1.2"
+
+  smtp:
+    version: "1.4"
 
   title:
     version: "1.0-alpha8"

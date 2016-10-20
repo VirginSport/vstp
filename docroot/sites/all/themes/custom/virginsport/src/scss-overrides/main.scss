@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/variables";
+@import "../scss/variables";
+
+// Fixes per module/feature
+@import "ipe";
+@import "navbar";
+@import "vertical-tabs";
+@import "workbench";
+@import "scald";
+@import "vs-region";

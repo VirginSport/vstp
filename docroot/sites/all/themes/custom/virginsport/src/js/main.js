@@ -1,2 +1,5 @@
+import vsHeader from './components/vs-header';
+import vsRegion from './components/vs-region';
 
-console.log('Virgin Sport');
+vsHeader();
+vsRegion();
