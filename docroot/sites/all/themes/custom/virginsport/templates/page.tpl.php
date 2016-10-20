@@ -74,6 +74,8 @@
  */
 ?>
 
+<?php print $messages; ?>
+
 <button class="vs-menu-trigger">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
