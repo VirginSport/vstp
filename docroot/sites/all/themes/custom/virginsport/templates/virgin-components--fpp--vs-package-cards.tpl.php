@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="vs-component-heading--white vs-package-card-list-heading">
+    <div class="vs-component-heading vs-package-card-list-heading">
       <?php print check_plain($component_heading); ?>
     </div>
   </div>
