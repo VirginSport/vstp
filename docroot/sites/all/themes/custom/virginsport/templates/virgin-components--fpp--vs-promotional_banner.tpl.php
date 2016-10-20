@@ -9,14 +9,12 @@
  */
 ?>
 
-<div class="vs-region vs-region--light-gray">
-  <?php if (!empty($component_heading)): ?>
-    <div class="vs-component-heading vs-promo-banner-heading">
-      <?php print check_plain($component_heading); ?>
-    </div>
-  <?php endif; ?>
+<?php if (!empty($component_heading)): ?>
+  <div class="vs-component-heading vs-promo-banner-heading">
+    <?php print check_plain($component_heading); ?>
+  </div>
+<?php endif; ?>
 
-  <?php if (!empty($promo_banners)): ?>
-    <?php print $promo_banners; ?>
-  <?php endif; ?>
-</div>
+<?php if (!empty($promo_banners)): ?>
+  <?php print $promo_banners; ?>
+<?php endif; ?>

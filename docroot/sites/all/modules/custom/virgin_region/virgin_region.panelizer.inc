@@ -30,12 +30,98 @@ function virgin_region_panelizer_defaults() {
   $panelizer->contexts = array();
   $panelizer->relationships = array();
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'virginsport';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
-      'middle' => NULL,
+      'first' => array(
+        'is_curved' => 0,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'second' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'third' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'seventh' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'eighth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'seventh' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'nineth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'tenth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+    ),
+    'first' => array(
+      'style' => 'curve',
+    ),
+    'second' => array(
+      'style' => 'curve',
+    ),
+    'third' => array(
+      'style' => 'curve',
+    ),
+    'fourth' => array(
+      'style' => 'curve',
+    ),
+    'fifth' => array(
+      'style' => 'curve',
+    ),
+    'sixth' => array(
+      'style' => 'curve',
+    ),
+    'seventh' => array(
+      'style' => 'curve',
+    ),
+    'eighth' => array(
+      'style' => 'curve',
+    ),
+    'seventh' => array(
+      'style' => 'curve',
+    ),
+    'nineth' => array(
+      'style' => 'curve',
+    ),
+    'tenth' => array(
+      'style' => 'curve',
     ),
   );
   $display->cache = array();

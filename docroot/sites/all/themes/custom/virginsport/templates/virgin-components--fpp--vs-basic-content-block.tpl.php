@@ -18,8 +18,7 @@
  */
 ?>
 
-<div class="vs-region vs-region--light-gray">
-  <div class="vs-basic-content-block">
+<div class="vs-basic-content-block">
   <div class="container">
     <div class="vs-basic-content-block-wrapper">
       <?php if(!empty($hero_image_grapher->property('sid'))): ?>
