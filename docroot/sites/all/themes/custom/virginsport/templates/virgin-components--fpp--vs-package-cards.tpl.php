@@ -8,12 +8,14 @@
  */
 ?>
 
-<div class="container">
-  <div class="row">
-    <div class="vs-component-heading vs-package-card-list-heading">
-      <?php print check_plain($component_heading); ?>
+<div class="vs-package-cards-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="vs-component-heading vs-package-card-list-heading">
+        <?php print check_plain($component_heading); ?>
+      </div>
     </div>
   </div>
-</div>
-<?php print $paragraphs; ?>
 
+  <?php print $paragraphs; ?>
+</div>
