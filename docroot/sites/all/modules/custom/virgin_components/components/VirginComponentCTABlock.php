@@ -37,6 +37,6 @@ class VirginComponentCTABlock implements VirginComponentsInterface {
 
     $variables['heading'] = $virgin->fieldGetOne('field_component_heading');
     $variables['paragraphs'] = $virgin->fieldRendered('field_cta_blocks');
-    $x=0;
+    $variables['size'] = count($variables['field_cta_blocks']);
   }
 }

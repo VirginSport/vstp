@@ -35,5 +35,6 @@ class VirginComponentCTABlockItem implements VirginComponentsInterface {
     $variables['cta_type'] = $virgin->fieldGetOne('field_cta_type');
     $variables['card_image'] = $virgin->relation('field_cta_card_image');
     $variables['image_effect'] = $virgin->fieldGetOne('field_image_effect');
+    $variables['cta_links'] = $virgin->fieldGetAll('field_cta_links');
   }
 }
