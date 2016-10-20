@@ -118,55 +118,6 @@ function virgin_festival_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-festival-field_caption'.
-  $field_instances['node-festival-field_caption'] = array(
-    'bundle' => 'festival',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
-        'type' => 'text_default',
-        'weight' => 20,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_caption',
-    'label' => 'Card Caption',
-    'required' => 0,
-    'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
-      'dnd_enabled' => 0,
-      'entity_translation_sync' => FALSE,
-      'mee_enabled' => 0,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance: 'node-festival-field_card_image'.
   $field_instances['node-festival-field_card_image'] = array(
     'bundle' => 'festival',
@@ -475,7 +426,7 @@ function virgin_festival_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -850,7 +801,7 @@ function virgin_festival_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -1486,7 +1437,6 @@ function virgin_festival_field_default_field_instances() {
   t('Attendly ID');
   t('Brand Color');
   t('Brand Pattern');
-  t('Card Caption');
   t('Card Image');
   t('Description');
   t('End Date');

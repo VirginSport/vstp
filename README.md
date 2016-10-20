@@ -9,17 +9,17 @@ This project have a custom theme called virginsport.
 ### Sync with Frontend Reference
 To synchronize frontend repo run: 
 ```
-   npm run sync
+   npm sync
 ```
 ### Build
 To build css, javascript and asset files run:
 ```
-   npm run build
+   npm build
 ```
 ### Development Mode
 For dev environment run: 
 ```
-   npm run watch
+   npm watch
 ```
 This command will watch for every changes you made to css, javascript and asset files.
 

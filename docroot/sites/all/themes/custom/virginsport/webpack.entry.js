@@ -1,6 +1,5 @@
 // Webpack JS entry file
 require('./src/scss/main.scss');
-require('./src/scss-overrides/main.scss');
 require('./src/js/main.js');
 
 // Build images into build folder, requireAll is not available on compiled js file

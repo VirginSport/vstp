@@ -13,13 +13,9 @@
   background-color: $c-orange-bright;
   color: $c-white;
   line-height: 1;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
 
-  &:hover,
-  &:focus {
+  &:hover {
     opacity: $button-hover;
-    color: $c-white;
   }
 }
 
@@ -28,19 +24,19 @@
 // ----------------------------------------------------------------------------
 
 .vs-btn--sm {
-  min-height: 1.375rem;
-  line-height: 1.25rem;
-  font-size: .625rem;
-  padding-top: 0;
-  padding-bottom: 0;
+  min-height: 2.25rem;
+  font-size: $font-size-sm;
 }
 
 .vs-btn--lg {
   font-size: 1rem;
   min-height: 3.125rem;
-  line-height: 1.6875rem;
   border-width: 0;
 }
+
+[class*=vs-btn--min-] {
+  padding-left: 0;
+  padding-right: 0;}
 
 .vs-btn--min-sm {
   min-width: 11.875rem;
@@ -59,20 +55,66 @@
   text-transform: none;
 }
 
-@each $color in map-keys($color-schemes) {
-  $map: map_get($color-schemes, $color);
+.vs-btn--gradient-blue {
+  @extend %vs-gradient-blue;
+  border: 0;
 
-  .vs-btn--gradient-#{$color} {
-    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-    border: 0;
+  &:active {
+    @extend %vs-gradient-blue;
+  }
+}
 
-    &:active {
-      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-    }
+.vs-btn--gradient-teal {
+  @extend %vs-gradient-teal;
+  border: 0;
 
-    &:focus {
-      color: $c-white;
-    }
+  &:active {
+    @extend %vs-gradient-teal;
+  }
+}
+
+.vs-btn--gradient-orange {
+  @extend %vs-gradient-orange;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-orange;
+  }
+}
+
+.vs-btn--gradient-purple {
+  @extend %vs-gradient-purple;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-purple;
+  }
+}
+
+.vs-btn--gradient-brown {
+  @extend %vs-gradient-brown;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-brown;
+  }
+}
+
+.vs-btn--gradient-rose {
+  @extend %vs-gradient-rose;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-rose;
+  }
+}
+
+.vs-btn--gradient-violet {
+  @extend %vs-gradient-violet;
+  border: 0;
+
+  &:active {
+    @extend %vs-gradient-violet;
   }
 }
 
@@ -134,38 +176,17 @@
 
 // Responsive
 // ----------------------------------------------------------------------------
-
-@include media-breakpoint-down(sm) {
-  .vs-btn--lg,
-  .vs-btn--min-xl {
-    min-height: 2.5rem;
-    line-height: 1.125rem;
-    font-size: .75rem;
-  }
-}
-
 @include media-breakpoint-up(md) {
   .vs-btn {
     font-size: $font-size-base;
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
-  }
-
-  .vs-btn--sm {
-    line-height: 2.125rem;
-    font-size: .875rem;
   }
 
   .vs-btn--min-sm {
-    font-size: 1rem;
-  }
-
-  .vs-btn--min-lg {
-    font-size: 1rem;
+    font-size: .875rem;
+    line-height: .9;
   }
 
   .vs-btn--min-xxl {
-    font-size: 1rem;
     min-width: 21.875rem;
     width: auto;
   }

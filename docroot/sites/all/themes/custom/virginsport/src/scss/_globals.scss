@@ -16,7 +16,7 @@ html {
   }
 }
 
-p {
+@mixin paragraph {
   margin-bottom: 1.875rem;
   font-weight: 300;
   font-size: .75rem;
@@ -32,12 +32,27 @@ p {
   }
 }
 
+p,
+.prose {
+  @include paragraph;
+}
+
+.prose {
+  font-weight: 300;
+}
+
 .vs-menu-open {
   overflow: hidden;
 }
 
 .vs-invisible-element {
   display: none;
+}
+
+@media screen and (max-width: 1160px) {
+  .trigger-fixed-menu:after {
+    content: ' (no effect until 1160px wide)';
+  }
 }
 
 

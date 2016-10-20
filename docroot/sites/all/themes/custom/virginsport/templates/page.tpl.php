@@ -74,140 +74,76 @@
  */
 ?>
 
-<button class="vs-menu-trigger">
-  <span class="vs-menu-trigger__bar">
-    <span class="sr-only"><?php print t('Toggle menu'); ?></span>
-  </span>
-</button>
+<span id="top"></span>
 
-<div class="vs-overlay">
-  <div class="vs-mobile-menu">
-    <div class="vs-mobile-menu__inner">
-      <ul class="vs-mobile-menu__menu">
-        <?php foreach ($main_menu as $item): ?>
-          <li class="vs-mobile-menu__item">
-            <a class="vs-mobile-menu__link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </div>
-</div>
+<div id="account-menu">
+  <ul>
+    <?php if (user_is_anonymous()): ?>
+      <li><a href="<?php print url('user/register'); ?>"><?php print t('Register'); ?></a></li>
+      <li><a href="<?php print url('user/login'); ?>"><?php print t('Login'); ?></a></li>
+    <?php endif; ?>
 
-<div class="vs-overlay-blur">
-
-  <div class="vs-header">
-    <div class="container-fluid clearfix">
-      <div class="vs-header__logo-wrapper">
-        <a class="vs-header__logo" href="<?php print url($front_page); ?>">
-          <span class="sr-only"><?php print t('Virgin Sport'); ?></span>
+    <?php if (user_is_logged_in()): ?>
+      <li><a href="<?php print url('user'); ?>"><?php print t('My Account'); ?></a></li>
+      <li>
+        <a href="<?php print url('user/logout'); ?>">
+          <span><?php print t('Hi @name!', array('@name' => $account['first_name'])); ?></span>
+          (<?php print t('Logout'); ?>)
         </a>
-      </div>
-
-      <div class="vs-header__nav-wrapper">
-        <ul class="vs-header__nav">
-          <?php foreach ($main_menu as $item): ?>
-            <li class="vs-header__nav-item">
-              <a class="vs-header__nav-link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-
-        <?php if ($logged_in): ?>
-        <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger" href="#">
-            <?php print $account['initials']; ?>
-          </a>
-          <ul class="vs-user-dropdown">
-            <li class="vs-user-dropdown__item vs-user-dropdown__item--header">
-              <?php print $account['first_name'] . ' ' . $account['last_name']; ?>
-            </li>
-            <li class="vs-user-dropdown__item">
-              <a class="vs-user-dropdown__link btn vs-btn vs-btn--min-sm" href="<?php print url('/user'); ?>"><?php print t('View profile'); ?></a>
-            </li>
-            <li class="vs-user-dropdown__item">
-              <a class="vs-user-dropdown__link--logout btn btn-link btn-block" href="<?php print url('/user/logout'); ?>"><?php print t('Sign out'); ?></a>
-            </li>
-          </ul>
-        </div>
-        <?php endif; ?>
-
-        <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="page-wrapper">
-    <?php if ($page_manager): ?>
-      <?php print render($page['content']); ?>
+      </li>
     <?php endif; ?>
-
-    <?php if (!$page_manager): ?>
-      <div class="vs-region vs-region--no-padding">
-        <div class="vs-hero-banner">
-          <div class="vs-hero-banner__background">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-12">
-                  <h2 class="vs-hero-banner__title"><?php print $title; ?></h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vs-region vs-region--light-gray">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12">
-              <?php print render($page['content']); ?>
-
-              <?php if (!empty($tabs)): ?>
-                <div id="tabs">
-                  <?php print render($tabs); ?>
-                </div>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php endif; ?>
-  </div>
-
-  <div class="vs-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-3 col-lg-2">
-          <div class="btn-group dropup vs-footer__language">
-            <!-- TODO The region picker is not yet finished -->
-          </div>
-        </div>
-
-        <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">
-          <ul class="vs-footer__menu">
-            <?php foreach ($footer_menu as $item): ?>
-            <li class="vs-footer__menu-item">
-              <a class="vs-footer__menu-item__link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
-            </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-
-        <div class="col-xs-12 col-md-3 col-xl-4">
-          <ul class="list-inline vs-footer__social-list">
-            <?php foreach ($social_networks as $network): ?>
-              <li class="vs-footer__social-item">
-                <a class="vs-footer__social vs-footer__social--<?php print $network['key']; ?>" href="<?php print $network['url']; ?>">
-                  <span class="sr-only"><?php print t('Visit our @name', array('@name' => $network['label'])); ?></span>
-                </a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ul>
 </div>
+<!-- /#account-menu -->
+
+<div id="header">
+  <a href="<?php print url('<front>'); ?>" class="logo"><?php print $site_name; ?></a>
+</div>
+<!-- /#header -->
+
+<nav id="main-menu">
+  <ul>
+    <?php if (!empty($main_menu)) print render($main_menu); ?>
+  </ul>
+</nav>
+<!-- /#main-menu -->
+
+<?php if (!empty($messages)): ?>
+  <div id="messages">
+    <?php print render($messages); ?>
+  </div>
+  <!-- /#messages -->
+<?php endif; ?>
+
+<?php if (!empty($tabs)): ?>
+  <div id="tabs">
+    <?php print render($tabs); ?>
+  </div>
+  <!-- /#tabs -->
+<?php endif; ?>
+
+<section id="content">
+  <?php print render($page['content']); ?>
+</section>
+<!-- /#content -->
+
+<footer id="footer">
+  <ul id="footer-menu" class="horizontal menu">
+    <?php if (!empty($footer_menu)) print render($footer_menu); ?>
+  </ul>
+
+  <ul id="social-networks">
+    <?php foreach ($social_networks as $network): ?>
+      <li>
+        <a target="_blank" href="<?php print $network['url']; ?>" class="icon <?php print $network['key']; ?>">
+          <span class="sr-only"><?php print $network['label']; ?></span>
+        </a>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+
+  <p id="copyright"><?php print t('© @year Virgin Sport. All rights reserved.', array('@year' => date('Y'))); ?></p>
+
+  <a id="goto-top" href="#top"><?php print t('TOP'); ?></a>
+</footer>
+<!-- /#footer -->

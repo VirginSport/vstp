@@ -66,25 +66,115 @@ vs-hero-event-card,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-@each $color in map-keys($color-schemes) {
-  $map: map_get($color-schemes, $color);
+.vs-hero-event-card__content--gradient-blue {
+  @include gradient-directional(#1F85FF 0%, #4231CB 100%, 135deg);
 
-  .vs-hero-event-card--gradient-#{$color} {
-    .vs-hero-event-card__content {
-      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
 
-      .vs-hero-event-card__title,
-      .vs-hero-event-card__date,
-      .vs-hero-event-card__text {
-        color: $c-white;
-      }
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
 
-      .vs-hero-event-card__button:first-child {
-        background-color: $c-white;
-        background-image: none;
-        color: $c-blue;
-      }
-    }
+.vs-hero-event-card__content--gradient-teal {
+  @include gradient-directional(#01B9C0 0%, #001642 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
+
+.vs-hero-event-card__content--gradient-orange {
+  @include gradient-directional(#FF5858 0%, #FFE386 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
+
+.vs-hero-event-card__content--gradient-purple {
+  @include gradient-directional(#9D50BB 0%, #3A2899 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
+
+.vs-hero-event-card__content--gradient-brown {
+  @include gradient-directional(#840324 0%, #061161 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
+
+.vs-hero-event-card__content--gradient-rose {
+  @include gradient-directional(#F857A6 0%, #FF5858 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
+  }
+}
+
+.vs-hero-event-card__content--gradient-violet {
+  @include gradient-directional(#FB8B5F 0%, #504EA1 100%, 135deg);
+
+  .vs-hero-event-card__title,
+  .vs-hero-event-card__date,
+  .vs-hero-event-card__text {
+    color: $c-white;
+  }
+
+  .vs-hero-event-card__button:first-child {
+    background-color: $c-white;
+    background-image: none;
+    color: $c-blue;
   }
 }
 
@@ -131,8 +221,8 @@ vs-hero-event-card,
   .vs-hero-event-card__content {
     @include box-shadow(0 2px 10px 0 rgba(0,0,0, .10));
     border-radius: .625rem;
-    margin-left: -2.5rem;
-    width: calc(100% - 3.75rem);
+    margin-left: -60px;
+    width: calc(100% - 60px);
     margin-top: -100px;
   }
 }
@@ -144,7 +234,7 @@ vs-hero-event-card,
   }
 
   .vs-hero-event-card__content {
-    width: calc(100% - 9.375rem);
+    width: calc(100% - 150px);
   }
 }
 
@@ -160,8 +250,7 @@ vs-hero-event-card,
   }
 
   .vs-hero-event-card__content {
-    margin-left: -3.75rem;
-    margin-top: -6.25rem;
+    margin-top: -100px;
   }
 
   .vs-hero-event-card__text {

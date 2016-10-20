@@ -18,6 +18,15 @@ function virgin_api_services_resources() {
 }
 
 /**
+ * Implements hook_observer_info().
+ */
+function virgin_api_observer_info() {
+  return array(
+    new VirginApiSugarEventListener(),
+  );
+}
+
+/**
  * Implements hook_node_update().
  */
 function virgin_api_node_update($node) {
