@@ -10,4 +10,6 @@
  */
 ?>
 
-<?php print $paragraphs; ?>
+<div class="vs-ticket-type-wrapper">
+  <?php print $paragraphs; ?>
+</div>
