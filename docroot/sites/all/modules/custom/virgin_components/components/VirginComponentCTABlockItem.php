@@ -28,6 +28,13 @@ class VirginComponentCTABlockItem implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    $variables['p'] = $variables['elements']['#entity'];
+    $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
+    $variables['title'] = $virgin->fieldGetOne('title_field');
+    $variables['description'] = $virgin->fieldRendered('field_description_short');
+    $variables['cta_type'] = $virgin->fieldGetOne('field_cta_type');
+    $variables['card_image'] = $virgin->relation('field_cta_card_image');
+    $variables['image_effect'] = $virgin->fieldGetOne('field_image_effect');
+    $variables['cta_links'] = $virgin->fieldGetAll('field_cta_links');
   }
 }
