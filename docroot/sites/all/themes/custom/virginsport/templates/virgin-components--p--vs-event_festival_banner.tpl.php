@@ -10,7 +10,7 @@
  *  $card_title - The card title
  *  $card_description - The card description
  *  $cta_label - The label of the cta
- * 
+ *
  */
 
 ?>
@@ -67,3 +67,4 @@
       </div>
     </div>
   </div>
+</div>

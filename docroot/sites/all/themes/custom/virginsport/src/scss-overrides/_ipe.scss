@@ -149,6 +149,7 @@ div.panels-ipe-placeholder {
     width: 100%;
     margin-bottom: 15px;
     border-radius: 3px;
+    border: 1px solid $gray-lighter;
     overflow: hidden;
 
     a {
@@ -156,7 +157,6 @@ div.panels-ipe-placeholder {
       display: block;
       padding: 10px 15px;
       font-size: 14px;
-      border: 1px solid $gray-lighter;
 
       &:hover,
       &:focus {
@@ -331,5 +331,16 @@ div.panels-ipe-placeholder {
   #panels-edit-style-type-form,
   #panels-edit-style-settings-form {
     padding-top: 30px;
+  }
+
+  .chosen-container {
+    margin-left: 5px;
+  }
+
+  .chosen-drop {
+    margin-left: -1px;
+    margin-top: -3px;
+    width: 100.3%;
+    border-color: rgba(0,0,0,0.2);
   }
 }

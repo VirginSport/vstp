@@ -629,7 +629,7 @@ function virgin_base_field_default_field_bases() {
         'purple' => 'Purple',
         'brown' => 'Brown',
         'rose' => 'Rose',
-        'violet' => 'Violet'
+        'violet' => 'Violet',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -2491,7 +2491,7 @@ function virgin_base_field_default_field_bases() {
         'view' => array(
           'args' => array(),
           'display_name' => 'entityreference_1',
-          'view_name' => 'festival_event_reference',
+          'view_name' => 'ticket_reference',
         ),
       ),
       'target_type' => 'node',

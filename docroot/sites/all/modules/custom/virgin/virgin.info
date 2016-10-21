@@ -13,6 +13,7 @@ dependencies[] = lightning_moderation
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = chosen
 dependencies[] = composer_manager
 dependencies[] = email_registration
 dependencies[] = field_group

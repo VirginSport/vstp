@@ -1,10 +1,12 @@
 
 .navbar-administration {
-  .vs-overlay-blur {
-    padding-top: 40px;
+  &:not(.responsive-preview-frame) {
+    .vs-menu-trigger { top: 40px; }
+    .vs-overlay-blur { padding-top: 39px; }
   }
 
-  &.navbar-tray-open.navbar-fixed .vs-overlay-blur {
-    padding-top: 80px;
+  &.navbar-tray-open.navbar-fixed {
+    .vs-menu-trigger { top: 80px; }
+    .vs-overlay-blur { padding-top: 80px; }
   }
 }
