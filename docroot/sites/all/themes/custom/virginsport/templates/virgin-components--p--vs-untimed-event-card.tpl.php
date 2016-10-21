@@ -16,12 +16,13 @@
  */
 
 ?>
+<div class="vs-region vs-region--gradient-blue">
 <div class="vs-card-untimed-event">
   <div class="container">
     <div class="row">
       <div class="hidden-md-down col-lg-4 vs-card-untimed-event__outline-wrapper">
         <div class="vs-card-untimed-event__outline">
-          <img src="../img/card-untimed-event-example3.png">
+          <img src="">
         </div>
       </div>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__image-wrapper">
@@ -37,13 +38,20 @@
             </div>
           </div>
           <div class="vs-card-untimed-event__date-wrapper">
-            <div class="vs-card-untimed-event__date"><?php print $start_date; ?></div>
+            <div class="vs-card-untimed-event__date">
+              <?php
+              print date('d M', $start_date);
+              ?>
+            </div>
           </div>
           <div class="vs-card-untimed-event__text-wrapper">
             <p class="vs-card-untimed-event__text"><?php print $description; ?></p>
           </div>
           <div class="col-xs-12 vs-card-untimed-event__content-footer">
-            <button class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-blue">Get tickets</button>
+            <a
+              class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
+              href="<?php print url('node/'.$festival_id); ?>"
+            >Get tickets</a>
             <div class="hidden-lg-down col-lg-5 vs-card-untimed-event__price">
               <span>from&nbsp;</span>
               <?php print virginsport_currency($package_currency, $package_price); ?>
@@ -53,4 +61,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
