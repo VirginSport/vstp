@@ -4,7 +4,7 @@
  * Main template for virgin components fieldable panel panes vs_untimed_event_cards
  *
  * Variables available:
- * TODO
+ *  $paragraphs - An array of paragraphs
  */
 ?>
 
