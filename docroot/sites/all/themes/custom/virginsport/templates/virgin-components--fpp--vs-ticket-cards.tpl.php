@@ -4,8 +4,10 @@
  * Main template for virgin components fieldable panel panes vs_ticket_cards
  *
  * Variables available:
- * TODO
+ * Variables available:
+ * $paragraphs - an array of paragraphs
+ * $component_heading - The component header
  */
 ?>
 
-Ticket Cards Template
+<?php print $paragraphs; ?>

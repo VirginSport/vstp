@@ -4,15 +4,34 @@
  * Main template for virgin components paragraph vs_cta_block_item
  *
  * Variables available:
- * TODO
+ * $title - The CTA title
+ * $description - The CTA description
+ * $card_image - The CTA image atom
+ * $image_effect - The image effect
+ * $cta_links - An array with links and its attributes
  */
 
 ?>
 
-  <div class="vs-cta-block__background--with-image-limited-opacity" style="background-image: url(&quot;../img/vs-cta-block/vs-cta-block-1col-example1.png&quot;); background-color: rgb(48, 50, 65);"></div>
-  <h1 class="vs-cta-block__title">create a team</h1>
-  <p class="vs-cta-block__content">Praesent et magna sit amet libero semper<br>facilisis vel ac enim.Aliquam consectetur tellus<br>ipsum, vel aliquet nibh elementum vitae.</p>
+<div class="vs-cta-block__item">
+  <div class="vs-cta-block__background--with-image-limited-opacity" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
+  <?php if(!empty($title)): ?>
+  <h1 class="vs-cta-block__title"><?php print check_plain($title); ?></h1>
+  <?php endif; ?>
+  <?php if(!empty($description)): ?>
+  <div class="vs-cta-block__content"><?php print $description; ?></div>
+  <?php endif; ?>
+  <?php if(!empty($cta_links)): ?>
   <div class="vs-cta-block__cta-wrapper">
-    <button class="btn vs-btn vs-btn--sm vs-btn--outline-white vs-cta-block__cta">learn more</button>
+      <?php print
+        theme('virginsport_cta_links',
+          array(
+            'links' => $cta_links,
+            'classes' => 'vs-btn--sm vs-cta-block__cta'
+          )
+        );
+      ?>
   </div>
+  <?php endif; ?>
+</div>
 

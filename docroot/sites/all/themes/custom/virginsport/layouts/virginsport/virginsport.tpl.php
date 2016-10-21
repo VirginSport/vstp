@@ -12,7 +12,7 @@
 
 ?>
 
-<?php print $content['first']; ?>
+<div class="vs-head-region"><?php print $content['first']; ?></div>
 <?php print $content['second']; ?>
 <?php print $content['third']; ?>
 <?php print $content['fourth']; ?>

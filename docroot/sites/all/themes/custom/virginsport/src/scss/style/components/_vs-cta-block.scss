@@ -9,12 +9,17 @@ vs-cta-block,
 
 // Elements
 // ----------------------------------------------------------------------------
+.vs-cta-block__row {
 
-.vs-cta-block__row--with2items:nth-child(even) {
-  margin-top: 0.625rem;
+  .vs-cta-block--col-2 &:nth-child(even) {
+    margin-top: 0.625rem;  
+  }
+
 }
 
 .vs-cta-block__item {
+  @include make-col(12);
+
   text-align: center;
   color:$c-white; 
 
@@ -54,6 +59,7 @@ vs-cta-block,
   left: 0;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 .vs-cta-block__background--with-image,
@@ -115,7 +121,6 @@ vs-cta-block,
 @include media-breakpoint-up(md) {
 
   .vs-cta-block__item {
-    margin-top: 0.125rem;
     min-height: 26.875rem;
   }
 
@@ -150,7 +155,16 @@ vs-cta-block,
 }
 
 @include media-breakpoint-up(lg) {
+
   .vs-cta-block__item {
     margin-top: 0;
+
+    .vs-cta-block--col-3 & {
+      @include make-col(4);
+    }
+
+    .vs-cta-block--col-2 & {
+      @include make-col(6);
+    }
   }
 }
