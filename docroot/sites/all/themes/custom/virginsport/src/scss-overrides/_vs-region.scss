@@ -31,6 +31,21 @@ $vs-region-overlap-sizes: (
   )
 );
 
+.vs-head-region {
+  .vs-region {
+    padding: 0;
+  }
+
+  .vs-region__bg,
+  .vs-region__bg-spacer {
+    display: none;
+  }
+}
+
+.vs-region {
+  z-index: 1;
+}
+
 .vs-region > * {
   z-index: 1;
   position: relative;
