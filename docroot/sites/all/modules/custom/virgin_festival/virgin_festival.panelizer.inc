@@ -131,6 +131,37 @@ function virgin_festival_panelizer_defaults() {
   $display->storage_id = 'node:festival:default';
   $display->content = array();
   $display->panels = array();
+  $pane = new stdClass();
+  $pane->pid = 'new-2dc364bd-0893-4188-948f-a2dcf3a988d8';
+  $pane->panel = 'first';
+  $pane->type = 'festival_header';
+  $pane->subtype = 'festival_header';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array(
+    'type' => 'immovable',
+    'regions' => array(
+      'first' => 'first',
+    ),
+  );
+  $pane->uuid = '2dc364bd-0893-4188-948f-a2dcf3a988d8';
+  $display->content['new-2dc364bd-0893-4188-948f-a2dcf3a988d8'] = $pane;
+  $display->panels['first'][0] = 'new-2dc364bd-0893-4188-948f-a2dcf3a988d8';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;

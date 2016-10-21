@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the Virgin Roles feature.
  */
+
+include_once 'virgin_roles.features.inc';
