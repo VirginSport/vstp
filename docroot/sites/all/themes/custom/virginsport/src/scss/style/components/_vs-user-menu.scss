@@ -89,6 +89,12 @@ vs-user-menu,
 // Modifiers
 // ----------------------------------------------------------------------------
 
+.vs-user-menu__trigger--not-logged {
+  @include box-shadow(none);
+  background: transparent url('../img/vs-header-user.svg') no-repeat 0 0;
+  background-size: cover;
+}
+
 .vs-user-dropdown__item--header {
   border-bottom: 1px solid rgba(#A5A5A5, .5);
   color: rgba($c-black, .8);
@@ -135,7 +141,6 @@ vs-user-menu,
     top: 3.5rem;
     right: 6.125rem;
   }
-
 }
 
 @include media-breakpoint-up(lg) {
