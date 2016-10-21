@@ -85,7 +85,6 @@ features[user_permission][] = administer panelizer node region defaults
 features[user_permission][] = administer panelizer node region layout
 features[user_permission][] = administer panelizer node region overview
 features[user_permission][] = administer panelizer node region settings
-features[user_permission][] = administer panelizer node teste defaults
 features[user_permission][] = administer panelizer node ticket_type defaults
 features[user_permission][] = administer panelizer node ticket_type_state defaults
 features[user_permission][] = administer panelizer node webform defaults

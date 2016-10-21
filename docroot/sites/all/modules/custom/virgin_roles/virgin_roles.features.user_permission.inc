@@ -496,13 +496,6 @@ function virgin_roles_user_default_permissions() {
     'module' => 'panelizer',
   );
 
-  // Exported permission: 'administer panelizer node teste defaults'.
-  $permissions['administer panelizer node teste defaults'] = array(
-    'name' => 'administer panelizer node teste defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
   // Exported permission: 'administer panelizer node ticket_type defaults'.
   $permissions['administer panelizer node ticket_type defaults'] = array(
     'name' => 'administer panelizer node ticket_type defaults',
