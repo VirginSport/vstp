@@ -90,6 +90,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer content revisions'] = array(
     'name' => 'administer content revisions',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'nra',
@@ -99,8 +100,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'menu',
@@ -127,11 +126,7 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer'.
   $permissions['administer panelizer'] = array(
     'name' => 'administer panelizer',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
@@ -299,7 +294,10 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer node event content'.
   $permissions['administer panelizer node event content'] = array(
     'name' => 'administer panelizer node event content',
-    'roles' => array(),
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
     'module' => 'panelizer',
   );
 
@@ -348,7 +346,10 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer node festival content'.
   $permissions['administer panelizer node festival content'] = array(
     'name' => 'administer panelizer node festival content',
-    'roles' => array(),
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
     'module' => 'panelizer',
   );
 
@@ -411,7 +412,10 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer node page content'.
   $permissions['administer panelizer node page content'] = array(
     'name' => 'administer panelizer node page content',
-    'roles' => array(),
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
     'module' => 'panelizer',
   );
 
@@ -456,7 +460,6 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
-      'administrator' => 'administrator',
     ),
     'module' => 'panelizer',
   );
@@ -597,9 +600,7 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer user user defaults'.
   $permissions['administer panelizer user user defaults'] = array(
     'name' => 'administer panelizer user user defaults',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
@@ -663,8 +664,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'user',
@@ -674,8 +673,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['bypass access in place editing'] = array(
     'name' => 'bypass access in place editing',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'panels',
@@ -694,8 +691,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['change layouts in place editing'] = array(
     'name' => 'change layouts in place editing',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'panels',
@@ -962,7 +957,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['create region content'] = array(
     'name' => 'create region content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1055,7 +1049,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
@@ -1066,7 +1059,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any region content'] = array(
     'name' => 'delete any region content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1338,7 +1330,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
@@ -1349,7 +1340,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own region content'] = array(
     'name' => 'delete own region content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1377,6 +1367,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1816,6 +1807,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'moderate content from draft to needs_review',
     'roles' => array(
       'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',
@@ -1913,9 +1905,9 @@ function virgin_roles_user_default_permissions() {
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
   );
@@ -1935,6 +1927,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['view moderation messages'] = array(
     'name' => 'view moderation messages',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',
