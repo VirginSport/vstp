@@ -28,6 +28,6 @@ class VirginComponentTeaserItem implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    $x=0;
+
   }
 }
