@@ -10,7 +10,7 @@
  *  $card_title - The card title
  *  $card_description - The card description
  *  $cta_label - The label of the cta
- * 
+ *
  */
 
 ?>
@@ -50,7 +50,7 @@
           <?php if (!empty($cta_label)): ?>
             <div class="vs-promo-banner__ctaButton-wrapper">
               <a
-                class="btn vs-btn vs-btn--min vs-promo-banner__ctaButton vs-btn--gradient-<?php print $brand_color; ?>"
+                class="btn vs-btn vs-btn--min-sm vs-promo-banner__ctaButton vs-btn--gradient-<?php print $brand_color; ?>"
                 href="<?php print url('node/' . $node_grapher->property('nid')); ?>"
               >
                 <?php print $cta_label; ?>
@@ -67,3 +67,4 @@
       </div>
     </div>
   </div>
+</div>

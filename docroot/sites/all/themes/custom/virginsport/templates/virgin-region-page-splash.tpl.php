@@ -22,7 +22,7 @@
         class="vs-splash__link"
       >
         <?php if(!empty($region['flag'])): ?>
-          <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid')) ?>
+          <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid', 'classes' => 'vs-splash__flag')) ?>
         <?php endif; ?>
         <span class="vs-splash__flag-label"><?php print $region['title']; ?></span>
       </a>

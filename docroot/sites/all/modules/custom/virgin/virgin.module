@@ -59,7 +59,7 @@ function virgin_theme($existing, $type, $theme, $path) {
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_ctools_plugin_directory($module, $plugin) {
-  if (in_array($module, array('panelizer', 'ctools', 'page_manager'))) {
+  if (in_array($module, array('panels', 'panelizer', 'ctools', 'page_manager'))) {
     return 'plugins/' . $plugin;
   }
 }
@@ -89,6 +89,53 @@ function virgin_scald_extra_modes() {
       'formats'    => array(),
     ),
   );
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page theme.
+ */
+function virgin_preprocess_page(&$vars) {
+  // If Panels IPE is being rendered, or is an admin page, ensure CKEDITOR PATH
+  // is set so that the editor properly loads.
+  if (path_is_admin(current_path()) || !empty($vars['page']['page_bottom']['panels_ipe'])) {
+    $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
+    drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for panels_edit_style_type_form.
+ *
+ * Ensures only virgin curve panels region style is available for selection
+ * in the region style select form.
+ */
+function virgin_form_panels_edit_style_type_form_alter(&$form, &$form_state) {
+
+  // Currently we do not allow users to select styles for panes and only for
+  // regions. If the user is attempting to modify the style of a pane, block
+  // him.
+  if ($form_state['type'] == 'pane') {
+    $form['notice']['#markup'] = t('There are no styles available for panes. Only regions can be styled at this moment.');
+    $form['style']['#access'] = FALSE;
+    $form['submit']['#access'] = FALSE;
+    return;
+  }
+
+  // Otherwise, override the style options to only allow him to select the
+  // virgin curve region style.
+  $form['style']['#options'] = array(
+    'curve' => t('Virgin Curve')
+  );
+
+  $form['style']['#default_value'] = 'curve';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for panels_edit_settings_type_form.
+ */
+function virgin_form_panels_edit_style_settings_form_alter(&$form, &$form_state) {
+  // Fixes panels wrong render attribute for the description field.
+  $form['description']['#markup'] = $form['description']['#value'];
 }
 
 // Helpers

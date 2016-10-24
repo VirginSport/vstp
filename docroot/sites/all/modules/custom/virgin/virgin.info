@@ -13,6 +13,7 @@ dependencies[] = lightning_moderation
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = chosen
 dependencies[] = composer_manager
 dependencies[] = email_registration
 dependencies[] = field_group
@@ -56,5 +57,6 @@ dependencies[] = virgin_user
 
 ; required files
 files[] = exceptions/VirginException.php
+files[] = includes/VirginMailSystem.inc
 files[] = util/VirginGrapher.php
 files[] = util/VirginEntityGrapher.php

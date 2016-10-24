@@ -9,7 +9,7 @@
  */
 ?>
 
-<div class="vs-region vs-region--light-gray">
+<div class="vs-promo-banner-wrapper">
   <?php if (!empty($component_heading)): ?>
     <div class="vs-component-heading vs-promo-banner-heading">
       <?php print check_plain($component_heading); ?>

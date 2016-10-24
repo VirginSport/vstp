@@ -1,0 +1,21 @@
+#block-workbench-block {
+  position: fixed;
+  left: 20px;
+  bottom: 60px;
+  z-index: 10;
+
+  .workbench-info-block {
+    padding: 15px;
+    font-size: 13px;
+    border: 1px solid $gray-lighter;
+    background-color: rgba(white, .9);
+  }
+
+  textarea {
+    padding: 8px;
+  }
+
+  select {
+    height: 32px;
+  }
+}

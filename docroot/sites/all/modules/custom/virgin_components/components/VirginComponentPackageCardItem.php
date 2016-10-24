@@ -28,6 +28,24 @@ class VirginComponentPackageCardItem implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    if (empty($variables['elements']['#entity'])) {
+      return;
+    }
+
+    $variables['p'] = $variables['elements']['#entity'];
+    $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
+
+    $variables['title'] = $virgin->fieldGetOne('title_field');
+    $variables['description'] = $virgin->fieldRendered('field_description');
+    $package_grapher = $virgin->relation('field_package_reference');
+
+    $variables['package_title'] = $package_grapher->fieldGetOne('title_field');
+    $variables['package_description'] = $package_grapher->fieldRendered('field_description');
+    $variables['card_image'] = $package_grapher->relation('field_card_image');
+    $variables['card_color'] = $package_grapher->fieldGetOne('field_brand_color');
+    $variables['card_pattern'] = $package_grapher->fieldGetOne('field_brand_pattern');
+    $variables['package_price'] = $package_grapher->fieldGetOne('field_price', '', 'amount');
+    $variables['package_currency'] = $package_grapher->fieldGetOne('field_price', '', 'currency');
+    $variables['package_nid'] = $package_grapher->property('nid');
   }
 }

@@ -1,0 +1,52 @@
+#scald-extra--atom-add-page--modal {
+  iframe {
+    border: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    padding: 0;
+    min-height: 500px;
+  }
+}
+
+.page-atom {
+  $form-actions-height: 60px;
+
+  padding: 30px 30px $form-actions-height+15px 30px;
+
+  .form-control.form-file {
+    padding: 11px;
+  }
+
+  .wizard-trail {
+    display: none;
+  }
+
+  .form-control {
+    margin-top: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .form-actions {
+    position: fixed;
+    z-index: 5;
+    height: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid $gray-lighter;
+    background-color: $gray-lightest;
+    margin: 0;
+    padding: 9px 15px;
+
+    button {
+      float: right;
+      margin-right: 0;
+      margin-left: 5px;
+    }
+  }
+}
+
+.scald-library {
+  z-index: 10;
+}

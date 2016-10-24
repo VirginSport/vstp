@@ -21,8 +21,9 @@
         <div
           class="vs-promo-banner__background"
           <?php if (!empty($hero_image_grapher->property('sid'))): ?>
-          style="<?php print virginsport_atom_background($hero_image_grapher->getEntity()); ?>">
+          style="<?php print virginsport_atom_background($hero_image_grapher->getEntity()); ?>"
           <?php endif; ?>
+        >
         </div>
         <div class="col-xs-12 vs-promo-banner__content-wrapper">
           <?php if (!empty($card_title)): ?>
@@ -43,7 +44,7 @@
                 theme('virginsport_cta_links',
                   array(
                     'links' => $cta_links,
-                    'classes' => 'vs-btn--min vs-promo-banner__ctaButton'
+                    'classes' => 'vs-btn--min-sm vs-promo-banner__ctaButton'
                   )
                 );
               ?>
@@ -56,6 +57,7 @@
             <?php print $hero_image_caption ?>
           </div>
         <?php endif; ?>
+      </div>
     </div>
   </div>
 </div>

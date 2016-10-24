@@ -1,11 +1,52 @@
+// When doing IPE editing, hide some elements that might conflict with
+// the editing UX.
+body.panels-ipe-editing {
+  #block-workbench-block { display: none; }
+  .vs-header { display: none; }
+  .vs-region { background: none !important; padding: 0 !important; }
+  .vs-region__bg { display: none !important; }
+  .vs-region__bg-spacer { display: none !important; }
+  .panels-ipe-sort-container { padding-bottom: 15px; }
+  .vs-region > :first-child { margin-top: 0 !important; }
+}
 
+// Improve IPE elements
+.panels-ipe-placeholder-content {
+  padding-left: 40px;
+}
+
+.panels-ipe-linkbar {
+  display: block;
+  padding-right: 40px;
+
+  li {
+    float: left;
+  }
+}
+
+.panels-ipe-editing .panels-ipe-region {
+  float: none !important;
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
+div.panels-ipe-placeholder {
+  margin: 0 !important;
+}
+
+// Improve IPE styles inside the modal dialog
 .panels-ipe .ctools-modal-dialog {
   height: auto !important;
   width: auto !important;
   max-width: 1280px !important;
 
+  .modal-header {
+    border-bottom: 1px solid $gray-lighter;
+  }
+
   .modal-title {
     line-height: 1em;
+    margin-bottom: 0;
   }
 
   .modal-body {
@@ -35,6 +76,10 @@
     .inside {
       padding: 0;
     }
+  }
+
+  .panels-section-column-2 {
+    padding-right: 15px;
   }
 
   .panels-section-columns-quickfilter {
@@ -104,6 +149,7 @@
     width: 100%;
     margin-bottom: 15px;
     border-radius: 3px;
+    border: 1px solid $gray-lighter;
     overflow: hidden;
 
     a {
@@ -111,7 +157,6 @@
       display: block;
       padding: 10px 15px;
       font-size: 14px;
-      border: 1px solid $gray-lighter;
 
       &:hover,
       &:focus {
@@ -163,8 +208,13 @@
   }
 
   .form-control {
+    margin-top: 0;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .form-actions {
+    margin-bottom: 0;
   }
 
   select.form-control:not([size]):not([multiple]) {
@@ -282,17 +332,15 @@
   #panels-edit-style-settings-form {
     padding-top: 30px;
   }
-}
 
-.panels-ipe-placeholder-content {
-  padding-left: 40px;
-}
+  .chosen-container {
+    margin-left: 5px;
+  }
 
-.panels-ipe-linkbar {
-  display: block;
-  padding-right: 40px;
-
-  li {
-    float: left;
+  .chosen-drop {
+    margin-left: -1px;
+    margin-top: -3px;
+    width: 100.3%;
+    border-color: rgba(0,0,0,0.2);
   }
 }

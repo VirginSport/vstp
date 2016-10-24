@@ -4,9 +4,34 @@
  * Main template for virgin components paragraph vs_cta_block_item
  *
  * Variables available:
- * TODO
+ * $title - The CTA title
+ * $description - The CTA description
+ * $card_image - The CTA image atom
+ * $image_effect - The image effect
+ * $cta_links - An array with links and its attributes
  */
 
 ?>
 
-CTA Block Paragraph Template
+<div class="vs-cta-block__item">
+  <div class="vs-cta-block__background--with-image-limited-opacity" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
+  <?php if(!empty($title)): ?>
+  <h1 class="vs-cta-block__title"><?php print check_plain($title); ?></h1>
+  <?php endif; ?>
+  <?php if(!empty($description)): ?>
+  <div class="vs-cta-block__content"><?php print $description; ?></div>
+  <?php endif; ?>
+  <?php if(!empty($cta_links)): ?>
+  <div class="vs-cta-block__cta-wrapper">
+      <?php print
+        theme('virginsport_cta_links',
+          array(
+            'links' => $cta_links,
+            'classes' => 'vs-btn--sm vs-cta-block__cta'
+          )
+        );
+      ?>
+  </div>
+  <?php endif; ?>
+</div>
+

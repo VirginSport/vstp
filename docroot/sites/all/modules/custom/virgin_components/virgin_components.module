@@ -7,7 +7,16 @@
 include_once 'virgin_components.features.inc';
 
 /**
- * Implements hook_theme()
+ * Implements hook_ctools_plugin_directory().
+ */
+function virgin_components_ctools_plugin_directory($module, $plugin) {
+  if (in_array($module, array('panels', 'panelizer', 'ctools', 'page_manager'))) {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_theme().
  *
  * This need to be added so that we can override default fieldable_panel_panes
  * and paragraphs items hook suggestions
@@ -19,6 +28,10 @@ function virgin_components_theme() {
     'virgin_components' => array(
       'render element' => 'elements',
       'template'  => 'virgin-components',
+    ),
+    'virgin_components__ct__festival-header' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__festival-header',
     ),
   );
 }
