@@ -115,6 +115,12 @@
           <?php endforeach; ?>
         </ul>
 
+        <?php if (!$logged_in): ?>
+        <div class="vs-user-menu">
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>"><?php print t('Login'); ?></a>
+        </div>
+        <?php endif; ?>
+
         <?php if ($logged_in): ?>
         <div class="vs-user-menu">
           <a class="vs-user-menu__trigger" href="#">
