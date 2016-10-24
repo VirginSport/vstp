@@ -650,6 +650,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer panels styles'] = array(
     'name' => 'administer panels styles',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'panels',
