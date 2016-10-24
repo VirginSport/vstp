@@ -33,6 +33,17 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'access content overview'.
+  $permissions['access content overview'] = array(
+    'name' => 'access content overview',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'access fieldable panels panes master list'.
   $permissions['access fieldable panels panes master list'] = array(
     'name' => 'access fieldable panels panes master list',
@@ -42,6 +53,17 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'access navbar'.
+  $permissions['access navbar'] = array(
+    'name' => 'access navbar',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'navbar',
   );
 
   // Exported permission: 'access scald dnd library'.
@@ -75,6 +97,17 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
+  );
+
+  // Exported permission: 'access workbench'.
+  $permissions['access workbench'] = array(
+    'name' => 'access workbench',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench',
   );
 
   // Exported permission: 'administer advanced pane settings'.
@@ -1813,6 +1846,17 @@ function virgin_roles_user_default_permissions() {
     'module' => 'workbench_moderation',
   );
 
+  // Exported permission: 'moderate content from needs_review to draft'.
+  $permissions['moderate content from needs_review to draft'] = array(
+    'name' => 'moderate content from needs_review to draft',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
   // Exported permission: 'moderate content from needs_review to published'.
   $permissions['moderate content from needs_review to published'] = array(
     'name' => 'moderate content from needs_review to published',
@@ -1912,6 +1956,37 @@ function virgin_roles_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'use workbench_moderation my drafts tab'.
+  $permissions['use workbench_moderation my drafts tab'] = array(
+    'name' => 'use workbench_moderation my drafts tab',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
+  // Exported permission: 'use workbench_moderation needs review tab'.
+  $permissions['use workbench_moderation needs review tab'] = array(
+    'name' => 'use workbench_moderation needs review tab',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
+  // Exported permission: 'view all unpublished content'.
+  $permissions['view all unpublished content'] = array(
+    'name' => 'view all unpublished content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
   // Exported permission: 'view any unpublished content'.
   $permissions['view any unpublished content'] = array(
     'name' => 'view any unpublished content',
@@ -1921,6 +1996,17 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view moderation history'.
+  $permissions['view moderation history'] = array(
+    'name' => 'view moderation history',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
   );
 
   // Exported permission: 'view moderation messages'.
