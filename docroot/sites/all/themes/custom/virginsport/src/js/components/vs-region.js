@@ -19,6 +19,17 @@ const GRADIENT_ROTATE_ADJUST = -90;
 const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
 
 /**
+ * A list of selectors for which the margin
+ * bottom does not apply.
+ *
+ * @type {string[]}
+ */
+const SPACERLESS_LAST_COMPONENTS = [
+  '.vs-cta-block',
+  '.vs-hero-banner'
+];
+
+/**
  * The list of regions being tracked
  *
  * @type {Region[]}
@@ -58,8 +69,20 @@ function findRegions() {
   $regions
     .addClass('vs-region--found')
     .each((idx, el) => {
-    regions.push(new Region(el, regions[idx - 1]));
-  });
+      
+      // Create regions
+      regions.push(new Region(el, regions[idx - 1]));
+      
+      // Find it spacer needs to be removed
+      let $region = $(el);
+      let $last = $region.find('.panels-ipe-portlet-wrapper').last();
+      let $cta = $last.find(SPACERLESS_LAST_COMPONENTS.join(','));
+      
+      if ($cta.length) {
+        $region.addClass('vs-region--hide-bg-spacer');
+      }
+    })
+  ;
 }
 
 /**

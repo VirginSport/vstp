@@ -18,10 +18,4 @@
  */
 ?>
 
-<div class="<?php print $classes; ?>" <?php print $id; ?> <?php print $attributes; ?>>
-  <?php if ($admin_links): ?>
-    <?php print $admin_links; ?>
-  <?php endif; ?>
-
-  <?php print render($content); ?>
-</div>
+<?php print render($content); ?>

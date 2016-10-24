@@ -31,21 +31,48 @@ $vs-region-overlap-sizes: (
   )
 );
 
+// For the first ctools region, forcefully disable the spacer
+.vs-head-region {
+  .vs-region { padding: 0; }
+
+  .vs-region__bg,
+  .vs-region__bg-spacer {
+    display: none;
+  }
+}
+
+// Forcefully hide the spacer if the region is set to hide
+// the spacer.
+.vs-region--hide-bg-spacer {
+  .vs-region__bg-spacer {
+    display: none;
+  }
+}
+
+// --------------------------------------------------------
+// TODO FRI Override!!! Needs to be migrated to FRI
+.vs-region {
+  padding-bottom: 0;
+}
+// --------------------------------------------------------
+
+// Ensure regions curves are visible
+.vs-region {
+  z-index: 1;
+}
+
+// Ensure children of the region are visible even with the background active
 .vs-region > * {
   z-index: 1;
   position: relative;
 }
 
-.vs-region--overlap-large {
-  > :first-child {
-    margin-top: -300px;
-  }
-}
-
+// If the region is not curved, then force the spacer max height to be 0
 .vs-region__bg-spacer[data-vs-region-curved="0"] {
   max-height: 0;
 }
 
+// Generate the different classes for the overlap mechanism
 @each $size-name in map-keys($vs-region-overlap-sizes) {
   $size: map_get($vs-region-overlap-sizes, $size-name);
 

@@ -92,6 +92,18 @@ function virgin_scald_extra_modes() {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for page theme.
+ */
+function virgin_preprocess_page(&$vars) {
+  // If Panels IPE is being rendered, or is an admin page, ensure CKEDITOR PATH
+  // is set so that the editor properly loads.
+  if (path_is_admin(current_path()) || !empty($vars['page']['page_bottom']['panels_ipe'])) {
+    $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
+    drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for panels_edit_style_type_form.
  *
  * Ensures only virgin curve panels region style is available for selection
