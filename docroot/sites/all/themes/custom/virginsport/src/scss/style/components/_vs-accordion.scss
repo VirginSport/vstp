@@ -47,21 +47,16 @@ vs-accordion,
 
   > a {
     display: block;
-    padding: .938rem 1.25rem;
+    padding: 0 1.25rem;
     text-align: center;
   }
 
   > a[aria-expanded=true] {
-    background-color: $c-gray-light;
-    padding-bottom: 1.25rem;
-
-    & .vs-accordion__panel-title {
-      padding-bottom: .938rem;
-    }
+    background-color: #FAFAFA;
 
     & .vs-accordion__arrow {
       @include transform(rotate(-90deg));
-      top: calc(50% - .688rem);
+      top: calc(50% - 0.125rem);
       right: -.625rem;
     }
   }
@@ -71,13 +66,8 @@ vs-accordion,
   & .vs-accordion__panel-heading {
 
   > a {
-    padding: 1.563rem 1.25rem;
     border-top-right-radius: .625rem;
     border-top-left-radius: .625rem;
-  }
-
-  > a[aria-expanded=true] {
-    padding-bottom: 1.25rem;
   }
 }
 
@@ -85,20 +75,19 @@ vs-accordion,
   & .vs-accordion__panel-heading {
 
   > a {
-    padding: 1.563rem 1.25rem;
     border-bottom-right-radius: .625rem;
     border-bottom-left-radius: .625rem;
-  }
-
-  > a[aria-expanded=true] {
-    padding-bottom: 1.25rem;
   }
 }
 
 .vs-accordion__panel-title {
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
     position: relative;
     margin: 0;
-    padding-right: 1.25rem;
+    min-height: 4.375rem;
+    padding: .938rem 1.25rem .938rem 0;
     font-family: $font-family-serif;
     text-transform: uppercase;
     color: $c-black;
@@ -110,6 +99,7 @@ vs-accordion,
 .vs-accordion__panel-text {
   
   > p {
+    padding-bottom: 1.313rem;
     font-family: $font-family-sans-serif;
     font-size: .75rem;
     line-height: 1.25rem;
@@ -121,7 +111,7 @@ vs-accordion,
   @include transform(rotate(90deg));
   position: absolute;
   display: block;
-  top: calc(50% - .5rem);
+  top: calc(50% - .375rem);
   right: -.313rem;
   height: .625rem;
   font-family: $font-family-serif;
@@ -135,7 +125,7 @@ vs-accordion,
 // // Responsive
 // // ----------------------------------------------------------------------------
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(md) {
 
   .vs-accordion__title {
     margin: .625rem 1.25rem;
@@ -152,44 +142,22 @@ vs-accordion,
   .vs-accordion__panel-heading {
 
     > a {
-      padding: 1.125rem 6.25rem;
+      padding: 0 8.75rem;
     }
-  }
-
-  .vs-accordion__panel-heading {
 
     > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
-
-      & .vs-accordion__panel-title {
-        padding-bottom: 1.438rem;
-      }
 
       & .vs-accordion__arrow {
-        top: calc(50% - 1.063rem);
-        right: -4.625rem;
+        top: calc(50% - .125rem);
+        right: -6.125rem;
       }
-    }
-  }
-
-  .vs-accordion__panel:first-child
-    & .vs-accordion__panel-heading,
-  .vs-accordion__panel:last-child
-    & .vs-accordion__panel-heading {
-
-    > a {
-      padding: 1.438rem 6.25rem;
-    }
-
-    > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
     }
   }
 
   .vs-accordion__panel-title {
-      padding: 0;
-      font-size: 1.25rem;
-      line-height: 1.5rem;
+    padding: 1.438rem 0;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
   }
 
   .vs-accordion__panel-text {
@@ -197,58 +165,15 @@ vs-accordion,
     > p {
       font-size: .938rem;
       line-height: 1.5rem;
+      padding-bottom: 1.438rem;
     }
   }
 
   .vs-accordion__arrow {
-    top: calc(50% - .688rem);
-    right: -4.125rem;
+    top: calc(50% - .5rem);
+    right: -5.625rem;
     height: .813rem;
     font-size: 2rem;
-  }
-
-}
-
-@include media-breakpoint-up(md) {
-
-  .vs-accordion__panel-heading {
-
-    > a {
-      padding: 1.125rem 8.75rem;
-    }
-  }
-
-  .vs-accordion__panel-heading {
-
-    > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
-
-      & .vs-accordion__panel-title {
-        padding-bottom: 1.438rem;
-      }
-
-      & .vs-accordion__arrow {
-        right: -6.125rem;
-      }
-    }
-  }
-
-  .vs-accordion__panel:first-child
-    & .vs-accordion__panel-heading,
-  .vs-accordion__panel:last-child
-    & .vs-accordion__panel-heading {
-
-    > a {
-      padding: 1.438rem 8.75rem;
-    }
-
-    > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
-    }
-  }
-
-  .vs-accordion__arrow {
-    right: -5.625rem;
   }
 
 }
@@ -258,18 +183,10 @@ vs-accordion,
   .vs-accordion__panel-heading {
 
     > a {
-      padding: 1.125rem 11.25rem;
+      padding: 0 11.25rem;
     }
-  }
-
-  .vs-accordion__panel-heading {
 
     > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
-
-      & .vs-accordion__panel-title {
-        padding-bottom: 1.438rem;
-      }
 
       & .vs-accordion__arrow {
         right: -5.063rem;
@@ -277,16 +194,9 @@ vs-accordion,
     }
   }
 
-  .vs-accordion__panel:first-child
-    & .vs-accordion__panel-heading,
-  .vs-accordion__panel:last-child
-    & .vs-accordion__panel-heading {
+  .vs-accordion__panel-text {
 
-    > a {
-      padding: 1.438rem 11.25rem;
-    }
-
-    > a[aria-expanded=true] {
+    > p {
       padding-bottom: 1.438rem;
     }
   }
@@ -302,36 +212,13 @@ vs-accordion,
   .vs-accordion__panel-heading {
 
     > a {
-      padding: 1.125rem 12.5rem;
+      padding: 0 12.5rem;
     }
-  }
-
-  .vs-accordion__panel-heading {
 
     > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
-
-      & .vs-accordion__panel-title {
-        padding-bottom: 1.438rem;
-      }
-
       & .vs-accordion__arrow {
         right: -3.875rem;
       }
-    }
-  }
-
-  .vs-accordion__panel:first-child
-    & .vs-accordion__panel-heading,
-  .vs-accordion__panel:last-child
-    & .vs-accordion__panel-heading {
-
-    > a {
-      padding: 1.438rem 12.5rem;
-    }
-
-    > a[aria-expanded=true] {
-      padding-bottom: 1.438rem;
     }
   }
 
@@ -340,6 +227,7 @@ vs-accordion,
     > p {
       padding-left: .938rem;
       padding-right: .938rem;
+      padding-bottom: 1.438rem;
     }
   }
 

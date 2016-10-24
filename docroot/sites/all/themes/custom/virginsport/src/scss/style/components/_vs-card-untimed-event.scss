@@ -156,14 +156,19 @@ vs-card-untimed-event,
     position: absolute;
     right: 0;
     bottom: 2.813rem;
-    min-height: 7.813rem;
+    min-height: 9.375rem;
     width: 10.25rem;
     color: $c-black;
 
-    > img {
-      height: 100%;
-      width: 100%;
+    & .vs-card-untimed-event__waves {
+      background-image: url(../img/card-untimed-event-example3.png);
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      min-height: inherit;
+      width: inherit;
     }
+
   }
 
   .vs-card-untimed-event__image-wrapper {
@@ -212,7 +217,7 @@ vs-card-untimed-event,
   }
 
   .vs-card-untimed-event__outline {
-    bottom: 4.25rem;
+    bottom: 3.813rem;
     width: 12.5rem;
   }
 
@@ -259,8 +264,8 @@ vs-card-untimed-event,
 
   .vs-card-untimed-event__outline {
     bottom: 3.75rem;
-    min-height: 11rem;
-    width: 17.25rem;
+    min-height: 11.313rem;
+    width: 17.313rem;
   }
 
   .vs-card-untimed-event__image-wrapper {

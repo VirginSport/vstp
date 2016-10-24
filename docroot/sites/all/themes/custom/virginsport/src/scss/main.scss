@@ -21,6 +21,7 @@
 @import "mixins/placeholders";
 @import "mixins/transform";
 @import "mixins/transition";
+@import "mixins/alignment";
 
 
 // Fonts
@@ -64,9 +65,8 @@
 @import "style/components/vs-card-untimed-event";
 @import "style/components/vs-claim-ticket";
 @import "style/components/vs-component-heading";
-
-
 @import "style/components/vs-accordion";
+@import "style/components/vs-card-upcoming";
 
 // Pages
 @import "style/components/vs-splash";
