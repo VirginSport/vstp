@@ -4,7 +4,9 @@
  * Main template for virgin components paragraph vs_accordion_item
  *
  * Variables available:
- * TODO
+ *  $id - The element id to target for
+ *  $title - The element title
+ *  $content - The element content
  */
 
 ?>
@@ -15,7 +17,7 @@
   >
     <a
       class="collapsed"
-      data-toggle="collapse"
+      data-toggle="vs-collapse"
       href="#paragraph-item-<?php print $id; ?>"
       data-parent="#"
     >
