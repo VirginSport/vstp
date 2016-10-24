@@ -28,6 +28,6 @@ class VirginComponentTeaserBlock implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    $x = 0;
   }
 }
