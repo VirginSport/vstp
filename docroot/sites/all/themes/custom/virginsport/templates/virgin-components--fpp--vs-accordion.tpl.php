@@ -14,7 +14,7 @@
     <div class="row">
       <?php if (!empty($title)): ?>
         <h4 class="vs-accordion__title">
-          <?php print $title; ?>
+          <?php print check_plain($title); ?>
         </h4>
       <?php endif; ?>
 

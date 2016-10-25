@@ -23,7 +23,7 @@
     >
       <?php if(!empty($title)): ?>
         <h4 class="vs-accordion__panel-title">
-          <?php print $title; ?>
+          <?php print check_plain($title); ?>
           <i class="vs-accordion__arrow">&gt;</i>
         </h4>
       <?php endif; ?>
