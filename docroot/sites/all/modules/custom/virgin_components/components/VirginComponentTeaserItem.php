@@ -28,6 +28,9 @@ class VirginComponentTeaserItem implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
+    if (empty($variables['elements']['#entity'])) {
+      return;
+    }
     $variables['p'] = $variables['elements']['#entity'];
     $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
     $variables['title'] = $virgin->fieldGetOne('title_field');
