@@ -8,4 +8,4 @@
  */
 ?>
 
-Teaser Block template
+<?php print $paragraphs; ?>

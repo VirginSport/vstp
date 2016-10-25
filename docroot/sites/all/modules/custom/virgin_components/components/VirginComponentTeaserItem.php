@@ -28,6 +28,14 @@ class VirginComponentTeaserItem implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-
+    $variables['p'] = $variables['elements']['#entity'];
+    $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
+    $variables['title'] = $virgin->fieldGetOne('title_field');
+    $variables['body'] = $virgin->fieldRendered('field_body');
+    $variables['teaser_images'] = $virgin->allRelations('field_card_images');
+    $variables['arrangement'] = $virgin->fieldGetOne('field_teaser_layout');
+    $variables['outline'] = $virgin->fieldGetOne('field_outline_title');
+    $variables['alignment'] = $virgin->fieldGetOne('field_alignment');
+    $variables['cta_links'] = $virgin->fieldGetAll('field_cta_links');
   }
 }
