@@ -99,6 +99,16 @@ function virginsport_preprocess_page(&$vars) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for node theme.
+ */
+function virginsport_preprocess_node(&$vars) {
+  // Add node vie mode suggestion
+  $vars['theme_hook_suggestions'][] = sprintf('node__%s__%s', $vars['type'], $vars['view_mode']);
+
+  $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
+}
+
 // Template Overrides
 // -----------------------------------------------------------------------------
 
