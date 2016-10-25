@@ -35,7 +35,7 @@ class VirginComponentTeaserItem implements VirginComponentsInterface {
     $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
     $variables['title'] = $virgin->fieldGetOne('title_field');
     $variables['body'] = $virgin->fieldRendered('field_body');
-    $variables['teaser_images'] = $virgin->allRelations('field_card_images');
+    $variables['teaser_images'] = $virgin->fieldGetAll('field_card_images');
     $variables['arrangement'] = $virgin->fieldGetOne('field_teaser_layout');
     $variables['outline'] = $virgin->fieldGetOne('field_outline_title');
     $variables['alignment'] = $virgin->fieldGetOne('field_alignment');
