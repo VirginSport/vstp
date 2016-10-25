@@ -1,0 +1,1017 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-teaser,
+.vs-teaser {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-teaser__content {
+  position: relative;
+}
+
+.vs-teaser__images,
+.vs-teaser__content {
+  padding: 0 $grid-gutter-width/2;
+}
+
+
+// Common elements between layouts
+// ----------------------------------------------------------------------------
+
+[class*="vs-teaser__layout"] {
+  padding: 1.5625rem 0;
+}
+
+.vs-teaser__image-a,
+.vs-teaser__image-b,
+.vs-teaser__image-c {
+  position: relative;
+  display: block;
+}
+
+.vs-teaser__image-a { z-index: 3; }
+.vs-teaser__image-b { z-index: 2; }
+.vs-teaser__image-c { z-index: 1; }
+
+.vs-teaser__title {
+  font-family: $font-family-serif;
+  font-size: 3.4375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 3.125rem;
+  position: relative;
+  display: block;
+}
+
+.vs-teaser__subtitle {
+  font-family: $font-family-serif;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.6875rem;
+  position: relative;
+  padding-left: 1.5625rem;
+  padding-right: 1.5625rem;
+
+  &:after {
+    content: '';
+    background-color: $c-orange;
+    height: .125rem;
+    width: 1.25rem;
+    position: absolute;
+    left: 1.5625rem;
+    bottom: -.5625rem;
+  }
+}
+
+.vs-teaser__text {
+  padding: 0 1.5625rem;
+}
+
+@include media-breakpoint-up(md) {
+  .vs-teaser__image-scale {
+    position: absolute;
+    top: 0;
+    right: $grid-gutter-width/2;
+    bottom: 0;
+    left: $grid-gutter-width/2;
+  }
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-teaser__wrapper {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    position: relative;
+  }
+
+  .vs-teaser__content,
+  .vs-teaser__images {
+    @include make-col(6);
+  }
+
+  .vs-teaser__title,
+  .vs-teaser__subtitle {
+    @include make-col(9);
+  }
+
+  .vs-teaser__title {
+    margin-bottom: 1.875rem;
+  }
+
+  .vs-teaser__subtitle {
+    padding: 0;
+
+    &:after {
+      left: 0;
+    }
+  }
+
+  .vs-teaser__text {
+    @include make-col(11);
+    padding: 0;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  [class*="vs-teaser__layout"] {
+    padding: 5rem 0;
+  }
+
+  .vs-teaser__title {
+    font-size: 5.625rem;
+    line-height: 5.3125rem;
+  }
+
+  .vs-teaser__subtitle {
+    font-size: 1.75rem;
+    margin-bottom: 2.875rem;
+    line-height: 2rem;
+
+    &:after {
+      height: .25rem;
+      width: 2.5rem;
+      bottom: -1.5rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-teaser__title {
+    font-size: 8.75rem;
+    line-height: 8.4375rem;
+  }
+
+  .vs-teaser__subtitle {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 600;
+  }
+
+  .vs-teaser__subtitle {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 600;
+  }
+
+  .vs-teaser__text {
+    @include make-col(10);
+  }
+}
+
+
+// Portrait
+// ----------------------------------------------------------------------------
+
+.vs-teaser--portrait {
+  .vs-teaser__image-a {
+    width: 10rem;
+    margin: 0 auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-a {
+      @include transform(translateY(-50%));
+      top: 50%;
+      position: absolute;
+      width: 13.5rem;
+      margin: 0;
+      right: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__image-a {
+      width: 18.5rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__image-a {
+      width: auto;
+    }
+  }
+}
+
+
+// Landscape
+// ----------------------------------------------------------------------------
+
+.vs-teaser--landscape {
+  .vs-teaser__image-a {
+    width: 13.625rem;
+    margin: 0 auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-a {
+      width: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__image-a {
+      width: auto;
+      float: right;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    &.vs-teaser--reverse {
+      .vs-teaser__image-a {
+        float: left;
+      }
+    }
+  }
+}
+
+
+// Landscape, Lower Landscape
+// ----------------------------------------------------------------------------
+
+.vs-teaser--landscape-lowerlandscape {
+  .vs-teaser__image-scale {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .vs-teaser__image-a {
+    margin-top: -1.375rem;
+    width: calc(100% + 1.875rem);
+    margin-left: -.9375rem;
+    height: auto;
+    margin-bottom: 1.875rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      position: absolute;
+      top: 0;
+      right: .9375rem;
+      margin: 0;
+      width: auto;
+    }
+
+    .vs-teaser__image-b {
+      width: 25.8125rem;
+    }
+
+    .vs-teaser__image-scale {
+      @include transform(scale(.6));
+      -webkit-transform-origin: top right;
+      transform-origin: top right;
+    }
+
+    .vs-teaser__image-a {
+      margin-right: 3.9375rem;
+    }
+
+    .vs-teaser__image-b {
+      margin-top: 15.3125rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__image-scale {
+      @include transform(scale(.8));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(md) {
+      .vs-teaser__title,
+      .vs-teaser__text,
+      .vs-teaser__subtitle {
+        @include make-col-offset(1);
+      }
+    }
+  }
+}
+
+
+// Portrait, Upper Portrait
+// ----------------------------------------------------------------------------
+
+.vs-teaser--portrait-upperportrait {
+  .vs-teaser__image-a {
+    width: 11.875rem;
+    margin: 0 auto 2.125rem;
+  }
+
+  .vs-teaser__image-b {
+    width: calc(100% + #{$grid-gutter-width});
+    margin-left: -$grid-gutter-width/2;
+    margin-bottom: 1.25rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-scale {
+      @include transform(scale(0.6));
+      -webkit-transform-origin: top left;
+      transform-origin: left center;
+      float: left;
+    }
+
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      @include transform(translateY(-50%));
+      top: 50%;
+      position: absolute;
+      left: 0;
+      width: auto;
+    }
+
+    .vs-teaser__image-a {
+      width: 17.125rem;
+    }
+
+    .vs-teaser__image-b {
+      margin-left: 8.125rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: 43rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(0.8));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+  }
+}
+
+
+// Portrait, Landscape
+// ----------------------------------------------------------------------------
+
+.vs-teaser--portrait-landscape {
+  .vs-teaser__image-b {
+    width: calc(100% + 1.875rem);
+    margin-left: -.9375rem;
+    height: auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-scale {
+      @include transform(scale(.55));
+      -webkit-transform-origin: left;
+      transform-origin: left;
+    }
+
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      @include transform(translateY(-50%));
+      position: absolute;
+      left: 0;
+      top: 50%;
+    }
+
+    .vs-teaser__image-a {
+      width: 17.125rem;
+    }
+
+    .vs-teaser__image-b {
+      width: 26rem;
+      left: 11.8125rem;
+      right: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__image-scale {
+      @include transform(scale(.7));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    min-height: 30rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+  }
+}
+
+
+// Landscape, Square
+// ----------------------------------------------------------------------------
+
+.vs-teaser--landscape-square {
+  .vs-teaser__image-b {
+    width: calc(100% + 1.875rem);
+    margin-left: -.9375rem;
+    height: auto;
+    margin-top: -1.375rem;
+    margin-bottom: 1.875rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      width: auto;
+      position: absolute;
+    }
+
+    .vs-teaser__image-scale {
+      @include transform(scale(.55));
+      -webkit-transform-origin: top right;
+      transform-origin: top right;
+      float: right;
+    }
+
+    .vs-teaser__image-a {
+      margin: 0;
+      top: 9.375rem;
+      right: 0;
+    }
+
+    .vs-teaser__image-b {
+      margin-bottom: 0;
+      right: 8.5625rem;
+      top: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: 29rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(.7));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    min-height: 37rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(md) {
+      .vs-teaser__image-scale {
+        float: none;
+        right: auto;
+      }
+
+      .vs-teaser__image-a {
+        right: auto;
+      }
+
+      .vs-teaser__image-b {
+        right: auto;
+        margin-left: 5.625rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .vs-teaser__title {
+        padding-left: 12.8125rem;
+        text-align: left;
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__title {
+        padding-left: 18.8125rem;
+        text-align: left;
+        top: 0.25rem;
+      }
+    }
+  }
+}
+
+
+// Portrait, Upper Portrait, Portrait
+// ----------------------------------------------------------------------------
+
+.vs-teaser--portrait-upperportrait-portrait {
+  .vs-teaser__wrapper {
+    width: 100%;
+  }
+
+  .vs-teaser__image-b {
+    width: calc(100% + 1.875rem);
+    margin-left: -.9375rem;
+    height: auto;
+    margin-top: -1.375rem;
+    margin-bottom: 1.875rem;
+  }
+
+  .vs-teaser__image-a {
+    width: 10rem;
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 5.625rem;
+
+    .row {
+      @include align-items(center);
+      @include justify-content(center);
+    }
+
+    .vs-teaser__title {
+      margin-bottom: 3.875rem;
+    }
+
+    .vs-teaser__image-scale {
+      @include transform(scale(.55));
+      -webkit-transform-origin: center;
+      transform-origin: center;
+      margin-top: -50%;
+      left: auto;
+    }
+
+    .vs-teaser__image-a,
+    .vs-teaser__image-b,
+    .vs-teaser__image-c {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: auto;
+      margin: 0;
+    }
+
+    .vs-teaser__image-a {
+      margin-top: 18.5625rem;
+      margin-right: 8.5625rem;
+      width: 25.8125rem;
+      height: 17.1875rem;
+    }
+
+    .vs-teaser__image-b {
+      margin-right: 21.5625rem;
+      margin-top: 7.9375rem;
+      width: 26rem;
+      height: 17.3125rem;
+    }
+
+    .vs-teaser__image-c {
+      width: 30.125rem;
+      height: 19.5rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 7.5rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(.7));
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 5rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+  }
+
+  &.vs-teaser--reverse {
+    .vs-teaser__title {
+      padding-left: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+      .vs-teaser__image-scale {
+        margin-top: -50%;
+        left: 0;
+        right: -3.75rem;
+      }
+
+      .vs-teaser__image-b {
+        margin-right: 11.5625rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .vs-teaser__image-b {
+        margin-right: 13rem;
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__title {
+        text-align: right;
+        float: right;
+        max-width: none;
+      }
+
+      .vs-teaser__image-scale {
+        margin-right: -5rem;
+        right: 0;
+      }
+    }
+  }
+}
+
+
+// Layout 1-a
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-1-a {
+  .vs-teaser__title {
+    text-align: center;
+    margin-top: -.875rem;
+    margin-bottom: 1.875rem;
+    z-index: 3;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: 20rem;
+
+    .vs-teaser__title {
+      @include make-col(12);
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    .vs-teaser__subtitle {
+      @include make-col(8);
+    }
+
+    .vs-teaser__title,
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      margin-left: 2.5rem;
+    }
+
+    .vs-teaser__content {
+      padding-left: 3.375rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: 31.4375rem;
+
+    .vs-teaser__title {
+      display: block;
+      float: right;
+      max-width: none;
+    }
+
+    &.vs-teaser--reverse {
+      .vs-teaser__title {
+        float: left;
+        margin-left: 0;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    min-height: 40rem;
+
+    .vs-teaser__images,
+    .vs-teaser__content {
+      @include make-col(5);
+    }
+
+    .vs-teaser__title {
+      text-align: right;
+      padding-top: 1.5625rem;
+    }
+
+    &.vs-teaser--reverse {
+      .vs-teaser__content {
+        padding: 0;
+      }
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(md) {
+      .col-xs-12:last-child {
+        @include make-col(5);
+      }
+
+      .col-xs-12:first-child {
+        .vs-teaser__image-a {
+          right: auto;
+          left: 4.375em;
+        }
+      }
+    }
+  }
+}
+
+
+// Layout 1-b
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-1-b {
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .row {
+      @include align-items(center);
+      @include justify-content(center);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      padding-left: 3.75rem;
+    }
+
+    .vs-teaser__subtitle:after {
+      left:  3.75rem;
+    }
+  }
+}
+
+
+// Layout 2-a
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-2-a {
+  .vs-teaser__title {
+    @include make-col(8);
+    z-index: 4;
+  }
+}
+
+
+// Layout 2-b
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-2-b {
+  .vs-teaser__images {
+    padding: 0;
+  }
+
+  .vs-teaser__subtitle {
+    @include make-col(8);
+    padding-left: 1.5625rem;
+    padding-right: 1.5625rem;
+    color: $c-black;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
+  .vs-teaser__cta-btn {
+    width: calc(100% - 1.875rem);
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      padding: 0;
+    }
+
+    .vs-teaser__content {
+      padding-left: 3.375rem;
+    }
+
+    .vs-teaser__cta-btn {
+      width: auto;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__subtitle,
+    .vs-teaser__text,
+    .vs-teaser__cta-btn {
+      @include make-col-offset(1);
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+  }
+}
+
+
+// Layout 2-c
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-2-c {
+  .vs-teaser__images {
+    padding: 0 .9375rem;
+  }
+
+  .vs-teaser__subtitle,
+  .vs-teaser__text {
+    padding: 0 1.5625rem;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__wrapper {
+      min-height: 22.1875rem;
+    }
+
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      padding: 0;
+    }
+
+    .vs-teaser__content {
+      padding-left: 3.375rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__wrapper {
+      min-height: 25.625rem;
+    }
+
+    .vs-teaser__text,
+    .vs-teaser__subtitle {
+      @include make-col(12);
+      @include make-col-offset(2);
+    }
+
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__text,
+      .vs-teaser__subtitle {
+        @include make-col(11);
+        @include make-col-offset(0);
+      }
+
+      .vs-teaser__image-b {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+}
+
+
+// Layout 2-d
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-2-d {
+  .vs-teaser__title {
+    z-index: 4;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 2.5rem;
+  }
+
+  .vs-teaser__cta-btn {
+    width: calc(100% - 1.875rem);
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__title {
+      @include make-col(12);
+    }
+
+    .vs-teaser__cta-btn {
+      width: auto;
+      margin: 0;
+    }
+
+    .vs-teaser__title,
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      @include make-col(12);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__title,
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      @include make-col(11);
+    }
+
+    .vs-teaser__title {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: -8.125rem;
+      padding-left: 7.8125rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__title {
+      top: -3.75rem;
+      padding-left: 0;
+    }
+  }
+}
+
+
+// Layout 3-a
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-3-a {
+  .vs-teaser__title {
+    text-align: center;
+    z-index: 4;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__title {
+      @include make-col(12);
+      text-align: left;
+    }
+
+    .vs-teaser__text {
+      @include make-col(10);
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__title {
+      margin-bottom: 12.8125rem;
+      margin-top: 2.75rem;
+    }
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-teaser--reverse {
+    .col-md-6:first-child {
+      @include make-col-push(6);
+    }
+
+    .col-md-6:last-child {
+      @include make-col-pull(6);
+    }
+
+    .col-md-5 {
+      @include make-col-push(7);
+    }
+
+    .col-md-7 {
+      @include make-col-pull(5);
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .vs-teaser__image-full-md-up {
+    width: 100%;
+    max-width: none;
+  }
+}
