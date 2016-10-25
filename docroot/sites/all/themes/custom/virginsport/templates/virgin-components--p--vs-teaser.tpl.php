@@ -13,7 +13,7 @@
  * cta_links
  */
 
-$reverse_class = ($alignment == 'right') ? 'vs-teaser-reverse' : '';
+$reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
 
 ?>
 
@@ -195,5 +195,5 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser-reverse' : '';
         </div>
       </div>
     </div>
-    
+
   <?php endif; ?>
