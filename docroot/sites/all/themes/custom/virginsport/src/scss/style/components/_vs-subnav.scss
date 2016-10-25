@@ -1,27 +1,21 @@
 
-/*
-/* Class "vs-subnav--reversed" should be applied to subnav to:
-/* revert the nav color to black and white
-*/
-
-
 // Blocks
 // ----------------------------------------------------------------------------
 
 vs-subnav,
 .vs-subnav {
   @include clearfix();
-  @include transition(all .5s ease-in-out);
+  @include transition(all .5s ease-in-out, background-color, 1ms);
   display: block;
   background-color: transparent;
   text-align: center;
+  padding: .875rem 0;
   left: 0;
   right: 0;
-  padding: 0;
-  margin: 0 0 2rem 0;
   white-space: nowrap;
   overflow-x: auto;
-  z-index: 2;
+  z-index: 999;
+
 }
 
 
@@ -37,7 +31,7 @@ vs-subnav,
   @include transition(all .5s ease-in-out);
   background-image: linear-gradient(-90deg, #F0F0F0 10%, rgba(240,240,240,0.00) 100%);
   content: '';
-  height: 52px;
+  height: 1.875rem;
   position: absolute;
   width: 60px;
   right: 0;
@@ -72,7 +66,7 @@ vs-subnav,
     left: 0;
     right:0;
     height: 2px;
-    bottom: 0rem;
+    bottom: 0;
   }
 
   &:hover,
@@ -91,8 +85,7 @@ vs-subnav,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-subnav--reversed {
-
+.vs-region--dark {
   .vs-subnav__link {
     color: $c-white;
 
@@ -104,10 +97,26 @@ vs-subnav,
   .vs-subnav__link--active:before {
     background-color: $c-white;
   }
+
+  .vs-subnav__overlay {
+    background-image: linear-gradient(-90deg, $c-black 0%, rgba($c-black, 0) 100%);
+  }
 }
 
-.vs-subnav__overlay--reversed {
-  background-image: linear-gradient(-90deg, $c-black 0%, rgba($c-black, 0) 100%);
+.vs-subnav--unpinned,
+.vs-subnav--not-top {
+  @include transition(all .5s ease-in-out, background-color 1ms);
+  background-color: $c-gray-light;
+  position: fixed;
+  top: 0;
+}
+
+.vs-subnav--pinned-on-main-nav {
+  @include transform(translateY(55px));
+
+  &.vs-subnav--top {
+    @include transform(translateY(0));
+  }
 }
 
 
@@ -116,29 +125,34 @@ vs-subnav,
 
 @include media-breakpoint-up(md) {
   .vs-subnav__overlay {
-    height: 61px;
-  }
-
-  .vs-subnav__overlay--header-scroll {
-    top: 60px;
+    height: 1.75rem;
   }
 
   .vs-subnav__item {
-    padding-left: 1.875rem;
-    padding-right: 1.875rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .vs-subnav__link {
-    font-size: $font-size-base;
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: 0.2px;
+    padding-bottom: .55rem;
   }
 }
-
 
 @include media-breakpoint-up(lg) {
   .vs-subnav__item:last-child {
     padding-right: 1.875rem;
   }
 
+  .vs-subnav--pinned-on-main-nav {
+    @include transform(translateY(60px));
+
+    &.vs-subnav--top {
+      @include transform(translateY(0));
+    }
+  }
 }
 
 @media screen and (min-width: $main-nav-breakpoint) {

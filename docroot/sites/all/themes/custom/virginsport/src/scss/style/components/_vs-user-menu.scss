@@ -134,7 +134,8 @@ vs-user-menu,
     height: 2.375rem;
     font-size: 1.25rem;
     line-height: 2.375rem;
-    margin-right: 20px;
+    margin-right: 1.25rem;
+    top: 1px;
   }
 
   .vs-user-dropdown {
@@ -144,15 +145,13 @@ vs-user-menu,
 }
 
 @include media-breakpoint-up(lg) {
-
   .vs-user-dropdown {
-    right: 4.8rem;
+    right: 5.7rem;
   }
-
 }
 
 @media screen and (min-width: $main-nav-breakpoint) {
   .vs-user-dropdown {
-    right: 1.45rem;
+    right: 2.75rem;
   }
 }
