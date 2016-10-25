@@ -233,3 +233,41 @@ function virginsport_currency($iso_code, $value) {
 
   return check_plain(sprintf($format, $value));
 }
+
+/**
+ * Get a properly formatted date interval
+ *
+ * @param $start_date
+ *  The start date timestamp
+ * @param $end_date
+ *  The end date timestamp
+ * @return string
+ *  The formatted date interval
+ */
+function virginsport_date_interval($start_date, $end_date) {
+  // Get start_date, end_date month and year parts
+  $start_date_parts = array(
+    'year' => date('Y', $start_date),
+    'month' => date('M', $start_date)
+  );
+
+  $end_date_parts = array(
+    'year' => date('Y', $end_date),
+    'month' => date('M', $end_date)
+  );
+
+  $start_date_format = 'd M Y';
+  // If year is the same start date does not have year
+  if ($start_date_parts['year'] == $end_date_parts['year']) {
+    $start_date_format = 'd M';
+
+    // If year is the same and month the same too, start date does not have
+    // neither year and month
+    if ($start_date_parts['month'] == $end_date_parts['month']) {
+      $start_date_format = 'd';
+    }
+  }
+
+  // Return the formatted dates interval
+  return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
+}
