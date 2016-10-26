@@ -20,10 +20,10 @@
 <div class="vs-card-untimed-event">
   <div class="container">
     <div class="row">
-      <?php if($card_pattern!='none'): ?>
+      <?php if($card_pattern != 'none'): ?>
       <div class="hidden-md-down col-lg-4 vs-card-untimed-event__outline-wrapper">
         <div class="vs-card-untimed-event__outline">
-          <div class="vs-card-untimed-event__<?php print $card_pattern;?>"></div>
+          <div class="vs-card-untimed-event__<?php print $card_pattern; ?>"></div>
         </div>
       </div>
       <?php endif; ?>
@@ -37,30 +37,34 @@
             <h4 class="col-xs-7 vs-card-untimed-event__title"><?php print check_plain($title); ?></h4>
             <?php endif; ?>
             <div class="col-xs-5 hidden-xl-up vs-card-untimed-event__price">
-              <span><?php print t("from"); ?>&nbsp;</span>
+              <span><?php print t('from'); ?>&nbsp;</span>
               <?php print virginsport_currency($package_currency, $package_price); ?>
             </div>
           </div>
           <?php if(!empty($start_date)): ?>
           <div class="vs-card-untimed-event__date-wrapper">
             <div class="vs-card-untimed-event__date">
-              <?php print date('d M', $start_date); ?>
+              <?php print $start_date; ?>
             </div>
           </div>
           <?php endif; ?>
           <?php if(!empty($description)): ?>
           <div class="vs-card-untimed-event__text-wrapper">
-            <p class="vs-card-untimed-event__text"><?php print $description; ?></p>
+            <div class="vs-card-untimed-event__text">
+              <?php print $description; ?>
+            </div>
           </div>
           <?php endif; ?>
           <?php if(!empty($festival_id)): ?>
           <div class="col-xs-12 vs-card-untimed-event__content-footer">
             <a
               class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
-              href="<?php print url('node/'.$festival_id); ?>"
-            >Get tickets</a>
+              href="<?php print url('node/' . $festival_id); ?>"
+            >
+              Get tickets
+            </a>
             <div class="hidden-lg-down col-lg-5 vs-card-untimed-event__price">
-              <span>from&nbsp;</span>
+              <span><?php print t('from'); ?>&nbsp;</span>
               <?php print virginsport_currency($package_currency, $package_price); ?>
             </div>
           </div>
