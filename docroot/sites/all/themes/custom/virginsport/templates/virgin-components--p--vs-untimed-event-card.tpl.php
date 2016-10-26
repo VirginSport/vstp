@@ -26,7 +26,7 @@
           <div class="vs-card-untimed-event__<?php print $card_pattern;?>"></div>
         </div>
       </div>
-      <? endif; ?>
+      <?php endif; ?>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__image-wrapper <?php print $no_card_pattern_class; ?>">
         <?php print theme('virginsport_picture', array('atom_id' => $card_image->property('sid'), 'image_style' => 'virgin_original', 'classes' => 'vs-card-untimed-event__image', 'image_classes' => 'img-fluid')); ?>
       </div>
