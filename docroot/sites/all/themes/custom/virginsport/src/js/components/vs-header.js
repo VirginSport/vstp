@@ -29,7 +29,9 @@ function userDropdown($body, $header) {
   });
   
   // Toggle the dropdown states
-  $trigger.on('click', () => {
+  $trigger.on('click', (e) => {
+    e.preventDefault();
+
     if (isOpen) {
       close();
     } else {
