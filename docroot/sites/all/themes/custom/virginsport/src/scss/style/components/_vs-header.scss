@@ -1,16 +1,3 @@
-/*
-/* Class "vs-menu-open" should be applied to body element to trigger:
-/* button transition
-/* menu overlay visibility
-/* Mobile menu visibility
-*/
-
-/*
-/* Class "vs-header--small" should be applied to header element to trigger:
-/* header transitions making it smaller
-*/
-
-
 
 // Blocks
 // ----------------------------------------------------------------------------
@@ -20,10 +7,14 @@ vs-header,
   @include transition(all .5s ease-in-out);
   @include clearfix;
   display: block;
-  padding: .75rem calc(.75rem - 15px);
+  padding: .5rem calc(.75rem - 15px);
   position: fixed;
   width: 100%;
   z-index: 3;
+
+  &.vs-header--pinned {
+    @include transform(translateY(0));
+  }
 }
 
 
@@ -43,7 +34,7 @@ vs-header,
   background-size: contain;
   width: 5.05625rem;
   height: 1.875rem;
-  top: -3px;
+  top: .25rem;
   z-index: -1;
 
   &:hover {
@@ -90,9 +81,8 @@ vs-header,
   color: $c-white;
   width: 2.1875rem;
   height: 1.6875rem;
-  margin-right: 2.9375rem;
   position: relative;
-  top: -2px;
+  top: -.125rem;
 }
 
 .vs-header__basket__value {
@@ -117,11 +107,13 @@ vs-header,
   font-size: 0;
   border-radius: 0;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1;
   border: 0;
-  position: fixed;
-  right: 4px;
-  top: 0;
+  right: 0;
+  top: .1875rem;
+  margin-top: -.6875rem;
+  margin-right: -.6875rem;
+  position: relative;
 
   &:hover {
     opacity: .7;
@@ -232,7 +224,47 @@ vs-header,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-header--small {
+.vs-menu-trigger--menu {
+  @include transition(visibility 0s .5s, opacity .5s);
+  position: fixed;
+  top: .75rem;
+  right: .9375rem;
+  opacity: 0;
+  visibility: hidden;
+
+  .vs-menu-open & {
+    @include transition(opacity .5s ease);
+    opacity: 1;
+    visibility: visible;
+
+
+    .vs-menu-trigger__bar {
+      background-color: transparent;
+
+      &:before {
+        @include transition-delay(0s, .3s);
+        @include transform(rotate(45deg));
+        top: 0;
+      }
+
+      &:after {
+        @include transition-delay(0s, .3s);
+        @include transform(rotate(-45deg));
+        bottom: 0;
+      }
+    }
+  }
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+
+.vs-header--not-top {
+  @include transform(translateY(-100%));
+  background-color: $c-black;
+
   .vs-header__logo {
     background-image: url('../img/vs-logo-alternate.png');
   }
@@ -249,17 +281,8 @@ vs-header,
     padding: 3rem calc(3.125rem - 15px) 3rem calc(2.1875rem - 15px);
   }
 
-  .vs-menu-trigger {
-    @include transform(translate(-26px, 40px));
-    right: 15px;
-  }
-
-  .vs-menu-trigger--header-scroll {
-    @include transform(translate(-26px, 3px));
-  }
-
   .vs-menu-trigger__bar {
-    width: 29px;
+    width: 1.75rem;
   }
 
   .vs-header__logo {
@@ -268,38 +291,37 @@ vs-header,
     top: -.8125rem;
   }
 
-  .vs-header--small {
-    padding-top: .625rem;
-    padding-bottom: 0.625rem;
-
-    .vs-header__logo {
-      width: 7.75rem;
-      height: 2.8125rem;
-      top: -3px;
-    }
-  }
-
   .vs-header__basket {
     width: 3.125rem;
     height: 2.375rem;
     font-size: 1.25rem;
-    margin-right: 3.375rem;
     position: relative;
     top: -6px;
   }
 
   .vs-header__basket__value {
     font-size: .9375rem;
-    top: 7px;
+    top: .4375rem;
   }
 
   .vs-menu-trigger__bar {
     &:before {
-      top: -10px;
+      top: -.625rem;
     }
 
     &:after {
-      bottom: -10px;
+      bottom: -.625rem;
+    }
+  }
+
+  .vs-header--not-top {
+    padding-top: .5625rem;
+    padding-bottom: .5625rem;
+
+    .vs-header__logo {
+      width: 7.75rem;
+      height: 2.8125rem;
+      top: -.1875rem;
     }
   }
 }
@@ -326,7 +348,7 @@ vs-header,
   .vs-header--fixed-header {
     @include transform(translateY(-136px));
 
-    &.vs-header--small {
+    &.vs-header--unpinned {
       @include transform(translateY(-60px));
     }
   }
