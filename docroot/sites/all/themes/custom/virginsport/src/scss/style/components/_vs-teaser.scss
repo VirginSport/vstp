@@ -124,6 +124,12 @@ vs-teaser,
     @include make-col(11);
     padding: 0;
   }
+
+  .vs-teaser__cta-btn {
+    font-size: .875rem;
+    position: relative;
+    z-index: 5;
+  }
 }
 
 @include media-breakpoint-up(lg) {
@@ -158,13 +164,7 @@ vs-teaser,
   .vs-teaser__subtitle {
     font-size: 2.5rem;
     line-height: 3rem;
-    font-weight: 600;
-  }
-
-  .vs-teaser__subtitle {
-    font-size: 2.5rem;
-    line-height: 3rem;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .vs-teaser__text {
@@ -201,7 +201,7 @@ vs-teaser,
 
   @include media-breakpoint-up(xl) {
     .vs-teaser__image-a {
-      width: auto;
+      width: 21.4375rem;
     }
   }
 }
@@ -224,12 +224,15 @@ vs-teaser,
 
   @include media-breakpoint-up(lg) {
     .vs-teaser__image-a {
-      width: auto;
       float: right;
     }
   }
 
   @include media-breakpoint-up(xl) {
+    .vs-teaser__image-a {
+      width: 30rem;
+    }
+
     &.vs-teaser--reverse {
       .vs-teaser__image-a {
         float: left;
@@ -279,6 +282,7 @@ vs-teaser,
 
     .vs-teaser__image-a {
       margin-right: 3.9375rem;
+      width: 30.5rem;
     }
 
     .vs-teaser__image-b {
@@ -339,7 +343,6 @@ vs-teaser,
       top: 50%;
       position: absolute;
       left: 0;
-      width: auto;
     }
 
     .vs-teaser__image-a {
@@ -348,6 +351,7 @@ vs-teaser,
 
     .vs-teaser__image-b {
       margin-left: 8.125rem;
+      width: 25.6875rem
     }
   }
 
@@ -432,18 +436,26 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(md) {
-    .vs-teaser__image-a,
-    .vs-teaser__image-b {
-      width: auto;
-      position: absolute;
-    }
-
     .vs-teaser__image-scale {
       @include transform(scale(.55));
       -webkit-transform-origin: top right;
       transform-origin: top right;
       float: right;
     }
+
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      position: absolute;
+    }
+
+    .vs-teaser__image-a {
+      width: 17.4375rem;
+    }
+
+    .vs-teaser__image-b {
+      width: 30.25rem;
+    }
+
 
     .vs-teaser__image-a {
       margin: 0;
@@ -966,14 +978,16 @@ vs-teaser,
     z-index: 4;
   }
 
+  @include media-breakpoint-up(sm) {
+    .vs-teaser__text {
+      @include make-col(8);
+    }
+  }
+
   @include media-breakpoint-up(md) {
     .vs-teaser__title {
       @include make-col(12);
       text-align: left;
-    }
-
-    .vs-teaser__text {
-      @include make-col(10);
     }
   }
 
@@ -982,12 +996,23 @@ vs-teaser,
       margin-bottom: 12.8125rem;
       margin-top: 2.75rem;
     }
+
+    .vs-teaser__text {
+      @include make-col(10);
+    }
   }
 }
 
 
 // Modifiers
 // ----------------------------------------------------------------------------
+
+.vs-region--gradient-black {
+  .vs-teaser__subtitle,
+  .vs-teaser__text {
+    color: $c-white;
+  }
+}
 
 @include media-breakpoint-up(md) {
   .vs-teaser--reverse {
