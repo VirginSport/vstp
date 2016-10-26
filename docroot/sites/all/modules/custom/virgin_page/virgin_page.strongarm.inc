@@ -76,6 +76,8 @@ function virgin_page_strongarm() {
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'revision',
+    1 => 'moderation',
+    2 => 'panelizer',
   );
   $export['node_options_page'] = $strongarm;
 
@@ -99,6 +101,7 @@ function virgin_page_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_page';
   $strongarm->value = array(
     'status' => 1,
+    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -119,7 +122,6 @@ function virgin_page_strongarm() {
         'choice' => 0,
       ),
     ),
-    'help' => '',
   );
   $export['panelizer_defaults_node_page'] = $strongarm;
 
