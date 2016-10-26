@@ -189,15 +189,20 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3 col-lg-2">
+          <?php if ($regions['current']): ?>
           <div class="btn-group vs-footer__language">
-            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
-              GB
+            <button aria-expanded="false" aria-haspopup="true" style="<?php print virginsport_atom_background($regions['current']['flag']); ?>" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              <?php print $regions['current']['title']; ?>
             </button>
             <div class="dropdown-menu vs-footer__language-list">
-              <a class="dropdown-item vs-footer__language-item" href="#">
-                <img class="vs-footer__flags" src="../img/vs-footer-us-flag.png">Us</a>
+              <?php foreach ($regions['other'] as $region): ?>
+              <a class="dropdown-item vs-footer__language-item" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
+                <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_original', 'image_classes' => 'vs-footer__flags')) ?> <?php print $region['title']; ?>
+              </a>
+              <?php endforeach; ?>
             </div>
           </div>
+          <?php endif; ?>
         </div>
 
         <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">
