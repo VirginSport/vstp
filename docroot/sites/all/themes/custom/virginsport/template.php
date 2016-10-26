@@ -97,6 +97,24 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'type', 'title' ,'status'))
+    ->condition('n.type', 'region', '=')
+    ->condition('n.status', '1', '=');
+
+  $query->join('field_data_field_hostname', 'h', 'h.entity_id = n.nid');
+  $query->fields('h', array('field_hostname_value'));
+
+  $query->join('field_data_field_flag_image', 'f', 'f.entity_id = n.nid');
+  $query->fields('f', array('field_flag_image_sid'));
+
+  $query->join('file_managed', 'file', 'file.fid = f.field_flag_image_sid');
+  $query->fields('file', array('uri'));
+
+  $regions_result = $query->execute()->fetchAll();
+  $region_url = file_create_url($regions_result[0]->uri);
+
 }
 
 // Template Overrides
