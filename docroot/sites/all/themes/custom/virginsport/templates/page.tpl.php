@@ -189,8 +189,14 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3 col-lg-2">
-          <div class="btn-group dropup vs-footer__language">
-            <!-- TODO The region picker is not yet finished -->
+          <div class="btn-group vs-footer__language">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              GB
+            </button>
+            <div class="dropdown-menu vs-footer__language-list">
+              <a class="dropdown-item vs-footer__language-item" href="#">
+                <img class="vs-footer__flags" src="../img/vs-footer-us-flag.png">Us</a>
+            </div>
           </div>
         </div>
 
