@@ -4,7 +4,7 @@
  * Main template for virgin components fieldable panel panes vs_teaser_block
  *
  * Variables available:
- * TODO
+ * $paragraphs - an array of paragraphs
  */
 ?>
 
