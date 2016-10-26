@@ -473,6 +473,9 @@ require DRUPAL_ROOT . '/sites/default/settings/files.settings.php';
 // traffic. Requires setting additional configuration within include file.
 // require_once DRUPAL_ROOT . '/sites/default/settings/edit-domain.settings.php';
 
+// Includes email configuration.
+require DRUPAL_ROOT . '/sites/default/settings/mail.settings.php';
+
 // Includes functions for protecting a site via ip, password, etc.
 // require_once DRUPAL_ROOT . '/sites/default/settings/site-protection.settings.php';
 

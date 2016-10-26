@@ -33,6 +33,17 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'access content overview'.
+  $permissions['access content overview'] = array(
+    'name' => 'access content overview',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'access fieldable panels panes master list'.
   $permissions['access fieldable panels panes master list'] = array(
     'name' => 'access fieldable panels panes master list',
@@ -42,6 +53,17 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'access navbar'.
+  $permissions['access navbar'] = array(
+    'name' => 'access navbar',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'navbar',
   );
 
   // Exported permission: 'access scald dnd library'.
@@ -77,10 +99,31 @@ function virgin_roles_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'access workbench'.
+  $permissions['access workbench'] = array(
+    'name' => 'access workbench',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench',
+  );
+
+  // Exported permission: 'administer advanced pane settings'.
+  $permissions['administer advanced pane settings'] = array(
+    'name' => 'administer advanced pane settings',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
   // Exported permission: 'administer content revisions'.
   $permissions['administer content revisions'] = array(
     'name' => 'administer content revisions',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'nra',
@@ -90,11 +133,76 @@ function virgin_roles_user_default_permissions() {
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'menu',
+  );
+
+  // Exported permission: 'administer page manager'.
+  $permissions['administer page manager'] = array(
+    'name' => 'administer page manager',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'page_manager',
+  );
+
+  // Exported permission: 'administer pane access'.
+  $permissions['administer pane access'] = array(
+    'name' => 'administer pane access',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'administer panelizer'.
+  $permissions['administer panelizer'] = array(
+    'name' => 'administer panelizer',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer bean bean_tax_listing defaults'.
+  $permissions['administer panelizer bean bean_tax_listing defaults'] = array(
+    'name' => 'administer panelizer bean bean_tax_listing defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer bean bean_tax_related defaults'.
+  $permissions['administer panelizer bean bean_tax_related defaults'] = array(
+    'name' => 'administer panelizer bean bean_tax_related defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane fieldable_panels_pane defaults'.
+  $permissions['administer panelizer fieldable_panels_pane fieldable_panels_pane defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane fieldable_panels_pane defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_accordion defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_accordion defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_accordion defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_basic_content_block defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_basic_content_block defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_basic_content_block defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_carousel defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_carousel defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_carousel defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer fieldable_panels_pane vs_cta_block defaults'.
@@ -102,6 +210,460 @@ function virgin_roles_user_default_permissions() {
     'name' => 'administer panelizer fieldable_panels_pane vs_cta_block defaults',
     'roles' => array(),
     'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_gameface_gallery defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_gameface_gallery defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_gameface_gallery defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_hero_banner_block defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_hero_banner_block defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_hero_banner_block defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_hero_event_card defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_hero_event_card defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_hero_event_card defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_hootsuite_feed defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_hootsuite_feed defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_hootsuite_feed defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_mylaps_track_my_runner defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_mylaps_track_my_runner defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_mylaps_track_my_runner defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_package_cards defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_package_cards defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_package_cards defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_photo_gallery defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_photo_gallery defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_photo_gallery defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_promo_banner defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_promo_banner defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_promo_banner defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_teaser_block defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_teaser_block defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_teaser_block defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_ticket_cards defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_ticket_cards defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_ticket_cards defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_untimed_event_cards defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_untimed_event_cards defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_untimed_event_cards defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer fieldable_panels_pane vs_video_block defaults'.
+  $permissions['administer panelizer fieldable_panels_pane vs_video_block defaults'] = array(
+    'name' => 'administer panelizer fieldable_panels_pane vs_video_block defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer file audio defaults'.
+  $permissions['administer panelizer file audio defaults'] = array(
+    'name' => 'administer panelizer file audio defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer file document defaults'.
+  $permissions['administer panelizer file document defaults'] = array(
+    'name' => 'administer panelizer file document defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer file image defaults'.
+  $permissions['administer panelizer file image defaults'] = array(
+    'name' => 'administer panelizer file image defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer file video defaults'.
+  $permissions['administer panelizer file video defaults'] = array(
+    'name' => 'administer panelizer file video defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event content'.
+  $permissions['administer panelizer node event content'] = array(
+    'name' => 'administer panelizer node event content',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event context'.
+  $permissions['administer panelizer node event context'] = array(
+    'name' => 'administer panelizer node event context',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event defaults'.
+  $permissions['administer panelizer node event defaults'] = array(
+    'name' => 'administer panelizer node event defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event layout'.
+  $permissions['administer panelizer node event layout'] = array(
+    'name' => 'administer panelizer node event layout',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event overview'.
+  $permissions['administer panelizer node event overview'] = array(
+    'name' => 'administer panelizer node event overview',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event settings'.
+  $permissions['administer panelizer node event settings'] = array(
+    'name' => 'administer panelizer node event settings',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node event_state defaults'.
+  $permissions['administer panelizer node event_state defaults'] = array(
+    'name' => 'administer panelizer node event_state defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival content'.
+  $permissions['administer panelizer node festival content'] = array(
+    'name' => 'administer panelizer node festival content',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival context'.
+  $permissions['administer panelizer node festival context'] = array(
+    'name' => 'administer panelizer node festival context',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival defaults'.
+  $permissions['administer panelizer node festival defaults'] = array(
+    'name' => 'administer panelizer node festival defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival layout'.
+  $permissions['administer panelizer node festival layout'] = array(
+    'name' => 'administer panelizer node festival layout',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival overview'.
+  $permissions['administer panelizer node festival overview'] = array(
+    'name' => 'administer panelizer node festival overview',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival settings'.
+  $permissions['administer panelizer node festival settings'] = array(
+    'name' => 'administer panelizer node festival settings',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node festival_state defaults'.
+  $permissions['administer panelizer node festival_state defaults'] = array(
+    'name' => 'administer panelizer node festival_state defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node package defaults'.
+  $permissions['administer panelizer node package defaults'] = array(
+    'name' => 'administer panelizer node package defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node package_state defaults'.
+  $permissions['administer panelizer node package_state defaults'] = array(
+    'name' => 'administer panelizer node package_state defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page content'.
+  $permissions['administer panelizer node page content'] = array(
+    'name' => 'administer panelizer node page content',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page context'.
+  $permissions['administer panelizer node page context'] = array(
+    'name' => 'administer panelizer node page context',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page defaults'.
+  $permissions['administer panelizer node page defaults'] = array(
+    'name' => 'administer panelizer node page defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page layout'.
+  $permissions['administer panelizer node page layout'] = array(
+    'name' => 'administer panelizer node page layout',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page overview'.
+  $permissions['administer panelizer node page overview'] = array(
+    'name' => 'administer panelizer node page overview',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node page settings'.
+  $permissions['administer panelizer node page settings'] = array(
+    'name' => 'administer panelizer node page settings',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region content'.
+  $permissions['administer panelizer node region content'] = array(
+    'name' => 'administer panelizer node region content',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region context'.
+  $permissions['administer panelizer node region context'] = array(
+    'name' => 'administer panelizer node region context',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region defaults'.
+  $permissions['administer panelizer node region defaults'] = array(
+    'name' => 'administer panelizer node region defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region layout'.
+  $permissions['administer panelizer node region layout'] = array(
+    'name' => 'administer panelizer node region layout',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region overview'.
+  $permissions['administer panelizer node region overview'] = array(
+    'name' => 'administer panelizer node region overview',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node region settings'.
+  $permissions['administer panelizer node region settings'] = array(
+    'name' => 'administer panelizer node region settings',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node ticket_type defaults'.
+  $permissions['administer panelizer node ticket_type defaults'] = array(
+    'name' => 'administer panelizer node ticket_type defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node ticket_type_state defaults'.
+  $permissions['administer panelizer node ticket_type_state defaults'] = array(
+    'name' => 'administer panelizer node ticket_type_state defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer node webform defaults'.
+  $permissions['administer panelizer node webform defaults'] = array(
+    'name' => 'administer panelizer node webform defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_accordion_item defaults'.
+  $permissions['administer panelizer paragraphs_item vs_accordion_item defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_accordion_item defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_cta_block defaults'.
+  $permissions['administer panelizer paragraphs_item vs_cta_block defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_cta_block defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_custom_banner defaults'.
+  $permissions['administer panelizer paragraphs_item vs_custom_banner defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_custom_banner defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_event_festival_banner defaults'.
+  $permissions['administer panelizer paragraphs_item vs_event_festival_banner defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_event_festival_banner defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_package_card defaults'.
+  $permissions['administer panelizer paragraphs_item vs_package_card defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_package_card defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_slide defaults'.
+  $permissions['administer panelizer paragraphs_item vs_slide defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_slide defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_teaser defaults'.
+  $permissions['administer panelizer paragraphs_item vs_teaser defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_teaser defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_ticket_card defaults'.
+  $permissions['administer panelizer paragraphs_item vs_ticket_card defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_ticket_card defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer paragraphs_item vs_untimed_event_card defaults'.
+  $permissions['administer panelizer paragraphs_item vs_untimed_event_card defaults'] = array(
+    'name' => 'administer panelizer paragraphs_item vs_untimed_event_card defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer taxonomy_term scald_authors defaults'.
+  $permissions['administer panelizer taxonomy_term scald_authors defaults'] = array(
+    'name' => 'administer panelizer taxonomy_term scald_authors defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer taxonomy_term scald_tags defaults'.
+  $permissions['administer panelizer taxonomy_term scald_tags defaults'] = array(
+    'name' => 'administer panelizer taxonomy_term scald_tags defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panelizer user user defaults'.
+  $permissions['administer panelizer user user defaults'] = array(
+    'name' => 'administer panelizer user user defaults',
+    'roles' => array(),
+    'module' => 'panelizer',
+  );
+
+  // Exported permission: 'administer panels layouts'.
+  $permissions['administer panels layouts'] = array(
+    'name' => 'administer panels layouts',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'administer panels styles'.
+  $permissions['administer panels styles'] = array(
+    'name' => 'administer panels styles',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'administer paragraphs bundles'.
+  $permissions['administer paragraphs bundles'] = array(
+    'name' => 'administer paragraphs bundles',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'paragraphs',
   );
 
   // Exported permission: 'administer permissions'.
@@ -113,12 +675,30 @@ function virgin_roles_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'administer scald'.
+  $permissions['administer scald'] = array(
+    'name' => 'administer scald',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'scald',
+  );
+
+  // Exported permission: 'administer scald atoms'.
+  $permissions['administer scald atoms'] = array(
+    'name' => 'administer scald atoms',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'scald',
+  );
+
   // Exported permission: 'administer users'.
   $permissions['administer users'] = array(
     'name' => 'administer users',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'user',
@@ -128,8 +708,24 @@ function virgin_roles_user_default_permissions() {
   $permissions['bypass access in place editing'] = array(
     'name' => 'bypass access in place editing',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'bypass atom access restrictions'.
+  $permissions['bypass atom access restrictions'] = array(
+    'name' => 'bypass atom access restrictions',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'scald',
+  );
+
+  // Exported permission: 'change layouts in place editing'.
+  $permissions['change layouts in place editing'] = array(
+    'name' => 'change layouts in place editing',
+    'roles' => array(
       'administrator' => 'administrator',
     ),
     'module' => 'panels',
@@ -488,7 +1084,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
@@ -770,7 +1365,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
@@ -808,6 +1402,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -828,6 +1423,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -846,6 +1443,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any festival content'] = array(
     'name' => 'edit any festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -864,6 +1463,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any package content'] = array(
     'name' => 'edit any package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -904,6 +1505,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit any ticket_type content'] = array(
     'name' => 'edit any ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1103,6 +1706,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own event content'] = array(
     'name' => 'edit own event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1121,6 +1726,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own festival content'] = array(
     'name' => 'edit own festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1139,6 +1746,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own package content'] = array(
     'name' => 'edit own package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1168,6 +1777,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own region content'] = array(
     'name' => 'edit own region content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1177,6 +1788,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit own ticket_type content'] = array(
     'name' => 'edit own ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1229,6 +1842,18 @@ function virgin_roles_user_default_permissions() {
     'name' => 'moderate content from draft to needs_review',
     'roles' => array(
       'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
+  // Exported permission: 'moderate content from needs_review to draft'.
+  $permissions['moderate content from needs_review to draft'] = array(
+    'name' => 'moderate content from needs_review to draft',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',
@@ -1244,6 +1869,15 @@ function virgin_roles_user_default_permissions() {
     'module' => 'workbench_moderation',
   );
 
+  // Exported permission: 'restrict atom access'.
+  $permissions['restrict atom access'] = array(
+    'name' => 'restrict atom access',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'scald',
+  );
+
   // Exported permission: 'revert revisions'.
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
@@ -1253,6 +1887,44 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'use ipe with page manager'.
+  $permissions['use ipe with page manager'] = array(
+    'name' => 'use ipe with page manager',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'use page manager'.
+  $permissions['use page manager'] = array(
+    'name' => 'use page manager',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'page_manager',
+  );
+
+  // Exported permission: 'use panels caching features'.
+  $permissions['use panels caching features'] = array(
+    'name' => 'use panels caching features',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'use panels dashboard'.
+  $permissions['use panels dashboard'] = array(
+    'name' => 'use panels dashboard',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
   );
 
   // Exported permission: 'use panels in place editing'.
@@ -1266,15 +1938,55 @@ function virgin_roles_user_default_permissions() {
     'module' => 'panels',
   );
 
+  // Exported permission: 'use panels locks'.
+  $permissions['use panels locks'] = array(
+    'name' => 'use panels locks',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'panels',
+  );
+
   // Exported permission: 'use text format filtered_html'.
   $permissions['use text format filtered_html'] = array(
     'name' => 'use text format filtered_html',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
+  );
+
+  // Exported permission: 'use workbench_moderation my drafts tab'.
+  $permissions['use workbench_moderation my drafts tab'] = array(
+    'name' => 'use workbench_moderation my drafts tab',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
+  // Exported permission: 'use workbench_moderation needs review tab'.
+  $permissions['use workbench_moderation needs review tab'] = array(
+    'name' => 'use workbench_moderation needs review tab',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
+  // Exported permission: 'view all unpublished content'.
+  $permissions['view all unpublished content'] = array(
+    'name' => 'view all unpublished content',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
   );
 
   // Exported permission: 'view any unpublished content'.
@@ -1288,10 +2000,23 @@ function virgin_roles_user_default_permissions() {
     'module' => 'view_unpublished',
   );
 
+  // Exported permission: 'view moderation history'.
+  $permissions['view moderation history'] = array(
+    'name' => 'view moderation history',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
   // Exported permission: 'view moderation messages'.
   $permissions['view moderation messages'] = array(
     'name' => 'view moderation messages',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',
