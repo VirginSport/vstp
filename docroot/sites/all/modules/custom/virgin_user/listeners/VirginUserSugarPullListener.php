@@ -29,6 +29,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
         $this->onBeforeUserEdits($event);
         break;
 
+      case VirginUserEvents::BASKET_CHECKOUT:
+        $this->onBasketCheckout($event->getData());
+        break;
+
       case VirginUserEvents::CHECK_TICKET_SYNC:
         $this->onCheckTicketSync($event);
         break;
@@ -69,6 +73,47 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   }
 
   /**
+   * Executed when the basket checkout is finished
+   *
+   * @param \VirginUserBasketEventData $data
+   */
+  protected function onBasketCheckout(VirginUserBasketEventData $data) {
+    $account = $data->getAccount();
+    $expected_regos = $data->getTicketRegos();
+
+    // On sync failure create placeholder tickets for all the tickets that
+    // were expected and let the user know something happened.
+    $failure_callback = function () use ($account, $expected_regos) {
+      drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+      $this->createPlaceholderTickets($account, $expected_regos);
+    };
+
+    // On success, compute the difference between the synced regos and the
+    // regos that were expected, and if tickets are missing add placeholders
+    // for each one of them.
+    $success_callback = function ($synced_regos) use ($account, $expected_regos) {
+      $rego_diff = array_diff($expected_regos, $synced_regos);
+
+      if (count($rego_diff)) {
+        drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+
+        watchdog(
+          'virgin_user',
+          "Ticket sync problem ocurred. Expected: @expected Got: @got",
+          array(
+            '@expected' => implode(', ', $expected_regos),
+            '@got' => implode(', ', $synced_regos)
+          )
+        );
+
+        $this->createPlaceholderTickets($account, $rego_diff);
+      }
+    };
+
+    // Execute the sync with SugarCRM
+    $this->sync($account, $failure_callback, $success_callback);
+  }
+
   /**
    * Executed when there's a check to see if the user's tickets are in sync
    *
