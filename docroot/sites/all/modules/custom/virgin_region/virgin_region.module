@@ -19,7 +19,7 @@ define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 /**
  * The region hostname cookie key
  */
-define('VIRGIN_REGION_COOKIE', 'virgin_sport_region_hostname');
+define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 
 /**
  * Implements hook_views_api().

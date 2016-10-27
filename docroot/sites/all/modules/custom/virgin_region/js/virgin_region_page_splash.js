@@ -1,4 +1,5 @@
 (function ($) {
+
     /**
      * Create cookie function
      *
@@ -38,7 +39,8 @@
          */
         $('a[region-hostname]').click(function() {
             // Save cookie valid for one year
-            createCookie('virgin_sport_region_hostname', $(this).attr('region-hostname'), 365);
+            createCookie('vs_region_hostname', $(this).attr('region-hostname'), 365);
         });
     });
+
 }(jQuery));

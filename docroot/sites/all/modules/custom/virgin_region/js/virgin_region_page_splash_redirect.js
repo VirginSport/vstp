@@ -1,4 +1,5 @@
 (function () {
+
     /**
      *  Get a cookie value
      *
@@ -29,11 +30,12 @@
         return null;
     }
 
-    var regionHostname = getCookie('virgin_sport_region_hostname');
+    var regionHostname = getCookie('vs_region_hostname');
 
     if (regionHostname && location.hostname != regionHostname) {
         var protocol = location.protocol;
 
         location.href = protocol + '//' + regionHostname;
     }
+
 }());
