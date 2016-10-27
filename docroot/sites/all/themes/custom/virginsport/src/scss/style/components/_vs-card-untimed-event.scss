@@ -9,11 +9,11 @@ vs-card-untimed-event,
 
   & + & {
     @include media-breakpoint-up('md') {
-      margin-top: 70px; 
+      margin-top: 4.375rem; 
     }
     
     @include media-breakpoint-down('sm') {
-      margin-top: 20px;
+      margin-top: 1.25rem;
     }
   }
 
@@ -24,11 +24,12 @@ vs-card-untimed-event,
 // ----------------------------------------------------------------------------
 
 .vs-card-untimed-event__image {
-  > img {
-    border-radius: .625rem .625rem 0 0;
-    min-height: 12.5rem;
-    width: 100%;
-  }
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: .625rem .625rem 0 0;
+  min-height: 12.5rem;
+  width: 100%;
 }
 
 .vs-card-untimed-event__content {
@@ -186,20 +187,16 @@ vs-card-untimed-event,
     right: -.813rem;
 
     .vs-card-untimed-event__image {
-      > img {
         border-radius: .625rem;
         min-height: 20.375rem;
         min-width: 24.375rem;
-      }
     }
 
     &.vs-card-untimed-event--outline-remove {
 
       .vs-card-untimed-event__image {
-        > img {
-          min-height: 18.75rem;
+          min-height: 18.938rem;
           min-width: 30.813rem;
-        }
       }
     }
   }
@@ -235,17 +232,15 @@ vs-card-untimed-event,
   .vs-card-untimed-event__image-wrapper {
 
     .vs-card-untimed-event__image {
-      > img {
         min-width: 28.75rem;
-      }
+        min-height: 23rem;
     }
 
     &.vs-card-untimed-event--outline-remove {
 
       .vs-card-untimed-event__image {
-        > img {
           min-width: 37.5rem;
-        }
+          min-height: 22.938rem;
       }
     }
   }
@@ -283,20 +278,16 @@ vs-card-untimed-event,
     left: -7.5rem;
 
     .vs-card-untimed-event__image {
-      > img {
         min-height: 26.875rem;
         min-width: 33.750rem;
-      }
     }
 
     &.vs-card-untimed-event--outline-remove {
       left: -5.313rem;
 
       .vs-card-untimed-event__image {
-        > img {
           min-height: 26.875rem;
           min-width: 43.750rem;
-        }
       }
     }
   }
@@ -411,4 +402,23 @@ vs-card-untimed-event,
     }
   }
 
+}
+
+
+.vs-hidden-hdpi {
+  display: block;
+}
+
+.vs-visible-hdpi {
+  display: none;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .vs-hidden-hdpi {
+    display: none;
+  }
+
+  .vs-visible-hdpi {
+    display: block;
+  }
 }
