@@ -347,4 +347,30 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     return $ticket_ids;
   }
+
+  /**
+   * Creates placeholder tickets for each ticket regos
+   *
+   * @param stdClass $account
+   *  The user account object who is going to be set as the owner of the ticket
+   * @param string[] $ticket_regos
+   *  A list of Attendly rego IDs that are to be set as placeholder tickets
+   */
+  protected function createPlaceholderTickets($account, $ticket_regos = array()) {
+    foreach ($ticket_regos as $rego) {
+      $q = db_merge('virgin_user_tickets');
+
+      $q->key(array(
+        'attendly_rego_id' => $rego,
+      ));
+
+      $q->fields(array(
+        'attendly_rego_id' => $rego,
+        'is_placeholder' => TRUE,
+        'uid' => $account->uid,
+      ));
+
+      $q->execute();
+    }
+  }
 }
