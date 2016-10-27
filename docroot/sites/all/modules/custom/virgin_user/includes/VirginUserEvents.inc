@@ -30,4 +30,9 @@ class VirginUserEvents {
    * database.
    */
   const USER_UPDATED = 'virgin_user:user_updated';
+
+  /**
+   * Emitted when a user has finished the checkout of his basket
+   */
+  const BASKET_CHECKOUT = 'virgin_user:basket_checkout';
 }
