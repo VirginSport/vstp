@@ -140,7 +140,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     $uid = db_query($sql, array(':uid' => $account->uid))->fetchField();
 
-    // If there aren't placeholder tickets for this user bailout now.
+    // If there aren't placeholder tickets for this user bailout now
     if (empty($uid)) {
       return;
     }
