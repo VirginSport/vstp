@@ -39,11 +39,11 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
-    $failureCallback = function (\Exception $e) {
+    $failure_callback = function (\Exception $e) {
       // A sync problem during login is not critical, do nothing here
     };
 
-    $this->sync($account, $failureCallback);
+    $this->sync($account, $failure_callback);
   }
 
   /**
@@ -56,12 +56,12 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     // A sync problem during edit profile is critical as the user might be
     // editing stale data. Redirect him to his profile in case of error.
-    $failureCallback = function (\Exception $e) {
+    $failure_callback = function (\Exception $e) {
       drupal_set_message(t("Ooops! It's not possible to edit your account at this time, please try again at a later time."), 'error');
       drupal_goto('/user');
     };
 
-    $this->sync($account, $failureCallback);
+    $this->sync($account, $failure_callback);
   }
 
   /**
