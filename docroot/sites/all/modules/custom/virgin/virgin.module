@@ -232,6 +232,20 @@ function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0
 }
 
 /**
+ * Gets the value of a query parameter with the given name
+ *
+ * @param string $key
+ *  The query parameter name
+ * @param string $default_value
+ *  The default value of the parameter if it's missing
+ * @return string
+ *  Either the default value or the value of the query parameter
+ */
+function virgin_param($key, $default_value = '') {
+  return empty($_GET[$key]) ? $default_value : $_GET[$key];
+}
+
+/**
  * Gets the global instance of a virgin cipher
  *
  * @return \VirginCipher
