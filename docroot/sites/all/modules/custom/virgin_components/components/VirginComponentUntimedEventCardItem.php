@@ -19,7 +19,6 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
 
   /**
    * {@inheritdoc}
-   * Contains the necessary variables to use in the template file
    */
   public function preProcess(&$variables) {
     if (empty($variables['elements']['#entity'])) {
@@ -85,7 +84,6 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
 
   /**
    * {@inheritdoc}
-   * Returns the template file
    */
   public function themeSuggestion() {
     return 'virgin_components__p__vs_untimed_event_card';
