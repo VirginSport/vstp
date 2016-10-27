@@ -6,6 +6,11 @@
  */
 
 /**
+ * The cipher key variable. This variable needs to contain a 16 bytes key.
+ */
+define('VIRGIN_VAR_CIPHER_KEY', 'virgin_cipher_key');
+
+/**
  * Implements hook_menu().
  */
 function virgin_menu() {
@@ -224,4 +229,20 @@ function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0
   }
 
   return $default;
+}
+
+/**
+ * Gets the global instance of a virgin cipher
+ *
+ * @return \VirginCipher
+ *  The configured virgin cipher
+ */
+function virgin_cipher() {
+  $cipher = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$cipher) {
+    $cipher = new VirginCipher(variable_get(VIRGIN_VAR_CIPHER_KEY));
+  }
+
+  return $cipher;
 }
