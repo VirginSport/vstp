@@ -587,6 +587,19 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['filters']['virgin_region']['table'] = 'node';
   $handler->display->display_options['filters']['virgin_region']['field'] = 'virgin_region';
   $handler->display->display_options['filters']['virgin_region']['value'] = '1';
+  $handler->display->display_options['filters']['virgin_region']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['virgin_region']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['virgin_region']['expose']['label'] = 'Show content related to a region';
+  $handler->display->display_options['filters']['virgin_region']['expose']['operator'] = 'virgin_region_op';
+  $handler->display->display_options['filters']['virgin_region']['expose']['identifier'] = 'virgin_region';
+  $handler->display->display_options['filters']['virgin_region']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['virgin_region']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
   /* Filter criterion: Content: Start Date (field_start_date) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
@@ -597,6 +610,15 @@ function virgin_base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'vs_upcoming_festivals_pane');
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $translatables['vs_upcoming_festivals'] = array(
     t('Master'),
     t('more'),
@@ -607,6 +629,7 @@ function virgin_base_views_default_views() {
     t('Desc'),
     t('Festival state'),
     t('Start Date'),
+    t('Show content related to a region'),
     t('Content pane'),
     t('View panes'),
   );
