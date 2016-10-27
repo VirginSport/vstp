@@ -28,8 +28,7 @@
       </div>
       <?php endif; ?>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__image-wrapper <?php print $no_card_pattern_class; ?>">
-        <div class="vs-card-untimed-event__image vs-hidden-hdpi" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
-        <div class="vs-card-untimed-event__image vs-visible-hdpi" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
+        <div class="vs-card-untimed-event__image" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
       </div>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__content-wrapper <?php print $no_card_pattern_class; ?>">
         <div class="vs-card-untimed-event__content">
