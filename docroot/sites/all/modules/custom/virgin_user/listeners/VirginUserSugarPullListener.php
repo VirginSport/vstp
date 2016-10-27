@@ -28,6 +28,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       case VirginUserEvents::BEFORE_USER_EDITS:
         $this->onBeforeUserEdits($event);
         break;
+
+      case VirginUserEvents::CHECK_TICKET_SYNC:
+        $this->onCheckTicketSync($event);
+        break;
     }
   }
 
@@ -62,6 +66,43 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     };
 
     $this->sync($account, $failure_callback);
+  }
+
+  /**
+  /**
+   * Executed when there's a check to see if the user's tickets are in sync
+   *
+   * @param \ObserverEventInterface $event
+   */
+  protected function onCheckTicketSync(ObserverEventInterface $event) {
+    $account = $event->getData();
+    $elapsed = time() - $this->getUserLastSync($account);
+
+    // If the elapsed time since last sync is less than the period that is
+    // set between sync attempts, bailout now.
+    if ($elapsed < VIRGIN_USER_TICKET_SYNC_PERIOD) {
+      return;
+    }
+
+    // Otherwise check if there are placeholder tickets belonging to this user
+    $sql = "
+      SELECT uid
+      FROM {virgin_user_tickets}
+      WHERE uid = :uid
+      AND is_placeholder = 1
+      LIMIT 1
+    ";
+
+    $uid = db_query($sql, array(':uid' => $account->uid))->fetchField();
+
+    // If there aren't placeholder tickets for this user bailout now.
+    if (empty($uid)) {
+      return;
+    }
+
+    // Otherwise attempt to sync, and if it fails do nothing as the user does
+    // not need to know the background sync failed.
+    $this->sync($account, function () {});
   }
 
   /**
