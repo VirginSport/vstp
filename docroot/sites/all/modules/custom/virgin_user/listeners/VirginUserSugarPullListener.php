@@ -69,18 +69,20 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    *
    * @param stdClass $account
    *  The user object for whom data is being fetched for
-   * @param callable $failureCallback
+   * @param callable $failure_callback
    *  A callback that is executed when there has been a sync problem with
    *  SugarCRM. The exception of this failure is passed to the callback.
-   * @return string[]
-   *  The rego IDs to the tickets that have been synced from SugarCRM
+   * @param callable $success_callback
+   *  A callback that is executed when there has been a successful sync
+   *  with SugarCRM. The list of synced ticket regos are passed to the
+   *  callback.
    */
-  protected function sync($account, callable $failureCallback) {
+  protected function sync($account, callable $failure_callback, callable $success_callback = NULL) {
 
     // If it's the admin user, bailout now as we don't sync anything for him
     // from SugarCRM.
     if ($account->uid === "1") {
-      return array();
+      return;
     }
 
     $account = user_load($account->uid);
@@ -90,7 +92,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // If for some reason the user does not have a SugarID, then bailout as
     // there's nothing to fetch from SugarCRM.
     if (empty($sugar_id)) {
-      return array();
+      return;
     }
 
     // Fetch the digest from SugarCRM
@@ -104,9 +106,9 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       // And then execute the failure callback and let callers handle the
       // exception as they have different levels of acceptance to a failure
       // scenario.
-      $failureCallback($e);
+      $failure_callback($e);
 
-      return array();
+      return;
     }
 
     // Update the ticket cache and update the profile fields accordingly
@@ -116,8 +118,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // Flush any profile changes
     $this->saveProfileChanges($account, $has_changed);
 
-    // And return the list of the rego IDs of the tickets that have been synced
-    return $synced_regos;
+    // And finally execute the success callback with the list of synced rego IDs
+    if ($success_callback) {
+      $success_callback($synced_regos);
+    }
   }
 
   /**
