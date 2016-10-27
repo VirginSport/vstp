@@ -199,6 +199,7 @@ function virgin_page_strongarm() {
     'fieldable_panels_pane-vs_ticket_cards' => TRUE,
     'fieldable_panels_pane-vs_untimed_event_cards' => TRUE,
     'fieldable_panels_pane-vs_video_block' => TRUE,
+    'views_panes-vs_upcoming_festivals-vs_upcoming_festivals_pane' => TRUE,
   );
   $export['panels_page_allowed_types'] = $strongarm;
 
