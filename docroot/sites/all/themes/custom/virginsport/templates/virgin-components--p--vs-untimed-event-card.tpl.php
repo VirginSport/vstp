@@ -28,13 +28,14 @@
       </div>
       <?php endif; ?>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__image-wrapper <?php print $no_card_pattern_class; ?>">
-        <?php print theme('virginsport_picture', array('atom_id' => $card_image->property('sid'), 'image_style' => 'virgin_original', 'classes' => 'vs-card-untimed-event__image', 'image_classes' => 'img-fluid')); ?>
+        <div class="vs-card-untimed-event__image vs-hidden-hdpi" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
+        <div class="vs-card-untimed-event__image vs-visible-hdpi" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
       </div>
       <div class="col-xs-12 col-lg-4 vs-card-untimed-event__content-wrapper <?php print $no_card_pattern_class; ?>">
         <div class="vs-card-untimed-event__content">
           <div class="col-xs-12 vs-card-untimed-event__content-header">
             <?php if(!empty($title)): ?>
-            <h4 class="col-xs-7 vs-card-untimed-event__title"><?php print check_plain($title); ?></h4>
+            <h4 class="col-xs-7 col-xl-12 vs-card-untimed-event__title"><?php print check_plain($title); ?></h4>
             <?php endif; ?>
             <div class="col-xs-5 hidden-xl-up vs-card-untimed-event__price">
               <span><?php print t('from'); ?>&nbsp;</span>
@@ -74,3 +75,4 @@
     </div>
   </div>
 </div>
+
