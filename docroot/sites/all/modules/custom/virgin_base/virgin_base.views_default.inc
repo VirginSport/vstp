@@ -610,6 +610,9 @@ function virgin_base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'vs_upcoming_festivals_pane');
+  $handler->display->display_options['pane_title'] = 'Upcoming Festivals';
+  $handler->display->display_options['pane_category']['name'] = 'Lists';
+  $handler->display->display_options['pane_category']['weight'] = '0';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
@@ -631,7 +634,8 @@ function virgin_base_views_default_views() {
     t('Start Date'),
     t('Show content related to a region'),
     t('Content pane'),
-    t('View panes'),
+    t('Upcoming Festivals'),
+    t('Lists'),
   );
   $export['vs_upcoming_festivals'] = $view;
 
