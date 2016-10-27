@@ -581,15 +581,15 @@ $input-color-placeholder:        rgba($c-black, .6);
 // $nav-disabled-link-hover-color: $gray-light;
 // $nav-disabled-link-hover-bg:    transparent;
 
-// $nav-tabs-border-color:                       #ddd;
+$nav-tabs-border-color:                       transparent;
 // $nav-tabs-border-width:                       $border-width;
 // $nav-tabs-border-radius:                      $border-radius;
-// $nav-tabs-link-hover-border-color:            $gray-lighter;
+$nav-tabs-link-hover-border-color:            transparent;
 // $nav-tabs-active-link-hover-color:            $gray;
 // $nav-tabs-active-link-hover-bg:               $body-bg;
-// $nav-tabs-active-link-hover-border-color:     #ddd;
+$nav-tabs-active-link-hover-border-color:     transparent;
 // $nav-tabs-justified-link-border-color:        #ddd;
-// $nav-tabs-justified-active-link-border-color: $body-bg;
+$nav-tabs-justified-active-link-border-color: transparent;
 
 // $nav-pills-border-radius:     $border-radius;
 // $nav-pills-active-link-color: $component-active-color;
