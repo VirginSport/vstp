@@ -6,6 +6,39 @@
  */
 
 /**
+ * Page callback for the basket claim route
+ *
+ * @param string $rego
+ *  The attendly ticket rego ID
+ */
+function virgin_user_page_basket_claim($rego) {
+}
+
+/**
+ * Page callback for the basket login signup route
+ */
+function virgin_user_page_basket_login_signup() {
+}
+
+/**
+ * Page callback for the basket festival list route
+ */
+function virgin_user_page_basket_festival_list() {
+}
+
+/**
+ * Page callback for the basket checkout finished route
+ */
+function virgin_user_page_basket_checkout_finished() {
+}
+
+/**
+ * Page callback for the basket post checkout route
+ */
+function virgin_user_page_basket_post_checkout() {
+}
+
+/**
  * Page callback for the user profile edit route
  *
  * This callback overrides the core drupal user edit route to ensure the user

@@ -28,6 +28,57 @@ define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
  */
 define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900000); // (1000 * 60) * 15 = 15minutes
 
+/**
+ * Implements hook_menu().
+ */
+function virgin_user_menu() {
+  $items = array();
+
+  $items['basket/claim/%'] = array(
+    'title' => 'Claim Ticket',
+    'page callback' => 'virgin_user_page_basket_claim',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/login-signup'] = array(
+    'title' => 'Login or Signup',
+    'page callback' => 'virgin_user_page_basket_login_signup',
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/festival-list'] = array(
+    'title' => 'Festival List',
+    'page callback' => 'virgin_user_page_basket_festival_list',
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/checkout-finished'] = array(
+    'title' => 'Checkout Finished',
+    'page callback' => 'virgin_user_page_basket_checkout_finished',
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/post-checkout'] = array(
+    'title' => 'Checkout Finished',
+    'page callback' => 'virgin_user_page_basket_post_checkout',
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
