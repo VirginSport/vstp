@@ -507,7 +507,7 @@ function virgin_base_views_default_views() {
   $export['ticket_reference'] = $view;
 
   $view = new view();
-  $view->name = 'upcoming_festivals';
+  $view->name = 'vs_upcoming_festivals';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
@@ -596,8 +596,8 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'today';
 
   /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
-  $translatables['upcoming_festivals'] = array(
+  $handler = $view->new_display('panel_pane', 'Content pane', 'vs_upcoming_festivals_pane');
+  $translatables['vs_upcoming_festivals'] = array(
     t('Master'),
     t('more'),
     t('Apply'),
@@ -610,7 +610,7 @@ function virgin_base_views_default_views() {
     t('Content pane'),
     t('View panes'),
   );
-  $export['upcoming_festivals'] = $view;
+  $export['vs_upcoming_festivals'] = $view;
 
   return $export;
 }

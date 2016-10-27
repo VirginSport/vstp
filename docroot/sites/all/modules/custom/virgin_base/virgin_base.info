@@ -125,6 +125,6 @@ features[views_view][] = event_reference
 features[views_view][] = festival_event_reference
 features[views_view][] = package_reference
 features[views_view][] = ticket_reference
-features[views_view][] = upcoming_festivals
+features[views_view][] = vs_upcoming_festivals
 features_exclude[dependencies][entityreference] = entityreference
 features_exclude[dependencies][paragraphs] = paragraphs
