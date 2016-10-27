@@ -36,6 +36,11 @@ function virgin_user_page_basket_checkout_finished() {
  * Page callback for the basket post checkout route
  */
 function virgin_user_page_basket_post_checkout() {
+
+  // At this moment the post checkout has exactly the same behaviour as
+  // the checkout route. As such simply execute the checkout finished
+  // for now.
+  virgin_user_page_basket_checkout_finished();
 }
 
 /**
