@@ -246,6 +246,20 @@ function virgin_param($key, $default_value = '') {
 }
 
 /**
+ * Gets the value of a cookie with the given name
+ *
+ * @param string $key
+ *  The cookie name
+ * @param string $default_value
+ *  The default value of the cookie if it's missing
+ * @return string
+ *  Either the default value or the value of the cookie
+ */
+function virgin_cookie($key, $default_value = '') {
+  return empty($_COOKIE[$key]) ? $default_value : $_COOKIE[$key];
+}
+
+/**
  * Gets the global instance of a virgin cipher
  *
  * @return \VirginCipher
