@@ -38,7 +38,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                   </p>
                 <?php endif; ?>
 
-                <?php if ($ticket->whos_ticket_for != 'me' && (!empty($ticket->first_name) || !empty($ticket->last_name))): ?>
+                <?php if (empty($member_is_participant)): ?>
                   <p class="vs-ticket-card__participant-mame">
                     <?php print t("Recipient's name: @", array('@' => $ticket->first_name . ' ' . $ticket->last_name)); ?>
                   </p>
@@ -144,22 +144,34 @@ $event_days_left = virginsport_days_left($event_start_date);
                 </a>
               </div>
             <?php else: ?>
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
-                <div class="vs-ticket-card__cta-wrapper">
-                  <a class="vs-ticket-card__cta--invite-fans" href="#">
-                    <i class="icon-average-pace"></i>
-                    <?php print t('invite fans'); ?>
-                  </a>
-                </div>
-              <?php endif; ?>
 
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_teams'))): ?>
-                <div class="vs-ticket-card__cta-wrapper">
-                  <a class="vs-ticket-card__cta--join-team" href="#">
-                    <i class="icon-join-team"></i>
-                    <?php print t('join / create team'); ?>
-                  </a>
-                </div>
+              <?php if (!empty($member_is_participant)): ?>
+                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
+                  <div class="vs-ticket-card__cta-wrapper">
+                    <a class="vs-ticket-card__cta--invite-fans" href="#">
+                      <i class="icon-average-pace"></i>
+                      <?php print t('invite fans'); ?>
+                    </a>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_teams'))): ?>
+                  <div class="vs-ticket-card__cta-wrapper">
+                    <a class="vs-ticket-card__cta--join-team" href="#">
+                      <i class="icon-join-team"></i>
+                      <?php print t('join / create team'); ?>
+                    </a>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_marketing_questions'))): ?>
+                  <div class="vs-ticket-card__cta-wrapper">
+                    <a class="vs-ticket-card__cta--about-yourself" href="#">
+                      <i class="icon-tell-us"></i>
+                      <?php print t('tell us about yourself'); ?>
+                    </a>
+                  </div>
+                <?php endif; ?>
               <?php endif; ?>
 
               <?php if (!empty($event_state_grapher->fieldGetOne('field_has_merchandise'))): ?>
@@ -167,15 +179,6 @@ $event_days_left = virginsport_days_left($event_start_date);
                 <a class="vs-ticket-card__cta--buy-gear" href="#">
                   <i class="icon-buy-gear"></i>
                   <?php print t('buy gear'); ?>
-                </a>
-              </div>
-              <?php endif; ?>
-
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_marketing_questions'))): ?>
-              <div class="vs-ticket-card__cta-wrapper">
-                <a class="vs-ticket-card__cta--about-yourself" href="#">
-                  <i class="icon-tell-us"></i>
-                  <?php print t('tell us about yourself'); ?>
                 </a>
               </div>
               <?php endif; ?>
