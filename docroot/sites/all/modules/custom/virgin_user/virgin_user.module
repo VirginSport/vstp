@@ -41,6 +41,10 @@ function virgin_user_theme($existing, $type, $theme, $path) {
   );
 
   return array(
+    'virgin_user__ct__user_tickets' => array(
+      'variables' => array('data'),
+      'template' => 'virgin-user__ct__user_tickets',
+    ) + $default,
     'virgin_user__ticket' => array(
       'template' => 'virgin-user__ticket',
       'variables' => array(
@@ -221,6 +225,23 @@ function virgin_user_entity_presave($entity, $type) {
   if ($type == 'user') {
     virgin_user_observer_notify($entity);
   }
+}
+
+// Preprocess functions
+// ----------------------------------------------------------------------------
+
+/**
+ * Implements hook_preprocess_HOOK() for user profile theme.
+ */
+function virgin_user_preprocess_user_profile(&$vars) {
+  // Create ctools context for current user
+  ctools_include('content');
+  ctools_include('context');
+  $user_context = ctools_context_create('user', $vars['user']);
+  $context = array('user_context' => $user_context);
+
+  // Get user tickets
+  $vars['tickets'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
 }
 
 // Helpers
