@@ -76,66 +76,14 @@ function mobileMenu($body, $header) {
  * @param $header
  */
 function headerAnimation() {
-
+  // Dom elements for headroom
   let header = document.querySelector('.vs-header');
   let subnav = document.querySelector('.vs-subnav');
 
-  let getOffsets = function () {
-    let offset = 274;
-    let offsetDeviation = 55;
+  // Jquery elements
+  let jSubNav = $(subnav);
 
-    if (window.innerWidth >= 767) {
-      offset = 545;
-      offsetDeviation = 60;
-    }
-
-    return {
-      offset: offset,
-      offset_deviation: offsetDeviation
-    }
-  };
-
-  let subnavEvents = {};
-
-  if (subnav){
-    var vsSubnav = new Headroom(subnav, {
-      offset: 545,
-      tolerance: 0,
-      classes: {
-        initial:    "animated",               // when element is initialised
-        pinned:     "vs-subnav",              // when scrolling up
-        unpinned:   "vs-subnav--unpinned",    // when scrolling down
-        top:        "vs-subnav--top",         // when above offset
-        notTop:     "vs-subnav--not-top",     // when below offset
-        bottom:     "vs-subnav--bottom",      // when at bottom of scroll area
-        notBottom:  "vs-subnav--not-bottom"   // when not at bottom of scroll area
-      }
-    });
-
-    subnavEvents = {
-      onPin: function() {
-        if (!subnav) {
-          return;
-        }
-        subnav.add('vs-subnav--pinned-on-main-nav');
-        let offsets = getOffsets();
-        vsSubnav.offset = offsets.offset - offsets.offset_deviation;
-      },
-
-      onUnpin: function() {
-        if (!subnav) {
-          return;
-        }
-        subnav.remove('vs-subnav--pinned-on-main-nav');
-        let offsets = getOffsets();
-        vsSubnav.offset = offsets.offset;
-      }
-    };
-
-    vsSubnav.init();
-  }
-
-  let vsHeader = new Headroom(header, {
+  let headerProperties = {
     offset: 20,
     tolerance: 5,
     classes: {
@@ -151,14 +99,65 @@ function headerAnimation() {
     onNotTop: function() {
       $('.vs-user-menu__trigger').removeClass('vs-user-menu__trigger--active');
       $('.vs-user-dropdown').removeClass('vs-user-dropdown--open');
-    },
+    }
+  };
 
-    subnavEvents
-  });
+  if (subnav) {
+    // Get subnav distance to top
+    let jSubnavTop = jSubNav.offset().top;
+
+    // The deviation is the menu header height that should be contemplated as an increment to subnav offset
+    var getOffsets = function () {
+      let offsetDeviation = 55;
+
+      if (window.innerWidth >= 767) {
+        offsetDeviation = 60;
+      }
+
+      return {
+        offset: jSubnavTop,
+        offset_deviation: offsetDeviation
+      }
+    };
+
+    // Headroom vs-subnav element
+    var vsSubnav = new Headroom(subnav, {
+      offset: getOffsets().offset,
+      tolerance: 0,
+      classes: {
+        initial:    "animated",               // when element is initialised
+        pinned:     "vs-subnav--pinned",              // when scrolling up
+        unpinned:   "vs-subnav--unpinned",    // when scrolling down
+        top:        "vs-subnav--top",         // when above offset
+        notTop:     "vs-subnav--not-top",     // when below offset
+        bottom:     "vs-subnav--bottom",      // when at bottom of scroll area
+        notBottom:  "vs-subnav--not-bottom"   // when not at bottom of scroll area
+      }
+    });
+
+    // vs-header events to update vs-subnav offset
+    headerProperties.onPin = function() {
+      subnav.classList.add('vs-subnav--pinned-on-main-nav');
+      let offsets = getOffsets();
+      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
+    };
+
+    headerProperties.onUnpin = function() {
+      subnav.classList.remove('vs-subnav--pinned-on-main-nav');
+      let offsets = getOffsets();
+      vsSubnav.offset = offsets.offset;
+    };
+
+    vsSubnav.init();
+  }
+
+  // Headroom vs-header element
+  let vsHeader = new Headroom(header, headerProperties);
 
   vsHeader.init();
 
   onResize(() => {
+    // If vs-subnav element doesn't exist we don't need to do nothing
     if (!subnav) {
       return;
     }
