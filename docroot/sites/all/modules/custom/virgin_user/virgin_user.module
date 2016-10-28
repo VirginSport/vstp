@@ -29,6 +29,11 @@ define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
 define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900); // 60 * 15
 
 /**
+ * The name of the cookie that holds the basket's region hostname
+ */
+define('VIRGIN_USER_BASKET_COOKIE', 'vs_basket_region_hostname');
+
+/**
  * Implements hook_menu().
  */
 function virgin_user_menu() {
