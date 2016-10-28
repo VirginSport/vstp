@@ -141,7 +141,9 @@
         <?php endif; ?>
 
         <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
+          <a class="vs-header__link" href="#">
+            <span class="vs-header__basket__value">2</span>
+          </a>
         </div>
         <button class="vs-menu-trigger">
           <span class="vs-menu-trigger__bar">
