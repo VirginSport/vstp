@@ -38,8 +38,12 @@ vs-hero-event-card,
 }
 
 .vs-hero-event-card__title {
-  color: $c-black;
+  font-family: $font-family-serif;
+  font-weight: 500;
   font-size: 1.125rem;
+  line-height: 1.125rem;
+  color: $c-black;
+  
   text-transform: uppercase;
   margin-bottom: 0;
 }
@@ -100,6 +104,7 @@ vs-hero-event-card,
 
   .vs-hero-event-card__title {
     font-size: 1.875rem;
+    line-height: 1.875rem;
   }
 
   .vs-hero-event-card__date {
