@@ -77,16 +77,14 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   // Build the date information
   $start_date = $g_state->fieldGetOne('field_start_date');
   $end_date = $g_state->fieldGetOne('field_end_date');
-  $start = format_date($start_date, 'custom', 'd', 'UTC');
-  $end = format_date($end_date, 'custom', 'd M y', 'UTC');
-  $date = sprintf('%s - %s', $start, $end);
 
   // Fetch the image
   $atom = $g->relation('field_header_image');
 
   $vars = array(
     'title' => $g->fieldGetOne('title_field', 'Festival'),
-    'date' => $date,
+    'start_date' => $start_date,
+    'end_date' => $end_date,
     'status' => $g->fieldGetOne('field_status'),
     'days_left' => virginsport_days_left($start_date),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
