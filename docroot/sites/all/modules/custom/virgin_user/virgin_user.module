@@ -17,8 +17,8 @@ define('VIRGIN_USER_MIN_AGE', 13);
 define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 
 /**
- * The name of the user data property that stores the timestamp with the
- * timestamp of the last successful data pull from SugarCRM.
+ * The name of the user data property that stores the timestamp with
+ * the last successful data pull from SugarCRM.
  */
 define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
 
