@@ -23,6 +23,14 @@ define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function virgin_user_ctools_plugin_directory($module, $plugin) {
+  if (in_array($module, array('panels', 'panelizer', 'ctools', 'page_manager'))) {
+    return 'plugins/' . $plugin;
+  }
+}
+
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
