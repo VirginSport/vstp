@@ -47,9 +47,6 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $event_start_date = $event_state_grapher->fieldGetOne('field_start_date');
   $event_end_date = $event_state_grapher->fieldGetOne('field_end_date');
 
-  $now = time();
-  $date_difference = abs($event_start_date - $now);
-
   // TODO update keys in css instead of mapping here
   if (!empty($ticket_level_properties[$ticket_level])) {
     $ticket_properties = $ticket_level_properties[$ticket_level];
@@ -76,8 +73,9 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['ticket_start_time'] = date('g:ia', $event_start_date);
   $vars['event_grapher'] = $event_grapher;
   $vars['event_state_grapher'] = $event_state_grapher;
-  $vars['event_past'] = $event_end_date < $now;
+  $vars['event_start_date'] = $event_start_date;
+  $vars['event_end_date'] = $event_end_date;
+  $vars['event_past'] = $event_end_date < time();
   $vars['event_date'] = date('l, d M Y', $event_start_date);
-  $vars['event_days_to'] = floor($date_difference / 60 / 60 / 24);
   $vars['event_image_grapher'] = $event_grapher->relation('field_card_image');
 }

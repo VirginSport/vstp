@@ -4,6 +4,8 @@
  * Virgin ticket template.
  */
 
+// Get number of days lefting to the festival
+$event_days_left = virginsport_days_left($event_start_date);
 ?>
 
 <div class="vs-ticket-card vs-ticket-card--color-<?php print $brand_color; ?>">
@@ -84,17 +86,15 @@
                   */
                   ?>
                 </div>
-              <?php else: ?>
+              <?php elseif (!empty($event_days_left)): ?>
                 <div class="vs-ticket-card__days-left-wrapper hidden-sm-down">
-                  <?php if (!empty($event_days_to)): ?>
-                    <span class="vs-ticket-card__days-left">
-                  <?php print $event_days_to; ?>
+                  <span class="vs-ticket-card__days-left">
+                    <?php print $event_days_left; ?>
                   </span>
 
                     <span class="vs-ticket-card__days-left-label">
                     <?php print t('Days to go'); ?>
                   </span>
-                  <?php endif; ?>
                 </div>
               <?php endif; ?>
             </div>
