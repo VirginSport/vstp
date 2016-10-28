@@ -239,7 +239,7 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
   $current_region = virgin_region_current();
 
   if ($current_region) {
-    $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+    $form_state['values']['field_region'][LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
 
     // Set current user region cookie on registration
     virgin_region_region_cookie_set($current_region);
@@ -321,9 +321,10 @@ function virgin_region_add_hostname_protocol($hostname) {
 }
 
 /**
- *  Set the region cookie hostname
- *  @param $current_region
- *  The Region array
+ * Set the region cookie hostname
+ *
+ * @param $current_region
+ *  The region array
  */
 function virgin_region_region_cookie_set($current_region) {
   global $cookie_domain;
