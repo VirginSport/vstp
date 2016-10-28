@@ -92,6 +92,33 @@ function virgin_user_page_basket_festival_list() {
  * Page callback for the basket checkout finished route
  */
 function virgin_user_page_basket_checkout_finished() {
+  global $user;
+
+  // Fetch the required query parameter that contains the ciphered regos
+  $ciphered_regos = virgin_param('rego');
+
+  try {
+    $unciphered_regos = virgin_cipher()->uncipher($ciphered_regos);
+    $regos = explode('|', $unciphered_regos);
+  } catch (\Exception $e) {
+
+    // If the cipher failed, that might be for two reasons: either the key
+    // used to cipher the contents is different from what we have in our
+    // system, or someone is tampering with the payload. In either case
+    // log the issue and let the user know something didn't go as planned.
+    $regos = array();
+
+    // Log and alert the user something failed
+    watchdog('virgin_user', "Failed to uncipher basket checkout rego.", array(), WATCHDOG_ERROR);
+    drupal_set_message(t("Ooops! Something didn't go as expected"), 'warning');
+  }
+
+  // Notify all observers of a basket checkout
+  $basket_event = new VirginUserBasketEventData($user, $regos);
+  observer_notify(VirginUserEvents::BASKET_CHECKOUT, $basket_event);
+
+  // And finally send the user to his profile page
+  _virgin_user_page_basket_redirect('/user/' . $user->uid);
 }
 
 /**
