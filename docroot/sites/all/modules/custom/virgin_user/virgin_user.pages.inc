@@ -6,7 +6,7 @@
  */
 
 /**
- * Redirects user to their preferred hostname depending on a number of factors
+ * Redirects a user to its preferred hostname depending on a number of factors
  *
  * @param $path
  *  The path under a hostname where the user should be redirected to, i.e: '/user/10'
@@ -48,7 +48,7 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
 
   // If the user is anonymous or there's no hostname to redirect the
   // user to, send the user to the current website splash page in order
-  // form him pick his region before redirecting him to the right path.
+  // for him pick his region before redirecting him to the right path.
   if (user_is_anonymous() || empty($user_hostname)) {
     $goto('', '/splash', array(
       'destination' => $path,
@@ -66,6 +66,7 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   $goto($user_hostname, $path, $params);
 }
 
+/**
  * Page callback for the basket claim route
  *
  * @param string $rego
