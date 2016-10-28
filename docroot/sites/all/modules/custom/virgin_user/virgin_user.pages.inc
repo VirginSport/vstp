@@ -73,6 +73,12 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
  *  The attendly ticket rego ID
  */
 function virgin_user_page_basket_claim($rego) {
+  // FIXME the path for the claim can't be /user/login due to the fact the user might be already logged in!
+
+  _virgin_user_page_basket_redirect('/user/login', array(
+    'action' => 'claim',
+    'rego' => $rego
+  ));
 }
 
 /**
