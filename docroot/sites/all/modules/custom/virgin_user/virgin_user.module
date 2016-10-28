@@ -31,6 +31,26 @@ function virgin_user_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
+function virgin_user_theme($existing, $type, $theme, $path) {
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  return array(
+    'virgin_user__ticket' => array(
+      'template' => 'virgin-user__ticket',
+      'variables' => array(
+        'ticket' => '',
+      )
+    ) + $default
+  );
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
