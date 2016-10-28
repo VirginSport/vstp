@@ -306,6 +306,8 @@ function virgin_region_user_redirect($uid, $current_region) {
 }
 
 /**
+ * Append the protocol to the hostname
+ *
  * @param $hostname
  *  An hostname without the protocol e.g. uk.virginsport.com
  * @return string
