@@ -19,6 +19,9 @@
  * @var string $link_label
  *  The label of the link that appears below the button
  */
+
+// Get number of days remaining to festival
+$days_left = virginsport_days_left($start_date);
 ?>
 
 <div class="vs-hero-banner">
