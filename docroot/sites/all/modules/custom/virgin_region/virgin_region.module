@@ -331,3 +331,21 @@ function virgin_region_region_cookie_set($current_region) {
     setcookie(VIRGIN_REGION_COOKIE, $current_region['hostname'], time() + 31536000, "/", $cookie_domain);
   }
 }
+
+/**
+ * Checks if the given hostname is of a valid region
+ *
+ * @param $check_hostname
+ *  The hostname to be checked
+ * @return bool
+ *  TRUE it's a valid region hostname, FALSE otherwise
+ */
+function virgin_region_valid_hostname($check_hostname) {
+  foreach (virgin_region_regions() as $hostname => $region) {
+    if ($hostname == $check_hostname) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
