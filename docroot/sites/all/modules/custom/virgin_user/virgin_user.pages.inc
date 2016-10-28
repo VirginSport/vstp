@@ -21,8 +21,12 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
 
   // Helper function to redirect a user to a virgin region host path
   $goto = function ($hostname, $path = '', $params = array()) {
-    $addr = virgin_region_add_hostname_protocol($hostname);
-    drupal_goto($addr . $path, array('query' => $params));
+
+    if ($hostname) {
+      $path = virgin_region_add_hostname_protocol($hostname) . $path;
+    }
+
+    drupal_goto($path, array('query' => $params));
   };
 
   // Fetch the cookies that can carry prefered region hostname selection.
