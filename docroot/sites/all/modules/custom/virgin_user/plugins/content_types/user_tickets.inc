@@ -46,7 +46,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $data = array();
   foreach ($results as $result) {
     // If festival not added yet load it and add to array
-    if (empty($data[$result->festival_id]['festival'])) {
+    if (empty($data[$result->festival_id])) {
       $data[$result->festival_id]['festival_grapher'] = new VirginEntityGrapher('node', node_load($result->festival_id));
       $data[$result->festival_id]['tickets'] = '';
     }
