@@ -349,3 +349,18 @@ function virgin_region_valid_hostname($check_hostname) {
 
   return FALSE;
 }
+
+/**
+ * Get the current user preferred region hostname
+ *
+ * @return string
+ *  The region hostname or an empty string if no valid hostname could be found
+ */
+function virgin_region_user_hostname() {
+  global $user;
+
+  $account_wrapper = entity_metadata_wrapper('user', $user->uid);
+  $hostname = $account_wrapper->field_region->value();
+
+  return virgin_region_valid_hostname($hostname) ? $hostname : '';
+}
