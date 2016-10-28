@@ -1889,6 +1889,34 @@ function virgin_roles_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'translate admin strings'.
+  $permissions['translate admin strings'] = array(
+    'name' => 'translate admin strings',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'i18n_string',
+  );
+
+  // Exported permission: 'translate any entity'.
+  $permissions['translate any entity'] = array(
+    'name' => 'translate any entity',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'entity_translation',
+  );
+
+  // Exported permission: 'translate user-defined strings'.
+  $permissions['translate user-defined strings'] = array(
+    'name' => 'translate user-defined strings',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'i18n_string',
+  );
+
   // Exported permission: 'use ipe with page manager'.
   $permissions['use ipe with page manager'] = array(
     'name' => 'use ipe with page manager',
