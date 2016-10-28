@@ -117,7 +117,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>"><?php print t('Login'); ?></a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
@@ -171,33 +171,7 @@
           </div>
         </div>
       </div>
-      <div class="vs-region--gradient-gray vs-region--subnav-wrapper">
-        <div class="vs-subnav"><div class="vs-subnav__overlay"></div>
-          <ul class="vs-subnav__list">
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link vs-subnav__link--active" href="">Festival</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Main Event</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Ticket Prices</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Fans</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Getting There</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Community</a>
-            </li>
-            <li class="vs-subnav__item">
-              <a class="vs-subnav__link" href="">Faqs</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+
       <div class="vs-region vs-region--light-gray">
         <div class="container">
           <div class="row">

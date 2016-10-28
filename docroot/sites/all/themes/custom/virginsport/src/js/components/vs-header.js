@@ -95,19 +95,45 @@ function headerAnimation() {
     }
   };
 
-  let vsSubnav = new Headroom(subnav, {
-    offset: 545,
-    tolerance: 0,
-    classes: {
-      initial:    "animated",               // when element is initialised
-      pinned:     "vs-subnav",              // when scrolling up
-      unpinned:   "vs-subnav--unpinned",    // when scrolling down
-      top:        "vs-subnav--top",         // when above offset
-      notTop:     "vs-subnav--not-top",     // when below offset
-      bottom:     "vs-subnav--bottom",      // when at bottom of scroll area
-      notBottom:  "vs-subnav--not-bottom"   // when not at bottom of scroll area
-    }
-  });
+  let subnavEvents = {};
+
+  if (subnav){
+    var vsSubnav = new Headroom(subnav, {
+      offset: 545,
+      tolerance: 0,
+      classes: {
+        initial:    "animated",               // when element is initialised
+        pinned:     "vs-subnav",              // when scrolling up
+        unpinned:   "vs-subnav--unpinned",    // when scrolling down
+        top:        "vs-subnav--top",         // when above offset
+        notTop:     "vs-subnav--not-top",     // when below offset
+        bottom:     "vs-subnav--bottom",      // when at bottom of scroll area
+        notBottom:  "vs-subnav--not-bottom"   // when not at bottom of scroll area
+      }
+    });
+
+    subnavEvents = {
+      onPin: function() {
+        if (!subnav) {
+          return;
+        }
+        subnav.add('vs-subnav--pinned-on-main-nav');
+        let offsets = getOffsets();
+        vsSubnav.offset = offsets.offset - offsets.offset_deviation;
+      },
+
+      onUnpin: function() {
+        if (!subnav) {
+          return;
+        }
+        subnav.remove('vs-subnav--pinned-on-main-nav');
+        let offsets = getOffsets();
+        vsSubnav.offset = offsets.offset;
+      }
+    };
+
+    vsSubnav.init();
+  }
 
   let vsHeader = new Headroom(header, {
     offset: 20,
@@ -122,25 +148,21 @@ function headerAnimation() {
       notBottom:  "vs-header--not-bottom"   // when not at bottom of scroll area
     },
 
-    onUnpin: function() {
-      $('.vs-subnav').removeClass('vs-subnav--pinned-on-main-nav');
-      let offsets = getOffsets();
-      vsSubnav.offset = offsets.offset;
-    },
-
     onNotTop: function() {
       $('.vs-user-menu__trigger').removeClass('vs-user-menu__trigger--active');
       $('.vs-user-dropdown').removeClass('vs-user-dropdown--open');
     },
 
-     onPin: function() {
-       $('.vs-subnav').addClass('vs-subnav--pinned-on-main-nav');
-       let offsets = getOffsets();
-       vsSubnav.offset = offsets.offset - offsets.offset_deviation;
-     }
+    subnavEvents
   });
 
+  vsHeader.init();
+
   onResize(() => {
+    if (!subnav) {
+      return;
+    }
+
     let scrollTop = $(document).scrollTop();
     let subNavWrapperPosition = $('.vs-region--subnav-wrapper').position();
     let mainNav = $('.vs-header');
@@ -148,27 +170,19 @@ function headerAnimation() {
     let offsets = getOffsets();
 
     // If main nav has class pinned remove its height from subnav distance to top
-    if (subNavWrapperPosition){
-      let offset = mainNavPinned ? scrollTop < subNavWrapperPosition.top - mainNav.height() : scrollTop < subNavWrapperPosition.top;
+    let offset = mainNavPinned ? scrollTop < subNavWrapperPosition.top - mainNav.height() : scrollTop < subNavWrapperPosition.top;
 
-      if (offset) {
-        vsSubnav.offset = offsets.offset;
-        subnav.removeClass('vs-subnav--unpinned').removeClass('vs-subnav--not-top').removeClass('vs-subnav--pinned-on-main-nav');
-      } else {
-        vsSubnav.offset = offsets.offset - offsets.offset_deviation;
-        subnav.addClass('vs-subnav--unpinned').addClass('vs-subnav--not-top');
+    if (offset) {
+      vsSubnav.offset = offsets.offset;
+      subnav.classList.remove('vs-subnav--unpinned', 'vs-subnav--not-top', 'vs-subnav--pinned-on-main-nav');
+    } else {
+      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
+      subnav.classList.add('vs-subnav--unpinned', 'vs-subnav--not-top');
 
-        if (mainNavPinned) {
-          subnav.addClass('vs-subnav--pinned-on-main-nav');
-        }
+      if (mainNavPinned) {
+        subnav.classList.add('vs-subnav--pinned-on-main-nav');
       }
     }
   });
 
-
-  vsHeader.init();
-  if (subnav){
-    console.log("entrei dudeeeee");
-    vsSubnav.init();
-  }
 }
