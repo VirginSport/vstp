@@ -79,6 +79,13 @@ function virgin_user_page_basket_claim($rego) {
  * Page callback for the basket login signup route
  */
 function virgin_user_page_basket_login_signup() {
+  // FIXME If the user is already logged in we need to generate a token and send the user to attendly.
+  // FIXME What if attendly's session cookie is not set when the user lands in here? What do we do?
+  // TODO Generate an attendly token and redirect the user if is logged in
+
+  _virgin_user_page_basket_redirect('/user/login', array(
+    'action' => 'checkout'
+  ));
 }
 
 /**
