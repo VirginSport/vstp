@@ -81,12 +81,6 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $end = format_date($end_date, 'custom', 'd M y', 'UTC');
   $date = sprintf('%s - %s', $start, $end);
 
-  // Calculate the number of days left
-  $from = new DateTime('now');
-  $from->setTimestamp($start_date);
-  $now = new DateTime('now');
-  $days_left = $from->diff($now)->days;
-
   // Fetch the image
   $atom = $g->relation('field_header_image');
 
@@ -94,7 +88,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'title' => $g->fieldGetOne('title_field', 'Festival'),
     'date' => $date,
     'status' => $g->fieldGetOne('field_status'),
-    'days_left' => ($days_left < 32 && $end_date > time()) ? $days_left : NULL,
+    'days_left' => virginsport_days_left($start_date),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'link' => '', // Small link at the bottom, not used atm
