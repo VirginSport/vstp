@@ -31,16 +31,53 @@
   }
   
   /**
+   * Gets the query parameters in the URL
+   *
+   * @returns {{}}
+   *  An object containing the list of URL query parameters
+   */
+  function query() {
+    return (function(a) {
+      if (a == "") return {};
+      var b = {};
+      for (var i = 0; i < a.length; ++i) {
+        var p=a[i].split('=', 2);
+        if (p.length != 2) continue;
+        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+      }
+      return b;
+    })(window.location.search.substr(1).split('&'))
+  }
+  
+  /**
    * Executes on document ready
    */
   $(document).ready(function () {
+    var params = query();
 
     // Register a click handler to all the region selection links to
-    // ensure the user preference is set.
-    $('a[region-hostname]').click(function () {
+    // ensure the user preference is set, or that a redirection
+    // happens if a destination parameter was set in the URL.
+    $('a[region-hostname]').click(function (e) {
+      var $el = $(this);
 
       // Store the region preference cookie to last for a year
-      createCookie('vs_region_hostname', $(this).attr('region-hostname'), 365);
+      createCookie('vs_region_hostname', $el.attr('region-hostname'), 365);
+  
+      // If there's a destination parameter in the URL stop the
+      // default behaviour of the link, and redirect the user
+      // to the hostname he selected appended with the destination
+      // path and additional query parameters if passed.
+      if (params.destination) {
+        e.preventDefault();
+  
+        var redirect_params = '';
+        if (params['destination-params']) {
+          redirect_params = '?' + $.param(JSON.parse(window.atob(params['destination-params'])));
+        }
+  
+        window.location = $el.attr('href') + params.destination + redirect_params;
+      }
     });
   });
   
