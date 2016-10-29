@@ -41,7 +41,7 @@ class VirginAttendlyClient {
     $this->url = $url;
 
     $this->client = new Client($api_url, array(
-      'auth' => array($this->username, $this->password)
+      'auth' => array($username, $password)
     ));
   }
 
