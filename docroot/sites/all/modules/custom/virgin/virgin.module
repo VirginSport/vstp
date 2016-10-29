@@ -266,3 +266,30 @@ function virgin_attendly_client() {
 
   return $client;
 }
+
+/**
+ * Return an array of ticket banner with the following properties:
+ *  - key
+ *  - desktop title
+ *  - mobile title
+ *  - color
+ *
+ * @return array
+ */
+function virgin_ticket_banner_properties() {
+  $tickets = &drupal_static(__FUNCTION__, array());
+
+  if (empty($tickets)) {
+    $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
+    $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+
+    while ($data = fgetcsv($file)) {
+      $tickets[$data[0]] = $data;
+    }
+
+    fclose($file);
+  }
+
+  return $tickets;
+}
+
