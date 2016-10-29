@@ -8,6 +8,14 @@
   padding: 2rem 0;
 }
 
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+[class*="vs-region"] {
+  position: relative;
+}
+
 // Modifiers
 // ----------------------------------------------------------------------------
 
@@ -26,6 +34,19 @@
     @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
   }
 }
+
+.vs-region--subnav-wrapper {
+  min-height: 4.5625rem;
+
+  @include media-breakpoint-up(md) {
+    min-height: 4.625rem;
+  }
+
+  + .vs-region {
+    padding-top: 0;
+  }
+}
+
 
 // Responsive
 // ----------------------------------------------------------------------------

@@ -125,8 +125,9 @@ function virgin_package_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_package';
   $strongarm->value = array(
-    0 => 'moderation',
-    1 => 'revision',
+    0 => 'revision',
+    1 => 'moderation',
+    2 => 'panelizer',
   );
   $export['node_options_package'] = $strongarm;
 

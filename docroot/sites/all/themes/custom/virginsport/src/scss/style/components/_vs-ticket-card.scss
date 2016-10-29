@@ -1,0 +1,705 @@
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-ticket-card,
+.vs-ticket-card {
+  display: block;
+
+  .container {
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+  }
+
+  & [class*='col-'] {
+    padding-left: 0.3125rem;
+    padding-right: 0.3125rem;
+  }
+
+  & + & {
+    margin-top: 1.25rem;
+  }
+}
+
+.vs-ticket-card-wrapper {
+  @include flexbox();
+  @include flex-direction(column);
+  @include align-items(strech);
+
+  position: relative;
+  min-width: 19.375rem;
+  min-height: 14.3125rem;
+  background-position: center center;
+  background-size: cover;
+
+  border-radius: .625rem;
+  padding: 0.875rem 0.9375rem 0.875rem 0.9375rem;
+  color: $c-white;
+  overflow: hidden;
+
+  & [class*='col-'] {
+     padding-left: 0;
+     padding-right: 0;
+  }
+
+  > .row:first-child {
+    @include flex(1, 0);
+    z-index: 1;
+  }
+
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-ticket-card__content-wrapper {
+  @include flexbox();
+  @include flex-direction(column);
+  @include flex(1, 0);
+  @include justify-content(space-between);
+
+  max-width: 100%;
+}
+
+.vs-ticket-card__title {
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.375rem;
+  margin: 0 0 0.9375rem 0;
+  padding: 0;
+
+  text-transform: uppercase;
+}
+
+.vs-ticket-card__header {
+  min-height: 4.5rem;
+}
+
+.vs-ticket-card__details {
+  min-height: 0.9375rem;
+  // padding-bottom: 2.0625rem;
+  padding-bottom: 1.875rem;
+}
+
+.vs-ticket-card__date,
+.vs-ticket-card__time {
+
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1.125rem;
+  padding: 0;
+  margin: 0;
+}
+
+.vs-ticket-card__date {
+  text-transform: uppercase;
+}
+
+.vs-ticket-card__participant-mame {
+  @include border-radius(0.125rem);
+
+  display: inline-block;
+  background-color: rgba($c-white, .2);
+  opacity: .8;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+
+  margin-top: 0.3125rem;
+  margin-bottom: 0.3125rem;
+  padding: 0.21875rem 0.625rem;
+}
+
+.vs-ticket-card__edit-ticket {
+  @include transition(all .5s ease-in-out);
+  display: block;
+
+  font-family: $font-family-sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+
+  color: $c-white;
+  text-decoration: underline;
+  cursor: pointer;
+
+  margin-top: 0.3125rem;
+
+  &:hover, &:active, &:focus {
+    opacity: .7;
+    color: $c-white;
+    text-decoration: underline;
+  }
+}
+
+.vs-ticket-card__past-event-details {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.875rem;
+  border-bottom: 0.0625rem solid $c-white;
+}
+
+.vs-ticket-card__club,
+.vs-ticket-card__team,
+.vs-ticket-card__session-time,
+.vs-ticket-card__distance {
+  margin-top: 0.9375rem;
+
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: $c-white;
+
+  > p {
+    font-family: $font-family-serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+  }
+}
+
+.vs-ticket-card__days-left-wrapper {
+  @include box-shadow(inset 0 0 0 0.125rem $c-white);
+  display: block;
+  float: right;
+  margin-right: 1.1875rem;
+
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+
+  font-weight: 500;
+
+  text-align: center;
+}
+
+.vs-ticket-card__days-left {
+  display: block;
+
+  font-size: 1.875rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.065rem;
+  padding-top: 1.125rem;
+}
+
+.vs-ticket-card__days-left-label {
+  font-family: $font-family-serif;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+.vs-ticket-card__ctas-wrapper {
+  position: relative;
+}
+
+.vs-ticket-card__cta-wrapper {
+  min-height: 1.875rem;
+  text-align: center;
+}
+
+.vs-ticket-card__cta {
+  @include transition(all .5s ease-in-out);
+
+  position: relative;
+  display: inline-block;
+
+  // padding-top: 2.9375rem;
+  vertical-align: top;
+  width: 4.5rem;
+
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: $c-white;
+  cursor: pointer;
+
+  &:hover, &:active, &:focus {
+    opacity: .7;
+    color: $c-white;
+  }
+
+  > i {
+    display: block;
+    min-height: 3.1rem;
+    line-height: 3.1rem;
+  }
+
+  &--invite-fans, &--fans {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 3.1rem;
+    }
+  }
+
+  &--join-team {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 2rem;
+    }
+  }
+
+  &--about-yourself {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 3rem;
+    }
+  }
+
+  &--about-yourself-feedback {
+    @extend .vs-ticket-card__cta;
+
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+
+    height: 100%;
+  }
+
+  &--buy-gear {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 2.2rem;
+    }
+  }
+
+  &--full-results {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 2rem;
+    }
+  }
+
+  &--event-photos {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 2.7rem;
+    }
+  }
+
+  &--event-review {
+    @extend .vs-ticket-card__cta;
+
+    > i {
+      font-size: 2.7rem;
+    }
+  }
+
+}
+
+.vs-ticket-card__social-wrapper {
+  min-width: 1.875rem;
+  min-height: 1.875rem;
+
+  text-align: right;
+}
+
+.vs-ticket-card__ribbon {
+  display: none;
+
+  position: absolute;
+  background-color: rgba($c-black, .4);
+
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: .625rem;
+  line-height: .75rem;
+  text-align: center;
+  text-transform: uppercase;
+
+  &--vip, &--hero {
+    @include box-shadow(0 0 0.125rem 0 rgba($c-black, .2));
+
+    display: block;
+
+    position: absolute;
+    top: -0.0625rem;
+    right: .625rem;
+    width: 4.0625rem;
+    height: 3.5rem;
+
+    padding: 1rem .75rem 0;
+
+    &:before,
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      position: absolute;
+      bottom: -.5625rem;
+    }
+
+    &:before {
+      border-color: rgba($c-black, .4) transparent transparent transparent;
+      border-width: 0.5625rem 2rem 0 0;
+      left: 0;
+    }
+
+    &:after {
+      border-color: transparent rgba($c-black, .4) transparent transparent;
+      border-width: 0 2rem 0.5625rem 0;
+      right: 0;
+    }
+  }
+}
+
+.vs-ticket-card__ribbon,
+.vs-ticket-card__ribbon-desktop-bg {
+  @include box-shadow(0 0 0.125rem 0 rgba($c-black, .2));
+
+  background-color: rgba($c-black, .4);
+
+  &--vip {
+    background-image: linear-gradient(28deg, #C49538 43%, #E8C87E 100%);
+
+    &:before {
+      border-color: #C49538 transparent transparent transparent;
+    }
+
+    &:after {
+      border-color: transparent #C49538 transparent transparent;
+    }
+  }
+
+  &--hero {
+    background-color: #2084FE;
+
+    &:before {
+      border-color: #2084FE transparent transparent transparent;
+      left: 0;
+    }
+
+    &:after {
+      border-color: transparent #2084FE transparent transparent;
+    }
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-ticket-card--color-#{$color} {
+
+    :not(.vs-ticket-card__ribbon-desktop-wrapper) > .vs-ticket-card__ribbon--hero,
+    .vs-ticket-card__ribbon-desktop-bg--hero {
+
+      background-color: map_get($map, 'solid-color');
+
+      &:before {
+        border-color: map_get($map, 'solid-color') transparent transparent transparent;
+        left: 0;
+      }
+
+      &:after {
+        border-color: transparent map_get($map, 'solid-color') transparent transparent;
+      }
+    }
+
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+  .vs-ticket-card__social-wrapper:first-child {
+    @include make-col(12);
+  }
+
+  .vs-ticket-card__cta-wrapper {
+    @include make-col(4);
+
+    margin-top: 1rem;
+
+    &:nth-child(-n + 3) {
+      margin-top: 0;
+    }
+
+    &:nth-child(1), &:nth-child(3n + 4) {
+      text-align: left;
+    }
+
+    &:nth-child(2), &:nth-child(3n + 5) {
+      text-align: center;
+    }
+
+    &:nth-child(3n) {
+      text-align: right;
+    }
+
+    &:nth-child(1) + .vs-ticket-card__social-wrapper,
+    &:nth-child(3n + 4) + .vs-ticket-card__social-wrapper {
+      @include make-col(8);
+    }
+
+    &:nth-child(2) + .vs-ticket-card__social-wrapper,
+    &:nth-child(3n + 5) + .vs-ticket-card__social-wrapper {
+      @include make-col(4);
+    }
+
+    &:nth-child(3n) + .vs-ticket-card__social-wrapper {
+      @include make-col(12);
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+
+  .vs-ticket-card-wrapper {
+    padding: 1.25rem 1.25rem 1.3125rem 1.875rem;
+    min-height: 20.5rem;
+  }
+
+  .vs-ticket-card__title {
+    margin: 0.625rem auto 0.6875rem 0.0625rem;
+
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+  }
+
+  .vs-ticket-card__header {
+    padding-right: 0.625rem;
+    min-height: 6.0625rem;
+  }
+
+  .vs-ticket-card__details {
+    min-height: 6rem;
+    // padding-bottom: 4.0625rem;
+    padding-bottom: 2.4375rem;
+  }
+
+  .vs-ticket-card__date,
+  .vs-ticket-card__time {
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+  }
+
+  .vs-ticket-card__participant-mame {
+    font-size: 1rem;
+    line-height: 1.25rem;
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.0625rem;
+    padding: 0.46875rem 0.625rem;
+  }
+
+  .vs-ticket-card__edit-ticket {
+    font-size: 1rem;
+    line-height: 1.25rem;
+
+    margin-top: 0.6875rem;
+  }
+
+  .vs-ticket-card__past-event-details {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: none;
+  }
+
+  .vs-ticket-card__club,
+  .vs-ticket-card__team,
+  .vs-ticket-card__session-time,
+  .vs-ticket-card__distance {
+    margin-top: 0;
+
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+
+    > p {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  .vs-ticket-card__ctas-wrapper {
+    max-width: 38.125rem;
+    margin-bottom: 0.625rem;
+    margin-top: 0;
+  }
+
+  .vs-ticket-card__cta-wrapper {
+    display: inline-block;
+    width: 9.1175rem;
+    margin-right: 3.125rem;
+    text-align: center;
+  }
+
+  .vs-ticket-card__social-wrapper {
+    @include flex(1, 0);
+    @include align-self(flex-end);
+
+    display: block;
+    float: right;
+    margin-right: 1.25rem;
+  }
+
+  .vs-ticket-card__cta {
+    width: auto;
+    min-width: 5.5rem;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+
+    > i {
+      min-height: 6rem;
+      line-height: 6rem;
+    }
+
+    &--invite-fans > i, &--fans > i {
+      font-size: 6rem;
+    }
+
+    &--join-team > i {
+      font-size: 4.25rem;
+    }
+
+    &--about-yourself > i {
+      font-size: 6rem;
+    }
+
+    &--buy-gear > i {
+      font-size: 4.2rem;
+  }
+
+    &--full-results > i {
+      font-size: 4rem;
+    }
+
+    &--event-photos > i {
+      font-size: 4rem;
+    }
+
+    &--event-review > i {
+      font-size: 4rem;
+    }
+  }
+
+  .vs-ticket-card__social-wrapper {
+    // min-width: 16.25rem;
+    min-height: 3.125rem;
+  }
+
+  .vs-ticket-card__ribbon-desktop-wrapper {
+    @include flexbox();
+    @include align-items(center);
+
+    max-width: 3.125rem;
+
+  }
+
+  .vs-ticket-card__ribbon-desktop-bg {
+    @include border-radius(.625rem);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3.125rem;
+
+    background-color: rgba($c-black, .4);
+  }
+
+  .vs-ticket-card__ribbon {
+    @include box-shadow(none);
+    background-color: transparent;
+
+    position: static;
+    display: inline-block;
+    width: 3.125rem;
+    height: auto;
+    padding: 0.625rem 0;
+
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    overflow: hidden;
+
+    span {
+      display: inline-block;
+
+      line-height: 3.125rem;
+      white-space: nowrap;
+
+      transform: translate(0, 100%) rotate(-90deg);
+      transform-origin: 0 0;
+
+      &:after {
+        content: "";
+        float: left;
+        margin-top: 100%;
+      }
+    }
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+}
+
+@include media-breakpoint-up(lg) {
+
+  .vs-ticket-card__ctas-wrapper {
+    max-width: 51.875rem;
+  }
+
+  .vs-ticket-card__session-time > p,
+  .vs-ticket-card__distance > p {
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+  }
+
+}
+
+@include media-breakpoint-up(xl) {
+
+  .vs-ticket-card__ctas-wrapper {
+    max-width: 56.25rem;
+  }
+
+  .vs-ticket-card__cta-wrapper {
+    width: auto;
+    text-align: left;
+  }
+
+  .vs-ticket-card-wrapper {
+    margin-left: 4.0625rem;
+    margin-right: 4.0625rem;
+  }
+
+  .vs-ticket-card__club {
+    margin-left: 2.25rem;
+    max-width: 8.4375rem;
+  }
+
+  .vs-ticket-card__team {
+    max-width: 11.8125rem;
+  }
+
+  .vs-ticket-card__session-time {
+    max-width: 8.3125rem;
+  }
+
+  .vs-ticket-card__distance {
+    max-width: 4.75rem;
+  }
+
+}

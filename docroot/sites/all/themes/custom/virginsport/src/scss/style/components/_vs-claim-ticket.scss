@@ -6,6 +6,11 @@ vs-claim-ticket,
   display: block;
 }
 
+vs-claim-ticket + vs-claim-ticket,
+.vs-claim-ticket + .vs-claim-ticket {
+  margin-top: 0.9375rem;
+}
+
 // Elements
 // ----------------------------------------------------------------------------
 
@@ -19,8 +24,6 @@ vs-claim-ticket,
 }
 
 .vs-claim-ticket__content-wrapper {
-  min-height: 9.9375rem;
-
   padding-left: 0;
   padding-right: 0;
 }
@@ -48,6 +51,8 @@ vs-claim-ticket,
   font-size: 1.125rem;
   line-height: 1.25rem;
 
+  color: $c-black;
+
   text-transform: uppercase;
 }
 
@@ -61,12 +66,26 @@ vs-claim-ticket,
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.25rem;
+
+  color: $c-black;
 }
 
 // Responsive
 // ----------------------------------------------------------------------------
 
+@include media-breakpoint-down(sm) {
+  .vs-claim-ticket-wrapper {
+    margin-left: -0.3125rem;
+    margin-right: -0.3125rem;
+  }
+}
+
 @include media-breakpoint-up(md) {
+
+  vs-claim-ticket + vs-claim-ticket,
+  .vs-claim-ticket + .vs-claim-ticket {
+    margin-top: 4.4375rem;
+  }
 
   .vs-claim-ticket__background {
     min-height: 11.58125rem;

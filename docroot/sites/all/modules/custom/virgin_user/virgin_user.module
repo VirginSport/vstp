@@ -39,6 +39,15 @@ define('VIRGIN_USER_BASKET_COOKIE', 'vs_basket_region_hostname');
 function virgin_user_menu() {
   $items = array();
 
+  $items['basket/ticket/%/%'] = array(
+    'title' => 'Modify Ticket',
+    'page callback' => 'virgin_user_page_basket_ticket_action',
+    'page arguments' => array(2, 3),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   $items['basket/claim/%'] = array(
     'title' => 'Claim Ticket',
     'page callback' => 'virgin_user_page_basket_claim',
