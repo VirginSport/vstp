@@ -35,6 +35,21 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
 }
 
 /**
+ * Implements hook_form_alter()
+ *
+ * Change the access to region field_hostname
+ *
+ */
+
+function virgin_base_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  if($user->uid != 1 && ($user->roles[5] || $user->roles[4])){
+    $form['field_hostname']['#access'] = FALSE;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
  *
  * Modifies the fieldable panel panes edit form for improved editing interface.
