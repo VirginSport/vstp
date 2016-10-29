@@ -376,7 +376,7 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 }
 
 /**
- * Bind the current user's attendly session with his virgin sport account
+ * Bind the current user attendly session with his virgin sport account
  *
  * @return bool
  *  TRUE the session was successfuly bound, FALSE otherwise
@@ -384,7 +384,7 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 function virgin_user_bind_attendly_checkout_session() {
   global $user;
 
-  // Attempt to get the user's virgin sport ID, and if it fails, bail out
+  // Attempt to get the user virgin sport ID, and if it fails, bail out now
   $wrapper = entity_metadata_wrapper('user', $user);
   $sugar_id = $wrapper->field_sugar_id->value();
 
