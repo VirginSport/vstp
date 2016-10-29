@@ -50,7 +50,7 @@ function virgin_user_page_basket_ticket_action($rego_id, $action) {
 
   // Finally, attempt to redirect the user to attendly, and if it fails
   // for some reason redirect the user back to his profile page and let
-  // him know that he can't make the changes he want at the moment.
+  // him know that he can't make the changes he wants at the moment.
   try {
     drupal_goto(virgin_attendly_client()->buildTicketActionPath($rego_id, $action));
   } catch (\Exception $e) {
@@ -128,7 +128,7 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
 
   // If we reached this point, then there's an authenticated user with
   // a favorite region, which means we can store a cookie with his
-  // favorite hostname, before redirecting him to his prefer hostname.
+  // favorite hostname, before redirecting him to his prefered hostname.
   setcookie(VIRGIN_REGION_COOKIE, $user_hostname);
   setcookie(VIRGIN_USER_BASKET_COOKIE, $user_hostname);
 
