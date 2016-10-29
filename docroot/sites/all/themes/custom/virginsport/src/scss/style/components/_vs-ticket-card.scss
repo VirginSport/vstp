@@ -34,6 +34,7 @@ vs-ticket-card,
   border-radius: .625rem;
   padding: 0.875rem 0.9375rem 0.875rem 0.9375rem;
   color: $c-white;
+  overflow: hidden;
 
   & [class*='col-'] {
      padding-left: 0;
@@ -42,6 +43,7 @@ vs-ticket-card,
 
   > .row:first-child {
     @include flex(1, 0);
+    z-index: 1;
   }
 
   .row {
@@ -261,7 +263,7 @@ vs-ticket-card,
     @include flexbox;
     @include flex-direction(column);
     @include justify-content(center);
-    
+
     height: 100%;
   }
 
@@ -550,8 +552,6 @@ vs-ticket-card,
   }
 
   .vs-ticket-card__cta {
-    // padding-top: 4.3125rem;
-
     width: auto;
     min-width: 5.5rem;
 
@@ -618,6 +618,7 @@ vs-ticket-card,
   }
 
   .vs-ticket-card__ribbon {
+    @include box-shadow(none);
     background-color: transparent;
 
     position: static;

@@ -16,6 +16,14 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme'
   );
 
+  $themes['virginsport_color'] = array(
+    'template' => 'virginsport-color',
+    'variables' => array(
+      'brand_color' => '',
+      'brand_pattern' => '',
+    )
+  ) + $default;
+
   $themes['virginsport_picture'] = array(
     'template' => 'virginsport-picture',
     'variables' => array(

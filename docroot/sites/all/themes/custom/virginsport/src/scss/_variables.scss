@@ -66,6 +66,13 @@ $color-schemes: (
     to: #4231CB,
     rotate: 135deg
   ),
+  blue-solid: (
+    solid-color: $c-blue,
+    text-color: $c-white,
+    from: $c-blue,
+    to: $c-blue,
+    rotate: 135deg
+  ),
   teal: (
     solid-color: $c-teal,
     text-color: $c-white,
@@ -73,18 +80,39 @@ $color-schemes: (
     to: #001642,
     rotate: 135deg
   ),
+  teal-solid: (
+    solid-color: $c-teal,
+    text-color: $c-teal,
+    from: $c-teal,
+    to: $c-teal,
+    rotate: 135deg
+  ),
   orange: (
     solid-color: $c-orange,
     text-color: $c-white,
-    from: #FF5858,
-    to: #FFE386,
-    rotate: 135deg
+    from: #FFE386,
+    to: #FF5858,
+    rotate: -90deg
+  ),
+  orange-solid: (
+    solid-color: $c-orange,
+    text-color: $c-orange,
+    from: $c-orange,
+    to: $c-orange,
+    rotate: -90deg
   ),
   purple: (
     solid-color: $c-purple,
     text-color: $c-white,
     from: #9D50BB,
     to: #3A2899,
+    rotate: 135deg
+  ),
+  purple-solid: (
+    solid-color: $c-purple,
+    text-color: $c-purple,
+    from: $c-purple,
+    to: $c-purple,
     rotate: 135deg
   ),
   brown: (
@@ -94,11 +122,25 @@ $color-schemes: (
     to: #061161,
     rotate: 135deg
   ),
+  brown-solid: (
+    solid-color: $c-brown,
+    text-color: $c-brown,
+    from: $c-brown,
+    to: $c-brown,
+    rotate: 135deg
+  ),
   rose: (
     solid-color: $c-rose,
     text-color: $c-white,
-    from: #F857A6,
-    to: #FF5858,
+    from: #FF5858,
+    to: #F857A6,
+    rotate: 135deg
+  ),
+  rose-solid: (
+    solid-color: $c-rose,
+    text-color: $c-rose,
+    from: $c-rose,
+    to: $c-rose,
     rotate: 135deg
   ),
   violet: (
@@ -107,6 +149,49 @@ $color-schemes: (
     from: #FB8B5F,
     to: #504EA1,
     rotate: 135deg
+  ),
+  violet-solid: (
+    solid-color: $c-violet,
+    text-color: $c-violet,
+    from: $c-violet,
+    to: $c-violet,
+    rotate: 135deg
+  )
+);
+
+// Pattern/Color schemes
+$pattern-schemes: (
+  wave: (
+    blue:         ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    blue-solid:   ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    teal:         ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    teal-solid:   ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    orange:       ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    orange-solid: ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    purple:       ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    purple-solid: ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    brown:        ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    brown-solid:  ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    rose:         ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    rose-solid:   ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    violet:       ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% ),
+    violet-solid: ( img: 'vs-color-wave-1.svg', opacity: .5, positionX: -60%, positionY: bottom, size: 160%, size-md: 140%, size-lg: 130% )
+  ),
+  circle: (
+    blue:         ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    blue-solid:   ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    teal:         ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    teal-solid:   ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    orange:       ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    orange-solid: ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    purple:       ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    purple-solid: ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    brown:        ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    brown-solid:  ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    rose:         ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    rose-solid:   ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    violet:       ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% ),
+    violet-solid: ( img: 'vs-color-circle-1.svg', opacity: .15, positionX: left, positionY: top, size: 180% )
   )
 );
 
