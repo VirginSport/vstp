@@ -19,6 +19,8 @@ class VirginAttendlyClient {
   protected $client;
 
   /**
+   * The attendly user facing instance url
+   *
    * @var string
    */
   protected $url;
