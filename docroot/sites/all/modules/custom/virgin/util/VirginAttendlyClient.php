@@ -46,6 +46,36 @@ class VirginAttendlyClient {
   }
 
   /**
+   * Binds an attendly session with a given virgin sport ID
+   *
+   * @param $attendly_session_id
+   *  The attendly session ID
+   * @param $virgin_sport_id
+   *  The virgin sport user ID
+   * @return string
+   *  The user checkout token, that needs to be set as a cookie in order for
+   *  attendly to recognize the user as having been successfuly authorized
+   *  to act as the given virgin sport user.
+   * @throws \Exception
+   *  Whenever a token could not be fetched from Attendly
+   */
+  public function bindCheckoutSession($attendly_session_id, $virgin_sport_id) {
+    $data = array(
+      'SessionID' => $attendly_session_id,
+      'VirginSportID' => $virgin_sport_id
+    );
+
+    $response = $this->client->post('/v2/virgin/requestusertoken', null, json_encode($data))->send();
+    $response_data = $response->json();
+
+    if (empty($response_data['Result']['Token'])) {
+      throw new \Exception("Could not bind session to a checkout token");
+    }
+
+    return $response_data['Result']['Token'];
+  }
+
+  /**
    * Builds the full path to make an action in a ticket
    *
    * @param $rego_id
