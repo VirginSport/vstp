@@ -145,7 +145,7 @@ function virgin_user_page_basket_claim($rego) {
   // FIXME the path for the claim can't be /user/login due to the fact the user might be already logged in!
 
   _virgin_user_page_basket_redirect('/user/login', array(
-    'action' => 'claim',
+    'basket-action' => 'claim',
     'rego' => $rego
   ));
 }
@@ -159,7 +159,7 @@ function virgin_user_page_basket_login_signup() {
   // to be able to checkout.
   if (user_is_anonymous()) {
     _virgin_user_page_basket_redirect('/user/login', array(
-      'action' => 'checkout'
+      'basket-action' => 'checkout'
     ));
 
     return;
