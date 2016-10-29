@@ -22,7 +22,15 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <div class="vs-package-card-wrapper materialShadow" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>">
+        <div
+          class="vs-package-card-wrapper vs-color-container materialShadow"
+          <?php if(!empty($card_image->property('sid'))): ?>
+          style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"
+          <?php endif; ?>
+        >
+          <?php if(empty($card_image->property('sid'))): ?>
+            <?php print theme('virginsport_color', array('brand_color' => $card_color, 'brand_pattern' => $card_pattern)); ?>
+          <?php endif; ?>
 
           <div class="vs-package-card-content">
             <?php if (!empty($package_title)): ?>
