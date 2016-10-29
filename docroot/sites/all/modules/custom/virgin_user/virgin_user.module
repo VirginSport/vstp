@@ -34,6 +34,16 @@ define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900); // 60 * 15
 define('VIRGIN_USER_BASKET_COOKIE', 'vs_basket_region_hostname');
 
 /**
+ * The name of the cookie that hosts attendly session ID
+ */
+define('VIRGIN_USER_ATTENDLY_SESSION_COOKIE', 'attendly-session');
+
+/**
+ * The name of the cookie that carries attendly security token value
+ */
+define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
+
+/**
  * Implements hook_menu().
  */
 function virgin_user_menu() {
