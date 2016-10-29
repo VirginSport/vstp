@@ -74,7 +74,6 @@ vs-header,
 }
 
 .vs-header__basket {
-  @include transition(opacity .5s ease-in-out);
   background: transparent url('../img/basket.svg') no-repeat 0 0;
   background-size: contain;
   display: inline-block;
@@ -84,22 +83,12 @@ vs-header,
   height: 1.6875rem;
   position: relative;
   top: -.125rem;
-
-  &:hover {
-    opacity: .7;
-  }
 }
 
 .vs-header__basket__value {
   font-size: .625rem;
   position: relative;
   top: 4px;
-  color: $c-white;
-}
-
-.vs-header__link {
-  display: block;
-  height: 100%;
 }
 
 
