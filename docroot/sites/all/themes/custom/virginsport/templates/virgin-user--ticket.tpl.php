@@ -22,7 +22,7 @@ $event_days_left = virginsport_days_left($event_start_date);
             <div class="col-xs-9 col-md-5 col-lg-4 vs-ticket-card__header">
               <?php if (!empty($ticket->name)): ?>
                 <h1 class="vs-ticket-card__title">
-                  <?php print $ticket->name; ?>
+                  <?php print check_plain($ticket->name); ?>
                 </h1>
               <?php endif; ?>
               <div class="vs-ticket-card__details">
@@ -40,12 +40,12 @@ $event_days_left = virginsport_days_left($event_start_date);
 
                 <?php if (empty($member_is_participant)): ?>
                   <p class="vs-ticket-card__participant-mame">
-                    <?php print t("Recipient's name: @", array('@' => $ticket->first_name . ' ' . $ticket->last_name)); ?>
+                    <?php print t("Recipient's name: @", array('@' => check_plain($ticket->first_name . ' ' . $ticket->last_name))); ?>
                   </p>
                 <?php endif; ?>
 
                 <a class="vs-ticket-card__edit-ticket" href="#">
-                  Edit ticket
+                  <?php print t('Edit ticket'); ?>
                 </a>
               </div>
             </div>
@@ -58,7 +58,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                     <span class="vs-ticket-card__club-label">
                       <?php print t('club'); ?>
                     </span>
-                    <p><?php print $ticket->club_name ?></p>
+                    <p><?php print check_plain($ticket->club_name); ?></p>
                   </div>
                   <?php endif; ?>
                   <?php if ($ticket->team_name): ?>
@@ -66,7 +66,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                     <span class="vs-ticket-card__team-label">
                       <?php print t('team'); ?>
                     </span>
-                      <p><?php print $ticket->team_name ?></p>
+                      <p><?php print check_plain($ticket->team_name); ?></p>
                     </div>
                   <?php endif; ?>
                   <?php
