@@ -6,6 +6,12 @@
  */
 
 /**
+ * The attendly environment key. The value of this var is the suffix that
+ * is applied to the cookies that are created to and for attendly.
+ */
+define('VIRGIN_VAR_ATTENDLY_ENV', 'virgin_attendly_env');
+
+/**
  * The attendly user facing instance base URL variable.
  */
 define('VIRGIN_VAR_ATTENDLY_URL', 'virgin_attendly_url');
