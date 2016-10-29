@@ -200,6 +200,8 @@ $event_days_left = virginsport_days_left($event_start_date);
           </div>
         <?php endif; ?>
       </div>
+      
+      <?php print theme('virginsport_color', array('brand_color' => $brand_color, 'brand_pattern' => $brand_pattern)); ?>
     </div>
   </div>
 </div>
