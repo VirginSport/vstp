@@ -46,7 +46,7 @@ class VirginAttendlyClient {
   }
 
   /**
-   * Redirects the current user to a Attendly to make an action in a ticket
+   * Builds the full path to make an action in a ticket
    *
    * @param $rego_id
    *  The ticket rego ID
@@ -56,7 +56,7 @@ class VirginAttendlyClient {
    *  The attendly ticket action URL
    */
   public function buildTicketActionPath($rego_id, $action) {
-    $token = $this->getPostRegoAccessToken($rego_id);
+    $token = $this->getTicketActionToken($rego_id);
     $path = sprintf('%s/post/%s/%s/%s', $this->url, $action, $rego_id, $token);
 
     return $path;
@@ -70,7 +70,7 @@ class VirginAttendlyClient {
    * @throws \Exception
    *  If it was not possible to fetch an access token
    */
-  protected function getPostRegoAccessToken($rego_id) {
+  protected function getTicketActionToken($rego_id) {
     $data = array(
       'Rego' => $rego_id,
     );
