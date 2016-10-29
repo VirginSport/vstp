@@ -87,5 +87,4 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['event_end_date'] = $event_end_date;
   $vars['event_past'] = $event_end_date < time();
   $vars['event_date'] = date('l, d M Y', $event_start_date);
-  $vars['event_image_grapher'] = $event_grapher->relation('field_card_image');
 }

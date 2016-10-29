@@ -12,9 +12,6 @@ $event_days_left = virginsport_days_left($event_start_date);
   <div class="container">
     <div
       class="vs-ticket-card-wrapper materialShadow"
-      <?php if ($event_image_grapher && !empty($event_image_grapher->property('sid'))): ?>
-        style="<?php print virginsport_atom_background($event_image_grapher->getEntity()); ?>"
-      <?php endif; ?>
     >
       <div class="row">
         <div class="col-xs-12 col-md-11 vs-ticket-card__content-wrapper">
