@@ -7,6 +7,11 @@
 
 /**
  * Page callback for doing post-checkout actions in tickets
+ *
+ * @param string $rego_id
+ *  The ID of the rego
+ * @param string $action
+ *  The key of the value
  */
 function virgin_user_page_basket_ticket_action($rego_id, $action) {
   global $user;
