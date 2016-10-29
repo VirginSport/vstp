@@ -6,6 +6,26 @@
  */
 
 /**
+ * The attendly user facing instance base URL variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_URL', 'virgin_attendly_url');
+
+/**
+ * The attendly API instance base URL variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_URL', 'virgin_attendly_api_url');
+
+/**
+ * The attendly API username variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_USER', 'virgin_attendly_api_user');
+
+/**
+ * The attendly API password variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_PASS', 'virgin_attendly_api_pass');
+
+/**
  * Implements hook_menu().
  */
 function virgin_menu() {
@@ -224,4 +244,25 @@ function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0
   }
 
   return $default;
+}
+
+/**
+ * Gets the global instance of an attendly client
+ *
+ * @return \VirginAttendlyClient
+ *  The configured attendly client
+ */
+function virgin_attendly_client() {
+  $client = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$client) {
+    $client = new VirginAttendlyClient(
+      variable_get(VIRGIN_VAR_ATTENDLY_URL),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_URL),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_USER),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_PASS)
+    );
+  }
+
+  return $client;
 }
