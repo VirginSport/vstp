@@ -154,13 +154,30 @@ function virgin_user_page_basket_claim($rego) {
  * Page callback for the basket login signup route
  */
 function virgin_user_page_basket_login_signup() {
-  // FIXME If the user is already logged in we need to generate a token and send the user to attendly.
-  // FIXME What if attendly's session cookie is not set when the user lands in here? What do we do?
-  // TODO Generate an attendly token and redirect the user if is logged in
 
-  _virgin_user_page_basket_redirect('/user/login', array(
-    'action' => 'checkout'
-  ));
+  // An anonymous user will have to login or register in order
+  // to be able to checkout.
+  if (user_is_anonymous()) {
+    _virgin_user_page_basket_redirect('/user/login', array(
+      'action' => 'checkout'
+    ));
+
+    return;
+  }
+
+  // If the user is authenticated, then attempt to bind the user's
+  // attendly session with the authenticated user.
+  $bound_session = virgin_user_bind_attendly_checkout_session();
+
+  // If the session was bound successfuly, then redirect the user to the
+  // checkout path in Attendly, otherwise send him to his profile page
+  // and let him know something happened.
+  if ($bound_session) {
+    drupal_goto(sprintf('%s/e/checkout', variable_get(VIRGIN_VAR_ATTENDLY_URL)));
+  } else {
+    drupal_set_message(t("Ooops! It wasn't possible to checkout your cart, please try again later."), 'warning');
+    drupal_goto('/user');
+  }
 }
 
 /**
