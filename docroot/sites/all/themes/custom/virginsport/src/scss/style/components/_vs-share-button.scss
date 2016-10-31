@@ -1,0 +1,364 @@
+
+/*
+/* Class "vs-mobile-sharer-open" should be applied to body to:
+/* show the social buttons with the background blurred
+*/
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-share-button,
+.vs-share-button {
+    @include clearfix();
+    display: inline-block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-share-button__content {
+	display: inline-flex;
+	overflow: hidden;
+	padding: .063rem;
+    text-align: center;
+}
+
+.vs-share-button__icon-button {
+	@include transition(all .3s);
+	background-color: $c-white;
+	border-radius: 50%;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 1.375rem;
+	height: 3.125rem;
+	line-height: 3.125rem;
+	margin: 0 .625rem;
+	position: relative;
+	text-align: center;
+	width: 3.125rem;
+}
+
+.vs-share-button__icon-button {
+
+	&.vs-share-button__icon-share {
+		background-color: transparent;
+	}
+
+    &.vs-share-button__icon-share:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-color: $c-white;
+		opacity: 0.2;
+		border-radius: 50%;
+	}
+}
+
+.vs-share-button__icon-button {
+
+    &.vs-share-button__icon-share {
+		font-size: 1rem;
+		margin-left: .313rem;
+		height: 1.875rem;
+		line-height: 1.875rem;
+		width: 1.875rem;
+
+		> i {
+			height: 1.875rem;
+			line-height: 1.875rem;
+			width: 1.875rem;
+			padding-right: .188rem;
+		}
+
+		&:hover span {
+			width: 2rem;
+			height: 2rem;
+			margin: -1rem;
+		}
+    }
+}
+
+.vs-share-button__icon-button span {
+	position: absolute;
+	display: block;
+	background-color: transparent;
+	border-radius: 0;
+	height: 0;
+	left: 50%;
+	margin: 0;
+	top: 50%;
+	width: 0;
+}
+.vs-share-button__icon-button:hover span {
+	@include transition(background-color .3s ease-in-out);
+	width: 3.25rem;
+	height: 3.25rem;
+	border-radius: 50%;
+	margin: -1.625rem;
+}
+.vs-share-button__icon-twitter:hover span {
+	background-color: #4099ff;
+}
+.vs-share-button__icon-facebook:hover span {
+	background-color: #3B5998;
+}
+.vs-share-button__icon-email:hover span {
+	background-color: #919191;
+}
+.vs-share-button__icon-share:hover span {
+    opacity: .7;
+	background-color: $c-white;
+}
+
+.vs-share-button__icon-button i {
+	background: none;
+	color: $c-white;
+	height: 3.125rem;
+	left: 0;
+	line-height: 3.125rem;
+	position: absolute;
+	top: 0;
+	width: 3.125rem;
+	z-index: 10;
+}
+.vs-share-button__icon-button .icon-twitter,
+.vs-share-button__icon-button .icon-facebook,
+.vs-share-button__icon-button [class*='icon-email'] {
+	color: #919191;
+}
+.vs-share-button__icon-button .icon-share {
+    color: $c-white;
+}
+.vs-share-button__icon-button:hover .icon-twitter,
+.vs-share-button__icon-button:hover .icon-facebook,
+.vs-share-button__icon-button:hover [class*='icon-email'] {
+	@include transition(color .3s ease-in-out);
+	color: $c-white;
+}
+.vs-share-button__icon-button:hover .icon-share {
+	@include transition(color .3s ease-in-out);
+    color: #919191;
+}
+
+.vs-share-button__social-links {
+	visibility: hidden;
+}
+
+.vs-share-button__social-links
+{
+	.vs-mobile-sharer-open & {
+		visibility: visible;
+	}
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-only(xs) {
+
+	.vs-share-button__icon-button {
+
+		&.vs-share-button__icon-share {
+			margin: 0;
+		}
+	}
+
+	.vs-mobile-sharer__overlay {
+		.vs-mobile-sharer-open & {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	}
+
+	.vs-share-button__social-links {
+		position: absolute;
+		top: calc(50% - 3.125rem);
+		margin-top: 2.063rem;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 3.125rem;
+		padding: 0;
+	}
+
+	.vs-mobile-sharer__title {
+		@include transition(visibility 0s, all .3s ease);
+		position: absolute;
+		top: calc(50% - 3.125rem);
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1rem;
+		font-family: $font-family-serif;
+		color: $c-white;
+		font-size: 1rem;
+		font-weight: 500;
+		letter-spacing: .0125rem;
+		text-transform: uppercase;
+		z-index: 10;
+		text-align: center;
+		opacity: 0;
+		visibility: hidden;
+
+		.vs-mobile-sharer-open & {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	.vs-share-button__icon-share--active {
+		display: none;
+	}
+
+	.vs-share-button__social-links a:first-child
+	{
+		@include transition(visibility 0s, all .3s ease);
+		@include transform(rotate(90deg));
+		position: absolute;
+		opacity: 0;
+		left: calc(50% - 1.875rem);
+		visibility: hidden;
+	}
+
+	.vs-share-button__social-links a:nth-child(2)
+	{
+		@include transition(visibility 0s, all .3s ease);
+		@include transform(rotate(-90deg));
+		position: absolute;
+		opacity: 0;
+		left: calc(50% - 1.563rem);
+		visibility: hidden;
+	}
+
+	.vs-share-button__social-links a:last-child
+	{
+		@include transition(visibility 0s, all .3s ease);
+		@include transform(rotate(-90deg));
+		position: absolute;
+		opacity: 0;
+		left: calc(50% - 2.25rem);
+		visibility: hidden;
+	}
+
+	.vs-share-button__social-links a:first-child
+	{
+		.vs-mobile-sharer-open & {
+
+			@include transform(rotate(0deg));
+			left: calc(50% - 6.563rem);
+			position: absolute; 
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.vs-share-button__social-links a:nth-child(2)
+	{
+		.vs-mobile-sharer-open & {
+
+			@include transform(rotate(0deg));
+			left: calc(50% - 2.188rem);
+			position: absolute;
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.vs-share-button__social-links a:last-child
+	{
+		.vs-mobile-sharer-open & {
+
+			@include transform(rotate(0deg));
+			left: calc(50% + 2.188rem);
+			position: absolute;
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+}
+
+@include media-breakpoint-up(sm) {
+
+	.vs-mobile-sharer {
+		display: none;
+	}
+
+	.vs-share-button__content {
+		display: block;
+		min-height: 3.125rem;
+		min-width: 16.25rem;
+    	text-align: right;
+	}
+
+	.vs-share-button__social-links {
+		display: inline-flex;
+		margin: auto;
+		padding: 0;
+	}
+
+	.vs-share-button__icon-button {
+		&.vs-share-button__icon-share {
+			font-size: 1.375rem;
+			height: 3.125rem;
+			line-height: 3.125rem;
+			width: 3.125rem;
+			margin-right: 0;
+
+			> i {
+				height: 3.125rem;
+				line-height: 3.125rem;
+				width: 3.125rem;
+			}
+
+			&:hover span {
+				width: 3.25rem;
+				height: 3.25rem;
+				margin: -1.625rem;
+			}
+		}
+	}
+
+	.vs-share-button__social-links a:first-child
+	{
+		@include transition(visibility 0s, all .2s ease .05s);
+		opacity: 0;
+		left: 100%;
+		visibility: hidden;
+		margin-left: 0;
+	}
+
+	.vs-share-button__social-links a:nth-child(2)
+	{
+		@include transition(visibility 0s, all .2s ease .08s);
+		opacity: 0;
+		left: calc(100% - 4.563rem);
+		visibility: hidden;
+	}
+
+	.vs-share-button__social-links a:last-child
+	{
+		@include transition(visibility 0s, all .2s ease .1s);
+		opacity: 0;
+		left: calc(100% - 8.875rem);
+		visibility: hidden;
+	}
+
+	.vs-share-button__social-links--active a:first-child,
+	.vs-share-button__social-links--active a:nth-child(2),
+	.vs-share-button__social-links--active a:last-child
+	{
+		visibility: visible;
+		left: 0;
+		opacity: 1; 
+	}
+
+}

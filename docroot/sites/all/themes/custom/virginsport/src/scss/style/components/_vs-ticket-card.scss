@@ -81,7 +81,6 @@ vs-ticket-card,
 
 .vs-ticket-card__details {
   min-height: 0.9375rem;
-  // padding-bottom: 2.0625rem;
   padding-bottom: 1.875rem;
 }
 
@@ -209,7 +208,6 @@ vs-ticket-card,
   position: relative;
   display: inline-block;
 
-  // padding-top: 2.9375rem;
   vertical-align: top;
   width: 4.5rem;
 
@@ -263,7 +261,8 @@ vs-ticket-card,
     @include flexbox;
     @include flex-direction(column);
     @include justify-content(center);
-
+    
+    min-height: 3.063rem;
     height: 100%;
   }
 
@@ -302,6 +301,7 @@ vs-ticket-card,
 }
 
 .vs-ticket-card__social-wrapper {
+  @include align-self(flex-end);
   min-width: 1.875rem;
   min-height: 1.875rem;
 
@@ -416,6 +416,23 @@ vs-ticket-card,
   }
 }
 
+@include media-breakpoint-only(xs) {
+
+  .vs-ticket-card__cta-wrapper {
+
+    &:nth-child(2) + .vs-ticket-card__social-wrapper,
+    &:nth-child(3n + 5) + .vs-ticket-card__social-wrapper {
+      @include make-col(4);
+    }
+
+  }
+
+  .vs-ticket-card__social-wrapper {
+    margin-bottom: -.375rem;
+  }
+  
+}
+
 @include media-breakpoint-down(sm) {
 
   .vs-ticket-card__social-wrapper:first-child {
@@ -441,6 +458,10 @@ vs-ticket-card,
 
     &:nth-child(3n) {
       text-align: right;
+
+      & .vs-ticket-card__cta--about-yourself-feedback {
+        float: right;
+      }
     }
 
     &:nth-child(1) + .vs-ticket-card__social-wrapper,
@@ -450,13 +471,23 @@ vs-ticket-card,
 
     &:nth-child(2) + .vs-ticket-card__social-wrapper,
     &:nth-child(3n + 5) + .vs-ticket-card__social-wrapper {
-      @include make-col(4);
+      @include make-col(12);
     }
 
     &:nth-child(3n) + .vs-ticket-card__social-wrapper {
       @include make-col(12);
     }
   }
+}
+
+@include media-breakpoint-only(sm) {
+
+    .vs-ticket-card__social-wrapper {
+      margin-right: 0;
+      margin-bottom: -.75rem;
+      min-width: 16.313rem;
+    }
+
 }
 
 @include media-breakpoint-up(md) {
@@ -480,7 +511,6 @@ vs-ticket-card,
 
   .vs-ticket-card__details {
     min-height: 6rem;
-    // padding-bottom: 4.0625rem;
     padding-bottom: 2.4375rem;
   }
 
@@ -549,6 +579,9 @@ vs-ticket-card,
     display: block;
     float: right;
     margin-right: 1.25rem;
+    margin-bottom: -.875rem;
+    min-width: 16.313rem;
+    min-height: 3.125rem;
   }
 
   .vs-ticket-card__cta {
@@ -575,6 +608,10 @@ vs-ticket-card,
       font-size: 6rem;
     }
 
+    &--about-yourself-feedback {
+      min-height: 7rem;
+    }
+
     &--buy-gear > i {
       font-size: 4.2rem;
   }
@@ -590,11 +627,6 @@ vs-ticket-card,
     &--event-review > i {
       font-size: 4rem;
     }
-  }
-
-  .vs-ticket-card__social-wrapper {
-    // min-width: 16.25rem;
-    min-height: 3.125rem;
   }
 
   .vs-ticket-card__ribbon-desktop-wrapper {
