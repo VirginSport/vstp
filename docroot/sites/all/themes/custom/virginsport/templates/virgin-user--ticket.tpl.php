@@ -128,7 +128,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                 <div class="vs-ticket-card__cta-wrapper">
                   <a class="vs-ticket-card__cta--invite-fans" href="#">
                     <i class="icon-average-pace"></i>
-                    <?php print t('invite fans'); ?>
+                    <?php print t('fans'); ?>
                   </a>
                 </div>
               <?php endif; ?>
