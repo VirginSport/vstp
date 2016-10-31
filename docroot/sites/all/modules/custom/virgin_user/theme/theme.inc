@@ -53,7 +53,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   if (!empty($ticket_level_properties[$ticket_level])) {
     $ticket_properties = $ticket_level_properties[$ticket_level];
 
-    switch ($ticket_properties[3]) {
+    switch ($ticket_properties['color']) {
       case 'gold':
         $class = 'vip';
         break;
