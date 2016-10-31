@@ -191,7 +191,7 @@ $event_days_left = virginsport_days_left($event_start_date);
         <?php if (!empty($ticket_properties)): ?>
           <div class="hidden-md-up">
             <div class="vs-ticket-card__ribbon vs-ticket-card__ribbon--<?php print $ticket_class; ?>">
-              <span><?php print t($ticket_properties['mobile_title']); ?></span>
+              <span><?php print t($ticket_properties['mobile title']); ?></span>
             </div>
           </div>
 
@@ -199,7 +199,7 @@ $event_days_left = virginsport_days_left($event_start_date);
             <div class="vs-ticket-card__ribbon-desktop-bg vs-ticket-card__ribbon-desktop-bg--<?php print $ticket_class; ?>"></div>
 
             <div class="vs-ticket-card__ribbon vs-ticket-card__ribbon--<?php print $ticket_class; ?>">
-              <span><?php print t($ticket_properties['desktop_title']); ?></span>
+              <span><?php print t($ticket_properties['desktop title']); ?></span>
             </div>
           </div>
         <?php endif; ?>
