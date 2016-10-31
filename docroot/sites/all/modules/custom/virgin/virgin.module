@@ -238,16 +238,28 @@ function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0
 function virgin_ticket_banner_properties() {
   $tickets = &drupal_static(__FUNCTION__, array());
 
-  if (empty($tickets)) {
-    $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
-    $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+  if (!empty($tickets)) {
+    return $tickets;
+  }
 
-    while ($data = fgetcsv($file)) {
-      $tickets[$data[0]] = $data;
+  $i = 0;
+  $fields = array();
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
+  $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+
+  while ($row = fgetcsv($file, 4096)) {
+    if (empty($fields)) {
+      $fields = $row;
+      continue;
     }
 
-    fclose($file);
+    $key = $row[0];
+    foreach ($row as $k => $value) {
+      $tickets[$key][$fields[$k]] = $value;
+    }
   }
+
+  fclose($file);
 
   return $tickets;
 }
