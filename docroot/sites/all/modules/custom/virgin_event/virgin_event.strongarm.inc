@@ -119,8 +119,9 @@ function virgin_event_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_event';
   $strongarm->value = array(
-    0 => 'moderation',
-    1 => 'revision',
+    0 => 'revision',
+    1 => 'moderation',
+    2 => 'panelizer',
   );
   $export['node_options_event'] = $strongarm;
 
@@ -167,6 +168,7 @@ function virgin_event_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_event';
   $strongarm->value = array(
     'status' => 1,
+    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -187,7 +189,6 @@ function virgin_event_strongarm() {
         'choice' => 0,
       ),
     ),
-    'help' => '',
   );
   $export['panelizer_defaults_node_event'] = $strongarm;
 

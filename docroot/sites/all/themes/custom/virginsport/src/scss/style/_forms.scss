@@ -165,7 +165,16 @@ label {
 // ----------------------------------------------------------------------------
 
 .vs-form-input--radio {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  left: -10000px;
+
+  &:focus ~ .vs-form-label--radio:before {
+    @include box-shadow(0 0 3px 2px rgba($c-black, .2));
+
+    outline: none;
+    border-radius: 50%;
+  }
 }
 
 .vs-form-label--radio {
@@ -207,7 +216,15 @@ label {
 // ----------------------------------------------------------------------------
 
 .vs-form-input--check {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  left: -10000px;
+
+  &:focus ~ .vs-form-label--check:before {
+    @include box-shadow(0 0 3px 1px rgba($c-black, .2));
+
+    outline: none;
+  }
 }
 
 .vs-form-label--check {
@@ -254,8 +271,17 @@ label {
     border-color: $state-danger;
   }
 
+  .vs-form-input--check:focus ~ .vs-form-label--check:before {
+    @include box-shadow(0 0 3px 1px $state-danger);
+  }
+
+
   .vs-form-label--radio:before {
     @include box-shadow(0 0 0 1px $state-danger);
+  }
+
+  .vs-form-input--radio:focus ~ .vs-form-label--radio:before {
+    @include box-shadow(0 0 3px 2px $state-danger);
   }
 
   .vs-form--disabled .vs-form-label--radio:before {

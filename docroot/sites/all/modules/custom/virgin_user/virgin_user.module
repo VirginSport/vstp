@@ -23,6 +23,24 @@ define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
 
 /**
+ * Implements hook_menu().
+ */
+function virgin_user_menu() {
+  $items = array();
+
+  $items['basket/ticket/%/%'] = array(
+    'title' => 'Modify Ticket',
+    'page callback' => 'virgin_user_page_basket_ticket_action',
+    'page arguments' => array(2, 3),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
