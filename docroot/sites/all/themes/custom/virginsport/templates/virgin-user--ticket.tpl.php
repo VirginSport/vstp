@@ -109,6 +109,10 @@ $event_days_left = virginsport_days_left($event_start_date);
               </div>
               */
               ?>
+
+              <?php
+              /* TODO link up to an event photo page and pass bib# and the GamefaceID for the associated event */
+              ?>
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a class="vs-ticket-card__cta--event-photos" href="#">
