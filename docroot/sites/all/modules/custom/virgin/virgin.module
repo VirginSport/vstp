@@ -337,12 +337,14 @@ function virgin_cipher() {
 
 /**
  * Return an array of ticket banner with the following properties:
- *  - key
- *  - desktop title
- *  - mobile title
- *  - color
  *
  * @return array
+ *  An array of structured arrays with the following keys:
+ *  - key: The name
+ *  - desktop title: The desktop title
+ *  - mobile title: The mobile title
+ *  - color: The color
+ *
  */
 function virgin_ticket_banner_properties() {
   $tickets = &drupal_static(__FUNCTION__, array());
