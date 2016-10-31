@@ -242,7 +242,6 @@ function virgin_ticket_banner_properties() {
     return $tickets;
   }
 
-  $i = 0;
   $fields = array();
   $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
   $file = fopen($path . '/ticket-banner-colors.csv', 'r');
