@@ -11,7 +11,11 @@
  * $price - The ticket price
  * $currency - The package currency iso code of the package price
  * $nid - The ticket ID
+ * $ticket_class - The name of the ticket class (ex. vip, pass, etc)
+ * $ticket_properties - The text showed in ticket button
  */
+
+$vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
 
 ?>
 
@@ -26,7 +30,7 @@
           </h2>
           <?php endif; ?>
           <?php if(!empty($description)): ?>
-          <div class="vs-ticket-type__text">
+          <div class="vs-ticket-type__text <?php print $vip_class; ?>">
             <?php print $description; ?>
           </div>
           <?php endif; ?>
@@ -40,6 +44,9 @@
           >
             <?php print t('Select tickets');?>
           </a>
+          <div class="vs-ticket-type__<?php print $ticket_class; ?>">
+            <span><?php print t($ticket_properties[1]); ?></span>
+          </div>
         </div>
       </div>
     </div>
