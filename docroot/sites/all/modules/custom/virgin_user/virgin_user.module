@@ -92,7 +92,7 @@ function virgin_user_menu() {
   );
 
   $items['basket/post-checkout'] = array(
-    'title' => 'Checkout Finished',
+    'title' => 'Post Checkout',
     'page callback' => 'virgin_user_page_basket_post_checkout',
     'access callback' => 'user_is_logged_in',
     'menu type' => MENU_CALLBACK,
