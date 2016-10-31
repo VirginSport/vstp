@@ -275,6 +275,42 @@ function virgin_user_entity_presave($entity, $type) {
   }
 }
 
+/**
+ * Implements hook_user_login().
+ */
+function virgin_user_user_login(&$edit, $account) {
+  $params = $_GET;
+
+  // If the user is authenticating against Facebook via hybrid auth
+  // we need to capture the destination parameter and parse it for
+  // possible basket actions.
+  if ($_GET['q'] == 'hybridauth/window/Facebook' && !empty($_GET['destination'])) {
+    $query_str = parse_url($_GET['destination'], PHP_URL_QUERY);
+    parse_str($query_str, $params);
+  }
+
+  // Helper function to extract a param with defaults
+  $param = function ($name, $default = '') use ($params) {
+    return empty($params[$name]) ? $default : $params[$name];
+  };
+
+  // If there's a basket action, redirect the user to the relevant
+  // basket operation routes for further processing. The option to
+  // override the destination parameter in the super global GET is
+  // due to the fact that hybridauth sets the destination parameter
+  // as part of it's execution and that overrides any changes we
+  // make to the edit redirect value.
+  switch ($param('basket-action')) {
+    case 'claim':
+      $_GET['destination'] = 'basket/confirm-claim/' . $param('rego', 'invalid-rego');
+      break;
+
+    case 'checkout':
+      $_GET['destination'] = 'basket/login-signup';
+      break;
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
