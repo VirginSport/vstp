@@ -23,7 +23,12 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="vs-ticket-type__wrapper materialShadow vs-ticket-type--gradient-<?php print $card_color;?>">
+        <div class="vs-ticket-type__wrapper materialShadow">
+          <div class="vs-color vs-color--color-<?php print $card_color;?> vs-color--pattern-<?php print $card_pattern;?>">
+            <div class="vs-color__layer-1"></div>
+            <div class="vs-color__layer-2"></div>
+            <div class="vs-color__layer-3"></div>
+          </div>
           <?php if(!empty($title)): ?>
           <h2 class="vs-ticket-type__title">
             <?php print check_plain($title); ?>
@@ -52,4 +57,3 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
     </div>
   </div>
 </div>
-
