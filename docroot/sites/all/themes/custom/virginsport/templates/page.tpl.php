@@ -194,6 +194,13 @@
             <button aria-expanded="false" aria-haspopup="true" style="<?php print virginsport_atom_background($regions['current']['flag'], 'virgin_small_flag'); ?>" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
               <?php print $regions['current']['title']; ?>
             </button>
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              <picture>
+                <source media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)" srcset="../img/vs-footer-uk-flag@2x.png">
+                <img class="vs-footer__flags" src="../img/vs-footer-uk-flag.png">
+              </picture>
+              <span class="vs-footer__region-label"><?php print $regions['current']['title']; ?></span>
+            </button>
             <div class="dropdown-menu vs-footer__language-list">
               <?php foreach ($regions['other'] as $region): ?>
               <a class="dropdown-item vs-footer__language-item" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
