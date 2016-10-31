@@ -36,6 +36,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $query
     ->fields('tickets')
     ->condition('tickets.uid', $user_grapher->property('uid'), '=')
+    ->condition('tickets.ticket_state', 'active', '=')
     ->condition('n.type', 'festival', '=')
     ->addField('n', 'nid', 'festival_id')
   ;
