@@ -86,7 +86,6 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'start_date' => $start_date,
     'end_date' => $end_date,
     'status' => $g->fieldGetOne('field_status'),
-    'days_left' => virginsport_days_left($start_date),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'link' => '', // Small link at the bottom, not used atm
