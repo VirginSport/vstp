@@ -164,15 +164,15 @@ function virgin_user_page_basket_confirm_claim($rego) {
 }
 
 /**
- * Page callback for the basket login signup route
+ * Page callback for the basket authenticate route
  */
-function virgin_user_page_basket_login_signup() {
+function virgin_user_page_basket_authenticate() {
 
   // An anonymous user will have to login or register in order
   // to be able to checkout.
   if (user_is_anonymous()) {
     _virgin_user_page_basket_redirect('/user/login', array(
-      'basket-action' => 'checkout'
+      'basket-action' => 'authenticate'
     ));
 
     return;

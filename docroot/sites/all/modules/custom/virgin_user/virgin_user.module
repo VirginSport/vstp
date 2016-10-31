@@ -76,9 +76,9 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
-  $items['basket/login-signup'] = array(
-    'title' => 'Login or Signup',
-    'page callback' => 'virgin_user_page_basket_login_signup',
+  $items['basket/authenticate'] = array(
+    'title' => 'Authenticate Basket',
+    'page callback' => 'virgin_user_page_basket_authenticate',
     'access callback' => TRUE,
     'menu type' => MENU_CALLBACK,
     'file' => 'virgin_user.pages.inc',
@@ -314,8 +314,8 @@ function virgin_user_user_login(&$edit, $account) {
       $_GET['destination'] = 'basket/confirm-claim/' . $param('rego', 'invalid-rego');
       break;
 
-    case 'checkout':
-      $_GET['destination'] = 'basket/login-signup';
+    case 'authenticate':
+      $_GET['destination'] = 'basket/authenticate';
       break;
   }
 }
