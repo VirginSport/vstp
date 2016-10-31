@@ -68,7 +68,7 @@ function virginsport_preprocess_page(&$vars) {
   global $user;
 
   // Check if page manager is handling the current page
-  $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
+  $vars['apply_page_wrapper'] = virginsport_check_wrapper_required();
 
   // Setup the user information
   if (user_is_logged_in()) {
@@ -297,4 +297,29 @@ function virginsport_date_interval($start_date, $end_date) {
 
   // Return the formatted dates interval
   return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
+}
+
+/**
+ * Checks whether a default page wrapper is required
+ *
+ * @return bool
+ *  TRUE the page wrapper is required, FALSE otherwise
+ */
+function virginsport_check_wrapper_required() {
+  $excluded_routes = array(
+    'user',
+    'user/%'
+  );
+
+  $item = menu_get_item();
+
+  if (in_array($item['path'], $excluded_routes)) {
+    return FALSE;
+  }
+
+  if (module_exists('page_manager') && page_manager_get_current_page()) {
+    return FALSE;
+  }
+
+  return TRUE;
 }

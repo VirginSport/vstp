@@ -366,7 +366,8 @@ function virgin_user_preprocess_user_profile(&$vars) {
   $context = array('user_context' => $user_context);
 
   // Get user tickets
-  $vars['tickets'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
+  $vars['upcoming_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array('upcoming' => 1), array(), array(), $context);
+  $vars['past_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
 }
 
 // Helpers

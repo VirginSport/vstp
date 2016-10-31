@@ -33,6 +33,56 @@
  *
  * @ingroup themeable
  */
+
+$user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 ?>
 
-<?php print $tickets->content ?>
+<div class="vs-head-region">
+  <div class="vs-region vs-region--no-padding">
+    <div class="vs-hero-banner">
+      <div class="vs-hero-banner__background">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="vs-hero-banner__title"><?php print check_plain($user_grapher->fieldGetOne('field_first_name') . ' ' . $user_grapher->fieldGetOne('field_last_name')); ?></h2>
+              <div class="vs-hero-banner-block__subtitle"><?php print t('Badder than Beyonce at running'); ?></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
+
+  <div class="vs-subnav">
+    <div class="vs-subnav__overlay"></div>
+
+    <ul class="vs-subnav__list">
+      <li class="vs-subnav__item">
+        <a class="vs-subnav__link vs-subnav__link--active" href="<?php print url('user'); ?>">
+          <?php print t('My Profile'); ?>
+        </a>
+      </li>
+      <li class="vs-subnav__item">
+        <a class="vs-subnav__link" href="<?php print url('user/' . $user->uid . '/edit') ?>">
+          <?php print t('Account Details'); ?>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="vs-region vs-region--gradient-gray">
+  <?php print $upcoming_festivals->content ?>
+</div>
+
+<div class="vs-region vs-region--gradient-gray">
+  <?php if(!empty($past_festivals->content)): ?>
+    <div class="vs-festival-profile-header__title">
+      <?php print t('Hackney Festival'); ?>
+    </div>
+    <?php print $past_festivals->content; ?>
+  <?php endif; ?>
+</div>
