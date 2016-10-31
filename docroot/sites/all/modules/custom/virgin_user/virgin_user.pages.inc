@@ -95,8 +95,8 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   };
 
   // Fetch the cookies that can carry prefered region hostname selection.
-  $favorite_hostname = virgin_cookie(VIRGIN_REGION_COOKIE, '');
-  $basket_hostname = virgin_cookie(VIRGIN_USER_BASKET_COOKIE, '');
+  $favorite_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
+  $basket_hostname = virgin_cookie_get(VIRGIN_USER_BASKET_COOKIE, '');
 
   // Check if either the basket hostname cookie or prefered region hostname
   // cookie is valid, and if one of them is valid, by this order, redirect

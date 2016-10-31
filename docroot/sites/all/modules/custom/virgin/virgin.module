@@ -302,7 +302,7 @@ function virgin_param($key, $default_value = '') {
  * @return string
  *  Either the default value or the value of the cookie
  */
-function virgin_cookie($key, $default_value = '') {
+function virgin_cookie_get($key, $default_value = '') {
   return empty($_COOKIE[$key]) ? $default_value : $_COOKIE[$key];
 }
 

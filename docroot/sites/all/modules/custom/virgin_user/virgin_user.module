@@ -436,7 +436,7 @@ function virgin_user_bind_attendly_checkout_session() {
   };
 
   // Fetch the attendly session value
-  $attendly_session = virgin_cookie($cookie_name(VIRGIN_USER_ATTENDLY_SESSION_COOKIE));
+  $attendly_session = virgin_cookie_get($cookie_name(VIRGIN_USER_ATTENDLY_SESSION_COOKIE));
 
   // If the user does not have an attendly session, it's not possible to bind
   // him with attendly's system.
