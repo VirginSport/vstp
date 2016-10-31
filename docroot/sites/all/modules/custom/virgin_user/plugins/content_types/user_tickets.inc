@@ -75,7 +75,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $block = new stdClass();
   $block->module = '';
   $block->delta = '';
-  $block->content = theme('virgin_user__ct__user_tickets', array('data' => $data, 'upcoming' => empty($conf['upcoming'])));
+  $block->content = theme('virgin_user__ct__user_tickets', array('data' => $data, 'upcoming' => !empty($conf['upcoming'])));
   $block->title = '';
 
   return $block;
