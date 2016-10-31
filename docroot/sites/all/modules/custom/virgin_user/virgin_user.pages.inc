@@ -141,12 +141,26 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
  *  The attendly ticket rego ID
  */
 function virgin_user_page_basket_claim($rego) {
-  // FIXME the path for the claim can't be /user/login due to the fact the user might be already logged in!
+  // An anonymous, has to login or register to claim a ticket.
+  if (user_is_anonymous()) {
+    _virgin_user_page_basket_redirect('/user/login', array(
+      'basket-action' => 'claim',
+      'rego' => $rego
+    ));
 
-  _virgin_user_page_basket_redirect('/user/login', array(
-    'basket-action' => 'claim',
-    'rego' => $rego
-  ));
+    return;
+  }
+
+  // If the user's already logged in, then we can send him to the
+  // ticket claim confirmation page.
+  _virgin_user_page_basket_redirect('/basket/confirm-claim/' . $rego);
+}
+
+/**
+ * Page callback for the ticket claim confirmation route
+ */
+function virgin_user_page_basket_confirm_claim($rego) {
+  // Left blank as a placeholder
 }
 
 /**

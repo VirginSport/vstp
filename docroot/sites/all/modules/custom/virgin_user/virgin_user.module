@@ -67,6 +67,15 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['basket/confirm-claim/%'] = array(
+    'title' => 'Confirm Ticket Claim',
+    'page callback' => 'virgin_user_page_basket_confirm_claim',
+    'page arguments' => array(2),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   $items['basket/login-signup'] = array(
     'title' => 'Login or Signup',
     'page callback' => 'virgin_user_page_basket_login_signup',
