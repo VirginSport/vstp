@@ -58,6 +58,7 @@ vs-card-untimed-event,
 
   .vs-card-untimed-event__price {
     position: absolute;
+    top: .563rem;
     right: 0;
     margin: 0;
     padding: 0;
@@ -126,6 +127,7 @@ vs-card-untimed-event,
     }
 
     .vs-card-untimed-event__price {
+      top: .75rem;
       font-size: 1.563rem;
       font-weight: 500;
       line-height: 0;

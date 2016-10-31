@@ -136,13 +136,17 @@ vs-hero-banner,
 
   .vs-hero-banner__days-left {
     font-size: 2.5rem;
-    line-height: 1;
-    padding-top: 1.35rem;
-    display: block;
+    font-weight: 500;
+    line-height: 2.5rem;
+    padding: 1.563rem 0 .313rem 0;
+    display: block;   
   }
 
   .vs-hero-banner__days-label {
-    font-size: .8125rem;
+    font-family: $font-family-serif;
+    font-size: .813rem;
+    font-weight: 500;
+    line-height: .813rem;
     opacity: .8;
   }
 

@@ -27,7 +27,7 @@ vs-footer,
   border-color: rgba(#a2a2a2, .5);
   margin-top: .625rem;
   min-width: auto;
-  padding: 0;
+  padding: .9375rem;
 
   &:after {
     @include transform(rotate(45deg));
@@ -42,6 +42,23 @@ vs-footer,
     border-bottom: 0;
     border-right: 0;
     right: 18px;
+  }
+}
+
+.vs-footer__language-list__link {
+  @include transition(all .5s ease-in-out);
+  color: $body-color;
+  display: block;
+  white-space: nowrap;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    color: $body-color;
+    opacity: .7;
   }
 }
 
@@ -68,13 +85,13 @@ vs-footer,
 }
 
 .vs-footer__language-toggle {
-  background: transparent url('../img/vs-footer-uk-flag.png') no-repeat left center;
+  background-color: transparent;
   border: 0;
   border-radius: 0;
   color: #606060;
   font-size: 1rem;
-  padding-left: 2.5rem;
-  padding-right: 20px;
+  padding-left: 0;
+  padding-right: 0;
   position: relative;
 
   &:after {
@@ -83,8 +100,8 @@ vs-footer,
 
   &:hover,
   &:focus {
-    background-color: transparent !important;
-    background-image: url('../img/vs-footer-uk-flag.png') !important;
+    background-color: transparent;
+    opacity: .7;
   }
 
   .open & {
@@ -93,7 +110,14 @@ vs-footer,
 }
 
 .vs-footer__flags {
-  margin-right: .625rem;
+  margin-right: .375rem;
+  width: 1.875rem;
+  height: auto;
+}
+
+.vs-footer__region-label {
+  position: relative;
+  top: 1px;
 }
 
 .vs-footer__menu {
