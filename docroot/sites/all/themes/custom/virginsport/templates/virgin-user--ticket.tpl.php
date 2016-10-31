@@ -120,7 +120,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                 </div>
               <?php endif; ?>
 
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
+              <?php if (!empty($member_is_participant) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a class="vs-ticket-card__cta--invite-fans" href="#">
                     <i class="icon-average-pace"></i>
