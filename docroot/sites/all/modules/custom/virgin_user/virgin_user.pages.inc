@@ -86,7 +86,6 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
 
   // Helper function to redirect a user to a virgin region host path
   $goto = function ($hostname, $path = '', $params = array()) {
-
     if ($hostname) {
       $path = virgin_region_add_hostname_protocol($hostname) . $path;
     }
