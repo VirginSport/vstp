@@ -129,8 +129,8 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   // If we reached this point, then there's an authenticated user with
   // a favorite region, which means we can store a cookie with his
   // favorite hostname, before redirecting him to his prefered hostname.
-  setcookie(VIRGIN_REGION_COOKIE, $user_hostname);
-  setcookie(VIRGIN_USER_BASKET_COOKIE, $user_hostname);
+  virgin_cookie_set(VIRGIN_REGION_COOKIE, $user_hostname);
+  virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $user_hostname);
 
   $goto($user_hostname, $path, $params);
 }

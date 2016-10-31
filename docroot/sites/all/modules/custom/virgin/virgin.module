@@ -307,6 +307,19 @@ function virgin_cookie($key, $default_value = '') {
 }
 
 /**
+ * Sets a cookie with the given name and value
+ *
+ * @param $name
+ *  The name of the cookie
+ * @param $value
+ *  The value of the cookie
+ */
+function virgin_cookie_set($name, $value) {
+  $params = session_get_cookie_params();
+  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
+
+/**
  * Gets the global instance of a virgin cipher
  *
  * @return \VirginCipher

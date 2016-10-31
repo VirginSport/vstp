@@ -448,7 +448,7 @@ function virgin_user_bind_attendly_checkout_session() {
   // in a cookie that attendly can read.
   try {
     $token = virgin_attendly_client()->bindCheckoutSession($attendly_session, $sugar_id);
-    setcookie($cookie_name(VIRGIN_USER_ATTENDLY_TOKEN_COOKIE), $token);
+    virgin_cookie_set($cookie_name(VIRGIN_USER_ATTENDLY_TOKEN_COOKIE), $token);
     return TRUE;
 
   } catch (\Exception $e) {
