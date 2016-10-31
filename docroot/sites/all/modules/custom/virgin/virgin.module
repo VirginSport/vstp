@@ -334,3 +334,42 @@ function virgin_cipher() {
 
   return $cipher;
 }
+
+/**
+ * Return an array of ticket banner with the following properties:
+ *
+ * @return array
+ *  An array of structured arrays with the following keys:
+ *  - key: The name
+ *  - desktop title: The desktop title
+ *  - mobile title: The mobile title
+ *  - color: The color
+ *
+ */
+function virgin_ticket_banner_properties() {
+  $tickets = &drupal_static(__FUNCTION__, array());
+
+  if (!empty($tickets)) {
+    return $tickets;
+  }
+
+  $fields = array();
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
+  $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+
+  while ($row = fgetcsv($file, 4096)) {
+    if (empty($fields)) {
+      $fields = $row;
+      continue;
+    }
+
+    $key = $row[0];
+    foreach ($row as $k => $value) {
+      $tickets[$key][$fields[$k]] = $value;
+    }
+  }
+
+  fclose($file);
+
+  return $tickets;
+}

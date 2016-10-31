@@ -243,6 +243,25 @@ function virginsport_currency($iso_code, $value) {
 }
 
 /**
+ * Get the number of days left for a specific date
+ *
+ * @param $date
+ *  The date timestamp
+ * @return string
+ *  The number of days
+ */
+function virginsport_days_left($date) {
+  // Make sure we don't have negative interval
+  $date_difference = abs($date - time());
+
+  // Get the number of days between dates
+  $days_left = floor($date_difference / 60 / 60 / 24);
+
+  // Only return days left if it is smaller than 32 days
+  return $days_left > 32 ? 0 : $days_left;
+}
+
+/**
  * Get a properly formatted date interval
  *
  * @param $start_date
