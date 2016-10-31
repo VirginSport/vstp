@@ -12,7 +12,7 @@
  */
 ?>
 
-<div class="container vs-hero-event-card vs-hero-event-card--gradient-<?php print $brand_color; ?>">
+<div class="container vs-hero-event-card vs-hero-event-card--gradient-">
   <div class="row">
     <div class="col-xs-12 col-lg-10 offset-lg-1 col-xl-12 offset-xl-0">
       <?php if(!empty($header_image->property('sid'))): ?>
@@ -53,6 +53,11 @@
             ?>
           </div>
         <?php endif; ?>
+        <div class="vs-color vs-color--color-<?php print $brand_color; ?> vs-color--pattern-">
+          <div class="vs-color__layer-1"></div>
+          <div class="vs-color__layer-2"></div>
+          <div class="vs-color__layer-3"></div>
+        </div>
       </div>
     </div>
   </div>
