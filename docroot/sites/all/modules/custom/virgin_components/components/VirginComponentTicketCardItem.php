@@ -51,9 +51,13 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
     if (!empty($ticket_level_properties[$ticket_level])) {
       $ticket_properties = $ticket_level_properties[$ticket_level];
 
-      switch ($ticket_properties['key']) {
-        case 'vs:level:vip':
+      switch ($ticket_properties['color']) {
+        case 'gold':
           $class = 'vip';
+          break;
+
+        case 'festival':
+          $class = 'hero';
           break;
 
         default:
