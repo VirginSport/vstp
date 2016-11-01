@@ -28,12 +28,14 @@ vs-basic-content-block,
 }
 
 .vs-basic-content-block__hero-title {
+  font-family: $font-family-serif;
   margin-bottom: 0;
   color: white;
   text-transform: uppercase;
   font-size: 1.125rem;
   text-align: center;
-  font-weight: 400;
+  font-weight: 500;
+  line-height: 1.25rem;
 }
 
 .vs-basic-content-block__text-wrapper {
@@ -41,10 +43,12 @@ vs-basic-content-block,
 }
 
 .vs-basic-content-block__static-title {
+  font-family: $font-family-serif;
   margin-bottom: 0;
   padding: 1.25rem 1.25rem 0;
   font-size: 1.125rem;
-  font-weight: 400;
+  line-height: 1.125rem;
+  font-weight: 500;
   color: $c-black;
   text-transform: uppercase;
 }
@@ -57,14 +61,22 @@ vs-basic-content-block,
   margin-bottom: .9375rem;
 }
 
+.vs-basic-content-block__image {
+    height: 120px;
+    min-width: 454px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 12px;
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
 
 .vs-scroller--basic-content-block {
   width: 100%;
-  margin-bottom: 2.1875rem;
-  background-color: #ccc;
+  margin-bottom: 1.438rem;
+  background-color: transparent;
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -74,6 +86,15 @@ vs-basic-content-block,
 // Responsive
 // ----------------------------------------------------------------------------
 
+@include media-breakpoint-up(sm) {
+
+  .vs-basic-content-block__image {
+      height: 140px;
+      min-width: 544px;
+  }
+
+}
+
 @include media-breakpoint-up(md) {
 
   .vs-basic-content-block__hero-image {
@@ -81,12 +102,9 @@ vs-basic-content-block,
   }
 
   .vs-basic-content-block__hero-title {
-    margin-bottom: 0;
-    color: white;
-    text-transform: uppercase;
-    font-size: 50px;
-    text-align: center;
-    font-weight: 400;
+    font-size: 3.125rem;
+    line-height: 3.438rem;
+    max-width: 43.75rem;
   }
 
   .vs-basic-content-block__text-wrapper {
@@ -95,8 +113,9 @@ vs-basic-content-block,
 
   .vs-basic-content-block__static-title {
     font-size: 1.875rem;
+    line-height: 2.25rem;
     padding-top: 1.9375rem;
-    padding-left: 1.8125rem;
+    padding-left: 1.8125rem;  
   }
 
   .vs-basic-content-block__date {
@@ -104,7 +123,9 @@ vs-basic-content-block,
     color: rgba($c-black, .8);
   }
 
-  .vs-scroller--basic-content-block {
-    width: calc(100% - 35px);
+  .vs-basic-content-block__image {
+      height: 184px;
+      min-width: 740px;
   }
+  
 }

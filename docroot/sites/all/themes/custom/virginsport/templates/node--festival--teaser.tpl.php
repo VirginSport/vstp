@@ -98,6 +98,8 @@
       </div>
       <div class="col-xs-12 col-md-5 vs-card-upcoming__content-wrapper <?php print ($zebra == 'even') ? '' : 'pull-md-7'; ?>">
         <div class="vs-card-upcoming__content vs-card-upcoming__content--gradient-<?php print $grapher->fieldGetOne('field_brand_color'); ?>">
+          <?php print theme('virginsport_color', array('brand_color' => $grapher->fieldGetOne('field_brand_color'), 'brand_pattern' => $grapher->fieldGetOne('field_brand_pattern'))); ?>
+
           <?php if(!empty($grapher->fieldGetOne('title_field'))): ?>
             <h4 class="vs-card-upcoming__title">
               <?php print $grapher->fieldGetOne('title_field'); ?>
