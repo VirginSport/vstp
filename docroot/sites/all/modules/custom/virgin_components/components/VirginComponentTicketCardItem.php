@@ -47,18 +47,13 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
     $ticket_type_state_grapher = $ticket_grapher->relation('field_ticket_type_state');
     $ticket_level = $ticket_type_state_grapher->fieldGetOne('field_ticket_level');
     $ticket_level_properties = virgin_ticket_banner_properties();
-
     // TODO update keys in css instead of mapping here
     if (!empty($ticket_level_properties[$ticket_level])) {
       $ticket_properties = $ticket_level_properties[$ticket_level];
 
-      switch ($ticket_properties[3]) {
-        case 'gold':
+      switch ($ticket_properties['key']) {
+        case 'vs:level:vip':
           $class = 'vip';
-          break;
-
-        case 'festival':
-          $class = 'hero';
           break;
 
         default:
@@ -68,5 +63,6 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
       $variables['ticket_properties'] = $ticket_properties;
       $variables['ticket_class'] = $class;
     }
+    $x=0;
   }
 }
