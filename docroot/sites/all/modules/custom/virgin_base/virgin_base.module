@@ -45,8 +45,8 @@ function virgin_base_form_alter(&$form, &$form_state, $form_id) {
   global $user;
 
   $form['field_hostname']['#access'] = FALSE;
-  
-  if($user->uid == 1 || $user->roles[3]){
+
+  if ($user->uid == 1 || (!empty($user->roles[3]))) {
     $form['field_hostname']['#access'] = TRUE;
   }
 }
