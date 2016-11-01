@@ -81,15 +81,17 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
   </div>
 </div>
 
-<div class="vs-region vs-region--gradient-gray">
-  <?php print $upcoming_festivals->content ?>
-</div>
+<?php if(!empty($upcoming_festivals->content)): ?>
+  <div class="vs-region vs-region--gradient-gray">
+    <?php print $upcoming_festivals->content ?>
+  </div>
+<?php endif; ?>
 
-<div class="vs-region vs-region--gradient-gray">
-  <?php if(!empty($past_festivals->content)): ?>
-    <div class="vs-festival-profile-header__title">
-      <?php print t('Hackney Festival'); ?>
-    </div>
-    <?php print $past_festivals->content; ?>
-  <?php endif; ?>
-</div>
+<?php if(!empty($past_festivals->content)): ?>
+  <div class="vs-region vs-region--gradient-gray">
+      <div class="vs-festival-profile-header__title">
+        <?php print t('Past Events'); ?>
+      </div>
+      <?php print $past_festivals->content; ?>
+  </div>
+<?php endif; ?>
