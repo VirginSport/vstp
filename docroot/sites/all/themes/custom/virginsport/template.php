@@ -88,6 +88,13 @@ function virginsport_preprocess_page(&$vars) {
   $vars['main_menu'] = virginsport_menu_items('main-menu');
   $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
 
+  // Setup attendly basket link counter
+  $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+
+  $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
+  $vars['basket_cookie'] = empty($attendly_env) ? 'attendly-items' : 'attendly-items-' . $attendly_env;
+
   // Setup the social networks
   $vars['social_networks'] = array();
   $networks = virgin_social_networks();

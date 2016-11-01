@@ -141,7 +141,9 @@
         <?php endif; ?>
 
         <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
+          <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
+            <span class="vs-header__basket__value">0</span>
+          </a>
         </div>
       </div>
     </div>
