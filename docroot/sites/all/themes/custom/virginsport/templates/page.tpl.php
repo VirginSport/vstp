@@ -155,11 +155,11 @@
   </div>
 
   <div class="page-wrapper">
-    <?php if ($page_manager): ?>
+    <?php if (!$apply_page_wrapper): ?>
       <?php print render($page['content']); ?>
     <?php endif; ?>
 
-    <?php if (!$page_manager): ?>
+    <?php if ($apply_page_wrapper): ?>
       <div class="vs-region vs-region--no-padding">
         <div class="vs-hero-banner">
           <div class="vs-hero-banner__background">
