@@ -33,6 +33,8 @@ function virgin_festival_theme($existing, $type, $theme, $path) {
       'template' => 'virgin_festival__tickets',
       'variables' => array(
         'iframe_url' => '',
+        'header' => '',
+        'subnav' => '',
       )
     )
   );
