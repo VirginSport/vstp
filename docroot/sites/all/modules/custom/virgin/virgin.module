@@ -6,6 +6,12 @@
  */
 
 /**
+ * The attendly environment key. The value of this var is the suffix that
+ * is applied to the cookies that are created to and for attendly.
+ */
+define('VIRGIN_VAR_ATTENDLY_ENV', 'virgin_attendly_env');
+
+/**
  * The attendly user facing instance base URL variable.
  */
 define('VIRGIN_VAR_ATTENDLY_URL', 'virgin_attendly_url');
@@ -24,6 +30,11 @@ define('VIRGIN_VAR_ATTENDLY_API_USER', 'virgin_attendly_api_user');
  * The attendly API password variable.
  */
 define('VIRGIN_VAR_ATTENDLY_API_PASS', 'virgin_attendly_api_pass');
+
+/**
+ * The cipher key variable. This variable needs to contain a 16 bytes key.
+ */
+define('VIRGIN_VAR_CIPHER_KEY', 'virgin_cipher_key');
 
 /**
  * Implements hook_menu().
@@ -268,28 +279,97 @@ function virgin_attendly_client() {
 }
 
 /**
+ * Gets the value of a query parameter with the given name
+ *
+ * @param string $key
+ *  The query parameter name
+ * @param string $default_value
+ *  The default value of the parameter if it's missing
+ * @return string
+ *  Either the default value or the value of the query parameter
+ */
+function virgin_param($key, $default_value = '') {
+  return empty($_GET[$key]) ? $default_value : $_GET[$key];
+}
+
+/**
+ * Gets the value of a cookie with the given name
+ *
+ * @param string $key
+ *  The cookie name
+ * @param string $default_value
+ *  The default value of the cookie if it's missing
+ * @return string
+ *  Either the default value or the value of the cookie
+ */
+function virgin_cookie_get($key, $default_value = '') {
+  return empty($_COOKIE[$key]) ? $default_value : $_COOKIE[$key];
+}
+
+/**
+ * Sets a cookie with the given name and value
+ *
+ * @param $name
+ *  The name of the cookie
+ * @param $value
+ *  The value of the cookie
+ */
+function virgin_cookie_set($name, $value) {
+  $params = session_get_cookie_params();
+  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
+
+/**
+ * Gets the global instance of a virgin cipher
+ *
+ * @return \VirginCipher
+ *  The configured virgin cipher
+ */
+function virgin_cipher() {
+  $cipher = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$cipher) {
+    $cipher = new VirginCipher(variable_get(VIRGIN_VAR_CIPHER_KEY));
+  }
+
+  return $cipher;
+}
+
+/**
  * Return an array of ticket banner with the following properties:
- *  - key
- *  - desktop title
- *  - mobile title
- *  - color
  *
  * @return array
+ *  An array of structured arrays with the following keys:
+ *  - key: The name
+ *  - desktop title: The desktop title
+ *  - mobile title: The mobile title
+ *  - color: The color
+ *
  */
 function virgin_ticket_banner_properties() {
   $tickets = &drupal_static(__FUNCTION__, array());
 
-  if (empty($tickets)) {
-    $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
-    $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+  if (!empty($tickets)) {
+    return $tickets;
+  }
 
-    while ($data = fgetcsv($file)) {
-      $tickets[$data[0]] = $data;
+  $fields = array();
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
+  $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+
+  while ($row = fgetcsv($file, 4096)) {
+    if (empty($fields)) {
+      $fields = $row;
+      continue;
     }
 
-    fclose($file);
+    $key = $row[0];
+    foreach ($row as $k => $value) {
+      $tickets[$key][$fields[$k]] = $value;
+    }
   }
+
+  fclose($file);
 
   return $tickets;
 }
-

@@ -28,6 +28,14 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       case VirginUserEvents::BEFORE_USER_EDITS:
         $this->onBeforeUserEdits($event);
         break;
+
+      case VirginUserEvents::BASKET_CHECKOUT:
+        $this->onBasketCheckout($event->getData());
+        break;
+
+      case VirginUserEvents::CHECK_TICKET_SYNC:
+        $this->onCheckTicketSync($event);
+        break;
     }
   }
 
@@ -39,11 +47,11 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
-    $failureCallback = function (\Exception $e) {
+    $failure_callback = function (\Exception $e) {
       // A sync problem during login is not critical, do nothing here
     };
 
-    $this->sync($account, $failureCallback);
+    $this->sync($account, $failure_callback);
   }
 
   /**
@@ -56,12 +64,90 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     // A sync problem during edit profile is critical as the user might be
     // editing stale data. Redirect him to his profile in case of error.
-    $failureCallback = function (\Exception $e) {
+    $failure_callback = function (\Exception $e) {
       drupal_set_message(t("Ooops! It's not possible to edit your account at this time, please try again at a later time."), 'error');
       drupal_goto('/user');
     };
 
-    $this->sync($account, $failureCallback);
+    $this->sync($account, $failure_callback);
+  }
+
+  /**
+   * Executed when the basket checkout is finished
+   *
+   * @param \VirginUserBasketEventData $data
+   */
+  protected function onBasketCheckout(VirginUserBasketEventData $data) {
+    $account = $data->getAccount();
+    $expected_regos = $data->getTicketRegos();
+
+    // On sync failure create placeholder tickets for all the tickets that
+    // were expected and let the user know something happened.
+    $failure_callback = function () use ($account, $expected_regos) {
+      drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+      $this->createPlaceholderTickets($account, $expected_regos);
+    };
+
+    // On success, compute the difference between the synced regos and the
+    // regos that were expected, and if tickets are missing add placeholders
+    // for each one of them.
+    $success_callback = function ($synced_regos) use ($account, $expected_regos) {
+      $rego_diff = array_diff($expected_regos, $synced_regos);
+
+      if (count($rego_diff)) {
+        drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+
+        watchdog(
+          'virgin_user',
+          "Ticket sync problem ocurred. Expected: @expected Got: @got",
+          array(
+            '@expected' => implode(', ', $expected_regos),
+            '@got' => implode(', ', $synced_regos)
+          )
+        );
+
+        $this->createPlaceholderTickets($account, $rego_diff);
+      }
+    };
+
+    // Execute the sync with SugarCRM
+    $this->sync($account, $failure_callback, $success_callback);
+  }
+
+  /**
+   * Executed when there's a check to see if the user's tickets are in sync
+   *
+   * @param \ObserverEventInterface $event
+   */
+  protected function onCheckTicketSync(ObserverEventInterface $event) {
+    $account = $event->getData();
+    $elapsed = time() - $this->getUserLastSync($account);
+
+    // If the elapsed time since last sync is less than the period that is
+    // set between sync attempts, bailout now.
+    if ($elapsed < VIRGIN_USER_TICKET_SYNC_PERIOD) {
+      return;
+    }
+
+    // Otherwise check if there are placeholder tickets belonging to this user
+    $sql = "
+      SELECT uid
+      FROM {virgin_user_tickets}
+      WHERE uid = :uid
+      AND is_placeholder = 1
+      LIMIT 1
+    ";
+
+    $uid = db_query($sql, array(':uid' => $account->uid))->fetchField();
+
+    // If there aren't placeholder tickets for this user bailout now
+    if (empty($uid)) {
+      return;
+    }
+
+    // Otherwise attempt to sync, and if it fails do nothing as the user does
+    // not need to know the background sync failed.
+    $this->sync($account, function () {});
   }
 
   /**
@@ -69,18 +155,20 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    *
    * @param stdClass $account
    *  The user object for whom data is being fetched for
-   * @param callable $failureCallback
+   * @param callable $failure_callback
    *  A callback that is executed when there has been a sync problem with
    *  SugarCRM. The exception of this failure is passed to the callback.
-   * @return string[]
-   *  The rego IDs to the tickets that have been synced from SugarCRM
+   * @param callable $success_callback
+   *  A callback that is executed when there has been a successful sync
+   *  with SugarCRM. The list of synced ticket regos are passed to the
+   *  callback.
    */
-  protected function sync($account, callable $failureCallback) {
+  protected function sync($account, callable $failure_callback, callable $success_callback = NULL) {
 
     // If it's the admin user, bailout now as we don't sync anything for him
     // from SugarCRM.
     if ($account->uid === "1") {
-      return array();
+      return;
     }
 
     $account = user_load($account->uid);
@@ -90,7 +178,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // If for some reason the user does not have a SugarID, then bailout as
     // there's nothing to fetch from SugarCRM.
     if (empty($sugar_id)) {
-      return array();
+      return;
     }
 
     // Fetch the digest from SugarCRM
@@ -104,9 +192,9 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       // And then execute the failure callback and let callers handle the
       // exception as they have different levels of acceptance to a failure
       // scenario.
-      $failureCallback($e);
+      $failure_callback($e);
 
-      return array();
+      return;
     }
 
     // Update the ticket cache and update the profile fields accordingly
@@ -116,8 +204,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // Flush any profile changes
     $this->saveProfileChanges($account, $has_changed);
 
-    // And return the list of the rego IDs of the tickets that have been synced
-    return $synced_regos;
+    // And finally execute the success callback with the list of synced rego IDs
+    if ($success_callback) {
+      $success_callback($synced_regos);
+    }
   }
 
   /**
@@ -301,5 +391,31 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     }
 
     return $ticket_ids;
+  }
+
+  /**
+   * Creates placeholder tickets for each ticket regos
+   *
+   * @param stdClass $account
+   *  The user account object who is going to be set as the owner of the ticket
+   * @param string[] $ticket_regos
+   *  A list of Attendly rego IDs that are to be set as placeholder tickets
+   */
+  protected function createPlaceholderTickets($account, $ticket_regos = array()) {
+    foreach ($ticket_regos as $rego) {
+      $q = db_merge('virgin_user_tickets');
+
+      $q->key(array(
+        'attendly_rego_id' => $rego,
+      ));
+
+      $q->fields(array(
+        'attendly_rego_id' => $rego,
+        'is_placeholder' => TRUE,
+        'uid' => $account->uid,
+      ));
+
+      $q->execute();
+    }
   }
 }
