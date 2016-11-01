@@ -16,6 +16,14 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme'
   );
 
+  $themes['virginsport_color'] = array(
+    'template' => 'virginsport-color',
+    'variables' => array(
+      'brand_color' => '',
+      'brand_pattern' => '',
+    )
+  ) + $default;
+
   $themes['virginsport_picture'] = array(
     'template' => 'virginsport-picture',
     'variables' => array(
@@ -60,7 +68,7 @@ function virginsport_preprocess_page(&$vars) {
   global $user;
 
   // Check if page manager is handling the current page
-  $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
+  $vars['apply_page_wrapper'] = virginsport_check_wrapper_required();
 
   // Setup the user information
   if (user_is_logged_in()) {
@@ -100,6 +108,16 @@ function virginsport_preprocess_page(&$vars) {
 
   // Fetch the list of regions
   $vars['regions'] = virginsport_regions();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node theme.
+ */
+function virginsport_preprocess_node(&$vars) {
+  // Add node vie mode suggestion
+  $vars['theme_hook_suggestions'][] = sprintf('node__%s__%s', $vars['type'], $vars['view_mode']);
+
+  $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
 }
 
 // Template Overrides
@@ -225,6 +243,88 @@ function virginsport_currency($iso_code, $value) {
   }
 
   return check_plain(sprintf($format, $value));
+}
+
+/**
+ * Get the number of days left for a specific date
+ *
+ * @param $date
+ *  The date timestamp
+ * @return string
+ *  The number of days
+ */
+function virginsport_days_left($date) {
+  // Make sure we don't have negative interval
+  $date_difference = abs($date - time());
+
+  // Get the number of days between dates
+  $days_left = floor($date_difference / 60 / 60 / 24);
+
+  // Only return days left if it is smaller than 32 days
+  return $days_left > 32 ? 0 : $days_left;
+}
+
+/**
+ * Get a properly formatted date interval
+ *
+ * @param $start_date
+ *  The start date timestamp
+ * @param $end_date
+ *  The end date timestamp
+ * @return string
+ *  The formatted date interval
+ */
+function virginsport_date_interval($start_date, $end_date) {
+  // Get start_date, end_date month and year parts
+  $start_date_parts = array(
+    'year' => date('Y', $start_date),
+    'month' => date('M', $start_date)
+  );
+
+  $end_date_parts = array(
+    'year' => date('Y', $end_date),
+    'month' => date('M', $end_date)
+  );
+
+  $start_date_format = 'd M Y';
+  // If year is the same start date does not have year
+  if ($start_date_parts['year'] == $end_date_parts['year']) {
+    $start_date_format = 'd M';
+
+    // If year is the same and month the same too, start date does not have
+    // neither year and month
+    if ($start_date_parts['month'] == $end_date_parts['month']) {
+      $start_date_format = 'd';
+    }
+  }
+
+  // Return the formatted dates interval
+  return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
+}
+
+/**
+ * Checks whether a default page wrapper is required
+ *
+ * @return bool
+ *  TRUE the page wrapper is required, FALSE otherwise
+ */
+function virginsport_check_wrapper_required() {
+  $excluded_routes = array(
+    'user',
+    'user/%'
+  );
+
+  $item = menu_get_item();
+
+  if (in_array($item['path'], $excluded_routes)) {
+    return FALSE;
+  }
+
+  if (module_exists('page_manager') && page_manager_get_current_page()) {
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 /**
