@@ -76,7 +76,7 @@
 
 <?php print $messages; ?>
 
-<button class="vs-menu-trigger">
+<button class="vs-menu-trigger vs-menu-trigger--menu">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>
@@ -117,7 +117,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>"><?php print t('Login'); ?></a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
@@ -141,8 +141,15 @@
         <?php endif; ?>
 
         <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
+          <a class="vs-header__link" href="#">
+            <span class="vs-header__basket__value">0</span>
+          </a>
         </div>
+        <button class="vs-menu-trigger">
+          <span class="vs-menu-trigger__bar">
+            <span class="sr-only">toggle menu</span>
+          </span>
+        </button>
       </div>
     </div>
   </div>
