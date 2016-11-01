@@ -41,9 +41,11 @@ $event_days_left = virginsport_days_left($event_start_date);
                   </p>
                 <?php endif; ?>
 
-                <a class="vs-ticket-card__edit-ticket" href="#">
-                  <?php print t('Edit ticket'); ?>
-                </a>
+                <?php if (!$event_started): ?>
+                  <a class="vs-ticket-card__edit-ticket" href="#">
+                    <?php print t('Edit ticket'); ?>
+                  </a>
+                <?php endif; ?>
               </div>
             </div>
 
