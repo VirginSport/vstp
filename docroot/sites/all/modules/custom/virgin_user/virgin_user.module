@@ -17,10 +17,31 @@ define('VIRGIN_USER_MIN_AGE', 13);
 define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 
 /**
- * The name of the user data property that stores the timestamp with the
- * timestamp of the last successful data pull from SugarCRM.
+ * The name of the user data property that stores the timestamp with
+ * the last successful data pull from SugarCRM.
  */
 define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
+
+/**
+ * The number of seconds to wait before checking the user's ticket
+ * information is up to date and that no ticket placeholders exist.
+ */
+define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900); // 60 * 15
+
+/**
+ * The name of the cookie that holds the basket's region hostname
+ */
+define('VIRGIN_USER_BASKET_COOKIE', 'vs_basket_region_hostname');
+
+/**
+ * The name of the cookie that hosts attendly session ID
+ */
+define('VIRGIN_USER_ATTENDLY_SESSION_COOKIE', 'attendly-session');
+
+/**
+ * The name of the cookie that carries attendly security token value
+ */
+define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -52,6 +73,74 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       )
     ) + $default
   );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_user_menu() {
+  $items = array();
+
+  $items['basket/ticket/%/%'] = array(
+    'title' => 'Modify Ticket',
+    'page callback' => 'virgin_user_page_basket_ticket_action',
+    'page arguments' => array(2, 3),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/claim/%'] = array(
+    'title' => 'Claim Ticket',
+    'page callback' => 'virgin_user_page_basket_claim',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/confirm-claim/%'] = array(
+    'title' => 'Confirm Ticket Claim',
+    'page callback' => 'virgin_user_page_basket_confirm_claim',
+    'page arguments' => array(2),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/authenticate'] = array(
+    'title' => 'Authenticate Basket',
+    'page callback' => 'virgin_user_page_basket_authenticate',
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/festival-list'] = array(
+    'title' => 'Festival List',
+    'page callback' => 'virgin_user_page_basket_festival_list',
+    'access callback' => TRUE,
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/checkout-finished'] = array(
+    'title' => 'Checkout Finished',
+    'page callback' => 'virgin_user_page_basket_checkout_finished',
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['basket/post-checkout'] = array(
+    'title' => 'Post Checkout',
+    'page callback' => 'virgin_user_page_basket_post_checkout',
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  return $items;
 }
 
 /**
@@ -227,6 +316,42 @@ function virgin_user_entity_presave($entity, $type) {
   }
 }
 
+/**
+ * Implements hook_user_login().
+ */
+function virgin_user_user_login(&$edit, $account) {
+  $params = $_GET;
+
+  // If the user is authenticating against Facebook via hybrid auth
+  // we need to capture the destination parameter and parse it for
+  // possible basket actions.
+  if ($_GET['q'] == 'hybridauth/window/Facebook' && !empty($_GET['destination'])) {
+    $query_str = parse_url($_GET['destination'], PHP_URL_QUERY);
+    parse_str($query_str, $params);
+  }
+
+  // Helper function to extract a param with defaults
+  $param = function ($name, $default = '') use ($params) {
+    return empty($params[$name]) ? $default : $params[$name];
+  };
+
+  // If there's a basket action, redirect the user to the relevant
+  // basket operation routes for further processing. The option to
+  // override the destination parameter in the super global GET is
+  // due to the fact that hybridauth sets the destination parameter
+  // as part of it's execution and that overrides any changes we
+  // make to the edit redirect value.
+  switch ($param('basket-action')) {
+    case 'claim':
+      $_GET['destination'] = 'basket/confirm-claim/' . $param('rego', 'invalid-rego');
+      break;
+
+    case 'authenticate':
+      $_GET['destination'] = 'basket/authenticate';
+      break;
+  }
+}
+
 // Preprocess functions
 // ----------------------------------------------------------------------------
 
@@ -241,7 +366,8 @@ function virgin_user_preprocess_user_profile(&$vars) {
   $context = array('user_context' => $user_context);
 
   // Get user tickets
-  $vars['tickets'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
+  $vars['upcoming_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array('upcoming' => 1), array(), array(), $context);
+  $vars['past_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
 }
 
 // Helpers
@@ -341,5 +467,55 @@ function virgin_user_form_user_profile_form_validate(&$form, &$form_state) {
 
   if (!$agree_share && $has_medical_conditions) {
     form_set_error('field_agree_share_medical_info', t('You must agree to share your medical information if you fill any of the medical fields.'));
+  }
+}
+
+/**
+ * Bind the current user attendly session with his virgin sport account
+ *
+ * @return bool
+ *  TRUE the session was successfuly bound, FALSE otherwise
+ */
+function virgin_user_bind_attendly_checkout_session() {
+  global $user;
+
+  // Attempt to get the user virgin sport ID, and if it fails, bail out now
+  $wrapper = entity_metadata_wrapper('user', $user);
+  $sugar_id = $wrapper->field_sugar_id->value();
+
+  if (empty($sugar_id)) {
+    return FALSE;
+  }
+
+  // Helper function to build the attendly cookies with the environment
+  // variable as a suffix if set.
+  $cookie_name = function ($name) {
+    $env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+    return empty($env) ? $name : $name . '-' . $env;
+  };
+
+  // Fetch the attendly session value
+  $attendly_session = virgin_cookie_get($cookie_name(VIRGIN_USER_ATTENDLY_SESSION_COOKIE));
+
+  // If the user does not have an attendly session, it's not possible to bind
+  // him with attendly's system.
+  if (empty($attendly_session)) {
+    return FALSE;
+  }
+
+  // Finally, attempt to bind with Attendly and if successful store the token
+  // in a cookie that attendly can read.
+  try {
+    $token = virgin_attendly_client()->bindCheckoutSession($attendly_session, $sugar_id);
+    virgin_cookie_set($cookie_name(VIRGIN_USER_ATTENDLY_TOKEN_COOKIE), $token);
+    return TRUE;
+
+  } catch (\Exception $e) {
+    watchdog(
+      'virgin_user',
+      'Could not bind user attendly session (@sess) with virgin sport user id',
+      array('@sess' => $attendly_session)
+    );
+    return FALSE;
   }
 }
