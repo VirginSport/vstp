@@ -1,12 +1,14 @@
 
 // Components
 import vsHeader from './components/vs-header';
-import vsRegion from './components/vs-region';
+import vsIFrame from './components/vs-iframe';
 import vsIPE from './components/vs-ipe';
+import vsRegion from './components/vs-region';
 
 vsHeader();
-vsRegion();
+vsIFrame();
 vsIPE();
+vsRegion();
 
 // Libs
 import bootstrap from './lib/bootstrap';
