@@ -37,7 +37,7 @@ if ($ah_env) {
       $domain = "{$_ENV['AH_SITE_NAME']}.$domain_prefix.acquia-sites.com";
       break;
   }
-
+}
   /**
    * Base URL (optional).
    *
@@ -70,7 +70,12 @@ if ($ah_env) {
    * between your various domains. Make sure to always start the $cookie_domain
    * with a leading dot, as per RFC 2109.
    */
-//  $cookie_domain = ".$domain";
+
+/**
+ * Support cross domain login and cookie sharing/integration with Attendly
+*/
+if ($ah_env) {
+  $cookie_domain = ".virginsport.com";
 }
 
 /**

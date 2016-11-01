@@ -228,6 +228,7 @@ features[user_permission][] = execute virgin sync
 features[user_permission][] = fetch any atom
 features[user_permission][] = fetch own atom
 features[user_permission][] = moderate content from draft to needs_review
+features[user_permission][] = moderate content from draft to published
 features[user_permission][] = moderate content from needs_review to draft
 features[user_permission][] = moderate content from needs_review to published
 features[user_permission][] = restrict atom access

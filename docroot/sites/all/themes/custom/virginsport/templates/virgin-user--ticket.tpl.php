@@ -41,9 +41,11 @@ $event_days_left = virginsport_days_left($event_start_date);
                   </p>
                 <?php endif; ?>
 
-                <a class="vs-ticket-card__edit-ticket" href="#">
-                  <?php print t('Edit ticket'); ?>
-                </a>
+                <?php if (!$event_started): ?>
+                  <a class="vs-ticket-card__edit-ticket" href="<?php print url(sprintf('basket/ticket/%s/personal', $ticket->attendly_rego_id)); ?>">
+                    <?php print t('Edit ticket'); ?>
+                  </a>
+                <?php endif; ?>
               </div>
             </div>
 
@@ -109,6 +111,10 @@ $event_days_left = virginsport_days_left($event_start_date);
               </div>
               */
               ?>
+
+              <?php
+              /* TODO link up to an event photo page and pass bib# and the GamefaceID for the associated event */
+              ?>
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a class="vs-ticket-card__cta--event-photos" href="#">
@@ -120,11 +126,11 @@ $event_days_left = virginsport_days_left($event_start_date);
                 </div>
               <?php endif; ?>
 
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
+              <?php if (!empty($member_is_participant) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
-                  <a class="vs-ticket-card__cta--invite-fans" href="#">
+                  <a class="vs-ticket-card__cta--invite-fans" href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>">
                     <i class="icon-average-pace"></i>
-                    <?php print t('invite fans'); ?>
+                    <?php print t('fans'); ?>
                   </a>
                 </div>
               <?php endif; ?>
@@ -145,7 +151,7 @@ $event_days_left = virginsport_days_left($event_start_date);
               <?php if (!empty($member_is_participant)): ?>
                 <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
                   <div class="vs-ticket-card__cta-wrapper">
-                    <a class="vs-ticket-card__cta--invite-fans" href="#">
+                    <a class="vs-ticket-card__cta--invite-fans" href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>">
                       <i class="icon-average-pace"></i>
                       <?php print t('invite fans'); ?>
                     </a>
@@ -154,7 +160,7 @@ $event_days_left = virginsport_days_left($event_start_date);
 
                 <?php if (!empty($event_state_grapher->fieldGetOne('field_has_teams'))): ?>
                   <div class="vs-ticket-card__cta-wrapper">
-                    <a class="vs-ticket-card__cta--join-team" href="#">
+                    <a class="vs-ticket-card__cta--join-team" href="<?php print url(sprintf('basket/ticket/%s/teams', $ticket->attendly_rego_id)); ?>">
                       <i class="icon-join-team"></i>
                       <?php print t('join / create team'); ?>
                     </a>
@@ -163,7 +169,7 @@ $event_days_left = virginsport_days_left($event_start_date);
 
                 <?php if (!empty($event_state_grapher->fieldGetOne('field_has_marketing_questions'))): ?>
                   <div class="vs-ticket-card__cta-wrapper">
-                    <a class="vs-ticket-card__cta--about-yourself" href="#">
+                    <a class="vs-ticket-card__cta--about-yourself" href="<?php print url(sprintf('basket/ticket/%s/marketing', $ticket->attendly_rego_id)); ?>">
                       <i class="icon-tell-us"></i>
                       <?php print t('tell us about yourself'); ?>
                     </a>
@@ -173,7 +179,7 @@ $event_days_left = virginsport_days_left($event_start_date);
 
               <?php if (!empty($event_state_grapher->fieldGetOne('field_has_merchandise'))): ?>
               <div class="vs-ticket-card__cta-wrapper">
-                <a class="vs-ticket-card__cta--buy-gear" href="#">
+                <a class="vs-ticket-card__cta--buy-gear" href="<?php print url(sprintf('basket/ticket/%s/merchandise', $ticket->attendly_rego_id)); ?>">
                   <i class="icon-buy-gear"></i>
                   <?php print t('buy gear'); ?>
                 </a>
@@ -187,7 +193,7 @@ $event_days_left = virginsport_days_left($event_start_date);
         <?php if (!empty($ticket_properties)): ?>
           <div class="hidden-md-up">
             <div class="vs-ticket-card__ribbon vs-ticket-card__ribbon--<?php print $ticket_class; ?>">
-              <span><?php print t($ticket_properties[2]); ?></span>
+              <span><?php print t($ticket_properties['mobile title']); ?></span>
             </div>
           </div>
 
@@ -195,7 +201,7 @@ $event_days_left = virginsport_days_left($event_start_date);
             <div class="vs-ticket-card__ribbon-desktop-bg vs-ticket-card__ribbon-desktop-bg--<?php print $ticket_class; ?>"></div>
 
             <div class="vs-ticket-card__ribbon vs-ticket-card__ribbon--<?php print $ticket_class; ?>">
-              <span><?php print t($ticket_properties[1]); ?></span>
+              <span><?php print t($ticket_properties['desktop title']); ?></span>
             </div>
           </div>
         <?php endif; ?>

@@ -19,7 +19,7 @@ define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 /**
  * The region hostname cookie key
  */
-define('VIRGIN_REGION_COOKIE', 'virgin_sport_region_hostname');
+define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 
 /**
  * Implements hook_views_api().
@@ -239,7 +239,7 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
   $current_region = virgin_region_current();
 
   if ($current_region) {
-    $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+    $form_state['values']['field_region'][LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
 
     // Set current user region cookie on registration
     virgin_region_region_cookie_set($current_region);
@@ -306,6 +306,8 @@ function virgin_region_user_redirect($uid, $current_region) {
 }
 
 /**
+ * Append the protocol to the hostname
+ *
  * @param $hostname
  *  An hostname without the protocol e.g. uk.virginsport.com
  * @return string
@@ -319,9 +321,10 @@ function virgin_region_add_hostname_protocol($hostname) {
 }
 
 /**
- *  Set the region cookie hostname
- *  @param $current_region
- *  The Region array
+ * Set the region cookie hostname
+ *
+ * @param $current_region
+ *  The region array
  */
 function virgin_region_region_cookie_set($current_region) {
   global $cookie_domain;
@@ -330,4 +333,37 @@ function virgin_region_region_cookie_set($current_region) {
     // Set cookie with one year expire in milliseconds (365 * 24 * 60 * 60)
     setcookie(VIRGIN_REGION_COOKIE, $current_region['hostname'], time() + 31536000, "/", $cookie_domain);
   }
+}
+
+/**
+ * Checks if the given hostname is of a valid region
+ *
+ * @param $check_hostname
+ *  The hostname to be checked
+ * @return bool
+ *  TRUE it's a valid region hostname, FALSE otherwise
+ */
+function virgin_region_valid_hostname($check_hostname) {
+  foreach (virgin_region_regions() as $hostname => $region) {
+    if ($hostname == $check_hostname) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Get the current user preferred region hostname
+ *
+ * @return string
+ *  The region hostname or an empty string if no valid hostname could be found
+ */
+function virgin_region_user_hostname() {
+  global $user;
+
+  $account_wrapper = entity_metadata_wrapper('user', $user->uid);
+  $hostname = $account_wrapper->field_region->value();
+
+  return virgin_region_valid_hostname($hostname) ? $hostname : '';
 }
