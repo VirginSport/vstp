@@ -142,7 +142,7 @@
 
         <div class="vs-header__basket">
           <a class="vs-header__link" href="#">
-            <span class="vs-header__basket__value">2</span>
+            <span class="vs-header__basket__value">0</span>
           </a>
         </div>
         <button class="vs-menu-trigger">
