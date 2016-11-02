@@ -13,4 +13,14 @@ Vue.validator('email', {
   }
 });
 
+/*
+ * Check if properties values match
+ */
+Vue.validator('match', {
+  message: 'the values do not match',
+  check: function (val1, val2) {
+    return val1 == val2;
+  }
+});
+
 export default Vue;
