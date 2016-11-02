@@ -26,6 +26,20 @@ class VirginAttendlyClient {
   protected $url;
 
   /**
+   * The attendly API username
+   *
+   * @var string
+   */
+  protected $username;
+
+  /**
+   * The attendly API password
+   *
+   * @var string
+   */
+  protected $password;
+
+  /**
    * Constructor
    *
    * @param $url
@@ -39,10 +53,10 @@ class VirginAttendlyClient {
    */
   public function __construct($url, $api_url, $username, $password) {
     $this->url = $url;
+    $this->username = $username;
+    $this->password = $password;
 
-    $this->client = new Client($api_url, array(
-      'auth' => array($username, $password)
-    ));
+    $this->client = new Client($api_url);
   }
 
   /**
@@ -65,8 +79,9 @@ class VirginAttendlyClient {
       'VirginSportID' => $virgin_sport_id
     );
 
-    $response = $this->client->post('/v2/virgin/requestusertoken', null, json_encode($data))->send();
-    $response_data = $response->json();
+    $request = $this->client->post('/v2/virgin/requestusertoken', null, json_encode($data));
+    $request->setAuth($this->username, $this->password);
+    $response_data = $request->send()->json();
 
     if (empty($response_data['Result']['Token'])) {
       throw new \Exception("Could not bind session to a checkout token");
@@ -105,8 +120,9 @@ class VirginAttendlyClient {
       'Rego' => $rego_id,
     );
 
-    $response = $this->client->post('/v2/attendee/postregoaccess', null, json_encode($data))->send();
-    $response_data = $response->json();
+    $request = $this->client->post('/v2/attendee/postregoaccess', null, json_encode($data));
+    $request->setAuth($this->username, $this->password);
+    $response_data = $request->send()->json();
 
     if (empty($response_data['Result']['Token'])) {
       throw new \Exception("Could not fetch a valid attendly post checkout token");

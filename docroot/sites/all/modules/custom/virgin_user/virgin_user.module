@@ -44,6 +44,11 @@ define('VIRGIN_USER_ATTENDLY_SESSION_COOKIE', 'attendly-session');
 define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
 
 /**
+ * The name of the cookie that carries the number of items in attendly basket
+ */
+define('VIRGIN_USER_ATTENDLY_ITEMS_COOKIE', 'attendly-items');
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_user_ctools_plugin_directory($module, $plugin) {
@@ -350,6 +355,23 @@ function virgin_user_user_login(&$edit, $account) {
       $_GET['destination'] = 'basket/authenticate';
       break;
   }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function virgin_user_user_logout($account) {
+
+  // Remove all cookies the user has on his browser for region selection
+  // and attendly basket token and session integration.
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+  $attendly_suffix = empty($attendly_env) ? '' : '-' . $attendly_env;
+
+  virgin_cookie_unset(VIRGIN_REGION_COOKIE);
+  virgin_cookie_unset(VIRGIN_USER_BASKET_COOKIE);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_SESSION_COOKIE . $attendly_suffix);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_suffix);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_TOKEN_COOKIE . $attendly_suffix);
 }
 
 // Preprocess functions

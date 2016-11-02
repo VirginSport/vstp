@@ -88,6 +88,13 @@ function virginsport_preprocess_page(&$vars) {
   $vars['main_menu'] = virginsport_menu_items('main-menu');
   $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
 
+  // Setup attendly basket link counter
+  $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+
+  $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
+  $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_env;
+
   // Setup the social networks
   $vars['social_networks'] = array();
   $networks = virgin_social_networks();
@@ -311,7 +318,8 @@ function virginsport_date_interval($start_date, $end_date) {
 function virginsport_check_wrapper_required() {
   $excluded_routes = array(
     'user',
-    'user/%'
+    'user/%',
+    'node/%/tickets'
   );
 
   $item = menu_get_item();
