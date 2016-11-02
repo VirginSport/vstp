@@ -44,6 +44,11 @@ define('VIRGIN_USER_ATTENDLY_SESSION_COOKIE', 'attendly-session');
 define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
 
 /**
+ * The name of the cookie that carries the number of items in attendly basket
+ */
+define('VIRGIN_USER_ATTENDLY_ITEMS_COOKIE', 'attendly-items');
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_user_ctools_plugin_directory($module, $plugin) {
