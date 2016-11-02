@@ -320,6 +320,18 @@ function virgin_cookie_set($name, $value) {
 }
 
 /**
+ * Unsets a cookie with the given name
+ *
+ * @param $name
+ *  The name of the cookie
+ */
+function virgin_cookie_unset($name) {
+  unset($_COOKIE[$name]);
+  $params = session_get_cookie_params();
+  setcookie($name, '', time() - 3600, $params['path'], $params['domain'], $params['secure']);
+}
+
+/**
  * Gets the global instance of a virgin cipher
  *
  * @return \VirginCipher
