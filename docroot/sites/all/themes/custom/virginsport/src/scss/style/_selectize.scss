@@ -8,9 +8,35 @@
   left: -9999px;
 }
 
+.selectize-dropdown,
+.selectize-input,
+.selectize-input input {
+  line-height: 1.25rem;
+  // line-height: 1.21875rem;
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+
+  .selectize-dropdown,
+  .selectize-input,
+  .selectize-input input {
+    // line-height: 1.5rem;
+    line-height: 1.46875rem;
+  }
+}
+
 .selectize-input {
   border: 0;
   padding-left: 0;
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  // min-height: 22px;
+  min-height: 21px;
 
   &.focus {
     @include box-shadow(none);
