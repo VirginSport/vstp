@@ -196,9 +196,22 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3 col-lg-2">
-          <div class="btn-group dropup vs-footer__language">
-            <!-- TODO The region picker is not yet finished -->
+          <?php if ($regions['current']): ?>
+          <div class="btn-group vs-footer__language">
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid,
+                'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+              <span class="vs-footer__region-label"><?php print $regions['current']['title']; ?></span>
+            </button>
+            <div class="dropdown-menu vs-footer__language-list">
+              <?php foreach ($regions['other'] as $region): ?>
+              <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
+                <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')) ?> <?php print $region['title']; ?>
+              </a>
+              <?php endforeach; ?>
+            </div>
           </div>
+          <?php endif; ?>
         </div>
 
         <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">

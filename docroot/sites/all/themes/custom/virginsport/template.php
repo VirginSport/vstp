@@ -105,6 +105,9 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  // Fetch the list of regions
+  $vars['regions'] = virginsport_regions();
 }
 
 /**
@@ -322,4 +325,23 @@ function virginsport_check_wrapper_required() {
   }
 
   return TRUE;
+}
+
+/**
+ * Get the list of regions
+ *
+ * @return array
+ */
+function virginsport_regions() {
+  $regions = virgin_region_regions();
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    unset($regions[$current_region['hostname']]);
+  }
+
+  return array(
+    'current' => $current_region,
+    'other' => $regions
+  );
 }
