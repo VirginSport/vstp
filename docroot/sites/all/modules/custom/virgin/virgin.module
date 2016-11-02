@@ -316,7 +316,7 @@ function virgin_cookie_get($key, $default_value = '') {
  */
 function virgin_cookie_set($name, $value) {
   $params = session_get_cookie_params();
-  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure']);
 }
 
 /**
