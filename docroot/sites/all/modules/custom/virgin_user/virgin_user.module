@@ -357,6 +357,23 @@ function virgin_user_user_login(&$edit, $account) {
   }
 }
 
+/**
+ * Implements hook_user_logout().
+ */
+function virgin_user_user_logout($account) {
+
+  // Remove all cookies the user has on his browser for region selection
+  // and attendly basket token and session integration.
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+  $attendly_suffix = empty($attendly_env) ? '' : '-' . $attendly_env;
+
+  virgin_cookie_unset(VIRGIN_REGION_COOKIE);
+  virgin_cookie_unset(VIRGIN_USER_BASKET_COOKIE);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_SESSION_COOKIE . $attendly_suffix);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_suffix);
+  virgin_cookie_unset(VIRGIN_USER_ATTENDLY_TOKEN_COOKIE . $attendly_suffix);
+}
+
 // Preprocess functions
 // ----------------------------------------------------------------------------
 
