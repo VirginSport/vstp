@@ -71,8 +71,19 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'ticket' => '',
       )
-    ) + $default
+    ) + $default,
+    'virgin_user__edit' => array(
+      'template'  => 'virgin-user--edit',
+      'variables' => array('profile_form')
+    ) + $default,
   );
+}
+
+/**
+ * Implements hook_admin_paths_alter().
+ */
+function virgin_user_admin_paths_alter(&$paths) {
+  $paths['user/*/edit'] = FALSE;
 }
 
 /**
