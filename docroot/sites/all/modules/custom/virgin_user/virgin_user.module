@@ -262,6 +262,9 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_profile_form_validate';
+
+  // Allow email update without password required
+  unset($form['account']['current_pass_required_values']['#value']['mail']);
 }
 
 /**
