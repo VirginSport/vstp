@@ -14,7 +14,7 @@ $query = drupal_get_query_parameters();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="vs-hero-banner__title"><?php print t('Register'); ?></h2>
+              <h2 class="vs-hero-banner__title"><?php print t('Login'); ?></h2>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>
