@@ -209,7 +209,7 @@
               <?php foreach ($regions['other'] as $region): ?>
               <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
                 <?php if (!empty($region['flag'])): ?>
-                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')) ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
                   <?php print check_plain($region['title']); ?>
                 <?php endif; ?>
               </a>
