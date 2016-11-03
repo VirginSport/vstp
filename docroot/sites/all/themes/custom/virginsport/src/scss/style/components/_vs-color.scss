@@ -37,11 +37,11 @@ vs-color,
 
   .vs-color--color-#{$color} {
     .vs-color__layer-1 {
-      @include gradient-directional(map_get($map, 'from') 50%, map_get($map, 'to'), map_get($map, 'rotate'));
+      @include gradient-directional(map_get($map, 'from') 0, map_get($map, 'to') 60%, 135deg);
     }
 
     .vs-color__layer-3 {
-      @include gradient-directional(rgba(map_get($map, 'from'), 0), map_get($map, 'to'), map_get($map, 'rotate'));
+      @include gradient-directional(rgba(map_get($map, 'from'), 0), map_get($map, 'from'), map_get($map, 'rotate'));
     }
   }
 }

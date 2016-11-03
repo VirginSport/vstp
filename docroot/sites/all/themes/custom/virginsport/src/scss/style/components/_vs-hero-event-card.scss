@@ -16,6 +16,7 @@ vs-hero-event-card,
   background-color: $c-white;
   padding: 1.25rem;
   position: relative;
+  overflow: hidden;
 }
 
 .vs-hero-event-card__image {
@@ -43,9 +44,10 @@ vs-hero-event-card,
   font-size: 1.125rem;
   line-height: 1.125rem;
   color: $c-black;
-  
   text-transform: uppercase;
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .vs-hero-event-card__date {
@@ -54,12 +56,21 @@ vs-hero-event-card,
   font-size: .75rem;
   text-transform: uppercase;
   margin-bottom: 1.0625rem;
+  position: relative;
+  z-index: 1;
+}
+
+.vs-hero-event-card__text {
+  position: relative;
+  z-index: 1;
 }
 
 .vs-hero-event-card__button {
   display: block;
   width: 100%;
   margin-bottom: .625rem;
+  position: relative;
+  z-index: 1;
 
   &:last-child {
     margin-bottom: 0;
