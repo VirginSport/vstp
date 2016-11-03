@@ -12,8 +12,6 @@ vs-subnav,
   padding: .875rem 0;
   left: 0;
   right: 0;
-  white-space: nowrap;
-  overflow-x: auto;
   z-index: 999;
 
 }
@@ -24,7 +22,9 @@ vs-subnav,
 
 .vs-subnav__list {
   margin: 0;
-  padding: 0 20px;
+  padding: 0 1.25rem;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 .vs-subnav__overlay {
@@ -85,7 +85,7 @@ vs-subnav,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-region--dark {
+.vs-region--gradient-black {
   .vs-subnav__link {
     color: $c-white;
 

@@ -1,0 +1,69 @@
+
+// Block
+// ----------------------------------------------------------------------------
+
+vs-color,
+.vs-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+// Class used by color containers
+.vs-color-container {
+  position: relative;
+}
+
+// Element
+// ----------------------------------------------------------------------------
+
+.vs-color__layer-1,
+.vs-color__layer-2,
+.vs-color__layer-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-color--color-#{$color} {
+    .vs-color__layer-1 {
+      @include gradient-directional(map_get($map, 'from') 0, map_get($map, 'to') 60%, 135deg);
+    }
+
+    .vs-color__layer-3 {
+      @include gradient-directional(rgba(map_get($map, 'from'), 0), map_get($map, 'from'), map_get($map, 'rotate'));
+    }
+  }
+}
+
+@each $pattern-name in map-keys($pattern-schemes) {
+  $pattern: map_get($pattern-schemes, $pattern-name);
+
+  @each $color-name in map-keys($pattern) {
+    $color: map_get($pattern, $color-name);
+
+    .vs-color--color-#{$color-name}.vs-color--pattern-#{$pattern-name} .vs-color__layer-2 {
+      background: transparent url('../img/#{map_get($color, 'img')}') no-repeat map_get($color, 'positionX') map_get($color, 'positionY');
+      background-size: map_get($color, 'size');
+      opacity: map_get($color, 'opacity');
+
+      @include media-breakpoint-up(md) {
+        background-size: map_get($color, 'size-md');
+      }
+
+      @include media-breakpoint-up(lg) {
+        background-size: map_get($color, 'size-lg');
+      }
+    }
+  }
+}
