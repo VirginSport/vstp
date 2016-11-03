@@ -43,5 +43,29 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
     $variables['price'] = $ticket_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['currency'] = $ticket_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['nid'] = $ticket_grapher->property('nid');
+
+    $ticket_type_state_grapher = $ticket_grapher->relation('field_ticket_type_state');
+    $ticket_level = $ticket_type_state_grapher->fieldGetOne('field_ticket_level');
+    $ticket_level_properties = virgin_ticket_banner_properties();
+
+    if (!empty($ticket_level_properties[$ticket_level])) {
+      $ticket_properties = $ticket_level_properties[$ticket_level];
+
+      switch ($ticket_properties['color']) {
+        case 'gold':
+          $class = 'vip';
+          break;
+
+        case 'festival':
+          $class = 'hero';
+          break;
+
+        default:
+          $class = 'pass';
+      }
+
+      $variables['ticket_properties'] = $ticket_properties;
+      $variables['ticket_class'] = $class;
+    }
   }
 }

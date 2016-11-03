@@ -57,5 +57,7 @@ dependencies[] = virgin_user
 ; required files
 files[] = exceptions/VirginException.php
 files[] = includes/VirginMailSystem.inc
-files[] = util/VirginGrapher.php
+files[] = util/VirginAttendlyClient.php
+files[] = util/VirginCipher.php
 files[] = util/VirginEntityGrapher.php
+files[] = util/VirginGrapher.php

@@ -655,8 +655,8 @@ function virgin_base_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'none' => 'None',
-        'circles' => 'Circles',
-        'waves' => 'Waves',
+        'circle' => 'Circles',
+        'wave' => 'Waves',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

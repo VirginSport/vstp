@@ -41,6 +41,7 @@ class VirginComponentHeroEventCard implements VirginComponentsInterface {
     $variables['event_state_grapher'] = $event_state_grapher;
     $variables['header_image'] = $event_grapher->relation('field_header_image');
     $variables['brand_color'] = $event_grapher->fieldGetOne('field_brand_color');
+    $variables['brand_pattern'] = $event_grapher->fieldGetOne('field_brand_pattern');
     $variables['event_title'] = $event_grapher->fieldGetOne('title_field');
     $variables['event_description'] = $event_grapher->fieldRendered('field_description');
     $variables['event_date'] = date('d M', $event_state_grapher->fieldGetOne('field_start_date'));

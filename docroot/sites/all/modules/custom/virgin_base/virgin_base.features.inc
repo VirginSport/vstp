@@ -48,6 +48,21 @@ function virgin_base_image_default_styles() {
     'effects' => array(),
   );
 
+  // Exported image style: virgin_small_flag.
+  $styles['virgin_small_flag'] = array(
+    'label' => 'Virgin Small Flag',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 30,
+          'height' => 18,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: vs_teaser_landscape.
   $styles['vs_teaser_landscape'] = array(
     'label' => 'teaser landscape',
