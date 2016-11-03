@@ -88,6 +88,13 @@ function virginsport_preprocess_page(&$vars) {
   $vars['main_menu'] = virginsport_menu_items('main-menu');
   $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
 
+  // Setup attendly basket link counter
+  $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+
+  $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
+  $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_env;
+
   // Setup the social networks
   $vars['social_networks'] = array();
   $networks = virgin_social_networks();
@@ -105,6 +112,9 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  // Fetch the list of regions
+  $vars['regions'] = virginsport_regions();
 }
 
 /**
@@ -182,16 +192,19 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
 }
 
 /**
- * Generates an HTML style attribute with background-image from an atom object.
+ * Generates an HTML style attribute with background-image from an atom object
  *
  * @param $atom
- *  The asset id-
+ *  The asset id
  * @param $style
- *  The image style.
+ *  The image style
  * @return string
  *  HTML style attribute with background-image. For example: background-image: url(...);"
  */
 function virginsport_atom_background($atom, $style = 'virgin_original') {
+  if (empty($atom)) {
+    return '';
+  }
 
   if (empty($atom->file_source)) {
     $atom = scald_atom_load($atom->sid);
@@ -309,7 +322,8 @@ function virginsport_check_wrapper_required() {
   $excluded_routes = array(
     'user',
     'user/%',
-    'user/%/edit'
+	'user/%/edit',
+    'node/%/tickets'
   );
 
   $item = menu_get_item();
@@ -323,4 +337,23 @@ function virginsport_check_wrapper_required() {
   }
 
   return TRUE;
+}
+
+/**
+ * Get the list of regions
+ *
+ * @return array
+ */
+function virginsport_regions() {
+  $regions = virgin_region_regions();
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    unset($regions[$current_region['hostname']]);
+  }
+
+  return array(
+    'current' => $current_region,
+    'other' => $regions
+  );
 }
