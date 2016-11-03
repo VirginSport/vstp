@@ -16,7 +16,6 @@
 $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
 
 ?>
-
 <div class="vs-teaser">
 
   <!-- Portrait Template -->
@@ -51,6 +50,14 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($outline)): ?>
               <span class="vs-teaser__title hidden-sm-down"><?php print $outline; ?></span>
             <?php endif; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                )
+              );
+            ?>
           </div>
         </div>
       </div>
@@ -71,6 +78,14 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($body)): ?>
               <div class="vs-teaser__text"><?php print $body; ?></div>
             <?php endif; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                )
+              );
+            ?>
           </div>
           <div class="col-xs-12 col-md-6">
             <?php if(!empty($teaser_images[0]['sid'])): ?>
@@ -108,6 +123,14 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($body)): ?>
               <div class="vs-teaser__text"><?php print $body; ?></div>
             <?php endif; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                )
+              );
+            ?>
           </div>
           <div class="col-xs-12 col-md-6">
             <div class="vs-teaser__image-scale">
@@ -208,6 +231,7 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($body)): ?>
               <div class="vs-teaser__text hidden-md-up"><?php print $body; ?></div>
             <?php endif; ?>
+
             <div class="vs-teaser__image-scale">
               <?php if(!empty($teaser_images[0]['sid'])): ?>
 
@@ -230,6 +254,14 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($body)): ?>
               <div class="vs-teaser__text hidden-sm-down"><?php print $body; ?></div>
             <?php endif; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                )
+              );
+            ?>
           </div>
         </div>
       </div>
@@ -254,6 +286,14 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
             <?php if(!empty($body)): ?>
               <div class="vs-teaser__text hidden-sm-down"><?php print $body; ?></div>
             <?php endif; ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                )
+              );
+            ?>
           </div>
           <div class="col-xs-12 col-md-6">
             <div class="vs-teaser__image-scale">
@@ -355,3 +395,4 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
     </div>
 
 <?php endif; ?>
+</div>
