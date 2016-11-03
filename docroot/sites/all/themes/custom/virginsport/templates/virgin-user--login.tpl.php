@@ -66,13 +66,13 @@ $query = drupal_get_query_parameters();
                         <div class="field-name">
                           <label><?php print t('Name'); ?>*</label>
                             <input type="text" v-model="profile.name" name="name" v-validate:name="['required']">
-                            <div v-if="$vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
+                            <div v-if="$vs_user_login_validator.name.dirty && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
                         </div>
 
                         <div class="field-password">
                           <label><?php print t('Password'); ?>*</label>
                           <input type="password" v-model="profile.password" name="password" v-validate:password="['required']">
-                          <div v-if="$vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
+                          <div v-if="$vs_user_login_validator.password.dirty && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
                         </div>
 
                         <a href="<?php print url('user/password', array('query' => $query)); ?>">
