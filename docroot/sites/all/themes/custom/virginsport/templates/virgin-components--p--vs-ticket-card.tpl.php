@@ -49,9 +49,11 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
           >
             <?php print t('Select tickets');?>
           </a>
+          <?php if(!empty($ticket_properties)): ?>
           <div class="vs-ticket-type__<?php print $ticket_class; ?>">
-            <span><?php print t($ticket_properties['desktop title']); ?></span>
+              <span><?php print t($ticket_properties['desktop title']); ?></span>
           </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
