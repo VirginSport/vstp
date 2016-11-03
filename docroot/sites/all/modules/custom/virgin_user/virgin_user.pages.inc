@@ -281,3 +281,17 @@ function virgin_user_page_user_login() {
   
   return theme('virgin_user__login', array('login_form' => $login_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
 }
+
+/**
+ * Page callback for the user register route
+ *
+ * This callback overrides the core drupal user register route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_register() {
+  $register_form = drupal_get_form('user_register_form');
+
+  return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
+}

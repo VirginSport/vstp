@@ -89,6 +89,13 @@ function virgin_user_theme($existing, $type, $theme, $path) {
         'login_form' => '',
         'hybridauth_widget' => '',
       )
+    ) + $default,
+    'virgin_user__register' => array(
+      'template' => 'virgin-user__register',
+      'variables' => array(
+        'register_form' => '',
+        'hybridauth_widget' => '',
+      )
     ) + $default
   );
 }
@@ -188,6 +195,11 @@ function virgin_user_menu_alter(&$items) {
   $items['user/login']['page callback'] = 'virgin_user_page_user_login';
   $items['user/login']['file'] = $file;
   $items['user/login']['file path'] = $file_path;
+
+  // Override user register page
+  $items['user/register']['page callback'] = 'virgin_user_page_user_register';
+  $items['user/register']['file'] = $file;
+  $items['user/register']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
