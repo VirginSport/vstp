@@ -20,7 +20,7 @@ export default function () {
 function userDropdown($body, $header) {
   let isOpen = false;
   let $menu = $header.find('.vs-user-menu');
-  let $trigger = $menu.find('.vs-user-menu__trigger');
+  let $trigger = $menu.find('.vs-user-menu__trigger:not(.vs-user-menu__trigger--not-logged)');
   let $dropdown = $menu.find('.vs-user-dropdown');
 
   // The user dropdown is closed if the user clicks anywhere in
