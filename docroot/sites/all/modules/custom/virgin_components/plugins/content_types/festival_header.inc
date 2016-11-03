@@ -19,13 +19,13 @@ $plugin = array(
 /**
  * Implements hook_plugin_content_type_render().
  */
-function virgin_components_festival_header_content_type_render($subtype, $conf, $panel_args, $context) {
-  if (empty($context) || empty($context[0]->data)) {
+function virgin_components_festival_header_content_type_render($subtype, $conf, $args, $context) {
+  if (empty($args['festival']) && empty($context[0]->data)) {
     return;
   }
 
   // Get a shortcut to the node.
-  $node = $context[0]->data;
+  $node = empty($args['festival']) ? $context[0]->data : $args['festival'];
   $g = new VirginEntityGrapher('node', $node);
 
   // Ensure the festival node is available
