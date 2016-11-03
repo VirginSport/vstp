@@ -24,6 +24,20 @@ vs-tabs,
   width: 50%;
   text-align: center;
 
+  &.active .nav-link {
+    background-color: transparent;
+    border-color: $c-orange-bright;
+    font-weight: 500;
+    color: #FF1403;
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      border-color: $c-orange-bright;
+      color: #FF1403;
+    }
+  }
+
   + .nav-item {
     margin: 0;
   }
@@ -39,20 +53,6 @@ vs-tabs,
   font-weight: 300;
   color: rgba($c-black, .6);
   padding: 1.25rem 0;
-
-  &.active {
-    background-color: transparent;
-    border-color: $c-orange-bright;
-    font-weight: 500;
-    color: #FF1403;
-
-    &:hover,
-    &:focus {
-      background-color: transparent;
-      border-color: $c-orange-bright;
-      color: #FF1403;
-    }
-  }
 
   &:hover {
     border-color: $c-orange-bright;
@@ -74,8 +74,8 @@ vs-tabs,
   $map: map_get($color-schemes, $color);
 
   .vs-tabs--color-#{$color} {
-    .nav-tabs .nav-link {
-      &.active {
+    .nav-tabs .nav-item {
+      &.active .nav-link {
         border-color: map_get($map, 'solid-color');
         color: map_get($map, 'solid-color');
 
