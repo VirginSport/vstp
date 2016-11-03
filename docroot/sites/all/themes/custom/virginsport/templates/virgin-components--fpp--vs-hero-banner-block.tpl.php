@@ -10,7 +10,7 @@
  *  $cta_links - An array of links
  */
 ?>
-<div class="ks vs-overlay-blur"></div>
+
 <div class="vs-hero-banner">
   <div class="vs-hero-banner__background" style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>">
     <div class="vs-hero-banner__social-wrapper">

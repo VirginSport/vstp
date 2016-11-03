@@ -95,9 +95,21 @@
     </div>
   </div>
 </div>
-
+<div class="vs-overlay-sharer"></div>
+<div class="vs-mobile-sharer">
+  <div class="vs-mobile-sharer__overlay"></div>
+  <div class="vs-share-button__content">
+        <span class="col-xs-12 vs-mobile-sharer__title">
+          Share
+        </span>
+    <div class="vs-share-button__social-links">
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-twitter"><i class="icon-twitter"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-facebook"><i class="icon-facebook"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-email"><i class="icon-email-filled"></i><span></span></a>
+    </div>
+  </div>
+</div>
 <div class="vs-overlay-blur">
-
   <div class="vs-header">
     <div class="container-fluid clearfix">
       <div class="vs-header__logo-wrapper">
