@@ -7,7 +7,6 @@ export default () => {
 function share() {
 
   $('.vs-share-button__icon-button.vs-share-button__icon-share').click(function(e) {
-    alert("entrei");
     if ($('.vs-share-button .vs-share-button__icon-share--active').length > 0) {
       $('.vs-share-button .vs-share-button__icon-share').removeClass('vs-share-button__icon-share--active');
       $('.vs-share-button .vs-share-button__social-links').removeClass('vs-share-button__social-links--active');
