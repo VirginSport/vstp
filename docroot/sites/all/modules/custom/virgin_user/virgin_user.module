@@ -169,6 +169,9 @@ function virgin_user_menu_alter(&$items) {
   $items['user/%user/edit']['page callback'] = 'virgin_user_page_user_edit';
   $items['user/%user/edit']['file'] = 'virgin_user.pages.inc';
   $items['user/%user/edit']['file path'] = drupal_get_path('module', 'virgin_user');
+  // Only allow authenticated user to access user page
+  $items['user']['access callback'] = 'user_is_logged_in';
+
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
