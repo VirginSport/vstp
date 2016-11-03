@@ -229,12 +229,11 @@ vs-footer,
 
   .vs-footer__social-list {
     padding: 0;
-    text-align: right;
   }
 
   .vs-footer__social-item {
     display: inline-block;
-    margin: 0 0 .625rem .625rem;
+    margin: 0 .625rem 0 0;
   }
 
   .vs-footer__menu-item__link {
@@ -252,5 +251,9 @@ vs-footer,
   .vs-footer__menu-item {
     float: left;
     width: 50%;
+  }
+
+  .vs-footer__social-list {
+    text-align: right;
   }
 }
