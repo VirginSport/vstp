@@ -267,3 +267,17 @@ function virgin_user_page_user_edit($form, $account) {
 
   return theme('virgin_user__edit', array('profile_form' => drupal_get_form($form, $account)));
 }
+
+/**
+ * Page callback for the user login route
+ *
+ * This callback overrides the core drupal user login route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_login() {
+  $login_form = drupal_get_form('user_login');
+  
+  return theme('virgin_user__login', array('login_form' => $login_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
+}
