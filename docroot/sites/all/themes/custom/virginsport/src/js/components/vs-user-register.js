@@ -115,13 +115,14 @@ export default () => {
         field_date_month: '',
         field_date_year: '',
         field_gender: '',
+        field_contact_number: '',
         field_marketing_optin: '',
         field_address_line_1: '',
         field_address_line_2: '',
         field_address_city: '',
         field_address_state: '',
         field_address_postcode: '',
-        field_address_country: [],
+        field_address_country: []
       }
     }
   });
