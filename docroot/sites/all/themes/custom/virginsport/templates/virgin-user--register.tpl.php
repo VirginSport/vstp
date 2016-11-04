@@ -116,72 +116,81 @@ $query = drupal_get_query_parameters();
                         </div>
 
                         <div class="field-address">
-                          <label><?php print t('Address'); ?></label>
-                          <div>
-                            <input @keydown.13.prevent v-show="!address_manual" id="google-autocomplete" placeholder="search" type="text">
+                          <div class="vs-select-wrapper">
+                            <label><?php print t('Address'); ?></label>
+                            <div>
+                              <input @keydown.13.prevent v-show="!address_manual" id="google-autocomplete" placeholder="search" type="text">
 
-                            <button v-show="!address_manual" v-on:click="address_manual = true"><?php print t('Enter manually'); ?></button>
-                            <button v-show="address_manual" v-on:click="address_manual = false"><?php print t('Close manual'); ?></button>
+                              <button v-show="!address_manual" v-on:click="address_manual = true"><?php print t('Enter manually'); ?></button>
+                              <button v-show="address_manual" v-on:click="address_manual = false"><?php print t('Close manual'); ?></button>
 
-                            <div v-show="address_manual">
-                              <div>
-                                <label><?php print t('Address Line 1'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" v-validate:field_address_line_1="['required']">
-                                <div v-if="$vs_user_register_validator.field_address_line_1.dirty && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
-                              </div>
-
-                              <div>
-                                <label><?php print t('Address Line 2'); ?></label>
-                                <input type="text" v-model="profile.field_address_line_2" name="field_address_line_2">
-                              </div>
-
-                              <div>
-                                <label><?php print t('City'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_city" name="field_address_city" v-validate:field_address_city="['required']">
-                                <div v-if="$vs_user_register_validator.field_address_city.dirty && $vs_user_register_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
-                              </div>
-
-                              <div>
-                                <label><?php print t('State'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_state" name="field_address_state" v-validate:field_address_state="['required']">
-                                <div v-if="$vs_user_register_validator.field_address_state.dirty && $vs_user_register_validator.field_address_state.required"><?php print t('State is required'); ?></div>
-                              </div>
-
-                              <div>
-                                <label><?php print t('Postcode'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" v-validate:field_address_postcode="['required']">
-                                <div v-if="$vs_user_register_validator.field_address_postcode.dirty && $vs_user_register_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
-                              </div>
-
-
-                              <div>
-                                <label><?php print t('Country'); ?>*</label>
+                              <div v-show="address_manual">
                                 <div>
-                                  <select required v-model="profile.field_address_country" name="field_address_country" v-validate:field_address_country="['required']">
-                                  </select>
-                                  <div v-if="$vs_user_register_validator.field_address_country.dirty && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
+                                  <label><?php print t('Address Line 1'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" v-validate:field_address_line_1="['required']">
+                                  <div v-if="$vs_user_register_validator.field_address_line_1.dirty && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
+                                </div>
+
+                                <div>
+                                  <label><?php print t('Address Line 2'); ?></label>
+                                  <input type="text" v-model="profile.field_address_line_2" name="field_address_line_2">
+                                </div>
+
+                                <div>
+                                  <label><?php print t('City'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_city" name="field_address_city" v-validate:field_address_city="['required']">
+                                  <div v-if="$vs_user_register_validator.field_address_city.dirty && $vs_user_register_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
+                                </div>
+
+                                <div>
+                                  <label><?php print t('State'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_state" name="field_address_state" v-validate:field_address_state="['required']">
+                                  <div v-if="$vs_user_register_validator.field_address_state.dirty && $vs_user_register_validator.field_address_state.required"><?php print t('State is required'); ?></div>
+                                </div>
+
+                                <div>
+                                  <label><?php print t('Postcode'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" v-validate:field_address_postcode="['required']">
+                                  <div v-if="$vs_user_register_validator.field_address_postcode.dirty && $vs_user_register_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
+                                </div>
+
+
+                                <div>
+                                  <label><?php print t('Country'); ?>*</label>
+                                  <div>
+                                    <select required v-model="profile.field_address_country" name="field_address_country" v-validate:field_address_country="['required']">
+                                    </select>
+                                    <div v-if="$vs_user_register_validator.field_address_country.dirty && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                          <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                         </div>
 
                         <div class="field-contact-number">
-                          <label><?php print t('Contact Number'); ?>*</label>
-                          <div>
-                            <input required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
-                            <div v-if="$vs_user_register_validator.field_contact_number.dirty && $vs_user_register_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
+                          <div class="vs-select-wrapper">
+                            <label><?php print t('Contact Number'); ?>*</label>
+                            <div>
+                              <input required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
+                              <div v-if="$vs_user_register_validator.field_contact_number.dirty && $vs_user_register_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
+                            </div>
                           </div>
+                          <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                         </div>
 
                         <div class="field-date">
-                          <label><?php print t('Date of Birth'); ?>*</label>
-                          <select v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
-                          <select v-model="profile.field_date_day" name="field_date_day" v-validate:field_date_day="['required']"></select>
-                          <select v-model="profile.field_date_year" name="field_date_year" v-validate:field_date_year="['required']"></select>
-                          <div v-if="($vs_user_register_validator.field_date_day.dirty && $vs_user_register_validator.field_date_day.required) || ($vs_user_register_validator.field_date_month.dirty && $vs_user_register_validator.field_date_month.required) || ($vs_user_register_validator.field_date_year.dirty && $vs_user_register_validator.field_date_year.required)">
-                            <?php print t('Date of Birth is required'); ?>
+                          <div class="vs-select-wrapper">
+                            <label><?php print t('Date of Birth'); ?>*</label>
+                            <select v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
+                            <select v-model="profile.field_date_day" name="field_date_day" v-validate:field_date_day="['required']"></select>
+                            <select v-model="profile.field_date_year" name="field_date_year" v-validate:field_date_year="['required']"></select>
+                            <div v-if="($vs_user_register_validator.field_date_day.dirty && $vs_user_register_validator.field_date_day.required) || ($vs_user_register_validator.field_date_month.dirty && $vs_user_register_validator.field_date_month.required) || ($vs_user_register_validator.field_date_year.dirty && $vs_user_register_validator.field_date_year.required)">
+                              <?php print t('Date of Birth is required'); ?>
+                            </div>
                           </div>
+                          <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                         </div>
 
                         <div class="field-gender">
