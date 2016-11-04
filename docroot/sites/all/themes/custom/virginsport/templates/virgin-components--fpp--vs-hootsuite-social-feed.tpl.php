@@ -7,5 +7,4 @@
  * TODO
  */
 ?>
-
-Hootsuite Social Feed Template
+<iframe width="100%" height="500px" frameBorder="0" scrolling="yes" src="http://virginsport.hscampaigns.com?hidesections=header,footer,navigation,&redirect=false" id="bk_iframe" onload="resizeCrossDomainIframe('bk_iframe', 'http://virginsport.hscampaigns.com');" allowfullscreen></iframe>
