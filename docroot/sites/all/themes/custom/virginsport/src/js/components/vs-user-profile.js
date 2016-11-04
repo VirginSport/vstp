@@ -142,6 +142,7 @@ export default () => {
         field_contact_number: '',
         field_marketing_optin: '',
         field_uk_athletics_number: '',
+        field_medical_conditions: '',
         field_medical_conditions_other: '',
         field_agree_share_medical_info: '',
         field_address_line_1: '',
