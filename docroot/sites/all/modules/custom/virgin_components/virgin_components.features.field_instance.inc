@@ -4042,7 +4042,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_cta_links',
     'label' => 'Call to action button',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
