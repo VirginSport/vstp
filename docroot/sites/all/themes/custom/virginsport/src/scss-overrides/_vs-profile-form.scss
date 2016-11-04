@@ -1,0 +1,138 @@
+
+// This file covers user account details form.
+// ----------------------------------------------------------------------------
+
+// Do not commit the vs-header css
+.vs-header {
+  display: none;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-user-profile-form {
+  font-size: .75rem;
+
+  label {
+    font-size: .75rem;
+    margin-bottom: 0;
+  }
+}
+
+.vs-user-profile-form--head {
+  background-color: rgba(#D8D8D8, .25);
+  padding: .625rem .625rem 0;
+  margin-bottom: .875rem;
+}
+
+.vs-user-profile-form--body {
+  color: $c-black;
+
+  > .row:first-child {
+    border-bottom: 1px solid rgba(#d8d8d8, .5);
+  }
+
+  .vs-form-group {
+    margin: 0 .625rem .875rem;
+    line-height: normal;
+  }
+
+  .vs-btn {
+    display: block;
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  label {
+    display: block;
+    font-size: .625rem;
+    color: rgba($c-black, .6);
+  }
+}
+
+.vs-field-address__span {
+  display: block;
+}
+
+.vs-focus-label {
+  top: .3125rem;
+  position: static;
+
+  .vs-user-profile-form--edit & {
+    position: absolute;
+  }
+}
+
+
+// Chosen specific css
+// ----------------------------------------------------------------------------
+
+.vs-form-group--chosen {
+  .form-control {
+    height: auto;
+  }
+
+  .chosen-processed {
+    display: none;
+  }
+
+  .chosen-container {
+    width: 100% !important;
+  }
+
+  .vs-focus-label {
+    z-index: 1;
+  }
+
+  .chosen-choices {
+    border: 0;
+    box-shadow: none;
+    background-image: none;
+    padding: 0;
+  }
+
+  .search-choice {
+    background-image: none;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-form-group--buttons {
+  padding: 1.875rem 0 1rem;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-user-profile-form {
+    font-size: .875rem;
+
+    label {
+      font-size: .9375rem;
+    }
+  }
+
+  .vs-user-profile-form--head {
+    padding: 1.75rem 0 .625rem 0;
+    margin-bottom: 1.5625rem;
+  }
+
+  .vs-user-profile-form--body {
+    .vs-form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .vs-btn {
+      display: inline-block;
+      width: auto;
+    }
+  }
+}
