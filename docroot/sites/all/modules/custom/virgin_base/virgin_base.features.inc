@@ -63,5 +63,50 @@ function virgin_base_image_default_styles() {
     ),
   );
 
+  // Exported image style: vs_teaser_landscape.
+  $styles['vs_teaser_landscape'] = array(
+    'label' => 'teaser landscape',
+    'effects' => array(
+      7 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 488,
+          'height' => 325,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_teaser_portrait.
+  $styles['vs_teaser_portrait'] = array(
+    'label' => 'teaser portrait',
+    'effects' => array(
+      5 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 410,
+          'height' => 560,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_teaser_square.
+  $styles['vs_teaser_square'] = array(
+    'label' => 'teaser square',
+    'effects' => array(
+      6 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 279,
+          'height' => 279,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }

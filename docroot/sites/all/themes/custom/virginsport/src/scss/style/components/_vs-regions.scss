@@ -31,7 +31,7 @@
   $map: map_get($color-schemes, $color);
 
   .vs-region--gradient-#{$color} {
-    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
+    @include gradient-directional(map_get($map, 'to'), map_get($map, 'from'), map_get($map, 'rotate'));
   }
 }
 

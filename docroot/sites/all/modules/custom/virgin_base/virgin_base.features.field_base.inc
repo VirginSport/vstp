@@ -2394,13 +2394,11 @@ function virgin_base_field_default_field_bases() {
       'allowed_values' => array(
         'portrait' => 'Portrait',
         'landscape' => 'Landscape',
-        'square' => 'Square',
         'portrait_lower_portrait' => 'Portrait, Lower Portrait',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
         'portrait_upper_portrait_portrait' => 'Portrait, Upper Portrait, Portrait',
         'landscape_square_right' => 'Landscape, Square Right',
-        'landscape_square_left' => 'Landscape, Square Left',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
