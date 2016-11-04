@@ -159,7 +159,6 @@
                                 </div>
                               </div>
                             </div>
-                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                           </div>
 
                           <div v-show="!edit_mode">
@@ -177,7 +176,6 @@
                           <div v-show="edit_mode">
                             <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
                             <div class="vs-error-label" v-if="$vs_user_profile_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
-                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                           </div>
                           <span v-show="!edit_mode">{{ profile.field_contact_number }}</span>
                         </div>
