@@ -1,5 +1,4 @@
 import $ from '../lib/jquery';
-import places from '../lib/google-places';
 import Vue from '../lib/vue';
 
 let fieldMap = {
@@ -8,7 +7,7 @@ let fieldMap = {
 };
 
 export default () => {
-  let selector = '#vs-user-login';
+  let selector = '.v-element.vs-user-login';
 
   if (!$(selector).length) {
     return;
@@ -18,7 +17,10 @@ export default () => {
     el: selector,
     compiled() {
       this.setValues();
-    },  
+    },
+    ready() {
+      this.$el.classList.add('v-element--ready');
+    },
     methods: {
 
       /**
