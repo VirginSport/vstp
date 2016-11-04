@@ -1,0 +1,68 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-introduction,
+.vs-introduction {
+    @include clearfix();
+    display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-introduction__container-wrapper {
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.vs-introduction__image {
+    position: absolute;
+    display: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.vs-introduction__content {
+    margin-top: .625rem;
+    margin-right: -.938rem;
+    margin-left: -.938rem;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+
+    .vs-introduction__content {
+        margin: 4.063rem 0 2.5rem 0;
+    }
+
+    .vs-hidden-hdpi {
+        display: block;
+    }
+
+    .vs-visible-hdpi {
+        display: none;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .vs-hidden-hdpi {
+            display: none;
+        }
+
+        .vs-visible-hdpi {
+            display: block;
+        }
+    }
+
+}
+

@@ -20,11 +20,12 @@ let fieldMap = {
   '#edit-field-address-city input': 'field_address_city',
   '#edit-field-address-state input': 'field_address_state',
   '#edit-field-address-postcode input': 'field_address_postcode',
+  '#edit-field-region select': 'field_region',
   '#edit-field-address-country select': 'field_address_country'
 };
 
 export default () => {
-  let selector = '#vs-user-profile';
+  let selector = '.v-element.vs-user-profile';
 
   if (!$(selector).length) {
     return;
@@ -39,7 +40,10 @@ export default () => {
       this.bindAutocomplete();
       this.populateLists();
       this.setValues();
-    },  
+    },
+    ready() {
+      this.$el.classList.add('v-element--ready');
+    },
     methods: {
       /**
        * Convert lists key to text
@@ -48,7 +52,6 @@ export default () => {
         if (!key.length) {
           return '';
         }
-
         return $(`[name=${field}]`).find(`option[value=${key}]`).text();
       },
 
@@ -146,6 +149,7 @@ export default () => {
         field_address_city: '',
         field_address_state: '',
         field_address_postcode: '',
+        field_region: [],
         field_address_country: [],
         field_medical_conditions: []
       }
