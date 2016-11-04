@@ -24,7 +24,7 @@ $query = drupal_get_query_parameters();
   </div>
 </div>
 
-<div id="vs-user-register" class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
+<div class="vs-user-register v-element vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
