@@ -171,7 +171,7 @@ vs-teaser,
   .vs-teaser__subtitle {
     font-size: 2.5rem;
     line-height: 3rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .vs-teaser__text {
@@ -813,7 +813,6 @@ vs-teaser,
   .vs-teaser__cta-btn {
     width: calc(100% - 1.875rem);
     display: block;
-    margin: 0 auto;
   }
 
   @include media-breakpoint-up(md) {
@@ -1017,25 +1016,23 @@ vs-teaser,
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
-  .vs-teaser--color-#{$color} {
-    .vs-teaser__subtitle:after {
-      background-color: map_get($map, 'solid-color');
-    }
-  }
-
-  .vs-region--gradient-#{$color} vs-teaser,
-  .vs-region--gradient-#{$color} .vs-teaser {
+  .vs-region--gradient-#{$color},
+  .vs-region--gradient-#{$color} {
     .vs-teaser__subtitle,
     .vs-teaser__text {
       color: map_get($map, 'text-color');
     }
 
     .vs-teaser__cta-btn {
-      background-color: map_get($map, 'from');
+      background-color: rgba($c-black, .7);
     }
 
     .vs-teaser__title {
-      color: map_get($map, 'text-color');
+      color: map_get($map, 'from');
+    }
+
+    .vs-teaser__subtitle:after {
+      background-color: map_get($map, 'solid-color');
     }
   }
 }
@@ -1046,6 +1043,19 @@ vs-teaser,
   background-color: $c-orange-light;
 }
 
+
+// Set up the default state of teaser colors for vs-region--gradient-gray
+
+.vs-region--gradient-gray {
+  vs-teaser,
+  .vs-teaser {
+    .vs-teaser__title,
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      color: $body-color;
+    }
+  }
+}
 
 @include media-breakpoint-up(md) {
   .vs-teaser--reverse {
