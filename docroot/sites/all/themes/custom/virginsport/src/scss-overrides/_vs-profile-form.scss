@@ -2,14 +2,14 @@
 // This file covers user account details form.
 // ----------------------------------------------------------------------------
 
-// Do not commit the vs-header css
-.vs-header {
-  display: none;
-}
-
 
 // Elements
 // ----------------------------------------------------------------------------
+
+.vs-hero-banner__background--profile {
+  background: transparent url('../img/header-profile.jpg') no-repeat 0 0;
+  background-size: cover;
+}
 
 .vs-user-profile-form {
   font-size: .75rem;
