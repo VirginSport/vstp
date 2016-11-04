@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<div v-element="vs-user-profile" class="vs-region vs-region--gradient-gray">
+<div class="vs-region vs-region--gradient-gray vs-user-profile v-element">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">

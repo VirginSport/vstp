@@ -25,7 +25,7 @@ let fieldMap = {
 };
 
 export default () => {
-  let selector = '[v-element=vs-user-profile]';
+  let selector = '.v-element.vs-user-profile';
 
   if (!$(selector).length) {
     return;
