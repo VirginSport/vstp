@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<div id="vs-user-profile" class="vs-region vs-region--gradient-gray">
+<div v-element="vs-user-profile" class="vs-region vs-region--gradient-gray">
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item active">
       <a class="nav-link" data-toggle="tab" role="tab" href="#account-details">

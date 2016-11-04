@@ -24,7 +24,7 @@ let fieldMap = {
 };
 
 export default () => {
-  let selector = '#vs-user-profile';
+  let selector = '[v-element=vs-user-profile]';
 
   if (!$(selector).length) {
     return;
@@ -39,7 +39,10 @@ export default () => {
       this.bindAutocomplete();
       this.populateLists();
       this.setValues();
-    },  
+    },
+    ready() {
+      this.$el.classList.add('v-element--ready');
+    },
     methods: {
       /**
        * Convert lists key to text
