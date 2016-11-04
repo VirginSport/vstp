@@ -148,6 +148,15 @@
                                   <input required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" v-validate:field_address_postcode="['required']">
                                   <div v-if="$vs_user_profile_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
                                 </div>
+
+                                <div class="field-country vs-form-group">
+                                  <label class="vs-focus-label"><?php print t('Country'); ?>*</label>
+                                  <div v-show="edit_mode">
+                                    <select required v-model="profile.field_address_country" name="field_address_country" v-validate:field_address_country="['required']">
+                                    </select>
+                                    <div v-if="$vs_user_profile_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                             <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
@@ -159,6 +168,7 @@
                             <span class="vs-field-address__span">{{ profile.field_address_city }}</span>
                             <span class="vs-field-address__span">{{ profile.field_address_state }}</span>
                             <span class="vs-field-address__span">{{ profile.field_address_postcode }}</span>
+                            <span class="vs-field-address__span">{{ getListText('field_address_country', profile.field_address_country) }}</span>
                           </div>
                         </div>
 
@@ -208,19 +218,18 @@
                       <span v-show="!edit_mode">{{ profile.field_allergies }}</span>
                     </div>
 
+                    <div class="field-region vs-form-group vs-form-group--chosen">
+                      <label class="vs-focus-label"><?php print t('Region'); ?>*</label>
+                      <div v-show="edit_mode">
+                        <select v-show="edit_mode" class="form-control" v-model="profile.field_region" name="field_region" v-validate:field_region="['required']"></select>
+                        <div v-if="$vs_user_profile_validator.field_region.required"><?php print t('Region is required'); ?></div>
+                      </div>
+                      <span v-show="!edit_mode">{{ getListText('field_region', profile.field_region) }}</span>
+                    </div>
+
                     <div v-show="edit_mode" class="field-share-medical-info vs-form-group">
                       <input class="form-control" v-show="edit_mode" type="checkbox" v-model="profile.field_agree_share_medical_info" name="field_agree_share_medical_info">
                       <label><?php print t('Agree to share medical information and allergies with Virgin Sport'); ?></label>
-                    </div>
-
-                    <div class="field-country vs-form-group">
-                      <label class="vs-focus-label"><?php print t('Country'); ?>*</label>
-                      <div v-show="edit_mode">
-                        <select required v-model="profile.field_address_country" name="field_address_country" v-validate:field_address_country="['required']">
-                        </select>
-                        <div v-if="$vs_user_profile_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
-                      </div>
-                      <span v-show="!edit_mode">{{ getListText('field_address_country', profile.field_address_country) }}</span>
                     </div>
 
                     <div class="field-marketing vs-form-group vs-form-group--checkboxes">
