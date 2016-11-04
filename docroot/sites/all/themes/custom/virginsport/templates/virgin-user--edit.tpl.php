@@ -113,41 +113,44 @@
                         <div class="field-address vs-form-group">
                           <label class="vs-focus-label"><?php print t('Delivery Address'); ?></label>
                           <div v-show="edit_mode">
-                            <input class="form-control" @keydown.13.prevent v-show="!address_manual" id="google-autocomplete" placeholder="search" type="text">
+                            <div class="vs-select-wrapper">
+                              <input class="form-control" @keydown.13.prevent v-show="!address_manual" id="google-autocomplete" placeholder="search" type="text">
 
-                            <button v-show="!address_manual" v-on:click="address_manual = true"><?php print t('Enter manually'); ?></button>
-                            <button v-show="address_manual" v-on:click="address_manual = false"><?php print t('Close manual'); ?></button>
+                              <button v-show="!address_manual" v-on:click="address_manual = true"><?php print t('Enter manually'); ?></button>
+                              <button v-show="address_manual" v-on:click="address_manual = false"><?php print t('Close manual'); ?></button>
 
-                            <div v-show="address_manual">
-                              <div>
-                                <label><?php print t('Address Line 1'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" v-validate:field_address_line_1="['required']">
-                                <div v-if="$vs_user_profile_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
-                              </div>
+                              <div v-show="address_manual">
+                                <div>
+                                  <label><?php print t('Address Line 1'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" v-validate:field_address_line_1="['required']">
+                                  <div v-if="$vs_user_profile_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
+                                </div>
 
-                              <div>
-                                <label><?php print t('Address Line 2'); ?>1</label>
-                                <input type="text" v-model="profile.field_address_line_2" name="field_address_line_2">
-                              </div>
+                                <div>
+                                  <label><?php print t('Address Line 2'); ?>1</label>
+                                  <input type="text" v-model="profile.field_address_line_2" name="field_address_line_2">
+                                </div>
 
-                              <div>
-                                <label><?php print t('City'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_city" name="field_address_city" v-validate:field_address_city="['required']">
-                                <div v-if="$vs_user_profile_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
-                              </div>
+                                <div>
+                                  <label><?php print t('City'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_city" name="field_address_city" v-validate:field_address_city="['required']">
+                                  <div v-if="$vs_user_profile_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
+                                </div>
 
-                              <div>
-                                <label><?php print t('State'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_state" name="field_address_state" v-validate:field_address_state="['required']">
-                                <div v-if="$vs_user_profile_validator.field_address_state.required"><?php print t('State is required'); ?></div>
-                              </div>
+                                <div>
+                                  <label><?php print t('State'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_state" name="field_address_state" v-validate:field_address_state="['required']">
+                                  <div v-if="$vs_user_profile_validator.field_address_state.required"><?php print t('State is required'); ?></div>
+                                </div>
 
-                              <div>
-                                <label><?php print t('Postcode'); ?>*</label>
-                                <input required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" v-validate:field_address_postcode="['required']">
-                                <div v-if="$vs_user_profile_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
+                                <div>
+                                  <label><?php print t('Postcode'); ?>*</label>
+                                  <input required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" v-validate:field_address_postcode="['required']">
+                                  <div v-if="$vs_user_profile_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
+                                </div>
                               </div>
                             </div>
+                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                           </div>
 
                           <div v-show="!edit_mode">
@@ -162,8 +165,11 @@
                         <div class="field-contact-number vs-form-group">
                           <label class="vs-focus-label"><?php print t('Telephone Number'); ?>*</label>
                           <div v-show="edit_mode">
-                            <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
-                            <div v-if="$vs_user_profile_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
+                            <div class="vs-select-wrapper">
+                              <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
+                              <div v-if="$vs_user_profile_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
+                            </div>
+                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
                           </div>
                           <span v-show="!edit_mode">{{ profile.field_contact_number }}</span>
                         </div>
