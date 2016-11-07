@@ -187,7 +187,7 @@ $event_days_left = virginsport_days_left($event_start_date);
               <?php endif; ?>
             <?php endif; ?>
             <div class="vs-ticket-card__social-wrapper">
-              <?php print theme('virginsport_share_buttons', array('subject' => 'ff', 'url' => '')); ?>
+              <?php print theme('virginsport_share_buttons', array('subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
             </div>
           </div>
         </div>

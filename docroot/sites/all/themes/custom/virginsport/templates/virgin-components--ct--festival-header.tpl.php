@@ -33,6 +33,11 @@ $days_left = virginsport_days_left($start_date);
         <span class="vs-hero-banner__days-label"><?php print t('Days to go'); ?></span>
       </div>
     <?php endif; ?>
+    <?php if ($variables['show_sharer']==1):?>
+      <div class="vs-hero-banner__social-wrapper">
+        <?php print theme('virginsport_share_buttons', array('subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="container">
       <div class="row">

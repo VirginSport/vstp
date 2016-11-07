@@ -27,7 +27,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   // Get a shortcut to the node.
   $node = empty($args['festival']) ? $context[0]->data : $args['festival'];
   $g = new VirginEntityGrapher('node', $node);
-
+  $show_sharer = TRUE;
   // Ensure the festival node is available
   switch ($g->property('type')) {
 
@@ -36,7 +36,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       break;
 
     case 'page':
+      $show_sharer = $g->fieldGetOne('field_has_share_button');
       $g = $g->relation('field_festival');
+      $x=0;
       break;
 
     // For events there isn't direct relation to the festival, as
@@ -88,6 +90,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'status' => $g->fieldGetOne('field_status'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),
+    'show_sharer' => $show_sharer,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '' // Small link at the bottom, not used tm
   );
