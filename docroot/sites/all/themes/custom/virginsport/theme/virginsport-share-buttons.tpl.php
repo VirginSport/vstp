@@ -17,7 +17,7 @@
       <a class="vs-share-button__icon-button vs-share-button__icon-facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?php print urlencode($url); ?>"><i class="icon-facebook"></i><span></span></a>
       <a class="vs-share-button__icon-button vs-share-button__icon-email" href="mailto:?subject=<?php print urlencode($subject); ?>"><i class="icon-email-filled"></i><span></span></a>
     </div>
-    <a class="vs-share-button__icon-button vs-share-button__icon-share" href="#">
+    <a class="vs-share-button__icon-button vs-share-button__icon-share">
       <i class="icon-share"></i><span></span>
     </a>
   </div>
