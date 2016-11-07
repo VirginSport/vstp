@@ -47,7 +47,7 @@ $query = drupal_get_query_parameters();
             </div>
 
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="social-networks">
                   <?php print drupal_render($hybridauth_widget); ?>
                 </div>
@@ -55,42 +55,44 @@ $query = drupal_get_query_parameters();
             </div>
 
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
+                <div class="vs-user-login--form">
+                  <div class="vs-user-login--form__email-text"><?php print t('Or with an email address'); ?></div>
+                  <form @submit.prevent class="vs-user-login--form" novalidate>
+                    <validator name="vs_user_login_validator">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="vs-user-login--form-wrapper">
+                            <div class="field-name vs-form-group">
+                              <input class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
+                              <label class="vs-focus-label"><?php print t('Name'); ?>*</label>
+                              <div class="vs-error-label" v-if="$vs_user_login_validator.name.dirty && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
+                            </div>
 
-                <div><?php print t('Or with an email address'); ?></div>
+                            <div class="field-password vs-form-group">
+                              <input class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']">
+                              <label class="vs-focus-label"><?php print t('Password'); ?>*</label>
+                              <div class="vs-error-label" v-if="$vs_user_login_validator.password.dirty && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
+                            </div>
 
-                <form @submit.prevent class="vs-user-login--form" novalidate>
-                  <validator name="vs_user_login_validator">
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <div class="field-name">
-                          <label><?php print t('Name'); ?>*</label>
-                            <input type="text" v-model="profile.name" name="name" v-validate:name="['required']">
-                            <div v-if="$vs_user_login_validator.name.dirty && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
-                        </div>
+                            <a href="<?php print url('user/password', array('query' => $query)); ?>" class="vs-user-login--form__recover-pass">
+                              <?php print t('Forgot password?'); ?>
+                            </a>
 
-                        <div class="field-password">
-                          <label><?php print t('Password'); ?>*</label>
-                          <input type="password" v-model="profile.password" name="password" v-validate:password="['required']">
-                          <div v-if="$vs_user_login_validator.password.dirty && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
-                        </div>
+                            <button :disabled="!$vs_user_login_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign Up'); ?></button>
 
-                        <a href="<?php print url('user/password', array('query' => $query)); ?>">
-                          <?php print t('Forgot password?'); ?>
-                        </a>
-
-                        <button :disabled="!$vs_user_login_validator.valid" v-on:click="submit"><?php print t('Sign Up'); ?></button>
-
-                        <div>
-                          <?php print t('Not yet a member?'); ?>
-                          <a href="<?php print url('user/register', array('query' => $query)); ?>">
-                            <?php print t('Sign up'); ?>
-                          </a>
+                            <div class="vs-user-login--form__member-text">
+                              <?php print t('Not yet a member?'); ?>
+                              <a href="<?php print url('user/register', array('query' => $query)); ?>">
+                                <?php print t('Sign up'); ?>
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </validator>
-                </form>
+                    </validator>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

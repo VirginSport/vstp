@@ -13,7 +13,7 @@ label {
 }
 
 .form-control {
-  
+
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.25rem;
@@ -99,7 +99,7 @@ label {
   > label {
     opacity: .6;
     font-size: 0.625rem;
-    margin-bottom: 0;  
+    margin-bottom: 0;
   }
 }
 
@@ -340,7 +340,7 @@ label {
     display: inline-block;
     position: absolute;
     left: 0;
-    top: 0.25rem;
+    top: 0.125rem;
     opacity: 0;
   }
 
@@ -384,7 +384,7 @@ label {
   color: $state-danger;
   font-size: .625rem;
   line-height: 0.75rem;
-  
+
   padding: .3125rem 0;
 
   .vs-form-radio + &,
@@ -405,7 +405,7 @@ label {
     .vs-select-wrapper > & {
       line-height: 0.75rem;
       margin-bottom: 0.125rem;
-    }  
+    }
   }
 
   .form-control {
@@ -429,11 +429,12 @@ label {
     }
   }
 
-  .vs-form-label--check:before {
+  .vs-form-label--check:before,
+  .vs-form-label--check:after {
     top: 0.25rem;
   }
 
-  .vs-error-label { 
+  .vs-error-label {
     padding: .5rem 0;
   }
 
@@ -467,7 +468,7 @@ label {
       .vs-form-check {
         padding-top: 0.1875rem;
         padding-bottom: 0;
-      } 
+      }
     }
   }
 

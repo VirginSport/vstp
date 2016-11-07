@@ -12,7 +12,7 @@ vs-tabs,
 // ----------------------------------------------------------------------------
 
 .nav-tabs {
-  border-bottom-color: #666666;
+  border-bottom-color: #B2B2B2;
   background-color: $c-white;
   font-size: 0;
   border-radius: .625rem .625rem 0 0;
@@ -64,6 +64,7 @@ vs-tabs,
   margin-left: -.625rem;
   margin-right: -.625rem;
   padding: .375rem;
+  border-radius: 0 0 .625rem .625rem;
 }
 
 
@@ -103,5 +104,6 @@ vs-tabs,
 
   .nav-tabs .nav-link {
     font-size: 1.25rem;
+    padding: 1.5625rem 0;
   }
 }
