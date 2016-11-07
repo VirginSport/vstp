@@ -316,7 +316,19 @@ function virgin_cookie_get($key, $default_value = '') {
  */
 function virgin_cookie_set($name, $value) {
   $params = session_get_cookie_params();
-  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure']);
+}
+
+/**
+ * Unsets a cookie with the given name
+ *
+ * @param $name
+ *  The name of the cookie
+ */
+function virgin_cookie_unset($name) {
+  unset($_COOKIE[$name]);
+  $params = session_get_cookie_params();
+  setcookie($name, '', time() - 3600, $params['path'], $params['domain'], $params['secure']);
 }
 
 /**

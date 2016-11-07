@@ -76,7 +76,7 @@
 
 <?php print $messages; ?>
 
-<button class="vs-menu-trigger">
+<button class="vs-menu-trigger vs-menu-trigger--menu">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>
@@ -129,7 +129,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>"><?php print t('Login'); ?></a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
@@ -153,18 +153,25 @@
         <?php endif; ?>
 
         <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
+          <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
+            <span class="vs-header__basket__value">0</span>
+          </a>
         </div>
+        <button class="vs-menu-trigger">
+          <span class="vs-menu-trigger__bar">
+            <span class="sr-only">toggle menu</span>
+          </span>
+        </button>
       </div>
     </div>
   </div>
 
   <div class="page-wrapper">
-    <?php if ($page_manager): ?>
+    <?php if (!$apply_page_wrapper): ?>
       <?php print render($page['content']); ?>
     <?php endif; ?>
 
-    <?php if (!$page_manager): ?>
+    <?php if ($apply_page_wrapper): ?>
       <div class="vs-region vs-region--no-padding">
         <div class="vs-hero-banner">
           <div class="vs-hero-banner__background">
@@ -201,9 +208,28 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3 col-lg-2">
-          <div class="btn-group dropup vs-footer__language">
-            <!-- TODO The region picker is not yet finished -->
+
+          <?php if ($regions['current']): ?>
+          <div class="btn-group vs-footer__language">
+
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+              <span class="vs-footer__region-label"><?php print $regions['current']['title']; ?></span>
+            </button>
+
+            <div class="dropdown-menu vs-footer__language-list">
+              <?php foreach ($regions['other'] as $region): ?>
+              <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
+                <?php if (!empty($region['flag'])): ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+                  <?php print check_plain($region['title']); ?>
+                <?php endif; ?>
+              </a>
+              <?php endforeach; ?>
+            </div>
+
           </div>
+          <?php endif; ?>
         </div>
 
         <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">

@@ -1031,10 +1031,6 @@ vs-teaser,
       color: map_get($map, 'from');
     }
 
-    .vs-introduction__content .vs-teaser__title {
-      color: $c-white;
-    }
-
     .vs-teaser__subtitle:after {
       background-color: map_get($map, 'solid-color');
     }

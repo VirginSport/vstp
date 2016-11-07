@@ -85,6 +85,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['event_state_grapher'] = $event_state_grapher;
   $vars['event_start_date'] = $event_start_date;
   $vars['event_end_date'] = $event_end_date;
+  $vars['event_started'] = $event_start_date < time();
   $vars['event_past'] = $event_end_date < time();
   $vars['event_date'] = date('l, d M Y', $event_start_date);
 }
