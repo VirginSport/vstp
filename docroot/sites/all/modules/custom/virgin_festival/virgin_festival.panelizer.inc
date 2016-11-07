@@ -84,6 +84,7 @@ function virgin_festival_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
+      'default' => NULL,
     ),
     'first' => array(
       'style' => 'curve',
@@ -154,6 +155,32 @@ function virgin_festival_panelizer_defaults() {
   $pane->uuid = '2dc364bd-0893-4188-948f-a2dcf3a988d8';
   $display->content['new-2dc364bd-0893-4188-948f-a2dcf3a988d8'] = $pane;
   $display->panels['first'][0] = 'new-2dc364bd-0893-4188-948f-a2dcf3a988d8';
+  $pane = new stdClass();
+  $pane->pid = 'new-d046c39d-17ec-4c56-bc1d-c2f91190ac07';
+  $pane->panel = 'second';
+  $pane->type = 'subnav';
+  $pane->subtype = 'subnav';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = 'd046c39d-17ec-4c56-bc1d-c2f91190ac07';
+  $display->content['new-d046c39d-17ec-4c56-bc1d-c2f91190ac07'] = $pane;
+  $display->panels['second'][0] = 'new-d046c39d-17ec-4c56-bc1d-c2f91190ac07';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;
