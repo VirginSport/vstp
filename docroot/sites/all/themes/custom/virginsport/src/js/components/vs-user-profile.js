@@ -44,6 +44,7 @@ export default () => {
       this.bindLists();
       this.populateLists();
       this.setValues();
+      this.bindValues();
     },
     ready() {
       this.$el.classList.add('v-element--ready');
@@ -57,6 +58,18 @@ export default () => {
           return '';
         }
         return $(`[name=${field}]`).find(`option[value=${key}]`).text();
+      },
+
+      bindValues() {
+        let $el = $(this);
+        let name = $el.attr('name');
+
+        for (let selector in fieldMap) {
+          let field = fieldMap[selector];
+          if (this.profile[field]) {
+            $('[name=' + field + ']').addClass('vs-form-control--not-empty');
+          }
+        }
       },
 
       bindAutocomplete() {
