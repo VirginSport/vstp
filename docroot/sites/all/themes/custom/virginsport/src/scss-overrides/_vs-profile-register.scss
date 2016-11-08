@@ -1,0 +1,34 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-user-register--form-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 21.75rem;
+  margin: 0 auto;
+
+  @include media-breakpoint-up(md) {
+    padding: 0;
+  }
+}
+
+.vs-user-register--form {
+  .vs-focus-label {
+    position: absolute;
+  }
+
+  .vs-focus-label {
+    top: 0.9375rem;
+  }
+}
+
+.vs-form-group--tooltip {
+  position: relative;
+
+  .vs-tooltip-trigger {
+    position: absolute;
+    right: -30px;
+    top: 6px;
+  }
+}
