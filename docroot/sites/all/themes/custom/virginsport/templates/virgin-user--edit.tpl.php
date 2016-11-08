@@ -28,12 +28,12 @@
 
     <ul class="vs-subnav__list">
       <li class="vs-subnav__item">
-        <a class="vs-subnav__link vs-subnav__link--active" href="<?php print url('user'); ?>">
+        <a class="vs-subnav__link" href="<?php print url('user'); ?>">
           <?php print t('My Profile'); ?>
         </a>
       </li>
       <li class="vs-subnav__item">
-        <a class="vs-subnav__link" href="<?php print url('user/' . $user->uid . '/edit') ?>">
+        <a class="vs-subnav__link vs-subnav__link--active" href="<?php print url('user/' . $user->uid . '/edit') ?>">
           <?php print t('Account Details'); ?>
         </a>
       </li>
