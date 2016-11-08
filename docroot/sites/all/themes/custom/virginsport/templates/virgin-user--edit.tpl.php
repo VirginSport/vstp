@@ -118,7 +118,7 @@
                             <label class="vs-focus-label"><?php print t('Delivery Address'); ?></label>
                             <div class="vs-form-group vs-form-group--manual">
                               <input class="form-control" @keydown.13.prevent id="google-autocomplete" placeholder="" type="text">
-                              <label class="vs-focus-label"><?php print t('Address'); ?>*</label>
+                              <label class="vs-focus-label"><?php print t('Address'); ?></label>
                             </div>
 
                             <div class="vs-form-group vs-form-group--manual">
@@ -202,9 +202,11 @@
                         <label class="vs-focus-label"><?php print t('Medical Conditions'); ?></label>
                         <select :class="{'vs-form-control--not-empty': profile.field_medical_conditions.length > 1 }" v-show="edit_mode" class="form-control" multiple="multiple" v-model="profile.field_medical_conditions" name="field_medical_conditions"></select>
                       </div>
-                      <div v-show="!edit_mode" v-for="condition in profile.field_medical_conditions">
+                      <div v-show="!edit_mode">
                         <label class="vs-focus-label vs-focus-label--static"><?php print t('Medical Conditions'); ?></label>
-                        <span>{{ condition }}</span>
+                        <div v-for="condition in profile.field_medical_conditions">
+                          <span class="vs-field-medical-conditions__span">{{ condition }}</span>
+                        </div>
                       </div>
                     </div>
 
@@ -243,7 +245,7 @@
 
                     <div class="field-region vs-form-group vs-form-group--chosen">
                       <div v-show="edit_mode">
-                        <select v-show="edit_mode" class="form-control" v-model="profile.field_region" name="field_region" v-validate:field_region="['required']"></select>
+                        <select   v-show="edit_mode" class="form-control" v-model="profile.field_region" name="field_region" v-validate:field_region="['required']"></select>
                         <label class="vs-focus-label"><?php print t('Region'); ?>*</label>
                         <div v-if="$vs_user_profile_validator.field_region.required"><?php print t('Region is required'); ?></div>
                       </div>
@@ -254,8 +256,9 @@
                     </div>
 
                     <div v-show="edit_mode" class="field-share-medical-info vs-form-group">
-                      <input class="vs-form-input vs-form-input--check" v-show="edit_mode" type="checkbox" v-model="profile.field_agree_share_medical_info" name="field_agree_share_medical_info" id="field_agree_share_medical_info">
+                      <input class="vs-form-input vs-form-input--check" v-show="edit_mode" type="checkbox" v-model="profile.field_agree_share_medical_info" name="field_agree_share_medical_info" id="field_agree_share_medical_info" v-validate:field_agree_share_medical_info="['required']">
                       <label class="vs-form-label vs-form-label--check" for="field_agree_share_medical_info"><?php print t('Agree to share medical information and allergies with Virgin Sport'); ?></label>
+                      <div class="vs-error-label" v-if="$vs_user_profile_validator.field_agree_share_medical_info.required"><?php print t('You must agree to share your medical information if you fill any of the medical fields.'); ?></div>
                     </div>
 
                     <div class="field-marketing vs-form-group vs-form-group--checkboxes">
@@ -287,21 +290,21 @@
                           <div v-if="require_password" class="vs-form-group current-pass">
                             <input class="form-control" type="password" v-model="profile.current_pass" name="current_pass" v-validate:current_pass="['required']">
                             <label class="vs-focus-label"><?php print t('Old Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.current_pass.required"><?php print t('Old Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="$vs_user_password_validator.current_pass.dirty && $vs_user_password_validator.current_pass.required"><?php print t('Old Password is required'); ?></div>
                           </div>
 
                           <div class="vs-form-group pass1">
                             <input class="form-control" type="password" v-model="profile.pass1" name="pass1" v-validate:pass1="{ minlength: 8, required: true }">
                             <label class="vs-focus-label"><?php print t('New Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass1.required"><?php print t('New Password is required'); ?></div>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass1.minlength"><?php print t('New Password must have at least 8 characters'); ?></div>
+                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass1.dirty && $vs_user_password_validator.pass1.required"><?php print t('New Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="!$vs_user_password_validator.pass1.required && $vs_user_password_validator.pass1.minlength"><?php print t('New Password must have at least 8 characters'); ?></div>
                           </div>
 
                           <div class="vs-form-group pass2">
                             <input class="form-control" type="password" v-model="profile.pass2" name="pass2" v-validate:pass2="{ required: true, match: profile.pass1 }">
                             <label class="vs-focus-label"><?php print t('Confirm Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass2.required"><?php print t('Confirm Password is required'); ?></div>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass2.match"><?php print t('Passwords do not match'); ?></div>
+                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass2.dirty && $vs_user_password_validator.pass2.required"><?php print t('Confirm Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="!$vs_user_password_validator.pass2.required && $vs_user_password_validator.pass2.match"><?php print t('Passwords do not match'); ?></div>
                           </div>
                         </div>
                       </div>
