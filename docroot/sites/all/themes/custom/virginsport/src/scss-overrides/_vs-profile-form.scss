@@ -78,15 +78,6 @@
   line-height: 1.6;
 }
 
-.vs-focus-label {
-  top: .125rem;
-  position: static;
-
-  .vs-user-profile-form--edit & {
-    position: absolute;
-  }
-}
-
 .vs-user-form__wrapper {
   padding-left: 10px;
   padding-right: 10px;
@@ -102,6 +93,10 @@
 // ----------------------------------------------------------------------------
 
 .vs-form-group--chosen {
+  ~ label {
+
+  }
+
   .form-control {
     height: auto;
     padding-top: 1.5rem;
@@ -180,12 +175,6 @@
   &:hover {
     color: $c-orange-bright;
     opacity: .7;
-  }
-}
-
-.form-control {
-  &:focus ~ .vs-focus-label,
-  &.vs-form-control--not-empty ~ .vs-focus-label {
   }
 }
 
@@ -315,4 +304,26 @@ input[type="text"] + label + .vs-tooltip-trigger,
   .chosen-drop {
     top: calc(100% + 4px);
   }
+}
+
+.vs-select-wrapper > label {
+  top: 8px;
+}
+
+.vs-form-group--chosen label {
+  top: 4px;
+  font-size: 0.625rem;
+}
+
+.v-element {
+  @include transition(opacity, .7s ease-in-out);
+  opacity: 0;
+
+  &.v-element--ready {
+    opacity: 1;
+  }
+}
+
+.vs-focus-label--static {
+  position: static;
 }
