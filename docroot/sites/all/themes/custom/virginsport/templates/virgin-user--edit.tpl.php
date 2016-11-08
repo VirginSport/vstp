@@ -114,6 +114,7 @@
                           <label class="vs-focus-label"><?php print t('Delivery Address'); ?></label>
                           <div v-show="edit_mode">
                             <div class="vs-form-group vs-form-group--manual">
+                              <label class="vs-focus-label"><?php print t('Address'); ?>*</label>
                               <input class="form-control" @keydown.13.prevent id="google-autocomplete" placeholder="search" type="text">
                             </div>
 
