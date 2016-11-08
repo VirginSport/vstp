@@ -52,7 +52,7 @@ function virgin_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_jquery_selector';
-  $strongarm->value = 'select:visible';
+  $strongarm->value = 'select';
   $export['chosen_jquery_selector'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -454,6 +454,7 @@ function virgin_config_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_package';
   $strongarm->value = array(
     'status' => 0,
+    'help' => '',
     'view modes' => array(),
   );
   $export['panelizer_defaults_node_package'] = $strongarm;
@@ -474,6 +475,7 @@ function virgin_config_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_ticket_type';
   $strongarm->value = array(
     'status' => 0,
+    'help' => '',
     'view modes' => array(),
   );
   $export['panelizer_defaults_node_ticket_type'] = $strongarm;
