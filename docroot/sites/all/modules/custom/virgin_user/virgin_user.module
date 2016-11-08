@@ -145,6 +145,16 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['ajax/contact-form'] = array(
+    'title' => 'Form',
+    'page callback' => 'virgin_user_page_ajax_form',
+    'access callback' => TRUE,
+    'delivery callback' => 'ajax_deliver',
+    'theme callback' => 'ajax_base_page_theme',
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 

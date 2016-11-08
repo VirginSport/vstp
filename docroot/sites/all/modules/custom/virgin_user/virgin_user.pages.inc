@@ -266,3 +266,23 @@ function virgin_user_page_user_edit($form, $account) {
   module_load_include('inc', 'user', 'user.pages');
   return drupal_get_form($form, $account);
 }
+
+function virgin_user_page_ajax_form() {
+  $commands = array();
+
+  module_load_include('inc', 'virgin_user', 'virgin_user.forms');
+
+  $form_state = array();
+  $form = drupal_build_form('virgin_user_form_contact', $form_state);
+  $render = drupal_render($form);
+
+  $commands[] = array(
+    'command' => 'vsContactForm',
+    'data' => $render
+  );
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands
+  );
+}
