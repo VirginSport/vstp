@@ -6,6 +6,11 @@
 // Elements
 // ----------------------------------------------------------------------------
 
+.vs-hero-banner__background--profile {
+  background: transparent url('../img/header-profile.jpg') no-repeat 0 0;
+  background-size: cover;
+}
+
 .vs-user-profile-form {
   font-size: .75rem;
 
@@ -31,12 +36,20 @@
   .vs-form-group {
     margin: 0 .625rem .875rem;
     line-height: normal;
+    clear: both;
+  }
+
+  .vs-form-group--manual {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .vs-btn {
     display: block;
     margin-bottom: 1.25rem;
-    width: 100%;
+    width: calc(100% - 1.25rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   label {
@@ -48,10 +61,11 @@
 
 .vs-field-address__span {
   display: block;
+  line-height: 1.6;
 }
 
 .vs-focus-label {
-  top: .3125rem;
+  top: .125rem;
   position: static;
 
   .vs-user-profile-form--edit & {
@@ -66,6 +80,8 @@
 .vs-form-group--chosen {
   .form-control {
     height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: .375rem;
   }
 
   .chosen-processed {
@@ -81,25 +97,92 @@
   }
 
   .chosen-choices {
+    @include box-shadow(none);
     border: 0;
-    box-shadow: none;
     background-image: none;
     padding: 0;
   }
 
   .search-choice {
+    @include box-shadow(none !important);
+    background-image: none !important;
+    border: 0 !important;
+  }
+
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: -1px;
+  }
+
+  .chosen-container-active.chosen-with-drop .chosen-single {
     background-image: none;
     border: 0;
-    box-shadow: none;
+  }
+
+  .chosen-drop {
+    @include box-shadow(none);
+    width: calc(100% + 2px);
+    top: calc(100% - 2px);
+    border-color: #ccc;
+  }
+
+  .chosen-container .chosen-results li.highlighted {
+    background-color: rgba(216, 216, 216, 0.25);
+    background-image: none;
+    color: black;
+  }
+
+  .chosen-single {
+    @include box-shadow(none);
+    background-image: none;
+    border: 0;
+    padding-left: 0;
+
   }
 }
 
+.vs-user-profile-form__manual-link {
+  color: $c-orange-bright;
+  font-size: .75rem;
+  padding: .375rem 0;
+  float: left;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    color: $c-orange-bright;
+    opacity: .7;
+  }
+}
+
+.form-control {
+  &:focus ~ .vs-focus-label,
+  &.vs-form-control--not-empty ~ .vs-focus-label {
+  }
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  width: 100%;
+}
+
+.vs-user-profile-form--password {
+  padding-top: 1.875rem;
+
+  .form-group {
+    margin: 0 .625rem .875rem;
+  }
+}
 
 // Modifiers
 // ----------------------------------------------------------------------------
 
 .vs-form-group--buttons {
   padding: 1.875rem 0 1rem;
+}
+
+.vs-select-wrapper--manual {
+  padding-left: 0;
+  padding-right: 0;
+  border: 0;
 }
 
 
@@ -118,16 +201,27 @@
   .vs-user-profile-form--head {
     padding: 1.75rem 0 .625rem 0;
     margin-bottom: 1.5625rem;
+
+    .vs-form-group {
+      margin-bottom: 1.625rem;
+    }
   }
 
   .vs-user-profile-form--body {
     .vs-form-group {
       margin-bottom: 1.75rem;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .vs-btn {
       display: inline-block;
       width: auto;
+      font-size: .875rem;
+    }
+
+    label {
+      font-size: .625rem;
     }
   }
 }
