@@ -264,5 +264,34 @@ function virgin_user_page_user_edit($form, $account) {
 
   // And after the profile is synced render the user profile form
   module_load_include('inc', 'user', 'user.pages');
-  return drupal_get_form($form, $account);
+
+  return theme('virgin_user__edit', array('profile_form' => drupal_get_form($form, $account)));
+}
+
+/**
+ * Page callback for the user login route
+ *
+ * This callback overrides the core drupal user login route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_login() {
+  $login_form = drupal_get_form('user_login');
+  
+  return theme('virgin_user__login', array('login_form' => $login_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
+}
+
+/**
+ * Page callback for the user register route
+ *
+ * This callback overrides the core drupal user register route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_register() {
+  $register_form = drupal_get_form('user_register_form');
+
+  return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
 }

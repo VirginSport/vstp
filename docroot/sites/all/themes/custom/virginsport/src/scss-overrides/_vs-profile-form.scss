@@ -1,0 +1,329 @@
+
+// This file covers user account details form.
+// ----------------------------------------------------------------------------
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-hero-banner__background--profile {
+  background: transparent url('../img/header-profile.jpg') no-repeat 0 0;
+  background-size: cover;
+}
+
+.vs-user-profile-form {
+  font-size: .75rem;
+
+  label {
+    font-size: .75rem;
+    margin-bottom: 0;
+  }
+}
+
+.social-networks {
+  text-align: center;
+}
+
+.hybridauth-widget-wrapper {
+  padding-top: 15px;
+}
+
+.hybridauth-facebook-hybridauth-32 {
+  background-image: none;
+  background-color: #3B5998;
+  opacity: 1;
+}
+
+.vs-user-profile-form--head {
+  background-color: rgba(#D8D8D8, .25);
+  padding: .625rem .625rem 0;
+  margin-bottom: .875rem;
+}
+
+.vs-user-profile-form--body {
+  color: $c-black;
+
+  > .row:first-child {
+    border-bottom: 1px solid rgba(#d8d8d8, .5);
+  }
+
+  .vs-form-group {
+    margin: 0 .625rem .875rem;
+    line-height: normal;
+    clear: both;
+  }
+
+  .vs-form-group--manual {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .vs-btn {
+    display: block;
+    margin-bottom: 1.25rem;
+    width: calc(100% - 1.25rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  label {
+    display: block;
+    font-size: .625rem;
+    color: rgba($c-black, .6);
+  }
+}
+
+.vs-field-address__span {
+  display: block;
+  line-height: 1.6;
+}
+
+.vs-user-form__wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 21.75rem;
+  margin: 0 auto;
+
+  @include media-breakpoint-up(md) {
+    padding: 0;
+  }
+}
+
+// Chosen specific css
+// ----------------------------------------------------------------------------
+
+.vs-form-group--chosen {
+  ~ label {
+
+  }
+
+  .form-control {
+    height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: .375rem;
+  }
+
+  .chosen-processed {
+    display: none;
+  }
+
+  .chosen-container {
+    width: 100% !important;
+    color: $body-color;
+
+    .vs-select-wrapper & {
+      width: 33%;
+    }
+  }
+
+  .vs-focus-label {
+    z-index: 1;
+  }
+
+  .chosen-choices {
+    @include box-shadow(none);
+    border: 0;
+    background-image: none;
+    padding: 0;
+  }
+
+  .search-choice {
+    @include box-shadow(none !important);
+    background-image: none !important;
+    border: 0 !important;
+  }
+
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: -1px;
+  }
+
+  .chosen-container-active.chosen-with-drop .chosen-single {
+    background-image: none;
+    border: 0;
+  }
+
+  .chosen-drop {
+    @include box-shadow(none);
+    width: calc(100% + 2px);
+    top: calc(100% - 2px);
+    border-color: #ccc;
+  }
+
+  .chosen-container .chosen-results li.highlighted {
+    background-color: rgba(216, 216, 216, 0.25);
+    background-image: none;
+    color: black;
+  }
+
+  .chosen-single {
+    @include box-shadow(none);
+    background-image: none;
+    border: 0;
+    padding-left: 0;
+
+  }
+}
+
+.vs-user-profile-form__manual-link {
+  color: $c-orange-bright;
+  font-size: .75rem;
+  padding: .375rem 0;
+  float: left;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    color: $c-orange-bright;
+    opacity: .7;
+  }
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  width: 100%;
+}
+
+.vs-user-profile-form--password {
+  padding-top: 1.875rem;
+
+  .form-group {
+    margin: 0 .625rem .875rem;
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-form-group--buttons {
+  padding: 1.875rem 0 1rem;
+}
+
+.vs-select-wrapper--manual {
+  padding-left: 0;
+  padding-right: 0;
+  border: 0;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .hybridauth-widget-wrapper {
+    padding-top: 40px;
+  }
+
+  .vs-user-profile-form {
+    font-size: .875rem;
+
+    label {
+      font-size: .9375rem;
+    }
+  }
+
+  .chosen-container {
+    font-size: $font-size-base;
+  }
+
+  .vs-user-profile-form--head {
+    padding: 1.75rem 0 .625rem 0;
+    margin-bottom: 1.5625rem;
+
+    .vs-form-group {
+      margin-bottom: 1.625rem;
+    }
+  }
+
+  .vs-user-profile-form--body {
+    .vs-form-group {
+      margin-bottom: 1.75rem;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .vs-btn {
+      display: inline-block;
+      width: auto;
+      font-size: .875rem;
+    }
+
+    label {
+      font-size: .625rem;
+    }
+  }
+}
+
+.vs-user-form__email-text {
+  padding: 30px 0;
+  border-top: 1px solid rgba(#D8D8D8, .5);
+  color: $c-black;
+  font-size: 14px;
+  text-align: center;
+  max-width: 21.75rem;
+  margin: 30px auto 0 auto;
+}
+
+.vs-user-form__member-text {
+  padding: 30px 0;
+  color: $c-black;
+  font-size: 14px;
+  text-align: center;
+
+  a {
+    @include transition(all .2s);
+    color: $c-black;
+    text-decoration: underline;
+
+    &:hover {
+      color: $c-black;
+      opacity: .7;
+    }
+  }
+}
+
+
+// Default styles
+// ----------------------------------------------------------------------------
+
+.vs-select-group__select {
+  color: $body-color;
+}
+
+.vs-select-group > label {
+  padding: 3px 0;
+}
+
+.vs-tooltip-trigger,
+input[type="text"] + label + .vs-tooltip-trigger,
+.vs-select-wrapper + .vs-tooltip-trigger {
+  position: absolute;
+  top: 12px;
+  right: -30px;
+}
+
+[class*="vs-select-group__label--"] {
+  .chosen-drop {
+    top: calc(100% + 4px);
+  }
+}
+
+.vs-select-wrapper > label {
+  top: 8px;
+}
+
+.vs-form-group--chosen label {
+  top: 4px;
+  font-size: 0.625rem;
+}
+
+.v-element {
+  @include transition(opacity, .7s ease-in-out);
+  opacity: 0;
+
+  &.v-element--ready {
+    opacity: 1;
+  }
+}
+
+.vs-focus-label--static {
+  position: static;
+}
