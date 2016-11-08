@@ -28,6 +28,14 @@ class VirginComponentHootsuiteSocialFeed implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    if (empty($variables['elements']['#fieldable_panels_pane'])) {
+      return;
+    }
+
+    $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
+    $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
+
+    $variables['title'] = $virgin->fieldGetOne('title_field');
+    $variables['campaign_url'] = $virgin->fieldGetOne('field_hootsuite_campaign_url');
   }
 }

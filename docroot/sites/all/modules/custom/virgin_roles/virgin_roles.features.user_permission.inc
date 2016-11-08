@@ -992,6 +992,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['create region content'] = array(
     'name' => 'create region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1094,6 +1095,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any region content'] = array(
     'name' => 'delete any region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1375,6 +1377,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own region content'] = array(
     'name' => 'delete own region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',

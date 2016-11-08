@@ -21,6 +21,11 @@ vs-hero-banner,
   width: 100%;
 }
 
+.vs-hero-banner__default-background {
+  background: transparent url('../img/default-header-banner.jpg') no-repeat center top;
+  background-size: cover;
+}
+
 
 // Elements
 // ----------------------------------------------------------------------------
@@ -145,7 +150,7 @@ vs-hero-banner,
     font-weight: 500;
     line-height: 2.5rem;
     padding: 1.563rem 0 .313rem 0;
-    display: block;   
+    display: block;
   }
 
   .vs-hero-banner__days-label {

@@ -25,8 +25,9 @@ $days_left = virginsport_days_left($start_date);
 ?>
 
 <div class="vs-hero-banner">
-  <div class="vs-hero-banner__background" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>">
+  <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
 
+  <div class="vs-hero-banner__background">
     <?php if (!empty($days_left)): ?>
       <div class="vs-hero-banner__days-left-wrapper hidden-sm-down">
         <span class="vs-hero-banner__days-left"><?php print check_plain($days_left); ?></span>
