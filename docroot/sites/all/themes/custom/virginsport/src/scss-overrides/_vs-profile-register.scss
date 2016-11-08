@@ -2,24 +2,21 @@
 // Elements
 // ----------------------------------------------------------------------------
 
-.vs-user-register--form-wrapper {
-  padding-left: 10px;
-  padding-right: 10px;
-  max-width: 21.75rem;
-  margin: 0 auto;
-
-  @include media-breakpoint-up(md) {
-    padding: 0;
-  }
-}
-
 .vs-user-register--form {
   .vs-focus-label {
     position: absolute;
+    top: 0.4375rem;
+    font-size: 0.625rem;
+    line-height: 0.75rem;
   }
 
-  .vs-focus-label {
-    top: 0.9375rem;
+  .vs-select-group__label--day {
+    width: 28%;
+  }
+
+  .vs-select-group__label--month,
+  .vs-select-group__label--year {
+    width: 34.5%;
   }
 }
 
@@ -31,4 +28,14 @@
     right: -30px;
     top: 6px;
   }
+}
+
+.vs-user-register--form .vs-user-profile-form__manual-link {
+  float: none;
+}
+
+.vs-user-register--form-submit {
+  min-width: 16.25rem;
+  margin: 0 auto;
+  display: block;
 }

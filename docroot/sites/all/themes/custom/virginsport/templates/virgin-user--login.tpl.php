@@ -10,7 +10,7 @@ $query = drupal_get_query_parameters();
 <div class="vs-head-region">
   <div class="vs-region vs-region--no-padding">
     <div class="vs-hero-banner">
-      <div class="vs-hero-banner__background">
+      <div class="vs-hero-banner__background vs-hero-banner__background--profile">
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
@@ -57,12 +57,12 @@ $query = drupal_get_query_parameters();
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="vs-user-login--form">
-                  <div class="vs-user-login--form__email-text"><?php print t('Or with an email address'); ?></div>
+                  <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
                   <form @submit.prevent class="vs-user-login--form" novalidate>
                     <validator name="vs_user_login_validator">
                       <div class="row">
                         <div class="col-xs-12">
-                          <div class="vs-user-login--form-wrapper">
+                          <div class="vs-user-form__wrapper">
                             <div class="field-name vs-form-group">
                               <input class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
                               <label class="vs-focus-label"><?php print t('Name'); ?>*</label>
@@ -81,7 +81,7 @@ $query = drupal_get_query_parameters();
 
                             <button :disabled="!$vs_user_login_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign Up'); ?></button>
 
-                            <div class="vs-user-login--form__member-text">
+                            <div class="vs-user-form__member-text">
                               <?php print t('Not yet a member?'); ?>
                               <a href="<?php print url('user/register', array('query' => $query)); ?>">
                                 <?php print t('Sign up'); ?>
