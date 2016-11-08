@@ -1,6 +1,9 @@
 import $ from '../lib/jquery';
 import places from '../lib/google-places';
 import Vue from '../lib/vue';
+import blur from '../helper/input-blur';
+
+blur();
 
 let fieldMap = {
   'input#edit-mail': 'field_mail',

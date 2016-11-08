@@ -1,5 +1,8 @@
 import $ from '../lib/jquery';
 import Vue from '../lib/vue';
+import blur from '../helper/input-blur';
+
+blur();
 
 let fieldMap = {
   'input#edit-name': 'name',

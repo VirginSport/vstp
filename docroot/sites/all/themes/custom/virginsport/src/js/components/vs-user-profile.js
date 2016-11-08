@@ -1,6 +1,9 @@
 import $ from '../lib/jquery';
 import places from '../lib/google-places';
 import Vue from '../lib/vue';
+import blur from '../helper/input-blur';
+
+blur();
 
 let fieldMap = {
   'input#edit-current-pass': 'current_pass',
