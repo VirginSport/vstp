@@ -41,6 +41,7 @@ export default () => {
       this.require_password = !(!$('input#edit-current-pass').length);
 
       this.bindAutocomplete();
+      this.bindLists();
       this.populateLists();
       this.setValues();
     },
@@ -67,6 +68,24 @@ export default () => {
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
           this.profile.field_address_postcode = p.short('postal_code');
+        });
+      },
+
+      /**
+       * Because of a conflict with chosen and vue v-model is not updated
+       */
+      bindLists() {
+        let self = this;
+        $('select').on("change", function() {
+          let $el = $(this);
+          let name = $el.attr('name');
+
+          for (let selector in fieldMap) {
+            let field = fieldMap[selector];
+            if (field == name) {
+              self.profile[field] = $el.val();
+            }
+          }
         });
       },
 
@@ -145,7 +164,6 @@ export default () => {
         field_contact_number: '',
         field_marketing_optin: '',
         field_uk_athletics_number: '',
-        field_medical_conditions: '',
         field_medical_conditions_other: '',
         field_agree_share_medical_info: '',
         field_address_line_1: '',
