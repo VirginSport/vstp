@@ -160,7 +160,58 @@ function virgin_user_page_basket_claim($rego) {
  * Page callback for the ticket claim confirmation route
  */
 function virgin_user_page_basket_confirm_claim($rego) {
-  // Left blank as a placeholder
+  global $user;
+
+  $ticket = _virgin_user_get_ticket($rego);
+
+  // Depending on the HTTP method, we either show the claim info, for
+  // GET method, or we redirect the user to attendly to modify his
+  // ticket information on POST.
+  switch ($_SERVER['REQUEST_METHOD']) {
+
+    case 'GET':
+      return theme('virgin_user__claim_ticket_page', array(
+        'claim_ticket' => theme('virgin_user__claim_ticket', array('ticket' => $ticket))
+      ));
+      break;
+
+    case 'POST':
+
+      // If we weren't able to retrieve the ticket, or the ticket has been
+      // claimed, redirect the user to his profile page and let him now
+      // the ticket could not be claimed.
+      if (!$ticket || $$ticket['has_been_claimed']) {
+        drupal_set_message(t("Ooops! The ticket you're trying to claim could not be claimed."));
+        drupal_goto('user');
+        return;
+      }
+
+      // Otherwise, attempt to build the ticket claim path to Attendly
+      // and redirect him there if successful.
+      try {
+        $g = new VirginEntityGrapher('user', user_load($user->uid));
+        $sugar_id = $g->fieldGetOne('field_sugar_id');
+        $mail = $g->property('mail');
+
+        drupal_goto(virgin_attendly_client()->buildTicketClaimPath($rego, $sugar_id, $mail));
+      } catch (\Exception $e) {
+        watchdog(
+          'virgin_user',
+          'Failed to redirect user (@user) to Attendly to claim their ticket (@rego) information: @err',
+          array(
+            '@user' => $user->uid,
+            '@rego' => $rego,
+            '@err' => $e
+          ),
+          WATCHDOG_ERROR
+        );
+
+        drupal_set_message(t("Ooops! It's not possible to claim your ticket at this time, please try again later"));
+        drupal_goto('/user');
+      }
+
+      break;
+  }
 }
 
 /**
@@ -264,5 +315,49 @@ function virgin_user_page_user_edit($form, $account) {
 
   // And after the profile is synced render the user profile form
   module_load_include('inc', 'user', 'user.pages');
-  return drupal_get_form($form, $account);
+
+  return theme('virgin_user__edit', array('profile_form' => drupal_get_form($form, $account)));
+}
+
+/**
+ * Page callback for the user login route
+ *
+ * This callback overrides the core drupal user login route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_login() {
+  $login_form = drupal_get_form('user_login');
+
+  // If the basket action parameter is for claiming a ticket
+  // load the ticket and render the claim ticket widget.
+  $claim_ticket = '';
+  if (virgin_param('basket-action') == 'claim') {
+    $rego = virgin_param('rego');
+    $ticket = _virgin_user_get_ticket($rego);
+    $claim_ticket = theme('virgin_user__claim_ticket', array('ticket' => $ticket));
+  }
+
+  return theme('virgin_user__login', array(
+    'login_form' => $login_form,
+    'claim_ticket' => $claim_ticket,
+    'hybridauth_widget' => array(
+      '#type' => 'hybridauth_widget'
+    )
+  ));
+}
+
+/**
+ * Page callback for the user register route
+ *
+ * This callback overrides the core drupal user register route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_register() {
+  $register_form = drupal_get_form('user_register_form');
+
+  return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
 }

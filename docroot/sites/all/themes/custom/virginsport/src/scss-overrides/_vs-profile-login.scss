@@ -1,0 +1,42 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-user-login--form {
+  .vs-focus-label {
+    position: absolute;
+    top: 0.9375rem;
+  }
+}
+
+.vs-user-login--form__recover-pass {
+  @include transition(all .2s);
+  font-size: 10px;
+  color: $body-color;
+  float: right;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 20px;
+  text-decoration: underline;
+
+  &:hover {
+    color: $body-color;
+    opacity: .7;
+  }
+}
+
+.vs-user-login--form-submit {
+  min-width: 16.25rem;
+  margin: 0 auto;
+  display: block;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-down(sm) {
+  .hybridauth-facebook-hybridauth-32 {
+    min-width: 16.25rem;
+  }
+}
