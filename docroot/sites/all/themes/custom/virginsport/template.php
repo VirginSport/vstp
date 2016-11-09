@@ -321,7 +321,10 @@ function virginsport_date_interval($start_date, $end_date) {
 function virginsport_check_wrapper_required() {
   $excluded_routes = array(
     'user',
+    'user/login',
+    'user/register',
     'user/%',
+	'user/%/edit',
     'node/%/tickets'
   );
 
