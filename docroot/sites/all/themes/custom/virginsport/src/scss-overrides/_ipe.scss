@@ -10,6 +10,10 @@ body.panels-ipe-editing {
   .vs-region > :first-child { margin-top: 0 !important; }
 }
 
+.vs-hero-banner__background--fixed {
+  position: absolute;
+}
+
 // Improve IPE elements
 .panels-ipe-placeholder-content {
   padding-left: 40px;

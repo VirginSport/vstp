@@ -73,6 +73,7 @@
   }
 }
 
+.vs-field-medical-conditions__span,
 .vs-field-address__span {
   display: block;
   line-height: 1.6;
@@ -217,6 +218,11 @@
 
     label {
       font-size: .9375rem;
+
+      &.vs-form-label--check,
+      &.vs-focus-label--static {
+        font-size: .625rem;
+      }
     }
   }
 
@@ -244,10 +250,6 @@
       display: inline-block;
       width: auto;
       font-size: .875rem;
-    }
-
-    label {
-      font-size: .625rem;
     }
   }
 }

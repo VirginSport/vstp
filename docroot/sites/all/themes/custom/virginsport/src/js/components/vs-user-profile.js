@@ -41,13 +41,25 @@ export default () => {
       this.require_password = !(!$('input#edit-current-pass').length);
 
       this.bindAutocomplete();
+      this.bindLists();
       this.populateLists();
       this.setValues();
+      this.bindValues();
     },
     ready() {
       this.$el.classList.add('v-element--ready');
     },
     methods: {
+
+      /**
+       * Update chosen value based on model
+       */
+      updateChosen() {
+        window.setTimeout(() => {
+          $('select').trigger("chosen:updated");
+        }, 0);
+      },
+
       /**
        * Convert lists key to text
        */
@@ -56,6 +68,18 @@ export default () => {
           return '';
         }
         return $(`[name=${field}]`).find(`option[value=${key}]`).text();
+      },
+
+      bindValues() {
+        let $el = $(this);
+        let name = $el.attr('name');
+
+        for (let selector in fieldMap) {
+          let field = fieldMap[selector];
+          if (this.profile[field]) {
+            $('[name=' + field + ']').addClass('vs-form-control--not-empty');
+          }
+        }
       },
 
       bindAutocomplete() {
@@ -67,6 +91,26 @@ export default () => {
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
           this.profile.field_address_postcode = p.short('postal_code');
+
+          this.updateChosen();
+        });
+      },
+
+      /**
+       * Because of a conflict with chosen and vue v-model is not updated
+       */
+      bindLists() {
+        let self = this;
+        $('select').on("change", function() {
+          let $el = $(this);
+          let name = $el.attr('name');
+
+          for (let selector in fieldMap) {
+            let field = fieldMap[selector];
+            if (field == name) {
+              self.profile[field] = $el.val();
+            }
+          }
         });
       },
 
@@ -145,7 +189,6 @@ export default () => {
         field_contact_number: '',
         field_marketing_optin: '',
         field_uk_athletics_number: '',
-        field_medical_conditions: '',
         field_medical_conditions_other: '',
         field_agree_share_medical_info: '',
         field_address_line_1: '',

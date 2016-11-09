@@ -12,7 +12,9 @@
 ?>
 
 <div class="vs-hero-banner">
-  <div class="vs-hero-banner__background" style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>">
+  <div class="vs-hero-banner__background--fixed"  style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>"></div>
+
+  <div class="vs-hero-banner__background">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">

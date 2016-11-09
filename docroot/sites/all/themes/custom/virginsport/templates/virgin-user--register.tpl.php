@@ -14,7 +14,7 @@ $query = drupal_get_query_parameters();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="vs-hero-banner__title"><?php print t('Register'); ?></h2>
+              <h2 class="vs-hero-banner__title"><?php print t('Login'); ?></h2>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>
@@ -212,7 +212,7 @@ $query = drupal_get_query_parameters();
 
                   <div class="col-xs-12">
                     <div class="vs-user-form__wrapper">
-                      <button  :disabled="!$vs_user_register_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-register--form-submit"><?php print ('Confirm Changes'); ?></button>
+                      <button  :disabled="!$vs_user_register_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-register--form-submit"><?php print ('Sign Up'); ?></button>
 
                       <div class="vs-user-form__member-text">
                         <?php print t('Already a member?'); ?>
