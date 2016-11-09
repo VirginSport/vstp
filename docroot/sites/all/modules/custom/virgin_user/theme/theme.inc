@@ -4,7 +4,6 @@
  * Handles Virgin user theme related logic.
  */
 
-
 /**
  * Implements hook_preprocess_HOOK() for virgin user tickets theme.
  */
@@ -108,4 +107,52 @@ function virgin_user_preprocess_virgin_user__edit(&$vars) {
   $gender_key = $user_grapher->fieldGetOne('field_gender');
   $field = field_info_field('field_gender');
   $vars['user_gender'] = empty($field['settings']['allowed_values'][$gender_key]) ? '' : $field['settings']['allowed_values'][$gender_key];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for virgin_user__claim_ticket.
+ */
+function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
+  global $user;
+
+  if (empty($vars['ticket'])) {
+    return;
+  }
+
+  $event = virgin_event_with_uuid($vars['ticket']['event_id']);
+
+  if (empty($event)) {
+    return;
+  }
+
+  $account_g = new VirginEntityGrapher('user', user_load($user->uid));
+  $event_g = new VirginEntityGrapher('node', $event);
+  $user_sugar_id = $account_g->fieldGetOne('field_sugar_id');
+  $image = $event_g->relation('field_header_image');
+
+  $list = array(
+    'event_name' => check_plain($event_g->fieldGetOne('title_field')),
+    'event_image' => $image->getEntityType() != 'scald_atom' ? NULL : $image->getEntity(),
+    'recipient' => $vars['ticket']['first_name'],
+    'recipient_email' => $vars['ticket']['email'],
+    'purchaser' => reset(explode(' ', $vars['ticket']['purchaser_contact_tickets_name'])),
+    'uses_purchaser_email' => $vars['ticket']['uses_purchaser_email'],
+    'is_purchaser' => ($vars['ticket']['purchaser_contact_id'] == $user_sugar_id),
+    'is_recipient' => ($vars['ticket']['email'] == $user->mail),
+    'claimed_by_me' => ($vars['ticket']['contact_id'] == $user_sugar_id),
+    'has_been_claimed' => $vars['ticket']['has_been_claimed'],
+  );
+
+  // Find out which name should be shown in the claim card
+  if (user_is_logged_in() && !$list['is_purcharser'] && !$list['is_recipient']) {
+    $logged_name = $account_g->fieldGetOne('field_first_name');
+  } elseif ($list['is_purcharser']) {
+    $logged_name = $list['purcharser'];
+  } else {
+    $logged_name = $list['recipient'];
+  }
+
+  $list['logged_name'] = check_plain($logged_name);
+
+  $vars = array_merge($vars, $list);
 }

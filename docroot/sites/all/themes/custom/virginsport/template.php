@@ -324,8 +324,8 @@ function virginsport_check_wrapper_required() {
     'user/login',
     'user/register',
     'user/%',
-	'user/%/edit',
-    'node/%/tickets'
+    'node/%/tickets',
+    'basket/confirm-claim/%'
   );
 
   $item = menu_get_item();
