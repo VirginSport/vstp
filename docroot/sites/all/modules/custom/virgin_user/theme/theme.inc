@@ -4,7 +4,6 @@
  * Handles Virgin user theme related logic.
  */
 
-
 /**
  * Implements hook_preprocess_HOOK() for virgin user tickets theme.
  */
@@ -137,13 +136,23 @@ function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
     'recipient' => $vars['ticket']['first_name'],
     'recipient_email' => $vars['ticket']['email'],
     'purchaser' => reset(explode(' ', $vars['ticket']['purchaser_contact_tickets_name'])),
+    'uses_purchaser_email' => $vars['ticket']['uses_purchaser_email'],
     'is_purchaser' => ($vars['ticket']['purchaser_contact_id'] == $user_sugar_id),
     'is_recipient' => ($vars['ticket']['email'] == $user->mail),
     'claimed_by_me' => ($vars['ticket']['contact_id'] == $user_sugar_id),
     'has_been_claimed' => $vars['ticket']['has_been_claimed'],
   );
 
-  $list['name'] = $list['is_recipient'] ? $list['recipient'] : $list['purchaser'];
+  // Find out which name should be shown in the claim card
+  if (user_is_logged_in() && !$list['is_purcharser'] && !$list['is_recipient']) {
+    $logged_name = $account_g->fieldGetOne('field_first_name');
+  } elseif ($list['is_purcharser']) {
+    $logged_name = $list['purcharser'];
+  } else {
+    $logged_name = $list['recipient'];
+  }
+
+  $list['logged_name'] = check_plain($logged_name);
 
   $vars = array_merge($vars, $list);
 }
