@@ -586,3 +586,23 @@ function virgin_user_bind_attendly_checkout_session() {
     return FALSE;
   }
 }
+
+/**
+ * Helper function to fetch a ticket from SugarCRM
+ *
+ * @param $rego
+ *  The ticket rego ID
+ * @return array|null
+ *  Either the ticket with the given rego or a null if no ticket was found
+ */
+function _virgin_user_get_ticket($rego) {
+  $tickets = sugarcrm_client()->filter('Tickets', array(
+    'filter' => array(
+      array(
+        'ticket_rego' => $rego
+      )
+    ),
+  ));
+
+  return empty($tickets['records'][0]) ? NULL : $tickets['records'][0];
+}
