@@ -205,13 +205,20 @@ class VirginEntityGrapher {
    *  The language key
    */
   protected function fieldLanguage($name) {
-    $language = empty($this->entity->language) ? LANGUAGE_NONE : $this->entity->language;
+    global $language;
 
-    if (empty($this->entity->{$name}[$language]) && !empty($this->entity->{$name}[LANGUAGE_NONE])) {
-      $language = LANGUAGE_NONE;
+    // Check if the field has the current language translation
+    if (!empty($this->entity->{$name}[$language->language])) {
+      return $language->language;
     }
 
-    return $language;
+    $lang = empty($this->entity->language) ? LANGUAGE_NONE : $this->entity->language;
+
+    if (empty($this->entity->{$name}[$lang]) && !empty($this->entity->{$name}[LANGUAGE_NONE])) {
+      $lang = LANGUAGE_NONE;
+    }
+
+    return $lang;
   }
 
   /**
