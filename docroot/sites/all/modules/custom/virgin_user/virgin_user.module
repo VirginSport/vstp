@@ -73,6 +73,15 @@ function virgin_user_theme($existing, $type, $theme, $path) {
     ) + $default,
     'virgin_user__ticket' => array(
       'template' => 'virgin-user__ticket',
+    ) + $default,
+    'virgin_user__claim_ticket' => array(
+      'template' => 'virgin_user__claim_ticket',
+      'variables' => array(
+        'ticket' => '',
+      )
+    ) + $default,
+    'virgin_user__claim_ticket_page' => array(
+      'template' => 'virgin_user__claim_ticket_page',
       'variables' => array(
         'ticket' => '',
       )
