@@ -19,9 +19,12 @@ function virgin_festival_page_tickets($node) {
 
   ctools_include('content');
 
+  $festival_context = ctools_context_create('node', $node);
+  $context = array('festival' => $festival_context);
+
   // Render the festival header and subnav components
   $header = ctools_content_render('festival_header', null, array(), array(), array('festival' => $node));
-  $subnav = ctools_content_render('festival_subnav', null, array(), array(), array('festival' => $node));
+  $subnav = ctools_content_render('festival_subnav', 'festival_subnav', array(), array(), array(), $context);
 
   // Build the iframe url
   $g = new VirginEntityGrapher('node', $node);
