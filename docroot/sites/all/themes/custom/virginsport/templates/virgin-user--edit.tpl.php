@@ -264,7 +264,7 @@
                     <div class="field-marketing vs-form-group vs-form-group--checkboxes">
                       <div class="vs-form-check">
                         <input :disabled="!edit_mode" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin" class="vs-form-input vs-form-input--check">
-                        <label for="field_marketing_optin" class="vs-form-label vs-form-label--check"><?php print t('Marketing Options'); ?></label>
+                        <label for="field_marketing_optin" class="vs-form-label vs-form-label--check"><?php print t('Opt in'); ?></label>
                       </div>
                     </div>
                   </div>
