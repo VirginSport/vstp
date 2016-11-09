@@ -34,7 +34,15 @@ function virgin_api_default_services_endpoint() {
       'text/xml' => FALSE,
     ),
   );
-  $endpoint->resources = array();
+  $endpoint->resources = array(
+    'virgin' => array(
+      'actions' => array(
+        'mail-update' => array(
+          'enabled' => '1',
+        ),
+      ),
+    ),
+  );
   $endpoint->debug = 0;
   $export['api_v1'] = $endpoint;
 
