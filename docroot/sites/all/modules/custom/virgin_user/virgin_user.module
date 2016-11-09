@@ -421,7 +421,6 @@ function virgin_user_user_logout($account) {
   $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
   $attendly_suffix = empty($attendly_env) ? '' : '-' . $attendly_env;
 
-  virgin_cookie_unset(VIRGIN_REGION_COOKIE);
   virgin_cookie_unset(VIRGIN_USER_BASKET_COOKIE);
   virgin_cookie_unset(VIRGIN_USER_ATTENDLY_SESSION_COOKIE . $attendly_suffix);
   virgin_cookie_unset(VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_suffix);
