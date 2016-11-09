@@ -130,4 +130,53 @@ class VirginAttendlyClient {
 
     return $response_data['Result']['Token'];
   }
+
+  /**
+   * Builds the full path to claim a ticket
+   *
+   * @param $rego_id
+   *  The ticket rego ID
+   * @param string $virgin_sport_id
+   *  The virgin sport ID of the user that's claiming this ticket
+   * @param string $email
+   *  The email of the the user that's claiming this ticket
+   * @return string
+   *  The attendly ticket claim URL
+   */
+  public function buildTicketClaimPath($rego_id, $virgin_sport_id, $email) {
+    $token = $this->getTicketClaimToken($rego_id, $virgin_sport_id, $email);
+    $path = sprintf('%s/post/personal/%s/%s', $this->url, $rego_id, $token);
+
+    return $path;
+  }
+
+  /**
+   * Get the ticket claim access token for a given ticket rego id
+   *
+   * @param $rego_id
+   *  The ticket rego for which a token is being fetched
+   * @param string $virgin_sport_id
+   *  The virgin sport ID of the user that's claiming this ticket
+   * @param string $email
+   *  The email of the the user that's claiming this ticket
+   * @throws \Exception
+   *  If it was not possible to fetch an access token
+   */
+  protected function getTicketClaimToken($rego_id, $virgin_sport_id, $email) {
+    $data = array(
+      'Rego' => $rego_id,
+      'ExternalID' => $virgin_sport_id,
+      'Email' => $email
+    );
+
+    $request = $this->client->post('/v2/attendee/postregoaccess', null, json_encode($data));
+    $request->setAuth($this->username, $this->password);
+    $response_data = $request->send()->json();
+
+    if (empty($response_data['Result']['Token'])) {
+      throw new \Exception("Could not fetch a valid attendly post checkout token");
+    }
+
+    return $response_data['Result']['Token'];
+  }
 }

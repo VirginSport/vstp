@@ -1,0 +1,34 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-user-register--form {
+  .vs-select-group__label--day {
+    width: 28%;
+  }
+
+  .vs-select-group__label--month,
+  .vs-select-group__label--year {
+    width: 34.5%;
+  }
+}
+
+.vs-form-group--tooltip {
+  position: relative;
+
+  .vs-tooltip-trigger {
+    position: absolute;
+    right: -30px;
+    top: 6px;
+  }
+}
+
+.vs-user-register--form .vs-user-profile-form__manual-link {
+  float: none;
+}
+
+.vs-user-register--form-submit {
+  min-width: 16.25rem;
+  margin: 0 auto;
+  display: block;
+}

@@ -3870,7 +3870,11 @@ function virgin_components_field_default_field_instances() {
   // Exported field_instance: 'paragraphs_item-vs_teaser-field_alignment'.
   $field_instances['paragraphs_item-vs_teaser-field_alignment'] = array(
     'bundle' => 'vs_teaser',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'left',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -3895,7 +3899,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_alignment',
     'label' => 'Alignment',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -3903,9 +3907,7 @@ function virgin_components_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 5,
     ),
@@ -4040,7 +4042,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_cta_links',
     'label' => 'Call to action button',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
@@ -4126,7 +4128,11 @@ function virgin_components_field_default_field_instances() {
   // Exported field_instance: 'paragraphs_item-vs_teaser-field_teaser_layout'.
   $field_instances['paragraphs_item-vs_teaser-field_teaser_layout'] = array(
     'bundle' => 'vs_teaser',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'landscape',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4151,7 +4157,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_teaser_layout',
     'label' => 'Layout arrangement',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -4159,9 +4165,7 @@ function virgin_components_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 3,
     ),

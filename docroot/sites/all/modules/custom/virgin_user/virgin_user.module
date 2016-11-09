@@ -73,11 +73,47 @@ function virgin_user_theme($existing, $type, $theme, $path) {
     ) + $default,
     'virgin_user__ticket' => array(
       'template' => 'virgin-user__ticket',
+    ) + $default,
+    'virgin_user__claim_ticket' => array(
+      'template' => 'virgin_user__claim_ticket',
       'variables' => array(
         'ticket' => '',
       )
+    ) + $default,
+    'virgin_user__claim_ticket_page' => array(
+      'template' => 'virgin_user__claim_ticket_page',
+      'variables' => array(
+        'ticket' => '',
+      )
+    ) + $default,
+    'virgin_user__edit' => array(
+      'template'  => 'virgin-user--edit',
+      'variables' => array(
+        'profile_form' => '',
+      )
+    ) + $default,
+    'virgin_user__login' => array(
+      'template' => 'virgin-user__login',
+      'variables' => array(
+        'login_form' => '',
+        'hybridauth_widget' => '',
+      )
+    ) + $default,
+    'virgin_user__register' => array(
+      'template' => 'virgin-user__register',
+      'variables' => array(
+        'register_form' => '',
+        'hybridauth_widget' => '',
+      )
     ) + $default
   );
+}
+
+/**
+ * Implements hook_admin_paths_alter().
+ */
+function virgin_user_admin_paths_alter(&$paths) {
+  $paths['user/*/edit'] = FALSE;
 }
 
 /**
@@ -162,12 +198,27 @@ function virgin_user_menu() {
  * Implements hook_menu_alter().
  */
 function virgin_user_menu_alter(&$items) {
+  $file_path = drupal_get_path('module', 'virgin_user');
+  $file = 'virgin_user.pages.inc';
 
   // Override the user edit page callback to ensure the use profile is synced
   // with SugarCRM before the form is rendered.
   $items['user/%user/edit']['page callback'] = 'virgin_user_page_user_edit';
-  $items['user/%user/edit']['file'] = 'virgin_user.pages.inc';
-  $items['user/%user/edit']['file path'] = drupal_get_path('module', 'virgin_user');
+  $items['user/%user/edit']['file'] = $file;
+  $items['user/%user/edit']['file path'] = $file_path;
+
+  // Only allow authenticated user to access user page
+  $items['user']['access callback'] = 'user_is_logged_in';
+
+  // Override user login page
+  $items['user/login']['page callback'] = 'virgin_user_page_user_login';
+  $items['user/login']['file'] = $file;
+  $items['user/login']['file path'] = $file_path;
+
+  // Override user register page
+  $items['user/register']['page callback'] = 'virgin_user_page_user_register';
+  $items['user/register']['file'] = $file;
+  $items['user/register']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
@@ -266,6 +317,9 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_profile_form_validate';
+
+  // Allow email update without password required
+  unset($form['account']['current_pass_required_values']['#value']['mail']);
 }
 
 /**
@@ -550,4 +604,24 @@ function virgin_user_bind_attendly_checkout_session() {
     );
     return FALSE;
   }
+}
+
+/**
+ * Helper function to fetch a ticket from SugarCRM
+ *
+ * @param $rego
+ *  The ticket rego ID
+ * @return array|null
+ *  Either the ticket with the given rego or a null if no ticket was found
+ */
+function _virgin_user_get_ticket($rego) {
+  $tickets = sugarcrm_client()->filter('Tickets', array(
+    'filter' => array(
+      array(
+        'ticket_rego' => $rego
+      )
+    ),
+  ));
+
+  return empty($tickets['records'][0]) ? NULL : $tickets['records'][0];
 }

@@ -95,7 +95,7 @@ function virginsport_preprocess_page(&$vars) {
   $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
 
   $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
-  $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_env;
+  $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . '-' . $attendly_env;
 
   // Setup the social networks
   $vars['social_networks'] = array();
@@ -323,8 +323,11 @@ function virginsport_date_interval($start_date, $end_date) {
 function virginsport_check_wrapper_required() {
   $excluded_routes = array(
     'user',
+    'user/login',
+    'user/register',
     'user/%',
-    'node/%/tickets'
+    'node/%/tickets',
+    'basket/confirm-claim/%'
   );
 
   $item = menu_get_item();

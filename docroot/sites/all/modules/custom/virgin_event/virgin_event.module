@@ -22,3 +22,79 @@ function virgin_event_virgin_sync_handlers() {
     new VirginEventSyncHandler()
   );
 }
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function virgin_event_pathauto_alias_alter(&$alias, array &$context) {
+
+  // If the page is related with a festival, the alias is assembled
+  // using the festival title in combination with the page title.
+  // If the alias isn't for a node of type event, bailout now.
+  if ($context['module'] != 'node' || $context['type'] != 'event') {
+    return;
+  }
+
+  $g_event = new VirginEntityGrapher('node', $context['data']['node']);
+
+  // Load the festival relationship
+  $sql = "
+    select fs2.entity_id as festival_nid
+    from {field_data_field_event_state} es
+    join {field_data_field_festival_state} fs1 on fs1.entity_id = es.field_event_state_target_id and fs1.entity_type = 'node' and fs1.bundle = 'event_state'
+    join {field_data_field_festival_state} fs2 on fs2.field_festival_state_target_id = fs1.field_festival_state_target_id and fs2.bundle = 'festival'
+    where es.entity_id = :id
+    limit 1
+  ";
+
+  $result = db_query($sql, array(':id' => $g_event->property('nid')));
+  $festival_nid = $result->fetchField();
+
+  if (empty($festival_nid)) {
+    return;
+  }
+
+  $g_festival = new VirginEntityGrapher('node', node_load($festival_nid));
+  $festival_timestamp = $g_festival->relation('field_festival_state')->fieldGetOne('field_start_date');
+  $year = format_date($festival_timestamp, 'custom', 'Y');
+
+  // Finally, build the page path using the festival title and the
+  // page title.
+  $parts = array(
+    'festival',
+    $g_festival->fieldGetOne('title_field') . '-' . $year,
+    $g_event->fieldGetOne('title_field'),
+  );
+
+  foreach ($parts as $key => $part) {
+    $parts[$key] = pathauto_cleanstring($part);
+  }
+
+  $alias = pathauto_clean_alias(implode('/', $parts));
+}
+
+// Helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * Fetch an event with a given UUID
+ *
+ * @param string $uuid
+ *  The event unique identifier
+ * @return bool|mixed
+ *  The fully loaded event node or FALSE if the event node could not be loaded
+ */
+function virgin_event_with_uuid($uuid) {
+  $sql = "
+    SELECT event.entity_id
+    FROM {field_data_field_sugar_id} state
+    JOIN {field_data_field_event_state} event
+      ON event.field_event_state_target_id = state.entity_id
+    WHERE state.entity_type = 'node'
+    AND state.bundle = 'event_state'
+    AND state.field_sugar_id_value = :uuid
+  ";
+
+  $nid = db_query($sql, array(':uuid' => $uuid))->fetchField();
+  return node_load($nid);
+}
