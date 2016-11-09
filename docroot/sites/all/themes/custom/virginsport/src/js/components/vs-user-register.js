@@ -48,6 +48,15 @@ export default () => {
     },
     methods: {
 
+      /**
+       * Update chosen value based on model
+       */
+      updateChosen() {
+        window.setTimeout(() => {
+          $('select').trigger("chosen:updated");
+        }, 0);
+      },
+
       bindValues() {
         let $el = $(this);
         let name = $el.attr('name');
@@ -69,6 +78,8 @@ export default () => {
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
           this.profile.field_address_postcode = p.short('postal_code');
+
+          this.updateChosen();
         });
       },
 

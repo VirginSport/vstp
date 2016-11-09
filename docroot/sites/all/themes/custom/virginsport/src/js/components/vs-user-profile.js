@@ -50,6 +50,16 @@ export default () => {
       this.$el.classList.add('v-element--ready');
     },
     methods: {
+
+      /**
+       * Update chosen value based on model
+       */
+      updateChosen() {
+        window.setTimeout(() => {
+          $('select').trigger("chosen:updated");
+        }, 0);
+      },
+
       /**
        * Convert lists key to text
        */
@@ -81,6 +91,8 @@ export default () => {
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
           this.profile.field_address_postcode = p.short('postal_code');
+
+          this.updateChosen();
         });
       },
 
