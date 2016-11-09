@@ -329,8 +329,23 @@ function virgin_user_page_user_edit($form, $account) {
  */
 function virgin_user_page_user_login() {
   $login_form = drupal_get_form('user_login');
-  
-  return theme('virgin_user__login', array('login_form' => $login_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
+
+  // If the basket action parameter is for claiming a ticket
+  // load the ticket and render the claim ticket widget.
+  $claim_ticket = '';
+  if (virgin_param('basket-action') == 'claim') {
+    $rego = virgin_param('rego');
+    $ticket = _virgin_user_get_ticket($rego);
+    $claim_ticket = theme('virgin_user__claim_ticket', array('ticket' => $ticket));
+  }
+
+  return theme('virgin_user__login', array(
+    'login_form' => $login_form,
+    'claim_ticket' => $claim_ticket,
+    'hybridauth_widget' => array(
+      '#type' => 'hybridauth_widget'
+    )
+  ));
 }
 
 /**
