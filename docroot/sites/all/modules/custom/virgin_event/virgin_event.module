@@ -72,3 +72,29 @@ function virgin_event_pathauto_alias_alter(&$alias, array &$context) {
 
   $alias = pathauto_clean_alias(implode('/', $parts));
 }
+
+// Helpers
+// ----------------------------------------------------------------------------
+
+/**
+ * Fetch an event with a given UUID
+ *
+ * @param string $uuid
+ *  The event unique identifier
+ * @return bool|mixed
+ *  The fully loaded event node or FALSE if the event node could not be loaded
+ */
+function virgin_event_with_uuid($uuid) {
+  $sql = "
+    SELECT event.entity_id
+    FROM {field_data_field_sugar_id} state
+    JOIN {field_data_field_event_state} event
+      ON event.field_event_state_target_id = state.entity_id
+    WHERE state.entity_type = 'node'
+    AND state.bundle = 'event_state'
+    AND state.field_sugar_id_value = :uuid
+  ";
+
+  $nid = db_query($sql, array(':uuid' => $uuid))->fetchField();
+  return node_load($nid);
+}
