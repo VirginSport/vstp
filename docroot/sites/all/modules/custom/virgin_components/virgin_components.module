@@ -33,9 +33,9 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__festival-header',
     ),
-    'virgin_components__ct__subnav' => array(
+    'virgin_components__ct__festival_subnav' => array(
       'variables' => array(),
-      'template' => 'virgin-components__ct__subnav',
+      'template' => 'virgin-components__ct__festival-subnav',
     ),
   );
 }

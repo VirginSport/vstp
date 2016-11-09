@@ -7,7 +7,7 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Subnav'),
+  'title' => t('Festival Subnav'),
   'description' => '',
   'category' => 'VirginSport',
   'required context' => array(
@@ -19,7 +19,7 @@ $plugin = array(
 /**
  * Implements hook_plugin_content_type_render().
  */
-function virgin_components_subnav_content_type_render($subtype, $conf, $panel_args, $context) {
+function virgin_components_festival_subnav_content_type_render($subtype, $conf, $panel_args, $context) {
   if (empty($context) || empty($context[0]->data)) {
     return;
   }
@@ -72,13 +72,14 @@ function virgin_components_subnav_content_type_render($subtype, $conf, $panel_ar
   }
 
   $festival_grapher = $g;
+  $festival_nid = $festival_grapher->property('nid');
   $festival_state_grapher = $festival_grapher->relation('field_festival_state');
 
   // Fixed urls for Festival subnav --------------------------------------------
   $url = 'node/' . $festival_grapher->property('nid');
   $title = $festival_grapher->fieldGetOne('title_field');
   $links = array(
-    virgin_components_subnav_content_type_get_link($title, $url)
+    virgin_components_festival_subnav_content_type_get_link($title, $url)
   );
 
   // Related festival events ---------------------------------------------------
@@ -103,13 +104,13 @@ function virgin_components_subnav_content_type_render($subtype, $conf, $panel_ar
     $title = $event_grapher->fieldGetOne('title_field');
     $url = 'node/' . $item->event_id;
 
-    $event_links[] = virgin_components_subnav_content_type_get_link($title, $url);
+    $event_links[] = virgin_components_festival_subnav_content_type_get_link($title, $url);
   }
 
-  $links = array_merge($links, virgin_components_subnav_content_type_order_links_array($event_links));
+  $links = array_merge($links, virgin_components_festival_subnav_content_type_order_links_array($event_links));
 
   // Custom Pages --------------------------------------------------------------
-  $links[] = virgin_components_subnav_content_type_get_link(t('Ticket Prices'), url('tickets'));
+  $links[] = virgin_components_festival_subnav_content_type_get_link(t('Ticket Prices'), url('node/' . $festival_nid . '/tickets'));
 
 
   // Related festival pages ----------------------------------------------------
@@ -134,15 +135,15 @@ function virgin_components_subnav_content_type_render($subtype, $conf, $panel_ar
     $title = $page_grapher->fieldGetOne('title_field');
     $url = 'node/' . $item->page_id;
 
-    $page_links[] = virgin_components_subnav_content_type_get_link($title, $url);
+    $page_links[] = virgin_components_festival_subnav_content_type_get_link($title, $url);
   }
 
-  $links = array_merge($links, virgin_components_subnav_content_type_order_links_array($page_links));
+  $links = array_merge($links, virgin_components_festival_subnav_content_type_order_links_array($page_links));
 
   $block = new stdClass();
   $block->module = '';
   $block->delta = '';
-  $block->content = theme('virgin_components__ct__subnav', array('links' => $links));
+  $block->content = theme('virgin_components__ct__festival_subnav', array('links' => $links));
   $block->title = '';
 
   return $block;
@@ -151,7 +152,7 @@ function virgin_components_subnav_content_type_render($subtype, $conf, $panel_ar
 /**
  * Implements hook_plugin_content_type_edit_form().
  */
-function virgin_components_subnav_content_type_edit_form($form, &$form_state) {
+function virgin_components_festival_subnav_content_type_edit_form($form, &$form_state) {
   return $form;
 }
 
@@ -160,7 +161,7 @@ function virgin_components_subnav_content_type_edit_form($form, &$form_state) {
  *
  * @return array
  */
-function virgin_components_subnav_content_type_get_link($title, $url) {
+function virgin_components_festival_subnav_content_type_get_link($title, $url) {
   return array(
     'url' => url($url),
     'title' => $title,
@@ -173,7 +174,7 @@ function virgin_components_subnav_content_type_get_link($title, $url) {
  *
  * @return array
  */
-function virgin_components_subnav_content_type_order_links_array(&$links) {
+function virgin_components_festival_subnav_content_type_order_links_array(&$links) {
   usort($links, function ($a, $b) {
     return strcasecmp( $a['title'], $b['title'] );
   });

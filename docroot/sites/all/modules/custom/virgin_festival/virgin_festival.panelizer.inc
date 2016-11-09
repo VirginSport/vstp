@@ -158,8 +158,8 @@ function virgin_festival_panelizer_defaults() {
   $pane = new stdClass();
   $pane->pid = 'new-d046c39d-17ec-4c56-bc1d-c2f91190ac07';
   $pane->panel = 'second';
-  $pane->type = 'subnav';
-  $pane->subtype = 'subnav';
+  $pane->type = 'festival_subnav';
+  $pane->subtype = 'festival_subnav';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
