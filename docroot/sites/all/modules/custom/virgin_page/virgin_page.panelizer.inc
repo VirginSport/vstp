@@ -156,6 +156,32 @@ function virgin_page_panelizer_defaults() {
   $display->content['new-876e99a8-74a0-4983-b420-45e29a82378d'] = $pane;
   $display->panels['first'][0] = 'new-876e99a8-74a0-4983-b420-45e29a82378d';
   $pane = new stdClass();
+  $pane->pid = 'new-fc4e48da-a4ba-4f1c-b2e9-e9627683859d';
+  $pane->panel = 'first';
+  $pane->type = 'page_header';
+  $pane->subtype = 'page_header';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'fc4e48da-a4ba-4f1c-b2e9-e9627683859d';
+  $display->content['new-fc4e48da-a4ba-4f1c-b2e9-e9627683859d'] = $pane;
+  $display->panels['first'][1] = 'new-fc4e48da-a4ba-4f1c-b2e9-e9627683859d';
+  $pane = new stdClass();
   $pane->pid = 'new-34044a8b-8bf0-4d68-8348-ae41eaf5bbea';
   $pane->panel = 'second';
   $pane->type = 'festival_subnav';
