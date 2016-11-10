@@ -202,7 +202,7 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
  *  HTML style attribute with background-image. For example: background-image: url(...);"
  */
 function virginsport_atom_background($atom, $style = 'virgin_original') {
-  if (empty($atom)) {
+  if (empty($atom) || empty($atom->sid)) {
     return '';
   }
 
