@@ -101,6 +101,13 @@ function bindRegionChangeTriggers() {
         showRegionChangeModal(origin, destination, $(this).attr('href'));
       }
     });
+    
+    // Also do a lookup for all the links that point to ticket
+    // operations for content of different regions
+    $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
+      e.preventDefault();
+      showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
+    });
   
     // If there's a region change query parameter and it matches
     // one of the regions, show the region change modal to let
@@ -172,6 +179,59 @@ function showRegionChangeModal(origin, destination, path) {
     modal().close();
   });
   
+  // And finally, open the modal
+  modal().open();
+}
+
+/**
+ * Shows the region change modal where the user can opt to go change region
+ * or to stay in his current region.
+ *
+ * @param {{ title, hostname, address }} origin
+ *  The origin region
+ * @param {{ title, hostname, address }} destination
+ *  The destination origin
+ * @param {string} path
+ *  The URL in the destination region where the user wants to go to
+ */
+function showTicketsRegionChangeModal(origin, destination, path) {
+  let args = {
+    '@origin1': origin.title,
+    '@dest1': destination.title,
+    '@dest2': destination.title
+  };
+  
+  let message = Drupal.t('To add @dest1 tickets to your basket we need to take you to the @dest2 site.', args);
+  let continueBtn = Drupal.t('Continue', args);
+  let continueNotice = Drupal.t('*@origin1 tickets will be removed from basket', args)
+  
+  // Build the modal HTML contents
+  let content = `
+    <div class="row">
+      <div class="col-xs-12">
+        <p>${message}</p>
+      </div>
+      
+      <div class="col-xs-6">
+        <a href="${destination.address + path}" class="btn vs-btn vs-btn--sm vs-basket-modal__continue">${continueBtn}</a>
+        <p>${continueNotice}</p>
+      </div>
+    </div>
+  `;
+  
+  modal().content(content);
+  
+  // Bind events to the buttons in the modal
+  let $dialog = $(modal().dialog);
+  
+  // If the user wants to continue, then wipe all the basket
+  // cookies and set the basket hostname to be the same as
+  // the destination hostname.
+  $dialog.find('.vs-basket-modal__continue').on('click', (e) => {
+    deleteBasketCookies();
+    setBasketHostnameCookie(destination.hostname);
+  });
+
   // And finally, open the modal
   modal().open();
 }
