@@ -14,6 +14,7 @@ label {
 .vs-focus-label {
   @include transition(all .2s ease);
   opacity: .6;
+  color: #767676;
   cursor: text;
   position: absolute;
   left: 0.625rem;
@@ -25,6 +26,10 @@ label {
   position: relative;
   margin-bottom: .625rem;
   max-width: 21.75rem;
+
+  + h1, + h2, + h3, + h4, + h5, + h6 {
+    margin-top: 2.1875rem;
+  }
 }
 
 .form-control {
@@ -75,9 +80,60 @@ label {
   font-family: $font-family-serif;
   color: $c-orange-bright;
   text-transform: uppercase;
-  font-size: 1.625rem;
-  margin-bottom: .625rem;
-  margin-top: 2rem;
+  font-size: 1.125rem;
+  margin-bottom: .75rem;
+  max-width: 60%;
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.5625rem;
+    max-width: none;
+  }
+}
+
+.vs-form-description {
+  margin-top: 1.25rem;
+  margin-bottom: 1.875rem;
+  font-size: .875rem;
+  max-width: 21.75rem;
+  color: rgba(#767676, .7);
+  font-weight: 400;
+}
+
+
+// Form wrappers
+// ----------------------------------------------------------------------------
+
+.vs-contact-form__wrapper {
+  @include border-radius(.625rem);
+  background-color: $c-white;
+}
+
+.vs-contact-form__prefix {
+  padding: 2.1875rem .9375rem;
+  border-bottom: 2px solid $c-gray-light;
+}
+
+.vs-contact-form__content {
+  padding: 2.1875rem .9375rem;
+}
+
+.vs-contact-form__suffix {
+  padding: 0 .9375rem 2.1875rem;
+}
+
+@include media-breakpoint-up(md) {
+  .vs-contact-form__prefix {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+
+  .vs-contact-form__content {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+  .vs-contact-form__suffix {
+    padding-bottom: 2.625rem;
+  }
 }
 
 
@@ -348,6 +404,7 @@ label {
 
   .vs-focus-label {
     top: 0.8125rem;
+    font-size: .9375rem;
 
     &--radio {
       font-size: 0.9375rem;

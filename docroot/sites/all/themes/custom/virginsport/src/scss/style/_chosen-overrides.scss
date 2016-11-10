@@ -17,6 +17,30 @@
     width: 100% !important;
   }
 
+  .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    color: rgba($c-black, .6);
+    font-family: $font-family-sans-serif;
+    padding-left: .625rem;
+    padding-right: .625rem;
+    width: 100% !important;
+
+    @include media-breakpoint-up(md) {
+      font-size: .9375rem;
+    }
+  }
+
+  .chosen-container-multi .chosen-choices li.search-choice {
+    margin-left: 5px;
+  }
+
+  .chosen-container-single .chosen-search {
+    display: none;
+
+    .page-admin & {
+      display: block;
+    }
+  }
+
   &.vs-chosen-wrapper--3x .chosen-container {
     width: 33.33% !important;
   }
@@ -45,15 +69,29 @@
 
   .chosen-drop {
     @include box-shadow(none);
-    width: calc(100% + 2px);
-    top: 100%;
+    top: calc(100% - 3px);
     border-color: #ccc;
+    border-top: 1px solid #ccc;
+    width: 98%;
+    margin-left: 1%;
   }
 
+  .chosen-container .chosen-results {
+    padding: 0;
+    margin: 0;
+  }
+
+  .chosen-container .chosen-results li {
+    padding: 9px;
+    font-size: 15px;
+    color: #767676;
+  }
+
+  .chosen-container .chosen-results li:hover,
   .chosen-container .chosen-results li.highlighted {
-    background-color: rgba(216, 216, 216, 0.25);
+    background-color: #f2f9fc;
     background-image: none;
-    color: black;
+    color: darken(#767676, 20%);
   }
 
   .chosen-single {
@@ -65,33 +103,10 @@
   .chosen-container-single .chosen-single span {
     font-size: 12px;
     font-weight: 400;
-  }
-}
 
-.vs-chosen-wrapper--3x .chosen-container {
-  .chosen-drop {
-    top: calc(100% + 3px);
-  }
-
-  &:nth-of-type(1) .chosen-drop:before,
-  &:nth-of-type(3) .chosen-drop:before {
-    content: '';
-    background-color: $c-white;
-    width: 4px;
-    height: 4px;
-    position: absolute;
-  }
-
-  &:nth-of-type(1) .chosen-drop:before {
-    border-left: 1px solid #ccc;
-    left: -1px;
-    top: -3px;
-  }
-
-  &:nth-of-type(3) .chosen-drop:before {
-    border-right: 1px solid #ccc;
-    right: -1px;
-    top: -3px;
+    @include media-breakpoint-up(md) {
+      font-size: .9375rem;
+    }
   }
 }
 
