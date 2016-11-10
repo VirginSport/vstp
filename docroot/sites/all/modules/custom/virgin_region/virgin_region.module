@@ -130,13 +130,6 @@ function virgin_region_hybridauth_userinfo_alter(&$userinfo, $data) {
 }
 
 /**
- * Implements hook_hybridauth_user_login().
- */
-function virgin_region_hybridauth_user_login($account, $data) {
-  virgin_region_user_login_submit($account->uid);
-}
-
-/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virgin_region_preprocess_page(&$vars) {
