@@ -386,7 +386,12 @@ function virgin_region_user_hostname() {
   global $user;
 
   $account_wrapper = entity_metadata_wrapper('user', $user->uid);
-  $hostname = $account_wrapper->field_region->value();
+  $region = $account_wrapper->field_region->value();
+  $hostname = '';
+
+  if (!empty($region[0]->field_hostname['und'][0]['value'])) {
+    $hostname = $region[0]->field_hostname['und'][0]['value'];
+  }
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
 }
