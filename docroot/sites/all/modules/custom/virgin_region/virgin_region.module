@@ -58,11 +58,11 @@ function virgin_region_theme($existing, $type, $theme, $path) {
 
   return array(
     'virgin_region_page_splash' => array(
-        'template' => 'virgin-region-page-splash',
-        'variables' => array(
-          'regions' => array(),
-        )
-      ) + $default,
+      'template' => 'virgin-region-page-splash',
+      'variables' => array(
+        'regions' => array(),
+      )
+    ) + $default,
   );
 }
 
