@@ -242,7 +242,7 @@ function showTicketsRegionChangeModal(origin, destination, path) {
  * @param {string} hostname
  */
 function setBasketHostnameCookie(hostname) {
- cookie.set('vs_basket_region_hostname', hostname);
+ cookie.set('vs_basket_region_hostname', hostname, { domain: Drupal.settings.virgin.cookieDomain });
 }
 
 /**
