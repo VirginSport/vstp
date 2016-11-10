@@ -59,7 +59,8 @@
           <div class="col-xs-12 vs-card-untimed-event__content-footer">
             <a
               class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
-              href="<?php print url('node/' . $festival_id); ?>"
+              href="<?php print url('node/' . $festival_id . '/tickets'); ?>"
+              vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
             >
               <?php print t('Get tickets'); ?>
             </a>

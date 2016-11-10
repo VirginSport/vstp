@@ -43,12 +43,17 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     // find the festival via a query indirection
     case 'event':
       $sql = "
-        select fs2.entity_id as festival_nid
-        from {field_data_field_event_state} es
-        join {field_data_field_festival_state} fs1 on fs1.entity_id = es.field_event_state_target_id and fs1.entity_type = 'node' and fs1.bundle = 'event_state'
-        join {field_data_field_festival_state} fs2 on fs2.field_festival_state_target_id = fs1.field_festival_state_target_id and fs2.bundle = 'festival'
-        where es.entity_id = :id
-        limit 1
+        SELECT fs2.entity_id AS festival_nid
+        FROM {field_data_field_event_state} es
+        JOIN {field_data_field_festival_state} fs1
+          ON fs1.entity_id = es.field_event_state_target_id
+          AND fs1.entity_type = 'node'
+          AND fs1.bundle = 'event_state'
+        JOIN {field_data_field_festival_state} fs2
+          ON fs2.field_festival_state_target_id = fs1.field_festival_state_target_id
+          AND fs2.bundle = 'festival'
+        WHERE es.entity_id = :id
+        LIMIT 1
       ";
 
       $result = db_query($sql, array(':id' => $g->property('nid')));
@@ -59,8 +64,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       }
 
       $g = new VirginEntityGrapher('node', node_load($festival_nid));
-
       break;
+
     default:
       return;
   }
@@ -70,6 +75,19 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   if ($g->property('type') != 'festival') {
     return;
   }
+
+  // Get the festival region hostname
+  $sql = "
+    SELECT h.field_hostname_value as hostname
+    FROM {field_data_field_region} r
+    JOIN {field_data_field_hostname} h
+      ON h.entity_id = r.field_region_target_id
+      AND h.bundle = 'region'
+    WHERE r.bundle = 'festival'
+      AND r.entity_id = :nid
+  ";
+
+  $hostname = db_query($sql, array(':nid' => $g->property('nid')))->fetchField();
 
   // Finally, prepare the data for the header
   $g_state = $g->relation('field_festival_state');
@@ -88,6 +106,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'status' => $g->fieldGetOne('field_status'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),
+    'nid' => $g->property('nid'),
+    'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '' // Small link at the bottom, not used tm
   );

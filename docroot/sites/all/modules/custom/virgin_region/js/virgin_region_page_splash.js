@@ -63,6 +63,7 @@
 
       // Store the region preference cookie to last for a year
       createCookie('vs_region_hostname', $el.attr('region-hostname'), 365);
+      createCookie('vs_basket_region_hostname', $el.attr('region-hostname'), 365);
   
       // If there's a destination parameter in the URL stop the
       // default behaviour of the link, and redirect the user

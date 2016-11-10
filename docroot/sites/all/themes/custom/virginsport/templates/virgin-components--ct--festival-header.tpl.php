@@ -6,6 +6,8 @@
  * Variables available:
  * @var string $title
  *  The title of the festival
+ * @var string $nid
+ *  The NID of the festival
  * @var string $status
  *  The status key of the festival
  * @var int $days_left
@@ -18,6 +20,8 @@
  *  The URL of the link that appears below the button
  * @var string $link_label
  *  The label of the link that appears below the button
+ * @var string $festival_hostname
+ *  The hostname of the region this festival is in
  */
 
 // Get number of days remaining to festival
@@ -56,7 +60,11 @@ $days_left = virginsport_days_left($start_date);
             <?php endif; ?>
 
             <?php if (in_array($status, array('open', 'in-progress'))): ?>
-              <a href="#select-tickets" class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>">
+              <a
+                href="<?php print url('node/' . $nid . '/tickets'); ?>"
+                class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>"
+                vs-ticket-hostname="<?php print check_plain($festival_hostname); ?>"
+              >
                 <?php print t('Select Tickets'); ?>
               </a>
             <?php endif; ?>
