@@ -19,7 +19,7 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
 <div class="vs-teaser">
 
   <!-- Portrait Template -->
-
+  <div>
   <?php if ($arrangement == 'portrait'): ?>
 
     <div class="vs-teaser__layout-1-a vs-teaser--portrait <?php print $reverse_class; ?>">
@@ -421,4 +421,5 @@ $reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
     </div>
 
 <?php endif; ?>
+  </div>
 </div>
