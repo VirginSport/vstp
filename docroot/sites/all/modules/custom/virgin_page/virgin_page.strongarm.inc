@@ -184,6 +184,7 @@ function virgin_page_strongarm() {
   $strongarm->name = 'panels_page_allowed_types';
   $strongarm->value = array(
     'festival_subnav-festival_subnav' => TRUE,
+    'contact_form-contact_form' => TRUE,
     'fieldable_panels_pane-vs_accordion' => TRUE,
     'fieldable_panels_pane-vs_basic_content_block' => TRUE,
     'fieldable_panels_pane-vs_carousel' => TRUE,
