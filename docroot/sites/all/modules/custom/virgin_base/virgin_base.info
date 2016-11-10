@@ -46,6 +46,7 @@ features[field_base][] = field_card_images
 features[field_base][] = field_carousel_style
 features[field_base][] = field_charity_link
 features[field_base][] = field_component_heading
+features[field_base][] = field_constrained_width
 features[field_base][] = field_contact_number
 features[field_base][] = field_content_align_to
 features[field_base][] = field_content_heading
