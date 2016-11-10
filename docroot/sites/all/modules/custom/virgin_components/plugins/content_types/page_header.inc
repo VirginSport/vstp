@@ -28,14 +28,21 @@ function virgin_components_page_header_content_type_render($subtype, $conf, $arg
   $node = empty($args['page']) ? $context[0]->data : $args['page'];
   $g = new VirginEntityGrapher('node', $node);
 
+
+
   // Fetch the image
   $atom = $g->relation('field_header_image');
   $vars = array(
     'title' => $g->fieldGetOne('title_field', ''),
     'body' => $g->fieldRendered('field_page_body'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
+    'festival' => $g->property('field_festival', ''),
   );
-$x=0;
+
+  if(!empty($g->property('field_festival', ''))) {
+    return;
+  }
+
   $block = new stdClass();
   $block->module = '';
   $block->delta = '';
