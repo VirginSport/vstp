@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Declares the Festival Header ctools content-type plugin.
+ * Declares the Page Header ctools content-type plugin.
  */
 
 $plugin = array(

@@ -1,10 +1,14 @@
 <?php
 /**
-
- *  The label of the link that appears below the button
- */
-
-// Get number of days remaining to festival
+ * @file virgin-components--ct--page-header.tpl.php
+ * Template for the festival header
+ *
+ * Variables available:
+ * @var string $title
+ *  The title of the page
+ * @var string $body
+ *  The content of the page
+*/
 ?>
 
 <div class="vs-hero-banner">
