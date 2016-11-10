@@ -143,6 +143,29 @@ function virgin_region_hybridauth_user_login($account, $data) {
   virgin_region_user_login_submit($account->uid);
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for page theme.
+ */
+function virgin_region_preprocess_page(&$vars) {
+
+  // Inject the regions into the JS setting in order that javascript running
+  // on the page can know the regions that exist and which is active.
+  $current = virgin_region_current();
+  $regions = virgin_region_regions();
+
+  $list = array();
+  foreach ($regions as $region) {
+    $list[] = array(
+      'title' => $region['title'],
+      'hostname' => $region['hostname'],
+      'address' => virgin_region_add_hostname_protocol($region['hostname']),
+      'active' => empty($current) ? FALSE : ($region['hostname'] == $current['hostname'])
+    );
+  }
+
+  drupal_add_js(array('vsRegions' => $list), 'setting');
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 
