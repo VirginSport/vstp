@@ -12,7 +12,7 @@
     width: 11px;
     height: 11px;
     float: none;
-    
+
     color: $c-white;
     opacity: 1;
 
@@ -53,7 +53,7 @@
 // ----------------------------------------------------------------------------
 
 .vs-tooltip-trigger {
-  margin-left: 0.375rem;
+  @include transform(translateY(-50%));
   height: 1.5rem;
   width: 1.5rem;
   z-index: 1;
@@ -64,6 +64,9 @@
   text-align: center;
   line-height: 1.7rem;
   display: none;
+  position: absolute;
+  top: 50%;
+  right: -1.875rem;
 
   &:hover {
     color: $c-white;
@@ -75,17 +78,20 @@
   }
 }
 
-input[type="text"] + label + .vs-tooltip-trigger,
-.vs-select-wrapper + .vs-tooltip-trigger {
-  position: relative;
-  top: -6px;
-}
-
 
 // Responsive
 // ----------------------------------------------------------------------------
 
-@include media-breakpoint-up(lg) {
+.vs-tooltip-trigger--inline {
+  @include transform(none);
+  position: static;
+  margin-left: .625rem;
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
   .vs-tooltip-trigger {
     display: inline-block;
   }

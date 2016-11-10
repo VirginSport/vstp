@@ -1,39 +1,73 @@
+
 // Elements
 // ----------------------------------------------------------------------------
 
 label {
   font-family: $font-family-sans-serif;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: .9375rem;
   line-height: 1.25rem;
-
   color: $c-black;
+  margin-bottom: 0;
+}
 
-  margin-bottom: .3125rem;
+.vs-focus-label {
+  @include transition(all .2s ease);
+  opacity: .6;
+  cursor: text;
+  position: absolute;
+  left: 0.625rem;
+  top: .9375rem;
+  font-size: .75rem;
+}
+
+.vs-form-group {
+  position: relative;
+  margin-bottom: .625rem;
+  max-width: 21.75rem;
 }
 
 .form-control {
-
-  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 1.25rem;
-
   color: $c-black;
-  max-width: 21.75rem;
+  line-height: 0;
+  padding: 1.25rem .625rem .625rem;
 
   &:focus ~ .vs-focus-label,
   &.vs-form-control--not-empty ~ .vs-focus-label {
-
     color: #767676;
     opacity: 1;
-
     top: 0.5rem;
     font-size: 0.625rem;
     line-height: 0.75rem;
   }
 
   &:focus {
+    @include box-shadow(none);
     color: $c-black;
+  }
+}
+
+.vs-form-group--textarea:before {
+  content: '';
+  width: calc(100% - 2px);
+  height: 1.75rem;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background-color: $c-white;
+  border-radius: 4px 4px 0 0;
+}
+
+.vs-textarea {
+  height: 8.75rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.3125rem;
+  resize: none;
+  line-height: normal;
+
+  ~ .vs-focus-label {
+    top: .625rem
   }
 }
 
@@ -46,110 +80,19 @@ label {
   margin-top: 2rem;
 }
 
-.vs-form-group {
-  position: relative;
-  margin-bottom: .625rem;
-  line-height: 0;
-
-  .form-control {
-    padding: 0.9375rem 0.625rem 0;
-    height: 3.125rem;
-    display: inline-block;
-  }
-
-  .vs-textarea {
-    height: 8.75rem;
-    padding-top: 1.25rem;
-    padding-bottom: 0.3125rem;
-    resize: none;
-  }
-
-  .vs-form-group--radio-buttons + & {
-    padding-top: 0.25rem;
-  }
-}
-
-.vs-focus-label {
-  @include transition(all .2s ease);
-
-  opacity: .6;
-
-  cursor: text;
-
-  position: absolute;
-  left: 0.625rem;
-  top: 0.9375rem;
-}
 
 // Select group
 // ----------------------------------------------------------------------------
 
-.vs-select-wrapper {
-  display: inline-block;
-  color: $c-black;
-  font-size: 0.875rem;
-  width: 100%;
-  max-width: 21.75rem;
+.vs-chosen-wrapper {
   border: 0.0625rem solid rgba($c-black, .2);
   border-radius: 0.25rem;
-  padding: 0 .625rem;
-  position: relative;
-  line-height: 0.9375rem;
+  padding: 1.3125rem 0 .125rem;
+  font-size: 0;
 
-  > label {
-    opacity: .6;
+  > .vs-focus-label  {
+    top: 0.15rem;
     font-size: 0.625rem;
-    margin-bottom: 0;
-  }
-}
-
-.vs-select-group {
-  width: 100%;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-
-  > label {
-    margin-bottom: 0;
-  }
-}
-
-.vs-select-group__select {
-  @include transition(all .2s);
-  border: 0;
-  background-color: transparent;
-  text-align: center;
-  text-align-last: center;
-  width: 100%;
-  color: $c-black;
-
-  &:focus {
-    outline: 0;
-  }
-}
-
-.vs-select-group__label--day {
-  width: 20%;
-}
-
-.vs-select-group__label--month,
-.vs-select-group__label--year {
-  width: 38.5%;
-}
-
-.vs-select-group__label--full {
-  width: 100%;
-
-  > .vs-select-group__select {
-    text-align-last: left;
-  }
-}
-
-.vs-select-group__select--empty {
-  .selectize-dropdown,
-  .selectize-input,
-  .selectize-input input {
-    color: #767676;
   }
 }
 
@@ -165,7 +108,7 @@ label {
     padding-right: 1.875rem;
   }
 
-  &:last-child,
+  &:last-of-type,
   &:only-child {
     padding-right: 0;
   }
@@ -176,23 +119,10 @@ label {
 }
 
 
-// Disabled forms
-// ----------------------------------------------------------------------------
-
-.vs-form--disabled {
-
-  .vs-form-label {
-    color: rgba($c-black, .7);
-    cursor: not-allowed;
-  }
-}
-
-
 // Radio buttons
 // ----------------------------------------------------------------------------
 
 .vs-form-group--radio-buttons {
-
   .vs-form-group + & {
     padding-top: 0.5625rem;
   }
@@ -221,7 +151,6 @@ label {
 
   &:focus ~ .vs-form-label--radio:before {
     @include box-shadow(0 0 3px 2px rgba($c-black, .2));
-
     outline: none;
     border-radius: 50%;
   }
@@ -267,7 +196,6 @@ label {
 // ----------------------------------------------------------------------------
 
 .vs-form-group--checkboxes {
-
   .vs-form-group + & {
     padding-top: 0.625rem;
   }
@@ -309,7 +237,6 @@ label {
 
   &:focus ~ .vs-form-label--check:before {
     @include box-shadow(0 0 3px 1px rgba($c-black, .2));
-
     outline: none;
   }
 }
@@ -354,9 +281,11 @@ label {
 
 .vs-has-error {
   .form-control,
-  .vs-select-wrapper,
-  .vs-form-label--check:before {
-    border-color: $state-danger;
+  .vs-chosen-wrapper,
+  .vs-chosen-wrapper .chosen-drop,
+  .vs-form-label--check:before,
+  .chosen-drop:before {
+    border-color: $state-danger !important;
   }
 
   .vs-form-input--check:focus ~ .vs-form-label--check:before {
@@ -384,7 +313,6 @@ label {
   color: $state-danger;
   font-size: .625rem;
   line-height: 0.75rem;
-
   padding: .3125rem 0;
 
   .vs-form-radio + &,
@@ -397,7 +325,6 @@ label {
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(md) {
-
   label {
     font-size: 0.9375rem;
     line-height: 1.5rem;
@@ -410,11 +337,9 @@ label {
 
   .form-control {
     font-size: 0.9375rem;
-    line-height: 1.5rem;
 
     &:focus ~ .vs-focus-label,
     &.vs-form-control--not-empty ~ .vs-focus-label {
-
       top: 0.4375rem;
       font-size: 0.625rem;
       line-height: 0.75rem;
@@ -439,19 +364,16 @@ label {
   }
 
   .vs-form-group {
-
     & + .vs-form-group--radio-buttons {
       padding-top: 0.6875rem;
     }
-
   }
 
   .vs-form-check {
     padding-bottom: 0;
   }
 
-  .vs-form-group--checkboxes {
-
+  .vs-form {
     & + .vs-form-group {
       padding-top: 0.3125rem;
     }
@@ -477,7 +399,6 @@ label {
   }
 
   .vs-form-group--radio-buttons {
-
     & + & {
       padding-top: 0.3125rem;
     }
@@ -490,5 +411,4 @@ label {
       padding-top: 0.0625rem;
     }
   }
-
 }
