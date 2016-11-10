@@ -289,7 +289,7 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
     $account_wrapper = entity_metadata_wrapper('user', $account);
     $account_wrapper->field_sugar_id->set($sugar_id);
 
-    if ($save) {
+    if ($save && empty($account->is_new)) {
       // Save the changes to the user without triggering a hook_user_update().
       field_attach_update('user', $account);
     }

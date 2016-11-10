@@ -132,6 +132,16 @@ function virgin_preprocess_page(&$vars) {
     $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
     drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
   }
+
+  // Inject the variables required at JS level
+  $params = session_get_cookie_params();
+
+  drupal_add_js(array(
+    'virgin' => array(
+      'cookieDomain' => $params['domain'],
+      'cookieSecure' => $params['secure']
+    )
+  ), 'setting');
 }
 
 /**

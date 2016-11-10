@@ -20,6 +20,13 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
   /**
    * {@inheritdoc}
    */
+  public function themeSuggestion() {
+    return 'virgin_components__p__vs_untimed_event_card';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preProcess(&$variables) {
     if (empty($variables['elements']['#entity'])) {
       return;
@@ -80,12 +87,28 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $variables['package_price'] = $package_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['package_currency'] = $package_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['no_card_pattern_class'] = ($variables['card_pattern'] == 'none') ? 'vs-card-untimed-event--outline-remove' : '';
+    $variables['ticket_hostname'] = $this->getTicketHostname($festival_grapher->property('nid'));
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the hostname of the region this ticket belongs to
+   *
+   * @param int $festival_nid
+   *  The NID of the festival
+   * @return string
+   *  The hostname of the region this ticket belongs to
    */
-  public function themeSuggestion() {
-    return 'virgin_components__p__vs_untimed_event_card';
+  protected function getTicketHostname($festival_nid) {
+    $sql = "
+      SELECT h.field_hostname_value as hostname
+      FROM {field_data_field_region} r
+      JOIN {field_data_field_hostname} h
+        ON h.entity_id = r.field_region_target_id
+        AND h.bundle = 'region'
+      WHERE r.bundle = 'festival'
+      AND r.entity_id = :nid
+    ";
+
+    return db_query($sql, array(':nid' => $festival_nid))->fetchField();
   }
 }

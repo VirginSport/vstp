@@ -18,6 +18,7 @@ function virgin_festival_page_tickets($node) {
   }
 
   ctools_include('content');
+  ctools_include('context');
 
   $festival_context = ctools_context_create('node', $node);
   $context = array('festival' => $festival_context);

@@ -409,6 +409,39 @@ function virgin_user_user_login(&$edit, $account) {
       $_GET['destination'] = 'basket/authenticate';
       break;
   }
+
+  // If no basket action is set, then check if the user should be redirected
+  // to his prefered region.
+  if (empty($param('basket-action'))) {
+
+    // Fetch the value of the cookie that holds the number of items in
+    // the basket.
+    $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+    $basket_cookie = VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . ($attendly_env ? '-' . $attendly_env : '');
+    $basket_items = (int) virgin_cookie_get($basket_cookie);
+
+    // If the user does not have items in his basket, redirect him to his
+    // preferred region immediatly.
+    if (!$basket_items) {
+      virgin_region_user_redirect($account->uid, virgin_region_current());
+    }
+
+    // If the user however has items in his basket, check if he's currently in
+    // his prefered region, and if not, add a query parameter to the URL he's
+    // being sent to, so that via Javascript a prompt can be shown asking him
+    // if he wants to switch region.
+    if ($basket_items) {
+      $current_region = virgin_region_current();
+      $prefered_hostname = virgin_region_user_hostname();
+
+      if ($current_region['hostname'] != $prefered_hostname) {
+        $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
+        $params = parse_url($destination, PHP_URL_QUERY);
+
+        $_GET['destination'] = sprintf('%s%sregion-change=%s', $destination, ($params ? '&' : '?'), $prefered_hostname);
+      }
+    }
+  }
 }
 
 /**
@@ -421,7 +454,6 @@ function virgin_user_user_logout($account) {
   $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
   $attendly_suffix = empty($attendly_env) ? '' : '-' . $attendly_env;
 
-  virgin_cookie_unset(VIRGIN_REGION_COOKIE);
   virgin_cookie_unset(VIRGIN_USER_BASKET_COOKIE);
   virgin_cookie_unset(VIRGIN_USER_ATTENDLY_SESSION_COOKIE . $attendly_suffix);
   virgin_cookie_unset(VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . $attendly_suffix);
