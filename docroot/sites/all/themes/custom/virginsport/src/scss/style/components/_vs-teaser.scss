@@ -64,9 +64,13 @@ vs-teaser,
     height: .125rem;
     width: 1.25rem;
     position: absolute;
-    left: 1.5625rem;
+    left: 0;
     bottom: -.5625rem;
   }
+}
+
+.vs-teaser__text {
+  margin-bottom: 1.875rem;
 }
 
 @include media-breakpoint-up(md) {
@@ -712,10 +716,6 @@ vs-teaser,
   @include media-breakpoint-up(xl) {
     .vs-teaser__content {
       padding-left: 3.75rem;
-    }
-
-    .vs-teaser__subtitle:after {
-      left:  3.75rem;
     }
   }
 }
