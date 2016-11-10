@@ -130,8 +130,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   // The type field options
   $types = array(
     'link' => 'Link',
-    'get_in_touch' => 'Get in Touch',
-    'register_interest' => 'Register Interest'
+    'contact_form' => 'Get in Touch',
+    'register_interest_form' => 'Register Interest'
   );
 
   // Generate a unique id for this field to add #states based on it
@@ -148,6 +148,36 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     ),
   );
 
+  $element['attributes']['virgin_festival'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Festival Id'),
+    '#default_value' => isset($attributes['virgin_festival']) ? $attributes['virgin_festival'] : '',
+    '#states' => array(
+      'visible' => array(
+        array(
+          array(
+            '#' . $id => array('value' => 'get_in_touch'),
+          ),
+          'or',
+          array(
+            '#' . $id => array('value' => 'register_interest'),
+          ),
+        ),
+      )
+    )
+  );
+
+  $element['attributes']['virgin_event'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Event Id'),
+    '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',
+    '#states' => array(
+      'visible' => array(
+        '#' . $id => array('value' => 'get_in_touch'),
+      )
+    )
+  );
+
   // Show url field if virgin_type value is link
   $element['url']['#states'] = array(
     // Hide the settings when the cancel notify checkbox is disabled.
@@ -157,4 +187,52 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   return $element;
+}
+
+/**
+ * Returns an array of published festivals
+ *
+ * @return array
+ */
+function virgin_base_festivals() {
+  $ids = db_query("
+    SELECT n.nid
+    FROM {node} n
+    WHERE n.type = 'festival'
+    AND n.status = 1
+  ")->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
+}
+
+/**
+ * Returns an array of published events
+ *
+ * @return array
+ */
+function virgin_base_events() {
+  $ids = db_query("
+    SELECT n.nid
+    FROM {node} n
+    WHERE n.type = 'event'
+    AND n.status = 1
+  ")->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
 }
