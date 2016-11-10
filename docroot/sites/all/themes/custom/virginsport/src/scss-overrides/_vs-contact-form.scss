@@ -1,0 +1,28 @@
+
+// This file covers user contact form.
+// ----------------------------------------------------------------------------
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-contact-form {
+  .vs-contact-form__wrapper {
+    @include border-radius(10px);
+
+    background-color: $c-white;
+
+    .vs-contact-form__prefix {
+      padding: 2rem 0;
+      border-bottom: 2px solid $c-gray-light;
+    }
+
+    .vs-contact-form__content {
+      padding: 2rem 0;
+    }
+
+    .vs-contact-form__suffix {
+      padding-bottom: 2rem;
+    }
+  }
+}

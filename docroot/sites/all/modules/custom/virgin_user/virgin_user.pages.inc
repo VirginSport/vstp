@@ -362,22 +362,83 @@ function virgin_user_page_user_register() {
   return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
 }
 
+
+/**
+ * Page callback for the user contact form
+ */
 function virgin_user_page_ajax_form() {
   $commands = array();
 
   module_load_include('inc', 'virgin_user', 'virgin_user.forms');
 
-  $form_state = array();
-  $form = drupal_build_form('virgin_user_form_contact', $form_state);
-  $render = drupal_render($form);
+  $conf = array(
+    'type' => virgin_param('virgin_type'),
+    'festival_id' => virgin_param('festival_id'),
+    'event_id'  => virgin_param('event_id'),
+  );
+
+  ctools_include('content');
+  $contact_form = ctools_content_render($conf['type'], null, $conf, array(), array());
 
   $commands[] = array(
     'command' => 'vsContactForm',
-    'data' => $render
+    'data' => $contact_form->content
   );
 
   return array(
     '#type' => 'ajax',
     '#commands' => $commands
   );
+}
+
+/**
+ * Page callback for the user contact form submission
+ */
+function virgin_user_page_ajax_form_post() {
+  global $user;
+
+  if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    drupal_access_denied();
+  }
+
+  $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
+
+  $defaults = array(
+    'first_name' => $user_grapher->fieldGetOne('field_first_name'),
+    'last_name' => $user_grapher->fieldGetOne('field_last_name'),
+    'contact_number' => $user_grapher->fieldGetOne('field_contact_number'),
+    'mkt_email_opt_ins' => $user_grapher->fieldGetOne('field_marketing_optin', 0),
+    'email' => $user_grapher->property('mail'),
+    'message' => '',
+    '$type' => '',
+    'festival_id' => '',
+    'event_ids' => array()
+  );
+
+  $raw = file_get_contents('php://input');
+  $data = drupal_json_decode($raw) + $defaults;
+
+  $params = array(
+    'type' => $data['type'],
+    'contact_id' => $user_grapher->fieldGetOne('field_sugar_id'),
+    'email' => $data['email'],
+    'first_name' => $data['first_name'],
+    'last_name' => $data['last_name'],
+    'contact_number' => $data['contact_number'],
+    'mkt_email_opt_ins' => $data['mkt_email_opt_ins'],
+    'message' => $data['message'],
+  );
+
+  $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
+  $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+  $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
+
+  foreach ($data['event_ids'] as $event_id) {
+    $event_grapher = new VirginEntityGrapher('node', node_load($event_id));
+    $event_state_grapher = $event_grapher->relation('field_event_state');
+    $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
+  }
+
+  print sugarcrm_client()->postEndpoint('Virgin/form', $params);
+  drupal_exit();
 }

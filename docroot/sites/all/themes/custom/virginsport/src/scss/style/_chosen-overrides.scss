@@ -1,0 +1,104 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-chosen-wrapper {
+  .form-control {
+    height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: .375rem;
+  }
+
+  .chosen-processed {
+    display: none;
+  }
+
+  .chosen-container {
+    width: 100% !important;
+  }
+
+  &.vs-chosen-wrapper--3x .chosen-container {
+    width: 33.33% !important;
+  }
+
+  .chosen-choices {
+    @include box-shadow(none);
+    border: 0;
+    background-image: none;
+    padding: 0;
+  }
+
+  .search-choice {
+    @include box-shadow(none !important);
+    background-image: none !important;
+    border: 0 !important;
+  }
+
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: -1px;
+  }
+
+  .chosen-container-active.chosen-with-drop .chosen-single {
+    background-image: none;
+    border: 0;
+  }
+
+  .chosen-drop {
+    @include box-shadow(none);
+    width: calc(100% + 2px);
+    top: 100%;
+    border-color: #ccc;
+  }
+
+  .chosen-container .chosen-results li.highlighted {
+    background-color: rgba(216, 216, 216, 0.25);
+    background-image: none;
+    color: black;
+  }
+
+  .chosen-single {
+    @include box-shadow(none);
+    background-image: none;
+    border: 0;
+  }
+
+  .chosen-container-single .chosen-single span {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.vs-chosen-wrapper--3x .chosen-container {
+  .chosen-drop {
+    top: calc(100% + 3px);
+  }
+
+  &:nth-of-type(1) .chosen-drop:before,
+  &:nth-of-type(3) .chosen-drop:before {
+    content: '';
+    background-color: $c-white;
+    width: 4px;
+    height: 4px;
+    position: absolute;
+  }
+
+  &:nth-of-type(1) .chosen-drop:before {
+    border-left: 1px solid #ccc;
+    left: -1px;
+    top: -3px;
+  }
+
+  &:nth-of-type(3) .chosen-drop:before {
+    border-right: 1px solid #ccc;
+    right: -1px;
+    top: -3px;
+  }
+}
+
+.chosen-container-single .chosen-single div b {
+  background: transparent url('../img/chosen-arrow-down.png') no-repeat 0 8px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+  background: transparent url('../img/chosen-arrow-up.png') no-repeat 0 8px;
+}
