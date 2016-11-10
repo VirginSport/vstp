@@ -179,4 +179,43 @@ class VirginAttendlyClient {
 
     return $response_data['Result']['Token'];
   }
+
+  /**
+   * Builds the full path to the purchase history page
+   *
+   * @param string $virgin_sport_id
+   *  The virgin sport ID of the user that's claiming this ticket
+   * @return string
+   *  The attendly ticket claim URL
+   */
+  public function buildPurchaseHistoryPath($virgin_sport_id) {
+    $token = $this->getPurchaseHistoryToken($virgin_sport_id);
+    $path = sprintf('%s/post/purchasehistory/%', $this->url, $token);
+
+    return $path;
+  }
+
+  /**
+   * Get the ticket claim access token to access the purchase history page
+   *
+   * @param string $virgin_sport_id
+   *  The virgin sport ID of the user that's viewing the purchase history
+   * @throws \Exception
+   *  If it was not possible to fetch an access token
+   */
+  protected function getPurchaseHistoryToken($virgin_sport_id) {
+    $data = array(
+      'ExternalID' => $virgin_sport_id,
+    );
+
+    $request = $this->client->post('/v2/attendee/purchasehistoryaccess', null, json_encode($data));
+    $request->setAuth($this->username, $this->password);
+    $response_data = $request->send()->json();
+
+    if (empty($response_data['Result']['Token'])) {
+      throw new \Exception("Could not fetch a valid attendly post checkout token");
+    }
+
+    return $response_data['Result']['Token'];
+  }
 }
