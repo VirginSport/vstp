@@ -28,8 +28,6 @@ function virgin_components_page_header_content_type_render($subtype, $conf, $arg
   $node = empty($args['page']) ? $context[0]->data : $args['page'];
   $g = new VirginEntityGrapher('node', $node);
 
-
-
   // Fetch the image
   $atom = $g->relation('field_header_image');
   $vars = array(
@@ -37,6 +35,7 @@ function virgin_components_page_header_content_type_render($subtype, $conf, $arg
     'body' => $g->fieldRendered('field_page_body'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'festival' => $g->property('field_festival', ''),
+    'show_sharer' => $g->fieldGetOne('field_has_share_button'),
   );
 
   if(!empty($g->property('field_festival', ''))) {
