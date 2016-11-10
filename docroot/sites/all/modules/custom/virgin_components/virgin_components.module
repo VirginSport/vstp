@@ -37,6 +37,10 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__festival-subnav',
     ),
+    'virgin_components__ct__page_header' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__page_header',
+    ),
   );
 }
 
