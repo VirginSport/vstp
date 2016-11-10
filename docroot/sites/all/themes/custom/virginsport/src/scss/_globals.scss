@@ -70,3 +70,15 @@ p {
 %vs-gradient-violet {
   @include gradient-x(#FB8B5F, #504EA1, 0%, 100%);
 }
+
+
+// Used to provide fade out animation when page loads
+// ----------------------------------------------------------------------------
+.v-element {
+  @include transition(opacity, .7s ease-in-out);
+  opacity: 0;
+
+  &.v-element--ready {
+    opacity: 1;
+  }
+}
