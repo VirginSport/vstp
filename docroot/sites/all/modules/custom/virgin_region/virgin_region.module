@@ -115,13 +115,6 @@ function virgin_region_form_user_register_form_alter(&$form, &$form_state, $form
 }
 
 /**
- * Implements hook_form_FORM_ID_alter() for user_login.
- */
-function virgin_region_form_user_login_alter(&$form, &$form_state, $form_id) {
-  $form['#submit'][] = 'virgin_region_form_user_login_submit';
-}
-
-/**
  * Implements hook_hybridauth_userinfo_alter().
  *
  * Maps the user profile information from the social network at registration
@@ -267,27 +260,6 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
     // Set current user region cookie on registration
     virgin_region_region_cookie_set($current_region);
   }
-}
-
-/**
- * Submission callback for the user_login form.
- *
- * @see virgin_region_form_user_login_alter()
- */
-function virgin_region_form_user_login_submit(&$form, &$form_state) {
-  virgin_region_user_login_submit($form_state['uid']);
-}
-
-/**
- * Login Callback for drupal login and hybridauth login
- *
- * @param $uid
- */
-function virgin_region_user_login_submit($uid) {
-  $current_region = virgin_region_current();
-
-  // Redirect user to its region on login
-  virgin_region_user_redirect($uid, $current_region);
 }
 
 /**
