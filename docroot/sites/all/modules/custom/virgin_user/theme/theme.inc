@@ -107,6 +107,21 @@ function virgin_user_preprocess_virgin_user__edit(&$vars) {
   $gender_key = $user_grapher->fieldGetOne('field_gender');
   $field = field_info_field('field_gender');
   $vars['user_gender'] = empty($field['settings']['allowed_values'][$gender_key]) ? '' : $field['settings']['allowed_values'][$gender_key];
+
+  // Generate the purchase history path
+  try {
+    $sugar_id = $user_grapher->fieldGetOne('field_sugar_id');
+    $purchase_history_path = virgin_attendly_client()->buildPurchaseHistoryPath($sugar_id);
+    $vars['purchase_history_path'] = $purchase_history_path;
+
+  } catch (\Exception $e) {
+    watchdog(
+      'virgin_user',
+      'An error ocurred while building the purchase history URL: @err',
+      array('@err' => $e->getMessage()),
+      WATCHDOG_ERROR
+    );
+  }
 }
 
 /**

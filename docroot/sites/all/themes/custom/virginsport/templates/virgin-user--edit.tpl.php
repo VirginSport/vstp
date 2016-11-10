@@ -52,11 +52,15 @@
               <?php print t('Account Details'); ?>
             </a>
           </li>
+
+          <?php if (!empty($purchase_history_path)): ?>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" role="tab" href="#purchase-history">
               <?php print t('Purchase History'); ?>
             </a>
           </li>
+          <?php endif; ?>
+
         </ul>
 
         <div class="tab-content">
@@ -322,8 +326,13 @@
                 </form>
             </validator>
           </div>
+
+          <?php if (!empty($purchase_history_path)): ?>
           <div class="tab-pane fade" role="tabpanel" id="purchase-history">
+            <iframe class="vs-iframe" src="<?php print $purchase_history_path; ?>"></iframe>
           </div>
+          <?php endif; ?>
+
         </div>
       </div>
     </div>
