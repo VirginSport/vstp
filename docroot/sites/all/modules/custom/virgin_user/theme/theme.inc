@@ -77,6 +77,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
 
   // Get the number of days remaining for event
   $vars['member_is_participant'] = ($user_dob == $ticket_user_dob && $user_name == $ticket_user_name);
+  $vars['ticket_type_title'] = $ticket_type_grapher->fieldGetOne('title_field');;
   $vars['brand_color'] = $ticket_type_grapher->fieldGetOne('field_brand_color');
   $vars['brand_pattern'] = $ticket_type_grapher->fieldGetOne('field_brand_pattern');
   $vars['ticket_start_time'] = date('g:ia', $event_start_date);
