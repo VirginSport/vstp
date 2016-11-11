@@ -160,10 +160,10 @@ function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
   );
 
   // Find out which name should be shown in the claim card
-  if (user_is_logged_in() && !$list['is_purcharser'] && !$list['is_recipient']) {
+  if (user_is_logged_in() && !$list['is_purchaser'] && !$list['is_recipient']) {
     $logged_name = $account_g->fieldGetOne('field_first_name');
-  } elseif ($list['is_purcharser']) {
-    $logged_name = $list['purcharser'];
+  } elseif ($list['is_purchaser']) {
+    $logged_name = $list['purchaser'];
   } else {
     $logged_name = $list['recipient'];
   }
