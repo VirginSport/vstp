@@ -82,6 +82,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['ticket_start_time'] = date('g:ia', $event_start_date);
   $vars['event_grapher'] = $event_grapher;
   $vars['event_state_grapher'] = $event_state_grapher;
+  $vars['event_title'] = $event_grapher->fieldGetOne('title_field');;
   $vars['event_start_date'] = $event_start_date;
   $vars['event_end_date'] = $event_end_date;
   $vars['event_started'] = $event_start_date < time();
