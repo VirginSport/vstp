@@ -8,6 +8,8 @@ required = TRUE
 dependencies[] = defaultconfig
 
 ; required lightning modules
+; note: lighting requires block to be installed or it fails at profile installation
+dependencies[] = block
 dependencies[] = lightning_filter
 dependencies[] = lightning_moderation
 dependencies[] = lightning_wysiwyg
