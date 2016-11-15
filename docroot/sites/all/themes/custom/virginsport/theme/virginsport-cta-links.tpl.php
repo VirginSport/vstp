@@ -9,6 +9,7 @@
     <?php
 
     $query = array();
+    $url = empty($link['url']) ? current_path() : $link['url'];
 
     // Add festival query param if available
     if (!empty($link['attributes']['virgin_festival'])) {
@@ -22,7 +23,7 @@
 
     print
       sprintf('<a %s>%s</a>', drupal_attributes(array(
-        'href' => url($link['url'], array('query' => $query)),
+        'href' => url($url, array('query' => $query)),
         'virgin-type' => $link['attributes']['virgin_type'],
         'class' => array(
           'btn vs-btn',
