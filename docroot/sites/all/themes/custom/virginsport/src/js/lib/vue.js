@@ -5,6 +5,8 @@ import VueResource from 'vue-resource';
 Vue.use(VueValidator);
 Vue.use(VueResource);
 
+// VALIDATORS ----------------------------------------------------------------------------------------------------------
+
 /*
  * Check if is a valid email
  */
@@ -23,6 +25,19 @@ Vue.validator('match', {
   check: function (val1, val2) {
     return val1 == val2;
   }
+});
+
+// DIRECTIVES ----------------------------------------------------------------------------------------------------------
+
+/**
+ * Directive to simulate init function
+ */
+Vue.directive('init', function (data) {
+  if (!this.vm || !this.vm.init) {
+    return;
+  }
+
+  this.vm.init(data);
 });
 
 export default Vue;
