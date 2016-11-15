@@ -41,6 +41,7 @@ features[variable][] = mimemail_format
 features[variable][] = mimemail_simple_address
 features[variable][] = mimemail_sitestyle
 features[variable][] = mimemail_textonly
+features[variable][] = page_manager_node_view_disabled
 features[variable][] = panelizer_defaults_bean_bean_tax_listing
 features[variable][] = panelizer_defaults_bean_bean_tax_related
 features[variable][] = panelizer_defaults_fieldable_panels_pane_fieldable_panels_pane

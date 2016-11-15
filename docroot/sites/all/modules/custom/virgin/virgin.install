@@ -56,3 +56,10 @@ function virgin_update_7004() {
 function virgin_update_7005() {
   module_enable(array('date', 'date_views'));
 }
+
+/**
+ * Enables panels_ipe, path, pathauto and token modules.
+ */
+function virgin_update_7006() {
+    module_enable(array('panels_ipe', 'path', 'path_auto', 'token'));
+}
