@@ -21,5 +21,5 @@ function query(url) {
       b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
     }
     return b;
-  })(url.substr(1).split('&'))
+  })(url.substr(url.indexOf('?') + 1).split('&'))
 }
