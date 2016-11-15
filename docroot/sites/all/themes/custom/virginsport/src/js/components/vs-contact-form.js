@@ -132,6 +132,9 @@ function initVue(selector, inModal = false) {
         if (data.event_id) {
           this._data.form.event_ids = [data.event_id];
         }
+
+        // Update chosen
+        this.updateChosen();
       },
 
       /**
