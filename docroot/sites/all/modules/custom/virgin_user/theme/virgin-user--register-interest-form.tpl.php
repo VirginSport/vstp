@@ -97,7 +97,7 @@ $mkt_id = 'mkt-' . uniqid();
 
                     <div v-if="form.error" class="vs-error-label"><?php print t('An error ocurred please try again later'); ?></div>
 
-                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t("I'm Interested"); ?></button>
 
                     <div class="vs-form-description"><?php print t('By submitting now, you are agreeing to the T&Cs'); ?></div>
                   </form>
