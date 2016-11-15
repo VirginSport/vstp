@@ -20,9 +20,13 @@ $plugin = array(
  * Implements hook_plugin_content_type_render().
  */
 function virgin_user_register_interest_form_content_type_render($subtype, $conf, $panel_args, $context) {
+  $festival_id = empty($conf['festival_id']) ? '' : $conf['festival_id'];
+
   $vars = array(
-    'festival_id' => empty($conf['festival_id']) ? '' : $conf['festival_id'],
+    'festival_id' => $festival_id,
     'festivals' => virgin_base_festivals(),
+    'event_id' => empty($conf['event_id']) ? '' : $conf['event_id'],
+    'events' => drupal_json_encode(virgin_base_events($festival_id)),
   );
 
   $block = new stdClass();

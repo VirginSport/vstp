@@ -36,7 +36,12 @@ $mkt_id = 'mkt-' . uniqid();
                     <div class="vs-form-group">
                       <div class="vs-chosen-wrapper">
                         <label class="vs-focus-label"><?php print t('Festival'); ?>*</label>
-                        <select class="chosen-select" v-model="form.festival_id" name="festival_id">
+                        <select
+                          class="chosen-select"
+                          name="festival_id"
+                          v-model="form.festival_id"
+                          v-init='{ events: <?php print $vars['events']; ?> }'
+                        >
                           <?php foreach ($vars['festivals'] as $key => $title): ?>
                             <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
                               <?php print $title; ?>
@@ -44,38 +49,38 @@ $mkt_id = 'mkt-' . uniqid();
                           <?php endforeach; ?>
                         </select>
                       </div>
+                      <div class="vs-loading" v-if="loading"><?php print t('loading'); ?>...</div>
                     </div>
 
                     <div class="vs-form-group">
                       <div class="vs-chosen-wrapper">
                         <label class="vs-focus-label"><?php print t('Event'); ?>*</label>
                         <select multiple="multiple" class="chosen-select" v-model="form.event_ids" name="event_ids">
-                          <?php foreach ($vars['events'] as $key => $title): ?>
-                            <option value="<?php print $key; ?>" <?php print $key == $vars['event_id'] ? 'selected' : ''; ?>>
-                              <?php print $title; ?>
-                            </option>
-                          <?php endforeach; ?>
+                          <option v-for="(index, title) in form.events" v-bind:value="index">
+                            {{ title }}
+                          </option>
                         </select>
                       </div>
-                      <div class="vs-error-label" v-if="!form.event_ids"><?php print t('@ is required', array('@' => t('First Name'))); ?></div>
+
+                      <div class="vs-error-label" v-if="!form.event_ids"><?php print t('@ is required', array('@' => t('Event'))); ?></div>
                     </div>
 
                     <div class="vs-form-group">
                       <div class="vs-chosen-wrapper">
-                      <label class="vs-focus-label"><?php print t("I'd like to know more about"); ?>*</label>
-                      <select class="chosen-select" v-model="form.type" name="type" v-validate:type="['required']">
-                          <option value="festival-event"><?php print t('Festival/Event'); ?></option>
-                          <option value="volunteering"><?php print t('Volunteering'); ?></option>
-                          <option value="fans"><?php print t('Fans'); ?></option>
-                          <option value="tickets"><?php print t('Tickets'); ?></option>
-                          <option value="vs-membership"><?php print t('Virgin Sport Membership'); ?></option>
-                          <option value="results"><?php print t('Results'); ?></option>
-                          <option value="potential-partnership"><?php print t('Potential Partnership'); ?></option>
-                          <option value="press-inquiry"><?php print t('Results'); ?></option>
-                          <option value="results"><?php print t('Press Inquiry'); ?></option>
-                          <option value="careers"><?php print t('Careers'); ?></option>
-                      </select>
-                    </div>
+                        <label class="vs-focus-label"><?php print t("I'd like to know more about"); ?>*</label>
+                        <select class="chosen-select" v-model="form.type" name="type" v-validate:type="['required']">
+                            <option value="festival-event"><?php print t('Festival/Event'); ?></option>
+                            <option value="volunteering"><?php print t('Volunteering'); ?></option>
+                            <option value="fans"><?php print t('Fans'); ?></option>
+                            <option value="tickets"><?php print t('Tickets'); ?></option>
+                            <option value="vs-membership"><?php print t('Virgin Sport Membership'); ?></option>
+                            <option value="results"><?php print t('Results'); ?></option>
+                            <option value="potential-partnership"><?php print t('Potential Partnership'); ?></option>
+                            <option value="press-inquiry"><?php print t('Results'); ?></option>
+                            <option value="results"><?php print t('Press Inquiry'); ?></option>
+                            <option value="careers"><?php print t('Careers'); ?></option>
+                        </select>
+                      </div>
                     </div>
 
                     <div class="vs-form-group vs-form-group--textarea">
@@ -125,7 +130,7 @@ $mkt_id = 'mkt-' . uniqid();
 
                     <div v-if="form.error" class="vs-error-label"><?php print t('An error ocurred please try again later'); ?></div>
 
-                    <button :disabled="!$vs_contact_form_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
                   </form>
                 </validator>
                 <div v-if="form.submitted">

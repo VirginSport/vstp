@@ -49,7 +49,12 @@ $mkt_id = 'mkt-' . uniqid();
                     <div class="vs-form-group">
                       <div class="vs-chosen-wrapper">
                         <label class="vs-focus-label"><?php print t('Festival'); ?>*</label>
-                        <select class="chosen-select" v-model="form.festival_id" name="festival_id">
+                        <select
+                          class="chosen-select"
+                          name="festival_id"
+                          v-model="form.festival_id"
+                          v-init='{ events: <?php print $vars['events']; ?> }'
+                        >
                           <?php foreach ($vars['festivals'] as $key => $title): ?>
                             <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
                               <?php print $title; ?>
@@ -57,6 +62,20 @@ $mkt_id = 'mkt-' . uniqid();
                           <?php endforeach; ?>
                         </select>
                       </div>
+                      <div class="vs-loading" v-if="loading"><?php print t('loading'); ?>...</div>
+                    </div>
+
+                    <div class="vs-form-group">
+                      <div class="vs-chosen-wrapper">
+                        <label class="vs-focus-label"><?php print t('Event'); ?>*</label>
+                        <select multiple="multiple" class="chosen-select" v-model="form.event_ids" name="event_ids">
+                          <option v-for="(index, title) in form.events" v-bind:value="index">
+                            {{ title }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="vs-error-label" v-if="!form.event_ids"><?php print t('@ is required', array('@' => t('Event'))); ?></div>
                     </div>
 
                     <?php if (user_is_anonymous()): ?>
@@ -78,7 +97,7 @@ $mkt_id = 'mkt-' . uniqid();
 
                     <div v-if="form.error" class="vs-error-label"><?php print t('An error ocurred please try again later'); ?></div>
 
-                    <button :disabled="!$vs_contact_form_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
 
                     <div class="vs-form-description"><?php print t('By submitting now, you are agreeing to the T&Cs'); ?></div>
                   </form>

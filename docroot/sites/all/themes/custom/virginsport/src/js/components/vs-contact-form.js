@@ -86,6 +86,14 @@ function id() {
 }
 
 /**
+ *  Get url base path
+ * @returns {string}
+ */
+function path() {
+  return '//' + window.location.hostname + Drupal.settings.basePath + Drupal.settings.pathPrefix;
+}
+
+/**
  * Execute on the given selector
  *
  * @param selector
@@ -107,19 +115,73 @@ function initVue(selector, inModal = false) {
       this.$el.classList.add('v-element--ready');
     },
     methods: {
+      /**
+       * Called from vue directive init @see vue.js
+       */
+      init(data) {
+        // If data is undefined bail out
+        if (!data) {
+          return;
+        }
+
+        // Init comes from a custom directive because vue core doesn't have it
+        if (data.events) {
+          this._data.form.events = data.events;
+        }
+      },
 
       /**
        * Because of a conflict with chosen and vue v-model is not updated
        */
       bindLists() {
         let self = this;
-        $('select').on("change", function () {
+        $(selector).find('select').on("change", function () {
           let $el = $(this);
           let name = $el.attr('name');
-          if (self.form[name] = $el.val()) {
+          if (self.form[name] != $el.val()) {
             self.form[name] = $el.val();
+
+            if (name == 'festival_id') {
+              self.festivalChange();
+            }
           }
         });
+      },
+
+      /**
+       * Update chosen value based on model
+       */
+      updateChosen() {
+        window.setTimeout(() => {
+          $(selector).find('select').trigger("chosen:updated");
+        }, 0);
+      },
+
+      /**
+       * Triggered when the festival dropdown change
+       */
+      festivalChange() {
+        let self = this;
+        self.loading = true;
+
+        this.$http.get(path() + `ajax/festival/${this.form.festival_id}/events`).then((response) => {
+          if(response.data) {
+            // List of events
+            let events = JSON.parse(response.data);
+
+            // Set events property and trigger update chosen to update lists
+            self.form.events = events;
+            self.updateChosen();
+            self.loading = false;
+          }
+        });
+      },
+
+      /**
+       * Conditions to check if form is valid outside vue-validator
+       */
+      formValid() {
+        return this.form.event_ids && this.form.event_ids.length;
       },
 
       closeModal() {
@@ -128,9 +190,8 @@ function initVue(selector, inModal = false) {
 
       submit() {
         let self = this;
-        let url = '//' + window.location.hostname + Drupal.settings.basePath + Drupal.settings.pathPrefix;
 
-        this.$http.post(url + 'ajax/contact-form/post', this.form).then((response) => {
+        this.$http.post(path() + 'ajax/contact-form/post', this.form).then((response) => {
           // success callback
           self.form.submitted = true;
         }, (response) => {
@@ -140,6 +201,7 @@ function initVue(selector, inModal = false) {
     },
     data: {
       inModal: inModal,
+      loading: false,
       form: {
         submitted: false,
         error: false,
@@ -148,6 +210,7 @@ function initVue(selector, inModal = false) {
         type: '',
         festival_id: '',
         over_12: '',
+        events: {},
         event_ids: []
       }
     }
