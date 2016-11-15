@@ -420,13 +420,14 @@ function virgin_user_page_ajax_form_post() {
 
   $params = array(
     'type' => $data['type'],
-    'contact_id' => $user_grapher->fieldGetOne('field_sugar_id'),
+    'contact_id' => $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
     'first_name' => $data['first_name'],
     'last_name' => $data['last_name'],
     'contact_number' => $data['contact_number'],
     'mkt_email_opt_ins' => $data['mkt_email_opt_ins'],
     'message' => $data['message'],
+    'events' => array()
   );
 
   $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
@@ -439,6 +440,8 @@ function virgin_user_page_ajax_form_post() {
     $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
   }
 
-  print sugarcrm_client()->postEndpoint('Virgin/form', $params);
+  $result = sugarcrm_client()->postEndpoint('Virgin/form', $params);
+
+  print $result;
   drupal_exit();
 }
