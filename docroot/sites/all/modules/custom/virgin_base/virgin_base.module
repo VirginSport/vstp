@@ -7,6 +7,22 @@
 include_once 'virgin_base.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function virgin_base_menu() {
+  $items['ajax/festival/%/events'] = array(
+    'title' => 'Festival events',
+    'page callback' => 'virgin_base_ajax_festival_events',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_base.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_element_info_alter().
  */
 function virgin_base_element_info_alter(&$elements) {
@@ -216,15 +232,26 @@ function virgin_base_festivals() {
 /**
  * Returns an array of published events
  *
+ * @param $festival_id
+ *  The festival id to filter events
  * @return array
  */
-function virgin_base_events() {
-  $ids = db_query("
-    SELECT n.nid
-    FROM {node} n
-    WHERE n.type = 'event'
-    AND n.status = 1
-  ")->fetchCol();
+function virgin_base_events($festival_id) {
+  $festival_grapher = new VirginEntityGrapher('node', node_load($festival_id));
+  $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+
+  // Get events related to given festival
+  $sql = "
+    select ev.nid
+    from {node} n
+    join {field_data_field_festival_state} fs on fs.field_festival_state_target_id = n.nid
+    join {field_data_field_event_state} es on es.entity_type = 'node' and es.field_event_state_target_id = fs.entity_id
+    join {node} ev on ev.nid = es.entity_id and ev.type = 'event'
+    where n.nid = :id and ev.status = 1
+    group by ev.nid
+  ";
+
+  $ids = db_query($sql, array(':id' => $festival_state_grapher->property('nid')))->fetchCol();
 
   $nodes = node_load_multiple($ids);
 
