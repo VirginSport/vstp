@@ -40,7 +40,7 @@ $mkt_id = 'mkt-' . uniqid();
                           class="chosen-select"
                           name="festival_id"
                           v-model="form.festival_id"
-                          v-init='{ events: <?php print $vars['events']; ?> }'
+                          v-init='{ events: <?php print $vars['events']; ?>, event_id: <?php print $vars['event_id']; ?> }'
                         >
                           <?php foreach ($vars['festivals'] as $key => $title): ?>
                             <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
@@ -56,7 +56,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <div class="vs-chosen-wrapper">
                         <label class="vs-focus-label"><?php print t('Event'); ?>*</label>
                         <select multiple="multiple" class="chosen-select" v-model="form.event_ids" name="event_ids">
-                          <option v-for="(index, title) in form.events" v-bind:value="index">
+                          <option v-for="(index, title) in form.events" v-bind:value="index" :selected="form.event_ids == index">
                             {{ title }}
                           </option>
                         </select>

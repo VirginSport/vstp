@@ -128,6 +128,10 @@ function initVue(selector, inModal = false) {
         if (data.events) {
           this._data.form.events = data.events;
         }
+
+        if (data.event_id) {
+          this._data.form.event_ids = [data.event_id];
+        }
       },
 
       /**
