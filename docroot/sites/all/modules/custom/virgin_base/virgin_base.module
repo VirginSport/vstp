@@ -189,7 +189,13 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',
     '#states' => array(
       'visible' => array(
-        '#' . $id => array('value' => 'get_in_touch'),
+        array(
+          '#' . $id => array('value' => 'get_in_touch'),
+        ),
+        'or',
+        array(
+          '#' . $id => array('value' => 'register_interest'),
+        ),
       )
     )
   );
