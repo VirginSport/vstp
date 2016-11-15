@@ -7,6 +7,13 @@
 include_once 'virgin_base.features.inc';
 
 /**
+ * Set Form keys
+ */
+define('VIRGIN_BASE_LINK', 'link');
+define('VIRGIN_BASE_CONTACT_FORM', 'contact_form');
+define('VIRGIN_BASE_REGISTER_INTEREST_FORM', 'register_interest_form');
+
+/**
  * Implements hook_menu().
  */
 function virgin_base_menu() {
@@ -143,11 +150,12 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
   );
 
+
   // The type field options
   $types = array(
-    'link' => 'Link',
-    'contact_form' => 'Get in Touch',
-    'register_interest_form' => 'Register Interest'
+    VIRGIN_BASE_LINK => 'Link',
+    VIRGIN_BASE_CONTACT_FORM => 'Get in Touch',
+    VIRGIN_BASE_REGISTER_INTEREST_FORM => 'Register Interest'
   );
 
   // Generate a unique id for this field to add #states based on it
@@ -172,11 +180,11 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
       'visible' => array(
         array(
           array(
-            '#' . $id => array('value' => 'get_in_touch'),
+            '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
           ),
           'or',
           array(
-            '#' . $id => array('value' => 'register_interest'),
+            '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
           ),
         ),
       )
@@ -190,11 +198,11 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     '#states' => array(
       'visible' => array(
         array(
-          '#' . $id => array('value' => 'get_in_touch'),
+          '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
         ),
         'or',
         array(
-          '#' . $id => array('value' => 'register_interest'),
+          '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
         ),
       )
     )
@@ -204,7 +212,7 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   $element['url']['#states'] = array(
     // Hide the settings when the cancel notify checkbox is disabled.
     'visible' => array(
-      '#' . $id => array('value' => 'link'),
+      '#' . $id => array('value' => VIRGIN_BASE_LINK),
     )
   );
 
