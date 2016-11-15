@@ -63,14 +63,14 @@ function virgin_user_contact_form_content_type_edit_form($form, &$form_state) {
     '#title' => t('Text before form'),
     '#type' => 'text_format',
     '#format' => 'filtered_html',
-    '#default_value' => empty($conf['pre_form']) ? '' : $conf['pre_form']
+    '#default_value' => empty($conf['pre_form']['value']) ? '' : $conf['pre_form']['value']
   );
 
   $form['post_form'] = array(
     '#title' => t('Text after form'),
     '#type' => 'text_format',
     '#format' => 'filtered_html',
-    '#default_value' => empty($conf['post_form']) ? '' : $conf['post_form']
+    '#default_value' => empty($conf['post_form']['value']) ? '' : $conf['post_form']['value']
   );
 
   return $form;
