@@ -369,8 +369,6 @@ function virgin_user_page_user_register() {
 function virgin_user_page_ajax_form() {
   $commands = array();
 
-  module_load_include('inc', 'virgin_user', 'virgin_user.forms');
-
   $conf = array(
     'type' => virgin_param('virgin_type'),
     'festival_id' => virgin_param('festival_id'),
