@@ -251,21 +251,32 @@ function virgin_base_festivals() {
  * @return array
  */
 function virgin_base_events($festival_id) {
-  $festival_grapher = new VirginEntityGrapher('node', node_load($festival_id));
-  $festival_state_grapher = $festival_grapher->relation('field_festival_state');
-
   // Get events related to given festival
-  $sql = "
-    select ev.nid
-    from {node} n
-    join {field_data_field_festival_state} fs on fs.field_festival_state_target_id = n.nid
-    join {field_data_field_event_state} es on es.entity_type = 'node' and es.field_event_state_target_id = fs.entity_id
-    join {node} ev on ev.nid = es.entity_id and ev.type = 'event'
-    where n.nid = :id and ev.status = 1
-    group by ev.nid
-  ";
+  $query = db_select('node', 'n');
 
-  $ids = db_query($sql, array(':id' => $festival_state_grapher->property('nid')))->fetchCol();
+  $query->join('field_data_field_festival_state', 'fs', 'fs.field_festival_state_target_id = n.nid');
+  $query->join('field_data_field_event_state', 'es', 'es.field_event_state_target_id = fs.entity_id');
+  $query->join('node', 'ev', 'ev.nid = es.entity_id');
+
+  $query
+    ->fields('ev', array('nid'))
+    ->condition('ev.status', 1, '=')
+    ->condition('es.entity_type', 'node', '=')
+    ->condition('ev.type', 'event', '=')
+    ->groupBy('ev.nid')
+  ;
+
+  $festival = node_load($festival_id);
+
+  // If festival exists add filter
+  if (!empty($festival->nid)) {
+    $festival_grapher = new VirginEntityGrapher('node', $festival);
+    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+
+    $query->condition('n.nid', $festival_state_grapher->property('nid'), '=');
+  }
+
+  $ids = $query->execute()->fetchCol();
 
   $nodes = node_load_multiple($ids);
 
