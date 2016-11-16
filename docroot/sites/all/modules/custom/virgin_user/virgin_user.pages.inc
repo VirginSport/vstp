@@ -405,7 +405,6 @@ function virgin_user_page_ajax_form_post() {
     'first_name' => $user_grapher->fieldGetOne('field_first_name'),
     'last_name' => $user_grapher->fieldGetOne('field_last_name'),
     'contact_number' => $user_grapher->fieldGetOne('field_contact_number'),
-    'mkt_email_opt_ins' => $user_grapher->fieldGetOne('field_marketing_optin', 0),
     'email' => $user_grapher->property('mail'),
     'message' => '',
     '$type' => '',
@@ -423,7 +422,6 @@ function virgin_user_page_ajax_form_post() {
     'first_name' => $data['first_name'],
     'last_name' => $data['last_name'],
     'contact_number' => $data['contact_number'],
-    'mkt_email_opt_ins' => $data['mkt_email_opt_ins'],
     'message' => $data['message'],
     'events' => array()
   );

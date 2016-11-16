@@ -86,13 +86,6 @@ $mkt_id = 'mkt-' . uniqid();
                           <div class="vs-error-label" v-if="$vs_contact_form_validator.over_12.required"><?php print t('You must confirm tha you have more than 12 yrs old'); ?></div>
                         </div>
                       </div>
-
-                      <div class="vs-form-group vs-form-group--checkboxes">
-                        <div class="vs-form-check">
-                          <input type="checkbox" v-model="form.mkt_email_opt_ins" name="mkt_email_opt_ins" id="<?php print $mkt_id; ?>" class="vs-form-input vs-form-input--check">
-                          <label for="<?php print $mkt_id; ?>" class="vs-form-label vs-form-label--check"><?php print t("Sign up for Virgin Sport newsletter"); ?></label>
-                        </div>
-                      </div>
                     <?php endif; ?>
 
                     <div v-if="form.error" class="vs-error-label"><?php print t('An error ocurred please try again later'); ?></div>

@@ -117,13 +117,6 @@ $mkt_id = 'mkt-' . uniqid();
                         <label class="vs-focus-label" for="contact_number"><?php print t('Contact number'); ?>*</label>
                         <div class="vs-error-label" v-if="$vs_contact_form_validator.contact_number.dirty && $vs_contact_form_validator.contact_number.required"><?php print t('@ is required', array('@' => t('Contact number'))); ?></div>
                       </div>
-
-                      <div class="vs-form-group vs-form-group--checkboxes">
-                        <div class="vs-form-check">
-                          <input type="checkbox" v-model="form.mkt_email_opt_ins" name="mkt_email_opt_ins" id="<?php print $mkt_id; ?>" class="vs-form-input vs-form-input--check">
-                          <label for="<?php print $mkt_id; ?>" class="vs-form-label vs-form-label--check"><?php print t('Opt in'); ?></label>
-                        </div>
-                      </div>
                     <?php endif; ?>
 
                     <div class="vs-form-description">*<?php print t('mandatory fields'); ?></div>
