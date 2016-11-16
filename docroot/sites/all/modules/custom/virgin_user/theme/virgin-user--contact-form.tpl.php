@@ -54,15 +54,13 @@ $mkt_id = 'mkt-' . uniqid();
 
                     <div class="vs-form-group">
                       <div class="vs-chosen-wrapper">
-                        <label class="vs-focus-label"><?php print t('Event'); ?>*</label>
+                        <label class="vs-focus-label"><?php print t('Event'); ?></label>
                         <select multiple="multiple" class="chosen-select" v-model="form.event_ids" name="event_ids">
                           <option v-for="(index, title) in form.events" v-bind:value="index" :selected="form.event_ids == index">
                             {{ title }}
                           </option>
                         </select>
                       </div>
-
-                      <div class="vs-error-label" v-if="!form.event_ids"><?php print t('@ is required', array('@' => t('Event'))); ?></div>
                     </div>
 
                     <div class="vs-form-group">

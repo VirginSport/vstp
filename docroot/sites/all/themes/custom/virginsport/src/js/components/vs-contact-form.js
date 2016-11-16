@@ -188,7 +188,7 @@ function initVue(selector, inModal = false) {
        * Conditions to check if form is valid outside vue-validator
        */
       formValid() {
-        return this.form.event_ids && this.form.event_ids.length;
+        return true;
       },
 
       closeModal() {
