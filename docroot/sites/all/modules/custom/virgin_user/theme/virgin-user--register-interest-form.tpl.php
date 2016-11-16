@@ -8,16 +8,16 @@ $over_12_id = 'over-12-' . uniqid();
 $mkt_id = 'mkt-' . uniqid();
 ?>
 
-<div class="v-element vs-contact-form vs-contact-form--register">
+<div class="v-element vs-contact-form vs-contact-form--register" :class="{ 'vs-contact-form__modal': inModal }">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
         <div class="vs-contact-form__wrapper">
           <div class="vs-contact-form__content">
             <div class="row">
-              <div class="col-md-8 offset-md-2">
+              <div :class="{ 'col-md-8 offset-md-2': !inModal, 'col-md-6 offset-md-3': inModal }">
                 <validator name="vs_contact_form_validator" v-if="!form.submitted">
-                  <form @submit.prevent novalidate>
+                  <form @submit.prevent novalidate class="vs-contact-form__form">
                     <h4 class="vs-form-header">
                       <?php print t('Be the first to know'); ?>
                     </h4>

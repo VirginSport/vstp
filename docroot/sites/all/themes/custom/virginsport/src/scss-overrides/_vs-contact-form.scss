@@ -7,6 +7,14 @@
 // ----------------------------------------------------------------------------
 
 .vs-contact-form {
+  &.vs-contact-form__modal {
+    .vs-contact-form__form {
+      width: 100%;
+      max-width: 21.75rem;
+      margin: 0 auto;
+    }
+  }
+
   .vs-contact-form__wrapper {
     @include border-radius(10px);
 

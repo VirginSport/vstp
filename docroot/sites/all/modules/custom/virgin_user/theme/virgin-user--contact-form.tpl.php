@@ -7,7 +7,7 @@
 $mkt_id = 'mkt-' . uniqid();
 ?>
 
-<div class="v-element vs-contact-form">
+<div class="v-element vs-contact-form" :class="{ 'vs-contact-form__modal': inModal }">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -24,9 +24,9 @@ $mkt_id = 'mkt-' . uniqid();
 
           <div class="vs-contact-form__content">
             <div class="row">
-              <div class="col-md-8 offset-md-2">
+              <div :class="{ 'col-md-8 offset-md-2': !inModal, 'col-md-6 offset-md-3': inModal }">
                 <validator name="vs_contact_form_validator" v-if="!form.submitted">
-                  <form @submit.prevent novalidate>
+                  <form @submit.prevent novalidate class="vs-contact-form__form">
                     <h4 class="vs-form-header">
                       <?php print t('What did you want to say?'); ?>
                     </h4>
