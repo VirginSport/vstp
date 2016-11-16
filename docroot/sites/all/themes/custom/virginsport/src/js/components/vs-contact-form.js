@@ -16,7 +16,7 @@ export default () => {
 
   // Bind links with virgin type contact_form or register_interest_form to open forms in modal
   $(document).ready(() => {
-    $('[virgin-type=contact_form], [virgin-type=register_interest_form]').each(function() {
+    $('[virgin-type][virgin-type!="link"]').each(function() {
       bind($(this));
     });
   });
