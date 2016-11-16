@@ -415,6 +415,11 @@ function virgin_user_page_ajax_form_post() {
   $raw = file_get_contents('php://input');
   $data = drupal_json_decode($raw) + $defaults;
 
+  // If user has selected 'all events' option
+  if (in_array(0, $data['event_ids'])) {
+    $data['event_ids'] = array_keys($data['events']);
+  }
+
   $params = array(
     'type' => $data['type'],
     'contact_id' => $user_grapher->fieldGetOne('field_sugar_id', NULL),
@@ -431,7 +436,14 @@ function virgin_user_page_ajax_form_post() {
   $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
 
   foreach ($data['event_ids'] as $event_id) {
-    $event_grapher = new VirginEntityGrapher('node', node_load($event_id));
+    $event = node_load($event_id);
+
+    // If event does not exist continue
+    if (empty($event->nid)) {
+      continue;
+    }
+
+    $event_grapher = new VirginEntityGrapher('node', $event);
     $event_state_grapher = $event_grapher->relation('field_event_state');
     $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
   }
