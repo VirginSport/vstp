@@ -67,6 +67,9 @@ function virginsport_js_alter(&$js) {
 function virginsport_preprocess_page(&$vars) {
   global $user;
 
+  drupal_add_library('system', 'drupal.ajax');
+  drupal_add_library('chosen', 'drupal.chosen');
+
   // Check if page manager is handling the current page
   $vars['apply_page_wrapper'] = virginsport_check_wrapper_required();
 

@@ -34,10 +34,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
       case VirginUserEvents::USER_UPDATED:
         $this->onUserUpdate($event);
         break;
-
-      case 'virgin:contact:request':
-        $this->onContactRequest($event);
-        break;
     }
   }
 
@@ -83,38 +79,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
         throw new VirginException($e->getMessage(), t('An error occurred while updating the account. Please try again at a later time.'));
       }
     }
-  }
-
-  /**
-   * Executed when a Contact Request is made on Drupal
-   *
-   * @param \ObserverEventInterface $event
-   */
-  private function onContactRequest(ObserverEventInterface $event) {
-    global $user;
-
-    $account = user_load($user->uid);
-    $contact = $event->getData();
-
-    $this->validateEmail($contact['email']);
-
-    if (user_is_logged_in()) {
-      $sugar_id = $this->getUserSugarId($account);
-    }
-    else {
-      $sugar_id = $this->getEmailSugarId($contact['email']);
-    }
-
-    if (empty($sugar_id)) {
-      $contact_data = $this->transformContactRequestToUserData($contact);
-      $sugar_id = $this->saveContactToSugar($contact_data);
-
-      if (user_is_logged_in()) {
-        $this->setUserSugarId($account, $sugar_id, TRUE);
-      }
-    }
-
-    $this->saveTaskInSugar($sugar_id, $contact['message']);
   }
 
   /**

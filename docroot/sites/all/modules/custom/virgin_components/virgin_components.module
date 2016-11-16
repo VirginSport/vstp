@@ -29,9 +29,13 @@ function virgin_components_theme() {
       'render element' => 'elements',
       'template'  => 'virgin-components',
     ),
-    'virgin_components__ct__festival-header' => array(
+    'virgin_components__ct__festival_header' => array(
       'variables' => array(),
-      'template' => 'virgin-components__ct__festival-header',
+      'template' => 'virgin-components__ct__festival_header',
+    ),
+    'virgin_components__ct__contact_form' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__contact_form',
     ),
     'virgin_components__ct__festival_subnav' => array(
       'variables' => array(),

@@ -28,6 +28,7 @@
     "style-loader": "0.13.1",
     "vue": "^1.0",
     "vue-loader": "^9.7.0",
+    "vue-resource": "^1.0.3",
     "vue-validator": "^v2.0",
     "webpack": "1.13.1",
     "webpack-livereload-plugin": "0.8.1"
