@@ -24,7 +24,7 @@ $plugin = array(
  */
 function virgin_user_contact_form_content_type_render($subtype, $conf, $panel_args, $context) {
   $festival_id = empty($conf['festival_id']) ? array() : $conf['festival_id'];
-  $events = array(t('All events')) + virgin_base_events($festival_id);
+  $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
 
   $vars = array(
     'festival_id' => $festival_id,
