@@ -12,4 +12,4 @@
 ?>
 
 <script src="//assets.hscampaigns.com/assets/js/iframe.min.js"></script>
-<iframe width="100%" frameBorder="0" scrolling="no" src="<?php print $campaign_url; ?>?hidesections=header,footer,navigation,&redirect=false" id="bk_iframe" onload="resizeCrossDomainIframe('bk_iframe', '<?php print $campaign_url; ?>');" allowfullscreen></iframe>
+<iframe width="100%" frameBorder="0" scrolling="no" src="<?php print $campaign_url; ?>?hidesections=header,footer,navigation,&redirect=false&parentdomain=<?php print check_plain($_SERVER['HTTP_HOST']); ?>" id="bk_iframe" onload="resizeCrossDomainIframe('bk_iframe', '<?php print $campaign_url; ?>');" allowfullscreen></iframe>
