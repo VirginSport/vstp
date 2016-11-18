@@ -37,5 +37,6 @@ class VirginComponentTeaserBlock implements VirginComponentsInterface {
 
     $variables['title'] = $virgin->fieldGetOne('title_field');
     $variables['paragraphs'] = $virgin->fieldRendered('field_teasers');
+    $variables['hero_banner_image'] = $virgin->relation('field_hero_image');
   }
 }

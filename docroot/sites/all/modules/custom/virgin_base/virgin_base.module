@@ -7,6 +7,29 @@
 include_once 'virgin_base.features.inc';
 
 /**
+ * Set Form keys
+ */
+define('VIRGIN_BASE_LINK', 'link');
+define('VIRGIN_BASE_CONTACT_FORM', 'contact_form');
+define('VIRGIN_BASE_REGISTER_INTEREST_FORM', 'register_interest_form');
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_base_menu() {
+  $items['ajax/festival/%/events'] = array(
+    'title' => 'Festival events',
+    'page callback' => 'virgin_base_ajax_festival_events',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_base.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_element_info_alter().
  */
 function virgin_base_element_info_alter(&$elements) {
@@ -127,11 +150,12 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
   );
 
+
   // The type field options
   $types = array(
-    'link' => 'Link',
-    'get_in_touch' => 'Get in Touch',
-    'register_interest' => 'Register Interest'
+    VIRGIN_BASE_LINK => 'Link',
+    VIRGIN_BASE_CONTACT_FORM => 'Get in Touch',
+    VIRGIN_BASE_REGISTER_INTEREST_FORM => 'Register Interest'
   );
 
   // Generate a unique id for this field to add #states based on it
@@ -148,13 +172,119 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     ),
   );
 
+  $element['attributes']['virgin_festival'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Festival Id'),
+    '#default_value' => isset($attributes['virgin_festival']) ? $attributes['virgin_festival'] : '',
+    '#states' => array(
+      'visible' => array(
+        array(
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
+          ),
+          'or',
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+          ),
+        ),
+      )
+    )
+  );
+
+  $element['attributes']['virgin_event'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Event Id'),
+    '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',
+    '#states' => array(
+      'visible' => array(
+        array(
+          '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
+        ),
+        'or',
+        array(
+          '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+        ),
+      )
+    )
+  );
+
   // Show url field if virgin_type value is link
   $element['url']['#states'] = array(
     // Hide the settings when the cancel notify checkbox is disabled.
     'visible' => array(
-      '#' . $id => array('value' => 'link'),
+      '#' . $id => array('value' => VIRGIN_BASE_LINK),
     )
   );
 
   return $element;
+}
+
+/**
+ * Returns an array of published festivals
+ *
+ * @return array
+ */
+function virgin_base_festivals() {
+  $ids = db_query("
+    SELECT n.nid
+    FROM {node} n
+    WHERE n.type = 'festival'
+    AND n.status = 1
+  ")->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
+}
+
+/**
+ * Returns an array of published events
+ *
+ * @param $festival_id
+ *  The festival id to filter events
+ * @return array
+ */
+function virgin_base_events($festival_id) {
+  // Get events related to given festival
+  $query = db_select('node', 'n');
+
+  $query->join('field_data_field_festival_state', 'fs', 'fs.field_festival_state_target_id = n.nid');
+  $query->join('field_data_field_event_state', 'es', 'es.field_event_state_target_id = fs.entity_id');
+  $query->join('node', 'ev', 'ev.nid = es.entity_id');
+
+  $query
+    ->fields('ev', array('nid'))
+    ->condition('ev.status', 1, '=')
+    ->condition('es.entity_type', 'node', '=')
+    ->condition('ev.type', 'event', '=')
+    ->groupBy('ev.nid')
+  ;
+
+  $festival = node_load($festival_id);
+
+  // If festival exists add filter
+  if (!empty($festival->nid)) {
+    $festival_grapher = new VirginEntityGrapher('node', $festival);
+    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+
+    $query->condition('n.nid', $festival_state_grapher->property('nid'), '=');
+  }
+
+  $ids = $query->execute()->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
 }

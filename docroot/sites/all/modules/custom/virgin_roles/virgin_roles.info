@@ -253,6 +253,5 @@ features[user_permission][] = view revisions
 features[user_permission][] = view the administration theme
 features[user_role][] = Content Editor
 features[user_role][] = Content Manager
-features[user_role][] = administrator
 features_exclude[dependencies][page_manager] = page_manager
 features_exclude[dependencies][paragraphs] = paragraphs

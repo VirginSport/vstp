@@ -95,6 +95,7 @@ class VirginTicketTypeSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
+      'status' => 1,
     );
 
     // Map the event state if it exists

@@ -76,13 +76,16 @@ function mobileMenu($body, $header) {
  * @param $header
  */
 function headerAnimation() {
+
   // Dom elements for headroom
   let header = document.querySelector('.vs-header');
   let subnav = document.querySelector('.vs-subnav');
+  
+  if (!header) {
+    return;
+  }
 
   // Jquery elements
-  let jSubNav = $(subnav);
-
   let headerProperties = {
     offset: 20,
     tolerance: 5,
@@ -104,7 +107,7 @@ function headerAnimation() {
 
   if (subnav) {
     // Get subnav distance to top
-    let jSubnavTop = jSubNav.offset().top;
+    let jSubnavTop = $(subnav).offset().top;
 
     // The deviation is the menu header height that should be contemplated as an increment to subnav offset
     var getOffsets = function () {

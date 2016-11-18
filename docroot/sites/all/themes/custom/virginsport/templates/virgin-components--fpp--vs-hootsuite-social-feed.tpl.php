@@ -9,7 +9,10 @@
  * @var $campaign_url
  *  The campaign url
  */
+
+global $base_root;
+
 ?>
 
 <script src="//assets.hscampaigns.com/assets/js/iframe.min.js"></script>
-<iframe width="100%" frameBorder="0" scrolling="no" src="<?php print $campaign_url; ?>?hidesections=header,footer,navigation,&redirect=false" id="bk_iframe" onload="resizeCrossDomainIframe('bk_iframe', '<?php print $campaign_url; ?>');" allowfullscreen></iframe>
+<iframe width="100%" frameBorder="0" scrolling="no" src="<?php print $campaign_url; ?>?hidesections=header,footer,navigation,&redirect=false&parentdomain=<?php print $base_root; ?>" id="bk_iframe" onload="resizeCrossDomainIframe('bk_iframe', '<?php print $campaign_url; ?>');" allowfullscreen></iframe>

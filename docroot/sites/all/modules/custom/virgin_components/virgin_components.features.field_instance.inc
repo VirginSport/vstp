@@ -1143,6 +1143,49 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_constrained_width'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_constrained_width'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_constrained_width',
+    'label' => 'Constrained width',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_hero_banner_block-field_cta_links'.
   $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_cta_links'] = array(
     'bundle' => 'vs_hero_banner_block',
@@ -2299,6 +2342,51 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_teaser_block-field_hero_image'.
+  $field_instances['fieldable_panels_pane-vs_teaser_block-field_hero_image'] = array(
+    'bundle' => 'vs_teaser_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_image',
+    'label' => 'Hero Image',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_teaser_block-field_teasers'.
   $field_instances['fieldable_panels_pane-vs_teaser_block-field_teasers'] = array(
     'bundle' => 'vs_teaser_block',
@@ -2358,7 +2446,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => -4,
+      'weight' => 2,
     ),
   );
 
@@ -2404,7 +2492,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -10,
+      'weight' => 0,
     ),
   );
 
@@ -4355,6 +4443,7 @@ function virgin_components_field_default_field_instances() {
   t('Choose a Ticket');
   t('Choose an Untimed Event');
   t('Component Heading');
+  t('Constrained width');
   t('Content');
   t('Gameface ID');
   t('Heading');

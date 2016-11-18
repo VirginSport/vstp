@@ -102,6 +102,7 @@ class VirginEventSyncHandler implements VirginSyncSugarHandlerInterface {
       'field_has_teams' => $g->get('teams_available')->value(false),
       'field_has_fans' => $g->get('fans_available')->value(false),
       'field_has_marketing_questions' => $g->get('marketing_questions_available')->value(false),
+      'status' => 1,
     );
 
     // Map the festival state if it exists

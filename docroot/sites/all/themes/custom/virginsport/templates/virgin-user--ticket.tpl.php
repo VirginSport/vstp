@@ -17,9 +17,9 @@ $event_days_left = virginsport_days_left($event_start_date);
         <div class="col-xs-12 col-md-11 vs-ticket-card__content-wrapper">
           <div class="row">
             <div class="col-xs-9 col-md-5 col-lg-4 vs-ticket-card__header">
-              <?php if (!empty($ticket->name)): ?>
+              <?php if (!empty($ticket_type_title)): ?>
                 <h1 class="vs-ticket-card__title">
-                  <?php print check_plain($ticket->name); ?>
+                  <?php print check_plain($ticket_type_title); ?>
                 </h1>
               <?php endif; ?>
               <div class="vs-ticket-card__details">

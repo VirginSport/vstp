@@ -105,6 +105,18 @@ function virgin_user_theme($existing, $type, $theme, $path) {
         'register_form' => '',
         'hybridauth_widget' => '',
       )
+    ) + $default,
+    'virgin_user__contact_form' => array(
+      'template' => 'virgin-user--contact-form',
+      'variables' => array(
+        'vars' => array(),
+      )
+    ) + $default,
+    'virgin_user__register_interest_form' => array(
+      'template' => 'virgin-user--register-interest-form',
+      'variables' => array(
+        'vars' => array(),
+      )
     ) + $default
   );
 }
@@ -178,6 +190,24 @@ function virgin_user_menu() {
     'page callback' => 'virgin_user_page_basket_post_checkout',
     'access callback' => 'user_is_logged_in',
     'menu type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['ajax/contact-form'] = array(
+    'title' => 'Form',
+    'page callback' => 'virgin_user_page_ajax_form',
+    'access callback' => TRUE,
+    'delivery callback' => 'ajax_deliver',
+    'theme callback' => 'ajax_base_page_theme',
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
+  $items['ajax/contact-form/post'] = array(
+    'title' => 'Form',
+    'page callback' => 'virgin_user_page_ajax_form_post',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
     'file' => 'virgin_user.pages.inc',
   );
 

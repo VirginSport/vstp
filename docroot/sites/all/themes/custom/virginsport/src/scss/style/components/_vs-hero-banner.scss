@@ -113,6 +113,21 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner-constraint {
+  overflow: hidden;
+}
+
+.vs-hero-banner-constraint__container.container {
+  padding: 0;
+
+  .vs-hero-banner__background--fixed {
+    $offset: 20;
+
+    width: (100 + $offset)#{"%"};
+    margin-left: -($offset/2#{"%"});
+  }
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------

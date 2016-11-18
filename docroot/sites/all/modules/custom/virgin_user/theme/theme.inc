@@ -77,6 +77,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
 
   // Get the number of days remaining for event
   $vars['member_is_participant'] = ($user_dob == $ticket_user_dob && $user_name == $ticket_user_name);
+  $vars['ticket_type_title'] = $ticket_type_grapher->fieldGetOne('title_field');;
   $vars['brand_color'] = $ticket_type_grapher->fieldGetOne('field_brand_color');
   $vars['brand_pattern'] = $ticket_type_grapher->fieldGetOne('field_brand_pattern');
   $vars['ticket_start_time'] = date('g:ia', $event_start_date);
@@ -107,6 +108,21 @@ function virgin_user_preprocess_virgin_user__edit(&$vars) {
   $gender_key = $user_grapher->fieldGetOne('field_gender');
   $field = field_info_field('field_gender');
   $vars['user_gender'] = empty($field['settings']['allowed_values'][$gender_key]) ? '' : $field['settings']['allowed_values'][$gender_key];
+
+  // Generate the purchase history path
+  try {
+    $sugar_id = $user_grapher->fieldGetOne('field_sugar_id');
+    $purchase_history_path = virgin_attendly_client()->buildPurchaseHistoryPath($sugar_id);
+    $vars['purchase_history_path'] = $purchase_history_path;
+
+  } catch (\Exception $e) {
+    watchdog(
+      'virgin_user',
+      'An error ocurred while building the purchase history URL: @err',
+      array('@err' => $e->getMessage()),
+      WATCHDOG_ERROR
+    );
+  }
 }
 
 /**
@@ -144,10 +160,10 @@ function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
   );
 
   // Find out which name should be shown in the claim card
-  if (user_is_logged_in() && !$list['is_purcharser'] && !$list['is_recipient']) {
+  if (user_is_logged_in() && !$list['is_purchaser'] && !$list['is_recipient']) {
     $logged_name = $account_g->fieldGetOne('field_first_name');
-  } elseif ($list['is_purcharser']) {
-    $logged_name = $list['purcharser'];
+  } elseif ($list['is_purchaser']) {
+    $logged_name = $list['purchaser'];
   } else {
     $logged_name = $list['recipient'];
   }

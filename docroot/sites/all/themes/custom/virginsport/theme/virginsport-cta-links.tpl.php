@@ -6,9 +6,25 @@
 ?>
 <?php if (!empty($links)): ?>
   <?php foreach ($links as $link): ?>
-    <?php print
+    <?php
+
+    $query = array();
+    $url = empty($link['url']) ? current_path() : $link['url'];
+
+    // Add festival query param if available
+    if (!empty($link['attributes']['virgin_festival'])) {
+      $query['festival_id'] = $link['attributes']['virgin_festival'];
+    }
+
+    // Add event query param if available
+    if (!empty($link['attributes']['virgin_event'])) {
+      $query['event_id'] = $link['attributes']['virgin_event'];
+    }
+
+    print
       sprintf('<a %s>%s</a>', drupal_attributes(array(
-        'href' => url($link['url']),
+        'href' => url($url, array('query' => $query)),
+        'virgin-type' => $link['attributes']['virgin_type'],
         'class' => array(
           'btn vs-btn',
           $classes,

@@ -93,7 +93,8 @@ class VirginPackageSyncHandler implements VirginSyncSugarHandlerInterface {
       'field_description' => array(
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
-      )
+      ),
+      'status' => 1,
     );
 
     // Map the festival state if it exists

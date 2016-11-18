@@ -1,6 +1,7 @@
 
 // Components
 import vsBasket from './components/vs-basket';
+import vsContactForm from './components/vs-contact-form';
 import vsHeader from './components/vs-header';
 import vsIFrame from './components/vs-iframe';
 import vsIPE from './components/vs-ipe';
@@ -11,6 +12,7 @@ import vsUserRegister from './components/vs-user-register';
 import vsSharer from './components/vs-sharer';
 
 vsBasket();
+vsContactForm();
 vsHeader();
 vsIFrame();
 vsIPE();
