@@ -20,6 +20,11 @@
         <div class="vs-hero-banner__background--fixed"  style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>"></div>
 
         <div class="vs-hero-banner__background">
+
+          <div class="vs-hero-banner__social-wrapper">
+            <?php print theme('virginsport_share_buttons', array('subject' => $hero_banner_title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+          </div>
+
           <div class="container">
             <div class="row">
               <div class="col-xs-12">

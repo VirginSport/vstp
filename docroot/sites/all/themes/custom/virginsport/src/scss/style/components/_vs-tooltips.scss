@@ -91,7 +91,7 @@
 // Responsive
 // ----------------------------------------------------------------------------
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
   .vs-tooltip-trigger {
     display: inline-block;
   }

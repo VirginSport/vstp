@@ -186,7 +186,9 @@ $event_days_left = virginsport_days_left($event_start_date);
               </div>
               <?php endif; ?>
             <?php endif; ?>
-            <div class="vs-ticket-card__social-wrapper"></div>
+            <div class="vs-ticket-card__social-wrapper">
+              <?php print theme('virginsport_share_buttons', array('subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
+            </div>
           </div>
         </div>
 
@@ -206,7 +208,7 @@ $event_days_left = virginsport_days_left($event_start_date);
           </div>
         <?php endif; ?>
       </div>
-      
+
       <?php print theme('virginsport_color', array('brand_color' => $brand_color, 'brand_pattern' => $brand_pattern)); ?>
     </div>
   </div>

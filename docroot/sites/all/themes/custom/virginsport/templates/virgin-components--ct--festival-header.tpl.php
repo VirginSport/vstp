@@ -26,6 +26,7 @@
 
 // Get number of days remaining to festival
 $days_left = virginsport_days_left($start_date);
+$x=0;
 ?>
 
 <div class="vs-hero-banner">
@@ -36,6 +37,11 @@ $days_left = virginsport_days_left($start_date);
       <div class="vs-hero-banner__days-left-wrapper hidden-sm-down">
         <span class="vs-hero-banner__days-left"><?php print check_plain($days_left); ?></span>
         <span class="vs-hero-banner__days-label"><?php print t('Days to go'); ?></span>
+      </div>
+    <?php endif; ?>
+    <?php if ($variables['show_sharer']==1):?>
+      <div class="vs-hero-banner__social-wrapper">
+        <?php print theme('virginsport_share_buttons', array('subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
       </div>
     <?php endif; ?>
 
