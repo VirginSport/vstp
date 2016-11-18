@@ -1958,7 +1958,7 @@ function virgin_base_field_default_field_bases() {
         'Type 1 Diabetes' => 'Type 1 Diabetes',
         'Epilepsy' => 'Epilepsy',
         'Heart Condition' => 'Heart Condition',
-        'Other' => 'Other ("If you ticked ‘Heart Condition\', or you have another medical condition you think we should know about, explain here”)',
+        'Other' => 'Other',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
