@@ -42,6 +42,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
   $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
   $query->join('field_data_field_festival_state', 'f', 'f.field_festival_state_target_id = fs.field_festival_state_target_id');
+  $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
   $query->join('node', 'n', 'n.nid = f.entity_id AND n.status = 1');
   $query
     ->fields('tickets')
@@ -57,14 +58,9 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
    * upcoming tickets will be returned, otherwise the component will return
    * past tickets. This logic is based on festival date.
    */
-  if (!empty($conf['upcoming'])) {
-    $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
-    $query->condition('d.field_end_date_value', time(), '>');
-  } else {
-    $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
-    $query->condition('d.field_end_date_value', time(), '<');
-  }
+  $query->condition('d.field_end_date_value', time(), !empty($conf['upcoming']) ? '>' : '<');
 
+  // Fetch all results
   $results = $query->execute()->fetchAll();
 
   // Group tickets by festival
