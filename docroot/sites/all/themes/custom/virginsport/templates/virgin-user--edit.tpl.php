@@ -214,7 +214,10 @@
                       </div>
                     </div>
 
-                    <div class="field-medical-conditions-other vs-form-group">
+                    <div
+                        v-show="profile.field_medical_conditions && profile.field_medical_conditions.indexOf('Other') != -1"
+                        class="field-medical-conditions-other vs-form-group"
+                    >
                       <div v-show="edit_mode">
                         <textarea class="form-control vs-textarea" v-model="profile.field_medical_conditions_other" name="field_medical_conditions_other"></textarea>
                         <label class="vs-focus-label vs-focus-label"><?php print t('Other'); ?></label>
