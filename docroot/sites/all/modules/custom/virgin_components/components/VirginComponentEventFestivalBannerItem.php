@@ -45,7 +45,7 @@ class VirginComponentEventFestivalBannerItem implements VirginComponentsInterfac
     $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
 
     $node_grapher = $virgin->relation('field_festival_event_reference');
-    $hero_image_grapher = $node_grapher->relation('field_card_image');
+    $hero_image_grapher = $node_grapher->relation('field_header_image');
 
     $variables['node_grapher'] = $node_grapher;
     $variables['card_title'] = $node_grapher->fieldGetOne('title_field');
