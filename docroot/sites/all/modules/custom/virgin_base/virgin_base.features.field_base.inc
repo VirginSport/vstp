@@ -1956,11 +1956,8 @@ function virgin_base_field_default_field_bases() {
       'allowed_values' => array(
         'Asthma' => 'Asthma',
         'Type 1 Diabetes' => 'Type 1 Diabetes',
-        'Diabetes' => 'Diabetes',
-        'Heart Condition - Type 1' => 'Heart Condition - Type 1',
-        'Heart Condition - Type 2' => 'Heart Condition - Type 2',
-        'Heart Condition - Type 3' => 'Heart Condition - Type 3',
         'Epilepsy' => 'Epilepsy',
+        'Heart Condition' => 'Heart Condition',
         'Other' => 'Other',
       ),
       'allowed_values_function' => '',

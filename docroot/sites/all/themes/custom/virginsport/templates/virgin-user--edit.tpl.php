@@ -214,13 +214,16 @@
                       </div>
                     </div>
 
-                    <div class="field-medical-conditions-other vs-form-group">
+                    <div
+                        v-show="profile.field_medical_conditions && profile.field_medical_conditions.indexOf('Other') != -1"
+                        class="field-medical-conditions-other vs-form-group"
+                    >
                       <div v-show="edit_mode">
                         <textarea class="form-control vs-textarea" v-model="profile.field_medical_conditions_other" name="field_medical_conditions_other"></textarea>
-                        <label class="vs-focus-label vs-focus-label"><?php print t('Other'); ?></label>
+                        <label class="vs-focus-label vs-focus-label"><?php print t('Any other medical condition you think we should know about'); ?></label>
                       </div>
                       <div v-show="!edit_mode">
-                        <label class="vs-focus-label vs-focus-label vs-focus-label--static"><?php print t('Other'); ?></label>
+                        <label class="vs-focus-label vs-focus-label vs-focus-label--static"><?php print t('Other Medical Conditions'); ?></label>
                         {{ profile.field_medical_conditions_other }}
                       </div>
                     </div>
