@@ -28,6 +28,16 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
 
   $user_grapher = new VirginEntityGrapher('user', $context[0]->data);
 
+  /**
+   * Load tickets must accomplish the following conditions:
+   *  - The ticket status must be active
+   *  - The ticket uid must be the same as current user
+   *  - The ticket event id refers to a event state
+   *  - The event state sugar id must exist in field_sugar_id table
+   *  - The event state must relate a festival state
+   *  - The festival state must be related by a festival
+   *  - The festival must be published
+   */
   $query = db_select('virgin_user_tickets', 'tickets');
   $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
   $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
@@ -38,26 +48,31 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     ->condition('tickets.uid', $user_grapher->property('uid'), '=')
     ->condition('tickets.ticket_status', 'active', '=')
     ->condition('n.type', 'festival', '=')
+    ->condition('f.bundle', 'festival', '=')
     ->addField('n', 'nid', 'festival_id')
   ;
 
-  // Past Festivals
-  if (empty($conf['upcoming'])) {
+  /**
+   * If the component configuration sets the upcoming variable to true,
+   * upcoming tickets will be returned, otherwise the component will return
+   * past tickets. This logic is based on festival date.
+   */
+  if (!empty($conf['upcoming'])) {
+    $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
+    $query->condition('d.field_end_date_value', time(), '>');
+  } else {
     $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
     $query->condition('d.field_end_date_value', time(), '<');
-  } else {
-    $query->join('field_data_field_start_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
-    $query->condition('d.field_start_date_value', time(), '>');
   }
 
   $results = $query->execute()->fetchAll();
 
   // Group tickets by festival
   $data = array();
-  foreach ($results as $result) {
+  foreach ($results as $ticket) {
     // If festival not added yet load it and add to array
-    if (empty($data[$result->festival_id])) {
-      $festival_grapher = new VirginEntityGrapher('node', node_load($result->festival_id));
+    if (empty($data[$ticket->festival_id])) {
+      $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_id));
 
       $attributes = array(
         'festival_grapher' => $festival_grapher,
@@ -65,11 +80,19 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
         'tickets' => ''
       );
 
-      $data[$result->festival_id] = $attributes;
+      $data[$ticket->festival_id] = $attributes;
+    }
+
+    $event = virgin_user_user_tickets_content_type_get_entity($ticket->event_id, 'event');
+    $ticket_type = virgin_user_user_tickets_content_type_get_entity($ticket->ticket_type_id, 'ticket_type');
+
+    // If ticket is not related to an event or ticket type ignore it
+    if (empty($event) || empty($ticket_type)) {
+      continue;
     }
 
     // Add ticket to to festival array
-    $data[$result->festival_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $result));
+    $data[$ticket->festival_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $ticket, 'event' => $event, 'ticket_type' => $ticket_type));
   }
 
   $block = new stdClass();
@@ -108,4 +131,27 @@ function virgin_user_user_tickets_content_type_edit_form_submit($form, &$form_st
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
+}
+
+/**
+ * Return a ticket related entity
+ */
+function virgin_user_user_tickets_content_type_get_entity($id, $type) {
+  $table = "field_data_field_{$type}_state";
+
+  // If table does not exist return null
+  if (!db_table_exists($table)) {
+    return NULL;
+  }
+
+  $sql = "
+      SELECT *  FROM {node} n
+      INNER JOIN {field_data_field_sugar_id} sugar ON sugar.field_sugar_id_value = :id
+      INNER JOIN {{$table}} es ON es.field_{$type}_state_target_id = sugar.entity_id AND es.entity_id = n.nid
+      WHERE n.status = 1 AND n.type = :type
+      LIMIT 1
+    ";
+
+  // Get the ticket event
+  return db_query($sql, array(':id' => $id, ':type' => $type))->fetchObject();
 }
