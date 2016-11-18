@@ -223,7 +223,7 @@
                         <label class="vs-focus-label vs-focus-label"><?php print t('Any other medical condition you think we should know about'); ?></label>
                       </div>
                       <div v-show="!edit_mode">
-                        <label class="vs-focus-label vs-focus-label vs-focus-label--static"><?php print t('Other'); ?></label>
+                        <label class="vs-focus-label vs-focus-label vs-focus-label--static"><?php print t('Other Medical Conditions'); ?></label>
                         {{ profile.field_medical_conditions_other }}
                       </div>
                     </div>
