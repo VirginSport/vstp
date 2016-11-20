@@ -29,7 +29,6 @@ dependencies[] = i18n_menu
 dependencies[] = mollom
 dependencies[] = money
 dependencies[] = mailsystem
-dependencies[] = memcache
 dependencies[] = mimemail
 dependencies[] = oauth_common
 dependencies[] = observer
