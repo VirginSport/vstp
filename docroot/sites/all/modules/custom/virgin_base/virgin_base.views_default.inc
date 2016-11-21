@@ -151,27 +151,34 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_festival_state_target_id_1']['id'] = 'field_festival_state_target_id_1';
+  $handler->display->display_options['relationships']['field_festival_state_target_id_1']['table'] = 'field_data_field_festival_state';
+  $handler->display->display_options['relationships']['field_festival_state_target_id_1']['field'] = 'field_festival_state_target_id';
+  $handler->display->display_options['relationships']['field_festival_state_target_id_1']['label'] = 'Festival state from Festival';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_event_state_target_id']['id'] = 'field_event_state_target_id';
   $handler->display->display_options['relationships']['field_event_state_target_id']['table'] = 'field_data_field_event_state';
   $handler->display->display_options['relationships']['field_event_state_target_id']['field'] = 'field_event_state_target_id';
-  $handler->display->display_options['relationships']['field_event_state_target_id']['label'] = 'Event state';
+  $handler->display->display_options['relationships']['field_event_state_target_id']['label'] = 'Event state from Event';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_festival_state_target_id']['id'] = 'field_festival_state_target_id';
   $handler->display->display_options['relationships']['field_festival_state_target_id']['table'] = 'field_data_field_festival_state';
   $handler->display->display_options['relationships']['field_festival_state_target_id']['field'] = 'field_festival_state_target_id';
   $handler->display->display_options['relationships']['field_festival_state_target_id']['relationship'] = 'field_event_state_target_id';
-  $handler->display->display_options['relationships']['field_festival_state_target_id']['label'] = 'Festival state';
+  $handler->display->display_options['relationships']['field_festival_state_target_id']['label'] = 'Festival state from Event';
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_festival_state_node']['id'] = 'reverse_field_festival_state_node';
   $handler->display->display_options['relationships']['reverse_field_festival_state_node']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_festival_state_node']['field'] = 'reverse_field_festival_state_node';
   $handler->display->display_options['relationships']['reverse_field_festival_state_node']['relationship'] = 'field_festival_state_target_id';
-  $handler->display->display_options['relationships']['reverse_field_festival_state_node']['label'] = 'Festival';
+  $handler->display->display_options['relationships']['reverse_field_festival_state_node']['label'] = 'Festival from Event';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
   $handler->display->display_options['fields']['title_1']['table'] = 'node';
@@ -179,6 +186,7 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['fields']['title_1']['relationship'] = 'reverse_field_festival_state_node';
   $handler->display->display_options['fields']['title_1']['label'] = '';
   $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_1']['hide_empty'] = TRUE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -191,39 +199,53 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'OR',
+    1 => 'AND',
+    2 => 'AND',
   );
-  /* Filter criterion: Content: Status (field_status) */
-  $handler->display->display_options['filters']['field_status_value']['id'] = 'field_status_value';
-  $handler->display->display_options['filters']['field_status_value']['table'] = 'field_data_field_status';
-  $handler->display->display_options['filters']['field_status_value']['field'] = 'field_status_value';
-  $handler->display->display_options['filters']['field_status_value']['value'] = array(
-    'announced' => 'announced',
-    'open' => 'open',
-    'in-progress' => 'in-progress',
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
+  $handler->display->display_options['filters']['type_2']['table'] = 'node';
+  $handler->display->display_options['filters']['type_2']['field'] = 'type';
+  $handler->display->display_options['filters']['type_2']['value'] = array(
+    'festival' => 'festival',
   );
-  $handler->display->display_options['filters']['field_status_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_status_value']['expose']['operator_id'] = 'field_status_value_op';
-  $handler->display->display_options['filters']['field_status_value']['expose']['label'] = 'Status (field_status)';
-  $handler->display->display_options['filters']['field_status_value']['expose']['operator'] = 'field_status_value_op';
-  $handler->display->display_options['filters']['field_status_value']['expose']['identifier'] = 'field_status_value';
-  $handler->display->display_options['filters']['field_status_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
+  $handler->display->display_options['filters']['type_2']['group'] = 1;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['relationship'] = 'reverse_field_festival_state_node';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'festival' => 'festival',
   );
-  $handler->display->display_options['filters']['field_status_value']['reduce_duplicates'] = TRUE;
-  /* Filter criterion: Content: Status (field_event_status) */
-  $handler->display->display_options['filters']['field_event_status_value']['id'] = 'field_event_status_value';
-  $handler->display->display_options['filters']['field_event_status_value']['table'] = 'field_data_field_event_status';
-  $handler->display->display_options['filters']['field_event_status_value']['field'] = 'field_event_status_value';
-  $handler->display->display_options['filters']['field_event_status_value']['value'] = array(
-    'announced' => 'announced',
-    'in-progress' => 'in-progress',
-    'open' => 'open',
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
+  /* Filter criterion: Content: End Date (field_end_date) */
+  $handler->display->display_options['filters']['field_end_date_value']['id'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['table'] = 'field_data_field_end_date';
+  $handler->display->display_options['filters']['field_end_date_value']['field'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['relationship'] = 'field_festival_state_target_id';
+  $handler->display->display_options['filters']['field_end_date_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_end_date_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_end_date_value']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_end_date_value']['default_date'] = 'now - 30 days';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
   );
-  $handler->display->display_options['filters']['field_event_status_value']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Content: End Date (field_end_date) */
+  $handler->display->display_options['filters']['field_end_date_value_1']['id'] = 'field_end_date_value_1';
+  $handler->display->display_options['filters']['field_end_date_value_1']['table'] = 'field_data_field_end_date';
+  $handler->display->display_options['filters']['field_end_date_value_1']['field'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value_1']['relationship'] = 'field_festival_state_target_id_1';
+  $handler->display->display_options['filters']['field_end_date_value_1']['operator'] = '>';
+  $handler->display->display_options['filters']['field_end_date_value_1']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_end_date_value_1']['default_date'] = 'now - 30 days';
 
   /* Display: Entity Reference */
   $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
@@ -247,17 +269,10 @@ function virgin_base_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('Event state'),
-    t('Festival state'),
-    t('Festival'),
-    t('Status (field_status)'),
+    t('Festival state from Festival'),
+    t('Event state from Event'),
+    t('Festival state from Event'),
+    t('Festival from Event'),
     t('Entity Reference'),
   );
   $export['festival_event_reference'] = $view;
