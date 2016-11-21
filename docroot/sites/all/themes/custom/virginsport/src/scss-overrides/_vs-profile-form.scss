@@ -191,6 +191,12 @@
   }
 }
 
+label.vs-form-label--large {
+  font-size: .75rem;
+  color: $c-black;
+}
+
+
 // Modifiers
 // ----------------------------------------------------------------------------
 
@@ -222,6 +228,10 @@
       &.vs-form-label--check,
       &.vs-focus-label--static {
         font-size: .625rem;
+      }
+
+      &.vs-form-label--large {
+        font-size: .875rem;
       }
     }
   }
