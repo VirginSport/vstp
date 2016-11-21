@@ -144,6 +144,7 @@ function paragraphs_field_multiple_value_form($field, $instance, $langcode, $ite
       '#suffix' => '</div>',
       '#max_delta' => $max,
       '#instance' => $instance,
+      '#element_validate' => array('_paragraph_multiple_field_validate'),
     );
 
     // Add 'add more' button, if not working with a programmed form.
@@ -1091,4 +1092,14 @@ function paragraphs_restore_submit($form, &$form_state) {
   field_form_set_state($parents, $field_name, $langcode, $form_state, $field_state);
 
   $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Form Validation for submitting a node with required paragraph fields
+ *
+ */
+function _paragraph_multiple_field_validate($element, &$form_state) {
+  if (($element['#required'] == 1 && !isset($element[0])) || (isset($form_state['field'][$element['#field_name']][LANGUAGE_NONE]['real_items_count']) && $form_state['field'][$element['#field_name']][LANGUAGE_NONE]['real_items_count'] == 0)) {
+    form_error($element, t('The "!name" field is required', array('!name' => t($element['#title']))));
+  }
 }
