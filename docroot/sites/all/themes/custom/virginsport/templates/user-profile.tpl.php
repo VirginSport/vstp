@@ -98,17 +98,16 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
 <?php if(empty($upcoming_festivals->content) && empty($past_festivals->content)): ?>
   <div class="vs-region vs-region--gradient-gray">
-    <div class="vs-festival-profile-header__title">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 text-xs-center">
-            <h1><?php print t('Oops...'); ?></h1>
-            <div>
-              <?php print t("You don't have any events coming up."); ?>
-            </div>
-            <div>
-              <?php print t("Have a look at our upcoming festivals and add some to your profile <a href='@link'>@title</a>", array('@link' => url('festivals'), '@title' => t('here'))); ?>
-            </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-xs-center">
+          <div class="vs-festival-profile-header--empty">
+            <h1 class="vs-festival-profile-header--empty__title"><?php print t('Oops...'); ?></h1>
+            <p class="vs-festival-profile-header--empty__text">
+              <?php print t("You don't have any events coming up."); ?><br/>
+              <?php print t("Have a look at our upcoming festivals and add some to your profile <a href='@link'>@title</a>", array('@link' => url('festivals'), '@title' => t('here'))); ?>.
+            </p>
+            <?php print theme('virginsport_color', array('brand_color' => 'gray', 'brand_pattern' => 'wave')); ?>
           </div>
         </div>
       </div>
