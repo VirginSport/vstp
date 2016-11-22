@@ -18,6 +18,7 @@ dependencies[] = lightning_wysiwyg
 dependencies[] = chosen
 dependencies[] = composer_manager
 dependencies[] = email_registration
+dependencies[] = entitycache
 dependencies[] = date
 dependencies[] = date_views
 dependencies[] = field_group
