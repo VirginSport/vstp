@@ -190,7 +190,7 @@ class VirginAttendlyClient {
    */
   public function buildPurchaseHistoryPath($virgin_sport_id) {
     $token = $this->getPurchaseHistoryToken($virgin_sport_id);
-    $path = sprintf('%s/post/purchasehistory/%', $this->url, $token);
+    $path = sprintf('%s/purchasehistory/%s', $this->url, $token);
 
     return $path;
   }
@@ -212,10 +212,11 @@ class VirginAttendlyClient {
     $request->setAuth($this->username, $this->password);
     $response_data = $request->send()->json();
 
-    if (empty($response_data['Result']['Token'])) {
-      throw new \Exception("Could not fetch a valid attendly post checkout token");
+    $token = '';
+    if (!empty($response_data['Result']['Token'])) {
+      $token = $response_data['Result']['Token'];
     }
 
-    return $response_data['Result']['Token'];
+    return $token;
   }
 }
