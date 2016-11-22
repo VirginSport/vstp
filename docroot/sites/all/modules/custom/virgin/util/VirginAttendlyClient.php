@@ -212,10 +212,11 @@ class VirginAttendlyClient {
     $request->setAuth($this->username, $this->password);
     $response_data = $request->send()->json();
 
-    if (empty($response_data['Result']['Token'])) {
-      throw new \Exception("Could not fetch a valid attendly post checkout token");
+    $token = '';
+    if (!empty($response_data['Result']['Token'])) {
+      $token = $response_data['Result']['Token'];
     }
 
-    return $response_data['Result']['Token'];
+    return $token;
   }
 }
