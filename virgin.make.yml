@@ -77,6 +77,8 @@ projects:
 
   paragraphs:
     version: "1.0-rc4"
+    patch:
+      - "https://www.drupal.org/files/issues/paragraphs-field-validation-2558517-3.patch"
 
   redirect:
     version: "1.0-rc3"
