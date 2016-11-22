@@ -190,7 +190,7 @@ class VirginAttendlyClient {
    */
   public function buildPurchaseHistoryPath($virgin_sport_id) {
     $token = $this->getPurchaseHistoryToken($virgin_sport_id);
-    $path = sprintf('%s/post/purchasehistory/%', $this->url, $token);
+    $path = sprintf('%s/purchasehistory/%s', $this->url, $token);
 
     return $path;
   }
