@@ -34,7 +34,7 @@ module.exports = {
 
       // Preprocess Image files
       {
-        test: /\.(png|jpg|jpeg|svg)$/,
+        test: /\.(png|jpg|jpeg|svg|gif)$/,
         loader: 'file?name=public/img/[name].[ext]'
       }
     ]

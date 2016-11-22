@@ -39,7 +39,8 @@ label {
   padding: 1.25rem .625rem .625rem;
 
   &:focus ~ .vs-focus-label,
-  &.vs-form-control--not-empty ~ .vs-focus-label {
+  &.vs-form-control--not-empty ~ .vs-focus-label,
+  &:-webkit-autofill ~ .vs-focus-label {
     color: #767676;
     opacity: 1;
     top: 0.5rem;

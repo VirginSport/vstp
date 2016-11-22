@@ -1,0 +1,130 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-video,
+.vs-video {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-video__wrapper {
+  min-height: 18.4375rem;
+  overflow: hidden;
+}
+
+.vs-video__content-wrapper {
+  @include transform(translateY(-50%));
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+
+  @include media-breakpoint-only(xs) {
+    @include transform(translate(-50%, -50%));
+    left: 50%;
+  }
+}
+
+.vs-video__title {
+  color: $c-white;
+  font-size: 1.5625rem;
+  font-family: $font-family-serif;
+  margin-bottom: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.vs-video__cta {
+  padding-left: 2.25rem;
+  padding-right: 2.25rem;
+}
+
+.vs-video__arrow {
+  @include transition(all .2s ease-in-out);
+  background: transparent url('../img/header-arrow-down.svg') no-repeat center center;
+  background-size: cover;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.vs-video__play-button {
+  @include transition(all .2s ease-in-out);
+  background: transparent url('../img/header-play-button.svg') no-repeat center center;
+  background-size: cover;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  .vs-video__wrapper {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+  }
+
+  .vs-video__video-wrapper,
+  .vs-video__video {
+    width: 100%;
+  }
+
+  .vs-video__title {
+    font-size: 2.625rem;
+    margin-bottom: 1.25rem;
+    padding: 0 3.125rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .vs-video__title {
+    font-size: 3.75rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .vs-video__arrow {
+    width: 3.125rem;
+    height: 3.125rem;
+    margin-top: 7.5rem;
+  }
+
+  .vs-video__play-button {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-video__video-wrapper {
+    max-height: 45.3125rem;
+  }
+}
