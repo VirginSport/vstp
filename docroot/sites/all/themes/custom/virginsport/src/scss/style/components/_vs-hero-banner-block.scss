@@ -58,7 +58,7 @@ vs-hero-banner-block,
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: 1.25rem;
-  line-height: 1.25rem;  
+  line-height: 1.25rem;
   text-transform: uppercase;
 
   &:last-child {
@@ -67,7 +67,7 @@ vs-hero-banner-block,
     position: absolute;
     top: 50%;
     width: 100%;
-    
+
     padding-bottom: 0;
     margin-top: 0;
   }
@@ -81,7 +81,7 @@ vs-hero-banner-block,
   display: block;
 
   padding: 0 2rem 0 2rem;
-  
+
   font-family: $font-family-sans-serif;
   font-weight: 500;
   font-size: 0.6875rem;
@@ -103,19 +103,19 @@ vs-hero-banner-block,
   line-height: 0.75rem;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-  
+
   margin-left: 0.46875rem;
   margin-right: 0.46875rem;
   margin-bottom: 0.9375rem;
 }
 
-.vs-hero-banner-block__cta-buttons-wrapper + 
+.vs-hero-banner-block__cta-buttons-wrapper +
 .vs-hero-banner-block__cta-links-wrapper {
-  // margin-top: -0.4375rem;
   margin-top: -0.75rem;
 }
 
 .vs-hero-banner__cta--link {
+  @include transition(all .5s ease-in-out);
   display: inline-block;
 
   font-weight: 500;
@@ -129,6 +129,12 @@ vs-hero-banner-block,
   margin-left: 0.46875rem;
   margin-right: 0.46875rem;
   margin-bottom: 0.9375rem;
+
+  &:hover {
+    color: $c-white;
+    opacity: .7;
+    text-decoration: underline;
+  }
 }
 
 .vs-hero-banner__button-wrapper {
