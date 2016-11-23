@@ -299,7 +299,7 @@ function virginsport_date_interval($start_date, $end_date) {
 
   // If the end date and start date are the same, simply return
   // the fully formatted start date.
-  if (date('d M Y', $start_date) == (date('d M Y', $end_date))) {
+  if (date('d M Y', $start_date) == date('d M Y', $end_date)) {
     return date('d M Y', $start_date);
   }
 
