@@ -29,9 +29,9 @@ $event_days_left = virginsport_days_left($event_start_date);
                   </p>
                 <?php endif; ?>
 
-                <?php if (!empty($ticket_start_time)): ?>
+                <?php if (!empty($ticket->start_time)): ?>
                   <p class="vs-ticket-card__time">
-                    <?php print $ticket_start_time; ?>
+                    <?php print check_plain($ticket->start_time); ?>
                   </p>
                 <?php endif; ?>
 
