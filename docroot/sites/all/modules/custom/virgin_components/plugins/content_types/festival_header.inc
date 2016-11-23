@@ -65,6 +65,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
         return;
       }
 
+      // Set the grapher object to the festival node, and store the event
+      // for later reference.
+      $g_event = $g;
       $g = new VirginEntityGrapher('node', node_load($festival_nid));
       break;
 
@@ -98,9 +101,17 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $start_date = $g_state->fieldGetOne('field_start_date');
   $end_date = $g_state->fieldGetOne('field_end_date');
 
-  // Fetch the image
-  $atom = $g->relation('field_header_image');
+  // Fetch the image, either from the event entity if there's one, or from
+  // the festival as a fallback.
+  if (isset($g_event)) {
+    $atom = $g_event->relation('field_header_image');
+  }
 
+  if (empty($g_event) || $atom->getEntityType() != 'scald_atom') {
+    $atom = $g->relation('field_header_image');
+  }
+
+  // Build the template variables
   $vars = array(
     'title' => $g->fieldGetOne('title_field', 'Festival'),
     'start_date' => $start_date,
