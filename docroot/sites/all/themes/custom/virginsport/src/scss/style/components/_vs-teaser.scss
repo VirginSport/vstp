@@ -402,6 +402,113 @@ vs-teaser,
 }
 
 
+// Square, Portrait
+// ----------------------------------------------------------------------------
+
+.vs-teaser--square-portrait {
+  .vs-teaser__image-a {
+    margin: 0 auto 1.875rem auto;
+    height: auto;
+    max-width: 25.625rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__image-scale {
+      @include transform(scale(.55));
+      -webkit-transform-origin: right;
+      transform-origin: right;
+    }
+
+    .vs-teaser__image-a,
+    .vs-teaser__image-b {
+      @include transform(translateY(-50%));
+      position: absolute;
+      margin-bottom: 0;
+      top: 50%;
+    }
+
+    .vs-teaser__image-a {
+      right: 0;
+    }
+
+    .vs-teaser__image-b {
+      left: -17rem;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    .vs-teaser__image-scale {
+      @include transform(scale(.7));
+    }
+
+    .vs-teaser__image-a {
+      width: 21.4375rem;
+    }
+
+    .vs-teaser__image-b {
+      width: 17.5rem;
+      left: -11rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    min-height: 39rem;
+    padding-top: 8.5rem;
+
+    .vs-teaser__image-scale {
+      @include transform(scale(1));
+    }
+
+    .vs-teaser__image-a {
+      right: -4rem;
+    }
+
+    .vs-teaser__image-b {
+      left: 0;
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(md) {
+      .vs-teaser__image-scale {
+        -webkit-transform-origin: left;
+        transform-origin: left;
+      }
+
+      .vs-teaser__image-b {
+        left: auto;
+        right: -16.9rem;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .vs-teaser__image-scale {
+        @include transform(scale(.8));
+      }
+
+      .vs-teaser__image-a {
+        right: auto;
+        left: -2rem;
+      }
+
+      .vs-teaser__image-b {
+        right: -8rem;
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__image-scale {
+        @include transform(scale(1));
+      }
+
+      .vs-teaser__image-b {
+        right: 0;
+      }
+    }
+  }
+}
+
+
 // Landscape, Square
 // ----------------------------------------------------------------------------
 
@@ -872,6 +979,57 @@ vs-teaser,
     .vs-teaser__title {
       top: -3.75rem;
       padding-left: 0;
+    }
+  }
+}
+
+
+// Layout 2-e
+// ----------------------------------------------------------------------------
+
+.vs-teaser__layout-2-e {
+  .vs-teaser__images {
+    padding: 0 .9375rem;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .vs-teaser__wrapper {
+      min-height: 22.1875rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .vs-teaser__wrapper {
+      min-height: 25.625rem;
+    }
+
+    .vs-teaser__text,
+    .vs-teaser__subtitle {
+      @include make-col(12);
+    }
+
+    .vs-teaser__content {
+      @include make-col-offset(2);
+    }
+
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__text,
+      .vs-teaser__subtitle {
+        @include make-col(11);
+        @include make-col-offset(0);
+      }
     }
   }
 }
