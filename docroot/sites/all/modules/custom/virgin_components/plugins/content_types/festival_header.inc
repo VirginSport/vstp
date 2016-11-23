@@ -29,11 +29,12 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $g = new VirginEntityGrapher('node', $node);
 
   $show_sharer = TRUE;
-  // Ensure the festival node is available
+
+  // Ensure the festival or event node is available
   switch ($g->property('type')) {
 
-    // If it's a festival do nothing, as we got everything we need
-    case 'festival';
+    // If it's a festival, we've already got all the data we need
+    case 'festival':
       break;
 
     case 'page':
@@ -60,25 +61,18 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
 
       $result = db_query($sql, array(':id' => $g->property('nid')));
       $festival_nid = $result->fetchField();
-
-      if (empty($festival_nid)) {
-        return;
-      }
-
-      $g = new VirginEntityGrapher('node', node_load($festival_nid));
       break;
 
     default:
       return;
   }
 
-  // If for some reason, the grapher does not contain a festival
-  // bailout now.
-  if ($g->property('type') != 'festival') {
+  // If  the grapher does not contain a festival or an event bailout now.
+  if (!in_array($g->property('type'), array('festival', 'event'))) {
     return;
   }
 
-  // Get the festival region hostname
+  // Fetch the hostname of the festival of this event or festival.
   $sql = "
     SELECT h.field_hostname_value as hostname
     FROM {field_data_field_region} r
@@ -89,18 +83,29 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       AND r.entity_id = :nid
   ";
 
-  $hostname = db_query($sql, array(':nid' => $g->property('nid')))->fetchField();
+  $festival_nid = empty($festival_nid) ? $g->property('nid') : $festival_nid;
+  $hostname = db_query($sql, array(':nid' => $festival_nid))->fetchField();
 
-  // Finally, prepare the data for the header
-  $g_state = $g->relation('field_festival_state');
+  // Fetch the right state depending if the grapher contains a festival
+  // or an event.
+  $state_field = ($g->property('type') == 'festival') ? 'field_festival_state' : 'field_event_state';
+  $g_state = $g->relation($state_field);
 
   // Build the date information
   $start_date = $g_state->fieldGetOne('field_start_date');
   $end_date = $g_state->fieldGetOne('field_end_date');
 
-  // Fetch the image
-  $atom = $g->relation('field_header_image');
+  // Fetch the image, either from the event entity if there's one, or from
+  // the festival as a fallback.
+  if (isset($g_event)) {
+    $atom = $g_event->relation('field_header_image');
+  }
 
+  if (empty($g_event) || $atom->getEntityType() != 'scald_atom') {
+    $atom = $g->relation('field_header_image');
+  }
+
+  // Build the template variables
   $vars = array(
     'title' => $g->fieldGetOne('title_field', 'Festival'),
     'start_date' => $start_date,
