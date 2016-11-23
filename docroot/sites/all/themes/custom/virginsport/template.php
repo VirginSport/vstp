@@ -296,7 +296,14 @@ function virginsport_days_left($date) {
  *  The formatted date interval
  */
 function virginsport_date_interval($start_date, $end_date) {
-  // Get start_date, end_date month and year parts
+
+  // If the end date and start date are the same, simply return
+  // the fully formatted start date.
+  if (date('d M Y', $start_date) == (date('d M Y', $end_date))) {
+    return date('d M Y', $start_date);
+  }
+
+  // Otherwise, build the start/end date string
   $start_date_parts = array(
     'year' => date('Y', $start_date),
     'month' => date('M', $start_date)
@@ -308,6 +315,7 @@ function virginsport_date_interval($start_date, $end_date) {
   );
 
   $start_date_format = 'd M Y';
+
   // If year is the same start date does not have year
   if ($start_date_parts['year'] == $end_date_parts['year']) {
     $start_date_format = 'd M';
@@ -319,7 +327,6 @@ function virginsport_date_interval($start_date, $end_date) {
     }
   }
 
-  // Return the formatted dates interval
   return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
 }
 
