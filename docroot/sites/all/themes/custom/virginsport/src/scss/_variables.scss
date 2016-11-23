@@ -156,6 +156,13 @@ $color-schemes: (
     from: $c-violet,
     to: $c-violet,
     rotate: -45deg
+  ),
+  home: (
+    solid-color: #FF0040,
+    text-color: $c-white,
+    from: #FF0040,
+    to: #830A2A,
+    rotate: -45deg
   )
 );
 
