@@ -59,7 +59,8 @@ function _virgin_api_virgin_mail_update_action($sugar_id) {
     return;
   }
 
-  $user_id = reset(array_keys($results['user']));
+  $users = array_keys($results['user']);
+  $user_id = reset($users);
 
   // Otherwise update his information without triggering hooks.
   db_update('users')
