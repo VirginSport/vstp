@@ -6,8 +6,23 @@ body.panels-ipe-editing {
   .vs-region { background: none !important; padding: 0 !important; }
   .vs-region__bg { display: none !important; }
   .vs-region__bg-spacer { display: none !important; }
-  .panels-ipe-sort-container { padding-bottom: 15px; }
   .vs-region > :first-child { margin-top: 0 !important; }
+
+  .panels-ipe-placeholder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #eee;
+    border-left: none;
+    border-right: none;
+  }
+
+  .panels-ipe-sort-container {
+    padding: 1em 0;
+  }
+
+  .ui-sortable-placeholder {
+    border-width: 1px;
+  }
 }
 
 .vs-hero-banner__background--fixed {

@@ -13,7 +13,8 @@
 ?>
 
 <?php if ($apply_constraint) : ?>
-  <div class="vs-hero-banner-constraint"><div class="vs-hero-banner-constraint__container container">
+  <div class="vs-hero-banner-constraint">
+    <div class="vs-hero-banner-constraint__container container">
 <?php endif; ?>
 
       <div class="vs-hero-banner vs-hero-banner--constrained">
@@ -53,5 +54,6 @@
       </div>
 
 <?php if ($apply_constraint) : ?>
+    </div>
   </div>
 <?php endif; ?>
