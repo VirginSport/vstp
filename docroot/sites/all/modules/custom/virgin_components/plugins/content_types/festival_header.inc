@@ -95,22 +95,22 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $start_date = $g_state->fieldGetOne('field_start_date');
   $end_date = $g_state->fieldGetOne('field_end_date');
 
-  // Fetch the image, either from the event entity if there's one, or from
-  // the festival as a fallback.
-  if (isset($g_event)) {
-    $atom = $g_event->relation('field_header_image');
-  }
+  // Fetch the header image from the grapher
+  $atom = $g->relation('field_header_image');
 
-  if (empty($g_event) || $atom->getEntityType() != 'scald_atom') {
-    $atom = $g->relation('field_header_image');
+  // If the header image could not be loaded, and there's a festival nid
+  // available, then fetch the header image from the festival instead.
+  if (!empty($festival_nid) && ($atom->getEntityType() != 'scald_atom')) {
+    $g_festival = new VirginEntityGrapher('node', node_load($festival_nid));
+    $atom = $g_festival->relation('field_header_image');
   }
 
   // Build the template variables
   $vars = array(
-    'title' => $g->fieldGetOne('title_field', 'Festival'),
+    'title' => $g->fieldGetOne('title_field'),
     'start_date' => $start_date,
     'end_date' => $end_date,
-    'status' => $g->fieldGetOne('field_status'),
+    'status' => ($g->property('type') == 'festival') ? $g->fieldGetOne('field_status') : $g->fieldGetOne('field_event_status'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'show_sharer' => $show_sharer,
