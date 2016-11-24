@@ -2446,7 +2446,7 @@ function virgin_base_field_default_field_bases() {
         'portrait_lower_portrait' => 'Portrait, Lower Portrait',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Portrait, Upper Portrait, Portrait',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape',
         'landscape_square_right' => 'Landscape, Square Right',
       ),
       'allowed_values_function' => '',
