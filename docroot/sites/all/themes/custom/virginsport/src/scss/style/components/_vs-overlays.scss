@@ -21,10 +21,8 @@
 }
 
 .vs-overlay-blur {
-  @include blur(0);
   @include transition(all 0.3s ease-in-out);
   position: absolute;
-  z-index: -1;
   width: 100%;
   bottom: 0;
   top: 0;
@@ -32,6 +30,10 @@
   .vs-menu-open & {
     @include blur(30);
     @include transition(all 0.3s ease-in-out 0.3s);
+  }
+
+  &.vs-overlay-blur--active {
+    z-index: -1;
   }
 }
 

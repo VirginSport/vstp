@@ -52,6 +52,13 @@ $color-schemes: (
     to: #F0F0F0,
     rotate: 0deg
   ),
+  gray-dark: (
+    solid-color: #E0E0E0,
+    text-color: $c-black,
+    from: #E0E0E0,
+    to: #E0E0E0,
+    rotate: 0deg
+  ),
   white: (
     solid-color: $c-white,
     text-color: $c-black,

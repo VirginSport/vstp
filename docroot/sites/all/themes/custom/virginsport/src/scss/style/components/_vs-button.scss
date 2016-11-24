@@ -81,8 +81,8 @@
   background-color: rgba($c-black, .4);
 
   &:hover {
-    background-color: $c-black;
-    opacity: .2;
+    background-color: rgba($c-black, .2);
+    color: $c-white;
   }
 }
 
