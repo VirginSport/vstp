@@ -86,7 +86,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     }
 
     // If festival not added yet load it and add to array
-    if (empty($data[$ticket->festival_id])) {
+    if (empty($data[$ticket->festival_node_id])) {
       // Tickets query guarantees that festival always exist
       $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_node_id));
 
@@ -96,11 +96,11 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
         'tickets' => ''
       );
 
-      $data[$ticket->festival_id] = $attributes;
+      $data[$ticket->festival_node_id] = $attributes;
     }
 
     // Add ticket to to festival array
-    $data[$ticket->festival_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $ticket, 'event' => $event, 'ticket_type' => $ticket_type));
+    $data[$ticket->festival_node_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $ticket, 'event' => $event, 'ticket_type' => $ticket_type));
   }
 
   $block = new stdClass();
