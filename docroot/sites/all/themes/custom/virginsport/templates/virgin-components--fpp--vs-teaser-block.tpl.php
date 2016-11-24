@@ -7,16 +7,11 @@
  * $paragraphs - an array of paragraphs
  */
 ?>
+
 <div class="vs-introduction__container-wrapper">
   <div class="vs-introduction__image" style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>"></div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="vs-introduction__content">
-          <?php print $paragraphs; ?>
-        </div>
-      </div>
-    </div>
+  <div class="vs-introduction__content">
+    <?php print $paragraphs; ?>
   </div>
 </div>
