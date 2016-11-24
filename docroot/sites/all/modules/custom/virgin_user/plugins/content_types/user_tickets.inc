@@ -35,23 +35,32 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
    *  - The ticket event id refers to a event state
    *  - The event state sugar id must exist in field_sugar_id table
    *  - The event state must relate a festival state
+   *  - The node event related to its state must exist and be published
    *  - The festival state must be related by a festival
    *  - The festival must be published
    */
   $query = db_select('virgin_user_tickets', 'tickets');
+
   $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
   $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
+  $query->join('field_data_field_event_state', 'ev', 'ev.field_event_state_target_id = sugar.entity_id');
   $query->join('field_data_field_festival_state', 'f', 'f.field_festival_state_target_id = fs.field_festival_state_target_id');
   $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
   $query->join('node', 'n', 'n.nid = f.entity_id AND n.status = 1');
+  $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
+
+  $query->addField('n', 'nid', 'festival_node_id');
+  $query->addField('nev', 'nid', 'event_node_id');
+
   $query
     ->fields('tickets')
     ->condition('tickets.uid', $user_grapher->property('uid'), '=')
     ->condition('tickets.ticket_status', 'active', '=')
     ->condition('n.type', 'festival', '=')
+    ->condition('nev.type', 'event', '=')
     ->condition('f.bundle', 'festival', '=')
-    ->addField('n', 'nid', 'festival_id')
   ;
+
 
   /**
    * If the component configuration sets the upcoming variable to true,
@@ -66,9 +75,20 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   // Group tickets by festival
   $data = array();
   foreach ($results as $ticket) {
+    // Tickets query guarantees that event exists
+    $event = node_load($ticket->event_node_id);
+
+    // If ticket is not related to a ticket type skip it and log
+    $ticket_type = virgin_user_user_tickets_content_type_get_entity($ticket->ticket_type_id, 'ticket_type');
+    if (empty($ticket_type)) {
+      watchdog('virgin_user', 'The ticket @rego_id is not related to a ticket type or it has been deleted', array('@rego_id' => $ticket->attendly_rego_id));
+      continue;
+    }
+
     // If festival not added yet load it and add to array
     if (empty($data[$ticket->festival_id])) {
-      $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_id));
+      // Tickets query guarantees that festival always exist
+      $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_node_id));
 
       $attributes = array(
         'festival_grapher' => $festival_grapher,
@@ -77,14 +97,6 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
       );
 
       $data[$ticket->festival_id] = $attributes;
-    }
-
-    $event = virgin_user_user_tickets_content_type_get_entity($ticket->event_id, 'event');
-    $ticket_type = virgin_user_user_tickets_content_type_get_entity($ticket->ticket_type_id, 'ticket_type');
-
-    // If ticket is not related to an event or ticket type ignore it
-    if (empty($event) || empty($ticket_type)) {
-      continue;
     }
 
     // Add ticket to to festival array
