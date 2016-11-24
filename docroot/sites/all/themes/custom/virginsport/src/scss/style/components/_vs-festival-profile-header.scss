@@ -11,7 +11,6 @@ vs-festival-profile-header,
   & + & {
     margin-top: 1.25rem;
   }
-
 }
 
 
@@ -30,7 +29,6 @@ vs-festival-profile-header,
   .vs-festival-profile-header--past & {
     min-height: 19.75rem;
   }
-
 }
 
 .vs-festival-profile-header__background {
@@ -48,7 +46,6 @@ vs-festival-profile-header,
   .vs-festival-profile-header--past & {
     height: 19.75rem;
   }
-
 }
 
 .vs-festival-profile-header__content {
@@ -88,15 +85,23 @@ vs-festival-profile-header,
   }
 }
 
+.vs-festival-profile-header__past-title {
+  font-family: $font-family-serif;
+  font-size: 1.125rem;
+  color: rgba($c-black, .6);
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .vs-festival-profile-header__date {
   font-family: $font-family-serif;
   color: $c-black;
   text-transform: uppercase;
 
   .vs-festival-profile-header--upcoming & {
-      opacity: .3;
-      font-size: 1.125rem;
-      line-height: 1.375rem;
+    opacity: .3;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
   }
 
   .vs-festival-profile-header--past & {
@@ -113,23 +118,19 @@ vs-festival-profile-header,
   $map: map_get($color-schemes, $color);
 
   .vs-festival-profile-header--color-#{$color} {
-
     .vs-festival-profile-header__title,
     .vs-festival-profile-header__date,
     .vs-festival-profile-header__content {
       color: map_get($map, 'solid-color');
     }
-
   }
 
   .vs-region--gradient-#{$color} .vs-festival-profile-header--upcoming {
-
     .vs-festival-profile-header__title,
     .vs-festival-profile-header__date,
     .vs-festival-profile-header__content {
       color: map_get($map, 'text-color');
     }
-
   }
 }
 
@@ -138,9 +139,7 @@ vs-festival-profile-header,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(md) {
-
   .vs-festival-profile-header__content-wrapper {
-
     .vs-festival-profile-header--upcoming & {
       min-height: 6.25rem;
     }
@@ -148,27 +147,21 @@ vs-festival-profile-header,
     .vs-festival-profile-header--past & {
       min-height: 26.875rem;
     }
-
   }
 
   .vs-festival-profile-header__background {
-  
     .vs-festival-profile-header--past & {
       height: 26.875rem;
     }
-
   }
 
   .vs-festival-profile-header__content {
-
     .vs-festival-profile-header--past & {
       padding: 7.563rem 0 5.625rem 0;
     }
-
   }
 
   .vs-festival-profile-header__title {
-
     .vs-festival-profile-header--upcoming & {
       font-size: 1.875rem;
       line-height: 2.25rem;
@@ -180,11 +173,9 @@ vs-festival-profile-header,
       line-height: 2.25rem;
       margin-bottom: .625rem;
     }
-
   }
 
   .vs-festival-profile-header__date {
-
     .vs-festival-profile-header--upcoming & {
       font-size: 1.875rem;
       line-height: 2.25rem;
@@ -196,11 +187,9 @@ vs-festival-profile-header,
       line-height: 2.688rem;
       margin-bottom: 1.875rem;
     }
-
   }
 
   .vs-festival-profile-header__buttons-wrapper {
-
     .vs-festival-profile-header--upcoming & {
       margin-top: .938rem;
     }
@@ -208,7 +197,6 @@ vs-festival-profile-header,
     .vs-festival-profile-header--past & {
       margin-top: 1.875rem;
     }
-
   }
 
   .vs-festival-profile-header__button {
@@ -216,31 +204,33 @@ vs-festival-profile-header,
     width: auto;
   }
 
+  .vs-festival-profile-header__past-title {
+    font-size: 1.875rem;
+    text-align: left;
+  }
 }
 
-@include media-breakpoint-up(lg) {  
-
+@include media-breakpoint-up(lg) {
   .vs-festival-profile-header__content {
-
     .vs-festival-profile-header--upcoming & {
       position: relative;
       width: 100%;
       padding: .75rem 4.375rem 1.375rem 4.375rem;
       text-align: left;
     }
-
   }
 
   .vs-festival-profile-header__buttons-wrapper {
-
     .vs-festival-profile-header--upcoming & {
       @include center(false, true);
       right: 3.938rem;
       margin: 0;
       text-align: right;
     }
-
   }
 
+  .vs-festival-profile-header__past-title {
+    margin-left: 4.0625rem;
+    padding-top: 1.25rem;
+  }
 }
-
