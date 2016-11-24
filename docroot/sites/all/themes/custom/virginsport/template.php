@@ -263,6 +263,10 @@ function virginsport_currency($iso_code, $value) {
     $value = substr($value, 0, -3);
   }
 
+  if ($value == 0) {
+    return t('Free');
+  }
+
   return check_plain(sprintf($format, $value));
 }
 

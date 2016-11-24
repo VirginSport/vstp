@@ -4,16 +4,16 @@
  * Main template for virgin components paragraph vs_untimed_event_card
  *
  * Variables available:
- *  $title - The event title
- *  $description - The event description
- *  $card_image - The event image atom
- *  $card_pattern - The card pattern of the event
- *  $card_color - The card color of the event
- *  $start_date - The start date of the event state. Related with event
- *  $festival_id - The id of festival related with the event
- *  $package_price - The package price
- *  $package_currency - The package currency
- *  $no_card_pattern_class - It's a css class added when there is no card pattern
+ *  @var $title - The event title
+ *  @var $description - The event description
+ *  @var $card_image - The event image atom
+ *  @var $card_pattern - The card pattern of the event
+ *  @var $card_color - The card color of the event
+ *  @var $start_date - The start date of the event state. Related with event
+ *  @var $festival_id - The id of festival related with the event
+ *  @var $event_price - The event price
+ *  @var $event_currency - The event currency
+ *  @var $no_card_pattern_class - It's a css class added when there is no card pattern
  */
 
 ?>
@@ -36,10 +36,17 @@
             <?php if (!empty($title)): ?>
             <h4 class="col-xs-7 col-xl-12 vs-card-untimed-event__title"><?php print check_plain($title); ?></h4>
             <?php endif; ?>
-            <div class="col-xs-5 hidden-xl-up vs-card-untimed-event__price">
-              <span><?php print t('from'); ?>&nbsp;</span>
-              <?php print virginsport_currency($package_currency, $package_price); ?>
-            </div>
+
+            <?php if ($event_price !== ''): ?>
+              <div class="col-xs-5 hidden-xl-up vs-card-untimed-event__price">
+                <?php if ($event_price != '0.00'): ?>
+                  <span><?php print t('from'); ?>&nbsp;</span>
+                <?php endif; ?>
+
+                <?php print virginsport_currency($event_currency, $event_price); ?>
+              </div>
+            <?php endif; ?>
+
           </div>
           <?php if (!empty($start_date)): ?>
           <div class="vs-card-untimed-event__date-wrapper">
@@ -64,10 +71,17 @@
             >
               <?php print t('Get tickets'); ?>
             </a>
-            <div class="hidden-lg-down col-lg-5 vs-card-untimed-event__price">
-              <span><?php print t('from'); ?>&nbsp;</span>
-              <?php print virginsport_currency($package_currency, $package_price); ?>
-            </div>
+
+            <?php if ($event_price !== ''): ?>
+              <div class="hidden-lg-down col-lg-5 vs-card-untimed-event__price">
+                <?php if ($event_price != '0.00'): ?>
+                  <span><?php print t('from'); ?>&nbsp;</span>
+                <?php endif; ?>
+
+                <?php print virginsport_currency($event_currency, $event_price); ?>
+              </div>
+            <?php endif; ?>
+
           </div>
           <?php endif; ?>
         </div>
@@ -75,4 +89,3 @@
     </div>
   </div>
 </div>
-
