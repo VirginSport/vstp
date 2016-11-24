@@ -375,6 +375,15 @@ function virgin_user_page_ajax_form() {
     'event_id'  => virgin_param('event_id'),
   );
 
+  $valid_ctools_types = array(
+    VIRGIN_BASE_CONTACT_FORM,
+    VIRGIN_BASE_REGISTER_INTEREST_FORM
+  );
+
+  if (!in_array($conf['type'], $valid_ctools_types)) {
+    drupal_access_denied();
+  }
+
   ctools_include('content');
   $contact_form = ctools_content_render($conf['type'], null, $conf, array(), array());
 
