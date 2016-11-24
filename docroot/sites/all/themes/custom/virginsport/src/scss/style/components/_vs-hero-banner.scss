@@ -17,13 +17,17 @@ vs-hero-banner,
   background-position: center top;
   background-size: cover;
   min-height: 17.125rem;
-  position: fixed;
+  position: absolute;
   width: 100%;
 }
 
 .vs-hero-banner__default-background {
   background: transparent url('../img/default-header-banner.jpg') no-repeat center top;
   background-size: cover;
+}
+
+.vs-head-region .vs-hero-banner__background--fixed {
+  position: fixed;
 }
 
 
@@ -146,7 +150,7 @@ vs-hero-banner,
   }
 
   .vs-hero-banner__background {
-    padding-top: 3.5rem;
+    padding: 3.5rem 0;
   }
 
   .vs-hero-banner__days-left-wrapper {

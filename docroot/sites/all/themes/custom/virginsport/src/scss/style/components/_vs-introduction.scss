@@ -4,8 +4,8 @@
 
 vs-introduction,
 .vs-introduction {
-    @include clearfix();
-    display: block;
+  @include clearfix();
+  display: block;
 }
 
 
@@ -13,26 +13,26 @@ vs-introduction,
 // ----------------------------------------------------------------------------
 
 .vs-introduction__container-wrapper {
-    position: relative;
-    height: auto;
-    width: 100%;
+  position: relative;
+  height: auto;
+  width: 100%;
 }
 
 .vs-introduction__image {
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .vs-introduction__content {
-    padding-top: .625rem;
-    margin-right: -.938rem;
-    margin-left: -.938rem;
+  padding-top: .625rem;
+  margin-right: -.938rem;
+  margin-left: -.938rem;
 }
 
 
@@ -41,29 +41,27 @@ vs-introduction,
 
 @include media-breakpoint-up(md) {
 
-    .vs-introduction__content {
-        padding: 4.063rem 0 2.5rem;
-        margin-left: 0;
-        margin-right: 0;
-    }
+  .vs-introduction__content {
+    padding: 4.063rem 0 2.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
+  .vs-hidden-hdpi {
+    display: block;
+  }
+
+  .vs-visible-hdpi {
+    display: none;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .vs-hidden-hdpi {
-        display: block;
+      display: none;
     }
 
     .vs-visible-hdpi {
-        display: none;
+      display: block;
     }
-
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        .vs-hidden-hdpi {
-            display: none;
-        }
-
-        .vs-visible-hdpi {
-            display: block;
-        }
-    }
-
+  }
 }
-
