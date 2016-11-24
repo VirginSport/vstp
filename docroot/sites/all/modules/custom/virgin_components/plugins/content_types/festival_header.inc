@@ -115,6 +115,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'show_sharer' => $show_sharer,
     'nid' => $g->property('nid'),
+    'festival_nid' => empty($festival_nid) ? $g->property('nid') : $festival_nid,
+    'event_nid' => empty($festival_nid) ? '' : $g->property('nid'),
     'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '' // Small link at the bottom, not used tm
