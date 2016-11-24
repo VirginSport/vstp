@@ -1,0 +1,83 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-region--found {
+  padding: 0;
+}
+
+.vs-festival-profile-header--empty {
+  padding: 2.5rem;
+  position: relative;
+  border-radius: .625rem;
+  overflow: hidden;
+
+  .vs-color__layer-1 {
+    background-image: linear-gradient(135deg, #e5e5e5 0, #bbbbbb 60%);
+  }
+
+  .vs-color__layer-2 {
+    background: transparent url('../img/vs-color-wave-1.svg') no-repeat right top;
+    background-size: cover;
+    opacity: 1;
+  }
+
+  .vs-color__layer-3 {
+    background-image: linear-gradient(-45deg, rgba(229, 229, 229, 0) 0, #e8e8e8 60%);
+  }
+}
+
+.vs-festival-profile-header--empty__title,
+.vs-festival-profile-header--empty__text {
+  color: $c-black;
+  font-family: $font-family-serif;
+  position: relative;
+  z-index: 2;
+}
+
+.vs-festival-profile-header--empty__title {
+  margin-bottom: 1.125rem;
+}
+
+.vs-festival-profile-header--empty__text {
+  font-weight: 500;
+
+  a {
+    @include transition(all .2s ease-in-out);
+    color: $c-black;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+@include media-breakpoint-up(md) {
+  .vs-festival-profile-header--empty {
+    padding: 4.375rem;
+
+    .vs-color__layer-1 {
+      background-image: linear-gradient(135deg, #e5e5e5 0, #bbbbbb 60%);
+    }
+
+    .vs-color__layer-2 {
+      background: transparent url('../img/vs-color-wave-1.svg') no-repeat right top;
+      background-size: cover;
+      opacity: 1;
+    }
+
+    .vs-color__layer-3 {
+      background-image: linear-gradient(-45deg, rgba(229, 229, 229, 0) 0, #e8e8e8 60%);
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-festival-profile-header--empty .vs-color__layer-2 {
+    background-size: 75%;
+  }
+}

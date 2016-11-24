@@ -4,7 +4,6 @@
  * User Tickets template.
  */
 ?>
-
 <?php foreach ($data as $row): ?>
   <?php if ($upcoming): ?>
     <div class="vs-festival-profile-header vs-festival-profile-header--upcoming">
