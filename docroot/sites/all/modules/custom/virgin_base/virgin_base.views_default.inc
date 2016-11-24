@@ -356,6 +356,16 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['filters']['type_1']['value'] = array(
     'festival' => 'festival',
   );
+  /* Filter criterion: Content: Status (field_status) */
+  $handler->display->display_options['filters']['field_status_value']['id'] = 'field_status_value';
+  $handler->display->display_options['filters']['field_status_value']['table'] = 'field_data_field_status';
+  $handler->display->display_options['filters']['field_status_value']['field'] = 'field_status_value';
+  $handler->display->display_options['filters']['field_status_value']['relationship'] = 'reverse_field_festival_state_node';
+  $handler->display->display_options['filters']['field_status_value']['value'] = array(
+    'announced' => 'announced',
+    'open' => 'open',
+    'in-progress' => 'in-progress',
+  );
 
   /* Display: Entity Reference */
   $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
