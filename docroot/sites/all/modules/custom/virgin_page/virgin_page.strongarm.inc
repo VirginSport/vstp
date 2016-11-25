@@ -185,6 +185,7 @@ function virgin_page_strongarm() {
   $strongarm->value = array(
     'festival_subnav-festival_subnav' => TRUE,
     'contact_form-contact_form' => TRUE,
+    'fieldable_panels_pane-vs_video_banner' => TRUE,
     'fieldable_panels_pane-vs_accordion' => TRUE,
     'fieldable_panels_pane-vs_basic_content_block' => TRUE,
     'fieldable_panels_pane-vs_carousel' => TRUE,
@@ -218,6 +219,7 @@ function virgin_page_strongarm() {
     'block' => 0,
     'entity_view' => 0,
     'fieldable_panels_pane' => 0,
+    'views' => 0,
     'views_panes' => 0,
     'other' => 0,
   );
