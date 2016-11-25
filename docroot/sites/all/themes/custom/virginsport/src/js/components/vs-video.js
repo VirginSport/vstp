@@ -49,6 +49,9 @@ export default () => {
       setTimeout(function () {
         $body.removeClass('vs-video-modal--opened');
       }, 200);
+
+      // Trigger slider resize to avoid white screens on slick
+      $('.slider').resize();
     }
 
     let $video = $modal_element.find('video');
