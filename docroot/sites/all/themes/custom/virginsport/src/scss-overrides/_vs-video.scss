@@ -1,0 +1,28 @@
+
+// This file covers the video component
+// ----------------------------------------------------------------------------
+
+.vs-region > .modal {
+  position: fixed;
+}
+
+.slick-slide-img {
+  background-position: center top;
+  background-size: cover;
+  min-height: 18.375rem;
+  display: block;
+}
+
+.vs-video__content-wrapper {
+  width: 100%;
+}
+
+.vs-video-modal--opened .modal-content {
+  text-align: right;
+}
+
+.vs-video__close {
+  transform: translate(-10px, 10px);
+  background-color: transparent;
+  border: 0;
+}

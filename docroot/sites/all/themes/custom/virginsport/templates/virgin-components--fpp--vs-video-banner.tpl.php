@@ -12,7 +12,6 @@ $modal_id = uniqid();
 
 <div class="vs-video">
   <div class="vs-video__wrapper">
-    <button class="vs-video__close">X</button>
     <?php if (!empty($header_image_grapher->property('sid'))): ?>
       <div
         class="vs-video__header-image"
@@ -37,8 +36,10 @@ $modal_id = uniqid();
     <div class="slider slider hidden-sm-up">
       <?php foreach ($slider_images as $atom_grapher): ?>
         <?php if (!empty($atom_grapher->property('sid'))): ?>
-          <div>
-            <img src="<?php print virginsport_atom_url($atom_grapher->getEntity()); ?>">
+          <div
+            class="slick-slide-img"
+            style="<?php print virginsport_atom_background($atom_grapher->getEntity()); ?>"
+          >
           </div>
         <?php endif; ?>
       <?php endforeach; ?>
@@ -60,7 +61,7 @@ $modal_id = uniqid();
                   );
                 ?>
               <?php elseif (!empty($overlay_video_url)): ?>
-                <a href="#" class="vs-video__play-button" data-toggle="modal" data-target="vs-video-modal-<?php print $modal_id; ?>"></a>
+                <a href="#" class="vs-video__play-button" data-target="vs-video-modal-<?php print $modal_id; ?>"></a>
               <?php else: ?>
                 <a href="#" class="vs-video__arrow"></a>
               <?php endif; ?>
@@ -77,6 +78,14 @@ $modal_id = uniqid();
     <div class="vs-video__vertical-aligner">
       <div class="modal-dialog vs-video__vertical-align">
         <div class="modal-content">
+          <button class="vs-video__close">
+            <svg width="20" height="21" viewBox="290 9 20 21" xmlns="http://www.w3.org/2000/svg">
+              <g fill="#FFF" fill-rule="evenodd">
+                <path d="M294.373 23.9l9.192-9.192 1.06 1.06-9.192 9.193z"/>
+                <path d="M295.433 14.708l9.193 9.192-1.06 1.06-9.193-9.192z"/>
+              </g>
+            </svg>
+          </button>
           <div class="modal-body">
             <div class="vs-video">
               <div class="vs-video__wrapper">

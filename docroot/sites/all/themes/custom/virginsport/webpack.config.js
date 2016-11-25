@@ -19,7 +19,7 @@ module.exports = {
           presets: ['es2015']
         }
       },
-      
+
       // Preprocess SCSS files to CSS
       {
         test: /\.scss$/,
@@ -44,16 +44,21 @@ module.exports = {
     new ExtractTextPlugin("app.css", {
       allChunks: true
     }),
-    
+
     // Delete all contents from build folder on build
     new CleanWebpackPlugin(['build'], {
       verbose: true,
       dry: false
     }),
-  
+
     // Add support for live reload
     new LiveReloadPlugin({
       ignore: /\.js$/ // Ignore js files as we only want to livereload css
-    })
+    }),
+
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
   ]
 };

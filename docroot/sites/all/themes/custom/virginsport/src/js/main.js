@@ -2,6 +2,7 @@
 // Components
 import vsBasket from './components/vs-basket';
 import vsVideo from './components/vs-video';
+import vsSlick from './components/vs-slick';
 import vsContactForm from './components/vs-contact-form';
 import vsHeader from './components/vs-header';
 import vsIFrame from './components/vs-iframe';
@@ -14,6 +15,7 @@ import vsSharer from './components/vs-sharer';
 
 vsBasket();
 vsVideo();
+vsSlick();
 vsContactForm();
 vsHeader();
 vsIFrame();
