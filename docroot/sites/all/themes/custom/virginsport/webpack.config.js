@@ -1,3 +1,4 @@
+var Webpack = require('webpack');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var LiveReloadPlugin = require('webpack-livereload-plugin');
@@ -56,9 +57,10 @@ module.exports = {
       ignore: /\.js$/ // Ignore js files as we only want to livereload css
     }),
 
-    new webpack.ProvidePlugin({
+    // Add jquery due to slick issue
+    new Webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery',
-    }),
+      jQuery: 'jquery'
+    })
   ]
 };
