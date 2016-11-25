@@ -13,7 +13,19 @@
  * cta_links - An array with links and its attributes
  */
 
-$reverse_class = ($alignment == 'right') ? 'vs-teaser--reverse' : '';
+// Set the right reverse class depending on the aligment
+$reverse_map = array(
+  'portrait' => 'right',
+  'landscape' => 'left',
+  'portrait_lower_portrait' => 'left',
+  'portrait_large_portrait' => 'right',
+  'portrait_landscape' => 'right',
+  'landscape_upper_landscape_landscape' => 'left',
+  'landscape_square_right' => 'left',
+  'portrait_upper_portrait_portrait' => 'left'
+);
+
+$reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--reverse' : '';
 
 ?>
 <div class="vs-teaser">
