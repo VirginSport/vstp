@@ -23,10 +23,14 @@ body.panels-ipe-editing {
   .ui-sortable-placeholder {
     border-width: 1px;
   }
-}
 
-.vs-hero-banner__background--fixed {
-  position: absolute;
+  .vs-hero-banner__background--fixed {
+    position: absolute !important;
+  }
+
+  .vs-subnav.animated {
+    display: none !important;
+  }
 }
 
 // Improve IPE elements
