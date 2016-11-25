@@ -465,8 +465,8 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'left' => 'Left',
-        'right' => 'Right',
+        'left' => 'Image to the left',
+        'right' => 'Image to the right',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -2446,8 +2446,9 @@ function virgin_base_field_default_field_bases() {
         'portrait_lower_portrait' => 'Portrait, Lower Portrait',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Portrait, Upper Portrait, Portrait',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape',
         'landscape_square_right' => 'Landscape, Square Right',
+        'portrait_square' => 'Portrait, Square',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
