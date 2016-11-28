@@ -59,7 +59,7 @@ $query = drupal_get_query_parameters();
 
           <div class="col-xs-12">
             <div class="vs-user-form__wrapper">
-              <button  :disabled="!$vs_user_password_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-password--form-submit"><?php print ('E-mail new Password'); ?></button>
+              <button  :disabled="!$vs_user_password_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--min-xxl vs-user-password--form-submit"><?php print ('E-mail new Password'); ?></button>
             </div>
           </div>
         </form>
