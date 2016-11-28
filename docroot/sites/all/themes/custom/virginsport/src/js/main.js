@@ -9,6 +9,7 @@ import vsRegion from './components/vs-region';
 import vsUserProfile from './components/vs-user-profile';
 import vsUserLogin from './components/vs-user-login';
 import vsUserRegister from './components/vs-user-register';
+import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
 
 vsBasket();
@@ -20,6 +21,7 @@ vsRegion();
 vsUserProfile();
 vsUserLogin();
 vsUserRegister();
+vsUserPassword();
 vsSharer();
 
 
