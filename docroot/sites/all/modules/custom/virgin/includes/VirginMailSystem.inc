@@ -56,7 +56,7 @@ class VirginMailSystem implements MailSystemInterface {
     // passed via the message params.
     $vs_id = '';
 
-    if ($message['params']['account']) {
+    if (!empty($message['params']['account'])) {
       $g = new VirginEntityGrapher('user', $message['params']['account']);
       $vs_id = $g->fieldGetOne('field_sugar_id');
     }
