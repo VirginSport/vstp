@@ -1,6 +1,7 @@
 
 // Components
 import vsBasket from './components/vs-basket';
+import vsVideo from './components/vs-video';
 import vsContactForm from './components/vs-contact-form';
 import vsHeader from './components/vs-header';
 import vsIFrame from './components/vs-iframe';
@@ -13,6 +14,7 @@ import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
 
 vsBasket();
+vsVideo();
 vsContactForm();
 vsHeader();
 vsIFrame();
