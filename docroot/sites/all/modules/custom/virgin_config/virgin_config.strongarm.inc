@@ -631,5 +631,19 @@ function virgin_config_strongarm() {
   $strongarm->value = 'virginsport';
   $export['theme_default'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_no_approval_required_notify';
+  $strongarm->value = 1;
+  $export['user_mail_register_no_approval_required_notify'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_pending_approval_notify';
+  $strongarm->value = FALSE;
+  $export['user_mail_register_pending_approval_notify'] = $strongarm;
+
   return $export;
 }
