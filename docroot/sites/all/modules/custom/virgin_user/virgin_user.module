@@ -294,7 +294,7 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
   $form['account']['mail_confirm']['#weight'] = -1;
 
   // Ensure the password follows certain criteria
-  $form['account']['pass']['#element_validate'][] = 'virgin_user_password_validate';
+  $form['account']['current_pass']['#element_validate'][] = 'virgin_user_password_validate';
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_register_form_validate';
@@ -335,6 +335,9 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
       ':input[name="field_allergies[und]"]' => array('filled' => TRUE),
     )
   );
+
+  // Ensure the password follows certain criteria
+  $form['account']['current_pass']['#element_validate'][] = 'virgin_user_password_validate';
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_profile_form_validate';
@@ -385,6 +388,29 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
+}
+
+/**
+ * Validation callback for password field
+ */
+function virgin_user_password_validate($element, $form_state) {
+  // Check password fits the requirements
+  $pass = virgin_form_value('pass', $form_state);
+
+  // To prevent validation if password was not provided
+  // The required validation is made outside this validation context
+  if (empty($pass)) {
+    return;
+  }
+
+  // Make sure password have at least one number
+  if (!preg_match("#[0-9]+#", $pass)) {
+    form_set_error('pass', t("The password must have at least one number"));
+  }
+
+  if (strlen($pass) < VIRGIN_USER_MIN_PASS_LENGTH) {
+    form_set_error('pass', t("The password must have at least @min characters", array('@min' => VIRGIN_USER_MIN_PASS_LENGTH)));
+  }
 }
 
 /**
@@ -563,16 +589,6 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
 
   if ($mail != $mail_confirm) {
     form_set_error('mail', t("The e-mails you entered do not match"));
-  }
-
-  // Check password fits the requirements
-  $pass = virgin_form_value('pass', $form_state);
-
-  if (!preg_match("#[0-9]+#", $pass)) {
-    form_set_error('pass', t("The password must have at least one number"));
-  }
-  if (strlen($pass) < VIRGIN_USER_MIN_PASS_LENGTH) {
-    form_set_error('pass', t("The password must have at least @min characters", array('@min' => VIRGIN_USER_MIN_PASS_LENGTH)));
   }
 }
 
