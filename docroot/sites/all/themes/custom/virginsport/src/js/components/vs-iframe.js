@@ -1,8 +1,5 @@
-import iFrameResize from 'iframe-resizer';
-import $ from '../lib/jquery';
+import {iframeResizer, iframeResizerContentWindow} from 'iframe-resizer';
 
 export default () => {
-  $('.vs-iframe').iFrameResize({
-    checkOrigin: false
-  });
+    iframeResizer({ checkOrigin: false }, '.vs-iframe');
 };
