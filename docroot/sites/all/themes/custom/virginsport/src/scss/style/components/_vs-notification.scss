@@ -1,0 +1,86 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-notification,
+.vs-notification {
+  @include clearfix();
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+.vs-notification__wrapper {
+  background-color: #d7d7d7;
+  display: none;
+  color: rgba($c-black, .8);
+  font-size: .75rem;
+  padding: 1.375rem 1.5625rem;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.vs-notification__close {
+  @include transition(all .2s ease-in-out);
+  position: absolute;
+  top: .625rem;
+  right: .625rem;
+
+  .vs-notification__wrapper--sticky & .vs-notification__close-icon {
+    fill: $c-white;
+  }
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.vs-notification__message {
+  font-weight: 500;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-notification--show {
+  display: block;
+}
+
+.vs-notification--hide {
+  display: none;
+}
+
+
+.vs-notification__wrapper--sticky {
+  background-color: rgba(#4991E2, .8);
+  color: $c-white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.vs-notification__wrapper--close {
+  padding-right: 2.5rem;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-notification__close {
+    top: 1.125rem;
+    right: .9375rem;
+  }
+
+  .vs-notification__close svg {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  .vs-notification__wrapper--close {
+    padding-right: 3.5rem;
+  }
+}
