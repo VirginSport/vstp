@@ -2805,6 +2805,375 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_component_heading'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_component_heading'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_cta_links'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_cta_links'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_cta_links',
+    'label' => 'Call to action button',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_header_image'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_header_image'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_header_image',
+    'label' => 'Header Image',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_overlay_video_poster_image'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_overlay_video_poster_image'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_overlay_video_poster_image',
+    'label' => 'Overlay Video Poster Image',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_overlay_video_url'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_overlay_video_url'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_overlay_video_url',
+    'label' => 'Overlay Video URL',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_slider_images'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_slider_images'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_slider_images',
+    'label' => 'Slider Images',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_video_poster_image'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_video_poster_image'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_video_poster_image',
+    'label' => 'Video Poster Image',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_video_banner-field_video_url'.
+  $field_instances['fieldable_panels_pane-vs_video_banner-field_video_url'] = array(
+    'bundle' => 'vs_video_banner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'plain_text',
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_video_url',
+    'label' => 'Video URL',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_video_block-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_video_block-field_component_heading'] = array(
     'bundle' => 'vs_video_block',
@@ -3995,7 +4364,9 @@ function virgin_components_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 5,
     ),
@@ -4253,7 +4624,9 @@ function virgin_components_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 3,
     ),
@@ -4787,6 +5160,7 @@ function virgin_components_field_default_field_instances() {
   t('Constrained width');
   t('Content');
   t('Gameface ID');
+  t('Header Image');
   t('Heading');
   t('Hero Banner Image');
   t('Hero Image');
@@ -4800,12 +5174,15 @@ function virgin_components_field_default_field_instances() {
   t('Layout arrangement');
   t('MyLaps ID');
   t('Outline Title');
+  t('Overlay Video Poster Image');
+  t('Overlay Video URL');
   t('Packages');
   t('Photo');
   t('Photo Description');
   t('Price');
   t('Short Description');
   t('Slide');
+  t('Slider Images');
   t('Subheading');
   t('Tickets');
   t('Title');

@@ -101,6 +101,7 @@ function virgin_components_list() {
       new VirginComponentCarousel(),
       new VirginComponentPhotoGallery(),
       new VirginComponentVideoBlock(),
+      new VirginComponentVideoBanner(),
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
