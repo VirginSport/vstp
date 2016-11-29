@@ -93,7 +93,7 @@ $modal_id = uniqid();
                   <video
                     loop
                     preload="none"
-                    src="<?php print $overlay_video_url; ?>"
+                    src="<?php print check_plain($overlay_video_url); ?>"
                     poster="<?php print virginsport_atom_url($overlay_poster->getEntity()); ?>"
                   >
                   </video>

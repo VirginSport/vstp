@@ -2827,7 +2827,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_component_heading',
     'label' => 'Component Heading',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -3122,7 +3122,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'sdl_editor_representation',
+        'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 5,
