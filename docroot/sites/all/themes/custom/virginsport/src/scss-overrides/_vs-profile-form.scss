@@ -327,15 +327,6 @@ input[type="text"] + label + .vs-tooltip-trigger,
   font-size: 0.625rem;
 }
 
-.v-element {
-  @include transition(opacity, .7s ease-in-out);
-  opacity: 0;
-
-  &.v-element--ready {
-    opacity: 1;
-  }
-}
-
 .vs-focus-label--static {
   position: static;
 }

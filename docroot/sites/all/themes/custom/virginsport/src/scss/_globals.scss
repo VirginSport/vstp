@@ -74,11 +74,11 @@ p {
 
 // Used to provide fade out animation when page loads
 // ----------------------------------------------------------------------------
-.v-element {
+.v-element > .container {
   @include transition(opacity, .7s ease-in-out);
   opacity: 0;
+}
 
-  &.v-element--ready {
-    opacity: 1;
-  }
+.v-element--ready > .container {
+  opacity: 1;
 }
