@@ -356,6 +356,13 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['filters']['type_1']['value'] = array(
     'festival' => 'festival',
   );
+  /* Filter criterion: Content: End Date (field_end_date) */
+  $handler->display->display_options['filters']['field_end_date_value']['id'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['table'] = 'field_data_field_end_date';
+  $handler->display->display_options['filters']['field_end_date_value']['field'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['relationship'] = 'field_festival_state_target_id';
+  $handler->display->display_options['filters']['field_end_date_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_end_date_value']['default_date'] = 'now -30days';
 
   /* Display: Entity Reference */
   $handler = $view->new_display('entityreference', 'Entity Reference', 'entityreference_1');
