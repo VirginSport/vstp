@@ -72,7 +72,7 @@ $query = drupal_get_query_parameters();
                             </div>
 
                             <div class="field-password vs-form-group">
-                              <input class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']">
+                              <input class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']" v-on:change="password_changed = true">
                               <label class="vs-focus-label"><?php print t('Password'); ?>*</label>
                               <div class="vs-error-label" v-if="$vs_user_login_validator.password.dirty && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
                             </div>
@@ -81,7 +81,7 @@ $query = drupal_get_query_parameters();
                               <?php print t('Forgot password?'); ?>
                             </a>
 
-                            <button :disabled="!$vs_user_login_validator.name.required && !passwordValid()" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign Up'); ?></button>
+                            <button :disabled="$vs_user_login_validator.name.required || !passwordValid()" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign Up'); ?></button>
 
                             <div class="vs-user-form__member-text">
                               <?php print t('Not yet a member?'); ?>

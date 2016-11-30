@@ -51,10 +51,23 @@ export default () => {
       },
 
       /**
-       * Check if password is not empty or has been autocompleted by google chrome
+       * Check if password is not empty or has been auto-completed by google chrome
        */
       passwordValid() {
-        return this.profile.password.length || $(selector).find('input[type=password]:-webkit-autofill').length;
+        let password_autofilled = false;
+
+        // Because google chrome auto-complete does not fill password model until user interaction for security reasons,
+        // we have to check initially if the field has been auto-completed using the selector above.
+        // We had to use the drupal form input for initial verification, because vueJS input has a delay for google auto-complete.
+        // If user does not changed the form password input, check on hidden drupal form if it has been auto-completed,
+        // otherwise just check on vueJS model,
+        if (this.password_changed) {
+          return this.profile.password.length
+        } else {
+          password_autofilled = !!$(selector).find('.vs-user-login--form-drupal input[type=password]:-webkit-autofill').length;
+        }
+
+        return this.profile.password.length || password_autofilled;
       },
 
       /**
@@ -75,6 +88,7 @@ export default () => {
       }
     },
     data: {
+      password_changed: false,
       profile: {
         name: '',
         password: ''
