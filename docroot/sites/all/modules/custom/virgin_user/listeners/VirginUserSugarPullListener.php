@@ -247,8 +247,8 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    *  A grapher object containing the response body
    */
   protected function fetchDigest($sugar_id, $modified_since) {
-    $path = sprintf('Contacts/%s/modified-since/%s', $sugar_id, $modified_since);
-    $response = sugarcrm_client()->getEndpoint($path);
+    $path = sprintf('Virgin/Contacts/%s/digest/%s', $sugar_id, $modified_since);
+    $response = sugarcrm_client()->systemGet($path);
 
     return new VirginGrapher($response);
   }

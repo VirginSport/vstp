@@ -17,7 +17,8 @@ function _virgin_api_virgin_mail_update_action($sugar_id) {
       "Fetching the contact record for user (@id) from SugarCRM...",
       array('@id' => $sugar_id));
 
-    $contact = sugarcrm_client()->retrieve('Contacts', $sugar_id);
+    $path = sprintf('Virgin/Contacts/%s', $sugar_id);
+    $contact = sugarcrm_client()->systemGet($path);
   } catch (\Exception $e) {
     watchdog(
       'virgin_api',
