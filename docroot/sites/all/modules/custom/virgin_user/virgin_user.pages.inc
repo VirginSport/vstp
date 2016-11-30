@@ -457,7 +457,7 @@ function virgin_user_page_ajax_form_post() {
     $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
   }
 
-  $result = sugarcrm_client()->postEndpoint('Virgin/form', $params);
+  $result = sugarcrm_client()->systemPost('Virgin/form', $params);
 
   print $result;
   drupal_exit();

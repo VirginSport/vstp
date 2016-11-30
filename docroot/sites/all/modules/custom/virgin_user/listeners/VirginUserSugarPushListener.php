@@ -161,7 +161,7 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
    *  The ID of the contact
    */
   private function saveContactToSugar($data) {
-    $response = sugarcrm_client()->postEndpoint('Virgin/save-contact', $data);
+    $response = sugarcrm_client()->systemPost('Virgin/save-contact', $data);
 
     return $response['id'];
   }
