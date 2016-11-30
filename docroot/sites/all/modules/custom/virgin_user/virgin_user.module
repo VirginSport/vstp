@@ -669,7 +669,7 @@ function virgin_user_bind_attendly_checkout_session() {
  */
 function _virgin_user_get_ticket($rego) {
   $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
-  $tickets = sugarcrm_client()->systemGet($path);
+  $ticket = sugarcrm_client()->systemGet($path);
 
-  return empty($tickets['records'][0]) ? NULL : $tickets['records'][0];
+  return empty($ticket['id']) ? NULL : $ticket;
 }
