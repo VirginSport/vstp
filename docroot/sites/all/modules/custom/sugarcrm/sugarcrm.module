@@ -32,7 +32,7 @@ function sugarcrm_menu() {
 /**
  * Gets the SugarCRM Rest client
  *
- * @return \Spinegar\Sugar7Wrapper\Rest
+ * @return SugarcrmClient
  */
 function sugarcrm_client() {
   $client = &drupal_static(__FUNCTION__, FALSE);
