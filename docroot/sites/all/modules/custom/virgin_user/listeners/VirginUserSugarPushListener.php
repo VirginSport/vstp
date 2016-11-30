@@ -49,9 +49,8 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
 
     if ($this->canSynchronizeAccount($account)) {
       try {
-        $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
-        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $sugar_id = $this->saveContactToSugar($contact_data);
         $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
         throw new VirginException($e->getMessage(), t('An error occurred while creating the account. Please try again at a later time.'));
@@ -71,9 +70,8 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
 
     if ($this->canSynchronizeAccount($account)) {
       try {
-        $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
-        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $sugar_id = $this->saveContactToSugar($contact_data);
         $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
         throw new VirginException($e->getMessage(), t('An error occurred while updating the account. Please try again at a later time.'));
@@ -153,6 +151,8 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
     $birth_date = $account_wrapper->field_birth_date->value();
 
     return array(
+      // If sugar id is null contact will be created, otherwise will be updated
+      'id' => $account_wrapper->field_sugar_id->value(),
       'virgin_sport_id' => $account_wrapper->uid->value(),
       'first_name' => $account_wrapper->field_first_name->value(),
       'last_name' => $account_wrapper->field_last_name->value(),
@@ -208,33 +208,11 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
    *
    * @param $data
    *  The contact data
-   * @param null|string $sugar_id
-   *  If null a new contact will be created on Sugar, if filled it will try to
-   *  create a new contact.
    * @return string
    *  The ID of the contact
    */
-  private function saveContactToSugar($data, $sugar_id = NULL) {
-
-    // If there's no Sugar ID it's because we haven't synced the event before.
-    if (empty($sugar_id)) {
-      $response = sugarcrm_client()->postEndpoint('Contacts', $data);
-    }
-    else {
-      // In case we have the Sugar ID, attempt to update it instead on Sugar.
-      // If it fails with a 404 it's because the event was not found on Sugar.
-      // In this case, we'll create it there instead.
-      try {
-        $response = sugarcrm_client()->putEndpoint('Contacts/' . $sugar_id, $data);
-      } catch (\Guzzle\Http\Exception\ClientErrorResponseException $e) {
-        if ($e->getResponse()->getStatusCode() == 404) {
-          $response = sugarcrm_client()->postEndpoint('Contacts', $data);
-        }
-        else {
-          throw $e;
-        }
-      }
-    }
+  private function saveContactToSugar($data) {
+    $response = sugarcrm_client()->postEndpoint('Virgin/save-contact', $data);
 
     return $response['id'];
   }
