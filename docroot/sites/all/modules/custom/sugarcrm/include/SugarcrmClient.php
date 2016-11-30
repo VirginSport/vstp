@@ -42,7 +42,7 @@ class SugarcrmClient extends Rest {
   public function systemPost($endpoint, $parameters = array()) {
     $this->ensureReady();
 
-    $request = $this->systemClient->post($endpoint, json_encode($parameters));
+    $request = $this->systemClient->post($endpoint, null, json_encode($parameters));
     $request->setAuth($this->username, $this->password);
 
     $response = $request->send()->json();
@@ -66,7 +66,7 @@ class SugarcrmClient extends Rest {
   public function systemGet($endpoint, $parameters = array()) {
     $this->ensureReady();
 
-    $request = $this->systemClient->get($endpoint, $this->getBasicAuthData());
+    $request = $this->systemClient->get($endpoint);
     $request->setAuth($this->username, $this->password);
 
     $query = $request->getQuery();
