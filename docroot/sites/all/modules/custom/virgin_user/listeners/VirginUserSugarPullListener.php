@@ -47,6 +47,11 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
+    // If user is accessing for the first time do not sync
+    if (empty($account->access)) {
+      return;
+    }
+
     $failure_callback = function (\Exception $e) {
       // A sync problem during login is not critical, do nothing here
     };
@@ -247,8 +252,8 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    *  A grapher object containing the response body
    */
   protected function fetchDigest($sugar_id, $modified_since) {
-    $path = sprintf('Contacts/%s/modified-since/%s', $sugar_id, $modified_since);
-    $response = sugarcrm_client()->getEndpoint($path);
+    $path = sprintf('Virgin/Contacts/%s/digest/%s', $sugar_id, $modified_since);
+    $response = sugarcrm_client()->systemGet($path);
 
     return new VirginGrapher($response);
   }

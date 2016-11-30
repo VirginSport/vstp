@@ -180,7 +180,7 @@ function virgin_user_page_basket_confirm_claim($rego) {
       // If we weren't able to retrieve the ticket, or the ticket has been
       // claimed, redirect the user to his profile page and let him now
       // the ticket could not be claimed.
-      if (!$ticket || $$ticket['has_been_claimed']) {
+      if (!$ticket || $ticket['has_been_claimed']) {
         drupal_set_message(t("Ooops! The ticket you're trying to claim could not be claimed."));
         drupal_goto('user');
         return;
@@ -474,7 +474,7 @@ function virgin_user_page_ajax_form_post() {
     $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
   }
 
-  $result = sugarcrm_client()->postEndpoint('Virgin/form', $params);
+  $result = sugarcrm_client()->systemPost('Virgin/form', $params);
 
   print $result;
   drupal_exit();
