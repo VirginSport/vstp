@@ -51,6 +51,13 @@ export default () => {
       },
 
       /**
+       * Check if password is not empty or has been autocompleted by google chrome
+       */
+      passwordValid() {
+        return this.profile.password.length || $(selector).find('input[type=password]:-webkit-autofill').length;
+      },
+
+      /**
        * Apply vue model values to drupal form
        */
       applyValues() {
