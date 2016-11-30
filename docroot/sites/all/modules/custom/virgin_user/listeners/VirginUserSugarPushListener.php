@@ -117,29 +117,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
   }
 
   /**
-   * Gets a Contact ID from a given e-mail address
-   *
-   * @param $email
-   *  The e-mail to find.
-   * @return null|string
-   *  A string with the Sugar ID, null if the user has no Sugar ID.
-   */
-  private function getEmailSugarId($email) {
-    $parameters = array(
-      'filter' => array(
-        array(
-          'email1' => $email
-        )
-      ),
-    );
-
-    $data = sugarcrm_client()->postEndpoint('Contacts/filter', $parameters);
-    $records = $data['records'];
-
-    return empty($records[0]['id']) ? NULL : $records[0]['id'];
-  }
-
-  /**
    * Generates the data structure for a Contact in SugarCRM via a User account
    *
    * @param stdClass $account
@@ -176,34 +153,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
   }
 
   /**
-   * Generates the data structure for a Contact in SugarCRM
-   *
-   * @param $contact
-   *  The contact request data array.
-   * @return array
-   *  The data structured in the format expected by SugarCRM.
-   */
-  private function transformContactRequestToUserData($contact) {
-    $defaults = array(
-      'given_name' => '',
-      'surname' => '',
-      'phone' => '',
-      'email' => '',
-      'company_name' => ''
-    );
-
-    $contact = $contact + $defaults;
-
-    return array(
-      'first_name' => $contact['given_name'],
-      'last_name' => $contact['surname'],
-      'email1' => $contact['email'],
-      'mobile' => $contact['phone']
-      // TODO company name is missing a mapping in SugarCRM
-    );
-  }
-
-  /**
    * Creates or Updates a Contact on SugarCRM
    *
    * @param $data
@@ -235,26 +184,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
       // Save the changes to the user without triggering a hook_user_update().
       field_attach_update('user', $account);
     }
-  }
-
-  /**
-   * Saves a Task in SugarCRM
-   *
-   * @param $contact_id
-   *  The ID of the Contact to assign the Task in SugarCRM. Locally this is the
-   *  field_sugar_id on the User entity.
-   * @param $message
-   *  The message of the task that will be created on Sugar.
-   */
-  private function saveTaskInSugar($contact_id, $message) {
-    $data = array(
-      'name' => 'Get in Touch',
-      'contact_id' => $contact_id,
-      'description' => $message,
-      'date_start' => date('c')
-    );
-
-    sugarcrm_client()->postEndpoint('Tasks', $data);
   }
 
   /**
