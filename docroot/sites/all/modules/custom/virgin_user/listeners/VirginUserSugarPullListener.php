@@ -47,6 +47,11 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   protected function onUserLogin(ObserverEventInterface $event) {
     $account = $event->getData();
 
+    // If user is accessing for the first time do not sync
+    if (empty($account->access)) {
+      return;
+    }
+
     $failure_callback = function (\Exception $e) {
       // A sync problem during login is not critical, do nothing here
     };
