@@ -106,8 +106,8 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
   $sugar = sugarcrm_client();
 
   foreach ($bean_handlers as $bean_name => $handlers) {
-    $path = sprintf('%s/modified-since/%d', $bean_name, $sync_from);
-    $ids = $sugar->getEndpoint($path);
+    $path = sprintf('Virgin/%s/modified-since/%d', $bean_name, $sync_from);
+    $ids = $sugar->systemGet($path);
 
     // Note: this guard needed to be added as for some reason the
     // sugar lib author decided empty arrays should be cast to
@@ -152,7 +152,8 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
   // there are only Sugar handlers at the moment. This specific part
   // might have to be rethought if more types of handlers are added.
   if ($handler instanceof VirginSyncSugarHandlerInterface) {
-    $data = sugarcrm_client()->retrieve($handler->bean(), $external_id);
+    $path = sprintf('Virgin/%s/%s', $handler->bean(), $external_id);
+    $data = sugarcrm_client()->systemGet($path);
   }
 
   // If data is still empty, bailout as there's nothing to be handled.
