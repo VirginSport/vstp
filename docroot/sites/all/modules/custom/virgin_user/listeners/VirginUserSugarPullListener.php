@@ -276,7 +276,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     }
 
     // Store the last sync timestamp in the user data column
-    $account->data[VIRGIN_USER_DATA_LAST_PULL] = time();
+    $account->data[VIRGIN_USER_DATA_LAST_PULL] = 0;
 
     // Also manually update the user data column in the database so as to not
     // trigger any update hook.
