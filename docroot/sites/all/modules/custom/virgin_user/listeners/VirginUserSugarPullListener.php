@@ -206,7 +206,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     $synced_regos = $this->syncTickets($account, $g->get('tickets'));
     $is_profile_updated = $this->syncProfile($account, $g->get('contact'));
 
-    // If either some tickets were synced or the profile has been updated, we
+    // If either some tickets were synced or the profile has been updated,
     // we consider this a successful pull.
     $mark_as_success = (!empty($synced_regos) || $is_profile_updated);
 
