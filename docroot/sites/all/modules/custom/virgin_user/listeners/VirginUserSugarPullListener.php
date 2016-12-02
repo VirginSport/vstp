@@ -186,14 +186,6 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       return;
     }
 
-    // Keeps track of the time the sync started, as this will be the time that
-    // we consider the last successful sync from. The reason for this is that
-    // between the time we make the request to sugar and do all the required
-    // operations in our side, new tickets or changes to the profile might have
-    // been done and we need ensure these modifications are not lost in the
-    // 'void' of time between the start and end of sync.
-    $sync_time = time();
-
     // Fetch the digest from SugarCRM
     try {
       $g = $this->fetchDigest($sugar_id, $modified_since);
@@ -211,6 +203,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     }
 
     // Update the ticket cache and update the profile fields accordingly
+    $sync_time = $g->get('timestamp')->value(time());
     $synced_regos = $this->syncTickets($account, $g->get('tickets'));
     $is_profile_updated = $this->syncProfile($account, $g->get('contact'));
 
