@@ -90,6 +90,10 @@ function virgin_sync_batch() {
 function _virgin_sync_batch_sugar_operations($sync_from = 0) {
   $operations = array();
 
+  // Ensure the first operation executed is the batch start, as it keeps
+  // track of the time at which the sync started.
+  $operations[] = array('_virgin_sync_batch_start', array(time()));
+
   // Get all sugar handlers
   $handlers = array_filter(virgin_sync_handlers(), function ($handler) {
     return $handler instanceof VirginSyncSugarHandlerInterface;
@@ -128,6 +132,26 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
 }
 
 /**
+ * Sync batch start callback
+ *
+ * @param $timestamp
+ *  The timestamp of moment the sync was triggered
+ * @param $context
+ *  The batch context array
+ *
+ * @see _virgin_sync_batch_sugar_operations()
+ */
+function _virgin_sync_batch_start($timestamp, &$context) {
+
+  // Inject the start time and items array into the results property in order
+  // for _virgin_sync_batch_finished() get the time at which the sync started.
+  $context['results'] = array(
+    'start' => $timestamp,
+    'items' => array()
+  );
+}
+
+/**
  * Sync batch process callback
  *
  * @param \VirginSyncHandlerInterface $handler
@@ -137,7 +161,7 @@ function _virgin_sync_batch_sugar_operations($sync_from = 0) {
  * @param $context
  *  The batch context array
  *
- * @see virgin_sync_batch()
+ * @see _virgin_sync_batch_sugar_operations()
  */
 function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $external_id, &$context) {
   $data = null;
@@ -172,6 +196,9 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
     $context['message'] = $create_message;
     $handler->create($grapher, $external_id);
   }
+
+  // Keep track of the items that have been synced
+  $context['results']['items'][] = $external_id;
 }
 
 /**
@@ -179,11 +206,12 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
  *
  * @see virgin_sync_batch()
  */
-function _virgin_sync_batch_finished() {
+function _virgin_sync_batch_finished($success, $results, $operations) {
 
-  // Store the timestamp of the last successful sync
-  variable_set(VIRGIN_SYNC_VAR_LAST_SYNC, time());
-
-  // And let the user know the sync has finished
-  drupal_set_message(t("Content synchronization sucessfully finished."));
+  if (!empty($results['items'])) {
+    variable_set(VIRGIN_SYNC_VAR_LAST_SYNC, $results['start']);
+    drupal_set_message(t("Content synchronization sucessfully finished."));
+  } else {
+    drupal_set_message(t("No content required synchronization."));
+  }
 }

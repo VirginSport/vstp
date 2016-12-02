@@ -18,9 +18,15 @@ define('VIRGIN_USER_MIN_PASS_LENGTH', 8);
 
 /**
  * The name of the user data property that stores the timestamp with
+ * the last attempted data pull from SugarCRM.
+ */
+define('VIRGIN_USER_DATA_LAST_ATTEMPTED_PULL', 'virgin_user_last_attempted_pull');
+
+/**
+ * The name of the user data property that stores the timestamp with
  * the last successful data pull from SugarCRM.
  */
-define('VIRGIN_USER_DATA_LAST_PULL', 'virgin_user_last_pull');
+define('VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL', 'virgin_user_last_successful_pull');
 
 /**
  * The number of seconds to wait before checking the user's ticket
