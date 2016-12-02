@@ -205,36 +205,38 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
             </div>
           </div>
           <div class="col-xs-12 col-md-6">
-            <?php if(!empty($title)): ?>
-              <h3 class="vs-teaser__subtitle hidden-sm-down"><?php print $title; ?></h3>
-            <?php endif; ?>
+            <div class="vs-teaser__content">
+              <?php if(!empty($title)): ?>
+                <h3 class="vs-teaser__subtitle hidden-sm-down"><?php print $title; ?></h3>
+              <?php endif; ?>
 
-            <?php if(!empty($body)): ?>
-              <div class="vs-teaser__text hidden-sm-down"><?php print $body; ?></div>
-            <?php endif; ?>
+              <?php if(!empty($body)): ?>
+                <div class="vs-teaser__text hidden-sm-down"><?php print $body; ?></div>
+              <?php endif; ?>
 
-            <?php print
-              theme('virginsport_cta_links',
-                array(
-                  'links' => $cta_links,
-                  'classes' => 'vs-teaser__cta-btn hidden-sm-down'
-                )
-              );
-            ?>
-            <?php if(!empty($teaser_images[1]['sid'])): ?>
+              <?php print
+                theme('virginsport_cta_links',
+                  array(
+                    'links' => $cta_links,
+                    'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                  )
+                );
+              ?>
+              <?php if(!empty($teaser_images[1]['sid'])): ?>
 
-              <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_portrait', 'image_classes' => 'vs-teaser__image-b hidden-md-up')); ?>
+                <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_portrait', 'image_classes' => 'vs-teaser__image-b hidden-md-up')); ?>
 
-            <?php endif; ?>
+              <?php endif; ?>
 
-            <?php print
-              theme('virginsport_cta_links',
-                array(
-                  'links' => $cta_links,
-                  'classes' => 'vs-teaser__cta-btn hidden-md-up'
-                )
-              );
-            ?>
+              <?php print
+                theme('virginsport_cta_links',
+                  array(
+                    'links' => $cta_links,
+                    'classes' => 'vs-teaser__cta-btn hidden-md-up'
+                  )
+                );
+              ?>
+            </div>
           </div>
         </div>
       </div>
