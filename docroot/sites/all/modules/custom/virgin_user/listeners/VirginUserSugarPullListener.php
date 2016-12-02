@@ -189,9 +189,9 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // Keeps track of the time the sync started, as this will be the time that
     // we consider the last successful sync from. The reason for this is that
     // between the time we make the request to sugar and do all the required
-    // operations with said that on our side new tickets or changes to the
-    // profile might have been done and we need ensure these modifications are
-    // not lost in the 'void' of time between the start and end of sync.
+    // operations in our side, new tickets or changes to the profile might have
+    // been done and we need ensure these modifications are not lost in the
+    // 'void' of time between the start and end of sync.
     $sync_time = time();
 
     // Fetch the digest from SugarCRM
