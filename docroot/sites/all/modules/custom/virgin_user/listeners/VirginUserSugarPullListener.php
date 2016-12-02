@@ -126,7 +126,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    */
   protected function onCheckTicketSync(ObserverEventInterface $event) {
     $account = $event->getData();
-    $elapsed = time() - $this->getUserLastSync($account);
+    $elapsed = time() - $this->getUserLastAttemptedSync($account);
 
     // If the elapsed time since last sync is less than the period that is
     // set between sync attempts, bailout now.
@@ -178,7 +178,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     $account = user_load($account->uid);
     $sugar_id = $this->getUserSugarID($account);
-    $modified_since = $this->getUserLastSync($account);
+    $modified_since = $this->getUserLastSuccessfulSync($account);
 
     // If for some reason the user does not have a SugarID, then bailout as
     // there's nothing to fetch from SugarCRM.
@@ -203,11 +203,16 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     }
 
     // Update the ticket cache and update the profile fields accordingly
+    $sync_time = $g->get('timestamp')->value(time());
     $synced_regos = $this->syncTickets($account, $g->get('tickets'));
-    $has_changed = $this->syncProfile($account, $g->get('contact'));
+    $is_profile_updated = $this->syncProfile($account, $g->get('contact'));
+
+    // If either some tickets were synced or the profile has been updated,
+    // we consider this a successful pull.
+    $mark_as_success = (!empty($synced_regos) || $is_profile_updated);
 
     // Flush any profile changes
-    $this->saveProfileChanges($account, $has_changed);
+    $this->saveProfileChanges($account, $is_profile_updated, $mark_as_success, $sync_time);
 
     // And finally execute the success callback with the list of synced rego IDs
     if ($success_callback) {
@@ -216,17 +221,31 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
   }
 
   /**
-   * Get the timestamp of the last sync with SugarCRM for the given user
+   * Get the timestamp of the last attempted sync with SugarCRM for the given user
    *
    * @param $account
-   *  The user object to get the last sync timestamp
+   *  The user object to get the last attempted sync timestamp
    * @return int
-   *  The timestamp of the last sync
+   *  The timestamp of the last attempted sync
    *
    * @see saveProfileChanges()
    */
-  protected function getUserLastSync($account) {
-    return empty($account->data[VIRGIN_USER_DATA_LAST_PULL]) ? 0 : $account->data[VIRGIN_USER_DATA_LAST_PULL];
+  protected function getUserLastAttemptedSync($account) {
+    return empty($account->data[VIRGIN_USER_DATA_LAST_ATTEMPTED_PULL]) ? 0 : $account->data[VIRGIN_USER_DATA_LAST_ATTEMPTED_PULL];
+  }
+
+  /**
+   * Get the timestamp of the last successful sync with SugarCRM for the given user
+   *
+   * @param $account
+   *  The user object to get the last successful sync timestamp
+   * @return int
+   *  The timestamp of the last successful sync
+   *
+   * @see saveProfileChanges()
+   */
+  protected function getUserLastSuccessfulSync($account) {
+    return empty($account->data[VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL]) ? 0 : $account->data[VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL];
   }
 
   /**
@@ -266,8 +285,14 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    * @param bool $save_field_changes
    *  (Optional) If set to true, all the changes to fields in the user entity
    *  will be persisted to the database. TRUE by default.
+   * @param bool $is_successful_pull
+   *  (Optional) If set to true, then the user's last successful sync timestamp
+   *  will be updated to the sync time. FALSE by default.
+   * @param int $sync_time
+   *  (Optional) If set, this will be the timestamp that's used to mark the
+   *  last successful sync. If empty, fallbacks to the current time.
    */
-  protected function saveProfileChanges($account, $save_field_changes = TRUE) {
+  protected function saveProfileChanges($account, $save_field_changes = TRUE, $is_successful_pull = FALSE, $sync_time = 0) {
 
     // Save the user field changes without triggering a hook_user_update(), as
     // we do not want to trigger an update loop between SugarCRM and Drupal.
@@ -275,8 +300,12 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       field_attach_update('user', $account);
     }
 
-    // Store the last sync timestamp in the user data column
-    $account->data[VIRGIN_USER_DATA_LAST_PULL] = time();
+    // Store the last attempted sync timestamp in the user data column
+    $account->data[VIRGIN_USER_DATA_LAST_ATTEMPTED_PULL] = time();
+
+    if ($is_successful_pull) {
+      $account->data[VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL] = empty($sync_time) ? time() : $sync_time;
+    }
 
     // Also manually update the user data column in the database so as to not
     // trigger any update hook.
