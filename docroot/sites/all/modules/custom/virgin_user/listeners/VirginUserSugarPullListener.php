@@ -294,7 +294,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
    *  will be persisted to the database. TRUE by default.
    * @param bool $is_successful_pull
    *  (Optional) If set to true, then the user's last successful sync timestamp
-   *  will be updated to the current time. FALSE by default.
+   *  will be updated to the sync time. FALSE by default.
    * @param int $sync_time
    *  (Optional) If set, this will be the timestamp that's used to mark the
    *  last successful sync. If empty, fallbacks to the current time.
