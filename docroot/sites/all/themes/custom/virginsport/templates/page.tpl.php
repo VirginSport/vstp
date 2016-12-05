@@ -110,6 +110,8 @@
   </div>
 </div>
 <div class="vs-overlay-blur">
+  <div class="vs-notification"></div>
+
   <div class="vs-header">
     <div class="container-fluid clearfix">
       <div class="vs-header__logo-wrapper">
