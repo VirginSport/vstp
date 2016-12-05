@@ -13,6 +13,7 @@ import vsUserLogin from './components/vs-user-login';
 import vsUserRegister from './components/vs-user-register';
 import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
+import vsCookie from './components/vs-cookie';
 
 vsBasket();
 vsVideo();
@@ -27,6 +28,7 @@ vsUserLogin();
 vsUserRegister();
 vsUserPassword();
 vsSharer();
+vsCookie();
 
 
 // Libs
