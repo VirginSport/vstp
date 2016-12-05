@@ -1,5 +1,6 @@
 
 // Components
+import vsStickyBasket from './components/vs-sticky-basket';
 import vsBasket from './components/vs-basket';
 import vsVideo from './components/vs-video';
 import vsSlick from './components/vs-slick';
@@ -15,6 +16,7 @@ import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
 
 vsBasket();
+vsStickyBasket();
 vsVideo();
 vsSlick();
 vsContactForm();
