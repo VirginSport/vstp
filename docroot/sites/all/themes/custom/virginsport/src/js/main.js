@@ -14,6 +14,7 @@ import vsUserRegister from './components/vs-user-register';
 import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
 import vsCookie from './components/vs-cookie';
+import vsNotification from './components/vs-notification';
 
 vsBasket();
 vsVideo();
@@ -29,7 +30,7 @@ vsUserRegister();
 vsUserPassword();
 vsSharer();
 vsCookie();
-
+vsNotification();
 
 // Libs
 import bootstrap from './lib/bootstrap';
