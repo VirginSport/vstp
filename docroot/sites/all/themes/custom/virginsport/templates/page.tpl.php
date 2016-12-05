@@ -74,8 +74,6 @@
  */
 ?>
 
-<?php print $messages; ?>
-
 <button class="vs-menu-trigger vs-menu-trigger--menu">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
@@ -111,6 +109,10 @@
 </div>
 <div class="vs-overlay-blur">
   <div class="vs-notification"></div>
+
+  <div class="vs-notification vs-notification--sticky">
+    <?php print $messages; ?>
+  </div>
 
   <div class="vs-header">
     <div class="container-fluid clearfix">
