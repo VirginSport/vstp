@@ -16,6 +16,16 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme'
   );
 
+  $themes['virginsport_notification'] = array(
+    'template' => 'virginsport-notification',
+    'variables' => array(
+      'classes' => '',
+      'message' => '',
+      'sticky' => FALSE,
+      'close_button' => TRUE
+    )
+  ) + $default;
+
   $themes['virginsport_color'] = array(
     'template' => 'virginsport-color',
     'variables' => array(
