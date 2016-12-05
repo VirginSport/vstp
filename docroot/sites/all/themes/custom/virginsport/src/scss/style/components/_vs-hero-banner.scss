@@ -132,6 +132,16 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner__logo {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: auto;
+  margin-bottom: 1.25rem;
+  max-height: 5.4375rem;
+  max-width: 12rem;
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -151,6 +161,13 @@ vs-hero-banner,
 
   .vs-hero-banner__background {
     padding: 3.5rem 0;
+  }
+
+  .vs-hero-banner__logo,
+  .vs-hero-banner__logo-image {
+    max-height: 12rem;
+    max-width: 60.25rem;
+    margin-bottom: 2rem;
   }
 
   .vs-hero-banner__days-left-wrapper {

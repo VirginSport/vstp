@@ -26,7 +26,7 @@ vs-notification,
   top: .625rem;
   right: .625rem;
 
-  .vs-notification__wrapper--sticky & .vs-notification__close-icon {
+  .vs-notification--sticky & .vs-notification__close-icon {
     fill: $c-white;
   }
 
@@ -52,13 +52,17 @@ vs-notification,
 }
 
 
-.vs-notification__wrapper--sticky {
-  background-color: rgba(#4991E2, .8);
-  color: $c-white;
+.vs-notification--sticky {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 4;
+  width: 100%;
+
+  .vs-notification__wrapper {
+    background-color: rgba(#4991E2, .8);
+    color: $c-white;
+  }
 }
 
 .vs-notification__wrapper--close {
