@@ -86,6 +86,7 @@ features[field_base][] = field_hootsuite_campaign_url
 features[field_base][] = field_hostname
 features[field_base][] = field_image_effect
 features[field_base][] = field_last_name
+features[field_base][] = field_logo
 features[field_base][] = field_marketing_optin
 features[field_base][] = field_medical_conditions
 features[field_base][] = field_medical_conditions_other
