@@ -259,3 +259,9 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+  dataLayer = <?php print $gtm_data_layer; ?>;
+</script>
+<!-- End Google Tag Manager Data Layer -->
