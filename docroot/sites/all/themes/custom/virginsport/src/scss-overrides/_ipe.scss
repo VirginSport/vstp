@@ -31,6 +31,10 @@ body.panels-ipe-editing {
   .vs-subnav.animated {
     display: none !important;
   }
+
+  .panels-ipe-portlet-content {
+    background-color: $c-gray-light;
+  }
 }
 
 // Improve IPE elements
