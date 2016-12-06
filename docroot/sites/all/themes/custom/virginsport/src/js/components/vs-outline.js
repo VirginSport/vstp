@@ -169,6 +169,13 @@ class Outline {
       }
     });
     
+    // Apply the gradient rotation
+    let bgRotation = parseInt(style['backgroundSize'], 10);
+    
+    setAttributes(this.gradient, {
+      gradientTransform: `rotate(${bgRotation})`
+    });
+    
     // And finally, adjust the SVG element width and height from the text
     // element size.
     let textBox = this.text.getBBox();
@@ -195,21 +202,22 @@ class Outline {
     
     let gradientID = id();
     
-    let gradient = element(defs, 'linearGradient', {
+    this.gradient = element(defs, 'linearGradient', {
       id: gradientID,
       x1: '0%',
       y1: '0%',
       x2: '100%',
-      y2: '0%'
+      y2: '0%',
+      class: 'gradient'
     });
     
-    element(gradient, 'stop', {
+    element(this.gradient, 'stop', {
       offset: '0%',
-      'stop-color': '#021',
+      'stop-color': '#fff',
       class: 'stop-a'
     });
     
-    element(gradient, 'stop', {
+    element(this.gradient, 'stop', {
       offset: '100%',
       'stop-color': '#fff',
       class: 'stop-b'
