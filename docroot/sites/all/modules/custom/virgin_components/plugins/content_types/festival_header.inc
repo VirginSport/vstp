@@ -97,6 +97,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
 
   // Fetch the header image from the grapher
   $atom = $g->relation('field_header_image');
+  $logo = $g->relation('field_logo');
 
   // If the header image could not be loaded, and there's a festival nid
   // available, then fetch the header image from the festival instead.
@@ -112,6 +113,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'end_date' => $end_date,
     'status' => ($g->property('type') == 'festival') ? $g->fieldGetOne('field_status') : $g->fieldGetOne('field_event_status'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
+    'logo' => $logo->getEntityType() != 'scald_atom' ? NULL : $logo,
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'show_sharer' => $show_sharer,
     'nid' => $g->property('nid'),

@@ -4,6 +4,7 @@
  * Virgin images template.
  */
 ?>
+
 <?php if(!empty($atom)): ?>
 <picture class="<?php print empty($classes) ? '' : $classes; ?>">
   <source
@@ -13,8 +14,8 @@
   <img
     src="<?php print image_style_url($image_style, $atom->file_source); ?>"
     class="<?php print empty($image_classes) ? '' : $image_classes; ?>"
-    alt="Virgin Sport"
-    title=""
+    alt=""
+    title="<?php print $atom->title; ?>"
   >
 </picture>
 <?php endif; ?>
