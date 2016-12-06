@@ -2342,6 +2342,41 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_teaser_block-field_brand_color'.
+  $field_instances['fieldable_panels_pane-vs_teaser_block-field_brand_color'] = array(
+    'bundle' => 'vs_teaser_block',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_teaser_block-field_hero_image'.
   $field_instances['fieldable_panels_pane-vs_teaser_block-field_hero_image'] = array(
     'bundle' => 'vs_teaser_block',
@@ -2382,7 +2417,7 @@ function virgin_components_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -2446,7 +2481,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
