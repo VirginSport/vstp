@@ -202,6 +202,7 @@ function virgin_region_regions() {
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
+        'icon' => $node_wrapper->field_icon_image->value(),
         'hostname' => $hostname
       );
     }
