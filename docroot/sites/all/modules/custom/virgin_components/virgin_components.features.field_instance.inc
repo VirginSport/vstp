@@ -2400,7 +2400,7 @@ function virgin_components_field_default_field_instances() {
     ),
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_hero_image',
-    'label' => 'Hero Image',
+    'label' => 'Background Image',
     'required' => 0,
     'settings' => array(
       'allow_override' => 0,
@@ -5174,6 +5174,7 @@ function virgin_components_field_default_field_instances() {
   t('Accordion Title');
   t('Align content');
   t('Alignment');
+  t('Background Image');
   t('Banner Image Title');
   t('Banners');
   t('Brand Color');
