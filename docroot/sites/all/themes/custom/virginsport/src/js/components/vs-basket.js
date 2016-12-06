@@ -43,7 +43,12 @@ function enableBasketCounter() {
   let $counter = $link.find('.vs-header__basket__value');
   
   window.setInterval(() => {
-    $counter.html(totalBasketItems());
+    let total = totalBasketItems();
+
+    if ($counter.html() != total) {
+      $counter.trigger('basket_counter_changed', total);
+      $counter.html(total);
+    }
   }, 500)
 };
 
