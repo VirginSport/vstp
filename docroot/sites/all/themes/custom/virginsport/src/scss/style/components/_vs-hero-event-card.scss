@@ -91,7 +91,7 @@ vs-hero-event-card,
       .vs-hero-event-card__title,
       .vs-hero-event-card__date,
       .vs-hero-event-card__text {
-        color: $c-white;
+        color: map_get($map, 'text-color');
       }
 
       .vs-hero-event-card__button:first-child {
