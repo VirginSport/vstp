@@ -47,7 +47,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
               <?php endif; ?>
 
               <?php if(!empty($outline)): ?>
-                <span class="vs-teaser__title hidden-md-up"><?php print $outline; ?></span>
+                <span class="vs-teaser__title vs-outline hidden-md-up"><?php print $outline; ?></span>
               <?php endif; ?>
             </div>
           </div>
@@ -69,7 +69,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
                 );
               ?>
               <?php if(!empty($outline)): ?>
-                <span class="vs-teaser__title hidden-sm-down"><?php print $outline; ?></span>
+                <span class="vs-teaser__title vs-outline hidden-sm-down"><?php print $outline; ?></span>
               <?php endif; ?>
             </div>
           </div>
@@ -131,7 +131,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
         <div class="row">
           <div class="col-xs-12 col-md-6">
             <?php if(!empty($outline)): ?>
-              <span class="vs-teaser__title"><?php print $outline; ?></span>
+              <span class="vs-teaser__title vs-outline"><?php print $outline; ?></span>
             <?php endif; ?>
 
             <?php if(!empty($teaser_images[0]['sid'])): ?>
@@ -304,7 +304,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
           <div class="col-xs-12 col-md-6">
             <div class="vs-teaser__content">
               <?php if(!empty($outline)): ?>
-                <span class="vs-teaser__title"><?php print $outline; ?></span>
+                <span class="vs-teaser__title vs-outline hidden-md-down"><?php print $outline; ?></span>
               <?php endif; ?>
 
               <?php if(!empty($title)): ?>
@@ -376,7 +376,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
         <div class="row">
           <div class="col-xs-12 col-md-5">
             <?php if(!empty($outline)): ?>
-              <span class="vs-teaser__title hidden-sm-down hidden-lg-up"><?php print $outline; ?></span>
+              <span class="vs-teaser__title vs-outline hidden-sm-down hidden-lg-up"><?php print $outline; ?></span>
             <?php endif; ?>
 
             <?php if(!empty($title)): ?>
@@ -399,7 +399,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
           <div class="col-xs-12 col-md-7">
             <div class="vs-teaser__image-scale">
               <?php if(!empty($outline)): ?>
-                <span class="vs-teaser__title hidden-md-up"><?php print $outline; ?></span>
+                <span class="vs-teaser__title vs-outline hidden-md-up"><?php print $outline; ?></span>
               <?php endif; ?>
 
               <?php if(!empty($teaser_images[0]['sid'])): ?>
@@ -426,7 +426,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
           </div>
           <div class="col-xs-12">
             <?php if(!empty($outline)): ?>
-              <span class="vs-teaser__title hidden-md-down"><?php print $outline; ?></span>
+              <span class="vs-teaser__title vs-outline hidden-md-down"><?php print $outline; ?></span>
             <?php endif; ?>
           </div>
         </div>
