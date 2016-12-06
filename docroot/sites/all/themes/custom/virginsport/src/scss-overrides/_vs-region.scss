@@ -92,3 +92,25 @@ $vs-region-overlap-sizes: (
     }
   }
 }
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+
+    .vs-region__bg {
+      // HACK: We're passing the background rotation value vie the background
+      // size property to the JS. This value will be parsed by the JS and
+      // transformed to the rotation value of the region background.
+      background-size: str-replace(inspect(map_get($map, 'rotate')), 'deg', '%');
+    }
+
+    .vs-region__bg .stop-a {
+      stop-color: map_get($map, 'from');
+    }
+
+    .vs-region__bg .stop-b {
+      stop-color: map_get($map, 'to');
+    }
+  }
+}
