@@ -1,0 +1,36 @@
+// Block
+// ----------------------------------------------------------------------------
+
+.vs-outline {
+  display: inline-block;
+  clear: both;
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-outline text {
+  stroke-width: 3;
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-outline--applied {
+  font-weight: 500;
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+
+    .vs-outline .stop-a {
+      stop-color: lighten(map_get($map, 'to'), 20%);
+    }
+
+    .vs-outline .stop-b {
+      stop-color: map_get($map, 'from');
+    }
+  }
+}
