@@ -17,9 +17,15 @@ export default () => {
   }
 
   function stickyBasket() {
-    var $basket = $('.vs-sticky-basket');
-    var basket_height = $basket.outerHeight();
-    var basket_offset_top = $basket.offset().top;
+    var $sticky_basket = $('.vs-sticky-basket');
+    
+    // If there's no sticky basket in the page, bailout.
+    if (!$sticky_basket.length) {
+      return;
+    }
+
+    var basket_height = $sticky_basket.outerHeight();
+    var basket_offset_top = $sticky_basket.offset().top;
     var offset = window.innerHeight + window.scrollY;
 
     if (offset < basket_offset_top) {
