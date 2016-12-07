@@ -26,7 +26,7 @@
           scrolling="no"></iframe>
 </div>
 
-<div class="vs-region vs-region--gradient-default vs-region--no-padding">
+<div class="vs-region vs-region--gradient-default vs-region--no-padding vs-region--hide-bg-spacer">
   <div class="vs-sticky-basket">
     <div class="vs-sticky-basket__wrapper">
       <div class="container">

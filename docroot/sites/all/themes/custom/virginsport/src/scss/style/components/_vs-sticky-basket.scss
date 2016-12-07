@@ -10,12 +10,23 @@ vs-sticky-basket,
   position: relative;
   z-index: 5;
 
-  &.vs-sticky-basket--reveal .vs-sticky-basket__wrapper {
-    @include transform(translateY(0));
+  &:not(.vs-sticky-basket--top) .vs-sticky-basket__wrapper {
+     @include transform(none);
+     @include transition-duration(0s);
   }
 
-  &.vs-sticky-basket--hide .vs-sticky-basket__wrapper {
-    @include transform(translateY(100px));
+  &.vs-sticky-basket--top .vs-sticky-basket__wrapper {
+    opacity: 0;
+    @include transform(translateY(100%));
+  }
+
+   &.vs-sticky-basket--reset-opacity .vs-sticky-basket__wrapper {
+    opacity: 1;
+  }
+
+  &.vs-sticky-basket--reveal .vs-sticky-basket__wrapper {
+    opacity: 1;
+    @include transform(translateY(0));
   }
 }
 
@@ -69,11 +80,16 @@ vs-sticky-basket,
 // Modifiers
 // ----------------------------------------------------------------------------
 
+.vs-sticky-basket--top .vs-sticky-basket__wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .vs-sticky-basket--bottom .vs-sticky-basket__wrapper {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: $sticky-basket-height;
 }
 
 
