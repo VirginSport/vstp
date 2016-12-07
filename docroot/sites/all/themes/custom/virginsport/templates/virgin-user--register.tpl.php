@@ -159,7 +159,11 @@ $query = drupal_get_query_parameters();
                                 <label class="vs-focus-label" for="field_address_country"><?php print t('Country'); ?>*</label>
                                 <div class="vs-error-label" v-if="$vs_user_register_validator.field_address_country.dirty && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
                               </div>
-                              <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                              <?php
+                              /* TODO implement tootip field
+                                <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                              */
+                              ?>
                             </div>
                           </div>
 
@@ -169,7 +173,11 @@ $query = drupal_get_query_parameters();
                               <label class="vs-focus-label"><?php print t('Contact Number'); ?>*</label>
                               <div class="vs-error-label" v-if="$vs_user_register_validator.field_contact_number.dirty && $vs_user_register_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
                             </div>
-                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                            <?php
+                            /* TODO implement tooltip field
+                              <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                            */
+                            ?>
                           </div>
 
                           <div class="field-date vs-form-group">
@@ -190,7 +198,11 @@ $query = drupal_get_query_parameters();
                                 </div>
                               </div>
                             </div>
-                            <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                            <?php
+                            /* TODO implement tooltip field
+                              <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                            */
+                            ?>
                           </div>
 
                           <div class="field-gender vs-form-group vs-form-group--chosen">
