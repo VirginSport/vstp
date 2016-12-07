@@ -45,10 +45,25 @@ class VirginComponentPackageCardItem implements VirginComponentsInterface {
     $variables['card_image'] = $package_grapher->relation('field_card_image');
     $variables['card_color'] = $package_grapher->fieldGetOne('field_brand_color');
     $variables['card_pattern'] = $package_grapher->fieldGetOne('field_brand_pattern');
-    $variables['package_price'] = $package_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['package_currency'] = $package_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['package_nid'] = $package_grapher->property('nid');
-    $variables['festival_nid'] = $this->getFestivalNID($package_state_graper->property('nid'));
+
+    $price = $package_grapher->fieldGetOne('field_price', '', 'amount');
+    $variables['package_price'] = $price;
+
+    $festival_nid = $this->getFestivalNID($package_state_graper->property('nid'));
+    $festival_grapher = new VirginEntityGrapher('node', $festival_nid);
+    $variables['festival_nid'] = $festival_nid;
+
+    $products = array(
+      'name' => $festival_grapher->property('title'),
+      'id' => $package_state_graper->fieldGetOne('field_attendly_id'),
+      'price' => $price,
+      'brand' => $festival_grapher->property('title'),
+      'category' => '',
+    );
+
+    $variables['products'] = drupal_json_encode(array($products));
   }
 
   /**
