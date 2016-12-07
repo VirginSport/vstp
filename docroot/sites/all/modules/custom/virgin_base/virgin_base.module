@@ -314,12 +314,14 @@ function virgin_base_event_festival($event_nid) {
         LIMIT 1
       ";
 
-  $result = db_query($sql, array(':id' => $event_nid));
-  $festival_nid = $result->fetchField();
 
-  if (empty($festival_nid)) {
-    return NULL;
+  $result = db_query($sql, array(':id' => $event_nid));
+  $nid = $result->fetchField();
+
+  // Fallback to event grapher to avoid errors accessing object
+  if (empty($nid)) {
+    $nid = $event_nid;
   }
 
-  return new VirginEntityGrapher('node', node_load($festival_nid));
+  return new VirginEntityGrapher('node', node_load($nid));
 }
