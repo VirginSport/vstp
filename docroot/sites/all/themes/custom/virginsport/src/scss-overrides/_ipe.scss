@@ -35,6 +35,10 @@ body.panels-ipe-editing {
   .panels-ipe-portlet-content {
     background-color: $c-gray-light;
   }
+
+  .panels-ipe-placeholder h3 {
+    width: auto;
+  }
 }
 
 // Improve IPE elements
@@ -369,5 +373,11 @@ div.panels-ipe-placeholder {
     margin-top: -3px;
     width: 100.3%;
     border-color: rgba(0,0,0,0.2);
+  }
+}
+
+#panels-ipe-control-container {
+  input.form-control.form-text {
+    padding: 5px;
   }
 }
