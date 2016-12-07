@@ -50,6 +50,8 @@ function virginsport_preprocess_virginsport_states(&$vars) {
   $entity_type = $entity->type;
   $g = new VirginEntityGrapher('node', $entity);
 
+  $vars['entity_type'] = $entity_type;
+
   switch ($entity_type) {
     case 'event':
       $state = $g->fieldGetOne('field_event_status');

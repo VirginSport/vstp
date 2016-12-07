@@ -10,6 +10,7 @@
  *   panel of the layout.
  * - $editor_mode: If the template is being used by an editor
  * - $state: The state of the entity
+ * - $entity_type: The type of the entity
  */
 
 if (!isset($editor_mode) && !isset($state)) {
@@ -77,8 +78,14 @@ if (!isset($editor_mode) && !isset($state)) {
       <option value="announced"><?php print t('Announced'); ?></option>
       <option value="open"><?php print t('Open'); ?></option>
       <option value="in_progress"><?php print t('In Progress'); ?></option>
-      <option value="over"><?php print t('Over (Festival Only)'); ?></option>
-      <option value="closed"><?php print t('Closed (Event Only)'); ?></option>
+
+      <?php if ($entity_type == 'festival'): ?>
+        <option value="over"><?php print t('Over'); ?></option>
+      <?php endif; ?>
+
+      <?php if ($entity_type == 'event'): ?>
+        <option value="closed"><?php print t('Closed'); ?></option>
+      <?php endif; ?>
     </select>
   </div>
 
