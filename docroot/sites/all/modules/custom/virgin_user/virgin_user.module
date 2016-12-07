@@ -497,7 +497,8 @@ function virgin_user_user_login(&$edit, $account) {
     // If the user does not have items in his basket, redirect him to his
     // preferred region immediatly.
     if (!$basket_items) {
-      virgin_region_user_redirect($account->uid, virgin_region_current());
+      $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
+      virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
     }
 
     // If the user however has items in his basket, check if he's currently in
