@@ -41,6 +41,17 @@ $c-yellow:                    #FBF13F;
 
 // Brand color schemes
 $color-schemes: (
+  default: (
+    solid-color: #F0F0F0,
+    text-color: $c-black,
+    from: #F0F0F0,
+    to: #F0F0F0,
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: #F0F0F0,
+    outline-to: #F0F0F0,
+    outline-rotate: 0%
+  ),
   black: (
     solid-color: $c-black,
     text-color: $c-white,
