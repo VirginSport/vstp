@@ -171,6 +171,9 @@ class Outline {
     
     // Apply the gradient rotation
     let bgRotation = parseInt(style['backgroundSize'], 10);
+  
+    // If for some reason rotation could not be parsed, fallback to 0
+    bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
     
     setAttributes(this.gradient, {
       gradientTransform: `rotate(${bgRotation})`
