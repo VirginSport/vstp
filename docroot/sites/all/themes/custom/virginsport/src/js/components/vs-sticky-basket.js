@@ -6,64 +6,80 @@ import qs from 'qs';
 
 export default () => {
   let basketCount = 0;
-  let $el = $('.vs-sticky-basket');
+  let $sticky_basket = $('.vs-sticky-basket');
 
+  // If there's no sticky basket in the page, bailout.
+  if (!$sticky_basket.length) {
+    return;
+  }
+
+  /**
+   * Apply class to fix element on bottom
+   */
   function pinBasket() {
-    $el.addClass('vs-sticky-basket--bottom');
+    $sticky_basket.addClass('vs-sticky-basket--bottom');
   }
 
+  /**
+   * Apply class to remove element from bottom
+   */
   function unpinBasket() {
-    $el.removeClass('vs-sticky-basket--bottom');
+    $sticky_basket.removeClass('vs-sticky-basket--bottom');
   }
 
+  /**
+   * Logic for sticky basket
+   */
   function stickyBasket() {
-    var $sticky_basket = $('.vs-sticky-basket');
-    
-    // If there's no sticky basket in the page, bailout.
-    if (!$sticky_basket.length) {
-      return;
-    }
+    let basket_height = $sticky_basket.outerHeight();
+    let basket_offset_top = $sticky_basket.offset().top;
+    let offset = window.innerHeight + window.scrollY;
 
-    var basket_height = $sticky_basket.outerHeight();
-    var basket_offset_top = $sticky_basket.offset().top;
-    var offset = window.innerHeight + window.scrollY;
-
+    // On scroll up if we pass the top line of the element stick it just below the window bottom
     if (offset < basket_offset_top) {
-      $el.addClass('vs-sticky-basket--top');
+      $sticky_basket.addClass('vs-sticky-basket--top');
     }
 
-    if (offset > basket_offset_top) {
-      $el.removeClass('vs-sticky-basket--top');
+    // On scroll down if we pass the top line less the basket height (to avoid fast scroll element flip flop)
+    // remove top class and put it on original position and remove reset opacity to restore original opacity 0
+    // and hide transition
+    if (offset > basket_offset_top - basket_height) {
+      $sticky_basket.removeClass('vs-sticky-basket--top').removeClass('vs-sticky-basket--reset-opacity');
     }
 
-    if (!basketCount) {
-      return;
-    }
-
-    if (offset < basket_offset_top + basket_height) {
+    // Pin element if on scroll up we pass its bottom line and basket has items
+    if (basketCount && offset < basket_offset_top + basket_height) {
       pinBasket();
     }
 
+    // Unpin element if on scroll down we pass its bottom line
     if (offset > basket_offset_top + basket_height) {
-     unpinBasket();
+      unpinBasket();
     }
   }
 
+  // Basket counter event listener
   $('.vs-header__basket__value').on('basket_counter_changed', function (event, value) {
+    // update basketCount with new value
     basketCount = value;
 
+    // Apply sticky basket logic
     stickyBasket();
 
     if (value > 0) {
-      $el.addClass('vs-sticky-basket--reveal');
+      // If basket has items reveal sticky bar with transition
+      $sticky_basket.addClass('vs-sticky-basket--reveal').removeClass('vs-sticky-basket--reset-opacity');
       pinBasket();
     } else {
-      $el.removeClass('vs-sticky-basket--reveal');
+      // If basket does not have items move sticky bar to its original position
+      $sticky_basket.addClass('vs-sticky-basket--reset-opacity').removeClass('vs-sticky-basket--reveal');
       unpinBasket();
     }
   });
 
+  // Apply sticky basket logic
   stickyBasket();
 
+  // Apply sticky basket every time a scroll occur
   $(window).scroll(stickyBasket);
 };
