@@ -61,3 +61,21 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer Ticket Cards-->
+<script>
+  dataLayer.push(
+    {
+      'page': 'detail',
+      'ecommerce': {
+        'detail': {
+          'actionField': {
+            'list': ['Ticket Cards']
+          },
+          'products': <?php print $products; ?>
+        }
+      }
+    }
+  );
+</script>
+<!-- End Google Tag Manager Data Layer Ticket Cards-->
