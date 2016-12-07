@@ -89,3 +89,21 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer Untimed Event Cards-->
+<script>
+  dataLayer.push(
+    {
+      'page': 'detail',
+      'ecommerce': {
+        'detail': {
+          'actionField': {
+            'list': ['Untimed Event Cards']
+          },
+          'products': <?php print $products; ?>
+        }
+      }
+    }
+  );
+</script>
+<!-- End Google Tag Manager Data Layer Untimed Event Cards-->
