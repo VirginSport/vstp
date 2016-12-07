@@ -1,36 +1,36 @@
 
 // Components
-import vsStickyBasket from './components/vs-sticky-basket';
 import vsBasket from './components/vs-basket';
-import vsVideo from './components/vs-video';
-import vsSlick from './components/vs-slick';
 import vsContactForm from './components/vs-contact-form';
 import vsHeader from './components/vs-header';
 import vsIFrame from './components/vs-iframe';
 import vsIPE from './components/vs-ipe';
 import vsOutline from './components/vs-outline';
 import vsRegion from './components/vs-region';
-import vsUserProfile from './components/vs-user-profile';
-import vsUserLogin from './components/vs-user-login';
-import vsUserRegister from './components/vs-user-register';
-import vsUserPassword from './components/vs-user-password';
 import vsSharer from './components/vs-sharer';
+import vsSlick from './components/vs-slick';
+import vsStickyBasket from './components/vs-sticky-basket';
+import vsUserLogin from './components/vs-user-login';
+import vsUserPassword from './components/vs-user-password';
+import vsUserProfile from './components/vs-user-profile';
+import vsUserRegister from './components/vs-user-register';
+import vsVideo from './components/vs-video';
 
 vsBasket();
-vsStickyBasket();
-vsVideo();
-vsSlick();
 vsContactForm();
 vsHeader();
 vsIFrame();
 vsIPE();
 vsOutline();
 vsRegion();
-vsUserProfile();
-vsUserLogin();
-vsUserRegister();
-vsUserPassword();
 vsSharer();
+vsSlick();
+vsStickyBasket();
+vsUserLogin();
+vsUserPassword();
+vsUserProfile();
+vsUserRegister();
+vsVideo();
 
 
 // Libs
