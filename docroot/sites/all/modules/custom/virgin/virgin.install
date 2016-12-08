@@ -70,3 +70,10 @@ function virgin_update_7006() {
 function virgin_update_7007() {
   module_disable(array('mollom'));
 }
+
+/**
+ * Enables admin_views, views_bulk_operations
+ */
+function virgin_update_7008() {
+  module_enable(array('admin_views', 'views_bulk_operations'));
+}
