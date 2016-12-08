@@ -50,6 +50,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
 
   $query->addField('n', 'nid', 'festival_node_id');
+  $query->addField('n', 'title', 'festival_node_title');
   $query->addField('nev', 'nid', 'event_node_id');
 
   $query
@@ -100,7 +101,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     }
 
     // Add ticket to to festival array
-    $data[$ticket->festival_node_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $ticket, 'event' => $event, 'ticket_type' => $ticket_type));
+    $data[$ticket->festival_node_id]['tickets'] .= theme('virgin_user__ticket', array('ticket' => $ticket, 'event' => $event, 'ticket_type' => $ticket_type, 'festival_upcoming' => !empty($conf['upcoming'])));
   }
 
   $block = new stdClass();
