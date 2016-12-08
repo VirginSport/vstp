@@ -133,6 +133,56 @@ function virgin_region_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-region-field_icon_image'.
+  $field_instances['node-region-field_icon_image'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_icon_image',
+    'label' => 'Icon Image',
+    'required' => 1,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-region-title_field'.
   $field_instances['node-region-title_field'] = array(
     'bundle' => 'region',
@@ -197,6 +247,7 @@ function virgin_region_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Flag Image');
   t('Hostname');
+  t('Icon Image');
   t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
   t('Name');
 

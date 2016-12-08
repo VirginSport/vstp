@@ -624,12 +624,25 @@ function virgin_base_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'blue' => 'Blue',
+        'blue-solid' => 'Blue (Solid)',
         'teal' => 'Teal',
+        'teal-solid' => 'Teal (Solid)',
         'orange' => 'Orange',
+        'orange-solid' => 'Orange (Solid)',
         'purple' => 'Purple',
+        'purple-solid' => 'Purple (Solid)',
         'brown' => 'Brown',
+        'brown-solid' => 'Brown (Solid)',
         'rose' => 'Rose',
+        'rose-solid' => 'Rose (Solid)',
         'violet' => 'Violet',
+        'violet-solid' => 'Violet (Solid)',
+        'red' => 'Red',
+        'red-yellow' => 'Red / Yellow',
+        'red-pinky-red' => 'Red / Pinky-Red',
+        'festival-hackney' => 'Festival: Hackney',
+        'festival-british' => 'Festival: British',
+        'festival-sanfran' => 'Festival: SanFran'
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -1862,6 +1875,27 @@ function virgin_base_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_icon_image'.
+  $field_bases['field_icon_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_icon_image',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_image_effect'.

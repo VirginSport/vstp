@@ -949,6 +949,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'create fieldable vs_video_banner'.
+  $permissions['create fieldable vs_video_banner'] = array(
+    'name' => 'create fieldable vs_video_banner',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
   // Exported permission: 'create fieldable vs_video_block'.
   $permissions['create fieldable vs_video_block'] = array(
     'name' => 'create fieldable vs_video_block',
@@ -1281,6 +1291,16 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete fieldable vs_untimed_event_cards'.
   $permissions['delete fieldable vs_untimed_event_cards'] = array(
     'name' => 'delete fieldable vs_untimed_event_cards',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'delete fieldable vs_video_banner'.
+  $permissions['delete fieldable vs_video_banner'] = array(
+    'name' => 'delete fieldable vs_video_banner',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
@@ -1677,6 +1697,16 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'edit fieldable vs_untimed_event_cards'.
   $permissions['edit fieldable vs_untimed_event_cards'] = array(
     'name' => 'edit fieldable vs_untimed_event_cards',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'edit fieldable vs_video_banner'.
+  $permissions['edit fieldable vs_video_banner'] = array(
+    'name' => 'edit fieldable vs_video_banner',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
