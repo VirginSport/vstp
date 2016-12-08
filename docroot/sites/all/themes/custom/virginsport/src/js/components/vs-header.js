@@ -2,6 +2,8 @@ import $ from '../lib/jquery';
 import Headroom from 'headroom.js';
 import onResize from '../helper/on-resize';
 
+let mainNavOffset = 0;
+
 export default function () {
   let $body = $('body');
   let $header = $('.vs-header');
@@ -70,6 +72,17 @@ function mobileMenu($body, $header) {
 }
 
 /**
+ * Update main nav offset based on relative elements that might appear before it
+ */
+function updateMainNavOffset(vsHeader) {
+  // Get non sticky notifications height
+  var notificationsHeight = $('.vs-notification--not-sticky').innerHeight();
+
+  // increment main nav offset with notifications height
+  vsHeader.offset = mainNavOffset + notificationsHeight;
+}
+
+/**
  * Applies all required header animations
  *
  * @param $body
@@ -87,7 +100,7 @@ function headerAnimation() {
 
   // Jquery elements
   let headerProperties = {
-    offset: 20,
+    offset: mainNavOffset,
     tolerance: 5,
     classes: {
       initial:    "animated",               // when element is initialised
@@ -159,7 +172,14 @@ function headerAnimation() {
 
   vsHeader.init();
 
+  // Update the main nav offset
+  window.setTimeout(function () {
+    updateMainNavOffset(vsHeader);
+  }, 500);
+
   onResize(() => {
+    updateMainNavOffset(vsHeader);
+
     // If vs-subnav element doesn't exist we don't need to do nothing
     if (!subnav) {
       return;
