@@ -142,7 +142,11 @@ function virginsport_preprocess_page(&$vars) {
   $cookie_template = theme('virginsport_notification', array('message' => $message));
   drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
 
+  // Add content data to google tag manager data layer
   virginsport_add_gtm_data_layer($vars);
+
+  // Add collected google tag manager data layer events
+  $vars['data_layer_events'] = virgin_gtm()->get();
 }
 
 /**

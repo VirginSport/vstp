@@ -267,3 +267,11 @@
   dataLayer = <?php print $gtm_data_layer; ?>;
 </script>
 <!-- End Google Tag Manager Data Layer -->
+
+<!-- Push collected events to Google Tag Manager Data Layer -->
+<script>
+  <?php foreach ($data_layer_events as $event): ?>
+    dataLayer.push(<?php print $event; ?>);
+  <?php endforeach; ?>
+</script>
+<!-- End Push collected events to Google Tag Manager Data Layer -->
