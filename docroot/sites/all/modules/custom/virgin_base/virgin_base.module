@@ -61,9 +61,7 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
  * Implements hook_form_alter()
  *
  * Change the access to region field_hostname
- *
  */
-
 function virgin_base_form_alter(&$form, &$form_state, $form_id) {
   global $user;
 
@@ -99,6 +97,18 @@ function virgin_base_form_fieldable_panels_panes_fieldable_panels_pane_content_t
   foreach ($move_to_extra as $field_name) {
     $form['extra_config'][$field_name] = $form[$field_name];
     unset($form[$field_name]);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for scald_extra_atom_add_form_options.
+ */
+function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form_state, $form_id) {
+
+  // Hide the authors and actions fields from the scald interface
+  if (!empty($form['atom0'])) {
+    $form['atom0']['scald_authors']['#access'] = FALSE;
+    $form['atom0']['scald_actions']['#access'] = FALSE;
   }
 }
 
