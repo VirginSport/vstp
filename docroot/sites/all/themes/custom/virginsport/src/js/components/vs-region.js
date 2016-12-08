@@ -107,6 +107,12 @@ class Region {
    * Update the SVG element
    */
   update() {
+    
+    // If the parent element is not visible, bailout
+    if (this.el.offsetParent === null) {
+      return;
+    }
+    
     let width = this.el.offsetWidth;
     let height = this.el.offsetHeight;
     
