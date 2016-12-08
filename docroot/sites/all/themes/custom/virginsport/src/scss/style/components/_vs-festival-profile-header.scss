@@ -215,7 +215,7 @@ vs-festival-profile-header,
     .vs-festival-profile-header--upcoming & {
       position: relative;
       width: 100%;
-      padding: .75rem 4.375rem 1.375rem 4.375rem;
+      padding: .75rem 0 1.375rem 0;
       text-align: left;
     }
   }
@@ -223,7 +223,7 @@ vs-festival-profile-header,
   .vs-festival-profile-header__buttons-wrapper {
     .vs-festival-profile-header--upcoming & {
       @include center(false, true);
-      right: 3.938rem;
+      right: 0;
       margin: 0;
       text-align: right;
     }
@@ -232,5 +232,20 @@ vs-festival-profile-header,
   .vs-festival-profile-header__past-title {
     margin-left: 4.0625rem;
     padding-top: 1.25rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-festival-profile-header__content {
+    .vs-festival-profile-header--upcoming & {
+      padding-left: 4.375rem;
+      padding-right: 4.375rem;
+    }
+  }
+
+  .vs-festival-profile-header__buttons-wrapper {
+    .vs-festival-profile-header--upcoming & {
+      right: 3.938rem;
+    }
   }
 }

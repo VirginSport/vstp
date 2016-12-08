@@ -302,10 +302,11 @@
                           </div>
 
                           <div class="vs-form-group pass1">
-                            <input class="form-control" type="password" v-model="profile.pass1" name="pass1" v-validate:pass1="{ minlength: 8, required: true }">
+                            <input class="form-control" type="password" v-model="profile.pass1" name="pass1" v-validate:pass1="{ minlength: 8, required: true, pattern: '/[0-9]+/' }">
                             <label class="vs-focus-label"><?php print t('New Password'); ?>*</label>
                             <div class="vs-error-label" v-if="$vs_user_password_validator.pass1.dirty && $vs_user_password_validator.pass1.required"><?php print t('New Password is required'); ?></div>
                             <div class="vs-error-label" v-if="!$vs_user_password_validator.pass1.required && $vs_user_password_validator.pass1.minlength"><?php print t('New Password must have at least 8 characters'); ?></div>
+                            <div class="vs-error-label" v-if="!$vs_user_password_validator.pass1.required && $vs_user_password_validator.pass1.pattern"><?php print t('New Password must have at least one number'); ?></div>
                           </div>
 
                           <div class="vs-form-group pass2">

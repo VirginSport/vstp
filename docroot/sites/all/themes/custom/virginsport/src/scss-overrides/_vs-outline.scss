@@ -1,0 +1,57 @@
+// Block
+// ----------------------------------------------------------------------------
+
+.vs-outline {
+  display: inline-block;
+  clear: both;
+  visibility: hidden;
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-outline text {
+  stroke-width: 3;
+
+  @include media-breakpoint-down('lg') {
+    stroke-width: 2;
+  }
+
+  @include media-breakpoint-down('xs') {
+    stroke-width: 1;
+  }
+}
+
+.vs-promo-banner__title text {
+  stroke-width: 2 !important;
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-outline--applied {
+  font-weight: 500;
+  visibility: visible;
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-introduction--gradient-#{$color},
+  .vs-promo-banner--color-#{$color} {
+    .vs-outline {
+      // HACK: We're passing the background rotation value vie the background
+      // size property to the JS. This value will be parsed by the JS and
+      // transformed to the rotation value of the outline background.
+      background-size: map_get($map, 'outline-rotate');
+    }
+
+    .vs-outline .stop-a {
+      stop-color: map_get($map, 'outline-from');
+    }
+
+    .vs-outline .stop-b {
+      stop-color: map_get($map, 'outline-to');
+    }
+  }
+}

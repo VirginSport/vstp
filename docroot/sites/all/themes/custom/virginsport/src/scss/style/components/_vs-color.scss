@@ -37,7 +37,7 @@ vs-color,
 
   .vs-color--color-#{$color} {
     .vs-color__layer-1 {
-      @include gradient-directional(map_get($map, 'from') 0, map_get($map, 'to') 60%, 135deg);
+      @include gradient-directional(map_get($map, 'from') 0, map_get($map, 'to') 60%, map_get($map, 'card-rotate'));
     }
 
     .vs-color__layer-3 {
