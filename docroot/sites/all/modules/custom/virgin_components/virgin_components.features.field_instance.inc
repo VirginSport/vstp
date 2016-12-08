@@ -1382,8 +1382,8 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'fieldable_panels_pane-vs_hero_event_card-field_card_colour'.
-  $field_instances['fieldable_panels_pane-vs_hero_event_card-field_card_colour'] = array(
+  // 'fieldable_panels_pane-vs_hero_event_card-field_brand_color'.
+  $field_instances['fieldable_panels_pane-vs_hero_event_card-field_brand_color'] = array(
     'bundle' => 'vs_hero_event_card',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1392,19 +1392,15 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
+        'settings' => array(),
         'type' => 'list_default',
-        'weight' => 4,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_card_colour',
-    'label' => 'Brand Colour',
-    'required' => 0,
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -1416,7 +1412,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 2,
     ),
   );
 
@@ -1473,7 +1469,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1512,7 +1508,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -1561,7 +1557,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'options_select',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -1605,7 +1601,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 1,
     ),
   );
 
@@ -5178,7 +5174,6 @@ function virgin_components_field_default_field_instances() {
   t('Banner Image Title');
   t('Banners');
   t('Brand Color');
-  t('Brand Colour');
   t('CTA Blocks');
   t('CTA Description');
   t('CTA Type');

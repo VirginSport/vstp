@@ -700,38 +700,6 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_card_colour'.
-  $field_bases['field_card_colour'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_card_colour',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'blue' => 'Blue',
-        'teal' => 'Teal',
-        'orange-yellow' => 'Orange-yellow',
-        'purple' => 'Purple',
-        'crimson-purple' => 'Crimson-purple',
-        'pink' => 'Pink',
-        'white' => 'White',
-        'yellow-violet' => 'Yellow-violet',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_card_image'.
   $field_bases['field_card_image'] = array(
     'active' => 1,

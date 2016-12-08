@@ -15,3 +15,14 @@ function virgin_components_update_7001() {
     field_delete_instance($instance);
   }
 }
+
+/**
+ * Delete vs accordion fpp field card colour.
+ */
+function virgin_components_update_7002() {
+  $instance = field_info_instance('fieldable_panels_pane', 'field_card_colour', 'vs_hero_event_card');
+
+  if (!empty($instance)) {
+    field_delete_instance($instance);
+  }
+}
