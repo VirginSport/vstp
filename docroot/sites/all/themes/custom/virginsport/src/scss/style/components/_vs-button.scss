@@ -71,9 +71,14 @@
       @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
     }
 
-    &:focus {
-      color: $c-white;
+    @if (map-has-key($map, 'text-color-focus')) {
+      &:hover,
+      &:focus {
+        color: map_get($map, 'text-color-focus');
+      }
     }
+
+    color: map_get($map, 'text-color');
   }
 }
 

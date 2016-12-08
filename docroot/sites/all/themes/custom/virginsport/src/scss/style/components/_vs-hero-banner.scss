@@ -28,6 +28,8 @@ vs-hero-banner,
 
 .vs-head-region .vs-hero-banner__background--fixed {
   position: fixed;
+  max-height: 100%;
+  top: 0;
 }
 
 
@@ -132,6 +134,16 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner__logo {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: auto;
+  margin-bottom: 1.25rem;
+  max-height: 4.688rem;
+  max-width: 12rem;
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -151,6 +163,13 @@ vs-hero-banner,
 
   .vs-hero-banner__background {
     padding: 3.5rem 0;
+  }
+
+  .vs-hero-banner__logo,
+  .vs-hero-banner__logo-image {
+    max-height: 10.313rem;
+    max-width: 54rem;
+    margin-bottom: 2rem;
   }
 
   .vs-hero-banner__days-left-wrapper {

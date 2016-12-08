@@ -202,6 +202,7 @@ function virgin_region_regions() {
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
+        'icon' => $node_wrapper->field_icon_image->value(),
         'hostname' => $hostname
       );
     }
@@ -259,11 +260,13 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
  * Redirect user to its region.
  *
  * @param $uid
- * The account uid
+ *  The account uid
  * @param $current_region
- * The Region array
+ *  The region array
+ * @param string $destination
+ *  The destination the user should be redirected to under the user's region
  */
-function virgin_region_user_redirect($uid, $current_region) {
+function virgin_region_user_redirect($uid, $current_region, $destination = 'user') {
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
@@ -278,17 +281,32 @@ function virgin_region_user_redirect($uid, $current_region) {
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
 
-    // If the user is already on his region, bailout now.
+    // If the user is already on his region, bailout now
     if ($current_region && $current_region['hostname'] == $hostname) {
       return;
     }
 
-    // Otherwise redirect the user to his profile page on his host region
-    $url = virgin_region_add_hostname_protocol($hostname . '/user');
+    // If the hostname empty, bailout now.
+    if (empty($hostname)) {
+      return;
+    }
 
-    // Unset destination, otherwise url is ignored
+    // If the destination URL is for some reason external, redirect the user
+    // to his region profile page, otherwise fetch the path alias.
+    if (url_is_external($destination)) {
+      $destination = 'user';
+    } else {
+      $destination = drupal_get_path_alias($destination);
+    }
+
+    // Build the final redirection URL with the correct protocol
+    $url = virgin_region_add_hostname_protocol($hostname . '/' . $destination);
+
+    // Ensure destination parameter is unset, or drupal_goto will not redirect
+    // to the url but to the destination.
     unset($_GET['destination']);
 
+    // And finally, redirect the user to his region
     drupal_goto($url);
   }
 }

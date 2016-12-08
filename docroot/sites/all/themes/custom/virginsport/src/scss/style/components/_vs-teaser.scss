@@ -1090,13 +1090,11 @@ vs-teaser,
     .vs-teaser__text {
       color: map_get($map, 'text-color');
     }
+  }
 
+  .vs-introduction--gradient-#{$color} {
     .vs-teaser__title {
       color: map_get($map, 'from');
-    }
-
-    .vs-introduction__content .vs-teaser__title {
-      color: $c-white;
     }
 
     .vs-teaser__subtitle:after {

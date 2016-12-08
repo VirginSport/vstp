@@ -65,6 +65,7 @@ features[field_instance][] = fieldable_panels_pane-vs_photo_gallery-title_field
 features[field_instance][] = fieldable_panels_pane-vs_promo_banner-field_component_heading
 features[field_instance][] = fieldable_panels_pane-vs_promo_banner-field_promo_banners
 features[field_instance][] = fieldable_panels_pane-vs_promo_banner-title_field
+features[field_instance][] = fieldable_panels_pane-vs_teaser_block-field_brand_color
 features[field_instance][] = fieldable_panels_pane-vs_teaser_block-field_hero_image
 features[field_instance][] = fieldable_panels_pane-vs_teaser_block-field_teasers
 features[field_instance][] = fieldable_panels_pane-vs_teaser_block-title_field

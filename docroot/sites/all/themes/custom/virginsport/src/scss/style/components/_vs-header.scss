@@ -15,6 +15,10 @@ vs-header,
   &.vs-header--pinned {
     @include transform(translateY(0));
   }
+
+  &.vs-header--top {
+    position: absolute;
+  }
 }
 
 @include media-breakpoint-up(md) {
@@ -285,6 +289,7 @@ vs-header,
 .vs-header--not-top {
   @include transform(translateY(-100%));
   background-color: $c-black;
+  top: 0;
 
   .vs-header__logo {
     background-image: url('../img/vs-logo-alternate.png');

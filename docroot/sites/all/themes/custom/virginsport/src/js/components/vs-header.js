@@ -93,7 +93,7 @@ function headerAnimation() {
   // Dom elements for headroom
   let header = document.querySelector('.vs-header');
   let subnav = document.querySelector('.vs-subnav');
-  
+
   if (!header) {
     return;
   }
