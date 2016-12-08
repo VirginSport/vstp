@@ -123,6 +123,23 @@ function virgin_scald_extra_modes() {
 }
 
 /**
+ * Implements hook_page_delivery_callback_alter().
+ */
+function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) {
+  $path = current_path();
+
+  // Register not found and access denied errors into gtm
+
+  if ($page_callback_result == MENU_NOT_FOUND) {
+    virgin_gtm()->addError(sprintf('The page "%s" was not found.', $path));
+  }
+
+  if ($page_callback_result == MENU_ACCESS_DENIED) {
+    virgin_gtm()->addError(sprintf('You are not authorized to access the page "%s".', $path));
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virgin_preprocess_page(&$vars) {
