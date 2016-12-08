@@ -168,6 +168,7 @@ function virgin_region_clear_cache($node) {
  *  An array of structured arrays with the following keys:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */
@@ -201,6 +202,7 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
+        'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
         'hostname' => $hostname
@@ -221,6 +223,7 @@ function virgin_region_regions() {
  *  following keys if does:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */

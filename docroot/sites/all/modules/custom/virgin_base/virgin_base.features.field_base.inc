@@ -642,7 +642,7 @@ function virgin_base_field_default_field_bases() {
         'red-pinky-red' => 'Red / Pinky-Red',
         'festival-hackney' => 'Festival: Hackney',
         'festival-british' => 'Festival: British',
-        'festival-sanfran' => 'Festival: SanFran'
+        'festival-sanfran' => 'Festival: SanFran',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -698,38 +698,6 @@ function virgin_base_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
-  );
-
-  // Exported field_base: 'field_card_colour'.
-  $field_bases['field_card_colour'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_card_colour',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'blue' => 'Blue',
-        'teal' => 'Teal',
-        'orange-yellow' => 'Orange-yellow',
-        'purple' => 'Purple',
-        'crimson-purple' => 'Crimson-purple',
-        'pink' => 'Pink',
-        'white' => 'White',
-        'yellow-violet' => 'Yellow-violet',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_card_image'.
@@ -1009,6 +977,28 @@ function virgin_base_field_default_field_bases() {
       'max_length' => 255,
     ),
     'translatable' => 1,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_country_letter_code'.
+  $field_bases['field_country_letter_code'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_country_letter_code',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 2,
+    ),
+    'translatable' => 0,
     'type' => 'text',
   );
 
@@ -2301,7 +2291,7 @@ function virgin_base_field_default_field_bases() {
   // Exported field_base: 'field_region'.
   $field_bases['field_region'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_region',

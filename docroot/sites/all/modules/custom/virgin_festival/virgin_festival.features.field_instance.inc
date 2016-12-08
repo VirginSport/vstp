@@ -222,7 +222,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 3,
@@ -284,7 +284,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 2,
@@ -346,7 +346,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 7,
@@ -785,7 +785,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 5,
@@ -847,7 +847,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 9,
@@ -972,7 +972,11 @@ function virgin_festival_field_default_field_instances() {
   // Exported field_instance: 'node-festival-field_status'.
   $field_instances['node-festival-field_status'] = array(
     'bundle' => 'festival',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'announced',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(

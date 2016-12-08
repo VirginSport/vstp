@@ -370,4 +370,24 @@ div.panels-ipe-placeholder {
     width: 100.3%;
     border-color: rgba(0,0,0,0.2);
   }
+
+  .vs-cta-btn__style,
+  .vs-cta-btn__type,
+  .vs-cta-btn__festival,
+  .vs-cta-btn__event {
+    float: left;
+    min-width: 200px;
+    max-width: 200px;
+    padding-right: 20px;
+
+    label {
+      clear: both;
+      display: block;
+    }
+
+    .chosen-container {
+      padding: 7px;
+      margin-left: 0;
+    }
+  }
 }
