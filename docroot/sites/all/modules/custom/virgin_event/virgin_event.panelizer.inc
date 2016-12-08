@@ -59,6 +59,16 @@ function virgin_event_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
+      'announced_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'announced_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
       'open_first' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
@@ -75,6 +85,16 @@ function virgin_event_panelizer_defaults() {
         'overlap' => 'none',
       ),
       'open_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'open_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'open_sixth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
@@ -99,6 +119,16 @@ function virgin_event_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
+      'in_progress_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in_progress_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
       'over_first' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
@@ -115,6 +145,16 @@ function virgin_event_panelizer_defaults() {
         'overlap' => 'none',
       ),
       'over_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_sixth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
@@ -139,6 +179,16 @@ function virgin_event_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
+      'closed_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
       'default' => NULL,
     ),
     'first' => array(
@@ -156,6 +206,12 @@ function virgin_event_panelizer_defaults() {
     'announced_fourth' => array(
       'style' => 'curve',
     ),
+    'announced_fifth' => array(
+      'style' => 'curve',
+    ),
+    'announced_sixth' => array(
+      'style' => 'curve',
+    ),
     'open_first' => array(
       'style' => 'curve',
     ),
@@ -166,6 +222,12 @@ function virgin_event_panelizer_defaults() {
       'style' => 'curve',
     ),
     'open_fourth' => array(
+      'style' => 'curve',
+    ),
+    'open_fifth' => array(
+      'style' => 'curve',
+    ),
+    'open_sixth' => array(
       'style' => 'curve',
     ),
     'in_progress_first' => array(
@@ -180,6 +242,12 @@ function virgin_event_panelizer_defaults() {
     'in_progress_fourth' => array(
       'style' => 'curve',
     ),
+    'in_progress_fifth' => array(
+      'style' => 'curve',
+    ),
+    'in_progress_sixth' => array(
+      'style' => 'curve',
+    ),
     'over_first' => array(
       'style' => 'curve',
     ),
@@ -192,6 +260,12 @@ function virgin_event_panelizer_defaults() {
     'over_fourth' => array(
       'style' => 'curve',
     ),
+    'over_fifth' => array(
+      'style' => 'curve',
+    ),
+    'over_sixth' => array(
+      'style' => 'curve',
+    ),
     'closed_first' => array(
       'style' => 'curve',
     ),
@@ -202,6 +276,12 @@ function virgin_event_panelizer_defaults() {
       'style' => 'curve',
     ),
     'closed_fourth' => array(
+      'style' => 'curve',
+    ),
+    'closed_fifth' => array(
+      'style' => 'curve',
+    ),
+    'closed_sixth' => array(
       'style' => 'curve',
     ),
   );
