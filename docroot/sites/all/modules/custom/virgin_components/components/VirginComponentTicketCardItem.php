@@ -66,6 +66,7 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
 
       $variables['ticket_properties'] = $ticket_properties;
       $variables['ticket_class'] = $class;
+      $variables['ticket_level'] = $ticket_level;
       $variables['ticket_hostname'] = $this->getTicketHostname($ticket_type_state_grapher->property('nid'));
 
       $event_nid = $this->getEventNID($ticket_type_state_grapher->property('nid'));

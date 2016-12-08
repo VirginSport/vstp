@@ -48,6 +48,8 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
             href="<?php print url('node/' . $festival_nid . '/tickets'); ?>"
             class="btn vs-btn vs-btn--sm vs-btn--transparent vs-ticket-type__cta"
             vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
+            vs-ticket-event="SelectTicketsCTA"
+            vs-ticket-level="<?php print $ticket_level; ?>"
           >
             <?php print t('Select tickets');?>
           </a>

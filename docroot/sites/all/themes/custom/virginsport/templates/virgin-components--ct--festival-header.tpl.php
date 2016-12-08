@@ -70,6 +70,7 @@ $x=0;
                 href="<?php print url('node/' . $nid . '/tickets'); ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>"
                 vs-ticket-hostname="<?php print check_plain($festival_hostname); ?>"
+                vs-ticket-event="SelectTicketsCTA"
               >
                 <?php print t('Select Tickets'); ?>
               </a>

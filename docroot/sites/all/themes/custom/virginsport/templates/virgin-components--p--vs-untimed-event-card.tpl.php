@@ -68,6 +68,7 @@
               class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
               href="<?php print url('node/' . $festival_id . '/tickets'); ?>"
               vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
+              vs-ticket-event="GetTicketsCTA"
             >
               <?php print t('Get tickets'); ?>
             </a>
