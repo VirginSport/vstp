@@ -10,6 +10,51 @@
 function virgin_region_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-region-field_country_letter_code'.
+  $field_instances['node-region-field_country_letter_code'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_country_letter_code',
+    'label' => 'Country Letter Code',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-region-field_flag_image'.
   $field_instances['node-region-field_flag_image'] = array(
     'bundle' => 'region',
@@ -68,7 +113,7 @@ function virgin_region_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -129,7 +174,7 @@ function virgin_region_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -179,7 +224,7 @@ function virgin_region_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 3,
+      'weight' => 5,
     ),
   );
 
@@ -245,6 +290,7 @@ function virgin_region_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Country Letter Code');
   t('Flag Image');
   t('Hostname');
   t('Icon Image');
