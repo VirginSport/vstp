@@ -17,6 +17,7 @@ import vsUserRegister from './components/vs-user-register';
 import vsVideo from './components/vs-video';
 import vsCookie from './components/vs-cookie';
 import vsNotification from './components/vs-notification';
+import vsHeroBanner from './components/vs-heroBanner';
 
 vsBasket();
 vsContactForm();
@@ -35,6 +36,7 @@ vsUserRegister();
 vsVideo();
 vsCookie();
 vsNotification();
+vsHeroBanner();
 
 // Libs
 import bootstrap from './lib/bootstrap';

@@ -51,6 +51,10 @@ vs-notification,
   display: none;
 }
 
+.vs-notification--not-sticky {
+  position: relative;
+  z-index: 2;
+}
 
 .vs-notification--sticky {
   position: fixed;
