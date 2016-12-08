@@ -200,6 +200,13 @@ function initVue(selector, inModal = false) {
 
         this.$http.post(path() + 'ajax/contact-form/post', this.form).then((response) => {
           // success callback
+          let data = JSON.parse(response.data);
+
+          // Push result to google tag manager data layer
+          if (data.gtm && dataLayer) {
+            dataLayer.push(data.gtm);
+          }
+
           self.form.submitted = true;
         }, (response) => {
           self.form.error = true;
