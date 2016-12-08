@@ -15,6 +15,16 @@ class VirginGtm {
   const KEY = 'virgin_gtm';
 
   /**
+   * Register error to push later to GTM data layer
+   *
+   * @param $error_type
+   *  The error description
+   */
+  public function addError($error_type) {
+    $this->push(array('event' => 'ErrorEvent', 'ErrorType' => $error_type));
+  }
+
+  /**
    * Register event to push later to GTM data layer
    *
    * @param $event_name
