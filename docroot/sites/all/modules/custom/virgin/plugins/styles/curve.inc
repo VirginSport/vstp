@@ -6,7 +6,7 @@
  */
 
 $plugin = array(
-  'title' => t('Virgin Curve'),
+  'title' => t('Virgin Region Style'),
   'description' => t('Virgin branded region style'),
   'render region' => 'virgin_styles_curve_render_region', // @see theme_virgin_styles_curve_render_region()
   'settings form'  => 'virgin_styles_curve_settings_form',
