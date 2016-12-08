@@ -144,6 +144,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose the button style
   $element['attributes']['virgin_class'] = array(
+    '#prefix' => '<div class="vs-cta-btn__style">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Button Style'),
     '#options' => empty($options) ? array() : $options,
@@ -163,6 +165,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose between a link field and CTA buttons
   $element['attributes']['virgin_type'] = array(
+    '#prefix' => '<div class="vs-cta-btn__type">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Type'),
     '#options' => $types,
@@ -173,6 +177,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   $element['attributes']['virgin_festival'] = array(
+    '#prefix' => '<div class="vs-cta-btn__festival">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Festival Id'),
     '#default_value' => isset($attributes['virgin_festival']) ? $attributes['virgin_festival'] : '',
@@ -192,6 +198,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   $element['attributes']['virgin_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__event">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Event Id'),
     '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',
