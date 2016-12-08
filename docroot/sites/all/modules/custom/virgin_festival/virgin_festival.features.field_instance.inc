@@ -222,7 +222,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 3,
@@ -284,7 +284,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 2,
@@ -346,7 +346,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 7,
@@ -785,7 +785,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 5,
@@ -847,7 +847,7 @@ function virgin_festival_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 9,

@@ -110,7 +110,7 @@ function virgin_region_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 3,

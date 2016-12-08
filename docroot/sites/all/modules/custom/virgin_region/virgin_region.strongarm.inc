@@ -22,10 +22,10 @@ function virgin_region_strongarm() {
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
       ),
       'display' => array(),

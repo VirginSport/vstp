@@ -433,7 +433,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 2,
@@ -611,7 +611,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 9,
@@ -1326,7 +1326,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 2,
@@ -2974,7 +2974,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 2,
@@ -3019,7 +3019,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 7,
@@ -3108,7 +3108,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 3,
@@ -3153,7 +3153,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 5,
@@ -3244,7 +3244,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -8,
+      'weight' => 1,
     ),
   );
 
@@ -3289,7 +3289,7 @@ function virgin_components_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => -7,
+      'weight' => 2,
     ),
   );
 
@@ -3333,7 +3333,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -6,
+      'weight' => 3,
     ),
   );
 
@@ -3479,10 +3479,10 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -3544,7 +3544,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -3588,7 +3588,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
@@ -3640,7 +3640,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -3684,7 +3684,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -3778,7 +3778,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -3827,7 +3827,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -3890,7 +3890,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -3990,10 +3990,10 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -4348,7 +4348,7 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 0,
@@ -4399,7 +4399,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -4450,7 +4450,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -4497,10 +4497,10 @@ function virgin_components_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
@@ -4611,7 +4611,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 1,
     ),
   );
 
@@ -4659,7 +4659,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
