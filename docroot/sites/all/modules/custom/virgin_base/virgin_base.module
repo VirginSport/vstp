@@ -112,6 +112,33 @@ function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form
   }
 }
 
+/**
+ * Implements hook_views_post_render().
+ */
+function virgin_base_views_pre_build(&$view) {
+
+  // Remove action links, and extra filters for the scald atoms admin view
+  if ($view->name == 'scald_atoms') {
+
+    // Remove the action links
+    $view->header = array();
+
+    // Remove the extra filters
+    $whitelisted_filters = array(
+      'title',
+      'scald_tags_tid'
+    );
+
+    foreach ($view->filter as $key => $filter) {
+      if (in_array($key, $whitelisted_filters)) {
+        continue;
+      }
+
+      unset($view->filter[$key]);
+    }
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
