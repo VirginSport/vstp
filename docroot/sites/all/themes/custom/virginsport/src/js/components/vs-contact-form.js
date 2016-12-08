@@ -73,6 +73,15 @@ function bind($el) {
     blur();
   };
 
+  if (query['virgin_type'] == 'register_interest_form') {
+    $el.click(function() {
+      // Push event to google tag manager data layer
+      if (dataLayer) {
+        dataLayer.push({'event' : 'RegisterInterestCTA' });
+      }
+    });
+  }
+
   Drupal.ajax[base] = ajax;
 }
 
