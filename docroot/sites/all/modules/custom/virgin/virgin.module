@@ -239,6 +239,10 @@ function _virgin_exception_handler($exception) {
 
   // If it's an unhandled VirginException, attempt to handle it "gracefully".
   if ($exception instanceof VirginException) {
+
+    // Register exceptions in GTM
+    virgin_gtm()->addError($exception->getUserMessage());
+
     if ($exception->hasUserMessage()) {
       drupal_set_message($exception->getUserMessage(), 'error');
     }
