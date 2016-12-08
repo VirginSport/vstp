@@ -88,6 +88,10 @@ function virginsport_preprocess_page(&$vars) {
     $first_name = $account_wrapper->field_first_name->value();
     $last_name = $account_wrapper->field_last_name->value();
 
+    // Fallback to a 'default' name if the name fields are empty
+    $first_name = empty($first_name) ? 'Virgin' : $first_name;
+    $last_name = empty($last_name) ? 'Sport' : $last_name;
+
     $vars['account'] = array(
       'first_name' => check_plain($first_name),
       'last_name' => check_plain($last_name),
