@@ -642,7 +642,7 @@ function virgin_base_field_default_field_bases() {
         'red-pinky-red' => 'Red / Pinky-Red',
         'festival-hackney' => 'Festival: Hackney',
         'festival-british' => 'Festival: British',
-        'festival-sanfran' => 'Festival: SanFran'
+        'festival-sanfran' => 'Festival: SanFran',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
