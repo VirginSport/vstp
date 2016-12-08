@@ -94,6 +94,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   // Build the date information
   $start_date = $g_state->fieldGetOne('field_start_date');
   $end_date = $g_state->fieldGetOne('field_end_date');
+  $timezone = $g_state->fieldGetOne('field_timezone');
 
   // Fetch the header image from the grapher
   $atom = $g->relation('field_header_image');
@@ -109,7 +110,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $vars = array(
     'title' => $g->fieldGetOne('title_field'),
     'start_date' => $start_date,
+    'start_date_formatted' => format_date($start_date, 'custom', 'c', 'UTC'),
     'end_date' => $end_date,
+    'timezone' => check_plain($timezone),
     'status' => ($g->property('type') == 'festival') ? $g->fieldGetOne('field_status') : $g->fieldGetOne('field_event_status'),
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'color' => $g->fieldGetOne('field_brand_color', ''),

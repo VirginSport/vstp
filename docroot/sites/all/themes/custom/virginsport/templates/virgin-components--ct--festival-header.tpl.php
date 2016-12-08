@@ -10,8 +10,14 @@
  *  The NID of the festival
  * @var string $status
  *  The status key of the festival
- * @var int $days_left
- *  The number of days left until the festival starts
+ * @var int $start_date
+ *  The timestamp of the start date of the event
+ * @var string $start_date_formatted
+ *  The formatted date of the event start date
+ * @var int $end_date
+ *  The timestamp of the end date of the event
+ * @var string $timezone
+ *  The timezone of the start and end date of the event
  * @var stdClass $atom
  *  The atom object with the festival header image
  * @var string $color
@@ -23,22 +29,18 @@
  * @var string $festival_hostname
  *  The hostname of the region this festival is in
  */
-
-// Get number of days remaining to festival
-$days_left = virginsport_days_left($start_date);
-$x=0;
 ?>
 
-<div class="vs-hero-banner">
+<div class="vs-hero-banner" data-vs-countdown-ts="<?php print $start_date_formatted; ?>" data-vs-countdown-tz="<?php print $timezone; ?>">
   <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
 
   <div class="vs-hero-banner__background">
-    <?php if (!empty($days_left)): ?>
-      <div class="vs-hero-banner__days-left-wrapper hidden-sm-down">
-        <span class="vs-hero-banner__days-left"><?php print check_plain($days_left); ?></span>
-        <span class="vs-hero-banner__days-label"><?php print t('Days to go'); ?></span>
-      </div>
-    <?php endif; ?>
+
+    <div class="vs-hero-banner__days-left-wrapper hidden-sm-down" style="display: none">
+      <span class="vs-hero-banner__days-left"></span>
+      <span class="vs-hero-banner__days-label"></span>
+    </div>
+
     <?php if ($variables['show_sharer']==1):?>
       <div class="vs-hero-banner__social-wrapper">
         <?php print theme('virginsport_share_buttons', array('subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
@@ -51,12 +53,10 @@ $x=0;
           <h2 class="vs-hero-banner__title"><?php print check_plain($title); ?></h2>
           <div class="vs-hero-banner__date"><?php print virginsport_date_interval($start_date, $end_date); ?></div>
 
-          <?php if (!empty($days_left)): ?>
-            <div class="vs-hero-banner__days-left-wrapper hidden-md-up">
-              <span class="vs-hero-banner__days-left"><?php print check_plain($days_left); ?></span>
-              <span class="vs-hero-banner__days-label"><?php print t('Days to go'); ?></span>
-            </div>
-          <?php endif; ?>
+          <div class="vs-hero-banner__days-left-wrapper hidden-md-up" style="display: none">
+            <span class="vs-hero-banner__days-left"></span>
+            <span class="vs-hero-banner__days-label"></span>
+          </div>
 
           <div class="vs-hero-banner__button-wrapper">
             <?php if (in_array($status, array('announced', 'over'))): ?>
