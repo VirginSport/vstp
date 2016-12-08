@@ -31,6 +31,8 @@ if (!isset($editor_mode) && !isset($state)) {
     <?php print $content['announced_second']; ?>
     <?php print $content['announced_third']; ?>
     <?php print $content['announced_fourth']; ?>
+    <?php print $content['announced_fifth']; ?>
+    <?php print $content['announced_sixth']; ?>
   </div>
 <?php endif; ?>
 
@@ -40,6 +42,8 @@ if (!isset($editor_mode) && !isset($state)) {
     <?php print $content['open_second']; ?>
     <?php print $content['open_third']; ?>
     <?php print $content['open_fourth']; ?>
+    <?php print $content['open_fifth']; ?>
+    <?php print $content['open_sixth']; ?>
   </div>
 <?php endif; ?>
 
@@ -49,6 +53,8 @@ if (!isset($editor_mode) && !isset($state)) {
     <?php print $content['in_progress_second']; ?>
     <?php print $content['in_progress_third']; ?>
     <?php print $content['in_progress_fourth']; ?>
+    <?php print $content['in_progress_fifth']; ?>
+    <?php print $content['in_progress_sixth']; ?>
   </div>
 <?php endif; ?>
 
@@ -58,6 +64,8 @@ if (!isset($editor_mode) && !isset($state)) {
   <?php print $content['over_second']; ?>
   <?php print $content['over_third']; ?>
   <?php print $content['over_fourth']; ?>
+  <?php print $content['over_fifth']; ?>
+  <?php print $content['over_sixth']; ?>
 </div>
 <?php endif; ?>
 
@@ -67,6 +75,8 @@ if (!isset($editor_mode) && !isset($state)) {
   <?php print $content['closed_second']; ?>
   <?php print $content['closed_third']; ?>
   <?php print $content['closed_fourth']; ?>
+  <?php print $content['closed_fifth']; ?>
+  <?php print $content['closed_sixth']; ?>
 </div>
 <?php endif; ?>
 
