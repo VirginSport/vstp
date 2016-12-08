@@ -303,6 +303,14 @@ function virgin_user_form_user_login_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for user_pass.
+ */
+function virgin_user_form_user_pass_alter(&$form, &$form_state, $form_id) {
+  // Add custom validation callback
+  $form['#validate'][] = 'virgin_user_form_user_pass_validate';
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for user_register_form.
  */
 function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_id) {
@@ -609,6 +617,20 @@ function virgin_user_observer_notify($account) {
 function virgin_user_form_user_login_validate(&$form, &$form_state) {
   // Add sign in attempt event
   virgin_gtm()->addEvent('SignInAttempt');
+}
+
+/**
+ * Validation callback for the user_pass form.
+ *
+ * @see virgin_user_form_user_pass_alter()
+ */
+function virgin_user_form_user_pass_validate(&$form, &$form_state) {
+  $name = trim($form_state['values']['name']);
+
+  if (form_get_errors()) {
+    // Push error to gtm
+    virgin_gtm()->addError(sprintf('Sorry, %s is not recognized as a user name or an e-mail address.', $name));
+  }
 }
 
 /**
