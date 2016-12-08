@@ -130,7 +130,8 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
-      'field_festival_state' => $state
+      'field_festival_state' => $state,
+      'field_status' => 'announced'
     );
 
     foreach ($fields as $key => $value) {
