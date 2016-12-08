@@ -26,7 +26,6 @@ dependencies[] = fieldable_panels_panes
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = i18n_menu
-dependencies[] = mollom
 dependencies[] = money
 dependencies[] = mailsystem
 dependencies[] = mimemail
