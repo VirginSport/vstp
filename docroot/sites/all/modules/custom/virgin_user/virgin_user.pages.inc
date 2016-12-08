@@ -495,7 +495,25 @@ function virgin_user_page_ajax_form_post() {
     'gtm' => $gtm,
   );
 
-  $result['result'] = sugarcrm_client()->systemPost('Virgin/form', $params);
+  try {
+    $result['result'] = sugarcrm_client()->systemPost('Virgin/form', $params);
+
+    $error_message = sprintf('%s submitted successfully.', $data['type']);
+
+    $result['gtm'][] = array(
+      'event' => 'ErrorEvent',
+      'ErrorType' => $error_message,
+    );
+  } catch (\Exception $e) {
+    $result['result'] = FALSE;
+
+    $error_message = sprintf('It was not possible to send %s at this time. Please try again later.', $data['type']);
+
+    $result['gtm'][] = array(
+      'event' => 'ErrorEvent',
+      'ErrorType' => $error_message,
+    );
+  }
 
   print drupal_json_encode($result);
 
