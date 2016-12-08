@@ -289,6 +289,21 @@ function virgin_attendly_client() {
 }
 
 /**
+ * Gets the global instance of gtm handler
+ *
+ * @return \VirginGtm
+ */
+function virgin_gtm() {
+  $gtm = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$gtm) {
+    $gtm = new VirginGtm();
+  }
+
+  return $gtm;
+}
+
+/**
  * Gets the value of a query parameter with the given name
  *
  * @param string $key
