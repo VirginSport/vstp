@@ -74,6 +74,17 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner__subtitle {
+  @include transition(all .5s ease-in-out);
+  font-family: $font-family-serif;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .vs-hero-banner__date {
   @include transition(all .5s ease-in-out);
   font-family: $font-family-serif;
@@ -148,7 +159,12 @@ vs-hero-banner,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-
+.vs-hero-banner--small {
+  .vs-hero-banner__background--fixed,
+  .vs-hero-banner__background {
+     min-height: 8.5rem;
+  }
+}
 
 
 // Responsive
@@ -212,6 +228,10 @@ vs-hero-banner,
     font-size: 3.125rem;
   }
 
+  .vs-hero-banner__subtitle {
+    font-size: 1.25rem;
+  }
+
   .vs-hero-banner__date {
     font-size: 2.1875rem;
     margin-bottom: 1.125rem;
@@ -228,5 +248,12 @@ vs-hero-banner,
 
   .vs-hero-banner__date + .vs-hero-banner__button-wrapper {
     padding-top: .25rem;
+  }
+
+  .vs-hero-banner--small {
+    .vs-hero-banner__background--fixed,
+    .vs-hero-banner__background {
+      min-height: 25.25rem;
+    }
   }
 }
