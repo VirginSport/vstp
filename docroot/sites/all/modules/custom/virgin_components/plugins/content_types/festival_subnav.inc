@@ -110,8 +110,17 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
   $links = array_merge($links, virgin_components_festival_subnav_content_type_order_links_array($event_links));
 
   // Custom Pages --------------------------------------------------------------
-  $links[] = virgin_components_festival_subnav_content_type_get_link(t('Ticket Prices'), url('node/' . $festival_nid . '/tickets'));
 
+  $festival_status = $festival_grapher->fieldGetOne('field_status');
+
+  $show_tickets_states = array(
+    'open',
+    'in-progress'
+  );
+
+  if (in_array($festival_status, $show_tickets_states)) {
+    $links[] = virgin_components_festival_subnav_content_type_get_link(t('Ticket Prices'), url('node/' . $festival_nid . '/tickets'));
+  }
 
   // Related festival pages ----------------------------------------------------
   $sql = "

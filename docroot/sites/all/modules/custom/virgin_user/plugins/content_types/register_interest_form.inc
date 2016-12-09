@@ -58,6 +58,7 @@ function virgin_user_register_interest_form_content_type_edit_form($form, &$form
  * Submit handler for edit form.
  */
 function virgin_user_register_interest_form_content_type_edit_form_submit($form, &$form_state) {
+
   // Copy everything from the defaults.
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
@@ -66,6 +67,7 @@ function virgin_user_register_interest_form_content_type_edit_form_submit($form,
 
 /**
  * Get the list of festivals
+ *
  * @return array
  */
 function virgin_user_register_interest_form_content_type_festivals() {
