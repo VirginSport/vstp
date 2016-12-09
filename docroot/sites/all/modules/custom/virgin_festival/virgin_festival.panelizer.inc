@@ -99,32 +99,32 @@ function virgin_festival_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_first' => array(
+      'in-progress_first' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_second' => array(
+      'in-progress_second' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_third' => array(
+      'in-progress_third' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_fourth' => array(
+      'in-progress_fourth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_fifth' => array(
+      'in-progress_fifth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'in_progress_sixth' => array(
+      'in-progress_sixth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
@@ -230,22 +230,22 @@ function virgin_festival_panelizer_defaults() {
     'open_sixth' => array(
       'style' => 'curve',
     ),
-    'in_progress_first' => array(
+    'in-progress_first' => array(
       'style' => 'curve',
     ),
-    'in_progress_second' => array(
+    'in-progress_second' => array(
       'style' => 'curve',
     ),
-    'in_progress_third' => array(
+    'in-progress_third' => array(
       'style' => 'curve',
     ),
-    'in_progress_fourth' => array(
+    'in-progress_fourth' => array(
       'style' => 'curve',
     ),
-    'in_progress_fifth' => array(
+    'in-progress_fifth' => array(
       'style' => 'curve',
     ),
-    'in_progress_sixth' => array(
+    'in-progress_sixth' => array(
       'style' => 'curve',
     ),
     'over_first' => array(
@@ -387,7 +387,7 @@ function virgin_festival_panelizer_defaults() {
   $display->panels['first'][0] = 'new-2dc364bd-0893-4188-948f-a2dcf3a988d8';
   $pane = new stdClass();
   $pane->pid = 'new-e0df253f-0cd7-4c33-8eee-8b293cf3ef34';
-  $pane->panel = 'in_progress_first';
+  $pane->panel = 'in-progress_first';
   $pane->type = 'festival_subnav';
   $pane->subtype = 'festival_subnav';
   $pane->shown = TRUE;
@@ -410,12 +410,12 @@ function virgin_festival_panelizer_defaults() {
   $pane->locks = array(
     'type' => 'none',
     'regions' => array(
-      'in_progress_first' => 'in_progress_first',
+      'in-progress_first' => 'in-progress_first',
     ),
   );
   $pane->uuid = 'e0df253f-0cd7-4c33-8eee-8b293cf3ef34';
   $display->content['new-e0df253f-0cd7-4c33-8eee-8b293cf3ef34'] = $pane;
-  $display->panels['in_progress_first'][0] = 'new-e0df253f-0cd7-4c33-8eee-8b293cf3ef34';
+  $display->panels['in-progress_first'][0] = 'new-e0df253f-0cd7-4c33-8eee-8b293cf3ef34';
   $pane = new stdClass();
   $pane->pid = 'new-b9d2ca50-4912-48d6-a012-35855c631366';
   $pane->panel = 'open_first';

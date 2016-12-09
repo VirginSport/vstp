@@ -47,14 +47,14 @@ if (!isset($editor_mode) && !isset($state)) {
   </div>
 <?php endif; ?>
 
-<?php if ($editor_mode || $state == 'in_progress'): ?>
-  <div data-vs-state="in_progress">
-    <?php print $content['in_progress_first']; ?>
-    <?php print $content['in_progress_second']; ?>
-    <?php print $content['in_progress_third']; ?>
-    <?php print $content['in_progress_fourth']; ?>
-    <?php print $content['in_progress_fifth']; ?>
-    <?php print $content['in_progress_sixth']; ?>
+<?php if ($editor_mode || $state == 'in-progress'): ?>
+  <div data-vs-state="in-progress">
+    <?php print $content['in-progress_first']; ?>
+    <?php print $content['in-progress_second']; ?>
+    <?php print $content['in-progress_third']; ?>
+    <?php print $content['in-progress_fourth']; ?>
+    <?php print $content['in-progress_fifth']; ?>
+    <?php print $content['in-progress_sixth']; ?>
   </div>
 <?php endif; ?>
 
@@ -87,7 +87,7 @@ if (!isset($editor_mode) && !isset($state)) {
     <select class="virginsport-states__select">
       <option value="announced"><?php print t('Announced'); ?></option>
       <option value="open"><?php print t('Open'); ?></option>
-      <option value="in_progress"><?php print t('In Progress'); ?></option>
+      <option value="in-progress"><?php print t('In Progress'); ?></option>
 
       <?php if ($entity_type == 'festival'): ?>
         <option value="over"><?php print t('Over'); ?></option>
