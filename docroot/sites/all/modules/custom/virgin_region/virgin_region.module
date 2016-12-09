@@ -273,13 +273,9 @@ function virgin_region_user_redirect($uid, $current_region, $destination = 'user
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
-  if (!empty($account_wrapper->field_region->value())) {
+  $region = $account_wrapper->field_region->value();
 
-    // Load account regions array
-    $regions = $account_wrapper->field_region->value();
-
-    // We just want the first position of the array
-    $region = reset($regions);
+  if (!empty($region)) {
 
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
@@ -375,8 +371,8 @@ function virgin_region_user_hostname() {
   $region = $account_wrapper->field_region->value();
   $hostname = '';
 
-  if (!empty($region[0]->field_hostname['und'][0]['value'])) {
-    $hostname = $region[0]->field_hostname['und'][0]['value'];
+  if (!empty($region->field_hostname['und'][0]['value'])) {
+    $hostname = $region->field_hostname['und'][0]['value'];
   }
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
