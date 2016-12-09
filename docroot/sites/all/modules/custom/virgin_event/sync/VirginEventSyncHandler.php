@@ -172,7 +172,7 @@ class VirginEventSyncHandler implements VirginSyncSugarHandlerInterface {
       ->execute()
     ;
 
-    if ($result['node']) {
+    if (isset($result['node'])) {
       $ids = array_keys($result['node']);
       return node_load(reset($ids));
     }
