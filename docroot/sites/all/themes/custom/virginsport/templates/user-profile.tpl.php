@@ -45,14 +45,13 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
           <div class="row">
             <div class="col-xs-12">
               <h2 class="vs-hero-banner__title"><?php print check_plain($user_grapher->fieldGetOne('field_first_name') . ' ' . $user_grapher->fieldGetOne('field_last_name')); ?></h2>
-              <?php
-              /*
-               * TODO there is no field or area for entering this information at this point in time.
-              <div class="vs-hero-banner-block__subtitle">
-                <?php print t('Badder than Beyonce at running'); ?>
+              <div class="vs-hero-banner__subtitle">
+                <?php if ($user_grapher->fieldGetOne('field_gender') == 'female'): ?>
+                  <?php print t("She's bringing flexy back"); ?>
+                <?php else: ?>
+                  <?php print t("He's bringing flexy back"); ?>
+                <?php endif; ?>
               </div>
-              */
-              ?>
             </div>
           </div>
         </div>

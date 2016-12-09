@@ -74,6 +74,17 @@ vs-hero-banner,
   }
 }
 
+.vs-hero-banner__subtitle {
+  @include transition(all .5s ease-in-out);
+  font-family: $font-family-serif;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .vs-hero-banner__date {
   @include transition(all .5s ease-in-out);
   font-family: $font-family-serif;
@@ -210,6 +221,10 @@ vs-hero-banner,
 
   .vs-hero-banner__title {
     font-size: 3.125rem;
+  }
+
+  .vs-hero-banner__subtitle {
+    font-size: 1.25rem;
   }
 
   .vs-hero-banner__date {
