@@ -15,6 +15,7 @@ dependencies[] = lightning_moderation
 dependencies[] = lightning_wysiwyg
 
 ; required virgin dependencies
+dependencies[] = admin_views
 dependencies[] = chosen
 dependencies[] = composer_manager
 dependencies[] = email_registration
@@ -26,7 +27,6 @@ dependencies[] = fieldable_panels_panes
 dependencies[] = hybridauth
 dependencies[] = i18n
 dependencies[] = i18n_menu
-dependencies[] = mollom
 dependencies[] = money
 dependencies[] = mailsystem
 dependencies[] = mimemail
@@ -44,6 +44,7 @@ dependencies[] = services
 dependencies[] = smtp
 dependencies[] = token
 dependencies[] = user_registrationpassword
+dependencies[] = views_bulk_operations
 dependencies[] = view_unpublished
 dependencies[] = xmlsitemap
 

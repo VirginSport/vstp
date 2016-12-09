@@ -28,6 +28,8 @@ vs-hero-banner,
 
 .vs-head-region .vs-hero-banner__background--fixed {
   position: fixed;
+  max-height: 100%;
+  top: 0;
 }
 
 
@@ -66,6 +68,17 @@ vs-hero-banner,
   font-size: 1.25rem;
   margin-bottom: 0;
   text-transform: uppercase;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vs-hero-banner__subtitle {
+  @include transition(all .5s ease-in-out);
+  font-family: $font-family-serif;
+  font-size: 0.75rem;
+  margin-bottom: 0;
 
   &:last-child {
     margin-bottom: 0;
@@ -138,7 +151,7 @@ vs-hero-banner,
   background-repeat: no-repeat;
   height: auto;
   margin-bottom: 1.25rem;
-  max-height: 5.4375rem;
+  max-height: 4.688rem;
   max-width: 12rem;
 }
 
@@ -146,7 +159,15 @@ vs-hero-banner,
 // Modifiers
 // ----------------------------------------------------------------------------
 
+.vs-hero-banner--small {
 
+  min-height: 8.5rem;
+
+  .vs-hero-banner__background--fixed,
+  .vs-hero-banner__background {
+     min-height: 8.5rem;
+  }
+}
 
 
 // Responsive
@@ -165,8 +186,8 @@ vs-hero-banner,
 
   .vs-hero-banner__logo,
   .vs-hero-banner__logo-image {
-    max-height: 12rem;
-    max-width: 60.25rem;
+    max-height: 10.313rem;
+    max-width: 54rem;
     margin-bottom: 2rem;
   }
 
@@ -210,6 +231,10 @@ vs-hero-banner,
     font-size: 3.125rem;
   }
 
+  .vs-hero-banner__subtitle {
+    font-size: 1.25rem;
+  }
+
   .vs-hero-banner__date {
     font-size: 2.1875rem;
     margin-bottom: 1.125rem;
@@ -226,5 +251,15 @@ vs-hero-banner,
 
   .vs-hero-banner__date + .vs-hero-banner__button-wrapper {
     padding-top: .25rem;
+  }
+
+  .vs-hero-banner--small {
+
+    min-height: 25.25rem;
+
+    .vs-hero-banner__background--fixed,
+    .vs-hero-banner__background {
+      min-height: 25.25rem;
+    }
   }
 }

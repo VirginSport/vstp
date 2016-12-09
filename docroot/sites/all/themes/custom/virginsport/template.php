@@ -16,6 +16,16 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme'
   );
 
+  $themes['virginsport_notification'] = array(
+    'template' => 'virginsport-notification',
+    'variables' => array(
+      'classes' => '',
+      'message' => '',
+      'sticky' => FALSE,
+      'close_button' => TRUE
+    )
+  ) + $default;
+
   $themes['virginsport_color'] = array(
     'template' => 'virginsport-color',
     'variables' => array(
@@ -88,6 +98,10 @@ function virginsport_preprocess_page(&$vars) {
     $first_name = $account_wrapper->field_first_name->value();
     $last_name = $account_wrapper->field_last_name->value();
 
+    // Fallback to a 'default' name if the name fields are empty
+    $first_name = empty($first_name) ? 'Virgin' : $first_name;
+    $last_name = empty($last_name) ? 'Sport' : $last_name;
+
     $vars['account'] = array(
       'first_name' => check_plain($first_name),
       'last_name' => check_plain($last_name),
@@ -126,6 +140,11 @@ function virginsport_preprocess_page(&$vars) {
 
   // Fetch the list of regions
   $vars['regions'] = virginsport_regions();
+
+  // Make cookie template available in javascript
+  $message = t('We use cookies on this site to create secure and effective website possible for our customers. For full details see our cookie policy.');
+  $cookie_template = theme('virginsport_notification', array('message' => $message));
+  drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
 }
 
 /**

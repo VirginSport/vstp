@@ -130,7 +130,8 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
-      'field_festival_state' => $state
+      'field_festival_state' => $state,
+      'field_status' => 'announced'
     );
 
     foreach ($fields as $key => $value) {
@@ -161,7 +162,7 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
       ->execute()
     ;
 
-    if ($result['node']) {
+    if (isset($result['node'])) {
       $ids = array_keys($result['node']);
       return node_load(reset($ids));
     }

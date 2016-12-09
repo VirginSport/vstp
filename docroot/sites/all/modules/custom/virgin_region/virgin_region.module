@@ -168,6 +168,7 @@ function virgin_region_clear_cache($node) {
  *  An array of structured arrays with the following keys:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */
@@ -201,6 +202,7 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
+        'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
         'hostname' => $hostname
@@ -221,6 +223,7 @@ function virgin_region_regions() {
  *  following keys if does:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */
@@ -270,13 +273,9 @@ function virgin_region_user_redirect($uid, $current_region, $destination = 'user
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
-  if (!empty($account_wrapper->field_region->value())) {
+  $region = $account_wrapper->field_region->value();
 
-    // Load account regions array
-    $regions = $account_wrapper->field_region->value();
-
-    // We just want the first position of the array
-    $region = reset($regions);
+  if (!empty($region)) {
 
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
@@ -372,8 +371,8 @@ function virgin_region_user_hostname() {
   $region = $account_wrapper->field_region->value();
   $hostname = '';
 
-  if (!empty($region[0]->field_hostname['und'][0]['value'])) {
-    $hostname = $region[0]->field_hostname['und'][0]['value'];
+  if (!empty($region->field_hostname['und'][0]['value'])) {
+    $hostname = $region->field_hostname['und'][0]['value'];
   }
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
