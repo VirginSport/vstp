@@ -159,7 +159,15 @@ vs-hero-banner,
 // Modifiers
 // ----------------------------------------------------------------------------
 
+.vs-hero-banner--small {
 
+  min-height: 8.5rem;
+
+  .vs-hero-banner__background--fixed,
+  .vs-hero-banner__background {
+     min-height: 8.5rem;
+  }
+}
 
 
 // Responsive
@@ -243,5 +251,15 @@ vs-hero-banner,
 
   .vs-hero-banner__date + .vs-hero-banner__button-wrapper {
     padding-top: .25rem;
+  }
+
+  .vs-hero-banner--small {
+
+    min-height: 25.25rem;
+
+    .vs-hero-banner__background--fixed,
+    .vs-hero-banner__background {
+      min-height: 25.25rem;
+    }
   }
 }
