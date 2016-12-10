@@ -2,6 +2,7 @@
 // Components
 import vsBasket from './components/vs-basket';
 import vsContactForm from './components/vs-contact-form';
+import vsCountDown from './components/vs-countdown';
 import vsHeader from './components/vs-header';
 import vsIFrame from './components/vs-iframe';
 import vsIPE from './components/vs-ipe';
@@ -21,6 +22,7 @@ import vsHeroBanner from './components/vs-heroBanner';
 
 vsBasket();
 vsContactForm();
+vsCountDown();
 vsHeader();
 vsIFrame();
 vsIPE();
