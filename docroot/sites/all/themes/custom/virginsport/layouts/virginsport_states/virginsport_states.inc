@@ -79,7 +79,7 @@ function virginsport_preprocess_virginsport_states(&$vars) {
   $vars['state'] = check_plain($state);
 
   // In administration mode, all regions are rendered without exception
-  if ($vars['renderer']->access) {
+  if (!empty($vars['renderer']->access)) {
     $vars['editor_mode'] = TRUE;
     return;
   }
