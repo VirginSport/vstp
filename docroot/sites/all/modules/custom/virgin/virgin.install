@@ -63,3 +63,17 @@ function virgin_update_7005() {
 function virgin_update_7006() {
     module_enable(array('panels_ipe', 'path', 'path_auto', 'token'));
 }
+
+/**
+ * Disables mollom module.
+ */
+function virgin_update_7007() {
+  module_disable(array('mollom'));
+}
+
+/**
+ * Enables admin_views, views_bulk_operations
+ */
+function virgin_update_7008() {
+  module_enable(array('admin_views', 'views_bulk_operations'));
+}

@@ -177,7 +177,7 @@
 
     <?php if ($apply_page_wrapper): ?>
       <div class="vs-region vs-region--no-padding">
-        <div class="vs-hero-banner">
+        <div class="vs-hero-banner vs-hero-banner--small">
           <div class="vs-hero-banner__background">
             <div class="container">
               <div class="row">
@@ -218,7 +218,7 @@
 
             <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
               <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
-              <span class="vs-footer__region-label"><?php print $regions['current']['title']; ?></span>
+              <span class="vs-footer__region-label"><?php print $regions['current']['country_letter_code']; ?></span>
             </button>
 
             <div class="dropdown-menu vs-footer__language-list">
@@ -226,7 +226,7 @@
               <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
                 <?php if (!empty($region['flag'])): ?>
                   <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
-                  <?php print check_plain($region['title']); ?>
+                  <?php print check_plain($region['country_letter_code']); ?>
                 <?php endif; ?>
               </a>
               <?php endforeach; ?>

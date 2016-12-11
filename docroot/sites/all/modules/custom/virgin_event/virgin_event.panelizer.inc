@@ -30,7 +30,7 @@ function virgin_event_panelizer_defaults() {
   $panelizer->contexts = array();
   $panelizer->relationships = array();
   $display = new panels_display();
-  $display->layout = 'virginsport';
+  $display->layout = 'virginsport_states';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -39,47 +39,152 @@ function virgin_event_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'second' => array(
+      'announced_first' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'third' => array(
+      'announced_second' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'fourth' => array(
+      'announced_third' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'fifth' => array(
+      'announced_fourth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'sixth' => array(
+      'announced_fifth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'seventh' => array(
+      'announced_sixth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'eighth' => array(
+      'open_first' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'nineth' => array(
+      'open_second' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'tenth' => array(
+      'open_third' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'open_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'open_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'open_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_first' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_second' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_third' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'in-progress_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_first' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_second' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_third' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'over_sixth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_first' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_second' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_third' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_fourth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_fifth' => array(
+        'is_curved' => 1,
+        'brand_color' => 'default',
+        'overlap' => 'none',
+      ),
+      'closed_sixth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
         'overlap' => 'none',
@@ -89,31 +194,94 @@ function virgin_event_panelizer_defaults() {
     'first' => array(
       'style' => 'curve',
     ),
-    'second' => array(
+    'announced_first' => array(
       'style' => 'curve',
     ),
-    'third' => array(
+    'announced_second' => array(
       'style' => 'curve',
     ),
-    'fourth' => array(
+    'announced_third' => array(
       'style' => 'curve',
     ),
-    'fifth' => array(
+    'announced_fourth' => array(
       'style' => 'curve',
     ),
-    'sixth' => array(
+    'announced_fifth' => array(
       'style' => 'curve',
     ),
-    'seventh' => array(
+    'announced_sixth' => array(
       'style' => 'curve',
     ),
-    'eighth' => array(
+    'open_first' => array(
       'style' => 'curve',
     ),
-    'nineth' => array(
+    'open_second' => array(
       'style' => 'curve',
     ),
-    'tenth' => array(
+    'open_third' => array(
+      'style' => 'curve',
+    ),
+    'open_fourth' => array(
+      'style' => 'curve',
+    ),
+    'open_fifth' => array(
+      'style' => 'curve',
+    ),
+    'open_sixth' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_first' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_second' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_third' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_fourth' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_fifth' => array(
+      'style' => 'curve',
+    ),
+    'in-progress_sixth' => array(
+      'style' => 'curve',
+    ),
+    'over_first' => array(
+      'style' => 'curve',
+    ),
+    'over_second' => array(
+      'style' => 'curve',
+    ),
+    'over_third' => array(
+      'style' => 'curve',
+    ),
+    'over_fourth' => array(
+      'style' => 'curve',
+    ),
+    'over_fifth' => array(
+      'style' => 'curve',
+    ),
+    'over_sixth' => array(
+      'style' => 'curve',
+    ),
+    'closed_first' => array(
+      'style' => 'curve',
+    ),
+    'closed_second' => array(
+      'style' => 'curve',
+    ),
+    'closed_third' => array(
+      'style' => 'curve',
+    ),
+    'closed_fourth' => array(
+      'style' => 'curve',
+    ),
+    'closed_fifth' => array(
+      'style' => 'curve',
+    ),
+    'closed_sixth' => array(
       'style' => 'curve',
     ),
   );
@@ -124,6 +292,63 @@ function virgin_event_panelizer_defaults() {
   $display->storage_id = 'node:event:default';
   $display->content = array();
   $display->panels = array();
+  $pane = new stdClass();
+  $pane->pid = 'new-2143a3cc-ae4f-4645-8b93-78bc6a89ea9b';
+  $pane->panel = 'announced_first';
+  $pane->type = 'festival_subnav';
+  $pane->subtype = 'festival_subnav';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '2143a3cc-ae4f-4645-8b93-78bc6a89ea9b';
+  $display->content['new-2143a3cc-ae4f-4645-8b93-78bc6a89ea9b'] = $pane;
+  $display->panels['announced_first'][0] = 'new-2143a3cc-ae4f-4645-8b93-78bc6a89ea9b';
+  $pane = new stdClass();
+  $pane->pid = 'new-50f79dd2-d2a8-4199-9d88-30992564950e';
+  $pane->panel = 'closed_first';
+  $pane->type = 'festival_subnav';
+  $pane->subtype = 'festival_subnav';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array(
+    'type' => 'none',
+    'regions' => array(
+      'closed_first' => 'closed_first',
+    ),
+  );
+  $pane->uuid = '50f79dd2-d2a8-4199-9d88-30992564950e';
+  $display->content['new-50f79dd2-d2a8-4199-9d88-30992564950e'] = $pane;
+  $display->panels['closed_first'][0] = 'new-50f79dd2-d2a8-4199-9d88-30992564950e';
   $pane = new stdClass();
   $pane->pid = 'new-c0ef1e58-55b5-4dc1-90e3-5ba4562ca5d3';
   $pane->panel = 'first';
@@ -156,8 +381,8 @@ function virgin_event_panelizer_defaults() {
   $display->content['new-c0ef1e58-55b5-4dc1-90e3-5ba4562ca5d3'] = $pane;
   $display->panels['first'][0] = 'new-c0ef1e58-55b5-4dc1-90e3-5ba4562ca5d3';
   $pane = new stdClass();
-  $pane->pid = 'new-8d8956eb-bde2-4a17-849f-cc421d232657';
-  $pane->panel = 'second';
+  $pane->pid = 'new-714d6476-af53-416e-ac41-e029b6dd2c27';
+  $pane->panel = 'in-progress_first';
   $pane->type = 'festival_subnav';
   $pane->subtype = 'festival_subnav';
   $pane->shown = TRUE;
@@ -177,10 +402,77 @@ function virgin_event_panelizer_defaults() {
   $pane->css = array();
   $pane->extras = array();
   $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '8d8956eb-bde2-4a17-849f-cc421d232657';
-  $display->content['new-8d8956eb-bde2-4a17-849f-cc421d232657'] = $pane;
-  $display->panels['second'][0] = 'new-8d8956eb-bde2-4a17-849f-cc421d232657';
+  $pane->locks = array(
+    'type' => 'none',
+    'regions' => array(
+      'in-progress_first' => 'in-progress_first',
+    ),
+  );
+  $pane->uuid = '714d6476-af53-416e-ac41-e029b6dd2c27';
+  $display->content['new-714d6476-af53-416e-ac41-e029b6dd2c27'] = $pane;
+  $display->panels['in-progress_first'][0] = 'new-714d6476-af53-416e-ac41-e029b6dd2c27';
+  $pane = new stdClass();
+  $pane->pid = 'new-1303a8c7-b0ef-4361-9126-676a7a60cc22';
+  $pane->panel = 'open_first';
+  $pane->type = 'festival_subnav';
+  $pane->subtype = 'festival_subnav';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array(
+    'type' => 'none',
+    'regions' => array(
+      'open_first' => 'open_first',
+    ),
+  );
+  $pane->uuid = '1303a8c7-b0ef-4361-9126-676a7a60cc22';
+  $display->content['new-1303a8c7-b0ef-4361-9126-676a7a60cc22'] = $pane;
+  $display->panels['open_first'][0] = 'new-1303a8c7-b0ef-4361-9126-676a7a60cc22';
+  $pane = new stdClass();
+  $pane->pid = 'new-fc8e9a3e-8422-442e-ba5a-67a766bd6e67';
+  $pane->panel = 'over_first';
+  $pane->type = 'festival_subnav';
+  $pane->subtype = 'festival_subnav';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => array(
+      0 => 'panelizer',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array(
+    'type' => 'none',
+    'regions' => array(
+      'over_first' => 'over_first',
+    ),
+  );
+  $pane->uuid = 'fc8e9a3e-8422-442e-ba5a-67a766bd6e67';
+  $display->content['new-fc8e9a3e-8422-442e-ba5a-67a766bd6e67'] = $pane;
+  $display->panels['over_first'][0] = 'new-fc8e9a3e-8422-442e-ba5a-67a766bd6e67';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;

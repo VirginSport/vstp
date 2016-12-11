@@ -196,6 +196,44 @@ function virgin_form_panels_edit_style_settings_form_alter(&$form, &$form_state)
   $form['description']['#markup'] = $form['description']['#value'];
 }
 
+/**
+ * Implements hook_panels_post_render().
+ */
+function virgin_panels_post_render($renderer) {
+
+  // If the panelizer is not for a node, bailout now.
+  if (empty($renderer->context['panelizer']->data->nid)) {
+    return;
+  }
+
+  $node = $renderer->context['panelizer']->data;
+
+  // Helper function to add IPE toolbar buttons
+  $add_button = function ($label, $url, $key) use ($renderer) {
+    $button = array(
+      '#type' => 'link',
+      '#title' => $label,
+      '#href' => $url,
+      '#options' => array('query' => drupal_get_destination()),
+      '#attributes' => array(
+        'class' => array('panels-ipe-pseudobutton'),
+      ),
+      '#prefix' => '<div class="panels-ipe-pseudobutton-container">',
+      '#suffix' => '</div>',
+    );
+
+    panels_ipe_toolbar_add_button($renderer->cache_key, $key, $button);
+  };
+
+  if (node_access('update', $node)) {
+    $add_button(t('Edit Contents'), sprintf('node/%d/edit', $node->nid), 'virgin-node-edit');
+  }
+
+  if (_workbench_moderation_access('view history', $node)) {
+    $add_button(t('View Revisions'), sprintf('node/%d/moderation', $node->nid), 'virgin-node-moderation');
+  }
+}
+
 // Helpers
 // -----------------------------------------------------------------------------
 

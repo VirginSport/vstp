@@ -226,7 +226,7 @@ function virgin_event_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 6,
@@ -657,10 +657,60 @@ function virgin_event_field_default_field_instances() {
       'active' => 1,
       'module' => 'atom_reference',
       'settings' => array(
-        'context' => 'virgin_full',
+        'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_logo'.
+  $field_instances['node-event-field_logo'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'title',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_logo',
+    'label' => 'Logo',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'virgin_full',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 17,
     ),
   );
 
@@ -1661,6 +1711,7 @@ function virgin_event_field_default_field_instances() {
   t('Has Teams');
   t('Hashtag');
   t('Header Image');
+  t('Logo');
   t('MyLaps ID');
   t('Name');
   t('Results Introduction');

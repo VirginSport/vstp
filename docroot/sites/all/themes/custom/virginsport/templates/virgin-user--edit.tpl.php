@@ -7,13 +7,19 @@
 
 <div class="vs-head-region">
   <div class="vs-region vs-region--no-padding">
-    <div class="vs-hero-banner">
+    <div class="vs-hero-banner vs-hero-banner--small">
       <div class="vs-hero-banner__background vs-hero-banner__background--profile">
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
               <h2 class="vs-hero-banner__title"><?php print $user_name; ?></h2>
-              <div class="vs-hero-banner-block__subtitle"></div>
+              <div class="vs-hero-banner__subtitle">
+                <?php if ($user_grapher->fieldGetOne('field_gender') == 'female'): ?>
+                  <?php print t("She's bringing flexy back"); ?>
+                <?php else: ?>
+                  <?php print t("He's bringing flexy back"); ?>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
         </div>

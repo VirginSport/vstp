@@ -208,6 +208,11 @@ function _virgin_sync_batch_process(VirginSyncHandlerInterface $handler, $extern
  */
 function _virgin_sync_batch_finished($success, $results, $operations) {
 
+  if (!$success) {
+    drupal_set_message(t("An error ocurred while running synchronization. Please try again at a later time."));
+    return;
+  }
+
   if (!empty($results['items'])) {
     variable_set(VIRGIN_SYNC_VAR_LAST_SYNC, $results['start']);
     drupal_set_message(t("Content synchronization sucessfully finished."));
