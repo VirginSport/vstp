@@ -7,7 +7,7 @@
 
 <div class="vs-head-region">
   <div class="vs-region vs-region--no-padding">
-    <div class="vs-hero-banner">
+    <div class="vs-hero-banner vs-hero-banner--small">
       <div class="vs-hero-banner__background vs-hero-banner__background--profile">
         <div class="container">
           <div class="row">
