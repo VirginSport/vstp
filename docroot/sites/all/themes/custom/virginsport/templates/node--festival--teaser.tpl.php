@@ -110,10 +110,10 @@
            <?php print virginsport_date_interval($grapher->relation('field_festival_state')->fieldGetOne('field_start_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_end_date')); ?>
           </div>
 
-          <?php if(!empty($grapher->fieldRendered('field_description'))): ?>
-            <div class="vs-card-upcoming__text">
-                <?php print $grapher->fieldRendered('field_description'); ?>
-            </div>
+          <?php if (!empty($grapher->fieldRendered('field_description'))): ?>
+            <p class="vs-card-upcoming__text">
+                <?php print strip_tags($grapher->fieldRendered('field_description')); ?>
+            </p>
           <?php endif; ?>
 
           <a
@@ -122,6 +122,13 @@
           >
             <?php print t('Details'); ?>
           </a>
+
+          <button
+            class="hidden-md-up btn vs-btn vs-btn--min-sm vs-btn--transparent vs-card-upcoming__button"
+            href="<?php print url('node/' . $grapher->property('nid')); ?>"
+          >
+            <?php print t('View details'); ?>
+          </button>
         </div>
       </div>
     </div>
