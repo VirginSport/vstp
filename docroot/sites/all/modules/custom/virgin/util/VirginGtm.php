@@ -53,11 +53,12 @@ class VirginGtm {
    * Get all registered events, and clear it from
    */
   public function get() {
-    $data = $_SESSION[self::KEY];
-
-    if (empty($data)) {
+    // if session is not defined return empty array
+    if (empty($_SESSION[self::KEY])) {
       return array();
     }
+
+    $data = $_SESSION[self::KEY];
 
     // Clear registered events
     $this->clear();
@@ -65,6 +66,9 @@ class VirginGtm {
     return $data;
   }
 
+  /**
+   * Clear registered events
+   */
   protected function clear() {
     unset($_SESSION[self::KEY]);
   }
