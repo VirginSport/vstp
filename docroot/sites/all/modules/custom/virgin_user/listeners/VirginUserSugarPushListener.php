@@ -53,7 +53,7 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
         $sugar_id = $this->saveContactToSugar($contact_data);
         $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
-        throw new VirginException($e->getMessage(), t('An error occurred while creating the account. Please try again at a later time.'));
+        throw new VirginException($e->getMessage(), t("It's not you, it's us. We're sprinting to fix this error and we hope to be back on track shortly. Thanks for your patience!"));
       }
     }
   }

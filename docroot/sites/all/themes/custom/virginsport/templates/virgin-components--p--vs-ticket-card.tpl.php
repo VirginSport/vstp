@@ -49,7 +49,7 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
             class="btn vs-btn vs-btn--sm vs-btn--transparent vs-ticket-type__cta"
             vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
           >
-            <?php print t('Select tickets');?>
+            <?php print t('Get Passes');?>
           </a>
           <?php if(!empty($ticket_properties)): ?>
           <div class="vs-ticket-type__<?php print $ticket_class; ?>">

@@ -65,7 +65,7 @@ function virgin_user_page_basket_ticket_action($rego_id, $action) {
       WATCHDOG_ERROR
     );
 
-    drupal_set_message(t("Ooops! It's not possible to edit your ticket information at this time, please try again later"));
+    drupal_set_message(t("Oops! We're sprinting to fix this error so you can edit your ticket info. Thanks for your patience!"));
     drupal_goto('/user');
   }
 }
@@ -181,7 +181,7 @@ function virgin_user_page_basket_confirm_claim($rego) {
       // claimed, redirect the user to his profile page and let him now
       // the ticket could not be claimed.
       if (!$ticket || $ticket['has_been_claimed']) {
-        drupal_set_message(t("Ooops! The ticket you're trying to claim could not be claimed."));
+        drupal_set_message(t("Oops! It looks like this ticket has already been claimed."));
         drupal_goto('user');
         return;
       }
@@ -206,7 +206,7 @@ function virgin_user_page_basket_confirm_claim($rego) {
           WATCHDOG_ERROR
         );
 
-        drupal_set_message(t("Ooops! It's not possible to claim your ticket at this time, please try again later"));
+        drupal_set_message(t("It's not you, it's us. We're sweating trying to get our systems back online and we hope to be back on track shortly. Thanks for your patience!"));
         drupal_goto('/user');
       }
 
@@ -239,7 +239,7 @@ function virgin_user_page_basket_authenticate() {
   if ($bound_session) {
     drupal_goto(sprintf('%s/e/checkout', variable_get(VIRGIN_VAR_ATTENDLY_URL)));
   } else {
-    drupal_set_message(t("Ooops! It wasn't possible to checkout your cart, please try again later."), 'warning');
+    drupal_set_message(t("Oops! It looks like we've veered off course. We'll be back on track shortly. Please try again later."), 'warning');
     drupal_goto('/user');
   }
 }
@@ -273,7 +273,7 @@ function virgin_user_page_basket_checkout_finished() {
 
     // Log and alert the user something failed
     watchdog('virgin_user', "Failed to uncipher basket checkout rego.", array(), WATCHDOG_ERROR);
-    drupal_set_message(t("Ooops! Something didn't go as expected"), 'warning');
+    drupal_set_message(t("It's not you, it's us. We're sprinting to fix this error and we hope to be back on track shortly. Thanks for your patience!"), 'warning');
   }
 
   // Notify all observers of a basket checkout

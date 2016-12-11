@@ -214,7 +214,7 @@ $query = drupal_get_query_parameters();
                           <div class="field-marketing vs-form-group vs-form-group--checkboxes">
                             <div class="vs-form-check">
                               <input class="vs-form-input vs-form-input--check" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin">
-                              <label class="vs-form-label vs-form-label--check" for="field_marketing_optin"><?php print t('Opt-in for marketing'); ?></label>
+                              <label class="vs-form-label vs-form-label--check" for="field_marketing_optin"><?php print t("Tick this lovely little box if you are game to receive updates on Virgin Sport events, products and partners. If our emails aren't your cup of tea, you can always opt out later."); ?></label>
                             </div>
                           </div>
                         </div>

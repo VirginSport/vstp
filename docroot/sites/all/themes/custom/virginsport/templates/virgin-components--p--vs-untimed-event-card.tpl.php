@@ -69,7 +69,7 @@
               href="<?php print url('node/' . $festival_id . '/tickets'); ?>"
               vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
             >
-              <?php print t('Get tickets'); ?>
+              <?php print t('Get Passes'); ?>
             </a>
 
             <?php if ($event_price !== ''): ?>
