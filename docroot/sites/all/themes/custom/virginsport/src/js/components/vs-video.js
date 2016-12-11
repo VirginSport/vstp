@@ -5,18 +5,17 @@ let xs_max = 544;
 
 export default () => {
   // Add fade out to header if video playing and page is on top
-  if ( $('.vs-head-region .vs-video').length ) {
-    setTimeout(function () {
+  if ($('.vs-head-region .vs-video').length) {
+    setInterval(function () {
       let $header_top = $('.vs-header--top');
-
       $header_top.removeClass('vs-header--video-fade-out');
       $header_top.addClass('vs-header--video-fade-in');
     }, 5000);
+  
+    $('body').mousemove(function() {
+      $('.vs-header--top').addClass('vs-header--video-fade-out');
+    });
   }
-
-  $('body').mousemove(function() {
-    $('.vs-header--top').addClass('vs-header--video-fade-out');
-  });
 
   // When user click on play button start modal video and pause background video
   $('.vs-video__play-button').click(function() {
