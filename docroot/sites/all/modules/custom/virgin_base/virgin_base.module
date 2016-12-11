@@ -214,6 +214,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   $element['attributes']['virgin_gtm_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__gtm">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('GTM Event Name'),
     '#default_value' => isset($attributes['virgin_gtm_event']) ? $attributes['virgin_gtm_event'] : '',
