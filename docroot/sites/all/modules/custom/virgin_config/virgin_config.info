@@ -85,6 +85,7 @@ features[variable][] = panelizer_defaults_taxonomy_term_scald_authors
 features[variable][] = panelizer_defaults_taxonomy_term_scald_tags
 features[variable][] = panels_renderer_default
 features[variable][] = pathauto_node_pattern
+features[variable][] = pathauto_ignore_words
 features[variable][] = theme_default
 features[variable][] = user_mail_register_no_approval_required_notify
 features[variable][] = user_mail_register_pending_approval_notify
