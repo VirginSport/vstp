@@ -123,12 +123,12 @@
             <?php print t('Details'); ?>
           </a>
 
-          <button
+          <a
             class="hidden-md-up btn vs-btn vs-btn--min-sm vs-btn--transparent vs-card-upcoming__button"
             href="<?php print url('node/' . $grapher->property('nid')); ?>"
           >
             <?php print t('View details'); ?>
-          </button>
+          </a>
         </div>
       </div>
     </div>
