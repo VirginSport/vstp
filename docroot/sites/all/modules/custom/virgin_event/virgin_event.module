@@ -61,7 +61,7 @@ function virgin_event_pathauto_alias_alter(&$alias, array &$context) {
   // Finally, build the page path using the festival title and the
   // page title.
   $parts = array(
-    'festival',
+    'event',
     $g_festival->fieldGetOne('title_field') . '-' . $year,
     $g_event->fieldGetOne('title_field'),
   );
