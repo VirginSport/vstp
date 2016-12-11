@@ -248,7 +248,7 @@ function virgin_user_page_basket_authenticate() {
  * Page callback for the basket festival list route
  */
 function virgin_user_page_basket_festival_list() {
-  _virgin_user_page_basket_redirect('/festivals');
+  _virgin_user_page_basket_redirect('/events');
 }
 
 /**
