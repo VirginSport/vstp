@@ -37,6 +37,11 @@ define('VIRGIN_VAR_ATTENDLY_API_PASS', 'virgin_attendly_api_pass');
 define('VIRGIN_VAR_CIPHER_KEY', 'virgin_cipher_key');
 
 /**
+ * The get in touch url variable.
+ */
+define('VIRGIN_VAR_GET_IN_TOUCH_URL', 'virgin_get_in_touch_url');
+
+/**
  * Implements hook_menu().
  */
 function virgin_menu() {

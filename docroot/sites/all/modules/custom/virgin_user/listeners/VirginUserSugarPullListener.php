@@ -70,7 +70,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // A sync problem during edit profile is critical as the user might be
     // editing stale data. Redirect him to his profile in case of error.
     $failure_callback = function (\Exception $e) {
-      drupal_set_message(t("Ooops! It's not possible to edit your account at this time, please try again at a later time."), 'error');
+      drupal_set_message(t("It's not you, it's us. We're sprinting to fix this error and we hope to be back on track shortly. Thanks for your patience!"), 'error');
       drupal_goto('/user');
     };
 
@@ -89,7 +89,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     // On sync failure create placeholder tickets for all the tickets that
     // were expected and let the user know something happened.
     $failure_callback = function () use ($account, $expected_regos) {
-      drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+      drupal_set_message(t("It's not you, it's us. We're sprinting to deliver your tickets here. Thanks for your patience!"), 'warning');
       $this->createPlaceholderTickets($account, $expected_regos);
     };
 
@@ -100,7 +100,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       $rego_diff = array_diff($expected_regos, $synced_regos);
 
       if (count($rego_diff)) {
-        drupal_set_message(t("Ooops! We're busy handling your tickets, please come back later."), 'warning');
+        drupal_set_message(t("It's not you, it's us. We're sprinting to deliver your tickets here. Thanks for your patience!"), 'warning');
 
         watchdog(
           'virgin_user',

@@ -276,9 +276,8 @@
 
                     <div class="field-marketing vs-form-group vs-form-group--checkboxes">
                       <div class="vs-form-check">
-                        <label class="vs-focus-label vs-focus-label--static"><?php print t('Marketing option'); ?></label>
                         <input :disabled="!edit_mode" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin" class="vs-form-input vs-form-input--check">
-                        <label for="field_marketing_optin" class="vs-form-label vs-form-label--check vs-form-label--large"><?php print t('Opt in'); ?></label>
+                        <label for="field_marketing_optin" class="vs-form-label vs-form-label--check vs-form-label--large"><?php print t("Tick this lovely little box if you are game to receive updates on Virgin Sport events, products and partners. If our emails aren't your cup of tea, you can always opt out later."); ?></label>
                       </div>
                     </div>
                   </div>

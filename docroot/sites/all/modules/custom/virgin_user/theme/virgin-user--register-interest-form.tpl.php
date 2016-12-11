@@ -80,22 +80,22 @@ $mkt_id = 'mkt-' . uniqid();
                       <div class="vs-form-group vs-form-group--checkboxes">
                         <div class="vs-form-check">
                           <input type="checkbox" v-model="form.over_12" name="over_12" id="<?php print $over_12_id; ?>" class="vs-form-input vs-form-input--check" v-validate:over_12="['required']">
-                          <label for="<?php print $over_12_id; ?>" class="vs-form-label vs-form-label--check"><?php print t("I'm over 12 yrs old"); ?></label>
-                          <div class="vs-error-label" v-if="$vs_contact_form_validator.over_12.required"><?php print t('You must confirm tha you have more than 12 yrs old'); ?></div>
+                          <label for="<?php print $over_12_id; ?>" class="vs-form-label vs-form-label--check"><?php print t("I'm over 12 years old"); ?></label>
+                          <div class="vs-error-label" v-if="$vs_contact_form_validator.over_12.required"><?php print t('You must confirm that you have more than 12 yrs old'); ?></div>
                         </div>
                       </div>
                     <?php endif; ?>
 
-                    <div v-if="form.error" class="vs-error-label"><?php print t('An error ocurred please try again later'); ?></div>
+                    <div v-if="form.error" class="vs-error-label"><?php print t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."); ?></div>
 
-                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t("I'm Interested"); ?></button>
+                    <button :disabled="!$vs_contact_form_validator.valid || !formValid()" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t("Count me in"); ?></button>
 
-                    <div class="vs-form-description"><?php print t('By submitting now, you are agreeing to the T&Cs'); ?></div>
+                    <div class="vs-form-description"><?php print t('By registering your interest, you are agreeing to receive information about Virgin Sport events and partners. Game on!'); ?></div>
                   </form>
                 </validator>
                 <div v-if="form.submitted">
                   <h4 class="vs-form-header">
-                    <?php print t('Form submitted'); ?>
+                    <?php print t("Brilliant! We're excited that you're excited! We'll be in touch soon."); ?>
                   </h4>
 
                   <button v-if="inModal" v-on:click="closeModal" class="btn vs-btn vs-btn--min-sm"><?php print t('Ok'); ?></button>

@@ -162,7 +162,11 @@ $event_days_left = virginsport_days_left($event_start_date);
                   <div class="vs-ticket-card__cta-wrapper">
                     <a class="vs-ticket-card__cta--join-team" href="<?php print url(sprintf('basket/ticket/%s/teams', $ticket->attendly_rego_id)); ?>">
                       <i class="icon-join-team"></i>
-                      <?php print t('join / create team'); ?>
+                      <?php if (empty($ticket->team_name)): ?>
+                        <?php print t('join / create team'); ?>
+                      <?php else: ?>
+                        <?php print t('view your crew'); ?>
+                      <?php endif; ?>
                     </a>
                   </div>
                 <?php endif; ?>
@@ -171,7 +175,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                   <div class="vs-ticket-card__cta-wrapper">
                     <a class="vs-ticket-card__cta--about-yourself" href="<?php print url(sprintf('basket/ticket/%s/marketing', $ticket->attendly_rego_id)); ?>">
                       <i class="icon-tell-us"></i>
-                      <?php print t('tell us about yourself'); ?>
+                      <?php print t('bend our ear'); ?>
                     </a>
                   </div>
                 <?php endif; ?>
