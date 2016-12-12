@@ -33,6 +33,10 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
         $this->onBasketCheckout($event->getData());
         break;
 
+      case VirginUserEvents::NO_SYNC_BASKET_CHECKOUT:
+        $this->onNoSyncBasketCheckout($event->getData());
+        break;
+
       case VirginUserEvents::CHECK_TICKET_SYNC:
         $this->onCheckTicketSync($event);
         break;
@@ -117,6 +121,20 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
     // Execute the sync with SugarCRM
     $this->sync($account, $failure_callback, $success_callback);
+  }
+
+  /**
+   * Executed when the basket checkout is finished but no sync should be done
+   *
+   * @param \VirginUserBasketEventData $data
+   */
+  protected function onNoSyncBasketCheckout(VirginUserBasketEventData $data) {
+    $account = $data->getAccount();
+    $expected_regos = $data->getTicketRegos();
+
+    // Mark these regos as placeholder tickets so that the system can know
+    // that there are tickets to be synced. @see onCheckTicketSync()
+    $this->createPlaceholderTickets($account, $expected_regos);
   }
 
   /**
