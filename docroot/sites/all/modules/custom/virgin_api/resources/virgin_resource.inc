@@ -67,8 +67,35 @@ function _virgin_api_virgin_mail_update_action($sugar_id) {
   db_update('users')
     ->where('uid = :uid', array(':uid' => $user_id))
     ->fields(array('mail' => $contact['email1']))
-    ->execute();
+    ->execute()
+  ;
 
   // And finally clear the cached user fields
   entity_get_controller('user')->resetCache(array($user_id));
+}
+
+/**
+ * Callback for virgin checkout-finish API endpoint
+ *
+ * @param array $args
+ */
+function _virgin_api_virgin_checkout_finished_action($args = array()) {
+
+  // Find a user account to whom the external ID belongs to
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user');
+  $query->fieldCondition('field_sugar_id', 'value', $args['external_id']);
+  $results = $query->execute();
+
+  if (empty($results['user'])) {
+    services_error(sprintf('No user with External ID "%s" was found', $args['external_id']), 404);
+    return;
+  }
+
+  // And then mark the regos as ticket placeholders to be synced in the future
+  $uids = array_keys($results['user']);
+  $account = user_load($uids[0]);
+  $basket_event = new VirginUserBasketEventData($account, $args['regos']);
+
+  observer_notify(VirginUserEvents::NO_SYNC_BASKET_CHECKOUT, $basket_event);
 }
