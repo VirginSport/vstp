@@ -12,9 +12,9 @@ features[field_base][] = body
 features[field_base][] = comment_body
 
 
-; Information added by drush on 2016-08-22
-version = "7.x-1.0-beta16+0-dev"
+; Information added by drush on 2016-11-28
+version = "7.x-1.0-beta17+0-dev"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1471880979"
+datestamp = "1480366998"
 

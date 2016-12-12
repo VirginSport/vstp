@@ -46,7 +46,7 @@ function panels_preview_process_panels_add_content_modal(&$vars) {
 
     // Zero out the existing column data.
     unset($vars['columns']);
-    $vars['columns'] = array();
+    $vars['columns'] = array('');
 
     // Read the column data with our preview functionality.
     foreach ($titles as $title) {

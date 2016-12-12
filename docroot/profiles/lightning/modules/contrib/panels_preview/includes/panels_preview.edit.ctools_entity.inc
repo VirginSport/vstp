@@ -39,15 +39,6 @@ function panels_preview_form_ctools_entity_field_content_type_formatter_options_
     }
   }
 
-  // Ensure form id, form token, and form build id are on the root of the form.
-  // Image fields in particular have issues with this.
-  $form['form_id'] = $form['general_settings']['form_id'];
-  $form['form_token'] = $form['general_settings']['form_token'];
-  $form['form_build_id'] = $form['general_settings']['form_build_id'];
-  unset($form['general_settings']['form_id']);
-  unset($form['general_settings']['form_token']);
-  unset($form['general_settings']['form_build_id']);
-
   if (!empty($form_state['entity'])) {
     // Add the field edit form.
     fape_field_edit_field_form($form, $form_state);
@@ -138,9 +129,11 @@ function panels_preview_ctools_entity_pre_render($element) {
  */
 function panels_preview_fape_submit(&$form, &$form_state) {
   // If there isn't a next step save the entity.
-  if ((empty($form_state['triggering_element']['#next']) || !empty($form_state['field']['body'])) && !empty($form_state['entity']) && !empty($form_state['display_cache'])) {
+  if ((empty($form_state['triggering_element']['#next']) || !empty($form_state['field']['body'])) && !empty($form_state['entity'])) {
     entity_save($form_state['entity_type'], $form_state['entity']);
-    $form_state['display_cache']->display->context['panelizer']->data = $form_state['entity'];
+    if (!empty($form_state['display_cache'])) {
+      $form_state['display_cache']->display->context['panelizer']->data = $form_state['entity'];
+    }
   }
   // Otherwise we're on step 1, so just run the FAPE submitter.
   else {

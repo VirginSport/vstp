@@ -7,8 +7,8 @@ dependencies[] = panels
 
 
 
-; Information added by drush on 2016-08-22
+; Information added by drush on 2016-11-28
 version = ""
 project = "magic_beans"
-datestamp = "1471881045"
+datestamp = "1480367016"
 

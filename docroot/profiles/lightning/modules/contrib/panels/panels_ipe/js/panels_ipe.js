@@ -26,6 +26,17 @@ Drupal.PanelsIPE = {
 
 Drupal.behaviors.PanelsIPE = {
   attach: function(context) {
+    // Remove any old editors.
+    for (var i in Drupal.PanelsIPE.editors) {
+      if (Drupal.settings.PanelsIPECacheKeys.indexOf(i) === -1) {
+        // Clean-up a little bit and remove it.
+        Drupal.PanelsIPE.editors[i].editing = false;
+        Drupal.PanelsIPE.editors[i].changed = false;
+        delete Drupal.PanelsIPE.editors[i];
+      }
+    }
+
+    // Initialize new editors.
     for (var i in Drupal.settings.PanelsIPECacheKeys) {
       var key = Drupal.settings.PanelsIPECacheKeys[i];
       $('div#panels-ipe-display-' + key + ':not(.panels-ipe-processed)')
