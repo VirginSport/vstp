@@ -445,8 +445,9 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
 
       $q->fields(array(
         'attendly_rego_id' => $rego,
-        'is_placeholder' => TRUE,
         'uid' => $account->uid,
+        'is_placeholder' => TRUE,
+        'placeholder_date' => time()
       ));
 
       $q->execute();
