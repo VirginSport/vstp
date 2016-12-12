@@ -26,7 +26,13 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     return;
   }
 
-  $user_grapher = new VirginEntityGrapher('user', $context[0]->data);
+  $account = $context[0]->data;
+
+  // Check if the tickets are fully synced
+  observer_notify(VirginUserEvents::CHECK_TICKET_SYNC, $account);
+
+  // And then build the list of tickets
+  $user_grapher = new VirginEntityGrapher('user', $account);
 
   /**
    * Load tickets must accomplish the following conditions:
