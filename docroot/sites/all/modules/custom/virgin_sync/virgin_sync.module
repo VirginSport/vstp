@@ -38,6 +38,7 @@ function virgin_sync_permission() {
     VIRGIN_SYNC_PERM_EXECUTE =>  array(
       'title' => t('Execute Sync'),
       'description' => t('Allows the user to execute the sync mechanism.'),
+      'restrict access' => TRUE,
     ),
   );
 }
