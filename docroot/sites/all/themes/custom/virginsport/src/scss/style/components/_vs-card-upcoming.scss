@@ -69,7 +69,19 @@ vs-card-upcoming,
 // Modifiers
 // ----------------------------------------------------------------------------
 
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
 
+  .vs-card-upcoming--color-#{$color} {
+
+    .vs-card-upcoming__title,
+    .vs-card-upcoming__date,
+    .vs-card-upcoming__text {
+      color: map_get($map, 'text-color');
+    }
+
+  }
+}
 
 // Responsive
 // ----------------------------------------------------------------------------
@@ -112,6 +124,22 @@ vs-card-upcoming,
 
 }
 
+@include media-breakpoint-up(md) {
+
+  .vs-card-upcoming__title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: .313rem;
+  }
+
+  .vs-card-upcoming__date {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  
+}
+
+
 @include media-breakpoint-up(lg) {
 
   .vs-card-upcoming__content-wrapper {
@@ -131,17 +159,6 @@ vs-card-upcoming,
 
   .vs-card-upcoming__image-wrapper {
     padding: 1.563rem 1.25rem;
-  }
-
-  .vs-card-upcoming__title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    margin-bottom: .313rem;
-  }
-
-  .vs-card-upcoming__date {
-    font-size: 1.25rem;
-    line-height: 1.5rem;
   }
 
 }

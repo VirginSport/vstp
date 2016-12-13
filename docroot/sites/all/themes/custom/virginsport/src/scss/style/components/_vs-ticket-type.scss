@@ -91,7 +91,12 @@ vs-ticket-type,
   $map: map_get($color-schemes, $color);
 
   .vs-ticket-type--gradient-#{$color} {
-    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 135deg);
+
+    .vs-ticket-type__title,
+    .vs-ticket-type__text,
+    .vs-ticket-type__price {
+      color: map_get($map, 'text-color');
+    }
   }
 }
 
@@ -99,8 +104,6 @@ vs-ticket-type,
 .vs-ticket-type__text--vip {
   @include make-col(8);
 }
-
-
 
 // Responsive
 // ----------------------------------------------------------------------------
