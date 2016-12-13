@@ -65,10 +65,12 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
 function virgin_base_form_alter(&$form, &$form_state, $form_id) {
   global $user;
 
-  $form['field_hostname']['#access'] = FALSE;
+  if (!empty($form['field_hostname'])) {
+    $roles = array_values($user->roles);
 
-  if ($user->uid == 1 || (!empty($user->roles[3]))) {
-    $form['field_hostname']['#access'] = TRUE;
+    if ($user->uid != 1 || !in_array('administrator', $roles)) {
+      $form['field_hostname']['#access'] = FALSE;
+    }
   }
 }
 
