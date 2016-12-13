@@ -456,7 +456,7 @@ function _virgin_check_state_node_access() {
   // If the we're handling a node/% path, check if the type of node, and if
   // the node is one of the 'state' nodes either redirect the user to the
   // content overview page if he has access or show a page not found.
-  if (!empty($_GET['q']) && strpos($_GET['q'], 'node/') !== FALSE) {
+  if (!empty($_GET['q']) && strpos($_GET['q'], 'node/') === 0) {
     $item = menu_get_item();
 
     if ($item['path'] != 'node/%' || empty($item['map'][1]->type)) {
