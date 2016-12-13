@@ -398,6 +398,29 @@ vs-ticket-card,
 
   .vs-ticket-card--color-#{$color} {
 
+    .vs-ticket-card-wrapper,
+    .vs-ticket-card__content-wrapper,
+    .vs-ticket-card__edit-ticket,
+    .vs-ticket-card__cta,
+    .vs-ticket-card__club,
+    .vs-ticket-card__team,
+    .vs-ticket-card__session-time,
+    .vs-ticket-card__distance {
+      color: map_get($map, 'text-color');
+    }
+
+    .vs-ticket-card__past-event-details {
+      border-bottom-color: map_get($map, 'text-color');
+    }
+
+    .vs-ticket-card__days-left-wrapper {
+      @include box-shadow(inset 0 0 0 0.125rem map_get($map, 'text-color'));
+    }
+
+    .vs-share-button__icon-button .icon-share { 
+        color: map_get($map, 'text-color');
+    }
+
     :not(.vs-ticket-card__ribbon-desktop-wrapper) > .vs-ticket-card__ribbon--hero,
     .vs-ticket-card__ribbon-desktop-bg--hero {
 

@@ -1,0 +1,353 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-photo-gallery,
+.vs-photo-gallery {
+  @include clearfix();
+  display: block;
+  background-color: transparent;
+  text-align: center;
+  margin-bottom: 1.875rem;
+
+  .slick-dots {
+    font-size: 1rem;
+    bottom: auto;
+    width: 100%;
+    z-index: 100;
+    margin-top: 0.4375rem;
+
+    li {
+      margin: 0;
+      width: 0.8125rem;
+      height: 0.8125rem;
+
+      button {
+        width: 0.8125rem;
+        height: 0.8125rem;
+
+        &::before {
+          width: 0.8125rem;
+          height: 0.8125rem;
+          line-height: 0.8125rem;
+          font-size: 1.4rem;
+          opacity: 0.2;
+        }
+      }
+
+      &.slick-active button::before {
+        opacity: 1;
+      }      
+    }
+  }
+
+  .slick-dotted.slick-slider {
+    margin-bottom: 1.6875rem;
+  }
+}
+
+.vs-photo-gallery-heading {
+  margin: 0 1rem 0.625rem;
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+.vs-photo-gallery-wrapper {
+  @include make-container();
+  @include make-container-max-widths();
+
+  &--fullscreen {
+    padding-right: 0 !important;
+  }
+
+  .slick-arrow, 
+  &--fullscreen .slick-arrow {
+    @include transition(all 0.3s ease);
+
+    z-index: 100;
+    border-width: 0.25rem;
+    border-color: $c-black;
+    border-top-style: solid;
+    width: 1.8125rem;
+    height: 1.8125rem;
+
+    &:before {
+      content: '';
+    }
+
+    &.slick-disabled {
+      cursor: default;
+      color: black;
+      opacity: 0.25;
+    }
+  }
+
+  &--fullscreen.hide-controls .slick-arrow,
+  &--fullscreen.hide-controls .close, {
+    opacity: 0;
+  } 
+
+  &--fullscreen .slick-arrow {
+    border-color: $c-white;
+    border-width: 0.8125rem;
+    border-color: $c-white;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .slick-prev, &--fullscreen .slick-prev {
+    @include transform(rotate(-45deg));
+    left: -4.1875rem;
+    border-left-style: solid;
+  }
+
+  &--fullscreen .slick-prev {
+    left: 2.5rem;
+  }
+
+  .slick-next, &--fullscreen .slick-next {
+    @include transform(rotate(45deg));
+    right: -4.1875rem;
+    border-right-style: solid;
+  }
+
+  &--fullscreen .slick-next {
+    right: 2.5rem;
+  }
+
+  &--fullscreen .close {
+    @include transition(all 0.3s ease);
+    color: $c-white;
+    float: none;
+    opacity: 1;
+    z-index: 100;
+    font-size: 4.125rem;
+    font-weight: 400;
+    top: 1.4375rem;
+    right: 2.3125rem;
+    cursor: pointer;
+  }
+
+  &--fullscreen .slick-list, 
+  &--fullscreen .slick-track {
+    height: 100%;
+  }
+
+  &--fullscreen picture {
+    height: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--fullscreen button {
+    position: fixed;
+  }
+}
+
+.vs-photo-gallery__image-wrapper {
+    margin-bottom: 1.25rem;
+
+    .vs-photo-gallery-wrapper--fullscreen & {
+      border-top: 0.125rem solid $c-white;
+      margin-bottom: 0; 
+      height: 100%;
+    }
+
+    .slick-slide {
+      height: 16.25rem;
+
+      img {
+        cursor: pointer;
+        display: inline-block;
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      .vs-photo-gallery-wrapper--fullscreen & {
+        height: auto;
+
+        img {
+          cursor: default;
+          height: auto;
+          min-height: 16.25rem;
+          max-height: 100%;
+        }
+      }
+    }
+}
+
+.vs-photo-gallery__thumbnails-wrapper {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 33.75rem;
+
+  .vs-photo-gallery-wrapper--fullscreen & {
+    max-width: 75rem;
+  }
+
+  div {
+    background: transparent no-repeat center center;
+    background-size: cover;
+  }
+
+  .slick-slide {
+    cursor: pointer;
+    margin: 0;
+    width: 3.75rem;
+    height: 3.75rem;
+    outline: none;
+    position: relative;
+
+    &:after {
+      @include transition(all 0.3s ease);
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, .7);
+    }
+
+    .vs-photo-gallery-wrapper--fullscreen & {
+      width: 9rem;
+      height: 9rem;
+
+      &:after {
+        background-color: transparent;
+      }
+    }
+
+    &.slick-current {
+      border: 0.125rem solid white;
+
+      &:after {
+        background-color: transparent;
+      }
+
+      .vs-photo-gallery-wrapper--fullscreen & {
+        border: none;
+        background-image: none;
+
+        &:after {
+          background-color: rgba(255, 255, 255, .7);
+        }
+      } 
+    }
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-photo-gallery--color-#{$color} {
+
+    .vs-photo-gallery__thumbnails-wrapper .slick-slide:not(.slick-current):after {    
+      background-color: rgba(red(map_get($map, 'solid-color')), green(map_get($map, 'solid-color')), blue(map_get($map, 'solid-color')), .7);
+    }
+  }
+
+  .vs-region--gradient-#{$color} vs-photo-gallery,
+  .vs-region--gradient-#{$color} .vs-photo-gallery {
+
+    .vs-photo-gallery-wrapper .slick-arrow {
+      border-color: map_get($map, 'text-color');
+    }
+  }
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+@include media-breakpoint-down(xs) {
+
+  .vs-photo-gallery-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+
+    > .row {
+      margin-left: 0;
+      margin-right: 0;
+
+      > .col-xs-12 {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .vs-photo-gallery-wrapper--fullscreen {
+
+    .close {
+      font-size: 3.5rem;
+    }
+
+    .slick-arrow {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-width: 0.5rem;
+    }
+  } 
+}
+
+@include media-breakpoint-down(md) {
+  .vs-photo-gallery__thumbnails-wrapper {
+    max-width: 30rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  vs-photo-gallery,
+  .vs-photo-gallery {
+    margin-bottom: 3.75rem;
+  }
+
+  .vs-photo-gallery-wrapper .vs-photo-gallery__thumbnails-wrapper {
+    display: block;
+  }
+
+  @media screen and (min-height: 25.25rem) {
+
+    .vs-photo-gallery-wrapper--fullscreen {
+
+      .vs-photo-gallery__thumbnails-wrapper {
+        display: block;
+      }
+
+      .vs-photo-gallery__image-wrapper {
+        height: calc(100% - 9rem);
+      }
+    }
+  }
+  
+  .vs-photo-gallery-heading {
+    margin: 0 1.1875rem 0.875rem;
+  }
+
+  .vs-photo-gallery-wrapper {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+
+    .vs-photo-gallery__image-wrapper .slick-list {
+      border-radius: .625rem;
+    }
+
+    .slick-current img {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  .vs-photo-gallery__image-wrapper {
+    .slick-slide {
+      height: 37.5rem;
+    }
+  }
+}
