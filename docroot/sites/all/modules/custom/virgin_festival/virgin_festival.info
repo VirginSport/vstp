@@ -36,6 +36,7 @@ features[field_instance][] = node-festival-field_festival_state
 features[field_instance][] = node-festival-field_hashtag
 features[field_instance][] = node-festival-field_header_image
 features[field_instance][] = node-festival-field_hero_image_results
+features[field_instance][] = node-festival-field_logo
 features[field_instance][] = node-festival-field_region
 features[field_instance][] = node-festival-field_status
 features[field_instance][] = node-festival-title_field

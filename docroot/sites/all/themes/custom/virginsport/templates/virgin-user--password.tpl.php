@@ -9,7 +9,7 @@ $query = drupal_get_query_parameters();
 
 <div class="vs-head-region">
   <div class="vs-region vs-region--no-padding">
-    <div class="vs-hero-banner">
+    <div class="vs-hero-banner vs-hero-banner--small">
       <div
         class="vs-hero-banner__background vs-hero-banner__default-background">
         <div class="container">

@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function virgin_base_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "scald" && $api == "context_config") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -57,6 +60,22 @@ function virgin_base_image_default_styles() {
         'data' => array(
           'width' => 30,
           'height' => 18,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_scald_preview.
+  $styles['vs_scald_preview'] = array(
+    'label' => 'vs_scald_preview',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 200,
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => 1,
       ),

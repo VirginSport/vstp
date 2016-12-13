@@ -61,9 +61,7 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
  * Implements hook_form_alter()
  *
  * Change the access to region field_hostname
- *
  */
-
 function virgin_base_form_alter(&$form, &$form_state, $form_id) {
   global $user;
 
@@ -99,6 +97,45 @@ function virgin_base_form_fieldable_panels_panes_fieldable_panels_pane_content_t
   foreach ($move_to_extra as $field_name) {
     $form['extra_config'][$field_name] = $form[$field_name];
     unset($form[$field_name]);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for scald_extra_atom_add_form_options.
+ */
+function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form_state, $form_id) {
+
+  // Hide the authors and actions fields from the scald interface
+  if (!empty($form['atom0'])) {
+    $form['atom0']['scald_authors']['#access'] = FALSE;
+    $form['atom0']['scald_actions']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_views_post_render().
+ */
+function virgin_base_views_pre_build(&$view) {
+
+  // Remove action links, and extra filters for the scald atoms admin view
+  if ($view->name == 'scald_atoms') {
+
+    // Remove the action links
+    $view->header = array();
+
+    // Remove the extra filters
+    $whitelisted_filters = array(
+      'title',
+      'scald_tags_tid'
+    );
+
+    foreach ($view->filter as $key => $filter) {
+      if (in_array($key, $whitelisted_filters)) {
+        continue;
+      }
+
+      unset($view->filter[$key]);
+    }
   }
 }
 
@@ -144,6 +181,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose the button style
   $element['attributes']['virgin_class'] = array(
+    '#prefix' => '<div class="vs-cta-btn__style">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Button Style'),
     '#options' => empty($options) ? array() : $options,
@@ -163,6 +202,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose between a link field and CTA buttons
   $element['attributes']['virgin_type'] = array(
+    '#prefix' => '<div class="vs-cta-btn__type">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Type'),
     '#options' => $types,
@@ -173,12 +214,16 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   $element['attributes']['virgin_gtm_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__gtm">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('GTM Event Name'),
     '#default_value' => isset($attributes['virgin_gtm_event']) ? $attributes['virgin_gtm_event'] : '',
   );
 
   $element['attributes']['virgin_festival'] = array(
+    '#prefix' => '<div class="vs-cta-btn__festival">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Festival Id'),
     '#default_value' => isset($attributes['virgin_festival']) ? $attributes['virgin_festival'] : '',
@@ -198,6 +243,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
   );
 
   $element['attributes']['virgin_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__event">',
+    '#suffix' => '</div>',
     '#type' => 'textfield',
     '#title' => t('Event Id'),
     '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',

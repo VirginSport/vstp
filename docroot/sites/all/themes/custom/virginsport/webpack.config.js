@@ -37,6 +37,12 @@ module.exports = {
       {
         test: /\.(png|jpg|jpeg|svg|gif)$/,
         loader: 'file?name=public/img/[name].[ext]'
+      },
+  
+      // Add support for JSON files
+      {
+        include: /\.json$/,
+        loaders: ["json-loader"]
       }
     ]
   },
