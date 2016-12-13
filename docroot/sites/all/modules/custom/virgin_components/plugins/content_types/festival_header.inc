@@ -55,6 +55,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
         JOIN {field_data_field_festival_state} fs2
           ON fs2.field_festival_state_target_id = fs1.field_festival_state_target_id
           AND fs2.bundle = 'festival'
+        JOIN {node} n
+          ON n.nid = fs2.entity_id
+          AND n.status = 1
         WHERE es.entity_id = :id
         LIMIT 1
       ";
