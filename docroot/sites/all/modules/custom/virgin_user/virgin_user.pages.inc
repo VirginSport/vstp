@@ -362,6 +362,23 @@ function virgin_user_page_user_register() {
   return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
 }
 
+/**
+ * Page callback for the user password route
+ *
+ * This callback overrides the core drupal user password route
+ *
+ * @return string
+ *  The html template
+ */
+function virgin_user_page_user_password() {
+  // Load user pages to render the registaer password form
+  module_load_include('inc', 'user', 'user.pages');
+
+  $password_form = drupal_get_form('user_pass');
+
+  return theme('virgin_user__password', array('password_form' => $password_form));
+}
+
 
 /**
  * Page callback for the user contact form

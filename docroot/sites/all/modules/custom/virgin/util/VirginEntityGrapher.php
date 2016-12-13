@@ -181,11 +181,12 @@ class VirginEntityGrapher {
     // Because I want to have access to each entity wrapper type, will use
     // an incremented index and a while entity relationship exists add it
     // to entity graphers array
-    while (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index++]->value())) {
+    while (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index]->value())) {
       // Get relationship entity type
       $entity_type = $entity_wrapper->{$name}[$index]->type();
 
       $entity_graphers[] = new VirginEntityGrapher($entity_type, $entity_wrapper->{$name}[$index]->value());
+      $index++;
     }
 
     // If entity relationships not found return current VirginEntityGrapher

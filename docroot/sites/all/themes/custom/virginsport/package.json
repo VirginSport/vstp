@@ -25,6 +25,7 @@
     "qs": "^6.3.0",
     "resolve-url-loader": "1.6.0",
     "sass-loader": "4.0.0",
+    "slick-carousel": "1.6.0",
     "style-loader": "0.13.1",
     "vue": "^1.0",
     "vue-loader": "^9.7.0",

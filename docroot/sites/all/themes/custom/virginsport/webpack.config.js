@@ -1,3 +1,4 @@
+var Webpack = require('webpack');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var LiveReloadPlugin = require('webpack-livereload-plugin');
@@ -19,7 +20,7 @@ module.exports = {
           presets: ['es2015']
         }
       },
-      
+
       // Preprocess SCSS files to CSS
       {
         test: /\.scss$/,
@@ -44,16 +45,22 @@ module.exports = {
     new ExtractTextPlugin("app.css", {
       allChunks: true
     }),
-    
+
     // Delete all contents from build folder on build
     new CleanWebpackPlugin(['build'], {
       verbose: true,
       dry: false
     }),
-  
+
     // Add support for live reload
     new LiveReloadPlugin({
       ignore: /\.js$/ // Ignore js files as we only want to livereload css
+    }),
+
+    // Add jquery due to slick issue
+    new Webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ]
 };

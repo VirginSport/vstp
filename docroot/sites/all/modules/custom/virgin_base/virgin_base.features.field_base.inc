@@ -465,8 +465,8 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'left' => 'Left',
-        'right' => 'Right',
+        'left' => 'Image to the left',
+        'right' => 'Image to the right',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -2053,6 +2053,49 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_overlay_video_poster_image'.
+  $field_bases['field_overlay_video_poster_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_overlay_video_poster_image',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
+  // Exported field_base: 'field_overlay_video_url'.
+  $field_bases['field_overlay_video_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_overlay_video_url',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_package_cards'.
   $field_bases['field_package_cards'] = array(
     'active' => 1,
@@ -2328,6 +2371,27 @@ function virgin_base_field_default_field_bases() {
     'type' => 'atom_reference',
   );
 
+  // Exported field_base: 'field_slider_images'.
+  $field_bases['field_slider_images'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_slider_images',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
   // Exported field_base: 'field_slides'.
   $field_bases['field_slides'] = array(
     'active' => 1,
@@ -2446,8 +2510,9 @@ function virgin_base_field_default_field_bases() {
         'portrait_lower_portrait' => 'Portrait, Lower Portrait',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Portrait, Upper Portrait, Portrait',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape',
         'landscape_square_right' => 'Landscape, Square Right',
+        'portrait_square' => 'Portrait, Square',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

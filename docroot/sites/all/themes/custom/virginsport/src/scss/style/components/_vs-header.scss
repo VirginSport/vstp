@@ -15,15 +15,15 @@ vs-header,
   &.vs-header--pinned {
     @include transform(translateY(0));
   }
+}
 
-  @include media-breakpoint-up(md) {
-    &.vs-header--top.vs-header--video-fade-in {
-      opacity: 0;
-    }
+@include media-breakpoint-up(md) {
+  .front .vs-header--top.vs-header--video-fade-in {
+    opacity: 0;
+  }
 
-    &.vs-header--top.vs-header--video-fade-out {
-      opacity: 1;
-    }
+  .front .vs-header--top.vs-header--video-fade-out {
+    opacity: 1;
   }
 }
 

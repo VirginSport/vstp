@@ -1,1 +1,2 @@
-export default window.jQuery;
+window.$ = window.jQuery;
+export default window.$;

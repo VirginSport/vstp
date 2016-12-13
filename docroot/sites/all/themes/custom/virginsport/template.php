@@ -227,6 +227,28 @@ function virginsport_atom_background($atom, $style = 'virgin_original') {
 }
 
 /**
+ * Generates the url from an atom object
+ *
+ * @param $atom
+ *  The asset
+ * @return string
+ *  The asset url
+ */
+function virginsport_atom_url($atom) {
+  if (empty($atom) || empty($atom->sid)) {
+    return '';
+  }
+
+  if (empty($atom->file_source)) {
+    $atom = scald_atom_load($atom->sid);
+  }
+
+  $url = file_create_url($atom->file_source);
+
+  return $url;
+}
+
+/**
  * Gets the base url path relative to the theme
  *
  * @param $path
@@ -345,6 +367,7 @@ function virginsport_check_wrapper_required() {
     'user',
     'user/login',
     'user/register',
+    'user/password',
     'user/%',
     'user/%/edit',
     'node/%/tickets',

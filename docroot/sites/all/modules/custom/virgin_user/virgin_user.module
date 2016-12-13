@@ -113,6 +113,12 @@ function virgin_user_theme($existing, $type, $theme, $path) {
         'hybridauth_widget' => '',
       )
     ) + $default,
+    'virgin_user__password' => array(
+        'template' => 'virgin-user__password',
+        'variables' => array(
+          'form' => '',
+        )
+      ) + $default,
     'virgin_user__contact_form' => array(
       'template' => 'virgin-user--contact-form',
       'variables' => array(
@@ -246,6 +252,11 @@ function virgin_user_menu_alter(&$items) {
   $items['user/register']['page callback'] = 'virgin_user_page_user_register';
   $items['user/register']['file'] = $file;
   $items['user/register']['file path'] = $file_path;
+
+  // Override password recover page
+  $items['user/password']['page callback'] = 'virgin_user_page_user_password';
+  $items['user/password']['file'] = $file;
+  $items['user/password']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
