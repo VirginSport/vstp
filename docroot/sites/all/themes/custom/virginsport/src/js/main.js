@@ -19,6 +19,7 @@ import vsVideo from './components/vs-video';
 import vsCookie from './components/vs-cookie';
 import vsNotification from './components/vs-notification';
 import vsHeroBanner from './components/vs-heroBanner';
+import vsPhotoGallery from './components/vs-photo-gallery';
 
 vsBasket();
 vsContactForm();
@@ -39,6 +40,7 @@ vsVideo();
 vsCookie();
 vsNotification();
 vsHeroBanner();
+vsPhotoGallery();
 
 // Libs
 import bootstrap from './lib/bootstrap';
