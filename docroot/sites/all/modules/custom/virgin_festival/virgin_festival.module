@@ -16,7 +16,8 @@ function virgin_festival_menu() {
     'title' => 'Tickets',
     'page callback' => 'virgin_festival_page_tickets',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => 'node_access',
+    'access arguments' => array('view', 1),
     'type' => MENU_CALLBACK,
     'file' => 'virgin_festival.pages.inc'
   );
