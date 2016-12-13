@@ -80,6 +80,15 @@ function virgin_boot() {
 }
 
 /**
+ * Implements hook_init().
+ */
+function virgin_init() {
+
+  // Check if the current route is for a 'state' node and if the user can access
+  _virgin_check_state_node_access();
+}
+
+/**
  * Implements hook_theme().
  */
 function virgin_theme($existing, $type, $theme, $path) {
@@ -437,4 +446,41 @@ function virgin_ticket_banner_properties() {
   fclose($file);
 
   return $tickets;
+}
+
+/**
+ * Disables direct access to nodes that represent synchronizable state nodes
+ */
+function _virgin_check_state_node_access() {
+
+  // If the we're handling a node/% path, check if the type of node, and if
+  // the node is one of the 'state' nodes either redirect the user to the
+  // content overview page if he has access or show a page not found.
+  if (!empty($_GET['q']) && strpos($_GET['q'], 'node/') !== FALSE) {
+    $item = menu_get_item();
+
+    if ($item['path'] != 'node/%' || empty($item['map'][1]->type)) {
+      return;
+    }
+
+    $node_type = $item['map'][1]->type;
+
+    $state_node_types = array(
+      'festival_state',
+      'event_state',
+      'package_state',
+      'ticket_type_state'
+    );
+
+    if (!in_array($node_type, $state_node_types)) {
+      return;
+    }
+
+    if (user_access('access content overview')) {
+      drupal_goto('/admin/content');
+    } else {
+      drupal_not_found();
+      drupal_exit();
+    }
+  }
 }
