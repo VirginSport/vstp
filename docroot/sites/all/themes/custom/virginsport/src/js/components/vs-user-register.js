@@ -2,6 +2,7 @@ import $ from '../lib/jquery';
 import places from '../lib/google-places';
 import Vue from '../lib/vue';
 import blur from '../helper/input-blur';
+import moment from 'moment-timezone/index';
 
 blur();
 
@@ -47,6 +48,33 @@ export default () => {
       this.$el.classList.add('v-element--ready');
     },
     methods: {
+      /**
+       * Update chosen value based on model
+       */
+      updateChosen() {
+        window.setTimeout(() => {
+          $('select').trigger("chosen:updated");
+        }, 0);
+      },
+
+      /**
+       * Check if birth date is valid
+       */
+      validBirthDate() {
+        let now = moment();
+
+        let birthDateData = [
+          this.profile.field_date_year,
+          this.profile.field_date_month - 1,
+          this.profile.field_date_day
+        ];
+
+        let birthDate = moment(birthDateData); // another date
+        let duration = moment.duration(now.diff(birthDate));
+        let yearsNumber = duration.asYears();
+
+        return yearsNumber > 13;
+      },
 
       /**
        * Update chosen value based on model
