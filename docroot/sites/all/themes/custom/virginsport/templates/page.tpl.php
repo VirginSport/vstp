@@ -158,7 +158,7 @@
 
         <div class="vs-header__basket">
           <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
-            <span class="vs-header__basket__value">0</span>
+            <span class="vs-header__basket__value">&nbsp;</span>
           </a>
         </div>
         <button class="vs-menu-trigger">

@@ -1,0 +1,8 @@
+.vs-header__basket__value {
+  @include transition(all .2s ease-in-out);
+  opacity: 0;
+
+  &.vs-header__basket__value__ready {
+    opacity: 1;
+  }
+}
