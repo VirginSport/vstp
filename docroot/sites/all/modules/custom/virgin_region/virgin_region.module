@@ -196,15 +196,16 @@ function virgin_region_regions() {
 
   if (!empty($results['node'])) {
     foreach ($results['node'] as $node) {
-      $node_wrapper = entity_metadata_wrapper('node', $node->nid);
-      $hostname = $node_wrapper->field_hostname->value();
+      $grapher = new VirginEntityGrapher('node', node_load($node->nid));
+
+      $hostname = $grapher->fieldGetOne('field_hostname');
 
       $regions[$hostname] = array(
-        'nid' => $node->nid,
-        'title' => $node_wrapper->title_field->value(),
-        'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
-        'flag' => $node_wrapper->field_flag_image->value(),
-        'icon' => $node_wrapper->field_icon_image->value(),
+        'nid' => $grapher->property('nid'),
+        'title' => $grapher->fieldGetOne('title_field'),
+        'country_letter_code' => $grapher->fieldGetOne('field_country_letter_code'),
+        'flag' => $grapher->relation('field_flag_image')->getEntity(),
+        'icon' => $grapher->relation('field_icon_image')->getEntity(),
         'hostname' => $hostname
       );
     }
