@@ -90,6 +90,9 @@ function virgin_event_with_uuid($uuid) {
     FROM {field_data_field_sugar_id} state
     JOIN {field_data_field_event_state} event
       ON event.field_event_state_target_id = state.entity_id
+    JOIN {node} n
+      ON n.nid = event.entity_id
+      AND n.status = 1
     WHERE state.entity_type = 'node'
     AND state.bundle = 'event_state'
     AND state.field_sugar_id_value = :uuid
