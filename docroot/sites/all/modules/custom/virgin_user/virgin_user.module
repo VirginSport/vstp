@@ -32,7 +32,7 @@ define('VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL', 'virgin_user_last_successful_pul
  * The number of seconds to wait before checking the user's ticket
  * information is up to date and that no ticket placeholders exist.
  */
-define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900); // 60 * 15
+define('VIRGIN_USER_TICKET_SYNC_PERIOD', 60);
 
 /**
  * The name of the cookie that holds the basket's region hostname

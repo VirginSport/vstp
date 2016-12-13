@@ -40,6 +40,9 @@ function virgin_api_default_services_endpoint() {
         'mail-update' => array(
           'enabled' => '1',
         ),
+        'checkout-finished' => array(
+          'enabled' => '1',
+        ),
       ),
     ),
   );
