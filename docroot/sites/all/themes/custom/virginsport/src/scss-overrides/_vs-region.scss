@@ -57,12 +57,12 @@ $vs-region-overlap-sizes: (
 // --------------------------------------------------------
 
 // Ensure regions curves are visible
-.vs-region {
+.vs-region[data-vs-region-curved='1'] {
   z-index: 1;
 }
 
 // Ensure children of the region are visible even with the background active
-.vs-region > * {
+.vs-region[data-vs-region-curved='1'] > * {
   z-index: 1;
   position: relative;
 }
