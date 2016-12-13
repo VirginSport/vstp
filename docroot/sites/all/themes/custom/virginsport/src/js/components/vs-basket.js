@@ -46,6 +46,10 @@ function enableBasketCounter() {
     let total = totalBasketItems();
 
     if ($counter.html() != total) {
+      if (!$counter.hasClass('vs-header__basket__value__ready')) {
+        $counter.addClass('vs-header__basket__value__ready');
+      }
+      
       $counter.trigger('basket_counter_changed', total);
       $counter.html(total);
     }
