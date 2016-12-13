@@ -128,6 +128,23 @@ function virgin_scald_extra_modes() {
 }
 
 /**
+ * Implements hook_page_delivery_callback_alter().
+ */
+function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) {
+  $path = current_path();
+
+  // Register not found and access denied errors into gtm
+
+  if ($page_callback_result == MENU_NOT_FOUND) {
+    virgin_gtm()->addError(sprintf('The page "%s" was not found.', $path));
+  }
+
+  if ($page_callback_result == MENU_ACCESS_DENIED) {
+    virgin_gtm()->addError(sprintf('You are not authorized to access the page "%s".', $path));
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virgin_preprocess_page(&$vars) {
@@ -265,6 +282,10 @@ function _virgin_exception_handler($exception) {
 
   // If it's an unhandled VirginException, attempt to handle it "gracefully".
   if ($exception instanceof VirginException) {
+
+    // Register exceptions in GTM
+    virgin_gtm()->addError($exception->getUserMessage());
+
     if ($exception->hasUserMessage()) {
       drupal_set_message($exception->getUserMessage(), 'error');
     }
@@ -329,6 +350,21 @@ function virgin_attendly_client() {
   }
 
   return $client;
+}
+
+/**
+ * Gets the global instance of gtm handler
+ *
+ * @return \VirginGtm
+ */
+function virgin_gtm() {
+  $gtm = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$gtm) {
+    $gtm = new VirginGtm();
+  }
+
+  return $gtm;
 }
 
 /**

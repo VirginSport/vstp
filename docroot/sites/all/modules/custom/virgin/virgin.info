@@ -71,3 +71,4 @@ files[] = util/VirginAttendlyClient.php
 files[] = util/VirginCipher.php
 files[] = util/VirginEntityGrapher.php
 files[] = util/VirginGrapher.php
+files[] = util/VirginGtm.php

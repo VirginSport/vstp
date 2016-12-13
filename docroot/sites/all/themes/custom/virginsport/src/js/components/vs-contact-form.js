@@ -73,6 +73,15 @@ function bind($el) {
     blur();
   };
 
+  if (query['virgin_type'] == 'register_interest_form') {
+    $el.click(function() {
+      // Push event to google tag manager data layer
+      if (dataLayer) {
+        dataLayer.push({'event' : 'RegisterInterestCTA' });
+      }
+    });
+  }
+
   Drupal.ajax[base] = ajax;
 }
 
@@ -200,6 +209,13 @@ function initVue(selector, inModal = false) {
 
         this.$http.post(path() + 'ajax/contact-form/post', this.form).then((response) => {
           // success callback
+          let data = JSON.parse(response.data);
+
+          // Push result to google tag manager data layer
+          if (data.gtm && dataLayer) {
+            dataLayer.push(data.gtm);
+          }
+
           self.form.submitted = true;
         }, (response) => {
           self.form.error = true;

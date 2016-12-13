@@ -213,6 +213,14 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     ),
   );
 
+  $element['attributes']['virgin_gtm_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__gtm">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('GTM Event Name'),
+    '#default_value' => isset($attributes['virgin_gtm_event']) ? $attributes['virgin_gtm_event'] : '',
+  );
+
   $element['attributes']['virgin_festival'] = array(
     '#prefix' => '<div class="vs-cta-btn__festival">',
     '#suffix' => '</div>',
@@ -332,4 +340,41 @@ function virgin_base_events($festival_id) {
   asort($list);
 
   return $list;
+}
+
+/**
+ * Fetch a grapher object containing the festival related to the given
+ * event ID
+ *
+ * @param $event_nid
+ *  The event node ID
+ * @return \VirginEntityGrapher|NULL
+ *  A grapher containing the festival, or NULL if no related festival could
+ *  be found.
+ */
+function virgin_base_event_festival($event_nid) {
+  $sql = "
+        SELECT fs2.entity_id AS festival_nid
+        FROM {field_data_field_event_state} es
+        JOIN {field_data_field_festival_state} fs1
+          ON fs1.entity_id = es.field_event_state_target_id
+          AND fs1.entity_type = 'node'
+          AND fs1.bundle = 'event_state'
+        JOIN {field_data_field_festival_state} fs2
+          ON fs2.field_festival_state_target_id = fs1.field_festival_state_target_id
+          AND fs2.bundle = 'festival'
+        WHERE es.entity_id = :id
+        LIMIT 1
+      ";
+
+
+  $result = db_query($sql, array(':id' => $event_nid));
+  $nid = $result->fetchField();
+
+  // Fallback to event grapher to avoid errors accessing object
+  if (empty($nid)) {
+    $nid = $event_nid;
+  }
+
+  return new VirginEntityGrapher('node', node_load($nid));
 }

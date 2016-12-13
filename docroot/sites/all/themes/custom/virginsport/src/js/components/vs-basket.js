@@ -116,6 +116,14 @@ function bindRegionChangeTriggers() {
     $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
       e.preventDefault();
       showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
+
+      // Push event to google tag manager data layer
+      if (dataLayer) {
+        dataLayer.push({
+          'event' : $(this).attr('vs-ticket-event'),
+          'TicketLevel' : $(this).attr('vs-ticket-level')
+        });
+      }
     });
   
     // If there's a region change query parameter and it matches
