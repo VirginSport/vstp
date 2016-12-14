@@ -26,6 +26,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'access content',
     'roles' => array(
       'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -1979,6 +1980,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['view all unpublished content'] = array(
     'name' => 'view all unpublished content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',
