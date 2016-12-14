@@ -163,20 +163,6 @@ function virgin_roles_user_default_permissions() {
     'module' => 'panelizer',
   );
 
-  // Exported permission: 'administer panelizer bean bean_tax_listing defaults'.
-  $permissions['administer panelizer bean bean_tax_listing defaults'] = array(
-    'name' => 'administer panelizer bean bean_tax_listing defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer bean bean_tax_related defaults'.
-  $permissions['administer panelizer bean bean_tax_related defaults'] = array(
-    'name' => 'administer panelizer bean bean_tax_related defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
   // Exported permission: 'administer panelizer fieldable_panels_pane fieldable_panels_pane defaults'.
   $permissions['administer panelizer fieldable_panels_pane fieldable_panels_pane defaults'] = array(
     'name' => 'administer panelizer fieldable_panels_pane fieldable_panels_pane defaults',
@@ -292,34 +278,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer fieldable_panels_pane vs_video_block defaults'.
   $permissions['administer panelizer fieldable_panels_pane vs_video_block defaults'] = array(
     'name' => 'administer panelizer fieldable_panels_pane vs_video_block defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file audio defaults'.
-  $permissions['administer panelizer file audio defaults'] = array(
-    'name' => 'administer panelizer file audio defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file document defaults'.
-  $permissions['administer panelizer file document defaults'] = array(
-    'name' => 'administer panelizer file document defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file image defaults'.
-  $permissions['administer panelizer file image defaults'] = array(
-    'name' => 'administer panelizer file image defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file video defaults'.
-  $permissions['administer panelizer file video defaults'] = array(
-    'name' => 'administer panelizer file video defaults',
     'roles' => array(),
     'module' => 'panelizer',
   );
@@ -542,13 +500,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer node ticket_type_state defaults'.
   $permissions['administer panelizer node ticket_type_state defaults'] = array(
     'name' => 'administer panelizer node ticket_type_state defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer node webform defaults'.
-  $permissions['administer panelizer node webform defaults'] = array(
-    'name' => 'administer panelizer node webform defaults',
     'roles' => array(),
     'module' => 'panelizer',
   );
@@ -1123,15 +1074,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete any ticket_type_state content'.
   $permissions['delete any ticket_type_state content'] = array(
     'name' => 'delete any ticket_type_state content',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete any webform content'.
-  $permissions['delete any webform content'] = array(
-    'name' => 'delete any webform content',
     'roles' => array(
       'administrator' => 'administrator',
     ),
