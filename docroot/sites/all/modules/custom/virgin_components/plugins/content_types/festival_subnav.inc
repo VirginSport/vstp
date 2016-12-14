@@ -47,6 +47,7 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
         from {field_data_field_event_state} es
         join {field_data_field_festival_state} fs1 on fs1.entity_id = es.field_event_state_target_id and fs1.entity_type = 'node' and fs1.bundle = 'event_state'
         join {field_data_field_festival_state} fs2 on fs2.field_festival_state_target_id = fs1.field_festival_state_target_id and fs2.bundle = 'festival'
+        join {node} n on n.nid = fs2.entity_id and n.status = 1
         where es.entity_id = :id
         limit 1
       ";

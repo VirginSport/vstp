@@ -68,6 +68,7 @@
               class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
               href="<?php print url('node/' . $festival_id . '/tickets'); ?>"
               vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
+              vs-ticket-event="GetTicketsCTA"
             >
               <?php print t('Get Passes'); ?>
             </a>
@@ -89,3 +90,23 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer Untimed Event Cards-->
+<script>
+  window.addEventListener('load', function() {
+    dataLayer.push(
+      {
+        'page': 'detail',
+        'ecommerce': {
+          'detail': {
+            'actionField': {
+              'list': ['Untimed Event Cards']
+            },
+            'products': <?php print $products; ?>
+          }
+        }
+      }
+    );
+  });
+</script>
+<!-- End Google Tag Manager Data Layer Untimed Event Cards-->

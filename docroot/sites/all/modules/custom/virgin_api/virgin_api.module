@@ -38,6 +38,31 @@ function virgin_api_services_resources() {
           ),
         ),
       ),
+      'checkout-finished' => array(
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'virgin_api',
+          'name' => 'resources/virgin_resource'
+        ),
+        'callback' => '_virgin_api_virgin_checkout_finished_action',
+        'access callback' => 'virgin_api_token_access',
+        'args' => array(
+          array(
+            'name' => 'external_id',
+            'type' => 'string',
+            'description' => 'The id of sugar crm contact',
+            'source' => 'data',
+            'optional' => FALSE,
+          ),
+          array(
+            'name' => 'regos',
+            'type' => 'array',
+            'description' => 'The id of sugar crm contact',
+            'source' => 'data',
+            'optional' => FALSE,
+          ),
+        ),
+      )
     ),
   );
 

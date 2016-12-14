@@ -65,3 +65,23 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Package Cards-->
+<script>
+  window.addEventListener('load', function() {
+    dataLayer.push(
+      {
+        'page': 'detail',
+        'ecommerce': {
+          'detail': {
+            'actionField': {
+              'list': ['Package Cards']
+            },
+            'products': <?php print $products; ?>
+          }
+        }
+      }
+    );
+  });
+</script>
+<!-- End Google Tag Manager Data Package Cards-->

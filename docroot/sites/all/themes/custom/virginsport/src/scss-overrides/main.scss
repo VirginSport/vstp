@@ -5,6 +5,9 @@
 // Helper functions
 @import "functions";
 
+// FILE TO BE REMOVED AS SOON THE MOBILE MENU IS FIXED!
+@import "hacks";
+
 // Fixes per module/feature
 @import "cta";
 @import "ipe";
@@ -21,5 +24,6 @@
 @import "vs-profile-login";
 @import "vs-profile-register";
 @import "vs-profile-empty";
+@import "vs-basket";
 @import "vs-video";
 @import "vs-carousel";

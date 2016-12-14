@@ -22,9 +22,11 @@ function virgin_sync_menu() {
 
   $items['admin/content/virgin-sync'] = array(
     'title' => 'Sync Content',
-    'page callback' => 'virgin_sync_batch',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('virgin_sync_admin_confirm_sync_form'),
     'access arguments' => array(VIRGIN_SYNC_PERM_EXECUTE),
     'type' => MENU_LOCAL_ACTION,
+    'file' => 'virgin_sync.admin.inc'
   );
 
   return $items;
@@ -38,6 +40,7 @@ function virgin_sync_permission() {
     VIRGIN_SYNC_PERM_EXECUTE =>  array(
       'title' => t('Execute Sync'),
       'description' => t('Allows the user to execute the sync mechanism.'),
+      'restrict access' => TRUE,
     ),
   );
 }
@@ -61,7 +64,7 @@ function virgin_sync_batch() {
   $last_sync = variable_get(VIRGIN_SYNC_VAR_LAST_SYNC, 0);
 
   $batch = array(
-    'title' => t('Virgin Sync'),
+    'title' => t('Virgin Content Sync'),
     'init_message' => t('Synchronization process is starting'),
     'progress_message' => t('Processed @current out of @total.'),
     'error_message' => t('An error ocurred while syncing'),

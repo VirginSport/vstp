@@ -158,7 +158,7 @@
 
         <div class="vs-header__basket">
           <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
-            <span class="vs-header__basket__value">0</span>
+            <span class="vs-header__basket__value">&nbsp;</span>
           </a>
         </div>
         <button class="vs-menu-trigger">
@@ -261,3 +261,19 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+  dataLayer = <?php print $gtm_data_layer; ?>;
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+<!-- Push collected events to Google Tag Manager Data Layer -->
+<script>
+  window.addEventListener('load', function() {
+    <?php foreach ($data_layer_events as $event): ?>
+    dataLayer.push(<?php print $event; ?>);
+    <?php endforeach; ?>
+  });
+</script>
+<!-- End Push collected events to Google Tag Manager Data Layer -->
