@@ -13,10 +13,10 @@ projects:
     version: "7.x-1.x"
 
   acquia_connector:
-    version: "2.15"
+    version: "2.17"
 
   coder:
-    version: "2.5"
+    version: "2.6"
 
   composer_manager:
     download:
@@ -43,13 +43,13 @@ projects:
     version: "1.5"
 
   fieldable_panels_panes:
-    version: "1.10"
+    version: "1.11"
 
   hybridauth:
     version: "2.15"
 
   i18n:
-    version: "1.13"
+    version: "1.14"
 
   mailsystem:
     version: "2.34"
@@ -98,7 +98,7 @@ projects:
     version: "2.3"
 
   services:
-    version: "3.16"
+    version: "3.17"
 
   shield:
     version: "1.3"

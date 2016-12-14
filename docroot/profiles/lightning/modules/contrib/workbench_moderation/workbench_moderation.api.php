@@ -52,6 +52,21 @@ function hook_workbench_moderation_states_next_alter(&$states, $current_state, $
 }
 
 /**
+ * Allows modules to alter the new state of a transition.
+ *
+ * @param &$node
+ *   The node being acted upon.
+ */
+function hook_workbench_moderation_new_state_alter(&$node) {
+  // If a new node revision is being created because of an automatic update
+  // arriving from an external feed, then transition the new revision being
+  // created to the default state.
+  if (isset($node->__external_automatic_update)) {
+    $node->workbench_moderation_state_new = variable_get('workbench_moderation_default_state_' . $node->type, workbench_moderation_state_none());
+  }
+}
+
+/**
  * Allows modules to respond to state transitions.
  *
  * @param $node

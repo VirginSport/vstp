@@ -6,9 +6,9 @@ configure = admin/config/workbench/settings
 dependencies[] = views
 
 
-; Information added by drush on 2016-08-22
+; Information added by drush on 2016-11-28
 version = "7.x-1.2+2-dev"
 core = "7.x"
 project = "workbench"
-datestamp = "1471881003"
+datestamp = "1480367010"
 

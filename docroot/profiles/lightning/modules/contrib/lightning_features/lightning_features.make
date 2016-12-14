@@ -61,7 +61,7 @@ projects[context_admin][download][type] = "git"
 projects[context_admin][download][revision] = "0e5bf6a"
 projects[context_admin][download][branch] = "7.x-1.x"
 
-projects[ctools][version] = "1.10"
+projects[ctools][version] = "1.12"
 projects[ctools][type] = "module"
 projects[ctools][subdir] = "contrib"
 ; should entity view hooks be triggered unconditionally in node_view, term_view and user_view pages?
@@ -91,13 +91,17 @@ projects[devel][version] = "1.5"
 projects[devel][type] = "module"
 projects[devel][subdir] = "contrib"
 
-projects[dialog][version] = "2.0-alpha9"
+projects[dialog][version] = "2.0-beta1"
 projects[dialog][type] = "module"
 projects[dialog][subdir] = "contrib"
 
 projects[diff][version] = "3.2"
 projects[diff][type] = "module"
 projects[diff][subdir] = "contrib"
+
+projects[drafty][version] = "1.0-beta3"
+projects[drafty][type] = "module"
+projects[drafty][subdir] = "contrib"
 
 projects[draggableviews][version] = "2.1"
 projects[draggableviews][type] = "module"
@@ -122,7 +126,7 @@ projects[ember_support][version] = "1.x-dev"
 projects[ember_support][type] = "module"
 projects[ember_support][subdir] = "contrib"
 
-projects[entity][version] = "1.7"
+projects[entity][version] = "1.8"
 projects[entity][type] = "module"
 projects[entity][subdir] = "contrib"
 
@@ -130,15 +134,12 @@ projects[entity_embed][version] = "3.x-dev"
 projects[entity_embed][type] = "module"
 projects[entity_embed][subdir] = "contrib"
 projects[entity_embed][download][type] = "git"
-projects[entity_embed][download][revision] = "b7e2a13"
+projects[entity_embed][download][revision] = "bb4f5e3"
 projects[entity_embed][download][branch] = "7.x-3.x"
 
-projects[entityreference][version] = "1.x-dev"
+projects[entityreference][version] = "1.2"
 projects[entityreference][type] = "module"
 projects[entityreference][subdir] = "contrib"
-projects[entityreference][download][type] = "git"
-projects[entityreference][download][revision] = "b5009cd"
-projects[entityreference][download][branch] = "7.x-1.x"
 
 projects[entityreference_prepopulate][version] = "1.6"
 projects[entityreference_prepopulate][type] = "module"
@@ -186,11 +187,11 @@ projects[file_image_formatters][version] = "1.1"
 projects[file_image_formatters][type] = "module"
 projects[file_image_formatters][subdir] = "contrib"
 
-projects[focal_point][version] = "1.0-beta6"
+projects[focal_point][version] = "1.0"
 projects[focal_point][type] = "module"
 projects[focal_point][subdir] = "contrib"
 
-projects[form_builder][version] = "1.18"
+projects[form_builder][version] = "1.19"
 projects[form_builder][type] = "module"
 projects[form_builder][subdir] = "contrib"
 
@@ -232,7 +233,7 @@ projects[link][version] = "1.4"
 projects[link][type] = "module"
 projects[link][subdir] = "contrib"
 
-projects[lite][version] = "1.0"
+projects[lite][version] = "1.1"
 projects[lite][type] = "module"
 projects[lite][subdir] = "contrib"
 
@@ -242,7 +243,7 @@ projects[magic_beans][subdir] = "contrib"
 projects[magic_beans][download][type] = "git"
 projects[magic_beans][download][branch] = "7.x-1.x"
 
-projects[media][version] = "2.0-beta2"
+projects[media][version] = "2.0-beta7"
 projects[media][type] = "module"
 projects[media][subdir] = "contrib"
 
@@ -273,7 +274,7 @@ projects[migrate_extras][subdir] = "contrib"
 ; http://drupal.org/node/1870886
 projects[migrate_extras][patch][1870886] = "http://drupal.org/files/migrate_extras-2.5-add_support_for_uuid-1870886-4-do-not-test.patch"
 
-projects[multiform][version] = "1.1"
+projects[multiform][version] = "1.3"
 projects[multiform][type] = "module"
 projects[multiform][subdir] = "contrib"
 
@@ -303,27 +304,25 @@ projects[pathauto][version] = "1.3"
 projects[pathauto][type] = "module"
 projects[pathauto][subdir] = "contrib"
 
-projects[panelizer][version] = "3.3"
+projects[panelizer][version] = "3.4"
 projects[panelizer][type] = "module"
 projects[panelizer][subdir] = "contrib"
 ; Better Revision Handling inside and outside of Workbench Moderation
 ; http://drupal.org/node/2457113
 projects[panelizer][patch][2457113] = "http://drupal.org/files/issues/panelizer-n2457113-69.patch"
 
-projects[panels][version] = "3.6"
+projects[panels][version] = "3.8"
 projects[panels][type] = "module"
 projects[panels][subdir] = "contrib"
 ; Fix IPE JS alert (Panelizer is Incompatible with Moderation)
 ; http://drupal.org/node/1402860#comment-9729091
 projects[panels][patch][1402860] = "http://drupal.org/files/issues/panelizer_is-1402860-82-fix-ipe-end-js-alert.patch"
 ; IPE Insufficient for working with Panelizer Revisioning
-; https://www.drupal.org/node/2462331#comment-9778921
-projects[panels][patch][2462331] = "http://www.drupal.org/files/issues/2462331-7.patch"
 ; Refresh the Workbench block after editing with Panels IPE
 ; https://www.drupal.org/node/2485837
 projects[panels][patch][2485837] = "http://www.drupal.org/files/issues/panels-ipe-workbench-block-2485837-1.patch"
 
-projects[panels_preview][version] = "1.0-alpha2"
+projects[panels_preview][version] = "1.0-beta2"
 projects[panels_preview][type] = "module"
 projects[panels_preview][subdir] = "contrib"
 
@@ -371,7 +370,7 @@ projects[rules][version] = "2.9"
 projects[rules][type] = "module"
 projects[rules][subdir] = "contrib"
 
-projects[simple_gmap][version] = "1.2"
+projects[simple_gmap][version] = "1.3"
 projects[simple_gmap][type] = "module"
 projects[simple_gmap][subdir] = "contrib"
 
@@ -444,7 +443,7 @@ projects[views_load_more][version] = "1.5"
 projects[views_load_more][type] = "module"
 projects[views_load_more][subdir] = "contrib"
 
-projects[webform][version] = "4.13"
+projects[webform][version] = "4.14"
 projects[webform][type] = "module"
 projects[webform][subdir] = "contrib"
 
@@ -458,7 +457,7 @@ projects[workbench][download][branch] = "7.x-1.x"
 ; https://www.drupal.org/node/2606230
 projects[workbench][patch][2606230] = "http://drupal.org/files/issues/update-views-api-2606230-2.patch"
 
-projects[workbench_moderation][version] = "1.4"
+projects[workbench_moderation][version] = "3.0"
 projects[workbench_moderation][type] = "module"
 projects[workbench_moderation][subdir] = "contrib"
 ; Workbench Moderation IIB Integration should be optional
@@ -470,14 +469,14 @@ projects[workbench_moderation][patch][2485713] = "http://drupal.org/files/issues
 ; Fix warnings on installation and features revert.
 ; https://www.drupal.org/node/2360973
 projects[workbench_moderation][patch][2360973] = "http://drupal.org/files/issues/workbench_moderation-install-warnings-2360973-3.patch"
-; restws_page_callback() breaks workbench_moderation
-; https://www.drupal.org/node/1838640
-projects[workbench_moderation][patch][1838640] = "http://drupal.org/files/issues/workbench_moderation-fix_callback_argument-1838640-23.patch"
 ; "View draft" opens published version / "Edit draft" opens correctly
 ; https://www.drupal.org/node/2447659
-projects[workbench_moderation][patch][2447659] = "http://drupal.org/files/issues/workbench-moderation-show-draft-2447659-19.patch"
+projects[workbench_moderation][patch][2447659] = "http://drupal.org/files/issues/workbench-moderation-show-draft-2447659-45.patch"
+; Provide hook to alter the new state of transitions.
+; http://www.drupal.org/node/2757963
+projects[workbench_moderation][patch][2757963] = "https://www.drupal.org/files/issues/allow_new_state_alter-2757963-2.patch"
 
-projects[workbench_moderation_buttons][version] = "1.0-alpha3"
+projects[workbench_moderation_buttons][version] = "1.0"
 projects[workbench_moderation_buttons][type] = "module"
 projects[workbench_moderation_buttons][subdir] = "contrib"
 
@@ -518,7 +517,7 @@ libraries[colorbox][download][type] = "get"
 libraries[colorbox][download][url] = "https://github.com/jackmoore/colorbox/archive/1.x.zip"
 
 libraries[jsonpath][download][type] = "get"
-libraries[jsonpath][download][url] = "https://jsonpath.googlecode.com/files/jsonpath-0.8.1.php"
+libraries[jsonpath][download][url] = "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/jsonpath/jsonpath-0.8.1.php"
 
 libraries[modernizr][download][type] = "get"
 libraries[modernizr][download][url] = "https://github.com/Modernizr/Modernizr/archive/v2.7.1.zip"
