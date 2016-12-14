@@ -519,6 +519,13 @@ function virgin_user_user_login(&$edit, $account) {
     // If the user does not have items in his basket, redirect him to his
     // preferred region immediatly.
     if (!$basket_items) {
+
+      // Ensure the basket hostname cookie is set to his preferred region
+      // before the user is redirected to his region.
+      $prefered_hostname = virgin_region_user_hostname();
+      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $prefered_hostname);
+
+      // And finally redirect him to his preferred region
       $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
       virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
     }
@@ -531,6 +538,10 @@ function virgin_user_user_login(&$edit, $account) {
       $current_region = virgin_region_current();
       $prefered_hostname = virgin_region_user_hostname();
 
+      // Ensure the basket hostname cookie is set to the current region
+      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $current_region['hostname']);
+
+      // Add the required query parameter to open the regional switch modal
       if ($current_region['hostname'] != $prefered_hostname) {
         $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
         $params = parse_url($destination, PHP_URL_QUERY);
