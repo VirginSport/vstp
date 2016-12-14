@@ -36,6 +36,7 @@ features[user_permission][] = access workbench
 features[user_permission][] = administer advanced pane settings
 features[user_permission][] = administer content revisions
 features[user_permission][] = administer menu
+features[user_permission][] = administer nodes
 features[user_permission][] = administer page manager
 features[user_permission][] = administer pane access
 features[user_permission][] = administer panelizer
