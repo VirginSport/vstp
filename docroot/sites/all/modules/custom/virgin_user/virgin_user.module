@@ -474,6 +474,9 @@ function virgin_user_entity_presave($entity, $type) {
 function virgin_user_user_login(&$edit, $account) {
   $params = $_GET;
 
+  // Mark this request as a sign in success
+  virgin_gtm()->addEvent('SignInSuccess');
+
   // If the user is authenticating against Facebook via hybrid auth
   // we need to capture the destination parameter and parse it for
   // possible basket actions.
@@ -536,9 +539,6 @@ function virgin_user_user_login(&$edit, $account) {
       }
     }
   }
-
-  // Add sign in success event
-  virgin_gtm()->addEvent('SignInSuccess');
 }
 
 /**
