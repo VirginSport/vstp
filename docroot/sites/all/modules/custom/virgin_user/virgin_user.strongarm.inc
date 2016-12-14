@@ -423,7 +423,7 @@ This link expires in one day and nothing will happen if it is not used.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_password_reset_body';
-  $strongarm->value = 'Hi [user:field-first-name],
+  $strongarm->value = 'Hi [user:field_first_name],
 
 Forgotten your [site:name] password? Need a new one? No problem. Click or copy and paste the link below and grab a fresh one. They cost 5 press ups... just kidding. They\'re free. Or are they?...
 
@@ -473,11 +473,11 @@ password: Your password
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_body';
-  $strongarm->value = 'Hi [user:field-first-name]!
+  $strongarm->value = 'Hi [user:field_first_name]!
 
 Welcome to the newest way to play. From this day on, you are officially a part of the Virgin Sport movement. So when you’re ready, head over to virginsport.com and take a gander at what we’re up to.
 
-Welcome to the team, [user:field-first-name].
+Welcome to the team, [user:field_first_name].
 
 See you soon!';
   $export['user_mail_register_no_approval_required_body'] = $strongarm;
