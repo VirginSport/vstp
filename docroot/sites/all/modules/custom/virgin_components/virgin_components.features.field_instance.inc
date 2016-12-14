@@ -118,6 +118,49 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_accordion-field_thumbnails'.
+  $field_instances['fieldable_panels_pane-vs_accordion-field_thumbnails'] = array(
+    'bundle' => 'vs_accordion',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_thumbnails',
+    'label' => 'Thumbnails',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-vs_accordion-title_field'.
   $field_instances['fieldable_panels_pane-vs_accordion-title_field'] = array(
     'bundle' => 'vs_accordion',
@@ -810,6 +853,49 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_carousel-field_thumbnails'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_thumbnails'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_thumbnails',
+    'label' => 'Thumbnails',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-vs_carousel-title_field'.
   $field_instances['fieldable_panels_pane-vs_carousel-title_field'] = array(
     'bundle' => 'vs_carousel',
@@ -1392,7 +1478,11 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(),
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
         'type' => 'list_default',
         'weight' => 6,
       ),
@@ -2348,7 +2438,11 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(),
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
         'type' => 'list_default',
         'weight' => 3,
       ),
@@ -5215,6 +5309,7 @@ function virgin_components_field_default_field_instances() {
   t('Slide');
   t('Slider Images');
   t('Subheading');
+  t('Thumbnails');
   t('Tickets');
   t('Title');
   t('Untimed Events');

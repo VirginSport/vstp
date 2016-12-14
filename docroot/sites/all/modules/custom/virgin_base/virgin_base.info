@@ -115,6 +115,7 @@ features[field_base][] = field_status
 features[field_base][] = field_sugar_id
 features[field_base][] = field_teaser_layout
 features[field_base][] = field_teasers
+features[field_base][] = field_thumbnails
 features[field_base][] = field_ticket_cards
 features[field_base][] = field_ticket_level
 features[field_base][] = field_ticket_reference
