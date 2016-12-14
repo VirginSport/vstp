@@ -280,7 +280,7 @@ function virgin_region_user_redirect($uid, $current_region, $destination = 'user
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
 
-    // If the hostname empty, bailout now.
+    // If the hostname is empty, bailout now
     if (empty($hostname)) {
       return;
     }
@@ -288,7 +288,7 @@ function virgin_region_user_redirect($uid, $current_region, $destination = 'user
     // Ensure the regional cookie is always set to the user's preferred region
     virgin_cookie_set(VIRGIN_REGION_COOKIE, $hostname);
 
-    // If the user is already on his region, bailout.
+    // If the user is already on his region, bailout
     if ($current_region && $current_region['hostname'] == $hostname) {
       return;
     }
