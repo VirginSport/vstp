@@ -46,7 +46,7 @@ vs-claim-ticket + vs-claim-ticket,
   display: block;
   margin: 0;
 
-  font-family: $font-family-sans-serif;
+  font-family: $font-family-serif;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.25rem;
@@ -99,7 +99,6 @@ vs-claim-ticket + vs-claim-ticket,
   }
 
   .vs-claim-ticket__title {
-    font-family: $font-family-serif;
     font-weight: 500;
     font-size: 1.875rem;
     line-height: 2.25rem;

@@ -6,12 +6,10 @@ vs-hero-banner-block,
 .vs-hero-banner-block {
   @include transition(all .5s ease-in-out);
   @include clearfix();
-
   display: block;
   position: relative;
   text-align: center;
   color: $c-white;
-
   min-width: 20rem;
   min-height: 17.5rem;
   overflow: hidden;
@@ -22,39 +20,33 @@ vs-hero-banner-block,
 
 .vs-hero-banner-block__background {
   @include transition(padding .5s ease-in-out);
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: -1;
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
 }
 
 .vs-hero-banner-block-wrapper {
   @include make-col(12);
   @include flexbox();
-  @include flex-direction(column);
   @include align-items(center);
   @include justify-content(space-between);
-
+  @include ie-flexbox-fix();
   min-height: 17.5rem;
 }
 
 .vs-hero-banner-block__title {
   @include transition(all .5s ease-in-out);
-
   position: relative;
   display: block;
-
   margin-top: 5.125rem;
   margin-bottom: 0;
   padding: 0 2.4375rem 2.5625rem 2.5rem;
-
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: 1.25rem;
@@ -62,14 +54,15 @@ vs-hero-banner-block,
   text-transform: uppercase;
 
   &:last-child {
-    @include transform(translateY(-50%));
-
-    position: absolute;
-    top: 50%;
-    width: 100%;
-
     padding-bottom: 0;
     margin-top: 0;
+    transform: translateY(-50%);
+    top: 50%;
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      transform: none;
+      top: auto;
+    }
   }
 }
 
@@ -79,9 +72,7 @@ vs-hero-banner-block,
 
 .vs-hero-banner-block__description {
   display: block;
-
   padding: 0 2rem 0 2rem;
-
   font-family: $font-family-sans-serif;
   font-weight: 500;
   font-size: 0.6875rem;
@@ -103,7 +94,6 @@ vs-hero-banner-block,
   line-height: 0.75rem;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-
   margin-left: 0.46875rem;
   margin-right: 0.46875rem;
   margin-bottom: 0.9375rem;
@@ -117,15 +107,12 @@ vs-hero-banner-block,
 .vs-hero-banner__cta--link {
   @include transition(all .5s ease-in-out);
   display: inline-block;
-
   font-weight: 500;
   font-size: 0.625rem;
   line-height: 0.875rem;
   color: $c-white;
-
   text-transform: uppercase;
   text-decoration: underline;
-
   margin-left: 0.46875rem;
   margin-right: 0.46875rem;
   margin-bottom: 0.9375rem;
@@ -170,6 +157,7 @@ vs-hero-banner-block,
   }
 }
 
+
 // Responsive
 // ----------------------------------------------------------------------------
 
@@ -184,12 +172,7 @@ vs-hero-banner-block,
   .vs-hero-banner-block__title {
     font-size: 2.5rem;
     line-height: 2.5rem;
-
-    padding-left: 0.875rem;
-    padding-right: 0.875rem;
-
     padding: 0 2.4375rem 2.5625rem 2.5rem;
-
     margin-top: 10.6875rem;
   }
 

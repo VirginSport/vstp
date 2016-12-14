@@ -9,9 +9,9 @@ vs-card-untimed-event,
 
   & + & {
     @include media-breakpoint-up('md') {
-      margin-top: 4.375rem; 
+      margin-top: 4.375rem;
     }
-    
+
     @include media-breakpoint-down('sm') {
       margin-top: 1.25rem;
     }
@@ -68,7 +68,7 @@ vs-card-untimed-event,
     color: $c-black;
     font-size: 1.125rem;
     line-height: 0;
-    
+
     > span {
       font-size: .75rem;
     }
@@ -100,7 +100,7 @@ vs-card-untimed-event,
   bottom: 1.25rem;
   width: calc(100% - 2.5rem);
   padding: 0;
-  
+
   .vs-card-untimed-event__button {
     width: 100%;
   }
@@ -131,7 +131,7 @@ vs-card-untimed-event,
       font-size: 1.563rem;
       font-weight: 500;
       line-height: 0;
-      
+
       > span {
         font-size: 0.75rem;
       }
@@ -168,11 +168,12 @@ vs-card-untimed-event,
 
   .vs-card-untimed-event__outline {
     position: absolute;
-    right: 0;
-    bottom: 2.813rem;
+    right: 1.2rem;
+    bottom: -18.5rem;
     min-height: 9.375rem;
     width: 10.25rem;
     color: $c-black;
+    margin-right: -1.25rem;
 
     & .vs-card-untimed-event__waves {
       background-image: url(../img/card-untimed-event-example3.png);
@@ -217,7 +218,7 @@ vs-card-untimed-event,
       left: 5rem;
     }
   }
-  
+
 }
 
 @media screen and (min-width: 1100px) and (max-width: 1199px) {
@@ -227,7 +228,7 @@ vs-card-untimed-event,
   }
 
   .vs-card-untimed-event__outline {
-    bottom: 3.813rem;
+    bottom: -19rem;
     width: 12.5rem;
   }
 
@@ -271,7 +272,7 @@ vs-card-untimed-event,
   }
 
   .vs-card-untimed-event__outline {
-    bottom: 3.75rem;
+    bottom: -23rem;
     min-height: 11.313rem;
     width: 17.313rem;
   }
@@ -339,23 +340,23 @@ vs-card-untimed-event,
       font-size: 2.25rem;
       font-weight: 500;
       line-height: 0;
-      
+
       > span {
         font-size: .875rem;
       }
     }
-    
+
     .vs-card-untimed-event__button {
       width: auto;
     }
   }
-  
+
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1249px) {
 
   .vs-card-untimed-event__image-wrapper {
-    
+
     &.vs-card-untimed-event--outline-remove {
       left: 0;
     }
@@ -373,7 +374,7 @@ vs-card-untimed-event,
 @media screen and (min-width: 1250px) and (max-width: 1299px) {
 
   .vs-card-untimed-event__image-wrapper {
-    
+
     &.vs-card-untimed-event--outline-remove {
       left: -2.813rem;
     }
@@ -391,7 +392,7 @@ vs-card-untimed-event,
 @media screen and (min-width: 1300px) and (max-width: 1400px) {
 
   .vs-card-untimed-event__image-wrapper {
-    
+
     &.vs-card-untimed-event--outline-remove {
       left: -4.063rem;
     }

@@ -43,11 +43,12 @@ vs-sticky-basket,
 
 .vs-sticky-basket__chevron {
   fill: currentColor;
-  min-width: auto;
+  min-width: initial;
   white-space: normal;
   position: absolute;
   top: 50%;
   height: .75rem;
+  width: .4375rem
 }
 
 .vs-sticky-basket__chevron--back {
