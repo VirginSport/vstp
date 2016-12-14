@@ -28,6 +28,13 @@ class VirginComponentUntimedEventCards implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+
+    if (empty($variables['elements']['#fieldable_panels_pane'])) {
+      return;
+    }
+
+    $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
+    $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
+    $variables['paragraphs'] = $virgin->fieldRendered('field_untimed_event_cards');
   }
 }

@@ -36,3 +36,10 @@ $conf['stage_file_proxy_origin'] = '';
 
 // Uncomment if you are running a local solr instance.
 //$conf['apachesolr_default_environment'] = 'solr';
+
+// Attendly Integration
+//$conf['virgin_attendly_env'] = 'development';
+//$conf['virgin_attendly_url'] = 'https://register-dev.virginsport.com';
+//$conf['virgin_attendly_api_url'] = 'https://api-dev.virginsport.com';
+//$conf['virgin_attendly_api_user'] = 'attendly-user';
+//$conf['virgin_attendly_api_pass'] = 'attendly-api-token';

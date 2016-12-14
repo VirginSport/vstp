@@ -74,9 +74,7 @@
  */
 ?>
 
-<?php print $messages; ?>
-
-<button class="vs-menu-trigger">
+<button class="vs-menu-trigger vs-menu-trigger--menu">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>
@@ -95,8 +93,26 @@
     </div>
   </div>
 </div>
-
+<div class="vs-overlay-sharer"></div>
+<div class="vs-mobile-sharer">
+  <div class="vs-mobile-sharer__overlay"></div>
+  <div class="vs-share-button__content">
+        <span class="col-xs-12 vs-mobile-sharer__title">
+          Share
+        </span>
+    <div class="vs-share-button__social-links">
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-twitter"><i class="icon-twitter"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-facebook"><i class="icon-facebook"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-email"><i class="icon-email-filled"></i><span></span></a>
+    </div>
+  </div>
+</div>
 <div class="vs-overlay-blur">
+  <div class="vs-notification vs-notification--not-sticky"></div>
+
+  <div class="vs-notification vs-notification--sticky">
+    <?php print $messages; ?>
+  </div>
 
   <div class="vs-header">
     <div class="container-fluid clearfix">
@@ -117,7 +133,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>"><?php print t('Login'); ?></a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
@@ -141,20 +157,27 @@
         <?php endif; ?>
 
         <div class="vs-header__basket">
-          <span class="vs-header__basket__value">0</span>
+          <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
+            <span class="vs-header__basket__value">&nbsp;</span>
+          </a>
         </div>
+        <button class="vs-menu-trigger">
+          <span class="vs-menu-trigger__bar">
+            <span class="sr-only">toggle menu</span>
+          </span>
+        </button>
       </div>
     </div>
   </div>
 
   <div class="page-wrapper">
-    <?php if ($page_manager): ?>
+    <?php if (!$apply_page_wrapper): ?>
       <?php print render($page['content']); ?>
     <?php endif; ?>
 
-    <?php if (!$page_manager): ?>
+    <?php if ($apply_page_wrapper): ?>
       <div class="vs-region vs-region--no-padding">
-        <div class="vs-hero-banner">
+        <div class="vs-hero-banner vs-hero-banner--small">
           <div class="vs-hero-banner__background">
             <div class="container">
               <div class="row">
@@ -189,9 +212,28 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3 col-lg-2">
-          <div class="btn-group dropup vs-footer__language">
-            <!-- TODO The region picker is not yet finished -->
+
+          <?php if ($regions['current']): ?>
+          <div class="btn-group vs-footer__language">
+
+            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
+              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+              <span class="vs-footer__region-label"><?php print $regions['current']['country_letter_code']; ?></span>
+            </button>
+
+            <div class="dropdown-menu vs-footer__language-list">
+              <?php foreach ($regions['other'] as $region): ?>
+              <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
+                <?php if (!empty($region['flag'])): ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+                  <?php print check_plain($region['country_letter_code']); ?>
+                <?php endif; ?>
+              </a>
+              <?php endforeach; ?>
+            </div>
+
           </div>
+          <?php endif; ?>
         </div>
 
         <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">
@@ -219,3 +261,19 @@
     </div>
   </div>
 </div>
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+  dataLayer = <?php print $gtm_data_layer; ?>;
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+<!-- Push collected events to Google Tag Manager Data Layer -->
+<script>
+  window.addEventListener('load', function() {
+    <?php foreach ($data_layer_events as $event): ?>
+    dataLayer.push(<?php print $event; ?>);
+    <?php endforeach; ?>
+  });
+</script>
+<!-- End Push collected events to Google Tag Manager Data Layer -->

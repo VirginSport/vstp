@@ -9,6 +9,8 @@
 
 // Libs
 @import "lib/animate/animate";
+@import "lib/slick/slick";
+@import "lib/slick/slick-theme";
 
 
 // Mixins
@@ -26,12 +28,13 @@
 
 // Fonts
 @import "fonts/euclidflex/euclidflex";
-@import "fonts/sfui/sfui";
+@import "fonts/roboto/roboto";
 
 
 // Icons
 @import "icon-variables";
 @import "style/icons";
+
 
 // Global css
 @import "globals";
@@ -40,13 +43,14 @@
 // Styles
 @import "style/buttons";
 @import "style/forms";
-@import "style/selectize";
+@import "style/chosen-overrides";
 
 
 // Components
 @import "style/components/vs-attendly-header";
 @import "style/components/vs-button";
 @import "style/components/vs-basic-content-block";
+@import "style/components/vs-color";
 @import "style/components/vs-header";
 @import "style/components/vs-hero-banner";
 @import "style/components/vs-hero-event-card";
@@ -67,6 +71,18 @@
 @import "style/components/vs-component-heading";
 @import "style/components/vs-accordion";
 @import "style/components/vs-card-upcoming";
+@import "style/components/vs-tabs";
+@import "style/components/vs-teaser";
+@import "style/components/vs-ticket-card";
+@import "style/components/vs-hero-banner-block";
+@import "style/components/vs-festival-profile-header";
+@import "style/components/vs-introduction";
+@import "style/components/vs-share-button";
+@import "style/components/vs-video";
+@import "style/components/vs-notification";
+@import "style/components/vs-sticky-basket";
+@import "style/components/_vs-photo-gallery";
+@import "style/components/vs-card-past";
 
 // Pages
 @import "style/components/vs-splash";

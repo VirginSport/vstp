@@ -15,6 +15,7 @@ vs-ticket-type,
 
 .vs-ticket-type__wrapper {
   border-radius: .625rem;
+  overflow: hidden;
   padding: 1.1875rem 1rem .6875rem;
   position: relative;
 }
@@ -24,17 +25,20 @@ vs-ticket-type,
   font-size: 1.125rem;
   color: $c-white;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .vs-ticket-type__text {
   color: $c-white;
   margin-bottom: 2.1875rem;
+  position: relative;
 }
 
 .vs-ticket-type__price {
   font-size: 1.5rem;
   color: $c-white;
   margin-right: 1.5625rem;
+  position: relative;
 }
 
 .vs-ticket-type__cta {
@@ -87,7 +91,12 @@ vs-ticket-type,
   $map: map_get($color-schemes, $color);
 
   .vs-ticket-type--gradient-#{$color} {
-    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 135deg);
+
+    .vs-ticket-type__title,
+    .vs-ticket-type__text,
+    .vs-ticket-type__price {
+      color: map_get($map, 'text-color');
+    }
   }
 }
 
@@ -95,8 +104,6 @@ vs-ticket-type,
 .vs-ticket-type__text--vip {
   @include make-col(8);
 }
-
-
 
 // Responsive
 // ----------------------------------------------------------------------------

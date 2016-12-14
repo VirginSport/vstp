@@ -93,7 +93,8 @@ class VirginPackageSyncHandler implements VirginSyncSugarHandlerInterface {
       'field_description' => array(
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
-      )
+      ),
+      'status' => 1,
     );
 
     // Map the festival state if it exists
@@ -163,7 +164,7 @@ class VirginPackageSyncHandler implements VirginSyncSugarHandlerInterface {
       ->execute()
     ;
 
-    if ($result['node']) {
+    if (isset($result['node'])) {
       $ids = array_keys($result['node']);
       return node_load(reset($ids));
     }

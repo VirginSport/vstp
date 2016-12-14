@@ -28,6 +28,16 @@ class VirginComponentTeaserBlock implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    if (empty($variables['elements']['#fieldable_panels_pane'])) {
+      return;
+    }
+
+    $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
+    $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
+
+    $variables['title'] = $virgin->fieldGetOne('title_field');
+    $variables['paragraphs'] = $virgin->fieldRendered('field_teasers');
+    $variables['hero_banner_image'] = $virgin->relation('field_hero_image');
+    $variables['brand_color'] = $virgin->fieldGetOne('field_brand_color');
   }
 }

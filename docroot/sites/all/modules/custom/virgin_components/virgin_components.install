@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the virgin components module.
+ */
+
+/**
+ * Delete vs accordion fpp field component heading.
+ */
+function virgin_components_update_7001() {
+  $instance = field_info_instance('fieldable_panels_pane', 'field_component_heading', 'vs_accordion');
+
+  if (!empty($instance)) {
+    field_delete_instance($instance);
+  }
+}
+
+/**
+ * Delete vs accordion fpp field card colour.
+ */
+function virgin_components_update_7002() {
+  $instance = field_info_instance('fieldable_panels_pane', 'field_card_colour', 'vs_hero_event_card');
+
+  if (!empty($instance)) {
+    field_delete_instance($instance);
+  }
+}

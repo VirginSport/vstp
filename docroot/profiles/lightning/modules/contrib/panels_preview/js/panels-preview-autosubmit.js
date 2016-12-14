@@ -15,7 +15,9 @@
     if (!preview_widget.hasClass('panels-preview-loading')) {
       preview_widget.addClass('panels-preview-loading');
       submit = function () {
-        $form.find('.ctools-auto-submit-click').click();
+        if (document.contains(form)) {
+          $form.find('.ctools-auto-submit-click').click();
+        }
       };
       if (typeof timeout === 'number') {
         return setTimeout(submit, timeout);

@@ -26,6 +26,7 @@ function virgin_roles_user_default_permissions() {
     'name' => 'access content',
     'roles' => array(
       'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
@@ -138,6 +139,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'menu',
   );
 
+  // Exported permission: 'administer nodes'.
+  $permissions['administer nodes'] = array(
+    'name' => 'administer nodes',
+    'roles' => array(
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'administer page manager'.
   $permissions['administer page manager'] = array(
     'name' => 'administer page manager',
@@ -159,20 +170,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer'.
   $permissions['administer panelizer'] = array(
     'name' => 'administer panelizer',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer bean bean_tax_listing defaults'.
-  $permissions['administer panelizer bean bean_tax_listing defaults'] = array(
-    'name' => 'administer panelizer bean bean_tax_listing defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer bean bean_tax_related defaults'.
-  $permissions['administer panelizer bean bean_tax_related defaults'] = array(
-    'name' => 'administer panelizer bean bean_tax_related defaults',
     'roles' => array(),
     'module' => 'panelizer',
   );
@@ -292,34 +289,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer fieldable_panels_pane vs_video_block defaults'.
   $permissions['administer panelizer fieldable_panels_pane vs_video_block defaults'] = array(
     'name' => 'administer panelizer fieldable_panels_pane vs_video_block defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file audio defaults'.
-  $permissions['administer panelizer file audio defaults'] = array(
-    'name' => 'administer panelizer file audio defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file document defaults'.
-  $permissions['administer panelizer file document defaults'] = array(
-    'name' => 'administer panelizer file document defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file image defaults'.
-  $permissions['administer panelizer file image defaults'] = array(
-    'name' => 'administer panelizer file image defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer file video defaults'.
-  $permissions['administer panelizer file video defaults'] = array(
-    'name' => 'administer panelizer file video defaults',
     'roles' => array(),
     'module' => 'panelizer',
   );
@@ -542,13 +511,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'administer panelizer node ticket_type_state defaults'.
   $permissions['administer panelizer node ticket_type_state defaults'] = array(
     'name' => 'administer panelizer node ticket_type_state defaults',
-    'roles' => array(),
-    'module' => 'panelizer',
-  );
-
-  // Exported permission: 'administer panelizer node webform defaults'.
-  $permissions['administer panelizer node webform defaults'] = array(
-    'name' => 'administer panelizer node webform defaults',
     'roles' => array(),
     'module' => 'panelizer',
   );
@@ -949,6 +911,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'create fieldable vs_video_banner'.
+  $permissions['create fieldable vs_video_banner'] = array(
+    'name' => 'create fieldable vs_video_banner',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
   // Exported permission: 'create fieldable vs_video_block'.
   $permissions['create fieldable vs_video_block'] = array(
     'name' => 'create fieldable vs_video_block',
@@ -992,6 +964,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['create region content'] = array(
     'name' => 'create region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1094,6 +1067,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any region content'] = array(
     'name' => 'delete any region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1111,15 +1085,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete any ticket_type_state content'.
   $permissions['delete any ticket_type_state content'] = array(
     'name' => 'delete any ticket_type_state content',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete any webform content'.
-  $permissions['delete any webform content'] = array(
-    'name' => 'delete any webform content',
     'roles' => array(
       'administrator' => 'administrator',
     ),
@@ -1286,6 +1251,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'delete fieldable vs_video_banner'.
+  $permissions['delete fieldable vs_video_banner'] = array(
+    'name' => 'delete fieldable vs_video_banner',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
   // Exported permission: 'delete fieldable vs_video_block'.
   $permissions['delete fieldable vs_video_block'] = array(
     'name' => 'delete fieldable vs_video_block',
@@ -1375,6 +1350,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own region content'] = array(
     'name' => 'delete own region content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1681,6 +1657,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'edit fieldable vs_video_banner'.
+  $permissions['edit fieldable vs_video_banner'] = array(
+    'name' => 'edit fieldable vs_video_banner',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
   // Exported permission: 'edit fieldable vs_video_block'.
   $permissions['edit fieldable vs_video_block'] = array(
     'name' => 'edit fieldable vs_video_block',
@@ -1848,6 +1834,16 @@ function virgin_roles_user_default_permissions() {
     'module' => 'workbench_moderation',
   );
 
+  // Exported permission: 'moderate content from draft to published'.
+  $permissions['moderate content from draft to published'] = array(
+    'name' => 'moderate content from draft to published',
+    'roles' => array(
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'workbench_moderation',
+  );
+
   // Exported permission: 'moderate content from needs_review to draft'.
   $permissions['moderate content from needs_review to draft'] = array(
     'name' => 'moderate content from needs_review to draft',
@@ -1984,6 +1980,7 @@ function virgin_roles_user_default_permissions() {
   $permissions['view all unpublished content'] = array(
     'name' => 'view all unpublished content',
     'roles' => array(
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'workbench_moderation',

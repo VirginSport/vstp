@@ -452,10 +452,10 @@ $module_dir = 'sites/all/modules';
 require DRUPAL_ROOT . '/sites/default/settings/base.settings.php';
 
 // Includes default caching settings.
-//require DRUPAL_ROOT . '/sites/default/settings/cache.settings.php';
+require DRUPAL_ROOT . '/sites/default/settings/cache.settings.php';
 
 // Includes default cron configuration.
-//require DRUPAL_ROOT . '/sites/default/settings/cron.settings.php';
+require DRUPAL_ROOT . '/sites/default/settings/cron.settings.php';
 
 // Includes advanced configuration for Fast 404 module.
 //require DRUPAL_ROOT . '/sites/default/settings/fast-404.settings.php';
@@ -490,10 +490,10 @@ if ($is_ah_env && file_exists('/var/www/site-php')) {
 
   // Store API Keys and things outside of version control.
   // @see settings/sample-secrets.settings.php for sample code.
-//    $secrets_file = sprintf('/mnt/gfs/%s.%s/secrets.settings.php', $_ENV['AH_SITE_GROUP'], $_ENV['AH_SITE_ENVIRONMENT']);
-//    if (file_exists($secrets_file)) {
-//        require $secrets_file;
-//    }
+  $secrets_file = sprintf('/mnt/gfs/%s.%s/secrets.settings.php', $_ENV['AH_SITE_GROUP'], $_ENV['AH_SITE_ENVIRONMENT']);
+  if (file_exists($secrets_file)) {
+    require $secrets_file;
+  }
 }
 
 /**

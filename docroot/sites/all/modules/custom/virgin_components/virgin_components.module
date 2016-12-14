@@ -29,9 +29,21 @@ function virgin_components_theme() {
       'render element' => 'elements',
       'template'  => 'virgin-components',
     ),
-    'virgin_components__ct__festival-header' => array(
+    'virgin_components__ct__festival_header' => array(
       'variables' => array(),
-      'template' => 'virgin-components__ct__festival-header',
+      'template' => 'virgin-components__ct__festival_header',
+    ),
+    'virgin_components__ct__contact_form' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__contact_form',
+    ),
+    'virgin_components__ct__festival_subnav' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__festival-subnav',
+    ),
+    'virgin_components__ct__page_header' => array(
+      'variables' => array(),
+      'template' => 'virgin-components__ct__page_header',
     ),
   );
 }
@@ -62,6 +74,15 @@ function virgin_components_preprocess(&$variables) {
   }
 }
 
+/**
+ * Implements hook_ctools_plugin_post_alter().
+ */
+function virgin_components_ctools_plugin_post_alter(&$plugin, &$info) {
+  if (!empty($plugin['name']) && $plugin['name'] == 'fieldable_panels_pane') {
+    $plugin['admin title'] = '_virgin_components_fieldable_panels_pane_admin_title';
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
@@ -89,6 +110,7 @@ function virgin_components_list() {
       new VirginComponentCarousel(),
       new VirginComponentPhotoGallery(),
       new VirginComponentVideoBlock(),
+      new VirginComponentVideoBanner(),
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
@@ -107,4 +129,24 @@ function virgin_components_list() {
   }
 
   return $list;
+}
+
+/**
+ * Overrides admin title callback for fieldable panel panes plugins
+ *
+ * @see fieldable_panels_panes_fieldable_panels_pane_content_type_admin_title()
+ */
+function _virgin_components_fieldable_panels_pane_admin_title($subtype, $conf) {
+  $entity = fieldable_panels_panes_load_from_subtype($subtype);
+  $title = _fieldable_panels_panes_admin_title_from_entity($entity);
+  $suffix = '';
+
+  // Add the original language suffix to the component admin title
+  if (!empty($entity->language)) {
+    $lang = $entity->language;
+    $label = ($lang == LANGUAGE_NONE) ? t('None') : strtoupper($lang);
+    $suffix = t('[Language: @label]', array('@label' => $label));
+  }
+
+  return sprintf('%s %s', $title, $suffix);
 }

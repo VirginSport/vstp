@@ -15,6 +15,7 @@
   line-height: 1;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+  font-weight: 500;
 
   &:hover,
   &:focus {
@@ -70,9 +71,14 @@
       @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
     }
 
-    &:focus {
-      color: $c-white;
+    @if (map-has-key($map, 'text-color-focus')) {
+      &:hover,
+      &:focus {
+        color: map_get($map, 'text-color-focus');
+      }
     }
+
+    color: map_get($map, 'text-color');
   }
 }
 
@@ -80,13 +86,17 @@
   background-color: rgba($c-black, .4);
 
   &:hover {
-    background-color: $c-black;
-    opacity: .2;
+    background-color: rgba($c-black, .2);
+    color: $c-white;
   }
 }
 
 .vs-btn--orange {
   background-color: $c-orange;
+}
+
+.vs-btn--orange-light {
+  background-color: $c-orange-light;
 }
 
 .vs-btn--white {
@@ -129,6 +139,10 @@
   text-transform: uppercase;
   padding-left: 1.875rem;
   padding-right: 1.875rem;
+
+  &:hover {
+    color: $c-black;
+  }
 }
 
 

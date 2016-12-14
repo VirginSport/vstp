@@ -1,10 +1,47 @@
 
 // Default elements
 // ----------------------------------------------------------------------------
+.tooltip {
+  //display: none;
+
+  > .close {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    width: 11px;
+    height: 11px;
+    float: none;
+    color: $c-white;
+    opacity: 1;
+    cursor: pointer;
+
+    &:before, &:after {
+      position: absolute;
+      left: 4px;
+      top: 0;
+      background-color: $c-white;
+      content: "";
+      width: 2px;
+      height: 12px;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
 
 .tooltip-inner {
+  font-family: $font-family-sans-serif;
+  font-weight: 500;
+  font-size: .625rem;
+  line-height: 0.875rem;
+  letter-spacing: 0;
   text-align: left;
-  font-size: .75rem;
 }
 
 
@@ -12,17 +49,20 @@
 // ----------------------------------------------------------------------------
 
 .vs-tooltip-trigger {
-  margin-left: 1.125rem;
+  @include transform(translateY(-50%));
   height: 1.5rem;
   width: 1.5rem;
   z-index: 1;
   color: $c-white;
-  background-color: #999999;
+  background-color: $tooltip-bg;
   cursor: pointer;
   border-radius: 50%;
   text-align: center;
   line-height: 1.7rem;
-  display: none;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: -1.875rem;
 
   &:hover {
     color: $c-white;
@@ -34,18 +74,67 @@
   }
 }
 
-input[type="text"] + label + .vs-tooltip-trigger,
-.vs-select-wrapper + .vs-tooltip-trigger {
-  position: relative;
-  top: -6px;
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-tooltip-trigger--inline {
+  @include transform(none);
+  position: static;
+  margin-left: .625rem;
 }
 
 
 // Responsive
 // ----------------------------------------------------------------------------
 
-@include media-breakpoint-up(lg) {
-  .vs-tooltip-trigger {
-    display: inline-block;
+@include media-breakpoint-down(xs) {
+  .vs-tooltip__backdrop {
+    background-color: $c-black;
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &.in {
+      background-color: rgba($c-black, .85);
+    }
+
+    &.fade {
+      transition-duration: .3s;
+    }
+  }
+
+  .tooltip {
+    @include transition(all .3s ease-in-out);
+    opacity: 0;
+    transition-delay: .1s;
+    position: fixed !important;
+    right: 20px;
+    left: 20px !important;
+    bottom: 20px !important;
+    transform: translateY(100%) !important;
+    top: initial !important;
+    width: calc(100% - 40px);
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .tooltip-inner {
+    max-width: none;
+    background-color: #ccc;
+    color: $c-white;
+    font-size: .75rem;
+    font-weight: bold;
+  }
+
+  .tooltip-arrow {
+    display: none;
+  }
+
+  .vs-tooltip__backdrop.in + .tooltip {
+    transform: translate(0) !important;
+    opacity: 1;
   }
 }

@@ -18,7 +18,7 @@ html {
 
 p {
   margin-bottom: 1.875rem;
-  font-weight: 300;
+  font-weight: 400;
   font-size: .75rem;
   line-height: 1.25rem;
 
@@ -69,4 +69,16 @@ p {
 
 %vs-gradient-violet {
   @include gradient-x(#FB8B5F, #504EA1, 0%, 100%);
+}
+
+
+// Used to provide fade out animation when page loads
+// ----------------------------------------------------------------------------
+.v-element {
+  @include transition(opacity, .7s ease-in-out);
+  opacity: 0;
+
+  &.v-element--ready {
+    opacity: 1;
+  }
 }

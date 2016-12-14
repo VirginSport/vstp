@@ -10,6 +10,7 @@ vs-footer,
   min-height: 15.625rem;
   position: relative;
   padding: 1.875rem 0;
+  z-index: 5;
 }
 
 
@@ -27,7 +28,7 @@ vs-footer,
   border-color: rgba(#a2a2a2, .5);
   margin-top: .625rem;
   min-width: auto;
-  padding: 0;
+  padding: .9375rem;
 
   &:after {
     @include transform(rotate(45deg));
@@ -42,6 +43,23 @@ vs-footer,
     border-bottom: 0;
     border-right: 0;
     right: 18px;
+  }
+}
+
+.vs-footer__language-list__link {
+  @include transition(all .5s ease-in-out);
+  color: $body-color;
+  display: block;
+  white-space: nowrap;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    color: $body-color;
+    opacity: .7;
   }
 }
 
@@ -68,14 +86,25 @@ vs-footer,
 }
 
 .vs-footer__language-toggle {
-  background: transparent url('../img/vs-footer-uk-flag.png') no-repeat left center;
+  background-color: transparent;
   border: 0;
   border-radius: 0;
   color: #606060;
   font-size: 1rem;
-  padding-left: 2.5rem;
-  padding-right: 20px;
+  padding-left: 0;
+  padding-right: 0;
   position: relative;
+
+  > .vs-footer__region-label:after {
+    content: '';
+    background: transparent url('../img/vs-footer-arrow-down.svg') no-repeat 0 0;
+    width: .75rem;
+    height: .4375rem;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+  }
 
   &:after {
     display: none;
@@ -83,8 +112,8 @@ vs-footer,
 
   &:hover,
   &:focus {
-    background-color: transparent !important;
-    background-image: url('../img/vs-footer-uk-flag.png') !important;
+    background-color: transparent;
+    opacity: .7;
   }
 
   .open & {
@@ -93,11 +122,19 @@ vs-footer,
 }
 
 .vs-footer__flags {
-  margin-right: .625rem;
+  margin-right: .375rem;
+  width: 1.875rem;
+  height: auto;
+}
+
+.vs-footer__region-label {
+  position: relative;
+  top: 1px;
+  font-weight: 500;
 }
 
 .vs-footer__menu {
-  margin: 0 0 3.25rem;
+  margin: .1875rem 0 3.25rem;
   padding: 0 .9375rem;
 }
 
@@ -205,12 +242,11 @@ vs-footer,
 
   .vs-footer__social-list {
     padding: 0;
-    text-align: right;
   }
 
   .vs-footer__social-item {
     display: inline-block;
-    margin: 0 0 .625rem .625rem;
+    margin: 0 .625rem 0 0;
   }
 
   .vs-footer__menu-item__link {
@@ -220,13 +256,26 @@ vs-footer,
 
 @include media-breakpoint-up(lg) {
 
+  vs-footer,
+  .vs-footer {
+    padding-top: 4.875rem;
+  }
+
   .vs-footer__social-item {
     display: inline-block;
     margin: 0 0 1.25rem 1.25rem;
   }
 
+  .vs-footer__menu {
+    margin-bottom: 0;
+  }
+
   .vs-footer__menu-item {
     float: left;
     width: 50%;
+  }
+
+  .vs-footer__social-list {
+    text-align: right;
   }
 }

@@ -32,16 +32,16 @@ function virgin_page_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'path' => array(
-          'weight' => '6',
-        ),
-        'redirect' => array(
           'weight' => '7',
         ),
+        'redirect' => array(
+          'weight' => '8',
+        ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
@@ -76,6 +76,8 @@ function virgin_page_strongarm() {
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'revision',
+    1 => 'moderation',
+    2 => 'panelizer',
   );
   $export['node_options_page'] = $strongarm;
 
@@ -99,6 +101,7 @@ function virgin_page_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_page';
   $strongarm->value = array(
     'status' => 1,
+    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -119,7 +122,6 @@ function virgin_page_strongarm() {
         'choice' => 0,
       ),
     ),
-    'help' => '',
   );
   $export['panelizer_defaults_node_page'] = $strongarm;
 
@@ -181,6 +183,9 @@ function virgin_page_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_allowed_types';
   $strongarm->value = array(
+    'festival_subnav-festival_subnav' => TRUE,
+    'contact_form-contact_form' => TRUE,
+    'fieldable_panels_pane-vs_video_banner' => TRUE,
     'fieldable_panels_pane-vs_accordion' => TRUE,
     'fieldable_panels_pane-vs_basic_content_block' => TRUE,
     'fieldable_panels_pane-vs_carousel' => TRUE,
@@ -197,6 +202,7 @@ function virgin_page_strongarm() {
     'fieldable_panels_pane-vs_ticket_cards' => TRUE,
     'fieldable_panels_pane-vs_untimed_event_cards' => TRUE,
     'fieldable_panels_pane-vs_video_block' => TRUE,
+    'views_panes-vs_upcoming_festivals-vs_upcoming_festivals_pane' => TRUE,
   );
   $export['panels_page_allowed_types'] = $strongarm;
 
@@ -213,6 +219,7 @@ function virgin_page_strongarm() {
     'block' => 0,
     'entity_view' => 0,
     'fieldable_panels_pane' => 0,
+    'views' => 0,
     'views_panes' => 0,
     'other' => 0,
   );

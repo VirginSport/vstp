@@ -97,6 +97,7 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
       'field_start_date' => strtotime($g->get('start_time')->value('1990')),
       'field_end_date' => strtotime($g->get('stop_time')->value('2030')),
       'field_timezone' => $g->get('timezone')->value(false),
+      'status' => 1,
     );
 
     // Finally set the field values
@@ -129,7 +130,8 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
-      'field_festival_state' => $state
+      'field_festival_state' => $state,
+      'field_status' => 'announced'
     );
 
     foreach ($fields as $key => $value) {
@@ -160,7 +162,7 @@ class VirginFestivalSyncHandler implements VirginSyncSugarHandlerInterface {
       ->execute()
     ;
 
-    if ($result['node']) {
+    if (isset($result['node'])) {
       $ids = array_keys($result['node']);
       return node_load(reset($ids));
     }

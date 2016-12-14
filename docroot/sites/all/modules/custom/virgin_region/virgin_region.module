@@ -19,7 +19,7 @@ define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 /**
  * The region hostname cookie key
  */
-define('VIRGIN_REGION_COOKIE', 'virgin_sport_region_hostname');
+define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 
 /**
  * Implements hook_views_api().
@@ -58,11 +58,11 @@ function virgin_region_theme($existing, $type, $theme, $path) {
 
   return array(
     'virgin_region_page_splash' => array(
-        'template' => 'virgin-region-page-splash',
-        'variables' => array(
-          'regions' => array(),
-        )
-      ) + $default,
+      'template' => 'virgin-region-page-splash',
+      'variables' => array(
+        'regions' => array(),
+      )
+    ) + $default,
   );
 }
 
@@ -115,13 +115,6 @@ function virgin_region_form_user_register_form_alter(&$form, &$form_state, $form
 }
 
 /**
- * Implements hook_form_FORM_ID_alter() for user_login.
- */
-function virgin_region_form_user_login_alter(&$form, &$form_state, $form_id) {
-  $form['#submit'][] = 'virgin_region_form_user_login_submit';
-}
-
-/**
  * Implements hook_hybridauth_userinfo_alter().
  *
  * Maps the user profile information from the social network at registration
@@ -137,10 +130,26 @@ function virgin_region_hybridauth_userinfo_alter(&$userinfo, $data) {
 }
 
 /**
- * Implements hook_hybridauth_user_login().
+ * Implements hook_preprocess_HOOK() for page theme.
  */
-function virgin_region_hybridauth_user_login($account, $data) {
-  virgin_region_user_login_submit($account->uid);
+function virgin_region_preprocess_page(&$vars) {
+
+  // Inject the regions into the JS setting in order that javascript running
+  // on the page can know the regions that exist and which is active.
+  $current = virgin_region_current();
+  $regions = virgin_region_regions();
+
+  $list = array();
+  foreach ($regions as $region) {
+    $list[] = array(
+      'title' => $region['title'],
+      'hostname' => $region['hostname'],
+      'address' => virgin_region_add_hostname_protocol($region['hostname']),
+      'active' => empty($current) ? FALSE : ($region['hostname'] == $current['hostname'])
+    );
+  }
+
+  drupal_add_js(array('vsRegions' => $list), 'setting');
 }
 
 // Helpers
@@ -159,6 +168,7 @@ function virgin_region_clear_cache($node) {
  *  An array of structured arrays with the following keys:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */
@@ -192,7 +202,9 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
+        'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
+        'icon' => $node_wrapper->field_icon_image->value(),
         'hostname' => $hostname
       );
     }
@@ -211,6 +223,7 @@ function virgin_region_regions() {
  *  following keys if does:
  *  - nid: The nid of the region
  *  - title: The original title of the region
+ *  - country_letter_code: The country 2 letter code
  *  - flag: The atom object of the flag
  *  - hostname: The hostname of the region
  */
@@ -239,7 +252,7 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
   $current_region = virgin_region_current();
 
   if ($current_region) {
-    $form_state['values']['field_region'][  LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
+    $form_state['values']['field_region'][LANGUAGE_NONE][0]['target_id']= $current_region['nid'];
 
     // Set current user region cookie on registration
     virgin_region_region_cookie_set($current_region);
@@ -247,65 +260,62 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Submission callback for the user_login form.
- *
- * @see virgin_region_form_user_login_alter()
- */
-function virgin_region_form_user_login_submit(&$form, &$form_state) {
-  virgin_region_user_login_submit($form_state['uid']);
-}
-
-/**
- * Login Callback for drupal login and hybridauth login
- *
- * @param $uid
- */
-function virgin_region_user_login_submit($uid) {
-  $current_region = virgin_region_current();
-
-  // Redirect user to its region on login
-  virgin_region_user_redirect($uid, $current_region);
-}
-
-/**
  * Redirect user to its region.
  *
  * @param $uid
- * The account uid
+ *  The account uid
  * @param $current_region
- * The Region array
+ *  The region array
+ * @param string $destination
+ *  The destination the user should be redirected to under the user's region
  */
-function virgin_region_user_redirect($uid, $current_region) {
+function virgin_region_user_redirect($uid, $current_region, $destination = 'user') {
   $account_wrapper = entity_metadata_wrapper('user', $uid);
 
   // Redirect user to its correspondent region if available
-  if (!empty($account_wrapper->field_region->value())) {
+  $region = $account_wrapper->field_region->value();
 
-    // Load account regions array
-    $regions = $account_wrapper->field_region->value();
-
-    // We just want the first position of the array
-    $region = reset($regions);
+  if (!empty($region)) {
 
     // Get the hostname for the loaded region
     $hostname = $region->field_hostname[LANGUAGE_NONE][0]['value'];
 
-    // If the user is already on his region, bailout now.
+    // If the hostname is empty, bailout now
+    if (empty($hostname)) {
+      return;
+    }
+
+    // Ensure the regional cookie is always set to the user's preferred region
+    virgin_cookie_set(VIRGIN_REGION_COOKIE, $hostname);
+
+    // If the user is already on his region, bailout
     if ($current_region && $current_region['hostname'] == $hostname) {
       return;
     }
 
-    // Otherwise redirect the user to his profile page on his host region
-    $url = virgin_region_add_hostname_protocol($hostname . '/user');
+    // If the destination URL is for some reason external, redirect the user
+    // to his region profile page, otherwise fetch the path alias.
+    if (url_is_external($destination)) {
+      $destination = 'user';
+    } else {
+      $destination = drupal_get_path_alias($destination);
+    }
 
-    // Unset destination, otherwise url is ignored
+    // Build the final redirection URL with the correct protocol
+    $url = virgin_region_add_hostname_protocol($hostname . '/' . $destination);
+
+    // Ensure destination parameter is unset, or drupal_goto will not redirect
+    // to the url but to the destination.
     unset($_GET['destination']);
 
+    // And finally, redirect the user to his region
     drupal_goto($url);
   }
 }
 
 /**
+ * Append the protocol to the hostname
+ *
  * @param $hostname
  *  An hostname without the protocol e.g. uk.virginsport.com
  * @return string
@@ -319,9 +329,10 @@ function virgin_region_add_hostname_protocol($hostname) {
 }
 
 /**
- *  Set the region cookie hostname
- *  @param $current_region
- *  The Region array
+ * Set the region cookie hostname
+ *
+ * @param $current_region
+ *  The region array
  */
 function virgin_region_region_cookie_set($current_region) {
   global $cookie_domain;
@@ -330,4 +341,42 @@ function virgin_region_region_cookie_set($current_region) {
     // Set cookie with one year expire in milliseconds (365 * 24 * 60 * 60)
     setcookie(VIRGIN_REGION_COOKIE, $current_region['hostname'], time() + 31536000, "/", $cookie_domain);
   }
+}
+
+/**
+ * Checks if the given hostname is of a valid region
+ *
+ * @param $check_hostname
+ *  The hostname to be checked
+ * @return bool
+ *  TRUE it's a valid region hostname, FALSE otherwise
+ */
+function virgin_region_valid_hostname($check_hostname) {
+  foreach (virgin_region_regions() as $hostname => $region) {
+    if ($hostname == $check_hostname) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
+ * Get the current user preferred region hostname
+ *
+ * @return string
+ *  The region hostname or an empty string if no valid hostname could be found
+ */
+function virgin_region_user_hostname() {
+  global $user;
+
+  $account_wrapper = entity_metadata_wrapper('user', $user->uid);
+  $region = $account_wrapper->field_region->value();
+  $hostname = '';
+
+  if (!empty($region->field_hostname['und'][0]['value'])) {
+    $hostname = $region->field_hostname['und'][0]['value'];
+  }
+
+  return virgin_region_valid_hostname($hostname) ? $hostname : '';
 }

@@ -7,6 +7,7 @@ $conf['acquia_spi_use_cron'] = FALSE;
 if ($is_ah_env) {
   switch ($ah_env) {
     case 'prod':
+    case 'prelaunch':
       // Disable automatic cron run.
       $conf['cron_safe_threshold'] = 0;
       $conf['acquia_spi_use_cron'] = TRUE;

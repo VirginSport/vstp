@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function virgin_base_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "scald" && $api == "context_config") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -46,6 +49,82 @@ function virgin_base_image_default_styles() {
   $styles['virgin_original'] = array(
     'label' => 'Virgin Original',
     'effects' => array(),
+  );
+
+  // Exported image style: virgin_small_flag.
+  $styles['virgin_small_flag'] = array(
+    'label' => 'Virgin Small Flag',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 30,
+          'height' => 18,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_scald_preview.
+  $styles['vs_scald_preview'] = array(
+    'label' => 'vs_scald_preview',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 200,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_teaser_landscape.
+  $styles['vs_teaser_landscape'] = array(
+    'label' => 'teaser landscape',
+    'effects' => array(
+      7 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 488,
+          'height' => 325,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_teaser_portrait.
+  $styles['vs_teaser_portrait'] = array(
+    'label' => 'teaser portrait',
+    'effects' => array(
+      5 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 410,
+          'height' => 560,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: vs_teaser_square.
+  $styles['vs_teaser_square'] = array(
+    'label' => 'teaser square',
+    'effects' => array(
+      6 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 279,
+          'height' => 279,
+        ),
+        'weight' => 1,
+      ),
+    ),
   );
 
   return $styles;

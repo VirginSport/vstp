@@ -465,8 +465,8 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'left' => 'Left',
-        'right' => 'Right',
+        'left' => 'Image to the left',
+        'right' => 'Image to the right',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -624,12 +624,25 @@ function virgin_base_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'blue' => 'Blue',
+        'blue-solid' => 'Blue (Solid)',
         'teal' => 'Teal',
+        'teal-solid' => 'Teal (Solid)',
         'orange' => 'Orange',
+        'orange-solid' => 'Orange (Solid)',
         'purple' => 'Purple',
+        'purple-solid' => 'Purple (Solid)',
         'brown' => 'Brown',
+        'brown-solid' => 'Brown (Solid)',
         'rose' => 'Rose',
+        'rose-solid' => 'Rose (Solid)',
         'violet' => 'Violet',
+        'violet-solid' => 'Violet (Solid)',
+        'red' => 'Red',
+        'red-yellow' => 'Red / Yellow',
+        'red-pinky-red' => 'Red / Pinky-Red',
+        'festival-hackney' => 'Festival: Hackney',
+        'festival-british' => 'Festival: British',
+        'festival-sanfran' => 'Festival: SanFran',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -655,8 +668,8 @@ function virgin_base_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         'none' => 'None',
-        'circles' => 'Circles',
-        'waves' => 'Waves',
+        'circle' => 'Circles',
+        'wave' => 'Waves',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -685,38 +698,6 @@ function virgin_base_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
-  );
-
-  // Exported field_base: 'field_card_colour'.
-  $field_bases['field_card_colour'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_card_colour',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'blue' => 'Blue',
-        'teal' => 'Teal',
-        'orange-yellow' => 'Orange-yellow',
-        'purple' => 'Purple',
-        'crimson-purple' => 'Crimson-purple',
-        'pink' => 'Pink',
-        'white' => 'White',
-        'yellow-violet' => 'Yellow-violet',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_card_image'.
@@ -881,6 +862,32 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_constrained_width'.
+  $field_bases['field_constrained_width'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_constrained_width',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Constrained width',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_contact_number'.
   $field_bases['field_contact_number'] = array(
     'active' => 1,
@@ -970,6 +977,28 @@ function virgin_base_field_default_field_bases() {
       'max_length' => 255,
     ),
     'translatable' => 1,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_country_letter_code'.
+  $field_bases['field_country_letter_code'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_country_letter_code',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 2,
+    ),
+    'translatable' => 0,
     'type' => 'text',
   );
 
@@ -1838,6 +1867,27 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_icon_image'.
+  $field_bases['field_icon_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_icon_image',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
   // Exported field_base: 'field_image_effect'.
   $field_bases['field_image_effect'] = array(
     'active' => 1,
@@ -1886,6 +1936,27 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_logo'.
+  $field_bases['field_logo'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_logo',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
   // Exported field_base: 'field_marketing_optin'.
   $field_bases['field_marketing_optin'] = array(
     'active' => 1,
@@ -1930,11 +2001,8 @@ function virgin_base_field_default_field_bases() {
       'allowed_values' => array(
         'Asthma' => 'Asthma',
         'Type 1 Diabetes' => 'Type 1 Diabetes',
-        'Diabetes' => 'Diabetes',
-        'Heart Condition - Type 1' => 'Heart Condition - Type 1',
-        'Heart Condition - Type 2' => 'Heart Condition - Type 2',
-        'Heart Condition - Type 3' => 'Heart Condition - Type 3',
         'Epilepsy' => 'Epilepsy',
+        'Heart Condition' => 'Heart Condition',
         'Other' => 'Other',
       ),
       'allowed_values_function' => '',
@@ -2027,6 +2095,49 @@ function virgin_base_field_default_field_bases() {
       'max_length' => 255,
     ),
     'translatable' => 1,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_overlay_video_poster_image'.
+  $field_bases['field_overlay_video_poster_image'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_overlay_video_poster_image',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
+  // Exported field_base: 'field_overlay_video_url'.
+  $field_bases['field_overlay_video_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_overlay_video_url',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
     'type' => 'text',
   );
 
@@ -2180,7 +2291,7 @@ function virgin_base_field_default_field_bases() {
   // Exported field_base: 'field_region'.
   $field_bases['field_region'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_region',
@@ -2258,6 +2369,32 @@ function virgin_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_show_in_festival_menu'.
+  $field_bases['field_show_in_festival_menu'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_show_in_festival_menu',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_slide_image'.
   $field_bases['field_slide_image'] = array(
     'active' => 1,
@@ -2265,6 +2402,27 @@ function virgin_base_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_slide_image',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
+  );
+
+  // Exported field_base: 'field_slider_images'.
+  $field_bases['field_slider_images'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_slider_images',
     'indexes' => array(
       'sid' => array(
         0 => 'sid',
@@ -2392,15 +2550,14 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'portrait' => 'Portrait',
+        'portrait' => 'Portrait (Outline)',
         'landscape' => 'Landscape',
-        'square' => 'Square',
-        'portrait_lower_portrait' => 'Portrait, Lower Portrait',
+        'portrait_lower_portrait' => 'Portrait, Lower Portrait (Outline)',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Portrait, Upper Portrait, Portrait',
-        'landscape_square_right' => 'Landscape, Square Right',
-        'landscape_square_left' => 'Landscape, Square Left',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape (Outline)',
+        'landscape_square_right' => 'Landscape, Square Right (Outline)',
+        'portrait_square' => 'Portrait, Square',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -2412,7 +2569,7 @@ function virgin_base_field_default_field_bases() {
   // Exported field_base: 'field_teasers'.
   $field_bases['field_teasers'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_teasers',

@@ -3,26 +3,77 @@
 // ----------------------------------------------------------------------------
 
 label {
+  font-family: $font-family-sans-serif;
   font-weight: 500;
+  font-size: .9375rem;
+  line-height: 1.25rem;
   color: $c-black;
-  margin-bottom: .3125rem;
-  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.vs-focus-label {
+  @include transition(all .2s ease);
+  opacity: .6;
+  color: #767676;
+  cursor: text;
+  position: absolute;
+  left: 0.625rem;
+  top: .9375rem;
+  font-size: .75rem;
+}
+
+.vs-form-group {
+  position: relative;
+  margin-bottom: .625rem;
+  max-width: 21.75rem;
+
+  + h1, + h2, + h3, + h4, + h5, + h6 {
+    margin-top: 2.1875rem;
+  }
 }
 
 .form-control {
-  font-size: 14px;
+  font-weight: 500;
   color: $c-black;
-  max-width: 20.625rem;
+  line-height: 0;
+  padding: 1.25rem .625rem .625rem;
 
   &:focus ~ .vs-focus-label,
-  &.vs-form-control--not-empty ~ .vs-focus-label {
-    top: 5px;
-    font-size: 12px;
-    line-height: 1.2;
+  &.vs-form-control--not-empty ~ .vs-focus-label,
+  &:-webkit-autofill ~ .vs-focus-label {
+    color: #767676;
+    opacity: 1;
+    top: 0.5rem;
+    font-size: 0.625rem;
+    line-height: 0.75rem;
   }
 
   &:focus {
+    @include box-shadow(none);
     color: $c-black;
+  }
+}
+
+.vs-form-group--textarea:before {
+  content: '';
+  width: calc(100% - 2px);
+  height: 1.75rem;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background-color: $c-white;
+  border-radius: 4px 4px 0 0;
+}
+
+.vs-textarea {
+  height: 8.75rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.3125rem;
+  resize: none;
+  line-height: normal;
+
+  ~ .vs-focus-label {
+    top: .625rem
   }
 }
 
@@ -30,104 +81,75 @@ label {
   font-family: $font-family-serif;
   color: $c-orange-bright;
   text-transform: uppercase;
-  font-size: 1.625rem;
-  margin-bottom: .625rem;
-  margin-top: 2rem;
-}
+  font-size: 1.125rem;
+  margin-bottom: .75rem;
+  max-width: 60%;
 
-.vs-form-group {
-  position: relative;
-  margin-bottom: .625rem;
-
-  .form-control {
-    padding: 15px 10px 0;
-    height: 3.125rem;
-    display: inline-block;
-  }
-
-  .vs-textarea {
-    height: 8.75rem;
-    padding-top: 20px;
-    padding-bottom: 5px;
-    resize: none;
+  @include media-breakpoint-up(md) {
+    font-size: 1.5625rem;
+    max-width: none;
   }
 }
 
-.vs-focus-label {
-  @include transition(all .2s ease);
-  color: #767676;
-  cursor: text;
+.vs-form-description {
+  margin-top: 1.25rem;
+  margin-bottom: 1.875rem;
+  font-size: .875rem;
+  max-width: 21.75rem;
+  color: rgba(#767676, .7);
   font-weight: 400;
-  position: absolute;
-  left: 10px;
-  top: 15px;
+}
+
+
+// Form wrappers
+// ----------------------------------------------------------------------------
+
+.vs-contact-form__wrapper {
+  @include border-radius(.625rem);
+  background-color: $c-white;
+}
+
+.vs-contact-form__prefix {
+  padding: 2.1875rem .9375rem;
+  border-bottom: 2px solid $c-gray-light;
+}
+
+.vs-contact-form__content {
+  padding: 2.1875rem .9375rem;
+}
+
+.vs-contact-form__suffix {
+  padding: 0 .9375rem 2.1875rem;
+}
+
+@include media-breakpoint-up(md) {
+  .vs-contact-form__prefix {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+
+  .vs-contact-form__content {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+  .vs-contact-form__suffix {
+    padding-bottom: 2.625rem;
+  }
 }
 
 
 // Select group
 // ----------------------------------------------------------------------------
 
-.vs-select-wrapper {
-  display: inline-block;
-  color: $c-black;
-  font-size: 14px;
-  width: 100%;
-  max-width: 20.625rem;
-  border: 1px solid rgba($c-black, .2);
-  border-radius: 4px;
-  padding: .0625rem .625rem;
-  position: relative;
+.vs-chosen-wrapper {
+  border: 0.0625rem solid rgba($c-black, .2);
+  border-radius: 0.25rem;
+  padding: 1.3125rem 0 .125rem;
+  font-size: 0;
 
-  > label {
-    font-size: 12px;
-    color: #767676;
-  }
-}
-
-.vs-select-group {
-  width: 100%;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.vs-select-group__select {
-  @include transition(all .2s);
-  border: 0;
-  background-color: transparent;
-  height: 1.875rem;
-  text-align: center;
-  text-align-last: center;
-  width: 100%;
-  color: $c-black;
-
-  &:focus {
-    outline: 0;
-  }
-}
-
-.vs-select-group__label--day {
-  width: 20%;
-}
-
-.vs-select-group__label--month,
-.vs-select-group__label--year {
-  width: 38.7%;
-}
-
-.vs-select-group__label--full {
-  width: 100%;
-
-  > .vs-select-group__select {
-    text-align-last: left;
-  }
-}
-
-.vs-select-group__select--empty {
-  .selectize-dropdown,
-  .selectize-input,
-  .selectize-input input {
-    color: #767676;
+  > .vs-focus-label  {
+    top: 0.15rem;
+    font-size: 0.625rem;
   }
 }
 
@@ -135,28 +157,21 @@ label {
 // Inline forms
 // ----------------------------------------------------------------------------
 
-.vs-form-group--inline > div {
+.vs-form-group--checkboxes > div,
+.vs-form-group--radio-buttons > div {
   display: inline-block;
 
   & {
-    padding-right: 1.875rem
+    padding-right: 1.875rem;
   }
 
-  &:last-child,
+  &:last-of-type,
   &:only-child {
     padding-right: 0;
   }
-}
 
-
-// Disabled forms
-// ----------------------------------------------------------------------------
-
-.vs-form--disabled {
-
-  .vs-form-label {
-    color: rgba($c-black, .7);
-    cursor: not-allowed;
+  &:last-of-type {
+    padding-bottom: 0;
   }
 }
 
@@ -164,98 +179,182 @@ label {
 // Radio buttons
 // ----------------------------------------------------------------------------
 
+.vs-form-group--radio-buttons {
+  .vs-form-group + & {
+    padding-top: 0.5625rem;
+  }
+
+  .vs-form-group--checkboxes + & {
+    padding-top: 0.0625rem;
+  }
+
+  & + & {
+    padding-top: 0.3125rem;
+  }
+}
+
+.vs-form-radio {
+  padding-bottom: 0.9375rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
 .vs-form-input--radio {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  left: -625rem;
+
+  &:focus ~ .vs-form-label--radio:before {
+    @include box-shadow(0 0 3px 2px rgba($c-black, .2));
+    outline: none;
+    border-radius: 50%;
+  }
 }
 
 .vs-form-label--radio {
-  padding-left: 30px;
+  font-size: 0.875rem;
+  padding-left: 1.875rem;
   position: relative;
   cursor: pointer;
-}
 
-.vs-form-label--radio:before {
-  @include transition(all .2s);
-  @include box-shadow(0 0 0 1px rgba($c-black, .2));
-  content: '';
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-}
+  &:before {
+    @include transition(all .2s);
+    @include box-shadow(0 0 0 1px rgba($c-black, .2));
+    content: '';
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+  }
 
-.vs-form-label--radio:after {
-  @include transition(all .2s);
-  content: '';
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-}
+  &:after {
+    @include transition(all .2s);
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 0.3125rem;
+    left: 0.1875rem;
+  }
 
-.vs-form-input--radio:checked + .vs-form-label--radio:after {
-  background-color: $c-orange-bright;
+  .vs-form-input--radio:checked + &:after {
+    background-color: $c-orange-bright;
+  }
 }
-
 
 // Checkboxes
 // ----------------------------------------------------------------------------
 
+.vs-form-group--checkboxes {
+  .vs-form-group + & {
+    padding-top: 0.625rem;
+  }
+
+  & + & {
+    padding-top: 0.125rem;
+    padding-bottom: 0;
+
+    .vs-form-check {
+      padding-bottom: 0.1875rem;
+    }
+  }
+
+  .vs-form-group--radio-buttons + & {
+    padding-top: 0.375rem;
+  }
+
+  & + .vs-form-group {
+    padding-top: 0.125rem;
+  }
+
+  & + .vs-form-group--radio-buttons {
+    padding-top: 0.0625rem;
+  }
+}
+
+.vs-form-check {
+  padding-bottom: 0.1875rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
 .vs-form-input--check {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  left: -625rem;
+
+  &:focus ~ .vs-form-label--check:before {
+    @include box-shadow(0 0 3px 1px rgba($c-black, .2));
+    outline: none;
+  }
 }
 
 .vs-form-label--check {
-  padding-left: 30px;
+  padding-left: 1.875rem;
   position: relative;
   cursor: pointer;
-}
 
-.vs-form-label--check:before {
-  @include transition(all .2s);
-  content: '';
-  border: 1px solid rgba($c-black, .2);
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-}
+  &:before {
+    @include transition(all .2s);
+    content: '';
+    border: 1px solid rgba($c-black, .2);
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+  }
 
-.vs-form-label--check:after {
-  @include transition(all .2s);
-  content: '';
-  background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxMnB4IiB2aWV3Qm94PSIwIDAgMTQgMTIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+ICAgICAgICA8dGl0bGU+R3JvdXA8L3RpdGxlPiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4gICAgPGRlZnM+PC9kZWZzPiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj4gICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMi4wMDAwMDAsIDIuMDAwMDAwKSIgc3Ryb2tlPSIjRkYwMDQwIiBzdHJva2Utd2lkdGg9IjIiPiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zLDggTDEwLDAiIGlkPSJMaW5lIj48L3BhdGg+ICAgICAgICAgICAgPHBhdGggZD0iTTMsOCBMMCw1IiBpZD0iTGluZSI+PC9wYXRoPiAgICAgICAgPC9nPiAgICA8L2c+PC9zdmc+') no-repeat center center;
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-  opacity: 0;
-}
+  &:after {
+    @include transition(all .2s);
+    content: '';
+    background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxMnB4IiB2aWV3Qm94PSIwIDAgMTQgMTIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+ICAgICAgICA8dGl0bGU+R3JvdXA8L3RpdGxlPiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4gICAgPGRlZnM+PC9kZWZzPiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIj4gICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMi4wMDAwMDAsIDIuMDAwMDAwKSIgc3Ryb2tlPSIjRkYwMDQwIiBzdHJva2Utd2lkdGg9IjIiPiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zLDggTDEwLDAiIGlkPSJMaW5lIj48L3BhdGg+ICAgICAgICAgICAgPHBhdGggZD0iTTMsOCBMMCw1IiBpZD0iTGluZSI+PC9wYXRoPiAgICAgICAgPC9nPiAgICA8L2c+PC9zdmc+') no-repeat center center;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0.125rem;
+    opacity: 0;
+  }
 
-.vs-form-input--check:checked + .vs-form-label--check:after {
-  opacity: 1;
+  .vs-form-input--check:checked + &:after {
+    opacity: 1;
+  }
 }
-
 
 // Validations
 // ----------------------------------------------------------------------------
 
 .vs-has-error {
   .form-control,
-  .vs-select-wrapper,
-  .vs-form-label--check:before {
-    border-color: $state-danger;
+  .vs-chosen-wrapper,
+  .vs-chosen-wrapper .chosen-drop,
+  .vs-form-label--check:before,
+  .chosen-drop:before {
+    border-color: $state-danger !important;
+  }
+
+  .vs-form-input--check:focus ~ .vs-form-label--check:before {
+    @include box-shadow(0 0 3px 1px $state-danger);
   }
 
   .vs-form-label--radio:before {
     @include box-shadow(0 0 0 1px $state-danger);
+  }
+
+  .vs-form-input--radio:focus ~ .vs-form-label--radio:before {
+    @include box-shadow(0 0 3px 2px $state-danger);
   }
 
   .vs-form--disabled .vs-form-label--radio:before {
@@ -270,5 +369,104 @@ label {
 .vs-error-label {
   color: $state-danger;
   font-size: .625rem;
+  line-height: 0.75rem;
   padding: .3125rem 0;
+
+  .vs-form-radio + &,
+  .vs-form-check + & {
+    padding-top: 0;
+  }
+}
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  label {
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+
+    .vs-select-wrapper > & {
+      line-height: 0.75rem;
+      margin-bottom: 0.125rem;
+    }
+  }
+
+  .form-control {
+    font-size: 0.9375rem;
+
+    &:focus ~ .vs-focus-label,
+    &.vs-form-control--not-empty ~ .vs-focus-label {
+      top: 0.4375rem;
+      font-size: 0.625rem;
+      line-height: 0.75rem;
+    }
+  }
+
+  .vs-focus-label {
+    top: 0.8125rem;
+    font-size: .9375rem;
+
+    &--radio {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .vs-form-label--check:before,
+  .vs-form-label--check:after {
+    top: 0.25rem;
+  }
+
+  .vs-error-label {
+    padding: .5rem 0;
+  }
+
+  .vs-form-group {
+    & + .vs-form-group--radio-buttons {
+      padding-top: 0.6875rem;
+    }
+  }
+
+  .vs-form-check {
+    padding-bottom: 0;
+  }
+
+  .vs-form {
+    & + .vs-form-group {
+      padding-top: 0.3125rem;
+    }
+
+    & + .vs-form-group--radio-buttons {
+      padding-top: 0;
+      margin-top: 0.75rem;
+    }
+
+    & + & {
+      padding-top: 0.125rem;
+      padding-bottom: 0;
+
+      .vs-form-check {
+        padding-top: 0.1875rem;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .vs-form-radio {
+    padding-bottom: 0;
+  }
+
+  .vs-form-group--radio-buttons {
+    & + & {
+      padding-top: 0.3125rem;
+    }
+
+    & + .vs-form-group {
+      padding-top: 0.25rem;
+    }
+
+    & + .vs-form-group--checkboxes {
+      padding-top: 0.0625rem;
+    }
+  }
 }

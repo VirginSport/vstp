@@ -5,3 +5,41 @@
  */
 
 include_once 'virgin_page.features.inc';
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function virgin_page_pathauto_alias_alter(&$alias, array &$context) {
+
+  // If the page is related with a festival, the alias is assembled
+  // using the festival title in combination with the page title.
+  // If the alias isn't for a node of type page, bailout now.
+  if ($context['module'] != 'node' || $context['type'] != 'page') {
+    return;
+  }
+
+  $g_page = new VirginEntityGrapher('node', $context['data']['node']);
+  $g_festival = $g_page->relation('field_festival');
+
+  // If the relationship does not contain a festival, bailout.
+  if ($g_festival->property('type') != 'festival') {
+    return;
+  }
+
+  $festival_timestamp = $g_festival->relation('field_festival_state')->fieldGetOne('field_start_date');
+  $year = format_date($festival_timestamp, 'custom', 'Y');
+
+  // Finally, build the page path using the festival title and the
+  // page title.
+  $parts = array(
+    'event',
+    $g_festival->fieldGetOne('title_field') . '-' . $year,
+    $g_page->fieldGetOne('title_field'),
+  );
+
+  foreach ($parts as $key => $part) {
+    $parts[$key] = pathauto_cleanstring($part);
+  }
+
+  $alias = pathauto_clean_alias(implode('/', $parts));
+}

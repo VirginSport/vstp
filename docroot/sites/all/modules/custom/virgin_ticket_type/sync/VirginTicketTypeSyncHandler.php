@@ -95,6 +95,7 @@ class VirginTicketTypeSyncHandler implements VirginSyncSugarHandlerInterface {
         'value' => $g->get('description')->value(),
         'format' => filter_default_format()
       ),
+      'status' => 1,
     );
 
     // Map the event state if it exists
@@ -164,7 +165,7 @@ class VirginTicketTypeSyncHandler implements VirginSyncSugarHandlerInterface {
       ->execute()
     ;
 
-    if ($result['node']) {
+    if (isset($result['node'])) {
       $ids = array_keys($result['node']);
       return node_load(reset($ids));
     }

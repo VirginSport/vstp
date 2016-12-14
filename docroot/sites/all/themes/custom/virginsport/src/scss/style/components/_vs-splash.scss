@@ -34,35 +34,39 @@
 }
 
 .vs-splash__link {
+  @include transition(all .2s ease-in-out);
   display: block;
-  margin-bottom: 2.9375rem;
+  margin-bottom: 2.25rem;
 
   &:last-child {
     margin-bottom: 0;
   }
+
+  &:hover {
+    opacity: .5;
+  }
 }
 
-.vs-splash__flag-wrapper {
+.vs-splash__link-wrapper {
   overflow-x: auto;
   max-height: 17rem;
   white-space: nowrap;
 }
 
-.vs-splash__flag {
+.vs-splash__icon {
   @include transition(all .2s);
-  @include grayscale();
   width: 6.25rem;
   height: 3.75rem;
   margin: 0 auto .9375rem;
   display: block;
 
-  &:hover,
-  .vs-splash__link:hover & {
-    @include grayscale(off);
+  img {
+    margin: 0 auto;
+    max-height: 4.375rem;
   }
 }
 
-.vs-splash__flag-label {
+.vs-splash__icon-label {
   font-family: $font-family-serif;
   font-weight: 500;
   color: $c-black;
@@ -80,9 +84,8 @@
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(sm) {
-  .vs-splash__flag-wrapper {
-    max-height: 7.5rem;
-    padding-bottom: 1rem;
+  .vs-splash__link-wrapper {
+    margin: 0 1rem;
   }
 
   .vs-splash__link {
@@ -108,20 +111,28 @@
     margin-bottom: 4.5rem;
   }
 
-  .vs-splash__flag-wrapper {
+  .vs-splash__icon-wrapper {
     padding-bottom: 0;
     max-height: 36rem;
     white-space: normal;
   }
 
-  .vs-splash__flag {
+  .vs-splash__icon {
     width: 9.75rem;
-    height: 5.875rem;
+    height: 6.375rem;
     margin-bottom: 1.5rem;
   }
 
-  .vs-splash__flag-label {
+  .vs-splash__icon-label {
     font-size: 1.125rem;
+  }
+
+  .vs-splash__icon img {
+    max-height: 6.375rem;
+  }
+
+  .vs-splash__link-wrapper {
+    padding-bottom: 0;
   }
 
   .vs-splash__link {
@@ -130,13 +141,13 @@
 }
 
 @include media-breakpoint-up(lg) {
-  .vs-splash__flag-wrapper {
+  .vs-splash__icon-wrapper {
     max-height: 21rem;
   }
 }
 
 @include media-breakpoint-up(xl) {
-  .vs-splash__flag-wrapper {
+  .vs-splash__icon-wrapper {
     max-width: 80vw;
     margin: 0 auto;
   }

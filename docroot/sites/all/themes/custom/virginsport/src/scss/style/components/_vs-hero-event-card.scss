@@ -16,6 +16,7 @@ vs-hero-event-card,
   background-color: $c-white;
   padding: 1.25rem;
   position: relative;
+  overflow: hidden;
 }
 
 .vs-hero-event-card__image {
@@ -38,10 +39,15 @@ vs-hero-event-card,
 }
 
 .vs-hero-event-card__title {
-  color: $c-black;
+  font-family: $font-family-serif;
+  font-weight: 500;
   font-size: 1.125rem;
+  line-height: 1.125rem;
+  color: $c-black;
   text-transform: uppercase;
   margin-bottom: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .vs-hero-event-card__date {
@@ -50,12 +56,21 @@ vs-hero-event-card,
   font-size: .75rem;
   text-transform: uppercase;
   margin-bottom: 1.0625rem;
+  position: relative;
+  z-index: 1;
+}
+
+.vs-hero-event-card__text {
+  position: relative;
+  z-index: 1;
 }
 
 .vs-hero-event-card__button {
   display: block;
   width: 100%;
   margin-bottom: .625rem;
+  position: relative;
+  z-index: 1;
 
   &:last-child {
     margin-bottom: 0;
@@ -76,7 +91,7 @@ vs-hero-event-card,
       .vs-hero-event-card__title,
       .vs-hero-event-card__date,
       .vs-hero-event-card__text {
-        color: $c-white;
+        color: map_get($map, 'text-color');
       }
 
       .vs-hero-event-card__button:first-child {
@@ -100,6 +115,7 @@ vs-hero-event-card,
 
   .vs-hero-event-card__title {
     font-size: 1.875rem;
+    line-height: 1.875rem;
   }
 
   .vs-hero-event-card__date {

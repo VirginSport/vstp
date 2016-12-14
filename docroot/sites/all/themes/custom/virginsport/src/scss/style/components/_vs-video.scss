@@ -1,0 +1,180 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-video,
+.vs-video {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-video__wrapper {
+  min-height: 18.375rem;
+  overflow: hidden;
+}
+
+.vs-video__content-wrapper {
+  @include transform(translateY(-50%));
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+}
+
+.vs-video__title {
+  color: $c-white;
+  font-size: 1.5625rem;
+  font-family: $font-family-serif;
+  margin-bottom: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.vs-video__cta {
+  padding-left: 2.25rem;
+  padding-right: 2.25rem;
+}
+
+.vs-video__arrow {
+  @include transition(all .2s ease-in-out);
+  background: transparent url('../img/header-arrow-down.svg') no-repeat center center;
+  background-size: cover;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.vs-video__play-button {
+  @include transition(all .2s ease-in-out);
+  background: transparent url('../img/header-play-button.svg') no-repeat center center;
+  background-size: cover;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+}
+
+
+.vs-video-modal--opened {
+  .modal-content {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .modal-backdrop {
+    background-color: rgba($c-black, .75);
+  }
+
+  .vs-video__vertical-aligner {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+  }
+
+  .vs-video__vertical-align {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+  }
+
+  .modal-content {
+    width:inherit;
+    height:inherit;
+    margin: 0 auto;
+    pointer-events:all;
+  }
+
+  .modal.in  .modal-dialog {
+    .slick-slider {
+      display: none !important;
+    }
+
+    .vs-video__video-wrapper {
+      display: block !important;
+    }
+  }
+
+  video {
+    width: 100%;
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+  .vs-video__wrapper {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+  }
+
+  .vs-video__video-wrapper,
+  .vs-video__video {
+    width: 100%;
+    display: block;
+  }
+
+  .vs-video__title {
+    font-size: 2.625rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .vs-video__title {
+    margin-bottom: 2.25rem;
+    padding: 0 3.125rem;
+  }
+
+  .vs-video__arrow {
+    width: 3.125rem;
+    height: 3.125rem;
+    margin-top: 7.5rem;
+  }
+
+  .vs-video__play-button {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-video__video-wrapper {
+    max-height: 45.3125rem;
+  }
+
+  .vs-video__title {
+    font-size: 3.75rem;
+  }
+}

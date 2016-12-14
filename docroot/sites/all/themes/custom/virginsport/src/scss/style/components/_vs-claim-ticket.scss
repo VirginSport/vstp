@@ -6,6 +6,11 @@ vs-claim-ticket,
   display: block;
 }
 
+vs-claim-ticket + vs-claim-ticket,
+.vs-claim-ticket + .vs-claim-ticket {
+  margin-top: 0.9375rem;
+}
+
 // Elements
 // ----------------------------------------------------------------------------
 
@@ -19,17 +24,15 @@ vs-claim-ticket,
 }
 
 .vs-claim-ticket__content-wrapper {
-  min-height: 9.9375rem;
-
   padding-left: 0;
   padding-right: 0;
 }
 
 .vs-claim-ticket__content {
-  @include border-radius(0 0 .625rem .625rem);
+  @include border-radius(.625rem);
 
   background-color: $c-white;
-  padding: 1.3125rem 1.25rem 1.875rem 1.25rem; 
+  padding: 1.3125rem 1.25rem 1.875rem 1.25rem;
 }
 
 .vs-claim-ticket__heading {
@@ -48,6 +51,8 @@ vs-claim-ticket,
   font-size: 1.125rem;
   line-height: 1.25rem;
 
+  color: $c-black;
+
   text-transform: uppercase;
 }
 
@@ -61,6 +66,17 @@ vs-claim-ticket,
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.25rem;
+
+  color: $c-black;
+}
+
+.vs-claim-ticket-wrapper {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+.vs-claim-ticket__background + .vs-claim-ticket__content-wrapper .vs-claim-ticket__content {
+  @include border-radius(0 0 .625rem .625rem);
 }
 
 // Responsive
@@ -68,16 +84,13 @@ vs-claim-ticket,
 
 @include media-breakpoint-up(md) {
 
-  .vs-claim-ticket__background {
-    min-height: 11.58125rem;
-
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
+  vs-claim-ticket + vs-claim-ticket,
+  .vs-claim-ticket + .vs-claim-ticket {
+    margin-top: 4.4375rem;
   }
 
-  .vs-claim-ticket__content-wrapper {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+  .vs-claim-ticket__background {
+    min-height: 11.58125rem;
   }
 
   .vs-claim-ticket__content {
@@ -103,20 +116,13 @@ vs-claim-ticket,
 }
 
 @include media-breakpoint-up(lg) {
-
   .vs-claim-ticket__background {
     min-height: 15.251875rem;
   }
 }
 
 @include media-breakpoint-up(xl) {
-
   .vs-claim-ticket__background {
     min-height: 18.4375rem;
   }
-
-  .vs-claim-ticket__content-wrapper {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }    
 }

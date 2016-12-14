@@ -181,11 +181,12 @@ class VirginEntityGrapher {
     // Because I want to have access to each entity wrapper type, will use
     // an incremented index and a while entity relationship exists add it
     // to entity graphers array
-    while (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index++]->value())) {
+    while (!empty($entity_wrapper->{$name}) && !empty($entity_wrapper->{$name}[$index]->value())) {
       // Get relationship entity type
       $entity_type = $entity_wrapper->{$name}[$index]->type();
 
       $entity_graphers[] = new VirginEntityGrapher($entity_type, $entity_wrapper->{$name}[$index]->value());
+      $index++;
     }
 
     // If entity relationships not found return current VirginEntityGrapher
@@ -205,13 +206,20 @@ class VirginEntityGrapher {
    *  The language key
    */
   protected function fieldLanguage($name) {
-    $language = empty($this->entity->language) ? LANGUAGE_NONE : $this->entity->language;
+    global $language;
 
-    if (empty($this->entity->{$name}[$language]) && !empty($this->entity->{$name}[LANGUAGE_NONE])) {
-      $language = LANGUAGE_NONE;
+    // Check if the field has the current language translation
+    if (!empty($this->entity->{$name}[$language->language])) {
+      return $language->language;
     }
 
-    return $language;
+    $lang = empty($this->entity->language) ? LANGUAGE_NONE : $this->entity->language;
+
+    if (empty($this->entity->{$name}[$lang]) && !empty($this->entity->{$name}[LANGUAGE_NONE])) {
+      $lang = LANGUAGE_NONE;
+    }
+
+    return $lang;
   }
 
   /**

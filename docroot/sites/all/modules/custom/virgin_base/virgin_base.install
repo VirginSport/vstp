@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the virgin base module.
+ */
+
+/**
+ * Remove data from field_medical_conditions to update lists.
+ */
+function virgin_base_update_7001() {
+  db_delete('field_data_field_medical_conditions')->execute();
+  db_delete('field_revision_field_medical_conditions')->execute();
+}

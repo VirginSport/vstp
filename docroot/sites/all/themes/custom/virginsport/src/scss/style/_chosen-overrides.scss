@@ -1,0 +1,119 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-chosen-wrapper {
+  .form-control {
+    height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: .375rem;
+  }
+
+  .chosen-processed {
+    display: none;
+  }
+
+  .chosen-container {
+    width: 100% !important;
+  }
+
+  .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    color: rgba($c-black, .6);
+    font-family: $font-family-sans-serif;
+    padding-left: .625rem;
+    padding-right: .625rem;
+    width: 100% !important;
+
+    @include media-breakpoint-up(md) {
+      font-size: .9375rem;
+    }
+  }
+
+  .chosen-container-multi .chosen-choices li.search-choice {
+    margin-left: 5px;
+  }
+
+  .chosen-container-single .chosen-search {
+    display: none;
+
+    .page-admin & {
+      display: block;
+    }
+  }
+
+  &.vs-chosen-wrapper--3x .chosen-container {
+    width: 33.33% !important;
+  }
+
+  .chosen-choices {
+    @include box-shadow(none);
+    border: 0;
+    background-image: none;
+    padding: 0;
+  }
+
+  .search-choice {
+    @include box-shadow(none !important);
+    background-image: none !important;
+    border: 0 !important;
+  }
+
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: -1px;
+  }
+
+  .chosen-container-active.chosen-with-drop .chosen-single {
+    background-image: none;
+    border: 0;
+  }
+
+  .chosen-drop {
+    @include box-shadow(none);
+    top: calc(100% - 3px);
+    border-color: #ccc;
+    border-top: 1px solid #ccc;
+    width: 98%;
+    margin-left: 1%;
+  }
+
+  .chosen-container .chosen-results {
+    padding: 0;
+    margin: 0;
+  }
+
+  .chosen-container .chosen-results li {
+    padding: 9px;
+    font-size: 15px;
+    color: #767676;
+  }
+
+  .chosen-container .chosen-results li:hover,
+  .chosen-container .chosen-results li.highlighted {
+    background-color: #f2f9fc;
+    background-image: none;
+    color: darken(#767676, 20%);
+  }
+
+  .chosen-single {
+    @include box-shadow(none);
+    background-image: none;
+    border: 0;
+  }
+
+  .chosen-container-single .chosen-single span {
+    font-size: 12px;
+    font-weight: 400;
+
+    @include media-breakpoint-up(md) {
+      font-size: .9375rem;
+    }
+  }
+}
+
+.chosen-container-single .chosen-single div b {
+  background: transparent url('../img/chosen-arrow-down.png') no-repeat 0 8px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+  background: transparent url('../img/chosen-arrow-up.png') no-repeat 0 8px;
+}

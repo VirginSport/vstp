@@ -30,10 +30,12 @@ vs-package-card,
   border-radius: .625rem;
   background: $c-white 0 0 no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .vs-package-card-content {
   @include flex(1, 0);
+  position: relative;
 }
 
 .vs-package-card__title {
@@ -62,6 +64,7 @@ vs-package-card,
   @include flexbox();
   @include flex-direction(row);
   height: 1.375rem;
+  position: relative;
 }
 
 .vs-package-card__price {
@@ -135,6 +138,12 @@ vs-package-card,
 
     .vs-package-card__descriptive-title:after {
       background-color: map_get($map, 'solid-color');
+    }
+
+    .vs-package-card__title,
+    .vs-package-card__description,
+    .vs-package-card__price {
+      color: map_get($map, 'text-color');
     }
 
   }

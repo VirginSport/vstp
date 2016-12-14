@@ -1,4 +1,3 @@
-import brandColors from '../vars/brand-colors';
 import onResize from '../helper/on-resize';
 import $ from '../lib/jquery';
 
@@ -9,7 +8,7 @@ import $ from '../lib/jquery';
  *
  * @type {number}
  */
-const GRADIENT_ROTATE_ADJUST = -90;
+const GRADIENT_ROTATE_ADJUST = 90;
 
 /**
  * The height to width ratio of the curve
@@ -108,6 +107,12 @@ class Region {
    * Update the SVG element
    */
   update() {
+    
+    // If the parent element is not visible, bailout
+    if (this.el.offsetParent === null) {
+      return;
+    }
+    
     let width = this.el.offsetWidth;
     let height = this.el.offsetHeight;
     
@@ -148,6 +153,17 @@ class Region {
         'data-vs-region-curved': this.el.getAttribute('data-vs-region-curved')
       });
     }
+  
+    // Apply the background rotation
+    let style = window.getComputedStyle(this.svg);
+    let bgRotation = parseInt(style['backgroundSize'], 10);
+    
+    // If for some reason rotation could not be parsed, fallback to 0
+    bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
+  
+    setAttributes(this.gradient, {
+      gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
+    });
   }
 
   /**
@@ -174,15 +190,11 @@ class Region {
       id: this.pathID,
       fill: `url(#${this.gradientID})`
     });
-    
-    // Fetch the gradient rules from the parent
-    let g = getGradient(this.el);
   
     // Setup the gradient in the SVG
     this.gradient = element(this.svg, 'linearGradient', {
       id: this.gradientID,
       gradientUnits: 'userSpaceOnUse',
-      gradientTransform: `rotate(${parseInt(g.rotate) + GRADIENT_ROTATE_ADJUST})`,
       x1: '0%',
       y1: '0%',
       x2: '100%',
@@ -191,14 +203,16 @@ class Region {
 
     element(this.gradient, 'stop', {
       offset: '0%',
-      'stop-color': g.from,
-      'stop-opacity': 1
+      'stop-color': '#fff',
+      'stop-opacity': 1,
+      class: 'stop-a'
     });
   
     element(this.gradient, 'stop', {
       offset: '100%',
-      'stop-color': g.to,
-      'stop-opacity': 1
+      'stop-color': '#fff',
+      'stop-opacity': 1,
+      class: 'stop-b'
     });
     
     // Create a spacer element to cover region spacing
@@ -272,19 +286,4 @@ function setAttributes(el, attrs) {
   for (let key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
-}
-
-/**
- * Get the gradient configuration from the container element
- *
- * @param {Element} el
- */
-function getGradient(el) {
-  let color = el.getAttribute('data-vs-region-color');
-  
-  if (brandColors.hasOwnProperty(color)) {
-    return brandColors[color];
-  }
-  
-  return brandColors['default'];
 }

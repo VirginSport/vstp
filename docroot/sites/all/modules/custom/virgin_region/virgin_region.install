@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the virgin region module.
+ */
+
+/**
+ * Manually rebuilds virgin region fields
+ */
+function virgin_region_update_7001() {
+  module_load_include('inc', 'features', 'features.export');
+  module_load_include('inc', 'features', 'includes/features.field');
+  field_base_features_rebuild('virgin_base');
+  field_instance_features_rebuild('virgin_region');
+}

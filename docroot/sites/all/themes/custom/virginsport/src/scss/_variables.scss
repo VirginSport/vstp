@@ -24,6 +24,7 @@
 // Custom theme colors
 $c-white:                     #FFFFFF;
 $c-black:                     #000000;
+$c-gray-light:                #f0f0f0;
 
 $c-blue:                      #2083FE;
 $c-teal:                      #00A7B1;
@@ -34,79 +35,357 @@ $c-purple:                    #9A32C9;
 $c-brown:                     #AB0041;
 $c-rose:                      #F857A6;
 $c-violet:                    #645BB4;
-$c-gray-light:                #FAFAFA;
+$c-red:                       #E10A0A;
+$c-pinky-red:                 #F03A72;
+$c-yellow:                    #FBF13F;
 
 // Brand color schemes
 $color-schemes: (
+  default: (
+    solid-color: #F0F0F0,
+    text-color: $c-black,
+    from: #F0F0F0,
+    to: #F0F0F0,
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: #F0F0F0,
+    outline-to: #F0F0F0,
+    outline-rotate: 0%
+  ),
   black: (
     solid-color: $c-black,
     text-color: $c-white,
     from: $c-black,
     to: $c-black,
-    rotate: 0deg
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: $c-black,
+    outline-to: $c-black,
+    outline-rotate: 0%
   ),
   gray: (
     solid-color: #F0F0F0,
     text-color: $c-black,
     from: #F0F0F0,
     to: #F0F0F0,
-    rotate: 0deg
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: #F0F0F0,
+    outline-to: #F0F0F0,
+    outline-rotate: 0%
+  ),
+  gray-dark: (
+    solid-color: #E0E0E0,
+    text-color: $c-black,
+    from: #E0E0E0,
+    to: #E0E0E0,
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: #E0E0E0,
+    outline-to: #E0E0E0,
+    outline-rotate: 0%
   ),
   white: (
     solid-color: $c-white,
     text-color: $c-black,
+    text-color-focus: $c-black,
     from: $c-white,
     to: $c-white,
-    rotate: 0deg
+    rotate: 0deg,
+    card-rotate: 135deg,
+    outline-from: $c-white,
+    outline-to: $c-white,
+    outline-rotate: 0%
   ),
   blue: (
     solid-color: $c-blue,
     text-color: $c-white,
     from: #1F85FF,
     to: #4231CB,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #1F85FF,
+    outline-to: #4231CB,
+    outline-rotate: -45%
+  ),
+  blue-solid: (
+    solid-color: $c-blue,
+    text-color: $c-white,
+    from: $c-blue,
+    to: $c-blue,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-blue,
+    outline-to: $c-blue,
+    outline-rotate: -45%
   ),
   teal: (
     solid-color: $c-teal,
     text-color: $c-white,
     from: #01B9C0,
     to: #001642,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #01B9C0,
+    outline-to: #001642,
+    outline-rotate: -45%
+  ),
+  teal-solid: (
+    solid-color: $c-teal,
+    text-color: $c-teal,
+    from: $c-teal,
+    to: $c-teal,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-teal,
+    outline-to: $c-teal,
+    outline-rotate: -45%
   ),
   orange: (
     solid-color: $c-orange,
     text-color: $c-white,
-    from: #FF5858,
     to: #FFE386,
-    rotate: 135deg
+    from: #FF5858,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #FE386,
+    outline-to: #FF5858,
+    outline-rotate: -45%
+  ),
+  orange-solid: (
+    solid-color: $c-orange,
+    text-color: $c-orange,
+    from: $c-orange,
+    to: $c-orange,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-orange,
+    outline-to: $c-orange,
+    outline-rotate: -45%
   ),
   purple: (
     solid-color: $c-purple,
     text-color: $c-white,
     from: #9D50BB,
     to: #3A2899,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #9D50BB,
+    outline-to: #3A2899,
+    outline-rotate: -45%
+  ),
+  purple-solid: (
+    solid-color: $c-purple,
+    text-color: $c-purple,
+    from: $c-purple,
+    to: $c-purple,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-purple,
+    outline-to: $c-purple,
+    outline-rotate: -45%
   ),
   brown: (
     solid-color: $c-brown,
     text-color: $c-white,
     from: #840324,
     to: #061161,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #840324,
+    outline-to: #061161,
+    outline-rotate: -45%
+  ),
+  brown-solid: (
+    solid-color: $c-brown,
+    text-color: $c-brown,
+    from: $c-brown,
+    to: $c-brown,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-brown,
+    outline-to: $c-brown,
+    outline-rotate: -45%
   ),
   rose: (
     solid-color: $c-rose,
     text-color: $c-white,
     from: #F857A6,
     to: #FF5858,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #F857A6,
+    outline-to: #FF5858,
+    outline-rotate: -45%
+  ),
+  rose-solid: (
+    solid-color: $c-rose,
+    text-color: $c-rose,
+    from: $c-rose,
+    to: $c-rose,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-rose,
+    outline-to: $c-rose,
+    outline-rotate: -45%
   ),
   violet: (
     solid-color: $c-violet,
     text-color: $c-white,
     from: #FB8B5F,
     to: #504EA1,
-    rotate: 135deg
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #FB8B5F,
+    outline-to: #504EA1,
+    outline-rotate: -45%
+  ),
+  violet-solid: (
+    solid-color: $c-violet,
+    text-color: $c-violet,
+    from: $c-violet,
+    to: $c-violet,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-violet,
+    outline-to: $c-violet,
+    outline-rotate: -45%
+  ),
+  red: (
+    solid-color: #FF0040,
+    text-color: $c-white,
+    from: #FF0040,
+    to: #830A2A,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #FF0040,
+    outline-to: #830A2A,
+    outline-rotate: -45%
+  ),
+  red-yellow: (
+    solid-color: $c-red,
+    text-color: $c-white,
+    from: $c-red,
+    to: $c-yellow,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-red,
+    outline-to: $c-yellow,
+    outline-rotate: -45%
+  ),
+  red-pinky-red: (
+    solid-color: $c-red,
+    text-color: $c-white,
+    from: $c-red,
+    to: $c-pinky-red,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-red,
+    outline-to: $c-pinky-red,
+    outline-rotate: -45%
+  ),
+  festival-hackney: (
+    solid-color: #EA2322,
+    text-color: $c-white,
+    from: #EA2322,
+    to: #232073,
+    rotate: -90deg,
+    card-rotate: 90deg,
+    outline-from: #EA2322,
+    outline-to: #232073,
+    outline-rotate: -45%
+  ),
+  festival-british: (
+    solid-color: #D60000,
+    text-color: $c-white,
+    from: #D60000,
+    to: #FFE200,
+    rotate: -90deg,
+    card-rotate: 90deg,
+    outline-from: #D60000,
+    outline-to: #FFE200,
+    outline-rotate: -45%
+  ),
+  festival-sanfran: (
+    solid-color: #01B9C0,
+    text-color: $c-white,
+    from: #01B9C0,
+    to: #00264F,
+    rotate: -90deg,
+    card-rotate: 90deg,
+    outline-from: #01B9C0,
+    outline-to: #00264F,
+    outline-rotate: -45%
+  ),
+  pinky-red-solid: (
+    solid-color: $c-pinky-red,
+    text-color: $c-white,
+    from: $c-pinky-red,
+    to: $c-pinky-red,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-pinky-red,
+    outline-to: $c-pinky-red,
+    outline-rotate: -45%
+  ),
+  yellow-solid: (
+    solid-color: $c-yellow,
+    text-color: $c-black,
+    from: $c-yellow,
+    to: $c-yellow,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-yellow,
+    outline-to: $c-yellow,
+    outline-rotate: -45%
+  )
+);
+
+// Pattern/Color schemes
+$pattern-schemes: (
+  wave: (
+    blue:             ( img: 'vs-color-wave-1.svg', opacity: .2, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    blue-solid:       ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    teal:             ( img: 'vs-color-wave-1.svg', opacity: .2, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    teal-solid:       ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    orange:           ( img: 'vs-color-wave-1.svg', opacity: 1, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    orange-solid:     ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    purple:           ( img: 'vs-color-wave-1.svg', opacity: .2, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    purple-solid:     ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    brown:            ( img: 'vs-color-wave-1.svg', opacity: .3, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    brown-solid:      ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    rose:             ( img: 'vs-color-wave-1.svg', opacity: .4, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    rose-solid:       ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    violet:           ( img: 'vs-color-wave-1.svg', opacity: .2, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    violet-solid:     ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    red:              ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    red-yellow:       ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    red-pinky-red:    ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    festival-hackney: ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    festival-british: ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+    festival-sanfran: ( img: 'vs-color-wave-1.svg', opacity: .6, positionX: right, positionY: top, size: cover, size-md: cover, size-lg: cover ),
+  ),
+  circle: (
+    blue:             ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    blue-solid:       ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    teal:             ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    teal-solid:       ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    orange:           ( img: 'vs-color-circle-1.svg', opacity: .2, positionX: 30%, positionY: top, size: 250% ),
+    orange-solid:     ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    purple:           ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    purple-solid:     ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    brown:            ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    brown-solid:      ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    rose:             ( img: 'vs-color-circle-1.svg', opacity: .1, positionX: 30%, positionY: top, size: 250% ),
+    rose-solid:       ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    violet:           ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    violet-solid:     ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    red:              ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    red-yellow:       ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    red-pinky-red:    ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    festival-hackney: ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    festival-british: ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
+    festival-sanfran: ( img: 'vs-color-circle-1.svg', opacity: .05, positionX: 30%, positionY: top, size: 250% ),
   )
 );
 
@@ -115,6 +394,7 @@ $state-danger:                #EA2322;
 // Custom variables
 $button-hover:                .7;
 $main-nav-breakpoint:         1240px;
+$sticky-basket-height:        6.25rem;
 
 
 // Colors
@@ -235,7 +515,7 @@ $link-hover-decoration: none;
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:    'SF-UI-Text', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-sans-serif:    'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 $font-family-serif:         'EuclidFlex', Georgia, "Times New Roman", Times, serif;
 // $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // $font-family-base:       $font-family-sans-serif;
@@ -581,15 +861,15 @@ $input-color-placeholder:        rgba($c-black, .6);
 // $nav-disabled-link-hover-color: $gray-light;
 // $nav-disabled-link-hover-bg:    transparent;
 
-// $nav-tabs-border-color:                       #ddd;
+$nav-tabs-border-color:                       transparent;
 // $nav-tabs-border-width:                       $border-width;
 // $nav-tabs-border-radius:                      $border-radius;
-// $nav-tabs-link-hover-border-color:            $gray-lighter;
+$nav-tabs-link-hover-border-color:            transparent;
 // $nav-tabs-active-link-hover-color:            $gray;
 // $nav-tabs-active-link-hover-bg:               $body-bg;
-// $nav-tabs-active-link-hover-border-color:     #ddd;
+$nav-tabs-active-link-hover-border-color:     transparent;
 // $nav-tabs-justified-link-border-color:        #ddd;
-// $nav-tabs-justified-active-link-border-color: $body-bg;
+$nav-tabs-justified-active-link-border-color: transparent;
 
 // $nav-pills-border-radius:     $border-radius;
 // $nav-pills-active-link-color: $component-active-color;
@@ -674,14 +954,15 @@ $state-danger-border:            darken($state-danger-text, 5%);
 // Tooltips
 
 $tooltip-max-width:           248px;
-// $tooltip-color:               #fff;
-$tooltip-bg:                  #cbcbcb;
+$tooltip-color:               $c-white;
+$tooltip-bg:                  rgba(0, 0, 0, .2);
+$tooltip-padding-y:           0.6875rem 2.125rem;  // top, right
+$tooltip-padding-x:           0.875rem 0.875rem;   // bottom, left
+$tooltip-margin:              0.6875rem;
 $tooltip-opacity:             1;
-$tooltip-padding-y:           .6875rem;
-$tooltip-padding-x:           .6875rem;
-// $tooltip-margin:              3px;
 
-$tooltip-arrow-width:         10px;
+// $tooltip-arrow-width:         10px;
+$tooltip-arrow-width:         8px;
 // $tooltip-arrow-color:         $tooltip-bg;
 
 

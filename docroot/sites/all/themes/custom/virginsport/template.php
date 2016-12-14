@@ -16,6 +16,24 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'path' => $path . '/theme'
   );
 
+  $themes['virginsport_notification'] = array(
+    'template' => 'virginsport-notification',
+    'variables' => array(
+      'classes' => '',
+      'message' => '',
+      'sticky' => FALSE,
+      'close_button' => TRUE
+    )
+  ) + $default;
+
+  $themes['virginsport_color'] = array(
+    'template' => 'virginsport-color',
+    'variables' => array(
+      'brand_color' => '',
+      'brand_pattern' => '',
+    )
+  ) + $default;
+
   $themes['virginsport_picture'] = array(
     'template' => 'virginsport-picture',
     'variables' => array(
@@ -32,6 +50,14 @@ function virginsport_theme($existing, $type, $theme, $path) {
       'classes' => '',
     )
   ) + $default;
+
+  $themes['virginsport_share_buttons'] = array(
+      'template' => 'virginsport-share-buttons',
+      'variables' => array(
+        'subject' => '',
+        'url' => ''
+      )
+    ) + $default;
 
   return $themes;
 }
@@ -59,8 +85,11 @@ function virginsport_js_alter(&$js) {
 function virginsport_preprocess_page(&$vars) {
   global $user;
 
+  drupal_add_library('system', 'drupal.ajax');
+  drupal_add_library('chosen', 'drupal.chosen');
+
   // Check if page manager is handling the current page
-  $vars['page_manager'] = (module_exists('page_manager') && page_manager_get_current_page());
+  $vars['apply_page_wrapper'] = virginsport_check_wrapper_required();
 
   // Setup the user information
   if (user_is_logged_in()) {
@@ -68,6 +97,10 @@ function virginsport_preprocess_page(&$vars) {
     $account_wrapper = entity_metadata_wrapper('user', $account);
     $first_name = $account_wrapper->field_first_name->value();
     $last_name = $account_wrapper->field_last_name->value();
+
+    // Fallback to a 'default' name if the name fields are empty
+    $first_name = empty($first_name) ? 'Virgin' : $first_name;
+    $last_name = empty($last_name) ? 'Sport' : $last_name;
 
     $vars['account'] = array(
       'first_name' => check_plain($first_name),
@@ -79,6 +112,13 @@ function virginsport_preprocess_page(&$vars) {
   // Setup the menus
   $vars['main_menu'] = virginsport_menu_items('main-menu');
   $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
+
+  // Setup attendly basket link counter
+  $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
+  $attendly_env = variable_get(VIRGIN_VAR_ATTENDLY_ENV);
+
+  $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
+  $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . '-' . $attendly_env;
 
   // Setup the social networks
   $vars['social_networks'] = array();
@@ -97,6 +137,30 @@ function virginsport_preprocess_page(&$vars) {
       'url' => check_plain($url),
     );
   }
+
+  // Fetch the list of regions
+  $vars['regions'] = virginsport_regions();
+
+  // Make cookie template available in javascript
+  $message = t('We use cookies. We eat them too, but only after a run. Check out our privacy policy to learn more');
+  $cookie_template = theme('virginsport_notification', array('message' => $message));
+  drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
+
+  // Add content data to google tag manager data layer
+  virginsport_add_gtm_data_layer($vars);
+
+  // Add collected google tag manager data layer events
+  $vars['data_layer_events'] = virgin_gtm()->get();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node theme.
+ */
+function virginsport_preprocess_node(&$vars) {
+  // Add node vie mode suggestion
+  $vars['theme_hook_suggestions'][] = sprintf('node__%s__%s', $vars['type'], $vars['view_mode']);
+
+  $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
 }
 
 // Template Overrides
@@ -164,16 +228,19 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
 }
 
 /**
- * Generates an HTML style attribute with background-image from an atom object.
+ * Generates an HTML style attribute with background-image from an atom object
  *
  * @param $atom
- *  The asset id-
+ *  The asset id
  * @param $style
- *  The image style.
+ *  The image style
  * @return string
  *  HTML style attribute with background-image. For example: background-image: url(...);"
  */
 function virginsport_atom_background($atom, $style = 'virgin_original') {
+  if (empty($atom) || empty($atom->sid)) {
+    return '';
+  }
 
   if (empty($atom->file_source)) {
     $atom = scald_atom_load($atom->sid);
@@ -182,6 +249,28 @@ function virginsport_atom_background($atom, $style = 'virgin_original') {
   $image_url = image_style_url($style, $atom->file_source);
 
   return 'background-image: url(' . $image_url . ');';
+}
+
+/**
+ * Generates the url from an atom object
+ *
+ * @param $atom
+ *  The asset
+ * @return string
+ *  The asset url
+ */
+function virginsport_atom_url($atom) {
+  if (empty($atom) || empty($atom->sid)) {
+    return '';
+  }
+
+  if (empty($atom->file_source)) {
+    $atom = scald_atom_load($atom->sid);
+  }
+
+  $url = file_create_url($atom->file_source);
+
+  return $url;
 }
 
 /**
@@ -221,5 +310,205 @@ function virginsport_currency($iso_code, $value) {
     $value = substr($value, 0, -3);
   }
 
+  if ($value == 0) {
+    return t('Free');
+  }
+
   return check_plain(sprintf($format, $value));
+}
+
+/**
+ * Get the number of days left for a specific date
+ *
+ * @param $date
+ *  The date timestamp
+ * @return string
+ *  The number of days
+ */
+function virginsport_days_left($date) {
+  // Make sure we don't have negative interval
+  $date_difference = abs($date - time());
+
+  // Get the number of days between dates
+  $days_left = floor($date_difference / 60 / 60 / 24);
+
+  // Only return days left if it is smaller than 32 days
+  return $days_left > 32 ? 0 : $days_left;
+}
+
+/**
+ * Get a properly formatted date interval
+ *
+ * @param $start_date
+ *  The start date timestamp
+ * @param $end_date
+ *  The end date timestamp
+ * @return string
+ *  The formatted date interval
+ */
+function virginsport_date_interval($start_date, $end_date) {
+
+  // If the end date and start date are the same, simply return
+  // the fully formatted start date.
+  if (date('d M Y', $start_date) == date('d M Y', $end_date)) {
+    return date('d M Y', $start_date);
+  }
+
+  // Otherwise, build the start/end date string
+  $start_date_parts = array(
+    'year' => date('Y', $start_date),
+    'month' => date('M', $start_date)
+  );
+
+  $end_date_parts = array(
+    'year' => date('Y', $end_date),
+    'month' => date('M', $end_date)
+  );
+
+  $start_date_format = 'd M Y';
+
+  // If year is the same start date does not have year
+  if ($start_date_parts['year'] == $end_date_parts['year']) {
+    $start_date_format = 'd M';
+
+    // If year is the same and month the same too, start date does not have
+    // neither year and month
+    if ($start_date_parts['month'] == $end_date_parts['month']) {
+      $start_date_format = 'd';
+    }
+  }
+
+  return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
+}
+
+/**
+ * Checks whether a default page wrapper is required
+ *
+ * @return bool
+ *  TRUE the page wrapper is required, FALSE otherwise
+ */
+function virginsport_check_wrapper_required() {
+  $excluded_routes = array(
+    'user',
+    'user/login',
+    'user/register',
+    'user/password',
+    'user/%',
+    'user/%/edit',
+    'node/%/tickets',
+    'basket/confirm-claim/%'
+  );
+
+  $item = menu_get_item();
+
+  if (in_array($item['path'], $excluded_routes)) {
+    return FALSE;
+  }
+
+  if (module_exists('page_manager') && page_manager_get_current_page()) {
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+/**
+ * Get the list of regions
+ *
+ * @return array
+ */
+function virginsport_regions() {
+  $regions = virgin_region_regions();
+  $current_region = virgin_region_current();
+
+  if ($current_region) {
+    unset($regions[$current_region['hostname']]);
+  }
+
+  return array(
+    'current' => $current_region,
+    'other' => $regions
+  );
+}
+
+/**
+ * Add GTM data layer property
+ */
+function virginsport_add_gtm_data_layer(&$vars) {
+  // Get current path item
+  $item = menu_get_item();
+  $path = $item['path'];
+
+  // Static pages Titles
+  $routeKeys = array(
+    'user/%' => 'Profile Page',
+    'user/%/edit' => 'Account Details Page',
+    'user/login' => 'Member Sign in Page',
+    'user/register' => 'Member Sign up Page',
+  );
+
+  // Set default date format
+  $date_format = 'd.m.Y';
+
+  // Set default properties
+  $properties = array(
+    'LoginState' => user_is_anonymous() ? 'Not Logged In' : 'Logged In',
+    'URL' => url(current_path(), array('absolute' => TRUE)),
+    'PageName' => array_key_exists($path, $routeKeys) ? $routeKeys[$path] : drupal_get_title()
+  );
+
+  // Add specific properties for each node type
+  if (!empty($vars['node'])) {
+    $grapher = new VirginEntityGrapher('node', $vars['node']);
+
+    /**
+     * Add festival metadata to festival related content
+     *
+     * @param $properties
+     * @param $festival_grapher
+     * @param $date_format
+     */
+    $addFestivalMetadata = function(&$properties, $festival_grapher, $date_format) {
+      if ($festival_grapher->property('type') == 'festival') {
+        $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+        $start_date = $festival_state_grapher->fieldGetOne('field_start_date');
+        $end_date = $festival_state_grapher->fieldGetOne('field_end_date');
+
+        $properties['Festival Name'] = $festival_grapher->property('title');
+        $properties['Festival Date'] = sprintf('%s - %s', date($date_format, $start_date),  date($date_format, $end_date));
+      }
+    };
+
+    switch ($grapher->property('type')) {
+      case 'region':
+        $properties['PageName'] = $grapher->property('title') . ' Homepage';
+        break;
+
+      case 'page':
+        $festival_grapher = $grapher->relation('field_festival');
+        $addFestivalMetadata($properties, $festival_grapher, $date_format);
+        break;
+
+      case 'festival':
+        $addFestivalMetadata($properties, $grapher, $date_format);
+        break;
+
+      case 'event':
+        $festival_grapher = virgin_base_event_festival($grapher->property('nid'));
+        $addFestivalMetadata($properties, $festival_grapher, $date_format);
+
+        $event_state_grapher = $grapher->relation('field_event_state');
+        $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+        $properties['Event Name'] = $grapher->property('title');
+        $properties['Event Type'] = $event_state_grapher->fieldGetOne('field_event_type');
+        $properties['Event Date'] = date($date_format, $start_date);
+        break;
+
+      default:
+        $properties['PageName'] = $grapher->property('title');
+    }
+  }
+
+  // Add data layer encoded JSON
+  $vars['gtm_data_layer'] = drupal_json_encode(array($properties));
 }

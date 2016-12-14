@@ -52,7 +52,7 @@ function virgin_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_jquery_selector';
-  $strongarm->value = 'select:visible';
+  $strongarm->value = 'select';
   $export['chosen_jquery_selector'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -197,6 +197,13 @@ function virgin_config_strongarm() {
   $strongarm->name = 'mimemail_textonly';
   $strongarm->value = 0;
   $export['mimemail_textonly'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'page_manager_node_view_disabled';
+  $strongarm->value = FALSE;
+  $export['page_manager_node_view_disabled'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -454,6 +461,7 @@ function virgin_config_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_package';
   $strongarm->value = array(
     'status' => 0,
+    'help' => '',
     'view modes' => array(),
   );
   $export['panelizer_defaults_node_package'] = $strongarm;
@@ -474,6 +482,7 @@ function virgin_config_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_ticket_type';
   $strongarm->value = array(
     'status' => 0,
+    'help' => '',
     'view modes' => array(),
   );
   $export['panelizer_defaults_node_ticket_type'] = $strongarm;
@@ -618,9 +627,37 @@ function virgin_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_pattern';
+  $strongarm->value = '[node:title]';
+  $export['pathauto_node_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_ignore_words';
+  $strongarm->value = 'a, an, as, at, before, but, by, from, is, like, of, per, since, than, the, this, that';
+  $export['pathauto_ignore_words'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
   $strongarm->value = 'virginsport';
   $export['theme_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_no_approval_required_notify';
+  $strongarm->value = 1;
+  $export['user_mail_register_no_approval_required_notify'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_mail_register_pending_approval_notify';
+  $strongarm->value = FALSE;
+  $export['user_mail_register_pending_approval_notify'] = $strongarm;
 
   return $export;
 }

@@ -7,6 +7,29 @@
 include_once 'virgin_base.features.inc';
 
 /**
+ * Set Form keys
+ */
+define('VIRGIN_BASE_LINK', 'link');
+define('VIRGIN_BASE_CONTACT_FORM', 'contact_form');
+define('VIRGIN_BASE_REGISTER_INTEREST_FORM', 'register_interest_form');
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_base_menu() {
+  $items['ajax/festival/%/events'] = array(
+    'title' => 'Festival events',
+    'page callback' => 'virgin_base_ajax_festival_events',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_base.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_element_info_alter().
  */
 function virgin_base_element_info_alter(&$elements) {
@@ -30,6 +53,23 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
           'error_element' => array('url' => TRUE),
         );
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter()
+ *
+ * Change the access to region field_hostname
+ */
+function virgin_base_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
+  if (!empty($form['field_hostname'])) {
+    $roles = array_values($user->roles);
+
+    if ($user->uid != 1 || !in_array('administrator', $roles)) {
+      $form['field_hostname']['#access'] = FALSE;
     }
   }
 }
@@ -60,6 +100,55 @@ function virgin_base_form_fieldable_panels_panes_fieldable_panels_pane_content_t
     $form['extra_config'][$field_name] = $form[$field_name];
     unset($form[$field_name]);
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for scald_extra_atom_add_form_options.
+ */
+function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form_state, $form_id) {
+
+  // Hide the authors and actions fields from the scald interface
+  if (!empty($form['atom0'])) {
+    $form['atom0']['scald_authors']['#access'] = FALSE;
+    $form['atom0']['scald_actions']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_views_post_render().
+ */
+function virgin_base_views_pre_build(&$view) {
+
+  // Remove action links, and extra filters for the scald atoms admin view
+  if ($view->name == 'scald_atoms') {
+
+    // Remove the action links
+    $view->header = array();
+
+    // Remove the extra filters
+    $whitelisted_filters = array(
+      'title',
+      'scald_tags_tid'
+    );
+
+    foreach ($view->filter as $key => $filter) {
+      if (in_array($key, $whitelisted_filters)) {
+        continue;
+      }
+
+      unset($view->filter[$key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_date_select_process_alter().
+ */
+function virgin_base_date_select_process_alter(&$element, &$form_state, $context) {
+  // Override date fields label to remove -
+  $element['day']['#options'][''] = t('Day');
+  $element['month']['#options'][''] = t('Month');
+  $element['year']['#options'][''] = t('Year');
 }
 
 // Helpers
@@ -104,17 +193,20 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose the button style
   $element['attributes']['virgin_class'] = array(
+    '#prefix' => '<div class="vs-cta-btn__style">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Button Style'),
     '#options' => empty($options) ? array() : $options,
     '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
   );
 
+
   // The type field options
   $types = array(
-    'link' => 'Link',
-    'get_in_touch' => 'Get in Touch',
-    'register_interest' => 'Register Interest'
+    VIRGIN_BASE_LINK => 'Link',
+    VIRGIN_BASE_CONTACT_FORM => 'Get in Touch',
+    VIRGIN_BASE_REGISTER_INTEREST_FORM => 'Register Interest'
   );
 
   // Generate a unique id for this field to add #states based on it
@@ -122,6 +214,8 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 
   // Add a new field to choose between a link field and CTA buttons
   $element['attributes']['virgin_type'] = array(
+    '#prefix' => '<div class="vs-cta-btn__type">',
+    '#suffix' => '</div>',
     '#type' => 'select',
     '#title' => t('Type'),
     '#options' => $types,
@@ -131,13 +225,168 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     ),
   );
 
+  $element['attributes']['virgin_gtm_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__gtm">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('GTM Event Name'),
+    '#default_value' => isset($attributes['virgin_gtm_event']) ? $attributes['virgin_gtm_event'] : '',
+  );
+
+  $element['attributes']['virgin_festival'] = array(
+    '#prefix' => '<div class="vs-cta-btn__festival">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('Festival Id'),
+    '#default_value' => isset($attributes['virgin_festival']) ? $attributes['virgin_festival'] : '',
+    '#states' => array(
+      'visible' => array(
+        array(
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
+          ),
+          'or',
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+          ),
+        ),
+      )
+    )
+  );
+
+  $element['attributes']['virgin_event'] = array(
+    '#prefix' => '<div class="vs-cta-btn__event">',
+    '#suffix' => '</div>',
+    '#type' => 'textfield',
+    '#title' => t('Event Id'),
+    '#default_value' => isset($attributes['virgin_event']) ? $attributes['virgin_event'] : '',
+    '#states' => array(
+      'visible' => array(
+        array(
+          '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
+        ),
+        'or',
+        array(
+          '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+        ),
+      )
+    )
+  );
+
   // Show url field if virgin_type value is link
   $element['url']['#states'] = array(
     // Hide the settings when the cancel notify checkbox is disabled.
     'visible' => array(
-      '#' . $id => array('value' => 'link'),
+      '#' . $id => array('value' => VIRGIN_BASE_LINK),
     )
   );
 
   return $element;
+}
+
+/**
+ * Returns an array of published festivals
+ *
+ * @return array
+ */
+function virgin_base_festivals() {
+  $ids = db_query("
+    SELECT n.nid
+    FROM {node} n
+    WHERE n.type = 'festival'
+    AND n.status = 1
+  ")->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
+}
+
+/**
+ * Returns an array of published events
+ *
+ * @param $festival_id
+ *  The festival id to filter events
+ * @return array
+ */
+function virgin_base_events($festival_id) {
+  // Get events related to given festival
+  $query = db_select('node', 'n');
+
+  $query->join('field_data_field_festival_state', 'fs', 'fs.field_festival_state_target_id = n.nid');
+  $query->join('field_data_field_event_state', 'es', 'es.field_event_state_target_id = fs.entity_id');
+  $query->join('node', 'ev', 'ev.nid = es.entity_id');
+
+  $query
+    ->fields('ev', array('nid'))
+    ->condition('ev.status', 1, '=')
+    ->condition('es.entity_type', 'node', '=')
+    ->condition('ev.type', 'event', '=')
+    ->groupBy('ev.nid')
+  ;
+
+  $festival = node_load($festival_id);
+
+  // If festival exists add filter
+  if (!empty($festival->nid)) {
+    $festival_grapher = new VirginEntityGrapher('node', $festival);
+    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+
+    $query->condition('n.nid', $festival_state_grapher->property('nid'), '=');
+  }
+
+  $ids = $query->execute()->fetchCol();
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) {
+    return $node->title;
+  }, $nodes);
+
+  asort($list);
+
+  return $list;
+}
+
+/**
+ * Fetch a grapher object containing the festival related to the given
+ * event ID
+ *
+ * @param $event_nid
+ *  The event node ID
+ * @return \VirginEntityGrapher|NULL
+ *  A grapher containing the festival, or NULL if no related festival could
+ *  be found.
+ */
+function virgin_base_event_festival($event_nid) {
+  $sql = "
+        SELECT fs2.entity_id AS festival_nid
+        FROM {field_data_field_event_state} es
+        JOIN {field_data_field_festival_state} fs1
+          ON fs1.entity_id = es.field_event_state_target_id
+          AND fs1.entity_type = 'node'
+          AND fs1.bundle = 'event_state'
+        JOIN {field_data_field_festival_state} fs2
+          ON fs2.field_festival_state_target_id = fs1.field_festival_state_target_id
+          AND fs2.bundle = 'festival'
+        WHERE es.entity_id = :id
+        LIMIT 1
+      ";
+
+
+  $result = db_query($sql, array(':id' => $event_nid));
+  $nid = $result->fetchField();
+
+  // Fallback to event grapher to avoid errors accessing object
+  if (empty($nid)) {
+    $nid = $event_nid;
+  }
+
+  return new VirginEntityGrapher('node', node_load($nid));
 }

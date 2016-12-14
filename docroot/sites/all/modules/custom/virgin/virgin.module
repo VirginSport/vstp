@@ -6,6 +6,42 @@
  */
 
 /**
+ * The attendly environment key. The value of this var is the suffix that
+ * is applied to the cookies that are created to and for attendly.
+ */
+define('VIRGIN_VAR_ATTENDLY_ENV', 'virgin_attendly_env');
+
+/**
+ * The attendly user facing instance base URL variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_URL', 'virgin_attendly_url');
+
+/**
+ * The attendly API instance base URL variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_URL', 'virgin_attendly_api_url');
+
+/**
+ * The attendly API username variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_USER', 'virgin_attendly_api_user');
+
+/**
+ * The attendly API password variable.
+ */
+define('VIRGIN_VAR_ATTENDLY_API_PASS', 'virgin_attendly_api_pass');
+
+/**
+ * The cipher key variable. This variable needs to contain a 16 bytes key.
+ */
+define('VIRGIN_VAR_CIPHER_KEY', 'virgin_cipher_key');
+
+/**
+ * The get in touch url variable.
+ */
+define('VIRGIN_VAR_GET_IN_TOUCH_URL', 'virgin_get_in_touch_url');
+
+/**
  * Implements hook_menu().
  */
 function virgin_menu() {
@@ -41,6 +77,15 @@ function virgin_boot() {
 
   // Provides a more graceful exception handler than what Drupal core provides.
   set_exception_handler('_virgin_exception_handler');
+}
+
+/**
+ * Implements hook_init().
+ */
+function virgin_init() {
+
+  // Check if the current route is for a 'state' node and if the user can access
+  _virgin_check_state_node_access();
 }
 
 /**
@@ -92,6 +137,23 @@ function virgin_scald_extra_modes() {
 }
 
 /**
+ * Implements hook_page_delivery_callback_alter().
+ */
+function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) {
+  $path = current_path();
+
+  // Register not found and access denied errors into gtm
+
+  if ($page_callback_result == MENU_NOT_FOUND) {
+    virgin_gtm()->addError(sprintf('The page "%s" was not found.', $path));
+  }
+
+  if ($page_callback_result == MENU_ACCESS_DENIED) {
+    virgin_gtm()->addError(sprintf('You are not authorized to access the page "%s".', $path));
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virgin_preprocess_page(&$vars) {
@@ -101,6 +163,16 @@ function virgin_preprocess_page(&$vars) {
     $path = base_path() . drupal_get_path('module', 'editor_ckeditor') . '/lib/ckeditor/';
     drupal_add_js(sprintf('window.CKEDITOR_BASEPATH = "%s";', $path), 'inline');
   }
+
+  // Inject the variables required at JS level
+  $params = session_get_cookie_params();
+
+  drupal_add_js(array(
+    'virgin' => array(
+      'cookieDomain' => $params['domain'],
+      'cookieSecure' => $params['secure']
+    )
+  ), 'setting');
 }
 
 /**
@@ -136,6 +208,44 @@ function virgin_form_panels_edit_style_type_form_alter(&$form, &$form_state) {
 function virgin_form_panels_edit_style_settings_form_alter(&$form, &$form_state) {
   // Fixes panels wrong render attribute for the description field.
   $form['description']['#markup'] = $form['description']['#value'];
+}
+
+/**
+ * Implements hook_panels_post_render().
+ */
+function virgin_panels_post_render($renderer) {
+
+  // If the panelizer is not for a node, bailout now.
+  if (empty($renderer->context['panelizer']->data->nid)) {
+    return;
+  }
+
+  $node = $renderer->context['panelizer']->data;
+
+  // Helper function to add IPE toolbar buttons
+  $add_button = function ($label, $url, $key) use ($renderer) {
+    $button = array(
+      '#type' => 'link',
+      '#title' => $label,
+      '#href' => $url,
+      '#options' => array('query' => drupal_get_destination()),
+      '#attributes' => array(
+        'class' => array('panels-ipe-pseudobutton'),
+      ),
+      '#prefix' => '<div class="panels-ipe-pseudobutton-container">',
+      '#suffix' => '</div>',
+    );
+
+    panels_ipe_toolbar_add_button($renderer->cache_key, $key, $button);
+  };
+
+  if (node_access('update', $node)) {
+    $add_button(t('Edit Contents'), sprintf('node/%d/edit', $node->nid), 'virgin-node-edit');
+  }
+
+  if (_workbench_moderation_access('view history', $node)) {
+    $add_button(t('View Revisions'), sprintf('node/%d/moderation', $node->nid), 'virgin-node-moderation');
+  }
 }
 
 // Helpers
@@ -181,6 +291,10 @@ function _virgin_exception_handler($exception) {
 
   // If it's an unhandled VirginException, attempt to handle it "gracefully".
   if ($exception instanceof VirginException) {
+
+    // Register exceptions in GTM
+    virgin_gtm()->addError($exception->getUserMessage());
+
     if ($exception->hasUserMessage()) {
       drupal_set_message($exception->getUserMessage(), 'error');
     }
@@ -224,4 +338,185 @@ function virgin_form_value($field_name, $form_state, $default = NULL, $index = 0
   }
 
   return $default;
+}
+
+/**
+ * Gets the global instance of an attendly client
+ *
+ * @return \VirginAttendlyClient
+ *  The configured attendly client
+ */
+function virgin_attendly_client() {
+  $client = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$client) {
+    $client = new VirginAttendlyClient(
+      variable_get(VIRGIN_VAR_ATTENDLY_URL),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_URL),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_USER),
+      variable_get(VIRGIN_VAR_ATTENDLY_API_PASS)
+    );
+  }
+
+  return $client;
+}
+
+/**
+ * Gets the global instance of gtm handler
+ *
+ * @return \VirginGtm
+ */
+function virgin_gtm() {
+  $gtm = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$gtm) {
+    $gtm = new VirginGtm();
+  }
+
+  return $gtm;
+}
+
+/**
+ * Gets the value of a query parameter with the given name
+ *
+ * @param string $key
+ *  The query parameter name
+ * @param string $default_value
+ *  The default value of the parameter if it's missing
+ * @return string
+ *  Either the default value or the value of the query parameter
+ */
+function virgin_param($key, $default_value = '') {
+  return empty($_GET[$key]) ? $default_value : $_GET[$key];
+}
+
+/**
+ * Gets the value of a cookie with the given name
+ *
+ * @param string $key
+ *  The cookie name
+ * @param string $default_value
+ *  The default value of the cookie if it's missing
+ * @return string
+ *  Either the default value or the value of the cookie
+ */
+function virgin_cookie_get($key, $default_value = '') {
+  return empty($_COOKIE[$key]) ? $default_value : $_COOKIE[$key];
+}
+
+/**
+ * Sets a cookie with the given name and value
+ *
+ * @param $name
+ *  The name of the cookie
+ * @param $value
+ *  The value of the cookie
+ */
+function virgin_cookie_set($name, $value) {
+  $params = session_get_cookie_params();
+  setcookie($name, $value, -1, $params['path'], $params['domain'], $params['secure']);
+}
+
+/**
+ * Unsets a cookie with the given name
+ *
+ * @param $name
+ *  The name of the cookie
+ */
+function virgin_cookie_unset($name) {
+  unset($_COOKIE[$name]);
+  $params = session_get_cookie_params();
+  setcookie($name, '', time() - 3600, $params['path'], $params['domain'], $params['secure']);
+}
+
+/**
+ * Gets the global instance of a virgin cipher
+ *
+ * @return \VirginCipher
+ *  The configured virgin cipher
+ */
+function virgin_cipher() {
+  $cipher = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$cipher) {
+    $cipher = new VirginCipher(variable_get(VIRGIN_VAR_CIPHER_KEY));
+  }
+
+  return $cipher;
+}
+
+/**
+ * Return an array of ticket banner with the following properties:
+ *
+ * @return array
+ *  An array of structured arrays with the following keys:
+ *  - key: The name
+ *  - desktop title: The desktop title
+ *  - mobile title: The mobile title
+ *  - color: The color
+ *
+ */
+function virgin_ticket_banner_properties() {
+  $tickets = &drupal_static(__FUNCTION__, array());
+
+  if (!empty($tickets)) {
+    return $tickets;
+  }
+
+  $fields = array();
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin'));
+  $file = fopen($path . '/ticket-banner-colors.csv', 'r');
+
+  while ($row = fgetcsv($file, 4096)) {
+    if (empty($fields)) {
+      $fields = $row;
+      continue;
+    }
+
+    $key = $row[0];
+    foreach ($row as $k => $value) {
+      $tickets[$key][$fields[$k]] = $value;
+    }
+  }
+
+  fclose($file);
+
+  return $tickets;
+}
+
+/**
+ * Disables direct access to nodes that represent synchronizable state nodes
+ */
+function _virgin_check_state_node_access() {
+
+  // If the we're handling a node/% path, check if the type of node, and if
+  // the node is one of the 'state' nodes either redirect the user to the
+  // content overview page if he has access or show a page not found.
+  if (!empty($_GET['q']) && strpos($_GET['q'], 'node/') === 0) {
+    $item = menu_get_item();
+
+    if ($item['path'] != 'node/%' || empty($item['map'][1]->type)) {
+      return;
+    }
+
+    $node_type = $item['map'][1]->type;
+
+    $state_node_types = array(
+      'festival_state',
+      'event_state',
+      'package_state',
+      'ticket_type_state'
+    );
+
+    if (!in_array($node_type, $state_node_types)) {
+      return;
+    }
+
+    if (user_access('access content overview')) {
+      drupal_goto('/admin/content');
+    } else {
+      drupal_not_found();
+      drupal_exit();
+    }
+  }
 }

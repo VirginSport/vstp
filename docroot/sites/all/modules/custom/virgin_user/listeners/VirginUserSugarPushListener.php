@@ -34,10 +34,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
       case VirginUserEvents::USER_UPDATED:
         $this->onUserUpdate($event);
         break;
-
-      case 'virgin:contact:request':
-        $this->onContactRequest($event);
-        break;
     }
   }
 
@@ -53,12 +49,11 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
 
     if ($this->canSynchronizeAccount($account)) {
       try {
-        $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
-        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $sugar_id = $this->saveContactToSugar($contact_data);
         $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
-        throw new VirginException($e->getMessage(), t('An error occurred while creating the account. Please try again at a later time.'));
+        throw new VirginException($e->getMessage(), t("It's not you, it's us. We're sprinting to fix this error and we hope to be back on track shortly. Thanks for your patience!"));
       }
     }
   }
@@ -75,46 +70,13 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
 
     if ($this->canSynchronizeAccount($account)) {
       try {
-        $sugar_id = $this->getEmailSugarId($account->mail);
         $contact_data = $this->transformUserAccountToUserData($account);
-        $sugar_id = $this->saveContactToSugar($contact_data, $sugar_id);
+        $sugar_id = $this->saveContactToSugar($contact_data);
         $this->setUserSugarId($account, $sugar_id, TRUE);
       } catch (Exception $e) {
         throw new VirginException($e->getMessage(), t('An error occurred while updating the account. Please try again at a later time.'));
       }
     }
-  }
-
-  /**
-   * Executed when a Contact Request is made on Drupal
-   *
-   * @param \ObserverEventInterface $event
-   */
-  private function onContactRequest(ObserverEventInterface $event) {
-    global $user;
-
-    $account = user_load($user->uid);
-    $contact = $event->getData();
-
-    $this->validateEmail($contact['email']);
-
-    if (user_is_logged_in()) {
-      $sugar_id = $this->getUserSugarId($account);
-    }
-    else {
-      $sugar_id = $this->getEmailSugarId($contact['email']);
-    }
-
-    if (empty($sugar_id)) {
-      $contact_data = $this->transformContactRequestToUserData($contact);
-      $sugar_id = $this->saveContactToSugar($contact_data);
-
-      if (user_is_logged_in()) {
-        $this->setUserSugarId($account, $sugar_id, TRUE);
-      }
-    }
-
-    $this->saveTaskInSugar($sugar_id, $contact['message']);
   }
 
   /**
@@ -155,29 +117,6 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
   }
 
   /**
-   * Gets a Contact ID from a given e-mail address
-   *
-   * @param $email
-   *  The e-mail to find.
-   * @return null|string
-   *  A string with the Sugar ID, null if the user has no Sugar ID.
-   */
-  private function getEmailSugarId($email) {
-    $parameters = array(
-      'filter' => array(
-        array(
-          'email1' => $email
-        )
-      ),
-    );
-
-    $data = sugarcrm_client()->postEndpoint('Contacts/filter', $parameters);
-    $records = $data['records'];
-
-    return empty($records[0]['id']) ? NULL : $records[0]['id'];
-  }
-
-  /**
    * Generates the data structure for a Contact in SugarCRM via a User account
    *
    * @param stdClass $account
@@ -189,6 +128,8 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
     $birth_date = $account_wrapper->field_birth_date->value();
 
     return array(
+      // If sugar id is null contact will be created, otherwise will be updated
+      'id' => $account_wrapper->field_sugar_id->value(),
       'virgin_sport_id' => $account_wrapper->uid->value(),
       'first_name' => $account_wrapper->field_first_name->value(),
       'last_name' => $account_wrapper->field_last_name->value(),
@@ -212,65 +153,15 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
   }
 
   /**
-   * Generates the data structure for a Contact in SugarCRM
-   *
-   * @param $contact
-   *  The contact request data array.
-   * @return array
-   *  The data structured in the format expected by SugarCRM.
-   */
-  private function transformContactRequestToUserData($contact) {
-    $defaults = array(
-      'given_name' => '',
-      'surname' => '',
-      'phone' => '',
-      'email' => '',
-      'company_name' => ''
-    );
-
-    $contact = $contact + $defaults;
-
-    return array(
-      'first_name' => $contact['given_name'],
-      'last_name' => $contact['surname'],
-      'email1' => $contact['email'],
-      'mobile' => $contact['phone']
-      // TODO company name is missing a mapping in SugarCRM
-    );
-  }
-
-  /**
    * Creates or Updates a Contact on SugarCRM
    *
    * @param $data
    *  The contact data
-   * @param null|string $sugar_id
-   *  If null a new contact will be created on Sugar, if filled it will try to
-   *  create a new contact.
    * @return string
    *  The ID of the contact
    */
-  private function saveContactToSugar($data, $sugar_id = NULL) {
-
-    // If there's no Sugar ID it's because we haven't synced the event before.
-    if (empty($sugar_id)) {
-      $response = sugarcrm_client()->postEndpoint('Contacts', $data);
-    }
-    else {
-      // In case we have the Sugar ID, attempt to update it instead on Sugar.
-      // If it fails with a 404 it's because the event was not found on Sugar.
-      // In this case, we'll create it there instead.
-      try {
-        $response = sugarcrm_client()->putEndpoint('Contacts/' . $sugar_id, $data);
-      } catch (\Guzzle\Http\Exception\ClientErrorResponseException $e) {
-        if ($e->getResponse()->getStatusCode() == 404) {
-          $response = sugarcrm_client()->postEndpoint('Contacts', $data);
-        }
-        else {
-          throw $e;
-        }
-      }
-    }
+  private function saveContactToSugar($data) {
+    $response = sugarcrm_client()->systemPost('Virgin/save-contact', $data);
 
     return $response['id'];
   }
@@ -289,30 +180,10 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
     $account_wrapper = entity_metadata_wrapper('user', $account);
     $account_wrapper->field_sugar_id->set($sugar_id);
 
-    if ($save) {
+    if ($save && empty($account->is_new)) {
       // Save the changes to the user without triggering a hook_user_update().
       field_attach_update('user', $account);
     }
-  }
-
-  /**
-   * Saves a Task in SugarCRM
-   *
-   * @param $contact_id
-   *  The ID of the Contact to assign the Task in SugarCRM. Locally this is the
-   *  field_sugar_id on the User entity.
-   * @param $message
-   *  The message of the task that will be created on Sugar.
-   */
-  private function saveTaskInSugar($contact_id, $message) {
-    $data = array(
-      'name' => 'Get in Touch',
-      'contact_id' => $contact_id,
-      'description' => $message,
-      'date_start' => date('c')
-    );
-
-    sugarcrm_client()->postEndpoint('Tasks', $data);
   }
 
   /**

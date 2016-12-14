@@ -28,6 +28,14 @@ class VirginComponentAccordion implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
-    // TODO
+    if (empty($variables['elements']['#fieldable_panels_pane'])) {
+      return;
+    }
+
+    $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
+    $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
+
+    $variables['title'] = $virgin->fieldGetOne('field_accordion_title');
+    $variables['accordion_items'] = $virgin->fieldRendered('field_accordion_items');
   }
 }
