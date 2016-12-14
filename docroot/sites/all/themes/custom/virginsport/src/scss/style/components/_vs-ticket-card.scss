@@ -22,15 +22,12 @@ vs-ticket-card,
 
 .vs-ticket-card-wrapper {
   @include flexbox();
-  @include flex-direction(column);
   @include align-items(strech);
-
   position: relative;
   min-width: 19.375rem;
   min-height: 14.3125rem;
   background-position: center center;
   background-size: cover;
-
   border-radius: .625rem;
   padding: 0.875rem 0.9375rem 0.875rem 0.9375rem;
   color: $c-white;
@@ -44,9 +41,15 @@ vs-ticket-card,
   > .row:first-child {
     @include flex(1, 0);
     z-index: 1;
+
+    @media (min-width: 768px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      min-height: 17.9375rem;
+    }
   }
 
   .row {
+    @include flexbox();
+    @include flex-wrap(wrap);
     margin-right: 0;
     margin-left: 0;
   }
@@ -60,7 +63,6 @@ vs-ticket-card,
   @include flex-direction(column);
   @include flex(1, 0);
   @include justify-content(space-between);
-
   max-width: 100%;
 }
 
@@ -71,7 +73,6 @@ vs-ticket-card,
   line-height: 1.375rem;
   margin: 0 0 0.9375rem 0;
   padding: 0;
-
   text-transform: uppercase;
 }
 
@@ -86,7 +87,6 @@ vs-ticket-card,
 
 .vs-ticket-card__date,
 .vs-ticket-card__time {
-
   font-size: 0.75rem;
   font-weight: 300;
   line-height: 1.125rem;
@@ -100,15 +100,12 @@ vs-ticket-card,
 
 .vs-ticket-card__participant-mame {
   @include border-radius(0.125rem);
-
   display: inline-block;
   background-color: rgba($c-white, .2);
   opacity: .8;
-
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.125rem;
-
   margin-top: 0.3125rem;
   margin-bottom: 0.3125rem;
   padding: 0.21875rem 0.625rem;
@@ -117,16 +114,13 @@ vs-ticket-card,
 .vs-ticket-card__edit-ticket {
   @include transition(all .5s ease-in-out);
   display: block;
-
   font-family: $font-family-sans-serif;
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 1.125rem;
-
   color: $c-white;
   text-decoration: underline;
   cursor: pointer;
-
   margin-top: 0.3125rem;
 
   &:hover, &:active, &:focus {
@@ -147,7 +141,6 @@ vs-ticket-card,
 .vs-ticket-card__session-time,
 .vs-ticket-card__distance {
   margin-top: 0.9375rem;
-
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: 0.625rem;
@@ -168,19 +161,15 @@ vs-ticket-card,
   display: block;
   float: right;
   margin-right: 1.1875rem;
-
   border-radius: 50%;
   width: 5rem;
   height: 5rem;
-
   font-weight: 500;
-
   text-align: center;
 }
 
 .vs-ticket-card__days-left {
   display: block;
-
   font-size: 1.875rem;
   line-height: 1.5rem;
   letter-spacing: -0.065rem;
@@ -204,13 +193,10 @@ vs-ticket-card,
 
 .vs-ticket-card__cta {
   @include transition(all .5s ease-in-out);
-
   position: relative;
   display: inline-block;
-
   vertical-align: top;
   width: 4.5rem;
-
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: 0.625rem;
@@ -257,11 +243,9 @@ vs-ticket-card,
 
   &--about-yourself-feedback {
     @extend .vs-ticket-card__cta;
-
     @include flexbox;
     @include flex-direction(column);
     @include justify-content(center);
-    
     min-height: 3.063rem;
     height: 100%;
   }
@@ -297,23 +281,21 @@ vs-ticket-card,
       font-size: 2.7rem;
     }
   }
-
 }
 
 .vs-ticket-card__social-wrapper {
-  @include align-self(flex-end);
+  position: absolute;
+  right: 0;
+  bottom: 0;
   min-width: 1.875rem;
   min-height: 1.875rem;
-
   text-align: right;
 }
 
 .vs-ticket-card__ribbon {
   display: none;
-
   position: absolute;
   background-color: rgba($c-black, .4);
-
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: .625rem;
@@ -323,15 +305,12 @@ vs-ticket-card,
 
   &--vip, &--hero {
     @include box-shadow(0 0 0.125rem 0 rgba($c-black, .2));
-
     display: block;
-
     position: absolute;
     top: -0.0625rem;
     right: .625rem;
     width: 4.0625rem;
     height: 3.5rem;
-
     padding: 1rem .75rem 0;
 
     &:before,
@@ -361,7 +340,6 @@ vs-ticket-card,
 .vs-ticket-card__ribbon,
 .vs-ticket-card__ribbon-desktop-bg {
   @include box-shadow(0 0 0.125rem 0 rgba($c-black, .2));
-
   background-color: rgba($c-black, .4);
 
   &--vip {
@@ -390,6 +368,7 @@ vs-ticket-card,
   }
 }
 
+
 // Modifiers
 // ----------------------------------------------------------------------------
 
@@ -417,13 +396,12 @@ vs-ticket-card,
       @include box-shadow(inset 0 0 0 0.125rem map_get($map, 'text-color'));
     }
 
-    .vs-share-button__icon-button .icon-share { 
+    .vs-share-button__icon-button .icon-share {
         color: map_get($map, 'text-color');
     }
 
     :not(.vs-ticket-card__ribbon-desktop-wrapper) > .vs-ticket-card__ribbon--hero,
     .vs-ticket-card__ribbon-desktop-bg--hero {
-
       background-color: map_get($map, 'solid-color');
 
       &:before {
@@ -435,47 +413,42 @@ vs-ticket-card,
         border-color: transparent map_get($map, 'solid-color') transparent transparent;
       }
     }
-
   }
 }
 
 @include media-breakpoint-only(xs) {
-
   .vs-ticket-card__cta-wrapper {
-
     &:nth-child(2) + .vs-ticket-card__social-wrapper,
     &:nth-child(3n + 5) + .vs-ticket-card__social-wrapper {
       @include make-col(4);
     }
-
   }
 
   .vs-ticket-card__social-wrapper {
     margin-bottom: -.375rem;
   }
-  
 }
 
 @include media-breakpoint-down(sm) {
-
   .vs-ticket-card__social-wrapper:first-child {
     @include make-col(12);
   }
 
   .vs-ticket-card__cta-wrapper {
     @include make-col(4);
-
     margin-top: 1rem;
 
     &:nth-child(-n + 3) {
       margin-top: 0;
     }
 
-    &:nth-child(1), &:nth-child(3n + 4) {
+    &:nth-child(1),
+    &:nth-child(3n + 4) {
       text-align: left;
     }
 
-    &:nth-child(2), &:nth-child(3n + 5) {
+    &:nth-child(2),
+    &:nth-child(3n + 5) {
       text-align: center;
     }
 
@@ -504,17 +477,14 @@ vs-ticket-card,
 }
 
 @include media-breakpoint-only(sm) {
-
-    .vs-ticket-card__social-wrapper {
-      margin-right: 0;
-      margin-bottom: -.75rem;
-      min-width: 16.313rem;
-    }
-
+  .vs-ticket-card__social-wrapper {
+    margin-right: 0;
+    margin-bottom: -.75rem;
+    min-width: 16.313rem;
+  }
 }
 
 @include media-breakpoint-up(md) {
-
   .vs-ticket-card-wrapper {
     padding: 1.25rem 1.25rem 1.3125rem 1.875rem;
     min-height: 20.5rem;
@@ -522,7 +492,6 @@ vs-ticket-card,
 
   .vs-ticket-card__title {
     margin: 0.625rem auto 0.6875rem 0.0625rem;
-
     font-size: 2.25rem;
     line-height: 2.25rem;
   }
@@ -539,7 +508,6 @@ vs-ticket-card,
 
   .vs-ticket-card__date,
   .vs-ticket-card__time {
-
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.25rem;
@@ -548,7 +516,6 @@ vs-ticket-card,
   .vs-ticket-card__participant-mame {
     font-size: 1rem;
     line-height: 1.25rem;
-
     margin-top: 0.5rem;
     margin-bottom: 0.0625rem;
     padding: 0.46875rem 0.625rem;
@@ -557,7 +524,6 @@ vs-ticket-card,
   .vs-ticket-card__edit-ticket {
     font-size: 1rem;
     line-height: 1.25rem;
-
     margin-top: 0.6875rem;
   }
 
@@ -572,7 +538,6 @@ vs-ticket-card,
   .vs-ticket-card__session-time,
   .vs-ticket-card__distance {
     margin-top: 0;
-
     font-size: 0.75rem;
     line-height: 1.25rem;
 
@@ -596,9 +561,6 @@ vs-ticket-card,
   }
 
   .vs-ticket-card__social-wrapper {
-    @include flex(1, 0);
-    @include align-self(flex-end);
-
     display: block;
     float: right;
     margin-right: 1.25rem;
@@ -610,7 +572,6 @@ vs-ticket-card,
   .vs-ticket-card__cta {
     width: auto;
     min-width: 5.5rem;
-
     font-size: 0.75rem;
     line-height: 1rem;
 
@@ -655,43 +616,35 @@ vs-ticket-card,
   .vs-ticket-card__ribbon-desktop-wrapper {
     @include flexbox();
     @include align-items(center);
-
     max-width: 3.125rem;
-
   }
 
   .vs-ticket-card__ribbon-desktop-bg {
     @include border-radius(.625rem);
-
+    background-color: rgba($c-black, .4);
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     width: 3.125rem;
-
-    background-color: rgba($c-black, .4);
   }
 
   .vs-ticket-card__ribbon {
     @include box-shadow(none);
     background-color: transparent;
-
     position: static;
     display: inline-block;
     width: 3.125rem;
     height: auto;
     padding: 0.625rem 0;
-
     font-size: 1.125rem;
     line-height: 1.5rem;
     overflow: hidden;
 
     span {
       display: inline-block;
-
       line-height: 3.125rem;
       white-space: nowrap;
-
       transform: translate(0, 100%) rotate(-90deg);
       transform-origin: 0 0;
 
@@ -707,11 +660,9 @@ vs-ticket-card,
       display: none;
     }
   }
-
 }
 
 @include media-breakpoint-up(lg) {
-
   .vs-ticket-card__ctas-wrapper {
     max-width: 51.875rem;
   }
@@ -721,11 +672,9 @@ vs-ticket-card,
     font-size: 2.25rem;
     line-height: 2.25rem;
   }
-
 }
 
 @include media-breakpoint-up(xl) {
-
   .vs-ticket-card__ctas-wrapper {
     max-width: 56.25rem;
   }
@@ -756,5 +705,4 @@ vs-ticket-card,
   .vs-ticket-card__distance {
     max-width: 4.75rem;
   }
-
 }
