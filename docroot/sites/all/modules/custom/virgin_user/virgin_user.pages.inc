@@ -461,6 +461,9 @@ function virgin_user_page_ajax_form_post() {
   $festival_state_grapher = $festival_grapher->relation('field_festival_state');
   $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
 
+  // To be populated with GTM data
+  $gtm = array();
+
   foreach ($data['event_ids'] as $event_id) {
     $event = node_load($event_id);
 
@@ -472,10 +475,47 @@ function virgin_user_page_ajax_form_post() {
     $event_grapher = new VirginEntityGrapher('node', $event);
     $event_state_grapher = $event_grapher->relation('field_event_state');
     $params['events'][] = $event_state_grapher->fieldGetOne('field_sugar_id');
+
+    // If form is interested in send google tag manager info to push into data layer
+    if ($data['type'] == 'interested_in') {
+      $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+
+      $data = array(
+        'event' => 'RegisterInterest',
+        'EventType' => $event_state_grapher->fieldGetOne('field_event_type'),
+        'EventName' => $event_grapher->property('title'),
+        'EventDate' => date('d.m.Y', $start_date)
+      );
+
+      $gtm[] = $data;
+    }
   }
 
-  $result = sugarcrm_client()->systemPost('Virgin/form', $params);
+  $result = array(
+    'gtm' => $gtm,
+  );
 
-  print $result;
+  try {
+    $result['result'] = sugarcrm_client()->systemPost('Virgin/form', $params);
+
+    $error_message = sprintf('%s submitted successfully.', $data['type']);
+
+    $result['gtm'][] = array(
+      'event' => 'ErrorEvent',
+      'ErrorType' => $error_message,
+    );
+  } catch (\Exception $e) {
+    $result['result'] = FALSE;
+
+    $error_message = sprintf('It was not possible to send %s at this time. Please try again later.', $data['type']);
+
+    $result['gtm'][] = array(
+      'event' => 'ErrorEvent',
+      'ErrorType' => $error_message,
+    );
+  }
+
+  print drupal_json_encode($result);
+
   drupal_exit();
 }

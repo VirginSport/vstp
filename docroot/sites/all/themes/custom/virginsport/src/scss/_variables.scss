@@ -317,6 +317,28 @@ $color-schemes: (
     outline-to: #00264F,
     outline-rotate: -45%
   ),
+  pinky-red-solid: (
+    solid-color: $c-pinky-red,
+    text-color: $c-white,
+    from: $c-pinky-red,
+    to: $c-pinky-red,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-pinky-red,
+    outline-to: $c-pinky-red,
+    outline-rotate: -45%
+  ),
+  yellow-solid: (
+    solid-color: $c-yellow,
+    text-color: $c-black,
+    from: $c-yellow,
+    to: $c-yellow,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-yellow,
+    outline-to: $c-yellow,
+    outline-rotate: -45%
+  )
 );
 
 // Pattern/Color schemes

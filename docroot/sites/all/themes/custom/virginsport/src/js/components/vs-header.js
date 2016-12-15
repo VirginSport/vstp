@@ -119,20 +119,14 @@ function headerAnimation() {
   };
 
   if (subnav) {
-    // Get subnav distance to top
-    let jSubnavTop = $(subnav).offset().top;
+    var subnavCloneClass = 'vs-subnav--clone';
 
     // The deviation is the menu header height that should be contemplated as an increment to subnav offset
     var getOffsets = function () {
-      let offsetDeviation = 55;
-
-      if (window.innerWidth >= 767) {
-        offsetDeviation = 60;
-      }
-
+      // Get subnav distance to top
       return {
-        offset: jSubnavTop,
-        offset_deviation: offsetDeviation
+        offset: parseInt($(`.vs-subnav:not(.${subnavCloneClass})`).offset().top),
+        offset_deviation: parseInt($(header).outerHeight())
       }
     };
 
@@ -148,23 +142,47 @@ function headerAnimation() {
         notTop:     "vs-subnav--not-top",     // when below offset
         bottom:     "vs-subnav--bottom",      // when at bottom of scroll area
         notBottom:  "vs-subnav--not-bottom"   // when not at bottom of scroll area
+      },
+      onTop: function() {
+        // Remove floating element
+        $(`.${subnavCloneClass}`).remove();
+      },
+      onNotTop: function() {
+        // Append floating element to avoid z-index restrictions
+        let $subnavClone = $(subnav).clone().addClass(subnavCloneClass);
+
+        $('body').append($subnavClone);
       }
     });
 
-    // vs-header events to update vs-subnav offset
     headerProperties.onPin = function() {
-      subnav.classList.add('vs-subnav--pinned-on-main-nav');
+      // If main nav is pinned, add offset to subnav
+      $(`.${subnavCloneClass}, .vs-subnav`).addClass('vs-subnav--pinned-on-main-nav');
+
       let offsets = getOffsets();
       vsSubnav.offset = offsets.offset - offsets.offset_deviation;
     };
 
     headerProperties.onUnpin = function() {
-      subnav.classList.remove('vs-subnav--pinned-on-main-nav');
+      // If main nav is unpinned, remove subnav offset
+      $(`.${subnavCloneClass}, .vs-subnav`).removeClass('vs-subnav--pinned-on-main-nav');
+
       let offsets = getOffsets();
       vsSubnav.offset = offsets.offset;
     };
 
     vsSubnav.init();
+
+    $('body').on('vs_region__finished', function() {
+      // Because curve changes the offset, re-calculate it when vs-region.js
+      // finish processing elements
+      let offsets = getOffsets();
+      vsSubnav.offset = offsets.offset;
+
+      if ($(header).hasClass('vs-header--pinned')) {
+        vsSubnav.offset = offsets.offset - offsets.offset_deviation;
+      }
+    });
   }
 
   // Headroom vs-header element
@@ -186,24 +204,34 @@ function headerAnimation() {
     }
 
     let scrollTop = $(document).scrollTop();
-    let subNavWrapperPosition = $('.vs-region--subnav-wrapper').position();
-    let mainNav = $('.vs-header');
+    let subNavWrapperPosition = $(`.vs-subnav:not(.${subnavCloneClass})`).offset();
+
+    let mainNav = $(header);
     let mainNavPinned = mainNav.hasClass('vs-header--pinned');
     let offsets = getOffsets();
-
     // If main nav has class pinned remove its height from subnav distance to top
-    let offset = mainNavPinned ? scrollTop < subNavWrapperPosition.top - mainNav.height() : scrollTop < subNavWrapperPosition.top;
+    let offset = mainNavPinned ? scrollTop < subNavWrapperPosition.top - mainNav.outerHeight() : scrollTop < subNavWrapperPosition.top;
+
+    let $subnavClone = $(`.${subnavCloneClass}`);
 
     if (offset) {
       vsSubnav.offset = offsets.offset;
-      subnav.classList.remove('vs-subnav--unpinned', 'vs-subnav--not-top', 'vs-subnav--pinned-on-main-nav');
-    } else {
-      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
-      subnav.classList.add('vs-subnav--unpinned', 'vs-subnav--not-top');
 
-      if (mainNavPinned) {
-        subnav.classList.add('vs-subnav--pinned-on-main-nav');
+      // Remove floating element
+      $(`.${subnavCloneClass}`).remove();
+    } else {
+
+      if (!$subnavClone.length) {
+        // Append floating element to avoid z-index restrictions
+        $subnavClone = $(subnav).clone().addClass(subnavCloneClass);
+
+        $('body').append($subnavClone);
       }
+
+      $subnavClone
+        .addClass('vs-subnav--not-top')
+        .removeClass('vs-subnav--top')
+      ;
     }
   });
 

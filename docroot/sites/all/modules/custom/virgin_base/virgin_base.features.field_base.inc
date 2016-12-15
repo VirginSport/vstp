@@ -2550,13 +2550,13 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'portrait' => 'Portrait',
+        'portrait' => 'Portrait (Outline)',
         'landscape' => 'Landscape',
-        'portrait_lower_portrait' => 'Portrait, Lower Portrait',
+        'portrait_lower_portrait' => 'Portrait, Lower Portrait (Outline)',
         'portrait_large_portrait' => 'Portrait, Large Portrait',
         'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape',
-        'landscape_square_right' => 'Landscape, Square Right',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape (Outline)',
+        'landscape_square_right' => 'Landscape, Square Right (Outline)',
         'portrait_square' => 'Portrait, Square',
       ),
       'allowed_values_function' => '',

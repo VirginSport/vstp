@@ -64,10 +64,22 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $variables['brand_color'] = $event_grapher->fieldGetOne('field_brand_color');
     $variables['start_date'] = date('d M', $event_state_grapher->fieldGetOne('field_start_date'));
     $variables['festival_id'] = $festival_grapher->property('nid');
-    $variables['event_price'] = $paragraph_grapher->fieldGetOne('field_price', '', 'amount');
+    $price = $paragraph_grapher->fieldGetOne('field_price', '', 'amount');
+    $variables['event_price'] = $price;
     $variables['event_currency'] = $paragraph_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['no_card_pattern_class'] = ($variables['card_pattern'] == 'none') ? 'vs-card-untimed-event--outline-remove' : '';
     $variables['ticket_hostname'] = $this->getTicketHostname($festival_grapher->property('nid'));
+
+    $products = array(
+      'name' => $event_grapher->property('title'),
+      'id' => $event_state_grapher->fieldGetOne('field_attendly_id'),
+      'price' => $price,
+      'brand' => $festival_grapher->property('title'),
+      'category' => $event_state_grapher->fieldGetOne('field_event_type'),
+      'variant' => $event_grapher->property('title'),
+    );
+
+    $variables['products'] = drupal_json_encode(array($products));
   }
 
   /**

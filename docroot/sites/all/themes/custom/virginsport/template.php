@@ -142,9 +142,15 @@ function virginsport_preprocess_page(&$vars) {
   $vars['regions'] = virginsport_regions();
 
   // Make cookie template available in javascript
-  $message = t('We use cookies on this site to create secure and effective website possible for our customers. For full details see our cookie policy.');
+  $message = t('We use cookies. We eat them too, but only after a run. Check out our privacy policy to learn more');
   $cookie_template = theme('virginsport_notification', array('message' => $message));
   drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
+
+  // Add content data to google tag manager data layer
+  virginsport_add_gtm_data_layer($vars);
+
+  // Add collected google tag manager data layer events
+  $vars['data_layer_events'] = virgin_gtm()->get();
 }
 
 /**
@@ -423,4 +429,86 @@ function virginsport_regions() {
     'current' => $current_region,
     'other' => $regions
   );
+}
+
+/**
+ * Add GTM data layer property
+ */
+function virginsport_add_gtm_data_layer(&$vars) {
+  // Get current path item
+  $item = menu_get_item();
+  $path = $item['path'];
+
+  // Static pages Titles
+  $routeKeys = array(
+    'user/%' => 'Profile Page',
+    'user/%/edit' => 'Account Details Page',
+    'user/login' => 'Member Sign in Page',
+    'user/register' => 'Member Sign up Page',
+  );
+
+  // Set default date format
+  $date_format = 'd.m.Y';
+
+  // Set default properties
+  $properties = array(
+    'LoginState' => user_is_anonymous() ? 'Not Logged In' : 'Logged In',
+    'URL' => url(current_path(), array('absolute' => TRUE)),
+    'PageName' => array_key_exists($path, $routeKeys) ? $routeKeys[$path] : drupal_get_title()
+  );
+
+  // Add specific properties for each node type
+  if (!empty($vars['node'])) {
+    $grapher = new VirginEntityGrapher('node', $vars['node']);
+
+    /**
+     * Add festival metadata to festival related content
+     *
+     * @param $properties
+     * @param $festival_grapher
+     * @param $date_format
+     */
+    $addFestivalMetadata = function(&$properties, $festival_grapher, $date_format) {
+      if ($festival_grapher->property('type') == 'festival') {
+        $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+        $start_date = $festival_state_grapher->fieldGetOne('field_start_date');
+        $end_date = $festival_state_grapher->fieldGetOne('field_end_date');
+
+        $properties['Festival Name'] = $festival_grapher->property('title');
+        $properties['Festival Date'] = sprintf('%s - %s', date($date_format, $start_date),  date($date_format, $end_date));
+      }
+    };
+
+    switch ($grapher->property('type')) {
+      case 'region':
+        $properties['PageName'] = $grapher->property('title') . ' Homepage';
+        break;
+
+      case 'page':
+        $festival_grapher = $grapher->relation('field_festival');
+        $addFestivalMetadata($properties, $festival_grapher, $date_format);
+        break;
+
+      case 'festival':
+        $addFestivalMetadata($properties, $grapher, $date_format);
+        break;
+
+      case 'event':
+        $festival_grapher = virgin_base_event_festival($grapher->property('nid'));
+        $addFestivalMetadata($properties, $festival_grapher, $date_format);
+
+        $event_state_grapher = $grapher->relation('field_event_state');
+        $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+        $properties['Event Name'] = $grapher->property('title');
+        $properties['Event Type'] = $event_state_grapher->fieldGetOne('field_event_type');
+        $properties['Event Date'] = date($date_format, $start_date);
+        break;
+
+      default:
+        $properties['PageName'] = $grapher->property('title');
+    }
+  }
+
+  // Add data layer encoded JSON
+  $vars['gtm_data_layer'] = drupal_json_encode(array($properties));
 }

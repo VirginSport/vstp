@@ -42,8 +42,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       $g = $g->relation('field_festival');
       break;
 
-    // For events there isn't direct relation to the festival, as
-    // find the festival via a query indirection
+    // For events there isn't direct relation to the festival, as such
+    // find the festival via a query indirection.
     case 'event':
       $sql = "
         SELECT fs2.entity_id AS festival_nid
@@ -55,6 +55,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
         JOIN {field_data_field_festival_state} fs2
           ON fs2.field_festival_state_target_id = fs1.field_festival_state_target_id
           AND fs2.bundle = 'festival'
+        JOIN {node} n
+          ON n.nid = fs2.entity_id
+          AND n.status = 1
         WHERE es.entity_id = :id
         LIMIT 1
       ";
@@ -67,12 +70,12 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       return;
   }
 
-  // If  the grapher does not contain a festival or an event bailout now.
+  // If  the grapher does not contain a festival or an event bailout now
   if (!in_array($g->property('type'), array('festival', 'event'))) {
     return;
   }
 
-  // Fetch the hostname of the festival of this event or festival.
+  // Fetch the hostname of the festival of this event or festival
   $sql = "
     SELECT h.field_hostname_value as hostname
     FROM {field_data_field_region} r

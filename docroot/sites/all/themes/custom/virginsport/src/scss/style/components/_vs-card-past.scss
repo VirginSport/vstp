@@ -1,0 +1,307 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-card-past,
+.vs-card-past {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-card-past__container-wrapper {
+    width: 100%;
+    padding: .625rem;
+
+    & [class*='col-'] {
+      padding: 0;
+    }
+}
+
+.vs-card-past__past-title {
+  font-family: $font-family-serif;
+  font-size: 1.125rem;
+  color: rgba($c-black, .6);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.vs-card-past__container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 16.563rem;
+  border-radius: .625rem;
+  padding: 1.25rem;
+}
+
+.vs-card-past__content {
+  margin-bottom: 4.063rem;
+}
+
+.vs-card-past__image {
+  position: absolute;
+  top: -1.563rem;
+  right: -1.563rem;
+  bottom: -1.563rem;
+  left: -1.563rem;
+  min-height: 16.563rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border-radius: .625rem;
+}
+
+.vs-card-past__title {
+  font-family: $font-family-serif;
+  color: $c-white;
+  font-size: 1.125rem;
+  line-height: 1.250rem;
+  text-transform: uppercase;
+  margin-bottom: .25rem;
+  position: relative;
+}
+
+.vs-card-past__date {
+  position: relative;
+  padding-bottom: 0.938rem;
+  color: $c-white;
+  text-transform: uppercase;
+  font-family: $font-family-serif;
+  font-size: .75rem;
+  font-weight: 200;
+  line-height: 0.875rem;
+}
+
+.vs-card-past__text {
+  position: relative;
+  color: $c-white;
+}
+
+.vs-card-past__ctas-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .938rem;
+}
+
+.vs-card-past__ctas-wrapper {
+  display: inline-flex;
+  width: 100%;
+}
+
+.vs-card-past__cta-wrapper {
+  @include make-col(4);
+  
+  text-align: center;
+
+  &:nth-child(1) {
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+  &:nth-child(2) {
+    text-align: center;
+  }
+
+  &:nth-child(3n) {
+    text-align: right;
+    padding-right: 1rem;
+  }
+
+}
+
+.vs-card-past__cta {
+  @include transition(all .5s ease-in-out);
+
+  position: relative;
+  display: inline-block;
+
+  width: 4.5rem;
+
+  font-family: $font-family-serif;
+  font-weight: 500;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: $c-white;
+  cursor: pointer;
+
+  &:hover, &:active, &:focus {
+    opacity: .7;
+    color: $c-white;
+  }
+
+  > i {
+    display: block;
+    min-height: 1.875rem;
+    line-height: 1.875rem;
+    padding-bottom: .938rem;
+  }
+
+  &--full-results {
+    @extend .vs-card-past__cta;
+
+    > i {
+      font-size: 2rem;
+    }
+  }
+
+  &--read-review {
+    @extend .vs-card-past__cta;
+
+    > i {
+      font-size: 2.188rem;
+    }
+  }
+
+  &--replay-run{
+    @extend .vs-card-past__cta;
+
+    > i {
+      font-size: 2rem;
+    }
+  }
+
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-card-past--color-#{$color} {
+    .vs-card-past__title,
+    .vs-card-past__text,
+    .vs-card-past__date,
+    .vs-card-past__cta {
+      color: map_get($map, 'text-color');
+    }
+  }
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(sm) {
+
+  .vs-card-past__past-title {
+    padding-bottom: 1.5rem;
+    font-size: 1.875rem;
+    text-align: left;
+  }
+
+  .vs-card-past__content {
+    margin-bottom: 5.50rem;
+  }
+
+  .vs-card-past__title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: .313rem;
+  }
+
+  .vs-card-past__date {
+    padding-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  .vs-card-past__text {
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+  }
+
+  .vs-card-past__cta {
+    width: auto;
+    min-width: 5.5rem;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+
+    > i {
+      min-height: 3.125rem;
+      line-height: 3.125rem;
+    }
+
+    &--full-results > i {
+      font-size: 3.1rem;
+    }
+
+    &--read-review > i {
+      font-size: 3.7rem;
+    }
+
+    &--replay-run > i {
+      font-size: 3.1rem;
+    }
+  }
+
+}
+
+@include media-breakpoint-up(md) {
+
+  .vs-card-past__container-wrapper {
+    padding: 1.25rem;
+  }
+
+  .vs-card-past__container {
+    display: inline-flex;
+    min-height: 12.5rem;
+    padding: 1.563rem;
+  }
+
+  .vs-card-past__content {
+    margin: 0;
+  }
+
+  .vs-card-past__image {
+    min-height: 12.5rem;
+  }
+
+  .vs-card-past__text {
+    max-width: 20rem;
+  }
+
+  .vs-card-past__ctas-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+
+  .vs-card-past__ctas-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+  }
+
+  .vs-card-past__cta-wrapper {
+    display: inline-block;
+    width: 6.563rem;
+  
+    &:nth-child(1) {
+      padding-left: 0;
+    }
+    
+    &:nth-child(3n) {
+      padding-right: 0;
+    }  
+  }
+ 
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-card-past__text {
+    max-width: 30rem;
+  }
+}

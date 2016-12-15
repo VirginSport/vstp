@@ -164,6 +164,8 @@ class Region {
     setAttributes(this.gradient, {
       gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
     });
+
+    $('body').trigger('vs_region__finished');
   }
 
   /**

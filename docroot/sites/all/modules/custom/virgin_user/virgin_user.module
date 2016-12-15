@@ -32,7 +32,7 @@ define('VIRGIN_USER_DATA_LAST_SUCCESSFUL_PULL', 'virgin_user_last_successful_pul
  * The number of seconds to wait before checking the user's ticket
  * information is up to date and that no ticket placeholders exist.
  */
-define('VIRGIN_USER_TICKET_SYNC_PERIOD', 900); // 60 * 15
+define('VIRGIN_USER_TICKET_SYNC_PERIOD', 60);
 
 /**
  * The name of the cookie that holds the basket's region hostname
@@ -297,6 +297,22 @@ function virgin_user_username_alter(&$name, $account) {
 /**
  * Implements hook_form_FORM_ID_alter() for user_register_form.
  */
+function virgin_user_form_user_login_alter(&$form, &$form_state, $form_id) {
+  // Add custom validation callback
+  $form['#validate'][] = 'virgin_user_form_user_login_validate';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_pass.
+ */
+function virgin_user_form_user_pass_alter(&$form, &$form_state, $form_id) {
+  // Add custom validation callback
+  $form['#validate'][] = 'virgin_user_form_user_pass_validate';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_register_form.
+ */
 function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_id) {
 
   // Add an e-mail confirm input
@@ -315,6 +331,9 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
 
   // Add custom validation callback
   $form['#validate'][] = 'virgin_user_form_user_register_form_validate';
+
+  // add custom submit callback
+  $form['#submit'][] = 'virgin_user_form_user_register_form_submit';
 }
 
 /**
@@ -455,6 +474,9 @@ function virgin_user_entity_presave($entity, $type) {
 function virgin_user_user_login(&$edit, $account) {
   $params = $_GET;
 
+  // Mark this request as a sign in success
+  virgin_gtm()->addEvent('SignInSuccess');
+
   // If the user is authenticating against Facebook via hybrid auth
   // we need to capture the destination parameter and parse it for
   // possible basket actions.
@@ -497,6 +519,13 @@ function virgin_user_user_login(&$edit, $account) {
     // If the user does not have items in his basket, redirect him to his
     // preferred region immediatly.
     if (!$basket_items) {
+
+      // Ensure the basket hostname cookie is set to his preferred region
+      // before the user is redirected to his region.
+      $prefered_hostname = virgin_region_user_hostname();
+      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $prefered_hostname);
+
+      // And finally redirect him to his preferred region
       $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
       virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
     }
@@ -509,6 +538,10 @@ function virgin_user_user_login(&$edit, $account) {
       $current_region = virgin_region_current();
       $prefered_hostname = virgin_region_user_hostname();
 
+      // Ensure the basket hostname cookie is set to the current region
+      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $current_region['hostname']);
+
+      // Add the required query parameter to open the regional switch modal
       if ($current_region['hostname'] != $prefered_hostname) {
         $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
         $params = parse_url($destination, PHP_URL_QUERY);
@@ -588,6 +621,30 @@ function virgin_user_observer_notify($account) {
 }
 
 /**
+ * Validation callback for the user_login form.
+ *
+ * @see virgin_user_form_user_login_alter()
+ */
+function virgin_user_form_user_login_validate(&$form, &$form_state) {
+  // Add sign in attempt event
+  virgin_gtm()->addEvent('SignInAttempt');
+}
+
+/**
+ * Validation callback for the user_pass form.
+ *
+ * @see virgin_user_form_user_pass_alter()
+ */
+function virgin_user_form_user_pass_validate(&$form, &$form_state) {
+  $name = trim($form_state['values']['name']);
+
+  if (form_get_errors()) {
+    // Push error to gtm
+    virgin_gtm()->addError(sprintf('Sorry, %s is not recognized as a user name or an e-mail address.', $name));
+  }
+}
+
+/**
  * Validation callback for the user_register_form form.
  *
  * @see virgin_user_form_user_register_form_alter()
@@ -598,7 +655,7 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
   $birth_date = virgin_form_value('field_birth_date', $form_state);
 
   if (!$birth_date || (date('Y', time()) - date('Y', strtotime($birth_date))) < VIRGIN_USER_MIN_AGE) {
-    form_set_error('field_birth_date', t("You must be over @min to create an account.", array('@min' => VIRGIN_USER_MIN_AGE)));
+    form_set_error('field_birth_date', t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."));
   }
 
   // Confirm that the user entered e-mails match
@@ -608,6 +665,20 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
   if ($mail != $mail_confirm) {
     form_set_error('mail', t("The e-mails you entered do not match"));
   }
+
+  // Add sign up attempt event
+  virgin_gtm()->addEvent('SignUpAttempt');
+}
+
+
+/**
+ * Submit callback for the user_register_form form.
+ *
+ * @see virgin_user_form_user_register_form_alter()
+ */
+function virgin_user_form_user_register_form_submit(&$form, &$form_state) {
+  // Add sign up success event
+  virgin_gtm()->addEvent('SignUpSuccess');
 }
 
 /**

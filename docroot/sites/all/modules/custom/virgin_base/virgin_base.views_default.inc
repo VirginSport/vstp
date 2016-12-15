@@ -24,6 +24,7 @@ function virgin_base_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'moderate content from draft to needs_review';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -147,6 +148,7 @@ function virgin_base_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'moderate content from draft to needs_review';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['disable_sql_rewrite'] = TRUE;
@@ -289,6 +291,7 @@ function virgin_base_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'moderate content from draft to needs_review';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -342,12 +345,6 @@ function virgin_base_views_default_views() {
     'package' => 'package',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
@@ -414,6 +411,7 @@ function virgin_base_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'moderate content from draft to needs_review';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -474,12 +472,6 @@ function virgin_base_views_default_views() {
     'ticket_type' => 'ticket_type',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
-  $handler->display->display_options['filters']['status']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
