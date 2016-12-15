@@ -269,9 +269,9 @@
                     </div>
 
                     <div v-show="edit_mode" class="field-share-medical-info vs-form-group">
-                      <input class="vs-form-input vs-form-input--check" v-show="edit_mode" type="checkbox" v-model="profile.field_agree_share_medical_info" name="field_agree_share_medical_info" id="field_agree_share_medical_info" v-validate:field_agree_share_medical_info="['required']">
+                      <input class="vs-form-input vs-form-input--check" v-show="edit_mode" type="checkbox" v-model="profile.field_agree_share_medical_info" name="field_agree_share_medical_info" id="field_agree_share_medical_info" v-validate:field_agree_share_medical_info="{ conditional_required: [profile.field_medical_conditions, profile.field_medical_conditions_other, profile.field_medications, profile.field_allergies] }">
                       <label class="vs-form-label vs-form-label--check" for="field_agree_share_medical_info"><?php print t('Agree to share medical information and allergies with Virgin Sport'); ?></label>
-                      <div class="vs-error-label" v-if="$vs_user_profile_validator.field_agree_share_medical_info.required"><?php print t('You must agree to share your medical information if you fill any of the medical fields.'); ?></div>
+                      <div class="vs-error-label" v-if="$vs_user_profile_validator.field_agree_share_medical_info.conditional_required"><?php print t('You must agree to share your medical information if you fill any of the medical fields.'); ?></div>
                     </div>
 
                     <div class="field-marketing vs-form-group vs-form-group--checkboxes">
