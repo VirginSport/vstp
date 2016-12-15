@@ -120,6 +120,8 @@ function headerAnimation() {
 
   if (subnav) {
     var subnavCloneClass = 'vs-subnav--clone';
+    let subnavRegionColor = $(subnav).closest('.vs-region').attr('data-vs-region-color');
+    var subnavColorClass = `vs-region--gradient-${subnavRegionColor}`;
 
     // The deviation is the menu header height that should be contemplated as an increment to subnav offset
     var getOffsets = function () {
@@ -149,7 +151,7 @@ function headerAnimation() {
       },
       onNotTop: function() {
         // Append floating element to avoid z-index restrictions
-        let $subnavClone = $(subnav).clone().addClass(subnavCloneClass);
+        let $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass);
 
         $('body').append($subnavClone);
       }
@@ -223,7 +225,7 @@ function headerAnimation() {
 
       if (!$subnavClone.length) {
         // Append floating element to avoid z-index restrictions
-        $subnavClone = $(subnav).clone().addClass(subnavCloneClass);
+        $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass);
 
         $('body').append($subnavClone);
       }
