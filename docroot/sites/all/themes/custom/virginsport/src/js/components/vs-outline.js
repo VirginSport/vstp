@@ -101,7 +101,7 @@ class Outline {
     };
   
     // Distribute words per row based on their width and available width
-    let prevY = 0;
+    let currentY = 0;
     let rowWidth = 0;
     
     this.words.forEach(word => {
@@ -117,10 +117,21 @@ class Outline {
       // If the word is being added to a row different from the previous word
       // calculate the width that was left to be filled in, in the previous row
       // and add that "blank width" to the total width.
-      if (y != prevY) {
-        prevY = y;
-        totalWidth += (parentWidth - rowWidth);
-        rowWidth = 0;
+      if (y != currentY) {
+        
+        // If the current row is still empty, and y is higher than the current y
+        // that means the word is larger than the container. As such maintain
+        // the current y and ensure the total width and row width are set to the
+        // width of container.
+        if (!rowWidth && width > parentWidth) {
+          y = currentY;
+          totalWidth += parentWidth;
+          rowWidth = parentWidth;
+        } else {
+          currentY = y;
+          totalWidth += (parentWidth - rowWidth);
+          rowWidth = 0;
+        }
       } else {
         rowWidth += width;
       }
