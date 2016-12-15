@@ -205,6 +205,16 @@ function initVue(selector, inModal = false) {
       },
 
       submit() {
+        this.submitted = true;
+
+        if (this.form.type != 'interested_in' && !this.$vs_contact_form_validator.valid || !this.formValid()) {
+          return;
+        }
+
+        if (this.form.type == 'interested_in' && !this.$vs_contact_form_validator.valid || !this.formValid()) {
+          return;
+        }
+
         let self = this;
 
         this.$http.post(path() + 'ajax/contact-form/post', this.form).then((response) => {
@@ -216,13 +226,16 @@ function initVue(selector, inModal = false) {
             dataLayer.push(data.gtm);
           }
 
-          self.form.submitted = true;
-        }, (response) => {
-          self.form.error = true;
+          if (data.result) {
+            self.form.submitted = true;
+          } else {
+            self.form.error = true;
+          }
         });
       }
     },
     data: {
+      submitted: false,
       inModal: inModal,
       loading: false,
       form: {
