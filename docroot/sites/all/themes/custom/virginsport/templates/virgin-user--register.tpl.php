@@ -181,29 +181,23 @@ $query = drupal_get_query_parameters();
                           </div>
 
                           <div class="field-date vs-form-group">
-                            <div class="vs-select-wrapper vs-form-group--chosen">
-                              <label><?php print t('Date of Birth'); ?>*</label>
-                              <validator name="vs_user_register_date_validator">
-                                <div class="vs-select-group">
-                                  <label class="vs-select-group__label vs-select-group__label--month">
-                                    <select class="vs-select-group__select" v-model="profile.field_date_day" name="field_date_day" v-validate:field_date_day="['required']"></select>
-                                  </label>
-                                  <label class="vs-select-group__label vs-select-group__label--day">
-                                    <select class="vs-select-group__select" v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
-                                  </label>
-                                  <label class="vs-select-group__label vs-select-group__label--year">
-                                    <select class="vs-select-group__select" v-model="profile.field_date_year" name="field_date_year" v-validate:field_date_year="['required']"></select>
-                                  </label>
+                            <validator name="vs_user_register_date_validator">
+                              <div class="vs-chosen-wrapper vs-chosen-wrapper--3x">
+                                <label class="vs-focus-label"><?php print t('Date of Birth'); ?>*</label>
+                                <select class="vs-select-group__select" v-model="profile.field_date_day" name="field_date_day" v-validate:field_date_day="['required']"></select>
+                                <select class="vs-select-group__select" v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
+                                <select class="vs-select-group__select" v-model="profile.field_date_year" name="field_date_year" v-validate:field_date_year="['required']"></select>
+                              </div>
 
-                                  <div class="vs-error-label" v-if="(($vs_user_register_date_validator.field_date_day.dirty || submitted) && $vs_user_register_date_validator.field_date_day.required) || (($vs_user_register_date_validator.field_date_month.dirty || submitted) && $vs_user_register_date_validator.field_date_month.required) || (($vs_user_register_date_validator.field_date_year.dirty || submitted) && $vs_user_register_date_validator.field_date_year.required)">
-                                    <?php print t('Date of Birth is required'); ?>
-                                  </div>
-                                  <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
-                                    <?php print t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."); ?>
-                                  </div>
-                                </div>
-                              </validator>
-                            </div>
+                              <div class="vs-error-label" v-if="(($vs_user_register_date_validator.field_date_day.dirty || submitted) && $vs_user_register_date_validator.field_date_day.required) || (($vs_user_register_date_validator.field_date_month.dirty || submitted) && $vs_user_register_date_validator.field_date_month.required) || (($vs_user_register_date_validator.field_date_year.dirty || submitted) && $vs_user_register_date_validator.field_date_year.required)">
+                                <?php print t('Date of Birth is required'); ?>
+                              </div>
+
+                              <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
+                                <?php print t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."); ?>
+                              </div>
+                            </validator>
+
                             <?php
                             /* TODO implement tooltip field
                               <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
