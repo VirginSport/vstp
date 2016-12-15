@@ -141,6 +141,16 @@ function virgin_base_views_pre_build(&$view) {
   }
 }
 
+/**
+ * Implements hook_date_select_process_alter().
+ */
+function virgin_base_date_select_process_alter(&$element, &$form_state, $context) {
+  // Override date fields label to remove -
+  $element['day']['#options'][''] = t('Day');
+  $element['month']['#options'][''] = t('Month');
+  $element['year']['#options'][''] = t('Year');
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 

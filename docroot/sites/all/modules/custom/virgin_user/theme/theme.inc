@@ -121,16 +121,18 @@ function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
   $event_g = new VirginEntityGrapher('node', $event);
   $user_sugar_id = $account_g->fieldGetOne('field_sugar_id');
   $image = $event_g->relation('field_header_image');
+  $purchaser_names = explode(' ', $vars['ticket']['purchaser_contact_tickets_name']);
+  $email = empty($user->mail) ? '' : $user->mail;
 
   $list = array(
     'event_name' => check_plain($event_g->fieldGetOne('title_field')),
     'event_image' => $image->getEntityType() != 'scald_atom' ? NULL : $image->getEntity(),
     'recipient' => $vars['ticket']['first_name'],
     'recipient_email' => $vars['ticket']['email'],
-    'purchaser' => reset(explode(' ', $vars['ticket']['purchaser_contact_tickets_name'])),
+    'purchaser' => reset($purchaser_names),
     'uses_purchaser_email' => $vars['ticket']['uses_purchaser_email'],
     'is_purchaser' => ($vars['ticket']['purchaser_contact_id'] == $user_sugar_id),
-    'is_recipient' => ($vars['ticket']['email'] == $user->mail),
+    'is_recipient' => ($vars['ticket']['email'] == $email),
     'claimed_by_me' => ($vars['ticket']['contact_id'] == $user_sugar_id),
     'has_been_claimed' => $vars['ticket']['has_been_claimed'],
   );

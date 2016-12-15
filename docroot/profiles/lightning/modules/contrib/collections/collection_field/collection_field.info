@@ -8,9 +8,9 @@ dependencies[] = collection
 files[] = tests/*.test
 
 
-; Information added by drush on 2016-08-22
+; Information added by drush on 2016-11-28
 version = "7.x-1.0-alpha3+7-dev"
 core = "7.x"
 project = "collections"
-datestamp = "1471881093"
+datestamp = "1480367022"
 

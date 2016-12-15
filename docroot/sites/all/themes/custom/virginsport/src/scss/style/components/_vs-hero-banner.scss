@@ -41,6 +41,7 @@ vs-hero-banner,
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+  @include ie-flexbox-fix();
   min-height: 17.125rem;
 }
 

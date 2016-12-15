@@ -32,16 +32,17 @@ vs-festival-profile-header,
 }
 
 .vs-festival-profile-header__background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0 auto;
-  max-width: 81.25rem;
+  @include transform(translateX(-50%));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  margin: 0 auto;
+  max-width: 81.25rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
 
   .vs-festival-profile-header--past & {
     height: 19.75rem;

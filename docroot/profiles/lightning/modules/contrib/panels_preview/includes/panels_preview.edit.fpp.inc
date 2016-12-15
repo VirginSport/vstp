@@ -28,12 +28,20 @@ function panels_preview_render_fieldable_panels_pane_preview($type, $subtype, $c
     $block->title = '';
     if (empty($settings['extra_fields']['display']) || !empty($settings['extra_fields']['display']['title']['default']['visible'])) {
       if (!empty($entity->title)) {
-        $block->title = check_plain($entity->title);
+        $block->title = filter_xss_admin($entity->title);
       }
     }
 
+    // Necessary to allow 'tablefield' to work per Issue #2479569, but it breaks
+    // the Spotlight widget per Issue #2533064. So, for now, only run on the
+    // Table widget.
+    if ($entity->bundle == 'table') {
+      _field_invoke('presave', 'fieldable_panels_pane', $entity);
+    }
+
     // Make sure fields are in the same state they would be in if they were
-    // loaded from the database.
+    // loaded from the database. Found this by looking at how node generates
+    // it's previews in node_preview().
     _field_invoke_multiple('load', 'fieldable_panels_pane', array($entity->fpid => $entity));
 
     $view_mode = isset($conf['view_mode']) ? $conf['view_mode'] : 'full';

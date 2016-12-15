@@ -9,8 +9,8 @@ package = Administration
 files[] = tests/*.test
 
 
-; Information added by drush on 2016-08-22
+; Information added by drush on 2016-11-28
 version = ""
 project = "nra_workbench_moderation"
-datestamp = "1471881034"
+datestamp = "1480367015"
 

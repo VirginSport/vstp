@@ -17,13 +17,26 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
     'ctools_entity_field_content_type_formatter_styles',
   );
   if (variable_get('panels_preview_live_preview', 1) && (strpos($form_id, '_content_type_edit_form') || in_array($form_id, $extra_form_ids_with_preview))) {
-
-    $pane = $form_id == 'panels_edit_style_settings_form' ? $form_state['display']->content[$form_state['pid']] : $form_state['pane'];
-    $display = $form_state['display'];
     ctools_include('plugins', 'panels');
     ctools_include('content');
 
-    // Process stylizer settings forms to ensure previews work correctly.
+    // Get the Panels display and the current Pane (if there is one).
+    $display = $form_state['display'];
+    if ($form_id == 'panels_edit_style_settings_form') {
+      if ($form_state['type'] == 'pane') {
+        $pane = $display->content[$form_state['pid']];
+      }
+      else {
+        // For region styles, we don't have a pane.
+        $pane = NULL;
+      }
+    }
+    else {
+      $pane = $form_state['pane'];
+    }
+
+    // Do some special processing for stylizer settings forms to ensure previews
+    // work correctly.
     if ($form_id == 'panels_edit_style_settings_form') {
 
       if (!empty($form_state['style']) && is_array($form_state['style'])) {
@@ -85,7 +98,10 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
           $form_state['values'] = $default_values;
         }
 
-        // Begin code from fieldable_panels_panes_entity_edit_form_submit().
+        //
+        // This code is copied from fieldable_panels_panes_entity_edit_form_submit():
+        //
+
         $entity = $form_state['entity'];
 
         // Copy hardcoded fields.
@@ -104,10 +120,10 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
         if ($entity->revision) {
           $entity->log = $form_state['values']['log'];
         }
-        // End code from fieldable_panels_panes_entity_edit_form_submit().
 
-        // Hide revision field.
-        $form_state['values']['revision']['#access'] = FALSE;
+        //
+        // End code copied from fieldable_panels_panes_entity_edit_form_submit().
+        //
 
         if (!isset($entity->fpid)) {
           $entity->fpid = NULL;
@@ -127,6 +143,23 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
     // Add our own submit handler ALWAYS, not just when we are generating
     // a preview.
     if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form') {
+      // Hide the revision fieldset.
+      $form['revision']['#access'] = FALSE;
+      // Hide the 'Admin' fieldset.
+      $form['admin']['#access'] = FALSE;
+      // Move the 'Admin title' under reusable like in FPP 1.8 and earlier.
+      $form['reusable']['admin_title'] = $form['admin']['admin_title'];
+      $form['reusable']['admin_title']['#states'] = array(
+        'visible' => array(
+          ':input[name="reusable"]' => array('checked' => TRUE),
+        )
+      );
+      unset($form['admin']['admin_title']);
+      // Move the warning down.
+      $form['reusable']['warning']['#weight'] = 100;
+
+      // Add our own submit handler ALWAYS, not just when we are generating
+      // a preview.
       $form['#submit'][] = '_panels_preview_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_submit';
     }
 
@@ -136,7 +169,12 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
       'ctools_entity_field_content_type_formatter_styles',
       'panels_edit_style_settings_form',
     );
-    $configuration = ($form_state['rebuild'] && (strpos($form_id, 'content_type_edit_form') || in_array($form_id, $configuration_ids))) ? array_merge($pane->configuration, $form_state['input']) : $pane->configuration;
+    if (!empty($pane->configuration)) {
+      $configuration = ($form_state['rebuild'] && (strpos($form_id, 'content_type_edit_form') || in_array($form_id, $configuration_ids))) ? array_merge($pane->configuration, $form_state['input']) : $pane->configuration;
+    }
+    else {
+      $configuration = $form_state['input'];
+    }
 
     $keywords = array();
     $args = array();
@@ -265,7 +303,7 @@ function panels_preview_form_alter(&$form, &$form_state, $form_id) {
 
       // Move all elements which aren't fieldsets or the submit buttons into the general settings fieldset.
       foreach ($children as $child) {
-        if ((!empty($form[$child]['#type']) || !empty($form[$child]['#tree'])) && $form[$child]['#type'] != 'fieldset' && $child != 'buttons' && $child != 'submit') {
+        if ((!empty($form[$child]['#tree']) || (!empty($form[$child]['#type']) && $form[$child]['#type'] != 'fieldset')) && !in_array($child, array('buttons', 'submit', 'cancel_style', 'form_build_id', 'form_token', 'form_id'))) {
           // If the form has #tree => TRUE set, then we need to make sure the
           // submitted data has the same keys.
           if (empty($form[$child]['#parents'])) {

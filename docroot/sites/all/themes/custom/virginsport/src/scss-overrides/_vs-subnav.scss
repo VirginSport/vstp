@@ -1,0 +1,9 @@
+
+// This file covers the subnav component
+// ----------------------------------------------------------------------------
+
+.vs-subnav--pinned-on-main-nav {
+  &:not(.vs-subnav--clone) {
+    transform: translateY(0);
+  }
+}

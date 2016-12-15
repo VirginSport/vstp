@@ -185,11 +185,11 @@ $query = drupal_get_query_parameters();
                               <label><?php print t('Date of Birth'); ?>*</label>
                               <validator name="vs_user_register_date_validator">
                                 <div class="vs-select-group">
-                                  <label class="vs-select-group__label vs-select-group__label--day">
-                                    <select class="vs-select-group__select" v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
-                                  </label>
                                   <label class="vs-select-group__label vs-select-group__label--month">
                                     <select class="vs-select-group__select" v-model="profile.field_date_day" name="field_date_day" v-validate:field_date_day="['required']"></select>
+                                  </label>
+                                  <label class="vs-select-group__label vs-select-group__label--day">
+                                    <select class="vs-select-group__select" v-model="profile.field_date_month" name="field_date_month" v-validate:field_date_month="['required']"></select>
                                   </label>
                                   <label class="vs-select-group__label vs-select-group__label--year">
                                     <select class="vs-select-group__select" v-model="profile.field_date_year" name="field_date_year" v-validate:field_date_year="['required']"></select>
