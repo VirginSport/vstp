@@ -115,7 +115,7 @@
                             <input class="form-control" type="email" v-model="profile.field_mail" name="field_mail" v-validate:field_email="['required','email']">
                             <label class="vs-focus-label"><?php print t('Email Address'); ?>*</label>
                             <div class="vs-error-label" v-if="$vs_user_profile_validator.field_email.required"><?php print t('Email is required'); ?></div>
-                            <div class="vs-error-label" v-if="$vs_user_profile_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
+                            <div class="vs-error-label" v-if="!$vs_user_profile_validator.field_email.required && $vs_user_profile_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
                           </div>
                           <div v-show="!edit_mode">
                             <label class="vs-focus-label vs-focus-label--static"><?php print t('Email Address'); ?></label>
@@ -284,7 +284,7 @@
                       <div class="col-xs-12 text-md-right">
                         <div class="vs-form-group--buttons">
                           <button class="btn vs-btn vs-btn--outline-black" :disabled="password_mode" v-show="!edit_mode" v-on:click="edit('edit_mode')"><?php print ('Edit Account Details'); ?></button>
-                          <button class="btn vs-btn vs-btn--min-sm pull-md-right" :disabled="!$vs_user_profile_validator.valid" v-show="edit_mode" v-on:click="submit"><?php print ('Confirm Changes'); ?></button>
+                          <button class="btn vs-btn vs-btn--min-sm pull-md-right" v-show="edit_mode" v-on:click="submit"><?php print ('Confirm Changes'); ?></button>
                           <button class="btn vs-btn vs-btn--outline-black pull-md-left" v-show="edit_mode" v-on:click="cancel('edit_mode')"><?php print ('Cancel Changes'); ?></button>
                         </div>
                       </div>
@@ -303,13 +303,13 @@
                           <div v-if="require_password" class="vs-form-group current-pass">
                             <input class="form-control" type="password" v-model="profile.current_pass" name="current_pass" v-validate:current_pass="['required']">
                             <label class="vs-focus-label"><?php print t('Old Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.current_pass.dirty && $vs_user_password_validator.current_pass.required"><?php print t('Old Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="($vs_user_password_validator.current_pass.dirty || submitted) && $vs_user_password_validator.current_pass.required"><?php print t('Old Password is required'); ?></div>
                           </div>
 
                           <div class="vs-form-group pass1">
                             <input class="form-control" type="password" v-model="profile.pass1" name="pass1" v-validate:pass1="{ minlength: 8, required: true, pattern: '/[0-9]+/' }">
                             <label class="vs-focus-label"><?php print t('New Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass1.dirty && $vs_user_password_validator.pass1.required"><?php print t('New Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="($vs_user_password_validator.pass1.dirty || submitted) && $vs_user_password_validator.pass1.required"><?php print t('New Password is required'); ?></div>
                             <div class="vs-error-label" v-if="!$vs_user_password_validator.pass1.required && $vs_user_password_validator.pass1.minlength"><?php print t('New Password must have at least 8 characters'); ?></div>
                             <div class="vs-error-label" v-if="!$vs_user_password_validator.pass1.required && $vs_user_password_validator.pass1.pattern"><?php print t('New Password must have at least one number'); ?></div>
                           </div>
@@ -317,7 +317,7 @@
                           <div class="vs-form-group pass2">
                             <input class="form-control" type="password" v-model="profile.pass2" name="pass2" v-validate:pass2="{ required: true, match: profile.pass1 }">
                             <label class="vs-focus-label"><?php print t('Confirm Password'); ?>*</label>
-                            <div class="vs-error-label" v-if="$vs_user_password_validator.pass2.dirty && $vs_user_password_validator.pass2.required"><?php print t('Confirm Password is required'); ?></div>
+                            <div class="vs-error-label" v-if="($vs_user_password_validator.pass2.dirty || submitted) && $vs_user_password_validator.pass2.required"><?php print t('Confirm Password is required'); ?></div>
                             <div class="vs-error-label" v-if="!$vs_user_password_validator.pass2.required && $vs_user_password_validator.pass2.match"><?php print t('Passwords do not match'); ?></div>
                           </div>
                         </div>
@@ -328,7 +328,7 @@
                     <div class="vs-form-group--buttons">
                       <button class="btn vs-btn vs-btn--outline-black pull-md-right" :disabled="edit_mode" v-show="!password_mode" v-on:click="edit('password_mode')"><?php print ('Edit Password'); ?></button>
                       <button class="btn vs-btn vs-btn--outline-black" v-show="password_mode" v-on:click="cancel('password_mode')"><?php print ('Cancel Changes'); ?></button>
-                      <button class="btn vs-btn pull-md-right" :disabled="!$vs_user_password_validator.valid" v-show="password_mode" v-on:click="submit"><?php print ('Confirm Changes'); ?></button>
+                      <button class="btn vs-btn pull-md-right" v-show="password_mode" v-on:click="submit"><?php print ('Confirm Changes'); ?></button>
                     </div>
                   </div>
                 </div>
