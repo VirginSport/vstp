@@ -169,8 +169,8 @@ $query = drupal_get_query_parameters();
 
                           <div class="field-contact-number vs-form-group">
                             <div class="vs-form-group">
-                              <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number" v-validate:field_contact_number="['required']">
-                              <label class="vs-focus-label"><?php print t('Contact Number'); ?>*</label>
+                              <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number" id="field_contact_number" v-validate:field_contact_number="['required']">
+                              <label for="field_contact_number" class="vs-focus-label"><?php print t('Contact Number'); ?>*</label>
                               <div class="vs-error-label" v-if="($vs_user_register_validator.field_contact_number.dirty || submitted) && $vs_user_register_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
                             </div>
                             <?php
