@@ -83,11 +83,18 @@ export default () => {
       },
 
       submit() {
+        this.submitted = true;
+
+        if (!this.$vs_user_login_validator.valid || !this.passwordValid()) {
+          return;
+        }
+        
         this.applyValues();
         let form = $('.vs-user-login--form-drupal form').submit();
       }
     },
     data: {
+      submitted: false,
       password_changed: false,
       profile: {
         name: '',
