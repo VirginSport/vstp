@@ -67,7 +67,7 @@ $query = drupal_get_query_parameters();
                           <div class="vs-user-form__wrapper">
                             <div class="field-name vs-form-group">
                               <input id="name" class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
-                              <label for="name" class="vs-focus-label"><?php print t('Name'); ?>*</label>
+                              <label for="name" class="vs-focus-label"><?php print t('Email'); ?>*</label>
                               <div class="vs-error-label" v-if="($vs_user_login_validator.name.dirty || submitted) && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
                             </div>
 
