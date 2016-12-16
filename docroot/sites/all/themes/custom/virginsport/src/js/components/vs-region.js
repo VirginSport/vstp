@@ -35,6 +35,13 @@ const SPACERLESS_LAST_COMPONENTS = [
  */
 const regions = [];
 
+/**
+ * Tracks if the vs-region script has run at least once
+ *
+ * @type {boolean}
+ */
+let hasRun = false;
+
 export default () => {
 
   // Callback function to update the region
@@ -53,9 +60,7 @@ export default () => {
   // Register a behaviour handler to find if regions have been added via AJAX
   // or initial page load
   Drupal.behaviors.virginSportCurve = {
-    attach: () => {
-      findRegions();
-    }
+    attach: () => findRegions()
   };
 };
 
@@ -82,6 +87,11 @@ function findRegions() {
       }
     })
   ;
+  
+  if (!hasRun) {
+    $('html').attr('vs-region-loading', '');
+    hasRun = true;
+  }
 }
 
 /**
