@@ -392,6 +392,19 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
 
   // Allow email update without password required
   unset($form['account']['current_pass_required_values']['#value']['mail']);
+
+  // Replace list field _none option by empty value an remove select hyphens
+  $list_fields = array(
+    'field_region',
+    'field_gender',
+    'field_address_country'
+  );
+
+  foreach ($list_fields as $list_field) {
+    unset($form[$list_field][LANGUAGE_NONE]['#options']['_none']);
+    $options = $form[$list_field][LANGUAGE_NONE]['#options'];
+    $form[$list_field][LANGUAGE_NONE]['#options'] = array('' => t('Select a value')) + $options;
+  }
 }
 
 /**
