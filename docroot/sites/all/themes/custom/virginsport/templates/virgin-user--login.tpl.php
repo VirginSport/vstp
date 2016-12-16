@@ -65,13 +65,13 @@ $query = drupal_get_query_parameters();
                       <div class="row">
                         <div class="col-xs-12">
                           <div class="vs-user-form__wrapper">
-                            <div class="field-name vs-form-group">
+                            <div class="field-name vs-form-group" :class="{ 'vs-has-error': ($vs_user_login_validator.name.dirty || submitted) && !$vs_user_login_validator.name.valid }">
                               <input id="name" class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
                               <label for="name" class="vs-focus-label"><?php print t('Email'); ?>*</label>
                               <div class="vs-error-label" v-if="($vs_user_login_validator.name.dirty || submitted) && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
                             </div>
 
-                            <div class="field-password vs-form-group">
+                            <div class="field-password vs-form-group" :class="{ 'vs-has-error': ($vs_user_login_validator.password.dirty || submitted) && !$vs_user_login_validator.password.valid }">
                               <input id="password" class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']" v-on:change="password_changed = true">
                               <label for="password" class="vs-focus-label"><?php print t('Password'); ?>*</label>
                               <div class="vs-error-label" v-if="($vs_user_login_validator.password.dirty || submitted) && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
