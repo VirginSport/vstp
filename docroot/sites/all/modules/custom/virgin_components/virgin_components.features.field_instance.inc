@@ -1289,6 +1289,49 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_has_share_button'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_has_share_button'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_has_share_button',
+    'label' => 'Show share buttons',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_hero_banner_block-field_hero_image'.
   $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_hero_image'] = array(
     'bundle' => 'vs_hero_banner_block',
@@ -1392,7 +1435,11 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(),
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
         'type' => 'list_default',
         'weight' => 6,
       ),
@@ -2348,7 +2395,11 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'list',
-        'settings' => array(),
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
         'type' => 'list_default',
         'weight' => 3,
       ),
@@ -5212,6 +5263,7 @@ function virgin_components_field_default_field_instances() {
   t('Photo Description');
   t('Price');
   t('Short Description');
+  t('Show share buttons');
   t('Slide');
   t('Slider Images');
   t('Subheading');
