@@ -31,6 +31,12 @@ $vs-region-overlap-sizes: (
   )
 );
 
+// Some components use internal bottom padding instead of relying on a region
+// spacer this is the list of their selectors.
+$vs-region-self-padded: (
+  '.vs-introduction__container-wrapper': ''
+);
+
 // In order for users not to see a FOUC while region curve styles are being
 // rendered, add a smooth opacity transition to the HTML element if it has
 // the vs-region-loading attribute which is added via a script in the
@@ -87,7 +93,8 @@ html[vs-region-loading="true"] { opacity: 0; }
   .vs-region[data-vs-region-overlap="#{$size-name}"] > :first-child {
     @each $break-point in map-keys($size) {
       @include media-breakpoint-only($break-point) {
-        margin-top: -(map-get($size, $break-point));
+        position: relative;
+        top: -(map-get($size, $break-point));
       }
     }
   }
@@ -101,6 +108,25 @@ html[vs-region-loading="true"] { opacity: 0; }
   }
 }
 
+@each $selector in map-keys($vs-region-self-padded) {
+  #{$selector} + .vs-region__bg + .vs-region__bg-spacer {
+    display: none;
+  }
+
+  @each $size-name in map-keys($vs-region-overlap-sizes) {
+    $size: map_get($vs-region-overlap-sizes, $size-name);
+
+    .vs-region[data-vs-next-region-overlap="#{$size-name}"] #{$selector} {
+      @each $break-point in map-keys($size) {
+        @include media-breakpoint-only($break-point) {
+          padding-bottom: map-get($size, $break-point);
+        }
+      }
+    }
+  }
+}
+
+// Generate the gradients colors for the regions
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 

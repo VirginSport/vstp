@@ -158,6 +158,11 @@ class Region {
     }
     
     if (this.previousRegion && this.previousRegion.spacer) {
+      setAttributes(this.previousRegion.el, {
+        'data-vs-next-region-overlap': this.el.getAttribute('data-vs-region-overlap'),
+        'data-vs-next-region-curved': this.el.getAttribute('data-vs-region-curved')
+      });
+
       setAttributes(this.previousRegion.spacer, {
         'data-vs-region-overlap': this.el.getAttribute('data-vs-region-overlap'),
         'data-vs-region-curved': this.el.getAttribute('data-vs-region-curved')
