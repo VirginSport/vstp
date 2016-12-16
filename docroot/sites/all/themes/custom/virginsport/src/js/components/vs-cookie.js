@@ -8,13 +8,14 @@ import cookie from 'js-cookie';
 export default () => {
   Drupal.behaviors.virginsport = {
     attach: () => {
+      let cookie_class = 'vs-notification--cookie';
       let cookie_key = 'cookie_accepted';
       let cookie_accepted = cookie.get(cookie_key);
 
       // If cookie not accepted already add notification
-      if (!cookie_accepted) {
+      if (!cookie_accepted && !$(`.${cookie_class}`).length) {
         let cookie_template = Drupal.settings.virginsport.cookie_template;
-        let $el = $(cookie_template);
+        let $el = $(cookie_template).addClass(cookie_class);
 
         // Append cookie to notifications wrapper.
         $el.appendTo('.vs-notification--not-sticky');
