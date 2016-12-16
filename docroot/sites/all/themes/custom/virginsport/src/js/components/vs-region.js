@@ -75,9 +75,13 @@ function findRegions() {
       // Find it spacer needs to be removed
       let $region = $(el);
       let $last = $region.find('.panels-ipe-portlet-wrapper').last();
-      let $cta = $last.find(SPACERLESS_LAST_COMPONENTS.join(','));
+      let spacerless_component_selector = SPACERLESS_LAST_COMPONENTS.join(',');
+      let $cta = $last.find(spacerless_component_selector);
+
+      // Find components with spacer that needs to be removed
+      let $component = $region.find(spacerless_component_selector).find('+ .vs-region__bg + .vs-region__bg-spacer').last();
       
-      if ($cta.length) {
+      if ($cta.length || $component.length) {
         $region.addClass('vs-region--hide-bg-spacer');
       }
     })
