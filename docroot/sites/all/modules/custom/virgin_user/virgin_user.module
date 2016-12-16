@@ -334,6 +334,18 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
 
   // add custom submit callback
   $form['#submit'][] = 'virgin_user_form_user_register_form_submit';
+
+  // Replace list field _none option by empty value an remove select hyphens
+  $list_fields = array(
+    'field_gender',
+    'field_address_country'
+  );
+
+  foreach ($list_fields as $list_field) {
+    unset($form[$list_field][LANGUAGE_NONE]['#options']['_none']);
+    $options = $form[$list_field][LANGUAGE_NONE]['#options'];
+    $form[$list_field][LANGUAGE_NONE]['#options'] = array('' => t('Select a value')) + $options;
+  }
 }
 
 /**
@@ -414,8 +426,15 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
 
   $birth_date = strtotime($data['birthYear'] . '/' . $data['birthMonth'] . '/' . $data['birthDay']);
 
+  // Attempt to fetch the country from one of the options in the country list
+  $info = field_info_field('field_address_country');
+  $keys_countries = $info['settings']['allowed_values'];
+  $countries_keys = array_flip($keys_countries);
+  $country = isset($countries_keys[$data['country']]) ? $countries_keys[$data['country']] : '';
+
+  // Map the hybridauth values to the user fields
   $userinfo['field_address_city'][LANGUAGE_NONE][0]['value'] = $data['city'];
-  $userinfo['field_address_country'][LANGUAGE_NONE][0]['value'] = $data['country'];
+  $userinfo['field_address_country'][LANGUAGE_NONE][0]['value'] = $country;
   $userinfo['field_address_line_1'][LANGUAGE_NONE][0]['value'] = $data['address'];
   $userinfo['field_address_postcode'][LANGUAGE_NONE][0]['value'] = $data['zip'];
   $userinfo['field_address_state'][LANGUAGE_NONE][0]['value'] = $data['region'];

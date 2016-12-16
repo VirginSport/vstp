@@ -66,22 +66,22 @@ $query = drupal_get_query_parameters();
                         <div class="col-xs-12">
                           <div class="vs-user-form__wrapper">
                             <div class="field-name vs-form-group">
-                              <input class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
-                              <label class="vs-focus-label"><?php print t('Name'); ?>*</label>
-                              <div class="vs-error-label" v-if="$vs_user_login_validator.name.dirty && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
+                              <input id="name" class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
+                              <label for="name" class="vs-focus-label"><?php print t('Email'); ?>*</label>
+                              <div class="vs-error-label" v-if="($vs_user_login_validator.name.dirty || submitted) && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
                             </div>
 
                             <div class="field-password vs-form-group">
-                              <input class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']" v-on:change="password_changed = true">
-                              <label class="vs-focus-label"><?php print t('Password'); ?>*</label>
-                              <div class="vs-error-label" v-if="$vs_user_login_validator.password.dirty && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
+                              <input id="password" class="form-control" type="password" v-model="profile.password" name="password" v-validate:password="['required']" v-on:change="password_changed = true">
+                              <label for="password" class="vs-focus-label"><?php print t('Password'); ?>*</label>
+                              <div class="vs-error-label" v-if="($vs_user_login_validator.password.dirty || submitted) && $vs_user_login_validator.password.required"><?php print t('Password is required'); ?></div>
                             </div>
 
                             <a href="<?php print url('user/password', array('query' => $query)); ?>" class="vs-user-login--form__recover-pass">
                               <?php print t('Forgot password?'); ?>
                             </a>
 
-                            <button :disabled="$vs_user_login_validator.name.required || !passwordValid()" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign in'); ?></button>
+                            <button v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign in'); ?></button>
 
                             <div class="vs-user-form__member-text">
                               <?php print t('Not yet a member?'); ?>

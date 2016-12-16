@@ -480,14 +480,14 @@ function virgin_user_page_ajax_form_post() {
     if ($data['type'] == 'interested_in') {
       $start_date = $event_state_grapher->fieldGetOne('field_start_date');
 
-      $data = array(
+      $gtm_event = array(
         'event' => 'RegisterInterest',
         'EventType' => $event_state_grapher->fieldGetOne('field_event_type'),
         'EventName' => $event_grapher->property('title'),
         'EventDate' => date('d.m.Y', $start_date)
       );
 
-      $gtm[] = $data;
+      $gtm[] = $gtm_event;
     }
   }
 
@@ -498,11 +498,11 @@ function virgin_user_page_ajax_form_post() {
   try {
     $result['result'] = sugarcrm_client()->systemPost('Virgin/form', $params);
 
-    $error_message = sprintf('%s submitted successfully.', $data['type']);
+    $message = sprintf('%s submitted successfully.', $data['type']);
 
     $result['gtm'][] = array(
-      'event' => 'ErrorEvent',
-      'ErrorType' => $error_message,
+      'event' => $data['type'],
+      'message' => $message,
     );
   } catch (\Exception $e) {
     $result['result'] = FALSE;
