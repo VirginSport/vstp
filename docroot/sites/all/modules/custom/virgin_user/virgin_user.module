@@ -334,6 +334,18 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
 
   // add custom submit callback
   $form['#submit'][] = 'virgin_user_form_user_register_form_submit';
+
+  // Replace list field _none option by empty value an remove select hyphens
+  $list_fields = array(
+    'field_gender',
+    'field_address_country'
+  );
+
+  foreach ($list_fields as $list_field) {
+    unset($form[$list_field][LANGUAGE_NONE]['#options']['_none']);
+    $options = $form[$list_field][LANGUAGE_NONE]['#options'];
+    $form[$list_field][LANGUAGE_NONE]['#options'] = array('' => t('Select a value')) + $options;
+  }
 }
 
 /**

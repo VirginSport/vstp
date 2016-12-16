@@ -169,11 +169,26 @@ export default () => {
       },
 
       submit() {
+        // Make submitted equals to true to show erros if any
+        this.submitted = true;
+
+        if (this.password_mode && !this.$vs_user_password_validator.valid) {
+          return;
+        }
+
+        if (!this.password_mode && !this.$vs_user_profile_validator.valid) {
+          return;
+        }
+        
         this.applyValues();
         let form = $('.vs-user-profile--form-drupal form').submit();
+
+        // Restore submitted
+        this.submitted = false;
       }
     },
     data: {
+      submitted: false,
       edit_mode: false,
       password_mode: false,
       require_password: true,

@@ -174,11 +174,18 @@ export default () => {
       },
 
       submit() {
+        this.submitted = true;
+
+        if (!this.$vs_user_register_validator.valid || !this.$vs_user_register_date_validator.valid || !this.validBirthDate()) {
+          return;
+        }
+
         this.applyValues();
         let form = $('.vs-user-login--form-drupal form').submit();
       }
     },
     data: {
+      submitted: false,
       address_manual: false,
       profile: {
         current_pass: '',
