@@ -4,7 +4,6 @@
  * Virgin register interest form template.
  */
 
-$over_12_id = 'over-12-' . uniqid();
 $mkt_id = 'mkt-' . uniqid();
 ?>
 
@@ -74,16 +73,6 @@ $mkt_id = 'mkt-' . uniqid();
                         </option>
                       </select>
                     </div>
-
-                    <?php if (user_is_anonymous()): ?>
-                      <div class="vs-form-group vs-form-group--checkboxes">
-                        <div class="vs-form-check">
-                          <input type="checkbox" v-model="form.over_12" name="over_12" id="<?php print $over_12_id; ?>" class="vs-form-input vs-form-input--check" v-validate:over_12="['required']">
-                          <label for="<?php print $over_12_id; ?>" class="vs-form-label vs-form-label--check"><?php print t("I'm over 12 years old"); ?></label>
-                          <div class="vs-error-label" v-if="$vs_contact_form_validator.over_12.required"><?php print t('You must confirm that you have more than 12 yrs old'); ?></div>
-                        </div>
-                      </div>
-                    <?php endif; ?>
 
                     <div v-if="form.error" class="vs-error-label"><?php print t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."); ?></div>
 
