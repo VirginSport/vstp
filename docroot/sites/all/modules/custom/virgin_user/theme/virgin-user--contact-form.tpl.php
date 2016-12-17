@@ -31,15 +31,14 @@ $mkt_id = 'mkt-' . uniqid();
                       <?php print t("What's On Your Mind?"); ?>
                     </h4>
 
-                    <div class="field-festival vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_contact_form_validator.festival_id.dirty || submitted) && !$vs_contact_form_validator.festival_id.valid }">
-                      <label for="festival_id" class="vs-focus-label"><?php print t('Festival'); ?>*</label>
+                    <div class="field-festival vs-form-group vs-form-group--chosen">
+                      <label for="festival_id" class="vs-focus-label"><?php print t('Festival'); ?></label>
                       <select
                         class="form-control"
                         id="festival_id"
                         name="festival_id"
                         v-model="form.festival_id"
                         v-init='{ events: <?php print $vars['events']; ?>, event_id: <?php print $vars['event_id']; ?> }'
-                        v-validate:festival_id="['required']"
                       >
                         <?php foreach ($vars['festivals'] as $key => $title): ?>
                           <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
@@ -47,7 +46,6 @@ $mkt_id = 'mkt-' . uniqid();
                           </option>
                         <?php endforeach; ?>
                       </select>
-                      <div class="vs-error-label" v-if="($vs_contact_form_validator.festival_id.dirty || submitted) && $vs_contact_form_validator.festival_id.required"><?php print t('Festival is required'); ?></div>
                       <div class="vs-loading" v-if="loading"><?php print t('loading'); ?>...</div>
                     </div>
 
