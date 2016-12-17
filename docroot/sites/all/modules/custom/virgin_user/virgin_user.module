@@ -55,6 +55,16 @@ define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
 define('VIRGIN_USER_ATTENDLY_ITEMS_COOKIE', 'attendly-items');
 
 /**
+ * Implements hook_init().
+ */
+function virgin_user_init() {
+  // Redirect user to user/login when accessing to user if he's not registered
+  if (current_path() == 'user' && user_is_anonymous()) {
+    drupal_goto('user/login');
+  }
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_user_ctools_plugin_directory($module, $plugin) {
