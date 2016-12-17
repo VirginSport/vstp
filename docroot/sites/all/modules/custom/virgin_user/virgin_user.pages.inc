@@ -425,13 +425,14 @@ function virgin_user_page_ajax_form_post() {
     drupal_access_denied();
   }
 
+  $user_anonymous = user_is_anonymous();
   $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
   $defaults = array(
-    'first_name' => $user_grapher->fieldGetOne('field_first_name'),
-    'last_name' => $user_grapher->fieldGetOne('field_last_name'),
-    'contact_number' => $user_grapher->fieldGetOne('field_contact_number'),
-    'email' => $user_grapher->property('mail'),
+    'first_name' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_first_name'),
+    'last_name' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_last_name'),
+    'contact_number' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_contact_number'),
+    'email' => $user_anonymous ? '' : $user_grapher->property('mail'),
     'message' => '',
     '$type' => '',
     'festival_id' => '',
@@ -448,7 +449,7 @@ function virgin_user_page_ajax_form_post() {
 
   $params = array(
     'type' => $data['type'],
-    'contact_id' => $user_grapher->fieldGetOne('field_sugar_id', NULL),
+    'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
     'first_name' => $data['first_name'],
     'last_name' => $data['last_name'],
