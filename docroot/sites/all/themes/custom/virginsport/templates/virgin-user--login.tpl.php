@@ -24,10 +24,10 @@ $query = drupal_get_query_parameters();
   </div>
 </div>
 
-<div class="vs-user-login v-element vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default" data-vs-region-overlap="<?php print empty($claim_ticket) ? 'none' : 'medium'; ?>">
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default" data-vs-region-overlap="<?php print empty($claim_ticket) ? 'none' : 'medium'; ?>">
   <?php print $claim_ticket; ?>
 
-  <div class="container">
+  <div class="container vs-user-login v-element">
     <div class="row">
       <div class="col-xs-12">
         <ul class="nav nav-tabs vs-tabs--color-blue">

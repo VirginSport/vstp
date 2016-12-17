@@ -27,11 +27,8 @@ $query = drupal_get_query_parameters();
   </div>
 </div>
 
-<div
-  class="vs-user-password v-element vs-region vs-region--gradient-default"
-  data-vs-region-curved="1" data-vs-region-color="default"
->
-  <div class="container">
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
+  <div class="container vs-user-password v-element ">
     <div class="row">
       <div class="col-xs-12">
         <div class="vs-user-password--form-drupal hidden-xs-up">
