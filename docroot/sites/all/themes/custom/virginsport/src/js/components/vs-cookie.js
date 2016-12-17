@@ -8,6 +8,10 @@ import cookie from 'js-cookie';
 export default () => {
   Drupal.behaviors.virginsport = {
     attach: () => {
+      if (!Drupal.settings.virginsport || !Drupal.settings.virginsport.cookie_template) {
+        return;
+      }
+      
       let cookie_class = 'vs-notification--cookie';
       let cookie_key = 'cookie_accepted';
       let cookie_accepted = cookie.get(cookie_key);
