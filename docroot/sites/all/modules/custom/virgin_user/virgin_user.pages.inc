@@ -455,12 +455,15 @@ function virgin_user_page_ajax_form_post() {
     'last_name' => $data['last_name'],
     'contact_number' => $data['contact_number'],
     'message' => $data['message'],
+    'festival' => '',
     'events' => array()
   );
 
-  $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
-  $festival_state_grapher = $festival_grapher->relation('field_festival_state');
-  $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
+  if (!empty($data['festival_id'])) {
+    $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
+    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+    $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
+  }
 
   // To be populated with GTM data
   $gtm = array();
