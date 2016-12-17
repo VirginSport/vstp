@@ -42,10 +42,10 @@ $query = drupal_get_query_parameters();
               <div class="col-xs-12">
                 <div class="vs-user-form__wrapper">
                   <div class="field-mail">
-                    <div class="vs-form-group">
+                    <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_password_validator.field_email.dirty || submitted) && !$vs_user_password_validator.field_email.valid }">
                       <input class="form-control" type="email" v-model="profile.field_mail" name="field_mail" id="field_mail" v-validate:field_email="{ required: true, email: true }">
                       <label class="vs-focus-label" for="field_mail"><?php print t('Email Address'); ?>*</label>
-                      <div class="vs-error-label" v-if="$vs_user_password_validator.field_email.dirty && $vs_user_password_validator.field_email.required"><?php print t('Email is required'); ?></div>
+                      <div class="vs-error-label" v-if="($vs_user_password_validator.field_email.dirty || submitted) && $vs_user_password_validator.field_email.required"><?php print t('Email is required'); ?></div>
                       <div class="vs-error-label" v-if="!$vs_user_password_validator.field_email.required && $vs_user_password_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
                     </div>
                   </div>
@@ -56,7 +56,7 @@ $query = drupal_get_query_parameters();
 
           <div class="col-xs-12">
             <div class="vs-user-form__wrapper">
-              <button  :disabled="!$vs_user_password_validator.valid" v-on:click="submit" class="btn vs-btn vs-btn--min-xxl vs-user-password--form-submit"><?php print ('E-mail new Password'); ?></button>
+              <button v-on:click="submit" class="btn vs-btn vs-btn--min-xxl vs-user-password--form-submit"><?php print ('E-mail new Password'); ?></button>
             </div>
           </div>
         </form>

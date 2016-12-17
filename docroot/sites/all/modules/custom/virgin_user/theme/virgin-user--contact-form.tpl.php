@@ -31,7 +31,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <?php print t("What's On Your Mind?"); ?>
                     </h4>
 
-                    <div class="field-festival vs-form-group vs-form-group--chosen">
+                    <div class="field-festival vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_contact_form_validator.festival_id.dirty || submitted) && !$vs_contact_form_validator.festival_id.valid }">
                       <label for="festival_id" class="vs-focus-label"><?php print t('Festival'); ?>*</label>
                       <select
                         class="form-control"
@@ -60,7 +60,7 @@ $mkt_id = 'mkt-' . uniqid();
                       </select>
                     </div>
 
-                    <div class="vs-form-group vs-form-group--chosen">
+                    <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_contact_form_validator.type.dirty || submitted) && !$vs_contact_form_validator.type.valid }">
                       <label for="type" class="vs-focus-label"><?php print t("I'd like to know more about"); ?>*</label>
                       <select class="form-control" v-model="form.type" id="type" name="type" v-validate:type="['required']">
                           <option value="festival-event"><?php print t('Festival/Event'); ?></option>
@@ -87,26 +87,26 @@ $mkt_id = 'mkt-' . uniqid();
                         <?php print t('About You'); ?>
                       </h4>
 
-                      <div class="vs-form-group">
+                      <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_contact_form_validator.first_name.dirty || submitted) && !$vs_contact_form_validator.first_name.valid }">
                         <input class="form-control" id="first_name" type="text" v-model="form.first_name" name="first_name" v-validate:first_name="['required']">
                         <label class="vs-focus-label" for="first_name"><?php print t('First Name'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_contact_form_validator.first_name.dirty || submitted) && $vs_contact_form_validator.first_name.required"><?php print t('@ is required', array('@' => t('First Name'))); ?></div>
                       </div>
 
-                      <div class="vs-form-group">
+                      <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_contact_form_validator.last_name.dirty || submitted) && !$vs_contact_form_validator.last_name.valid }">
                         <input class="form-control" id="last_name" type="text" v-model="form.last_name" name="last_name" v-validate:last_name="['required']">
                         <label class="vs-focus-label" for="last_name"><?php print t('Last Name'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_contact_form_validator.last_name.dirty || submitted) && $vs_contact_form_validator.last_name.required"><?php print t('@ is required', array('@' => t('Last Name'))); ?></div>
                       </div>
 
-                      <div class="vs-form-group">
+                      <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_contact_form_validator.email.dirty || submitted) && !$vs_contact_form_validator.email.valid }">
                         <input class="form-control" id="email" type="email" v-model="form.email" name="email" v-validate:email="['required','email']">
                         <label class="vs-focus-label" for="email"><?php print t('Email'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_contact_form_validator.email.dirty || submitted) && $vs_contact_form_validator.email.required"><?php print t('@ is required', array('@' => t('Email'))); ?></div>
                         <div class="vs-error-label" v-if="!$vs_contact_form_validator.email.required && $vs_contact_form_validator.email.email"><?php print t('@ is not valid', array('@' => t('Email'))); ?></div>
                       </div>
 
-                      <div class="vs-form-group">
+                      <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_contact_form_validator.contact_number.dirty || submitted) && !$vs_contact_form_validator.contact_number.valid }">
                         <input class="form-control" id="contact_number" type="text" v-model="form.contact_number" name="contact_number" v-validate:contact_number="['required']">
                         <label class="vs-focus-label" for="contact_number"><?php print t('Contact number'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_contact_form_validator.contact_number.dirty || submitted) && $vs_contact_form_validator.contact_number.required"><?php print t('@ is required', array('@' => t('Contact number'))); ?></div>
