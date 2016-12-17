@@ -25,7 +25,8 @@ const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
  */
 const SPACERLESS_LAST_COMPONENTS = [
   '.vs-cta-block',
-  '.vs-hero-banner'
+  '.vs-hero-banner',
+  '.vs-introduction__container-wrapper'
 ];
 
 /**
@@ -77,21 +78,26 @@ function findRegions() {
       // Create regions
       regions.push(new Region(el, regions[idx - 1]));
       
-      // Find it spacer needs to be removed
+      // Find if spacer needs to be hidden due to some components being the last
+      // components in the region.
       let $region = $(el);
-      let $last = $region.find('.panels-ipe-portlet-wrapper').last();
       let spacerless_component_selector = SPACERLESS_LAST_COMPONENTS.join(',');
-      let $cta = $last.find(spacerless_component_selector);
-
-      // Find components with spacer that needs to be removed
-      let $component = $region.find(spacerless_component_selector).find('+ .vs-region__bg + .vs-region__bg-spacer').last();
       
-      if ($cta.length || $component.length) {
+      // Make sure the element preceding the region background, if it's one of
+      // the self padded components, mark them as such.
+      let $prev = $region.find('.vs-region__bg').prev();
+      let $prevChildren = $prev.find(spacerless_component_selector);
+      let $prevComponent = $prev.filter(spacerless_component_selector);
+      
+      $prevChildren.addClass('vs-region-self-padded');
+      $prevComponent.addClass('vs-region-self-padded');
+      
+      if ($prevChildren.length || $prevComponent.length) {
         $region.addClass('vs-region--hide-bg-spacer');
       }
     })
   ;
-  
+
   if (!hasRun) {
     $('html').attr('vs-region-loading', '');
     hasRun = true;
