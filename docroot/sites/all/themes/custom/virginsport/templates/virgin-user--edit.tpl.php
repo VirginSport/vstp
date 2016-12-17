@@ -137,7 +137,7 @@
                               <div class="vs-error-label" v-if="$vs_user_profile_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
                             </div>
 
-                            <div class="vs-form-group vs-form-group--manual" :class="{ 'vs-has-error': !$vs_user_profile_validator.field_address_line_2.valid }">
+                            <div class="vs-form-group vs-form-group--manual">
                               <input :class="{'vs-form-control--not-empty': profile.field_address_line_2.length > 1 }" class="form-control" type="text" v-model="profile.field_address_line_2" name="field_address_line_2" id="field_address_line_2">
                               <label for="field_address_line_2" class="vs-focus-label"><?php print t('Address Line 2'); ?></label>
                             </div>

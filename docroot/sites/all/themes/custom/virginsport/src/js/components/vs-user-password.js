@@ -64,7 +64,7 @@ export default () => {
       submit() {
         this.submitted = true;
 
-        if (!$vs_user_password_validator.valid) {
+        if (!this.$vs_user_password_validator.valid) {
           return;
         }
 
