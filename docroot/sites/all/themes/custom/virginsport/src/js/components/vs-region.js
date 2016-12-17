@@ -25,7 +25,17 @@ const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
  */
 const SPACERLESS_LAST_COMPONENTS = [
   '.vs-cta-block',
-  '.vs-hero-banner',
+  '.vs-hero-banner'
+];
+
+/**
+ * A list of selectors for which the margin
+ * bottom does not apply who have the
+ * space applied as a padding.
+ *
+ * @type {string[]}
+ */
+const SELF_PADDED_COMPONENTS = [
   '.vs-introduction__container-wrapper'
 ];
 
@@ -81,16 +91,19 @@ function findRegions() {
       // Find if spacer needs to be hidden due to some components being the last
       // components in the region.
       let $region = $(el);
-      let spacerless_component_selector = SPACERLESS_LAST_COMPONENTS.join(',');
+      let spacerless_components = SPACERLESS_LAST_COMPONENTS.concat(SELF_PADDED_COMPONENTS);
+      let spacerless_component_selector = spacerless_components.join(',');
+      let self_padded_components_selector = SELF_PADDED_COMPONENTS.join(',');
       
       // Make sure the element preceding the region background, if it's one of
-      // the self padded components, mark them as such.
+      // the spacerless components, mark them as such.
       let $prev = $region.find('.vs-region__bg').prev();
       let $prevChildren = $prev.find(spacerless_component_selector);
       let $prevComponent = $prev.filter(spacerless_component_selector);
       
-      $prevChildren.addClass('vs-region-self-padded');
-      $prevComponent.addClass('vs-region-self-padded');
+      // Find if the component is self padded, and if it is, mark it as such
+      $prevChildren.filter(self_padded_components_selector).addClass('vs-region-self-padded');
+      $prevComponent.filter(self_padded_components_selector).addClass('vs-region-self-padded');
       
       if ($prevChildren.length || $prevComponent.length) {
         $region.addClass('vs-region--hide-bg-spacer');
