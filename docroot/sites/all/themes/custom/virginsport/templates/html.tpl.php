@@ -55,6 +55,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Stylesheets -->
     <?php print $styles; ?>
+    <!-- Render Blocking Scripts -->
+    <script>
+      window.document.documentElement.setAttribute('vs-region-loading', 'true');
+    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

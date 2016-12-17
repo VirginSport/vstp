@@ -31,6 +31,14 @@ $vs-region-overlap-sizes: (
   )
 );
 
+// In order for users not to see a FOUC while region curve styles are being
+// rendered, add a smooth opacity transition to the HTML element if it has
+// the vs-region-loading attribute which is added via a script in the
+// <head> tag and removed via JS once the regions are rendered for the
+// first time.
+html { @include transition(opacity 0.3s ease); }
+html[vs-region-loading="true"] { opacity: 0; }
+
 // For the first ctools region, forcefully disable the spacer
 .vs-head-region {
   .vs-region { padding: 0; }
@@ -49,16 +57,14 @@ $vs-region-overlap-sizes: (
   }
 }
 
-// --------------------------------------------------------
-// TODO FRI Override!!! Needs to be migrated to FRI
-.vs-region {
-  padding-bottom: 0;
-}
-// --------------------------------------------------------
-
 // Ensure regions curves are visible
 .vs-region {
   z-index: 1;
+
+  // IMPORTANT! Without padding the negative margin-top in the first child
+  // element will not work, and negative margin-top is used for the
+  // overlap mechanism.
+  padding-top: 1px;
 }
 
 // Ensure children of the region are visible even with the background active
@@ -79,6 +85,7 @@ $vs-region-overlap-sizes: (
   .vs-region[data-vs-region-overlap="#{$size-name}"] > :first-child {
     @each $break-point in map-keys($size) {
       @include media-breakpoint-only($break-point) {
+        position: relative;
         margin-top: -(map-get($size, $break-point));
       }
     }
@@ -93,6 +100,20 @@ $vs-region-overlap-sizes: (
   }
 }
 
+// Generate the required selectors for the self-padded components
+@each $size-name in map-keys($vs-region-overlap-sizes) {
+  $size: map_get($vs-region-overlap-sizes, $size-name);
+
+  .vs-region[data-vs-next-region-overlap="#{$size-name}"] .vs-region-self-padded {
+    @each $break-point in map-keys($size) {
+      @include media-breakpoint-only($break-point) {
+        padding-bottom: map-get($size, $break-point);
+      }
+    }
+  }
+}
+
+// Generate the gradients colors for the regions
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
