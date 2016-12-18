@@ -19,7 +19,7 @@
   <h1 class="vs-cta-block__title"><?php print check_plain($title); ?></h1>
   <?php endif; ?>
   <?php if(!empty($description)): ?>
-  <div class="vs-cta-block__content"><?php print $description; ?></div>
+  <p class="vs-cta-block__content"><?php print $description; ?></p>
   <?php endif; ?>
   <?php if(!empty($cta_links)): ?>
   <div class="vs-cta-block__cta-wrapper">
