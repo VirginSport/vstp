@@ -19,9 +19,18 @@
  */
 $width = ($carousel_style == 'full_width') ? 'vs-carousel-wrapper' : 'vs-carousel-wrapper--contained';
 $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
+$container_heading = ($carousel_style == 'full_width') ? '-fluid' : '';
 ?>
 
 <!--Carousel-->
+<div class="container<?php print $container_heading; ?>">
+  <div class="row">
+    <div class="vs-component-heading vs-carousel-heading">
+      <?php print $heading; ?>
+    </div>
+  </div>
+</div>
+
 <div class="vs-carousel">
 
   <div class="<?php print $width; ?>">
