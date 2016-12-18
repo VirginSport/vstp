@@ -19,7 +19,6 @@
  */
 $width = ($carousel_style == 'full_width') ? 'vs-carousel-wrapper' : 'vs-carousel-wrapper--contained';
 $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
-
 ?>
 
 <!--Carousel-->
@@ -32,13 +31,12 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
         <?php foreach ($variables['banners'] as $banner): ?>
 
           <?php $slide_item = new VirginEntityGrapher('paragraphs_item', $banner['entity_grapher']); ?>
-
           <!-- vs_custom_banner -->
 
           <?php if($slide_item->property('bundle') == 'vs_custom_banner') : ?>
 
             <div class="vs-carousel__item">
-              <div class="vs-promo-banner vs-promo-banner--color-<?php print $variables['brand_color']; ?>">
+              <div class="vs-promo-banner vs-promo-banner--color-<?php print $slide_item->fieldGetOne('field_brand_color'); ?>">
                 <div class="container-fluid">
                   <div class="row">
                     <div class="vs-promo-banner-block-wrapper">
@@ -79,7 +77,7 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
             <?php $event = $slide_item->relation('field_festival_event_reference'); ?>
 
             <div class="vs-carousel__item">
-              <div class="vs-promo-banner vs-promo-banner--color-<?php print $variables['brand_color']; ?>">
+              <div class="vs-promo-banner vs-promo-banner--color-<?php print $event->fieldGetOne('field_brand_color'); ?>">
                 <div class="container-fluid">
                   <div class="row">
                     <div class="vs-promo-banner-block-wrapper">
