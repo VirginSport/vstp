@@ -1,24 +1,21 @@
 import 'slick-carousel';
+import Drupal from '../lib/drupal';
 
-export default function () {
-  $(document).ready(() => {
-    initCarousels();
-  });
+
+export default () => {
+  Drupal.behaviors.virginSportCarousel = {
+    attach: () => initCarousels()
+  }
 }
-
-// export default () => {
-//   Drupal.behaviors.virginSportCarousel = {
-//     attach: () => initCarousels();
-//   }
-// }
 
 /**
  * Initialize carousel
  */
 function initCarousels() {
 
-  var carousels =
-    $('.vs-carousel:not(.carousel-initialized), .vs-carousel:not(.carousel-initialized)');
+  var carousels = $('.vs-carousel').not('.vs-carousel-found');
+
+  carousels.addClass('vs-carousel-found');
 
   carousels.each(function(i, obj) {
 
@@ -116,8 +113,5 @@ function initCarousels() {
     });
 
     wrapper.slick('slickGoTo', 0);
-
-    // All done
-    $(this).addClass("photo-gallery-initialized");
   });
 }
