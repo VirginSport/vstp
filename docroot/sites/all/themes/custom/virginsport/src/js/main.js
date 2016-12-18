@@ -20,6 +20,7 @@ import vsCookie from './components/vs-cookie';
 import vsNotification from './components/vs-notification';
 import vsHeroBanner from './components/vs-heroBanner';
 import vsGtm from './components/vs-gtm';
+import vsPhotoGallery from './components/vs-photo-gallery';
 
 vsBasket();
 vsContactForm();
@@ -41,6 +42,7 @@ vsCookie();
 vsNotification();
 vsHeroBanner();
 vsGtm();
+vsPhotoGallery();
 
 // Libs
 import bootstrap from './lib/bootstrap';
