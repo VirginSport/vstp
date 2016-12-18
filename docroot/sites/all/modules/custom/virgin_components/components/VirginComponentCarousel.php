@@ -39,7 +39,7 @@ class VirginComponentCarousel implements VirginComponentsInterface {
     $variables['carousel_style'] = $virgin->fieldGetOne('field_carousel_style');
     $variables['autoplay'] = $virgin->fieldGetOne('field_autoplay');
     $variables['brand_color'] = $virgin->fieldGetOne('field_brand_color');
-    $x = 0;
+
     $banners = array();
 
     foreach($variables['field_banners'] as $banner) {

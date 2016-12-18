@@ -4,9 +4,19 @@
  * Main template for virgin components fieldable panel panes vs_carousel
  *
  * Variables available:
- * TODO
+ * @var title
+ * The component title
+ * @var heading
+ * The component heading
+ * @var carousel_style
+ * Define if carousel is full width or not
+ * @var autoplay
+ * Defines carousel autoplay ability
+ * @var brand_color
+ * The component brand color
+ * @var banners
+ * A list of paragraphs
  */
-
 $width = ($carousel_style == 'full_width') ? 'vs-carousel-wrapper' : 'vs-carousel-wrapper--contained';
 $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
 
@@ -35,9 +45,11 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
                       <div class="vs-promo-banner__background" style="<?php print virginsport_atom_background($slide_item->relation('field_hero_image')->getEntity()); ?>"></div>
                       <div class="col-xs-12 vs-promo-banner__content-wrapper">
                         <h1 class="vs-promo-banner__title"><?php print $slide_item->fieldGetOne('title_field'); ?></h1>
-                        <div class="vs-promo-banner__content">
-                          <?php print $slide_item->fieldGetOne('field_description_short'); ?>
-                        </div>
+                        <?php if(!empty($slide_item->fieldGetOne('field_description_short'))): ?>
+                          <div class="vs-promo-banner__content">
+                            <?php print $slide_item->fieldGetOne('field_description_short'); ?>
+                          </div>
+                        <?php endif; ?>
                         <div class="vs-promo-banner__ctaButton-wrapper">
                             <?php print
                               theme('virginsport_cta_links',
@@ -49,7 +61,9 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
                             ?>
                         </div>
                       </div>
-                      <div class="hidden-md-down vs-promo-banner__caption"><?php print $slide_item->fieldGetOne('field_caption'); ?></div>
+                      <?php if(!empty($slide_item->fieldGetOne('field_caption'))): ?>
+                        <div class="hidden-md-down vs-promo-banner__caption"><?php print $slide_item->fieldGetOne('field_caption'); ?></div>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -72,21 +86,15 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
                       <div class="vs-promo-banner__background" style="<?php print virginsport_atom_background($event->relation('field_header_image')->getEntity()); ?>"></div>
                       <div class="col-xs-12 vs-promo-banner__content-wrapper">
                         <h1 class="vs-promo-banner__title"><?php print $event->fieldGetOne('title_field'); ?></h1>
-                        <div class="vs-promo-banner__content">
-                          <?php print $event->fieldGetOne('field_description'); ?>
-                        </div>
-                        <div class="vs-promo-banner__ctaButton-wrapper">
-                          <?php print
-                            theme('virginsport_cta_links',
-                              array(
-                                'links' => $slide_item->fieldGetAll('field_cta_links'),
-                                'classes' => 'vs-btn--min-sm vs-promo-banner__ctaButton'
-                              )
-                            );
-                          ?>
-                        </div>
+                        <?php if(!empty($event->fieldGetOne('field_description'))): ?>
+                          <div class="vs-promo-banner__content">
+                            <?php print $event->fieldGetOne('field_description'); ?>
+                          </div>
+                        <?php endif; ?>
                       </div>
-                      <div class="hidden-md-down vs-promo-banner__caption"><?php print $slide_item->fieldGetOne('field_caption'); ?></div>
+                      <?php if(!empty($event->fieldGetOne('field_caption'))): ?>
+                        <div class="hidden-md-down vs-promo-banner__caption"><?php print $event->fieldGetOne('field_caption'); ?></div>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
