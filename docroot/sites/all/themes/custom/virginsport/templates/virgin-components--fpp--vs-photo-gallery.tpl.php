@@ -4,7 +4,14 @@
  * Main template for virgin components fieldable panel panes vs_photo-gallery
  *
  * Variables available:
- * TODO
+ * @var title
+ * Component title
+ * @var heading
+ * Component heading
+ * @var thumbnail
+ * Define thumbnails if true
+ * @var slides
+ * A list of paragraphs
  */
 ?>
 <div class="vs-photo-gallery">
