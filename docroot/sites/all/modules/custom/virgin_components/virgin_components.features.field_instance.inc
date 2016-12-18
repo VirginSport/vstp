@@ -853,49 +853,6 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'fieldable_panels_pane-vs_carousel-field_thumbnails'.
-  $field_instances['fieldable_panels_pane-vs_carousel-field_thumbnails'] = array(
-    'bundle' => 'vs_carousel',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_thumbnails',
-    'label' => 'Thumbnails',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 0,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'fieldable_panels_pane-vs_carousel-title_field'.
   $field_instances['fieldable_panels_pane-vs_carousel-title_field'] = array(
     'bundle' => 'vs_carousel',
@@ -4344,6 +4301,50 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-vs_slide-field_brand_color'.
+  $field_instances['paragraphs_item-vs_slide-field_brand_color'] = array(
+    'bundle' => 'vs_slide',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
       'weight' => 3,
     ),
   );
