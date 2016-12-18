@@ -24,8 +24,7 @@ const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
  * @type {string[]}
  */
 const SPACERLESS_LAST_COMPONENTS = [
-  '.vs-cta-block',
-  '.vs-hero-banner'
+  '.vs-hero-banner',
 ];
 
 /**
@@ -36,7 +35,8 @@ const SPACERLESS_LAST_COMPONENTS = [
  * @type {string[]}
  */
 const SELF_PADDED_COMPONENTS = [
-  '.vs-introduction__container-wrapper'
+  '.vs-introduction__container-wrapper',
+  '.vs-cta-block__item'
 ];
 
 /**
