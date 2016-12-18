@@ -351,12 +351,6 @@ vs-header,
   }
 }
 
-@include media-breakpoint-up(xl) {
-  .vs-header__nav-link {
-    font-size: 1.125rem;
-  }
-}
-
 @media screen and (min-width: $main-nav-breakpoint) {
   .vs-menu-trigger {
     display: none;

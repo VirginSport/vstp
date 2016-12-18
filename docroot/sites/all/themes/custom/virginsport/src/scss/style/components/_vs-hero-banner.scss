@@ -73,6 +73,10 @@ vs-hero-banner,
   &:last-child {
     margin-bottom: 0;
   }
+
+  + .vs-hero-banner__button-wrapper {
+    margin-top: 1.125rem;
+  }
 }
 
 .vs-hero-banner__subtitle {
