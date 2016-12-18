@@ -70,3 +70,8 @@ $last-child-count: 3;
 .vs-claim-ticket {
   margin-bottom: 80px;
 }
+
+.vs-region > .vs-hero-banner:first-child,
+.panels-ipe--vs-hero-banner:first-child {
+  margin-top: 10px;
+}
