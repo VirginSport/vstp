@@ -40,6 +40,11 @@ export default () => {
       // Only require password id drupal form edit-current-pass element exists
       this.require_password = !(!$('input#edit-current-pass').length);
 
+      // Show password mode by default if user comes from recover password
+      if (!this.require_password) {
+        this.password_mode = true;
+      }
+
       this.bindAutocomplete();
       this.bindLists();
       this.populateLists();
