@@ -2185,6 +2185,49 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_photo_gallery-field_thumbnail'.
+  $field_instances['fieldable_panels_pane-vs_photo_gallery-field_thumbnail'] = array(
+    'bundle' => 'vs_photo_gallery',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_thumbnail',
+    'label' => 'Thumbnails',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -6,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_photo_gallery-title_field'.
   $field_instances['fieldable_panels_pane-vs_photo_gallery-title_field'] = array(
     'bundle' => 'vs_photo_gallery',
@@ -5267,6 +5310,7 @@ function virgin_components_field_default_field_instances() {
   t('Slide');
   t('Slider Images');
   t('Subheading');
+  t('Thumbnails');
   t('Tickets');
   t('Title');
   t('Untimed Events');
