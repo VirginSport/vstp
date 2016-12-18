@@ -44,7 +44,7 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
                     <div class="vs-promo-banner-block-wrapper">
                       <div class="vs-promo-banner__background" style="<?php print virginsport_atom_background($slide_item->relation('field_hero_image')->getEntity()); ?>"></div>
                       <div class="col-xs-12 vs-promo-banner__content-wrapper">
-                        <h1 class="vs-promo-banner__title"><?php print $slide_item->fieldGetOne('title_field'); ?></h1>
+                        <h1 class="vs-promo-banner__title vs-outline"><?php print $slide_item->fieldGetOne('title_field'); ?></h1>
                         <?php if(!empty($slide_item->fieldGetOne('field_description_short'))): ?>
                           <div class="vs-promo-banner__content">
                             <?php print $slide_item->fieldGetOne('field_description_short'); ?>
@@ -85,7 +85,7 @@ $autoplay = ($variables['autoplay'] == TRUE) ? 'autoplay' : '';
                     <div class="vs-promo-banner-block-wrapper">
                       <div class="vs-promo-banner__background" style="<?php print virginsport_atom_background($event->relation('field_header_image')->getEntity()); ?>"></div>
                       <div class="col-xs-12 vs-promo-banner__content-wrapper">
-                        <h1 class="vs-promo-banner__title"><?php print $event->fieldGetOne('title_field'); ?></h1>
+                        <h1 class="vs-promo-banner__title vs-outline"><?php print $event->fieldGetOne('title_field'); ?></h1>
                         <?php if(!empty($event->fieldGetOne('field_description'))): ?>
                           <div class="vs-promo-banner__content">
                             <?php print $event->fieldGetOne('field_description'); ?>
