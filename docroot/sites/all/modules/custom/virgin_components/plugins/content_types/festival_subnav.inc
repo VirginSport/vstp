@@ -120,7 +120,7 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
   );
 
   if (in_array($festival_status, $show_tickets_states)) {
-    $links[] = virgin_components_festival_subnav_content_type_get_link(t('Passes'), url('node/' . $festival_nid . '/tickets'));
+    $links[] = virgin_components_festival_subnav_content_type_get_link(t('Passes'), 'node/' . $festival_nid . '/tickets');
   }
 
   // Related festival pages ----------------------------------------------------

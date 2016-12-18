@@ -32,6 +32,7 @@ features[field_base][] = field_alignment
 features[field_base][] = field_allergies
 features[field_base][] = field_answer
 features[field_base][] = field_attendly_id
+features[field_base][] = field_autoplay
 features[field_base][] = field_banners
 features[field_base][] = field_birth_date
 features[field_base][] = field_body
