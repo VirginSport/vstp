@@ -113,6 +113,10 @@ vs-promo-banner,
     .vs-promo-banner__title:after {
       background-color: map_get($map, 'solid-color');
     }
+
+    .vs-promo-banner__caption {
+      color: map_get($map, 'solid-color');
+    }
   }
 }
 
