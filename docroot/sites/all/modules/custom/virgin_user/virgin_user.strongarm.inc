@@ -183,6 +183,7 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->value = array(
     'email' => 'email',
     'user_birthday' => 'user_birthday',
+    'user_location' => 'user_location',
     'public_profile' => 0,
     'user_friends' => 0,
     'manage_notifications' => 0,
@@ -208,7 +209,6 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
     'user_groups' => 0,
     'user_hometown' => 0,
     'user_likes' => 0,
-    'user_location' => 0,
     'user_managed_groups' => 0,
     'user_photos' => 0,
     'user_posts' => 0,

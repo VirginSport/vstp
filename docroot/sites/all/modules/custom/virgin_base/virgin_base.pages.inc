@@ -12,7 +12,7 @@
  * @return array
  */
 function virgin_base_ajax_festival_events($festival_id) {
-  $events = virgin_base_events($festival_id);
+  $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
 
   print drupal_json_encode($events);
 }

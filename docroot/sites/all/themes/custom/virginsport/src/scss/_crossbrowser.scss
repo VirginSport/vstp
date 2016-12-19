@@ -1,0 +1,9 @@
+
+// Fix vertical alignment in Internet Explorer
+// ----------------------------------------------------------------------------
+
+@mixin ie-flexbox-fix() {
+  @include flex-direction(column);
+  -ms-flex-pack: center;
+  height: 1px;
+}

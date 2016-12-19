@@ -27,6 +27,43 @@ Vue.validator('match', {
   }
 });
 
+/*
+ * Conditional requirement
+ */
+Vue.validator('conditional_required', {
+  message: 'field is required',
+  /**
+   * Validate a field is required conditionally to other fields populated
+   *
+   * @param val1
+   *  The field value
+   * @param values
+   *  An array of the conditional fields values
+   * @returns boolean
+   */
+  check: function (val1, values) {
+    let conditionalEmpty = true;
+
+    // Check if any of the conditional fields has a value
+    for (let i = 0; i < values.length; i++) {
+      let value = values[i];
+
+      if (value && value.length) {
+        conditionalEmpty = false;
+        break;
+      }
+    }
+
+    // If any of the conditional fields has value make field required
+    if (!conditionalEmpty) {
+      return val1 && val1.length;
+    }
+
+    // Otherwise the field is valid
+    return true;
+  }
+});
+
 // DIRECTIVES ----------------------------------------------------------------------------------------------------------
 
 /**

@@ -4,6 +4,10 @@ html {
   @include font-smoothing();
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .page-wrapper {
   position: relative;
   min-height: 100%;

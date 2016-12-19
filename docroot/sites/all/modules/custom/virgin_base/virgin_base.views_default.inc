@@ -602,15 +602,16 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['filters']['virgin_region']['exposed'] = TRUE;
   $handler->display->display_options['filters']['virgin_region']['expose']['operator_id'] = '';
   $handler->display->display_options['filters']['virgin_region']['expose']['label'] = 'Show content related to a region';
+  $handler->display->display_options['filters']['virgin_region']['expose']['description'] = 'festival';
   $handler->display->display_options['filters']['virgin_region']['expose']['operator'] = 'virgin_region_op';
   $handler->display->display_options['filters']['virgin_region']['expose']['identifier'] = 'virgin_region';
   $handler->display->display_options['filters']['virgin_region']['expose']['required'] = TRUE;
   $handler->display->display_options['filters']['virgin_region']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
+    21 => 0,
+    11 => 0,
+    16 => 0,
   );
   /* Filter criterion: Content: Start Date (field_start_date) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
@@ -645,6 +646,7 @@ function virgin_base_views_default_views() {
     t('Festival state'),
     t('Start Date'),
     t('Show content related to a region'),
+    t('festival'),
     t('Content pane'),
     t('Upcoming Festivals'),
     t('Lists'),

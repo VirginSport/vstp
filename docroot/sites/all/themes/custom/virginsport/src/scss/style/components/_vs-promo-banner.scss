@@ -31,44 +31,34 @@ vs-promo-banner,
 .vs-promo-banner__background {
   width: 100%;
   min-height: 16.25rem;
-
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .vs-promo-banner__content-wrapper {
-  @include flexbox();
-  @include flex-direction(column);
-
   background-color: $c-white;
   min-height: 16.5625rem;
-
   padding: 1.875rem 2.5rem 1.875rem 2.5rem;
+  position: relative;
 }
 
 .vs-promo-banner__title {
-  @include flex(0, 0);
-
   position: relative;
   display: block;
-
   margin: 0 0 1.2rem 0;
-
   font-family: $font-family-serif;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.25rem;
-
   text-transform: uppercase;
   text-align: center;
 }
 
 .vs-promo-banner__content {
-  @include flex(1, 0);
   display: block;
-
   text-align: center;
+  padding-bottom: 5.5rem;
 
   > p:first-child {
     margin-bottom: 1.1875rem;
@@ -76,18 +66,16 @@ vs-promo-banner,
 }
 
 .vs-promo-banner__ctaButton-wrapper {
-  @include flex(0, 0);
-
   text-align: center;
   text-transform: uppercase;
+  position: absolute;
+  width: calc(100% - 3.75rem);
+  bottom: 1.875rem;
 }
 
 .vs-promo-banner__ctaButton {
-  margin-bottom: 0.9375rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin-right: 0.9375rem;
+  margin-top: 0.9375rem;
 }
 
 .vs-promo-banner__ctaTexts-wrapper {
@@ -95,10 +83,8 @@ vs-promo-banner,
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.25rem;
-
   text-transform: uppercase;
   text-align: center;
-
   color: $c-blue;
 }
 
@@ -107,16 +93,15 @@ vs-promo-banner,
   right: 4.1875rem;
   bottom: 1.25rem;
   left: 35.4375rem;
-
   font-family: $font-family-sans-serif;
   font-weight: 300;
   font-size: 0.9375rem;
   color: $c-white;
   line-height: 1.5rem;
   text-transform: uppercase;
-
-  text-align: right;  
+  text-align: right;
 }
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -125,11 +110,9 @@ vs-promo-banner,
   $map: map_get($color-schemes, $color);
 
   .vs-promo-banner--color-#{$color} {
-
     .vs-promo-banner__title:after {
       background-color: map_get($map, 'solid-color');
     }
-    
   }
 }
 
@@ -144,7 +127,6 @@ vs-promo-banner,
 
   .vs-promo-banner__background {
     min-height: 26.875rem;
-
     position: absolute;
     top: 0;
     right: 0;
@@ -154,23 +136,18 @@ vs-promo-banner,
 
   .vs-promo-banner__content-wrapper {
     @include border-radius(.625rem);
-
-    left: 4.1875rem; 
-
+    left: 8.125rem;
     width: 31.25rem;
     min-height: 24.375rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-
     padding: 1.84rem 4.375rem 2.5rem 1.875rem;
   }
 
   .vs-promo-banner__title {
     margin-bottom: 2.8rem;
-
     font-size: 3.125rem;
     line-height: 3.125rem;
-
     text-align: left;
 
     &:after {
@@ -194,14 +171,9 @@ vs-promo-banner,
 
   .vs-promo-banner__ctaTexts-wrapper {
     text-align: left;
-  }  
+  }
 
   .vs-promo-banner__ctaButton-wrapper {
     text-align: left;
-  }
-
-  .vs-promo-banner__ctaButton {
-    margin-bottom: 0.9375rem;
-    margin-right: 0.9375rem;
   }
 }

@@ -425,13 +425,14 @@ function virgin_user_page_ajax_form_post() {
     drupal_access_denied();
   }
 
+  $user_anonymous = user_is_anonymous();
   $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
   $defaults = array(
-    'first_name' => $user_grapher->fieldGetOne('field_first_name'),
-    'last_name' => $user_grapher->fieldGetOne('field_last_name'),
-    'contact_number' => $user_grapher->fieldGetOne('field_contact_number'),
-    'email' => $user_grapher->property('mail'),
+    'first_name' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_first_name'),
+    'last_name' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_last_name'),
+    'contact_number' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_contact_number'),
+    'email' => $user_anonymous ? '' : $user_grapher->property('mail'),
     'message' => '',
     '$type' => '',
     'festival_id' => '',
@@ -448,18 +449,21 @@ function virgin_user_page_ajax_form_post() {
 
   $params = array(
     'type' => $data['type'],
-    'contact_id' => $user_grapher->fieldGetOne('field_sugar_id', NULL),
+    'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
     'first_name' => $data['first_name'],
     'last_name' => $data['last_name'],
     'contact_number' => $data['contact_number'],
     'message' => $data['message'],
+    'festival' => '',
     'events' => array()
   );
 
-  $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
-  $festival_state_grapher = $festival_grapher->relation('field_festival_state');
-  $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
+  if (!empty($data['festival_id'])) {
+    $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
+    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+    $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
+  }
 
   // To be populated with GTM data
   $gtm = array();
@@ -480,14 +484,14 @@ function virgin_user_page_ajax_form_post() {
     if ($data['type'] == 'interested_in') {
       $start_date = $event_state_grapher->fieldGetOne('field_start_date');
 
-      $data = array(
+      $gtm_event = array(
         'event' => 'RegisterInterest',
         'EventType' => $event_state_grapher->fieldGetOne('field_event_type'),
         'EventName' => $event_grapher->property('title'),
         'EventDate' => date('d.m.Y', $start_date)
       );
 
-      $gtm[] = $data;
+      $gtm[] = $gtm_event;
     }
   }
 
@@ -498,11 +502,11 @@ function virgin_user_page_ajax_form_post() {
   try {
     $result['result'] = sugarcrm_client()->systemPost('Virgin/form', $params);
 
-    $error_message = sprintf('%s submitted successfully.', $data['type']);
+    $message = sprintf('%s submitted successfully.', $data['type']);
 
     $result['gtm'][] = array(
-      'event' => 'ErrorEvent',
-      'ErrorType' => $error_message,
+      'event' => $data['type'],
+      'message' => $message,
     );
   } catch (\Exception $e) {
     $result['result'] = FALSE;

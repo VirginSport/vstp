@@ -23,13 +23,13 @@ $plugin = array(
  * Implements hook_plugin_content_type_render().
  */
 function virgin_user_contact_form_content_type_render($subtype, $conf, $panel_args, $context) {
-  $festival_id = empty($conf['festival_id']) ? array() : $conf['festival_id'];
+  $festival_id = empty($conf['festival_id']) ? '' : $conf['festival_id'];
   $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
 
   $vars = array(
     'festival_id' => $festival_id,
     'festivals' => virgin_base_festivals(),
-    'event_id' => empty($conf['event_id']) ? array() : $conf['event_id'],
+    'event_id' => empty($conf['event_id']) ? '' : $conf['event_id'],
     'events' => drupal_json_encode($events),
     'pre_form' => empty($conf['pre_form']) ? array() : $conf['pre_form'],
     'post_form' => empty($conf['post_form']) ? array() : $conf['post_form'],
