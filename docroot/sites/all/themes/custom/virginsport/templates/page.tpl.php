@@ -133,7 +133,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
