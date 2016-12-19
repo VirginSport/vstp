@@ -20,7 +20,9 @@ function initCarousels() {
   carousels.each(function(i, obj) {
 
     var wrapper = $(this).find(".vs-carousel__item-wrapper");
-    var autoplay = wrapper.attr("data-slick-autoplay") === 'true';
+
+    var autoplay = wrapper.hasClass("autoplay") === 'true';
+    var hasAutoplay = ($(this).find(".vs-carousel__item-wrapper.autoplay").length > 0);
 
     // Classes to be aplied to the 'slick-dots' element
     // given that the specified selector apply to the
@@ -34,7 +36,7 @@ function initCarousels() {
         class: 'promo-banner-no-image'
       }
     ];
-    if ($('.vs-carousel__item-wrapper.autoplay').length) {
+    if (hasAutoplay) {
       wrapper.slick({
         "slidesToScroll": 1,
         "arrows": true,
