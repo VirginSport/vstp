@@ -21,7 +21,7 @@ function initCarousels() {
 
     var wrapper = $(this).find(".vs-carousel__item-wrapper");
 
-    var autoplay = wrapper.hasClass("autoplay") == 'true';
+    var autoplay = wrapper.hasClass("autoplay") === 'true';
     var hasAutoplay = ($(this).find(".vs-carousel__item-wrapper.autoplay").length > 0);
 
     // Classes to be aplied to the 'slick-dots' element
