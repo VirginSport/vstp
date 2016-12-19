@@ -30,6 +30,7 @@
   .vs-menu-open & {
     @include blur(30);
     @include transition(all 0.3s ease-in-out 0.3s);
+    z-index: -1;
   }
 
   &.vs-overlay-blur--active {

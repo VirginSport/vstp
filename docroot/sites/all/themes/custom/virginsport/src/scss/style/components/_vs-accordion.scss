@@ -23,7 +23,7 @@ vs-accordion,
 }
 
 .vs-accordion__wrapper {
-  width: 100%;
+  width: calc(100% - 1.25rem);
   margin: auto .625rem;
 }
 
@@ -97,7 +97,7 @@ vs-accordion,
 }
 
 .vs-accordion__panel-text {
-  
+
   > p {
     padding-bottom: 1.313rem;
     font-family: $font-family-sans-serif;

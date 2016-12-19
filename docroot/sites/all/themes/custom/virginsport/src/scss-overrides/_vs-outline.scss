@@ -22,8 +22,12 @@
   }
 }
 
-.vs-promo-banner__title text {
-  stroke-width: 2 !important;
+.vs-outline.vs-promo-banner__title text {
+  stroke-width: 2;
+
+  @include media-breakpoint-down('md') {
+    stroke-width: 1.5;
+  }
 }
 
 // Modifiers

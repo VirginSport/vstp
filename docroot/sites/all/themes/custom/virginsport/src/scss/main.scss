@@ -46,6 +46,10 @@
 @import "style/chosen-overrides";
 
 
+// Crossbrowser
+@import "crossbrowser";
+
+
 // Components
 @import "style/components/vs-attendly-header";
 @import "style/components/vs-button";
@@ -83,6 +87,7 @@
 @import "style/components/vs-sticky-basket";
 @import "style/components/_vs-photo-gallery";
 @import "style/components/vs-card-past";
+@import "style/components/_vs-carousel";
 
 // Pages
 @import "style/components/vs-splash";

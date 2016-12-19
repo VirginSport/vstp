@@ -505,7 +505,9 @@ function _virgin_check_state_node_access() {
       'festival_state',
       'event_state',
       'package_state',
-      'ticket_type_state'
+      'ticket_type_state',
+      'package',
+      'ticket_type'
     );
 
     if (!in_array($node_type, $state_node_types)) {

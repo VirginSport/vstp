@@ -41,6 +41,7 @@ vs-hero-banner,
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+  @include ie-flexbox-fix();
   min-height: 17.125rem;
 }
 
@@ -71,6 +72,10 @@ vs-hero-banner,
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  + .vs-hero-banner__button-wrapper {
+    margin-top: 1.125rem;
   }
 }
 
