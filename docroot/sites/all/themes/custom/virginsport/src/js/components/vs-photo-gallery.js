@@ -8,12 +8,6 @@ export default () => {
   }
 }
 
-/**
- * Activates the user dropdown
- *
- * @param $body
- * @param $header
- */
 // Initialize the photo gallery sliders
 function initPhotoGalleries() {
 
