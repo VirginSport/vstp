@@ -101,7 +101,7 @@ export default () => {
         let acField = $('#google-autocomplete').get(0);
 
         places(acField, (p) => {
-          this.profile.field_address_line_1 = `${p.long('route')} ${p.long('street_number')}`;
+          this.profile.field_address_line_1 = `${p.long('street_number')} ${p.long('route')}`;
           this.profile.field_address_city = p.short('locality');
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
