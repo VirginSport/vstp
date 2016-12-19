@@ -1,10 +1,11 @@
 import bootstrap from 'bootstrap.native/dist/bootstrap-native';
 import 'slick-carousel';
+import Drupal from '../lib/drupal';
 
-export default function () {
-  $(document).ready(() => {
-    initPhotoGalleries();
-  });
+export default () => {
+  Drupal.behaviors.virginSportPhotoGallery = {
+    attach: () => initPhotoGalleries()
+  }
 }
 
 /**
@@ -13,16 +14,19 @@ export default function () {
  * @param $body
  * @param $header
  */
+// Initialize the photo gallery sliders
 function initPhotoGalleries() {
-  var $photoGalleries =
+
+  var photoGalleries =
     $(".vs-photo-gallery:not(.photo-gallery-initialized), .vs-photo-gallery:not(.photo-gallery-initialized)");
 
-  $photoGalleries.each(function(i, obj) {
+  photoGalleries.each(function(i, obj) {
 
     var _ = $(this);
 
     var $root = _.find(".vs-photo-gallery-wrapper");
     var $fsRoot = _.find(".vs-photo-gallery-wrapper--fullscreen");
+
     var $closeButton = _.find(".close");
     var $imageWrapper = $root.find(".vs-photo-gallery__image-wrapper");
     var $fsImageWrapper = $fsRoot.find(".vs-photo-gallery__image-wrapper");
@@ -194,8 +198,7 @@ function initPhotoGalleries() {
     })
 
     $closeButton.click(function () {
-      // modal.close();
-
+      modal.close();
       window.setTimeout(function () {
         $thumbnailsWrapper.find(".slick-current").focus();
       }, 0);
