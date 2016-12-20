@@ -94,6 +94,9 @@ projects:
       revision: f16debef129d247fb9931399ec645d0e7152c625
       branch: master
 
+  seckit:
+    version: "1.9"
+
   service_links:
     version: "2.3"
 
