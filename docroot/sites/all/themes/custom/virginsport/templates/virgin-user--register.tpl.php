@@ -194,7 +194,7 @@ $query = drupal_get_query_parameters();
                                 </div>
 
                                 <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
-                                  <?php print t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."); ?>
+                                  <?php print t("We love your enthusiasm, but you must be 13 to create an account."); ?>
                                 </div>
 
                               <?php
