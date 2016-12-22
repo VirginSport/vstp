@@ -92,9 +92,10 @@ $query = drupal_get_query_parameters();
                             <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_confirm_mail.dirty || submitted) && !$vs_user_register_validator.field_confirm_mail.valid }">
                               <input class="form-control" type="email" v-model="profile.field_confirm_mail" name="field_confirm_mail" id="field_confirm_mail" v-validate:field_confirm_mail="{ required: true, match: profile.field_mail }">
                               <label class="vs-focus-label" for="field_confirm_mail"><?php print t('Confirm Email Address'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_confirm_mail.dirty || submitted) && $vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_email.email && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              <div v-if="$vs_user_register_validator.field_confirm_mail.dirty || submitted">
+                                <div class="vs-error-label" v-if="$vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
+                                <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              </div>
                             </div>
                           </div>
 
