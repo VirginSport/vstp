@@ -8,7 +8,22 @@ export default () => {
         let $el = $(el);
 
         $el.addClass('vs-collapse--found');
-        (new bootstrap.Collapse(el, { duration: $el.attr('data-duration') }))
+        
+        let collapse = new bootstrap.Collapse(el, { duration: $el.attr('data-duration') });
+        
+        // Ensure aria-expanded attribute is set on the parent collapse element
+        let openOriginal = collapse._open;
+        let closeOriginal = collapse._close;
+        
+        collapse._open = function (c) {
+          $el.attr('aria-expanded', 'true');
+          openOriginal.apply(collapse, [c]);
+        };
+        
+        collapse._close = function (c) {
+          $el.attr('aria-expanded', 'false');
+          closeOriginal.apply(collapse, [c]);
+        };
       });
 
       $('[data-toggle="tab"], [data-toggle="pill"]').each((idx, el) => {
