@@ -55,6 +55,16 @@ define('VIRGIN_USER_ATTENDLY_TOKEN_COOKIE', 'attendly-token');
 define('VIRGIN_USER_ATTENDLY_ITEMS_COOKIE', 'attendly-items');
 
 /**
+ * Implements hook_init().
+ */
+function virgin_user_init() {
+  // Redirect user to user/login when accessing to user if he's not registered
+  if (current_path() == 'user' && user_is_anonymous()) {
+    drupal_goto('user/login');
+  }
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_user_ctools_plugin_directory($module, $plugin) {
@@ -687,7 +697,7 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
   $birth_date = virgin_form_value('field_birth_date', $form_state);
 
   if (!$birth_date || (date('Y', time()) - date('Y', strtotime($birth_date))) < VIRGIN_USER_MIN_AGE) {
-    form_set_error('field_birth_date', t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."));
+    form_set_error('field_birth_date', t("We love your enthusiasm, but you must be 13 to create an account."));
   }
 
   // Confirm that the user entered e-mails match

@@ -135,3 +135,42 @@ html[vs-region-loading="true"] { opacity: 0; }
     }
   }
 }
+
+// Generate the required selectors for the self-padded CTA block item
+@each $size-name in map-keys($vs-region-overlap-sizes) {
+  $size: map_get($vs-region-overlap-sizes, $size-name);
+
+  .vs-region[data-vs-next-region-overlap="#{$size-name}"] .vs-region-self-padded.vs-cta-block__item {
+    @each $break-point in map-keys($size) {
+      @include media-breakpoint-only($break-point) {
+        .vs-cta-block__content:after,
+        .vs-cta-block__cta-wrapper:after {
+          margin-bottom: map-get($size, $break-point);
+        }
+      }
+    }
+  }
+}
+
+.vs-region-self-padded.vs-cta-block__item {
+  box-sizing: content-box;
+  * { box-sizing: border-box; }
+
+  .vs-cta-block__content:after,
+  .vs-cta-block__cta-wrapper:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+.vs-region[data-vs-next-region-overlap="none"] {
+  &[data-vs-next-region-curved="1"] {
+    .vs-region-self-padded.vs-cta-block__item {
+      .vs-cta-block__content:after,
+      .vs-cta-block__cta-wrapper:after {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

@@ -118,6 +118,49 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_accordion-field_thumbnails'.
+  $field_instances['fieldable_panels_pane-vs_accordion-field_thumbnails'] = array(
+    'bundle' => 'vs_accordion',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_thumbnails',
+    'label' => 'Thumbnails',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-vs_accordion-title_field'.
   $field_instances['fieldable_panels_pane-vs_accordion-title_field'] = array(
     'bundle' => 'vs_accordion',
@@ -664,6 +707,49 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_carousel-field_autoplay'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_autoplay'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_autoplay',
+    'label' => 'Autoplay',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-vs_carousel-field_banners'.
   $field_instances['fieldable_panels_pane-vs_carousel-field_banners'] = array(
     'bundle' => 'vs_carousel',
@@ -724,6 +810,45 @@ function virgin_components_field_default_field_instances() {
       'settings' => array(),
       'type' => 'paragraphs_embed',
       'weight' => -6,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_carousel-field_brand_color'.
+  $field_instances['fieldable_panels_pane-vs_carousel-field_brand_color'] = array(
+    'bundle' => 'vs_carousel',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => -3,
     ),
   );
 
@@ -1328,6 +1453,45 @@ function virgin_components_field_default_field_instances() {
       ),
       'type' => 'options_onoff',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_hero_banner_block-field_hero_banner_shorter'.
+  $field_instances['fieldable_panels_pane-vs_hero_banner_block-field_hero_banner_shorter'] = array(
+    'bundle' => 'vs_hero_banner_block',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_hero_banner_shorter',
+    'label' => 'Smaller height',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 6,
     ),
   );
 
@@ -2181,6 +2345,49 @@ function virgin_components_field_default_field_instances() {
       'settings' => array(),
       'type' => 'paragraphs_embed',
       'weight' => -7,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_photo_gallery-field_thumbnail'.
+  $field_instances['fieldable_panels_pane-vs_photo_gallery-field_thumbnail'] = array(
+    'bundle' => 'vs_photo_gallery',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_thumbnail',
+    'label' => 'Thumbnails',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -6,
     ),
   );
 
@@ -4305,6 +4512,50 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'paragraphs_item-vs_slide-field_brand_color'.
+  $field_instances['paragraphs_item-vs_slide-field_brand_color'] = array(
+    'bundle' => 'vs_slide',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(
+          'quickedit' => array(
+            'editor' => 'form',
+          ),
+        ),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'paragraphs_item-vs_slide-field_description'.
   $field_instances['paragraphs_item-vs_slide-field_description'] = array(
     'bundle' => 'vs_slide',
@@ -5221,6 +5472,7 @@ function virgin_components_field_default_field_instances() {
   t('Accordion Title');
   t('Align content');
   t('Alignment');
+  t('Autoplay');
   t('Background Image');
   t('Banner Image Title');
   t('Banners');
@@ -5266,7 +5518,9 @@ function virgin_components_field_default_field_instances() {
   t('Show share buttons');
   t('Slide');
   t('Slider Images');
+  t('Smaller height');
   t('Subheading');
+  t('Thumbnails');
   t('Tickets');
   t('Title');
   t('Untimed Events');

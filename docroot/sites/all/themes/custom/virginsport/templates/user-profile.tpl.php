@@ -104,7 +104,7 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
             <h1 class="vs-festival-profile-header--empty__title"><?php print t('Oops...'); ?></h1>
             <p class="vs-festival-profile-header--empty__text">
               <?php print t("You don't have any events coming up."); ?><br/>
-              <?php print t("Have a look at our upcoming festivals and add some to your profile <a href='@link'>@title</a>", array('@link' => url('festivals'), '@title' => t('here'))); ?>.
+              <?php print t("Have a look at our upcoming festivals and add some to your profile <a href='@link'>@title</a>", array('@link' => url('/events'), '@title' => t('here'))); ?>.
             </p>
             <?php print theme('virginsport_color', array('brand_color' => 'gray', 'brand_pattern' => 'wave')); ?>
           </div>

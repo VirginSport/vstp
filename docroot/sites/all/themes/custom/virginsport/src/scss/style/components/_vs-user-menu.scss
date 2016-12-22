@@ -12,6 +12,7 @@ vs-user-menu,
 .vs-user-menu {
   @include clearfix();
   display: inline-block;
+  vertical-align: middle;
 }
 
 
@@ -51,8 +52,8 @@ vs-user-menu,
   background-color: rgba($c-white, .9);
   border-radius: 6px;
   position: absolute;
-  right: 4.125rem;
-  top: 2.75rem;
+  right: 4.3rem;
+  top: 3.25rem;
   padding: 0 0 .9375rem;
   margin: 0;
   visibility: hidden;
@@ -139,19 +140,13 @@ vs-user-menu,
   }
 
   .vs-user-dropdown {
-    top: 3.5rem;
-    right: 5.6rem;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .vs-user-dropdown {
-    right: 5.7rem;
+    top: 3.7rem;
+    right: 5.95rem;
   }
 }
 
 @media screen and (min-width: $main-nav-breakpoint) {
   .vs-user-dropdown {
-    right: 2.75rem;
+    right: 2.5rem;
   }
 }

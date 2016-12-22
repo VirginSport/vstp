@@ -6,6 +6,8 @@ vs-card-upcoming,
 .vs-card-upcoming {
   @include clearfix();
   display: block;
+  position: relative;
+  z-index: 3;
 }
 
 
@@ -137,7 +139,7 @@ vs-card-upcoming,
     font-size: 1.25rem;
     line-height: 1.5rem;
   }
-  
+
 }
 
 

@@ -17,7 +17,7 @@
     <div class="vs-hero-banner-constraint__container container">
 <?php endif; ?>
 
-      <div class="vs-hero-banner vs-hero-banner--constrained">
+      <div class="vs-hero-banner vs-hero-banner--constrained <?php print $vs_classes; ?>">
         <div class="vs-hero-banner__background--fixed"  style="<?php print virginsport_atom_background($hero_banner_image->getEntity()); ?>"></div>
 
         <div class="vs-hero-banner__background">

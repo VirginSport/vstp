@@ -37,7 +37,7 @@
             <h2 class="vs-package-card__title"><?php print check_plain($package_title); ?></h2>
             <?php endif; ?>
             <?php if (!empty($package_description)): ?>
-            <p class="vs-package-card__description"><?php print $package_description; ?></p>
+            <p class="vs-package-card__description"><?php print strip_tags($package_description); ?></p>
             <?php endif; ?>
           </div>
 

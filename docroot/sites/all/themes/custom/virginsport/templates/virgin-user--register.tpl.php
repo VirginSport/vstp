@@ -92,9 +92,10 @@ $query = drupal_get_query_parameters();
                             <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_confirm_mail.dirty || submitted) && !$vs_user_register_validator.field_confirm_mail.valid }">
                               <input class="form-control" type="email" v-model="profile.field_confirm_mail" name="field_confirm_mail" id="field_confirm_mail" v-validate:field_confirm_mail="{ required: true, match: profile.field_mail }">
                               <label class="vs-focus-label" for="field_confirm_mail"><?php print t('Confirm Email Address'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_confirm_mail.dirty || submitted) && $vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_email.email && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              <div v-if="$vs_user_register_validator.field_confirm_mail.dirty || submitted">
+                                <div class="vs-error-label" v-if="$vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
+                                <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              </div>
                             </div>
                           </div>
 
@@ -129,7 +130,7 @@ $query = drupal_get_query_parameters();
                               <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_line_1.dirty || submitted) && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
                             </div>
 
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_line_2.dirty || submitted) && !$vs_user_register_validator.field_address_line_2.valid }">
+                            <div class="vs-form-group">
                               <input :class="{'vs-form-control--not-empty': profile.field_address_line_2.length > 1 }" class="form-control" type="text" v-model="profile.field_address_line_2" name="field_address_line_2" id="field_address_line_2">
                               <label class="vs-focus-label" for="field_address_line_2"><?php print t('Address Line 2'); ?></label>
                             </div>
@@ -152,9 +153,9 @@ $query = drupal_get_query_parameters();
                               <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_postcode.dirty || submitted) && $vs_user_register_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
                             </div>
 
-                            <div class="field-country vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_country.dirty || submitted) && !$vs_user_register_validator.field_address_country.valid }">
-                              <div class="vs-select-wrapper vs-select-wrapper--manual">
-                                <select class="form-control" required v-model="profile.field_address_country" name="field_address_country" id="field_address_country" v-validate:field_address_country="['required']">
+                            <div class="field-country vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_country.dirty || submitted) && !$vs_user_register_validator.field_address_country.valid }">
+                              <div class="vs-chosen-wrapper">
+                                <select required v-model="profile.field_address_country" name="field_address_country" id="field_address_country" v-validate:field_address_country="['required']">
                                 </select>
                                 <label class="vs-focus-label" for="field_address_country"><?php print t('Country'); ?>*</label>
                                 <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_country.dirty || submitted) && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
@@ -194,7 +195,7 @@ $query = drupal_get_query_parameters();
                                 </div>
 
                                 <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
-                                  <?php print t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."); ?>
+                                  <?php print t("We love your enthusiasm, but you must be 13 to create an account."); ?>
                                 </div>
 
                               <?php
@@ -205,10 +206,12 @@ $query = drupal_get_query_parameters();
                             </div>
                           </validator>
 
-                          <div class="field-gender vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
-                            <label for="field_gender" class="vs-focus-label"><?php print t('Gender'); ?>*</label>
-                            <select class="form-control" v-model="profile.field_gender" name="field_gender" id="field_gender" v-validate:field_gender="['required']"></select>
-                            <div class="vs-error-label" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
+                          <div class="field-gender vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
+                            <div class="vs-chosen-wrapper">
+                              <label for="field_gender" class="vs-focus-label"><?php print t('Gender'); ?>*</label>
+                              <select v-model="profile.field_gender" name="field_gender" id="field_gender" v-validate:field_gender="['required']"></select>
+                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
+                            </div>
                           </div>
 
                           <div class="field-marketing vs-form-group vs-form-group--checkboxes">

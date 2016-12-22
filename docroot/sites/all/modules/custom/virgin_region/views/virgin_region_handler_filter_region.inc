@@ -23,6 +23,22 @@ class virgin_region_handler_filter_region extends views_handler_filter_boolean_o
   /**
    * @inheritdoc
    */
+  function expose_form(&$form, &$form_state) {
+    parent::expose_form($form,$form_state);
+
+    // Override description to allow to insert the bundles that should be filtered by region
+    $form['expose']['description'] = array(
+      '#type' => 'textfield',
+      '#default_value' => $this->options['expose']['description'],
+      '#description' => t('Enter entity bundles separated by a comma'),
+      '#title' => t('Entity Bundles'),
+      '#size' => 60,
+    );
+  }
+
+    /**
+   * @inheritdoc
+   */
   function get_value_options() {
     if (!isset($this->value_options)) {
       $this->value_title = t('Region');
@@ -40,6 +56,12 @@ class virgin_region_handler_filter_region extends views_handler_filter_boolean_o
     $this->ensure_my_table();
 
     $current_region = virgin_region_current();
+    $entity_bundles = '';
+
+    // Have to check the entity bundles because we might have another entities with the same id
+    if (!empty($this->options['expose']['description'])) {
+      $entity_bundles = explode(',', $this->options['expose']['description']);
+    }
 
     // If region was not found do not apply this filter
     if (empty($current_region)) {
@@ -63,5 +85,9 @@ class virgin_region_handler_filter_region extends views_handler_filter_boolean_o
     }
 
     $this->query->add_where($this->options['group'], $region_table . '.field_region_target_id', $current_region['nid'], $symbol);
+
+    if (!empty($entity_bundles)) {
+      $this->query->add_where($this->options['group'], $region_table . '.bundle', $entity_bundles, 'IN');
+    }
   }
 }
