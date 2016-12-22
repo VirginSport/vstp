@@ -33,7 +33,7 @@ $modal_id = uniqid();
       </div>
     <?php endif; ?>
 
-    <div class="slider slider hidden-md-up">
+    <div class="vs-video-banner__slider slider hidden-md-up">
       <?php foreach ($slider_images as $atom_grapher): ?>
         <?php if (!empty($atom_grapher->property('sid'))): ?>
           <div
