@@ -16,7 +16,7 @@
 <div class="vs-hero-banner <?php empty($is_small) ? '' : print 'vs-hero-banner--small'; ?>">
   <div class="vs-hero-banner__background--fixed"  style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
 
-  <div class="vs-hero-banner__background vs-hero-banner__default-background">
+  <div class="vs-hero-banner__background <?php print is_null($atom) ? 'vs-hero-banner__default-background' : ''; ?>">
     <?php if ($variables['show_sharer']==1):?>
     <div class="vs-hero-banner__social-wrapper">
       <?php print theme('virginsport_share_buttons', array('subject' => $title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
