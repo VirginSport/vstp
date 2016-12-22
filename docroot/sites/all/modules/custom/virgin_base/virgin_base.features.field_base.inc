@@ -1698,6 +1698,32 @@ function virgin_base_field_default_field_bases() {
     'type' => 'atom_reference',
   );
 
+  // Exported field_base: 'field_hero_banner_shorter'.
+  $field_bases['field_hero_banner_shorter'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hero_banner_shorter',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_hero_event_align'.
   $field_bases['field_hero_event_align'] = array(
     'active' => 1,

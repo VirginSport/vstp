@@ -11,6 +11,7 @@ vs-promo-banner,
 .vs-promo-banner {
   display: block;
   margin-bottom: 9.5rem;
+  z-index: 3;
 
   &:last-child {
     margin-bottom: 0;

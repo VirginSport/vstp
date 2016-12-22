@@ -78,6 +78,7 @@ features[field_base][] = field_has_share_button
 features[field_base][] = field_has_teams
 features[field_base][] = field_hashtag
 features[field_base][] = field_header_image
+features[field_base][] = field_hero_banner_shorter
 features[field_base][] = field_hero_event_align
 features[field_base][] = field_hero_event_reference
 features[field_base][] = field_hero_image
