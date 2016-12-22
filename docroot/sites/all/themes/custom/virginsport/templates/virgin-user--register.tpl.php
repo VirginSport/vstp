@@ -130,7 +130,7 @@ $query = drupal_get_query_parameters();
                               <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_line_1.dirty || submitted) && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
                             </div>
 
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_line_2.dirty || submitted) && !$vs_user_register_validator.field_address_line_2.valid }">
+                            <div class="vs-form-group">
                               <input :class="{'vs-form-control--not-empty': profile.field_address_line_2.length > 1 }" class="form-control" type="text" v-model="profile.field_address_line_2" name="field_address_line_2" id="field_address_line_2">
                               <label class="vs-focus-label" for="field_address_line_2"><?php print t('Address Line 2'); ?></label>
                             </div>
