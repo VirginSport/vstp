@@ -76,6 +76,16 @@
     margin-left: 1%;
   }
 
+  .chosen-container-single .chosen-drop {
+    width: calc(100% + 2px);
+    margin: .25rem 0 0;
+  }
+
+  &.vs-chosen-wrapper--3x .chosen-container-single .chosen-drop {
+    margin: -1px auto 0 6%;
+    width: 88%;
+  }
+
   .chosen-container .chosen-results {
     padding: 0;
     margin: 0;
@@ -111,7 +121,7 @@
 }
 
 .chosen-container-single .chosen-single div b {
-  background: transparent url('../img/chosen-arrow-down.png') no-repeat 0 8px;
+  background: transparent url('../img/chosen-arrow-down.png') no-repeat 0 8px !important;
 }
 
 .chosen-container-active.chosen-with-drop .chosen-single div b {
