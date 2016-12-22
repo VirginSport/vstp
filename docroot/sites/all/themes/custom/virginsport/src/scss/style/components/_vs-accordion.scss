@@ -6,6 +6,8 @@ vs-accordion,
 .vs-accordion {
   @include clearfix();
   display: block;
+  position: relative;
+  z-index: 3;
 }
 
 

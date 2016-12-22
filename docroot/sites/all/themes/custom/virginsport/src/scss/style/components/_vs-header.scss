@@ -58,12 +58,16 @@ vs-header,
 .vs-header__nav-wrapper {
   float: right;
   position: relative;
+  display: table;
+  top: -.375rem;
+  right: -.5rem;
 }
 
 .vs-header__nav {
   margin-bottom: 0;
   font-size: 0;
   display: none;
+  vertical-align: middle;
 }
 
 .vs-header__nav-item {
@@ -79,7 +83,8 @@ vs-header,
   font-weight: 500;
   font-size: 1rem;
 
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: .7;
     color: $c-white;
     text-decoration: none;
@@ -97,6 +102,7 @@ vs-header,
   height: 1.6875rem;
   position: relative;
   top: -.125rem;
+  vertical-align: middle;
 
   &:hover {
     opacity: .7;
@@ -133,11 +139,12 @@ vs-header,
   cursor: pointer;
   z-index: 1;
   border: 0;
-  right: 0;
-  top: .1875rem;
-  margin-top: -.6875rem;
-  margin-right: -.6875rem;
+  vertical-align: middle;
   position: relative;
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    top: .5rem;
+  }
 
   &:hover {
     opacity: .7;
@@ -251,8 +258,8 @@ vs-header,
 .vs-menu-trigger--menu {
   @include transition(visibility 0s .5s, opacity .5s);
   position: fixed;
-  top: .75rem;
-  right: .9375rem;
+  top: .125rem;
+  right: .375rem;
   opacity: 0;
   visibility: hidden;
 
@@ -284,6 +291,10 @@ vs-header,
   }
 }
 
+.vs-menu-trigger--top {
+  top: .125rem;
+  right: .4375rem;
+}
 
 .vs-header--not-top {
   @include transform(translateY(-100%));
@@ -306,6 +317,11 @@ vs-header,
     padding: 3rem calc(3.125rem - 15px) 3rem calc(2.1875rem - 15px);
   }
 
+  .vs-menu-trigger--top {
+    top: 2.625rem;
+    right: 2.625rem;
+  }
+
   .vs-menu-trigger__bar {
     width: 1.75rem;
   }
@@ -317,11 +333,9 @@ vs-header,
   }
 
   .vs-header__basket {
-    width: 3.125rem;
+    width: 3.14rem;
     height: 2.375rem;
     font-size: 1.25rem;
-    position: relative;
-    top: -6px;
   }
 
   .vs-header__basket__value {

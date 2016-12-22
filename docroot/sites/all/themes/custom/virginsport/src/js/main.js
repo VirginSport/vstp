@@ -22,6 +22,8 @@ import vsNotification from './components/vs-notification';
 import vsHeroBanner from './components/vs-heroBanner';
 import vsGtm from './components/vs-gtm';
 import vsCarousel from './components/vs-carousel';
+import vsScroller from './components/vs-scroller';
+import vsPhotoGallery from './components/vs-photo-gallery';
 
 
 vsBasket();
@@ -46,6 +48,8 @@ vsNotification();
 vsHeroBanner();
 vsGtm();
 vsCarousel();
+vsScroller();
+vsPhotoGallery();
 
 // Libs
 import bootstrap from './lib/bootstrap';

@@ -50,7 +50,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #F0F0F0,
     outline-to: #F0F0F0,
-    outline-rotate: 0%
+    outline-rotate: 0%,
+    is-solid: true
   ),
   black: (
     solid-color: $c-black,
@@ -61,7 +62,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-black,
     outline-to: $c-black,
-    outline-rotate: 0%
+    outline-rotate: 0%,
+    is-solid: true
   ),
   gray: (
     solid-color: #F0F0F0,
@@ -72,7 +74,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #F0F0F0,
     outline-to: #F0F0F0,
-    outline-rotate: 0%
+    outline-rotate: 0%,
+    is-solid: true
   ),
   gray-dark: (
     solid-color: #E0E0E0,
@@ -83,7 +86,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #E0E0E0,
     outline-to: #E0E0E0,
-    outline-rotate: 0%
+    outline-rotate: 0%,
+    is-solid: true
   ),
   white: (
     solid-color: $c-white,
@@ -95,7 +99,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-white,
     outline-to: $c-white,
-    outline-rotate: 0%
+    outline-rotate: 0%,
+    is-solid: true
   ),
   blue: (
     solid-color: $c-blue,
@@ -106,7 +111,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #1F85FF,
     outline-to: #4231CB,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   blue-solid: (
     solid-color: $c-blue,
@@ -117,7 +123,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-blue,
     outline-to: $c-blue,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   teal: (
     solid-color: $c-teal,
@@ -128,18 +135,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #01B9C0,
     outline-to: #001642,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   teal-solid: (
     solid-color: $c-teal,
-    text-color: $c-teal,
+    text-color: $c-white,
     from: $c-teal,
     to: $c-teal,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-teal,
     outline-to: $c-teal,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   orange: (
     solid-color: $c-orange,
@@ -150,18 +159,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #FE386,
     outline-to: #FF5858,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   orange-solid: (
     solid-color: $c-orange,
-    text-color: $c-orange,
+    text-color: $c-white,
     from: $c-orange,
     to: $c-orange,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-orange,
     outline-to: $c-orange,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   purple: (
     solid-color: $c-purple,
@@ -172,18 +183,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #9D50BB,
     outline-to: #3A2899,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   purple-solid: (
     solid-color: $c-purple,
-    text-color: $c-purple,
+    text-color: $c-white,
     from: $c-purple,
     to: $c-purple,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-purple,
     outline-to: $c-purple,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   brown: (
     solid-color: $c-brown,
@@ -194,18 +207,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #840324,
     outline-to: #061161,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   brown-solid: (
     solid-color: $c-brown,
-    text-color: $c-brown,
+    text-color: $c-white,
     from: $c-brown,
     to: $c-brown,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-brown,
     outline-to: $c-brown,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   rose: (
     solid-color: $c-rose,
@@ -216,18 +231,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #F857A6,
     outline-to: #FF5858,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   rose-solid: (
     solid-color: $c-rose,
-    text-color: $c-rose,
+    text-color: $c-white,
     from: $c-rose,
     to: $c-rose,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-rose,
     outline-to: $c-rose,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   violet: (
     solid-color: $c-violet,
@@ -238,18 +255,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #FB8B5F,
     outline-to: #504EA1,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   violet-solid: (
     solid-color: $c-violet,
-    text-color: $c-violet,
+    text-color: $c-white,
     from: $c-violet,
     to: $c-violet,
     rotate: -45deg,
     card-rotate: 135deg,
     outline-from: $c-violet,
     outline-to: $c-violet,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   red: (
     solid-color: #FF0040,
@@ -260,7 +279,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: #FF0040,
     outline-to: #830A2A,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   red-yellow: (
     solid-color: $c-red,
@@ -271,7 +291,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-red,
     outline-to: $c-yellow,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   red-pinky-red: (
     solid-color: $c-red,
@@ -282,7 +303,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-red,
     outline-to: $c-pinky-red,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   festival-hackney: (
     solid-color: #EA2322,
@@ -293,7 +315,8 @@ $color-schemes: (
     card-rotate: 90deg,
     outline-from: #EA2322,
     outline-to: #232073,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   festival-british: (
     solid-color: #D60000,
@@ -304,7 +327,8 @@ $color-schemes: (
     card-rotate: 90deg,
     outline-from: #D60000,
     outline-to: #FFE200,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   festival-sanfran: (
     solid-color: #01B9C0,
@@ -315,7 +339,8 @@ $color-schemes: (
     card-rotate: 90deg,
     outline-from: #01B9C0,
     outline-to: #00264F,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: false
   ),
   pinky-red-solid: (
     solid-color: $c-pinky-red,
@@ -326,7 +351,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-pinky-red,
     outline-to: $c-pinky-red,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   ),
   yellow-solid: (
     solid-color: $c-yellow,
@@ -337,7 +363,8 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-yellow,
     outline-to: $c-yellow,
-    outline-rotate: -45%
+    outline-rotate: -45%,
+    is-solid: true
   )
 );
 

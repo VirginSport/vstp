@@ -38,6 +38,46 @@ vs-subnav,
   z-index: 3;
 }
 
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+
+    @if map_get($map, 'is-solid') == false {
+      .vs-subnav__overlay {
+        display: none;
+      }
+    }
+
+    .vs-subnav__link {
+      color: map_get($map, 'text-color');
+
+      &:hover,
+      &:active,
+      &:focus,
+      &.vs-subnav__link--active {
+        color: map_get($map, 'text-color');
+
+        &:before {
+          background-color: map_get($map, 'text-color');
+        }
+      }
+
+      &:hover:before {
+        background-color: map_get($map, 'text-color');
+      }
+    }
+
+    .vs-subnav__link--active:before {
+      background-color: map_get($map, 'text-color');
+    }
+
+    .vs-subnav__overlay {
+      background-image: linear-gradient(-90deg, map_get($map, 'solid-color') 0%, rgba(map_get($map, 'solid-color'), 0) 100%);
+    }
+  }
+}
+
 .vs-subnav__item {
   display: inline-block;
   padding-left: .9375rem;
@@ -68,40 +108,11 @@ vs-subnav,
     height: 2px;
     bottom: 0;
   }
-
-  &:hover,
-  &:active,
-  &:focus,
-  &.vs-subnav__link--active {
-    color: $c-black;
-
-    &:before {
-      background-color: $c-black;
-    }
-  }
 }
 
 
 // Modifiers
 // ----------------------------------------------------------------------------
-
-.vs-region--gradient-black {
-  .vs-subnav__link {
-    color: $c-white;
-
-    &:hover:before {
-      background-color: $c-white;
-    }
-  }
-
-  .vs-subnav__link--active:before {
-    background-color: $c-white;
-  }
-
-  .vs-subnav__overlay {
-    background-image: linear-gradient(-90deg, $c-black 0%, rgba($c-black, 0) 100%);
-  }
-}
 
 .vs-subnav--unpinned,
 .vs-subnav--not-top {
@@ -116,6 +127,10 @@ vs-subnav,
 
   &.vs-subnav--top {
     @include transform(translateY(0));
+  }
+
+  .vs-menu-open & {
+    opacity: 0;
   }
 }
 
