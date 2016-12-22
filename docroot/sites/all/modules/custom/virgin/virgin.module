@@ -110,6 +110,20 @@ function virgin_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
+ * Implements hook_library_alter().
+ */
+function virgin_library_alter(&$libraries, $module) {
+  // Override default chosen to allow it on mobile
+  if ($module == 'chosen' && function_exists('libraries_get_path')) {
+    $library_path = libraries_get_path('custom_chosen');
+
+    $libraries['chosen']['js'] = array(
+      $library_path . '/chosen.jquery.min.js' => array(),
+    );
+  }
+}
+
+/**
  * Implements hook_themes_enabled().
  */
 function virgin_themes_enabled($theme_list) {
