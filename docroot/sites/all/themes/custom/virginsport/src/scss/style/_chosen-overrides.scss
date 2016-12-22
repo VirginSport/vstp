@@ -69,11 +69,10 @@
 
   .chosen-drop {
     @include box-shadow(none);
-    top: calc(100% - 3px);
     border-color: #ccc;
     border-top: 1px solid #ccc;
-    width: 98%;
-    margin-left: 1%;
+    margin-top: 0;
+    width: calc(100% + 2px);
   }
 
   .chosen-container .chosen-results {
