@@ -1478,7 +1478,7 @@ function virgin_components_field_default_field_instances() {
     ),
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_hero_banner_shorter',
-    'label' => 'Hero Banner Shorter ',
+    'label' => 'Smaller height',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -5454,7 +5454,6 @@ function virgin_components_field_default_field_instances() {
   t('Header Image');
   t('Heading');
   t('Hero Banner Image');
-  t('Hero Banner Shorter ');
   t('Hero Image');
   t('Hero Image Caption');
   t('Hero Image Size');
@@ -5476,6 +5475,7 @@ function virgin_components_field_default_field_instances() {
   t('Show share buttons');
   t('Slide');
   t('Slider Images');
+  t('Smaller height');
   t('Subheading');
   t('Thumbnails');
   t('Tickets');
