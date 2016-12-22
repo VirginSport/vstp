@@ -47,6 +47,7 @@ features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_co
 features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_cta_links
 features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_description
 features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_has_share_button
+features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_hero_banner_shorter
 features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-field_hero_image
 features[field_instance][] = fieldable_panels_pane-vs_hero_banner_block-title_field
 features[field_instance][] = fieldable_panels_pane-vs_hero_event_card-field_brand_color
