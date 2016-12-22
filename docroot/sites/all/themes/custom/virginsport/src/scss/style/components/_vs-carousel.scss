@@ -189,14 +189,21 @@ vs-carousel,
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
-  .vs-carousel__item-wrapper.vs-promo-banner--color-#{$color} .vs-promo-banner__caption, 
-  .vs-carousel__item-wrapper.vs-carousel__image--color-#{$color} .vs-carousel__image-description {
-    color: map_get($map, 'solid-color');
+  .vs-carousel--color-#{$color} {
+
+    .vs-carousel__item-wrapper .slick-arrow,
+    .vs-carousel__item-wrapper .slick-arrow {
+      border-color: map_get($map, 'solid-color');
+    }
+    
   }
 
-  .vs-carousel__item-wrapper.vs-promo-banner--color-#{$color} .slick-arrow,
-  .vs-carousel__item-wrapper.vs-carousel__image--color-#{$color} .slick-arrow {
-    border-color: map_get($map, 'solid-color');
+  .vs-carousel__image--color-#{$color} {
+
+    .vs-carousel__image-description {
+      color: map_get($map, 'solid-color');
+    }
+    
   }
 }
 
