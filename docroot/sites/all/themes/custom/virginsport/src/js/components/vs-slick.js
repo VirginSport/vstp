@@ -2,6 +2,7 @@ import 'slick-carousel';
 
 export default () => {
   let $el = $('.slider');
+  
   function slickify() {
     $el.slick({
       arrows: false,
@@ -22,11 +23,4 @@ export default () => {
   }
 
   slickify();
-  $(window).resize(function(){
-    var $windowWidth = $(window).width();
-    if ($windowWidth < 768) {
-      $el.slick('unslick');
-      slickify();
-    }
-  });
 };
