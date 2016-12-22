@@ -7,16 +7,15 @@ export default () => {
       arrows: false,
       responsive: [
         {
-          breakpoint: 768,
-          settings: "unslick"
-        },
-        {
-          breakpoint: 544,
+          breakpoint: 767,
           settings: {
             arrows: false,
             centerPadding: 0,
             autoplay: true
           }
+        }, {
+          breakpoint: 768,
+          settings: "unslick"
         }
       ]
     });
