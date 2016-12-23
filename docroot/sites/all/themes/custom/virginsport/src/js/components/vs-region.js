@@ -59,7 +59,7 @@ export default () => {
   let update = () => {
     regions.forEach(r => r.update());
   };
-  
+
   // Whenever the window is resized, check if the elements need to be resized
   onResize(update);
 
@@ -131,7 +131,8 @@ class Region {
     this.lastHeight = 0;
     this.isCurved = el.getAttribute('data-vs-region-curved') == true;
     this.previousRegion = previousRegion;
-    
+    this.background = $(el).find('[data-vs-region-background]').first().attr('data-vs-region-background');
+
     this.setup();
     this.update();
   }
@@ -202,7 +203,8 @@ class Region {
     setAttributes(this.gradient, {
       gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
     });
-
+  
+    // Once the region has been updated, fire an event to any listeners
     $('body').trigger('vs_region__finished');
   }
 
@@ -255,10 +257,8 @@ class Region {
       class: 'stop-b'
     });
     
-    // Setup background image
-    let background = 'http://uk-dev.virginsport.com/sites/default/files/styles/virgin_original/public/thumbnails/image/festival_hackney_background_top_content.jpg?itok=PVujQ357';
-  
-    if (background) {
+    // Setup background image if the region has one
+    if (this.background) {
       this.patternID = id();
   
       this.defs = element(this.svg, 'defs');
@@ -285,7 +285,7 @@ class Region {
       });
   
       this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
-      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", background);
+      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
     }
 
     // Create a spacer element to cover region spacing
