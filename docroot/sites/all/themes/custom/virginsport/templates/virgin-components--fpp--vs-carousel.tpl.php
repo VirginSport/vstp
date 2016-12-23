@@ -31,7 +31,7 @@ $container_heading = ($carousel_style == 'full_width') ? '-fluid' : '';
   </div>
 </div>
 
-<div class="vs-carousel">
+<div class="vs-carousel vs-carousel--color-<?php print $brand_color; ?>">
 
   <div class="<?php print $width; ?>">
 
