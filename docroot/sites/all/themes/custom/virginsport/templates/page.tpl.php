@@ -74,7 +74,7 @@
  */
 ?>
 
-<button class="vs-menu-trigger vs-menu-trigger--menu">
+<button class="vs-menu-trigger vs-menu-trigger--menu vs-menu-trigger--top">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>
@@ -133,7 +133,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 

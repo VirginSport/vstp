@@ -58,7 +58,7 @@ html[vs-region-loading="true"] { opacity: 0; }
 }
 
 // Ensure regions curves are visible
-.vs-region[data-vs-region-curved='1'] {
+.vs-region {
   z-index: 1;
 
   // IMPORTANT! Without padding the negative margin-top in the first child
@@ -68,7 +68,7 @@ html[vs-region-loading="true"] { opacity: 0; }
 }
 
 // Ensure children of the region are visible even with the background active
-.vs-region[data-vs-region-curved='1'] > * {
+.vs-region > * {
   z-index: 1;
   position: relative;
 }

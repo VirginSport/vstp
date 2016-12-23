@@ -149,6 +149,7 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
       'medications' => $account_wrapper->field_medications->value(),
       'allergies' => $account_wrapper->field_allergies->value(),
       'share_info_with_vs' => $account_wrapper->field_agree_share_medical_info->value(),
+      'facebook' => $this->getFacebookID($account)
     );
   }
 
@@ -200,4 +201,30 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
     return !empty($account->status);
   }
 
+  /**
+   * Gets the facebook id of the given account
+   *
+   * @param $account
+   *  The user account object
+   * @return string
+   *  The facebook id or an empty string if the user has no facebook id
+   */
+  private function getFacebookID($account) {
+    $sql = "
+      SELECT data
+      FROM {hybridauth_identity}
+      WHERE uid = :uid
+      AND provider = 'Facebook'
+    ";
+
+    $args = array(':uid' => $account->uid);
+    $raw_data = db_query($sql, $args)->fetchField();
+
+    if (empty($raw_data)) {
+      return '';
+    }
+
+    $data = unserialize($raw_data);
+    return empty($data['identifier']) ? '' : $data['identifier'];
+  }
 }
