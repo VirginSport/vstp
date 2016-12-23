@@ -59,7 +59,7 @@ export default () => {
   let update = () => {
     regions.forEach(r => r.update());
   };
-  
+
   // Whenever the window is resized, check if the elements need to be resized
   onResize(update);
 
@@ -131,7 +131,8 @@ class Region {
     this.lastHeight = 0;
     this.isCurved = el.getAttribute('data-vs-region-curved') == true;
     this.previousRegion = previousRegion;
-    
+    this.background = $(el).find('[data-vs-region-background]').first().attr('data-vs-region-background');
+
     this.setup();
     this.update();
   }
@@ -202,7 +203,8 @@ class Region {
     setAttributes(this.gradient, {
       gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
     });
-
+  
+    // Once the region has been updated, fire an event to any listeners
     $('body').trigger('vs_region__finished');
   }
 
@@ -255,6 +257,37 @@ class Region {
       class: 'stop-b'
     });
     
+    // Setup background image if the region has one
+    if (this.background) {
+      this.patternID = id();
+  
+      this.defs = element(this.svg, 'defs');
+  
+      this.pattern = element(this.defs, 'pattern', {
+        id: this.patternID,
+        patternUnits: 'userSpaceOnUse',
+        width: '100%',
+        height: '100%',
+        x: 0,
+        y: 0
+      });
+  
+      this.image = element(this.pattern, 'image', {
+        x: 0,
+        y: 0,
+        width: '100%',
+        height: '100%',
+        preserveAspectRatio: 'xMinYMin slice'
+      });
+  
+      setAttributes(this.path, {
+        fill: `url(#${this.patternID})`
+      });
+  
+      this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
+      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
+    }
+
     // Create a spacer element to cover region spacing
     this.spacer = window.document.createElement('div');
     
