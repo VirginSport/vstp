@@ -255,6 +255,39 @@ class Region {
       class: 'stop-b'
     });
     
+    // Setup background image
+    let background = 'http://uk-dev.virginsport.com/sites/default/files/styles/virgin_original/public/thumbnails/image/festival_hackney_background_top_content.jpg?itok=PVujQ357';
+  
+    if (background) {
+      this.patternID = id();
+  
+      this.defs = element(this.svg, 'defs');
+  
+      this.pattern = element(this.defs, 'pattern', {
+        id: this.patternID,
+        patternUnits: 'userSpaceOnUse',
+        width: '100%',
+        height: '100%',
+        x: 0,
+        y: 0
+      });
+  
+      this.image = element(this.pattern, 'image', {
+        x: 0,
+        y: 0,
+        width: '100%',
+        height: '100%',
+        preserveAspectRatio: 'xMinYMin slice'
+      });
+  
+      setAttributes(this.path, {
+        fill: `url(#${this.patternID})`
+      });
+  
+      this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
+      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", background);
+    }
+
     // Create a spacer element to cover region spacing
     this.spacer = window.document.createElement('div');
     
