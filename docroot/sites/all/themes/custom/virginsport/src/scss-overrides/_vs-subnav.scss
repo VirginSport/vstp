@@ -3,7 +3,14 @@
 // ----------------------------------------------------------------------------
 
 .vs-subnav--pinned-on-main-nav {
+  transform: translateY(60px);
+
   &:not(.vs-subnav--clone) {
     transform: translateY(0);
   }
+
+  @include media-breakpoint-up(lg) {
+    transform: translateY(55px);
+  }
 }
+

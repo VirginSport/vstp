@@ -74,7 +74,7 @@
  */
 ?>
 
-<button class="vs-menu-trigger vs-menu-trigger--menu">
+<button class="vs-menu-trigger vs-menu-trigger--menu vs-menu-trigger--top">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>

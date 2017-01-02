@@ -1,0 +1,17 @@
+
+// This file covers the site header
+// ----------------------------------------------------------------------------
+
+.vs-header__nav-wrapper {
+  top: 0;
+}
+
+.vs-menu-trigger--top {
+  top: .5rem
+}
+
+@include media-breakpoint-up(md) {
+  .vs-menu-trigger--top {
+    top: 3rem;
+  }
+}

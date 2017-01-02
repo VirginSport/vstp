@@ -117,7 +117,6 @@ vs-subnav,
 .vs-subnav--unpinned,
 .vs-subnav--not-top {
   @include transition(all .5s ease-in-out, background-color 1ms);
-  background-color: $c-gray-light;
   position: fixed;
   top: 0;
 }
