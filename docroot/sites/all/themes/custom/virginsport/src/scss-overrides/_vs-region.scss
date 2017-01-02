@@ -1,11 +1,6 @@
 // This file covers specific behaviour of the vs-region component when injected
 // into Drupal, specifically, the overlapping mechanism.
 
-// Variables
-@import "../scss/variables";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-
 // The different overlap sizes and breakpoints supported by the region style.
 $vs-region-overlap-sizes: (
   'small': (
