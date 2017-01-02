@@ -11,6 +11,7 @@ import vsRegion from './components/vs-region';
 import vsSharer from './components/vs-sharer';
 import vsSlick from './components/vs-slick';
 import vsStickyBasket from './components/vs-sticky-basket';
+import vsSubnav from './components/vs-subnav';
 import vsUserLogin from './components/vs-user-login';
 import vsUserPassword from './components/vs-user-password';
 import vsUserProfile from './components/vs-user-profile';
@@ -20,6 +21,10 @@ import vsCookie from './components/vs-cookie';
 import vsNotification from './components/vs-notification';
 import vsHeroBanner from './components/vs-heroBanner';
 import vsGtm from './components/vs-gtm';
+import vsCarousel from './components/vs-carousel';
+import vsScroller from './components/vs-scroller';
+import vsPhotoGallery from './components/vs-photo-gallery';
+
 
 vsBasket();
 vsContactForm();
@@ -32,6 +37,7 @@ vsRegion();
 vsSharer();
 vsSlick();
 vsStickyBasket();
+vsSubnav();
 vsUserLogin();
 vsUserPassword();
 vsUserProfile();
@@ -41,6 +47,9 @@ vsCookie();
 vsNotification();
 vsHeroBanner();
 vsGtm();
+vsCarousel();
+vsScroller();
+vsPhotoGallery();
 
 // Libs
 import bootstrap from './lib/bootstrap';

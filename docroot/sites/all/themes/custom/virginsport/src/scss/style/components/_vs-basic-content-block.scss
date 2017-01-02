@@ -6,6 +6,8 @@ vs-basic-content-block,
 .vs-basic-content-block {
   @include clearfix();
   display: block;
+  position: relative;
+  z-index: 3;
 }
 
 
@@ -21,6 +23,7 @@ vs-basic-content-block,
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+  @include ie-flexbox-fix();
   background-position: center top;
   background-size: cover;
   border-radius: .625rem .625rem 0 0;
@@ -36,6 +39,7 @@ vs-basic-content-block,
   text-align: center;
   font-weight: 500;
   line-height: 1.25rem;
+  max-width: 20rem;
 }
 
 .vs-basic-content-block__text-wrapper {
@@ -96,7 +100,6 @@ vs-basic-content-block,
 }
 
 @include media-breakpoint-up(md) {
-
   .vs-basic-content-block__hero-image {
     min-height: 28.75rem;
   }
@@ -115,7 +118,7 @@ vs-basic-content-block,
     font-size: 1.875rem;
     line-height: 2.25rem;
     padding-top: 1.9375rem;
-    padding-left: 1.8125rem;  
+    padding-left: 1.8125rem;
   }
 
   .vs-basic-content-block__date {
@@ -127,5 +130,5 @@ vs-basic-content-block,
       height: 184px;
       min-width: 740px;
   }
-  
+
 }

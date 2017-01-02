@@ -143,6 +143,13 @@ vs-photo-gallery,
   &--fullscreen button {
     position: fixed;
   }
+
+  .slick-current img,
+  &--fullscreen .slick-current img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .vs-photo-gallery__image-wrapper {
@@ -156,10 +163,11 @@ vs-photo-gallery,
 
     .slick-slide {
       height: 16.25rem;
+      overflow-x: hidden;
 
       img {
         cursor: pointer;
-        display: inline-block;
+        display: block;
         height: 100%;
         overflow-x: hidden;
       }
@@ -168,6 +176,7 @@ vs-photo-gallery,
         height: auto;
 
         img {
+          display: block;
           cursor: default;
           height: auto;
           min-height: 16.25rem;
@@ -336,12 +345,6 @@ vs-photo-gallery,
 
     .vs-photo-gallery__image-wrapper .slick-list {
       border-radius: .625rem;
-    }
-
-    .slick-current img {
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
     }
   }
   

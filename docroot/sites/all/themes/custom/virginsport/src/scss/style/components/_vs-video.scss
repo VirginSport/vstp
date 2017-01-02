@@ -22,6 +22,7 @@ vs-video,
   position: absolute;
   z-index: 1;
   top: 50%;
+  width: 100%;
 }
 
 .vs-video__title {
@@ -134,9 +135,11 @@ vs-video,
 
 @include media-breakpoint-up(sm) {
   .vs-video__wrapper {
-    @include flexbox();
-    @include align-items(center);
-    @include justify-content(center);
+    //@include flexbox();
+    //@include align-items(center);
+    //@include justify-content(center);
+    display: table;
+    width: 100%;
   }
 
   .vs-video__video-wrapper,

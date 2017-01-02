@@ -24,8 +24,19 @@ const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
  * @type {string[]}
  */
 const SPACERLESS_LAST_COMPONENTS = [
-  '.vs-cta-block',
-  '.vs-hero-banner'
+  '.vs-hero-banner',
+];
+
+/**
+ * A list of selectors for which the margin
+ * bottom does not apply who have the
+ * space applied as a padding.
+ *
+ * @type {string[]}
+ */
+const SELF_PADDED_COMPONENTS = [
+  '.vs-introduction__container-wrapper',
+  '.vs-cta-block__item'
 ];
 
 /**
@@ -35,13 +46,20 @@ const SPACERLESS_LAST_COMPONENTS = [
  */
 const regions = [];
 
+/**
+ * Tracks if the vs-region script has run at least once
+ *
+ * @type {boolean}
+ */
+let hasRun = false;
+
 export default () => {
 
   // Callback function to update the region
   let update = () => {
     regions.forEach(r => r.update());
   };
-  
+
   // Whenever the window is resized, check if the elements need to be resized
   onResize(update);
 
@@ -53,9 +71,7 @@ export default () => {
   // Register a behaviour handler to find if regions have been added via AJAX
   // or initial page load
   Drupal.behaviors.virginSportCurve = {
-    attach: () => {
-      findRegions();
-    }
+    attach: () => findRegions()
   };
 };
 
@@ -72,16 +88,33 @@ function findRegions() {
       // Create regions
       regions.push(new Region(el, regions[idx - 1]));
       
-      // Find it spacer needs to be removed
+      // Find if spacer needs to be hidden due to some components being the last
+      // components in the region.
       let $region = $(el);
-      let $last = $region.find('.panels-ipe-portlet-wrapper').last();
-      let $cta = $last.find(SPACERLESS_LAST_COMPONENTS.join(','));
+      let spacerless_components = SPACERLESS_LAST_COMPONENTS.concat(SELF_PADDED_COMPONENTS);
+      let spacerless_component_selector = spacerless_components.join(',');
+      let self_padded_components_selector = SELF_PADDED_COMPONENTS.join(',');
       
-      if ($cta.length) {
+      // Make sure the element preceding the region background, if it's one of
+      // the spacerless components, mark them as such.
+      let $prev = $region.find('.vs-region__bg').prev();
+      let $prevChildren = $prev.find(spacerless_component_selector);
+      let $prevComponent = $prev.filter(spacerless_component_selector);
+      
+      // Find if the component is self padded, and if it is, mark it as such
+      $prevChildren.filter(self_padded_components_selector).addClass('vs-region-self-padded');
+      $prevComponent.filter(self_padded_components_selector).addClass('vs-region-self-padded');
+      
+      if ($prevChildren.length || $prevComponent.length) {
         $region.addClass('vs-region--hide-bg-spacer');
       }
     })
   ;
+
+  if (!hasRun) {
+    $('html').attr('vs-region-loading', '');
+    hasRun = true;
+  }
 }
 
 /**
@@ -98,7 +131,8 @@ class Region {
     this.lastHeight = 0;
     this.isCurved = el.getAttribute('data-vs-region-curved') == true;
     this.previousRegion = previousRegion;
-    
+    this.background = $(el).find('[data-vs-region-background]').first().attr('data-vs-region-background');
+
     this.setup();
     this.update();
   }
@@ -148,6 +182,11 @@ class Region {
     }
     
     if (this.previousRegion && this.previousRegion.spacer) {
+      setAttributes(this.previousRegion.el, {
+        'data-vs-next-region-overlap': this.el.getAttribute('data-vs-region-overlap'),
+        'data-vs-next-region-curved': this.el.getAttribute('data-vs-region-curved')
+      });
+
       setAttributes(this.previousRegion.spacer, {
         'data-vs-region-overlap': this.el.getAttribute('data-vs-region-overlap'),
         'data-vs-region-curved': this.el.getAttribute('data-vs-region-curved')
@@ -164,6 +203,9 @@ class Region {
     setAttributes(this.gradient, {
       gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
     });
+  
+    // Once the region has been updated, fire an event to any listeners
+    $('body').trigger('vs_region__finished');
   }
 
   /**
@@ -215,6 +257,37 @@ class Region {
       class: 'stop-b'
     });
     
+    // Setup background image if the region has one
+    if (this.background) {
+      this.patternID = id();
+  
+      this.defs = element(this.svg, 'defs');
+  
+      this.pattern = element(this.defs, 'pattern', {
+        id: this.patternID,
+        patternUnits: 'userSpaceOnUse',
+        width: '100%',
+        height: '100%',
+        x: 0,
+        y: 0
+      });
+  
+      this.image = element(this.pattern, 'image', {
+        x: 0,
+        y: 0,
+        width: '100%',
+        height: '100%',
+        preserveAspectRatio: 'xMinYMin slice'
+      });
+  
+      setAttributes(this.path, {
+        fill: `url(#${this.patternID})`
+      });
+  
+      this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
+      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
+    }
+
     // Create a spacer element to cover region spacing
     this.spacer = window.document.createElement('div');
     

@@ -24,7 +24,7 @@ function share() {
     e.stopPropagation();
   });
 
-  $('.vs-share-button__social-links .vs-share-button__icon-button').click(function (e) {
+  $('.vs-share-button__icon-button--popup').click(function (e) {
     var w = 700;
     var h = 350;
     e.preventDefault();

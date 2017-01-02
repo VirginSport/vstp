@@ -142,7 +142,7 @@ function virginsport_preprocess_page(&$vars) {
   $vars['regions'] = virginsport_regions();
 
   // Make cookie template available in javascript
-  $message = t('We use cookies. We eat them too, but only after a run. Check out our privacy policy to learn more');
+  $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
   $cookie_template = theme('virginsport_notification', array('message' => $message));
   drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
 
@@ -232,12 +232,16 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
  *
  * @param $atom
  *  The asset id
- * @param $style
+ * @param string $style
  *  The image style
+ * @param bool $url_only
+ *  Whether the only the URL should be returned with no background-image css
+ *  attribute.
  * @return string
- *  HTML style attribute with background-image. For example: background-image: url(...);"
+ *  HTML style attribute with background-image e.g "background-image: url(...)"
+ *  OR the URL is url_only is set to TRUE
  */
-function virginsport_atom_background($atom, $style = 'virgin_original') {
+function virginsport_atom_background($atom, $style = 'virgin_original', $url_only = FALSE) {
   if (empty($atom) || empty($atom->sid)) {
     return '';
   }
@@ -248,7 +252,7 @@ function virginsport_atom_background($atom, $style = 'virgin_original') {
 
   $image_url = image_style_url($style, $atom->file_source);
 
-  return 'background-image: url(' . $image_url . ');';
+  return $url_only ? $image_url : 'background-image: url(' . $image_url . ');';
 }
 
 /**

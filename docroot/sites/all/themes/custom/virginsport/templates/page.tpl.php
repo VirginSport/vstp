@@ -74,7 +74,7 @@
  */
 ?>
 
-<button class="vs-menu-trigger vs-menu-trigger--menu">
+<button class="vs-menu-trigger vs-menu-trigger--menu vs-menu-trigger--top">
   <span class="vs-menu-trigger__bar">
     <span class="sr-only"><?php print t('Toggle menu'); ?></span>
   </span>
@@ -133,7 +133,7 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/login'); ?>">&nbsp;</a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">&nbsp;</a>
         </div>
         <?php endif; ?>
 
@@ -211,7 +211,7 @@
   <div class="vs-footer">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-3 col-lg-2">
+        <div class="col-xs-12 col-md-2 col-lg-2">
 
           <?php if ($regions['current']): ?>
           <div class="btn-group vs-footer__language">
@@ -236,7 +236,7 @@
           <?php endif; ?>
         </div>
 
-        <div class="col-xs-12 col-md-6 col-lg-7 col-xl-6">
+        <div class="col-xs-12 col-md-10 col-lg-6 col-xl-6">
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
             <li class="vs-footer__menu-item">
@@ -246,7 +246,7 @@
           </ul>
         </div>
 
-        <div class="col-xs-12 col-md-3 col-xl-4">
+        <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">

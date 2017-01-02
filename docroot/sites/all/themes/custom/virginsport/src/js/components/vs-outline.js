@@ -10,19 +10,18 @@ import onResize from '../helper/on-resize';
 const outlines = [];
 
 export default () => {
-
-  // Callback function to update the outlines
-  let update = () => {
-    outlines.forEach(o => o.update());
-  };
   
   // Whenever the window is resized, check if the elements need to be resized
-  onResize(update);
+  onResize(() => {
+    outlines.forEach(o => o.update(true));
+  });
   
   // The elements might have changed size during an ajax request or other user
   // interactions, as such run update at an interval to ensure the titles are
   // properly adjusted to the container's width.
-  window.setInterval(update, 500);
+  window.setInterval(() => {
+    outlines.forEach(o => o.update(false));
+  }, 500);
   
   // Register a behaviour handler to find if outlines have been added via AJAX
   // or initial page load.
@@ -60,13 +59,13 @@ class Outline {
     this.lastTextWidth = 0;
     
     this.setup();
-    this.update();
+    this.update(true);
   }
   
   /**
    * Update the SVG element
    */
-  update() {
+  update(forceUpdate) {
     
     // If the element is not visible, bail out
     if (this.el.offsetParent === null) {
@@ -78,24 +77,64 @@ class Outline {
     // bail out now.
     let textWidth = this.text.getComputedTextLength();
     
-    if (textWidth == this.lastTextWidth) {
+    if (textWidth == this.lastTextWidth && !forceUpdate) {
       return;
-    } else {
-      this.lastTextWidth = textWidth;
     }
 
     // Otherwise compute everything
     let style = window.getComputedStyle(this.el);
     let lineHeight = parseInt(style['lineHeight'], 10);
-    let parentWidth = this.el.parentNode.clientWidth;
+    let parentWidth = getElementWidth(this.el.parentNode);
     let totalWidth = 0;
     let largestWordWidth = 0;
     let rows = [[]];
+
+    // Helper function to either remove trailing space or add a trailing space
+    let adjustSpace = (column, removeSpace) => {
+      var txt = column.textContent;
     
+      if (removeSpace) {
+        column.textContent = txt.trim();
+      } else if (txt[txt.length - 1] != ' ') {
+        column.textContent = txt + ' ';
+      }
+    };
+  
     // Distribute words per row based on their width and available width
+    let currentY = 0;
+    let rowWidth = 0;
+    
     this.words.forEach(word => {
+      
+      // Ensure the word ends with a space so that the following calculation
+      // takes the space into consideration.
+      adjustSpace(word, false);
+      
+      // And then calculate the y and x coordinates of the word
       let width = word.getComputedTextLength();
       let y = Math.floor((width + totalWidth) / parentWidth);
+      
+      // If the word is being added to a row different from the previous word
+      // calculate the width that was left to be filled in, in the previous row
+      // and add that "blank width" to the total width.
+      if (y != currentY) {
+        
+        // If the current row is still empty, and y is higher than the current y
+        // that means the word is larger than the container. As such maintain
+        // the current y and ensure the total width and row width are set to the
+        // width of container.
+        if (!rowWidth && width > parentWidth) {
+          y = currentY;
+          totalWidth += parentWidth;
+          rowWidth = parentWidth;
+        } else {
+          currentY = y;
+          totalWidth += (parentWidth - rowWidth);
+          rowWidth = 0;
+        }
+      } else {
+        rowWidth += width;
+      }
   
       if (width > largestWordWidth) {
         largestWordWidth = width;
@@ -112,24 +151,13 @@ class Outline {
     // Calculate the svg width from either the larger parent node or a word
     let svgWidth = (largestWordWidth > parentWidth) ? largestWordWidth : parentWidth;
     
-    // Helper function to either remove trailing space or add a trailing space
-    let adjustSpace = (column, removeSpace) => {
-      var txt = column.textContent;
-    
-      if (removeSpace) {
-        column.textContent = txt.trim();
-      } else if (txt[txt.length - 1] != ' ') {
-        column.textContent = txt + ' ';
-      }
-    };
-    
     // Helper function to align a column to the left
     let alignLeft = (column, state, isLast) => {
       adjustSpace(column, isLast);
       
       setAttributes(column, {
         y: `${(state.row + 1) * lineHeight}px`,
-        x: `${state.totalWidth}px`
+        x: `${Math.floor(state.totalWidth)}px`
       });
       
       state.totalWidth += column.getComputedTextLength();
@@ -140,7 +168,7 @@ class Outline {
       adjustSpace(column, isLast);
       
       let width = column.getComputedTextLength();
-      let xOffset = svgWidth - width - state.totalWidth;
+      let xOffset = Math.floor(svgWidth - width - state.totalWidth);
       
       setAttributes(column, {
         y: `${(state.row + 1) * lineHeight}px`,
@@ -148,6 +176,17 @@ class Outline {
       });
       
       state.totalWidth += width;
+    };
+    
+    // Helper function to align a column to the center
+    let alignCenter = (column, state, isLast) => {
+      let offset = (svgWidth - state.totalWidth) * 0.5;
+      let x = parseInt(column.getAttribute('x'), 10);
+      let xCenter = offset + x;
+  
+      setAttributes(column, {
+        x: `${xCenter < 0 ? 0 : xCenter}px`
+      });
     };
     
     // Align the words inside each row, to either left or right depending on
@@ -158,17 +197,30 @@ class Outline {
         row: idx
       };
       
-      if (style.textAlign == 'left') {
-        for (let i = 0; i < row.length; i++) {
-          alignLeft(row[i], state, (i == row.length - 1));
-        }
-      } else {
-        for (let i = (row.length - 1); i > -1; i--) {
-          alignRight(row[i], state, (i == row.length - 1));
-        }
+      switch (style.textAlign) {
+        case 'center':
+          for (let i = 0; i < row.length; i++) {
+            alignLeft(row[i], state, (i == row.length - 1));
+          }
+          for (let j = 0; j < row.length; j++) {
+            alignCenter(row[j], state, (j == row.length - 1));
+          }
+          break;
+  
+        case 'right':
+          for (let i = (row.length - 1); i > -1; i--) {
+            alignRight(row[i], state, (i == row.length - 1));
+          }
+          break;
+          
+        default:
+          for (let i = 0; i < row.length; i++) {
+            alignLeft(row[i], state, (i == row.length - 1));
+          }
+          break;
       }
     });
-    
+
     // Apply the gradient rotation
     let bgRotation = parseInt(style['backgroundSize'], 10);
   
@@ -179,14 +231,17 @@ class Outline {
       gradientTransform: `rotate(${bgRotation})`
     });
     
-    // And finally, adjust the SVG element width and height from the text
-    // element size.
+    // Adjust the SVG element width and height from the text element size.
     let textBox = this.text.getBBox();
     
     setAttributes(this.svg, {
       height: `${textBox.height}px`,
       width: `${svgWidth}px`
     });
+  
+    // And finally store the computed text width after all the operations we've
+    // done as part of this update.
+    this.lastTextWidth = this.text.getComputedTextLength();
   }
   
   /**
@@ -235,6 +290,10 @@ class Outline {
     this.words = [];
   
     this.el.textContent.split(' ').forEach(w => {
+      if (w.trim().length < 1) {
+        return;
+      }
+      
       let word = element(this.text, 'tspan');
       word.textContent = w + ' ';
       this.words.push(word);
@@ -291,4 +350,21 @@ function setAttributes(el, attrs) {
   for (let key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
+}
+
+/**
+ * Computes the element width minus padding and margin
+ *
+ * @param element
+ *  The element whose width is to be calculated
+ * @returns {number}
+ *  The calculated width
+ */
+function getElementWidth(element) {
+  var cs = window.getComputedStyle(element);
+  var paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  var borderX = parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+
+  // Element width and height minus padding and border
+  return element.offsetWidth - paddingX - borderX;
 }

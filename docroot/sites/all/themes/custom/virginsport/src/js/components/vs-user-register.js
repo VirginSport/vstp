@@ -101,7 +101,7 @@ export default () => {
         let acField = $('#google-autocomplete').get(0);
 
         places(acField, (p) => {
-          this.profile.field_address_line_1 = `${p.long('route')} ${p.long('street_number')}`;
+          this.profile.field_address_line_1 = `${p.long('street_number')} ${p.long('route')}`;
           this.profile.field_address_city = p.short('locality');
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
@@ -174,11 +174,18 @@ export default () => {
       },
 
       submit() {
+        this.submitted = true;
+
+        if (!this.$vs_user_register_validator.valid || !this.$vs_user_register_date_validator.valid || !this.validBirthDate()) {
+          return;
+        }
+
         this.applyValues();
         let form = $('.vs-user-login--form-drupal form').submit();
       }
     },
     data: {
+      submitted: false,
       address_manual: false,
       profile: {
         current_pass: '',

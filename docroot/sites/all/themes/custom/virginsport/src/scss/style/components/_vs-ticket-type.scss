@@ -39,11 +39,14 @@ vs-ticket-type,
   color: $c-white;
   margin-right: 1.5625rem;
   position: relative;
+  float: left;
+  clear: left;
 }
 
 .vs-ticket-type__cta {
   position: relative;
-  top: -4px;
+  top: 7px;
+  float: left;
 }
 
 .vs-ticket-type__vip {

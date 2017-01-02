@@ -23,6 +23,7 @@
 
 <div class="vs-subnav">
   <div class="vs-subnav__overlay"></div>
+
   <ul class="vs-subnav__list">
     <?php foreach ($links as $link): ?>
       <li class="vs-subnav__item">

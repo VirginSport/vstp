@@ -40,6 +40,11 @@ export default () => {
       // Only require password id drupal form edit-current-pass element exists
       this.require_password = !(!$('input#edit-current-pass').length);
 
+      // Show password mode by default if user comes from recover password
+      if (!this.require_password) {
+        this.password_mode = true;
+      }
+
       this.bindAutocomplete();
       this.bindLists();
       this.populateLists();
@@ -86,7 +91,7 @@ export default () => {
         let acField = $('#google-autocomplete').get(0);
 
         places(acField, (p) => {
-          this.profile.field_address_line_1 = `${p.long('route')} ${p.long('street_number')}`;
+          this.profile.field_address_line_1 = `${p.long('street_number')} ${p.long('route')}`;
           this.profile.field_address_city = p.short('locality');
           this.profile.field_address_country = p.short('country');
           this.profile.field_address_state = p.short('administrative_area_level_1');
@@ -169,11 +174,26 @@ export default () => {
       },
 
       submit() {
+        // Make submitted equals to true to show erros if any
+        this.submitted = true;
+
+        if (this.password_mode && !this.$vs_user_password_validator.valid) {
+          return;
+        }
+
+        if (!this.password_mode && !this.$vs_user_profile_validator.valid) {
+          return;
+        }
+        
         this.applyValues();
         let form = $('.vs-user-profile--form-drupal form').submit();
+
+        // Restore submitted
+        this.submitted = false;
       }
     },
     data: {
+      submitted: false,
       edit_mode: false,
       password_mode: false,
       require_password: true,

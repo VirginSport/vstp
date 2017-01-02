@@ -17,9 +17,8 @@ vs-package-card,
 
 .vs-package-card-wrapper {
   @include flexbox();
-  @include flex-direction(column);
   @include align-items(strech);
-
+  @include ie-flexbox-fix();
   min-height: 9.0625rem;
   margin-left: -0.3125rem;
   margin-right: -0.3125rem;
@@ -58,6 +57,7 @@ vs-package-card,
   font-size: 0.75rem;
   line-height: 0.875rem;
   display: inline-block;
+  padding-bottom: 1.5625rem;
 }
 
 .vs-package-card-footer {

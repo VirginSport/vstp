@@ -33,9 +33,7 @@
         id="paragraph-item-<?php print $id; ?>"
       >
         <?php if(!empty($content)): ?>
-          <p>
-            <?php print $content; ?>
-          </p>
+          <?php print $content; ?>
         <?php endif; ?>
       </div>
     </a>

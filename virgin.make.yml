@@ -13,7 +13,7 @@ projects:
     version: "7.x-1.x"
 
   acquia_connector:
-    version: "2.17"
+    version: "3.0"
 
   coder:
     version: "2.6"
