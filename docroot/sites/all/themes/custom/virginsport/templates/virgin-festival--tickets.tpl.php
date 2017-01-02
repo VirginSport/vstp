@@ -19,11 +19,9 @@
   </div>
 </div>
 
-<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1"
-     data-vs-region-color="default">
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
   <?php print $subnav; ?>
-  <iframe class="vs-iframe" src="<?php print $iframe_url; ?>"
-          scrolling="no"></iframe>
+  <iframe class="vs-iframe vs-iframe--hide-load" src="<?php print $iframe_url; ?>" scrolling="no"></iframe>
 </div>
 
 <div class="vs-region vs-region--gradient-default vs-region--no-padding vs-region--hide-bg-spacer">
