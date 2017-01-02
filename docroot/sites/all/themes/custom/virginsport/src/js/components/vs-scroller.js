@@ -19,6 +19,7 @@ function updatePosition($el, $scroll, margin, move = true) {
   let $next = $el.find('.vs-scroller--next');
   let $prev = $el.find('.vs-scroller--prev');
 
+  // Update arrow based on scroll position
   if (Math.floor(left) <= 0) {
     $prev.removeClass('active');
   } else {
@@ -31,6 +32,7 @@ function updatePosition($el, $scroll, margin, move = true) {
     $next.addClass('active');
   }
 
+  // Adjust scroll value if it reaches the container limits
   if (scrollValue <= 0) {
     scrollValue = 0;
   }
@@ -69,6 +71,7 @@ function findScrollers() {
         }
       });
 
+      // Add active to first bullet by default
       if (i == 0 ) {
         $bullet.addClass('active');
       }
