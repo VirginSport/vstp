@@ -19,7 +19,22 @@ function bind() {
 
   for (let i = toBind.length - 1; i > -1; i--) {
     let bind = toBind[i];
-    let ac = new google.maps.places.Autocomplete(bind.element, { types: ['geocode'] });
+
+    let ac = new google.maps.places.Autocomplete(bind.element, {
+      types: ['address']
+    });
+  
+    navigator.geolocation && navigator.geolocation.getCurrentPosition(function(pos) {
+      let circle = new google.maps.Circle({
+        center: {
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        },
+        radius: pos.coords.accuracy
+      });
+  
+      ac.setBounds(circle.getBounds());
+    });
 
     ac.addListener('place_changed', () => {
       let place = ac.getPlace();
