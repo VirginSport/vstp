@@ -10,6 +10,11 @@
   top: .5rem
 }
 
+.vs-header--not-top.vs-header--video-fade-in.vs-header--unpinned {
+  transition: none;
+  opacity: 0;
+}
+
 @include media-breakpoint-up(md) {
   .vs-menu-trigger--top {
     top: 3rem;
