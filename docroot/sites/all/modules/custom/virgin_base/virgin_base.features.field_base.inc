@@ -666,6 +666,7 @@ function virgin_base_field_default_field_bases() {
         'red' => 'Red',
         'red-yellow' => 'Red / Yellow',
         'red-pinky-red' => 'Red / Pinky-Red',
+        'red-dark-red-darker' => 'Red Dark / Red Darker',
         'festival-hackney' => 'Festival: Hackney',
         'festival-british' => 'Festival: British',
         'festival-sanfran' => 'Festival: SanFran',
