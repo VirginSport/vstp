@@ -162,7 +162,7 @@
                                   <input :class="{'vs-form-control--not-empty': profile.field_address_postcode.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" id="field_address_postcode" v-validate:field_address_postcode="['required']">
                                   <label v-if="profile.field_address_country != 'US'" class="vs-focus-label" for="field_address_postcode"><?php print t('Postcode'); ?>*</label>
                                   <label v-if="profile.field_address_country == 'US'" class="vs-focus-label" for="field_address_postcode"><?php print t('Zipcode'); ?>*</label>
-                                  <div class="vs-error-label" v-if="$vs_user_profile_validator.field_address_postcode.required && profile.field_address_country != 'US"><?php print t('Postcode is required'); ?></div>
+                                  <div class="vs-error-label" v-if="$vs_user_profile_validator.field_address_postcode.required && profile.field_address_country != 'US'"><?php print t('Postcode is required'); ?></div>
                                   <div class="vs-error-label" v-if="$vs_user_profile_validator.field_address_postcode.required && profile.field_address_country == 'US'"><?php print t('Zipcode is required'); ?></div>
                                 </div>
 
