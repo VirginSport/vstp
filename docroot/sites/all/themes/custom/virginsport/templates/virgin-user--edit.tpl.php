@@ -182,7 +182,7 @@
                               <span class="vs-field-address__span">{{ profile.field_address_line_1 }}</span>
                               <span class="vs-field-address__span">{{ profile.field_address_line_2 }}</span>
                               <span class="vs-field-address__span">{{ profile.field_address_city }}</span>
-                              <span class="vs-field-address__span">{{ profile.field_address_state }}</span>
+                              <span v-show="profile.field_address_country == 'US'" class="vs-field-address__span">{{ profile.field_address_state }}</span>
                               <span class="vs-field-address__span">{{ profile.field_address_postcode }}</span>
                               <span class="vs-field-address__span">{{ getListText('field_address_country', profile.field_address_country) }}</span>
                             </div>
