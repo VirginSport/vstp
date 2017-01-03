@@ -163,6 +163,15 @@ function virginsport_preprocess_node(&$vars) {
   $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for mimemail_message theme.
+ */
+function virginsport_preprocess_mimemail_message(&$vars) {
+  global $base_root, $base_path, $theme_path;
+
+  $vars['theme_url'] = $base_root . $base_path . $theme_path;
+}
+
 // Template Overrides
 // -----------------------------------------------------------------------------
 
