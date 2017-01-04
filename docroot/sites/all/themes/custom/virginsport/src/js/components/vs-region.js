@@ -170,17 +170,24 @@ class Region {
     let curveHeight = width * CURVE_WIDTH_HEIGHT_RATIO;
     let svgHeight = this.isCurved ? (height + curveHeight) : height;
     let offsetHeight = this.isCurved ? curveHeight * -1 : 0;
+    let zIndex = 0;
     
     // Hack: For IE <= 11 the SVG the offset must be 0 or the SVG is pushed
     // higher than the region it is in.
     if (currentIEVersion >= 10 && currentIEVersion <= 11) {
       offsetHeight = 0;
     }
+    
+    // Hack: For IE 10 the z-index must be set to -1 or the rendering might
+    // hide other elements in the page on the first pass render.
+    if (currentIEVersion == 10) {
+      zIndex = -1;
+    }
 
     // And update the drawn path properties accordingly
     setAttributes(this.svg, {
       viewBox: `0 0 ${width} ${svgHeight}`,
-      style: `position: absolute; top: ${offsetHeight}px; left: 0; bottom: 0; right: 0; z-index: 0`
+      style: `position: absolute; top: ${offsetHeight}px; left: 0; bottom: 0; right: 0; z-index: ${zIndex}`
     });
     
     setAttributes(this.spacer, {
