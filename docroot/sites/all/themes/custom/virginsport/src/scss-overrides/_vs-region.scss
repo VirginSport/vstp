@@ -175,3 +175,10 @@ html[vs-region-loading="true"] { opacity: 0; }
     }
   }
 }
+
+// Fix IE 10-11 curve rendering
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vs-region__bg {
+    overflow: auto !important;
+  }
+}
