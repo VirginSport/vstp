@@ -6,7 +6,13 @@
   top: 0;
 
   @media screen and (min-width: $main-nav-breakpoint) {
-    top: .3rem;
+    .vs-header--pinned & {
+      top: .1rem;
+    }
+
+    .vs-header--top & {
+      top: .3rem;
+    }
   }
 }
 
