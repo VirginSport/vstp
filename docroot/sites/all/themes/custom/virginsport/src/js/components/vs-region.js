@@ -220,10 +220,12 @@ class Region {
     
     // If for some reason rotation could not be parsed, fallback to 0
     bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
-  
-    setAttributes(this.gradient, {
-      gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
-    });
+    
+    if (bgRotation) {
+      setAttributes(this.gradient, {
+        gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
+      });
+    }
   
     // Once the region has been updated, fire an event to any listeners
     $('body').trigger('vs_region__finished');
