@@ -37,6 +37,8 @@ $c-rose:                      #F857A6;
 $c-violet:                    #645BB4;
 $c-red:                       #E10A0A;
 $c-pinky-red:                 #F03A72;
+$c-red-dark:                  #F70F1B;
+$c-red-darker:                #4C0103;
 $c-yellow:                    #FBF13F;
 
 // Brand color schemes
@@ -303,6 +305,18 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-red,
     outline-to: $c-pinky-red,
+    outline-rotate: -45%,
+    is-solid: false
+  ),
+  red-dark-red-darker: (
+    solid-color: $c-red-dark,
+    text-color: $c-white,
+    from: $c-red-dark,
+    to: $c-red-darker,
+    rotate: 0deg,
+    card-rotate: 0deg,
+    outline-from: $c-red-dark,
+    outline-to: $c-red-darker,
     outline-rotate: -45%,
     is-solid: false
   ),
