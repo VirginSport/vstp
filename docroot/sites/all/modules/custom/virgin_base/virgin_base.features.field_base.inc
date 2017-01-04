@@ -649,6 +649,9 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'white' => 'White',
+        'black' => 'Black',
+        'gray' => 'Gray',
         'blue' => 'Blue',
         'blue-solid' => 'Blue (Solid)',
         'teal' => 'Teal',
