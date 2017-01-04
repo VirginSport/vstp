@@ -2,7 +2,6 @@ import $ from '../lib/jquery';
 import bootstrap from 'bootstrap.native/dist/bootstrap-native';
 
 const xs_max = 544;
-const headerFadeWaitTime = 5000;
 
 export default () => {
   // When user click on play button start modal video and pause background video

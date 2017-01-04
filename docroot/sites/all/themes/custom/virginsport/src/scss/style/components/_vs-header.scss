@@ -297,7 +297,6 @@ vs-header,
 }
 
 .vs-header--not-top {
-  @include transform(translateY(-100%));
   background-color: $c-black;
   top: 0;
 
