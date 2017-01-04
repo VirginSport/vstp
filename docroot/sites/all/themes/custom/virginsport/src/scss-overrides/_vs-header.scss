@@ -7,7 +7,7 @@
 
   @media screen and (min-width: $main-nav-breakpoint) {
     .vs-header--pinned & {
-      top: .1rem;
+      top: 0;
     }
 
     .vs-header--top & {
