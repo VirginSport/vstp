@@ -31,8 +31,6 @@ export default () => {
    * Logic for sticky basket
    */
   function stickyBasket() {
-
-
     let basket_height = $sticky_basket.outerHeight();
     let basket_offset_top = $sticky_basket.offset().top;
     let offset = window.innerHeight + (window.scrollY || window.pageYOffset);
