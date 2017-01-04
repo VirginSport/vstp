@@ -5,46 +5,6 @@ const xs_max = 544;
 const headerFadeWaitTime = 5000;
 
 export default () => {
-  let headerFadeTimeout;
-
-  function toggleFadeOutHeader(fadeOut = true) {
-    let $header_top = $('.vs-header');
-
-    if (fadeOut) {
-      $header_top.removeClass('vs-header--video-fade-out');
-      $header_top.addClass('vs-header--video-fade-in');
-    } else {
-      $header_top.removeClass('vs-header--video-fade-in');
-      $header_top.addClass('vs-header--video-fade-out');
-    }
-  }
-
-  // Add fade out to header if video playing and page is on top
-  if ($('.vs-head-region .vs-video').length) {
-
-    if (headerFadeTimeout) {
-      clearTimeout(headerFadeTimeout)
-    }
-
-    headerFadeTimeout = setTimeout(function () {
-      toggleFadeOutHeader()
-    }, headerFadeWaitTime);
-
-    $(window).on('scroll', (event) => {
-      if (event.currentTarget.scrollY === 0) {
-        toggleFadeOutHeader(false)
-
-        if (headerFadeTimeout) {
-          clearTimeout(headerFadeTimeout)
-        }
-
-        headerFadeTimeout = setTimeout(function () {
-          toggleFadeOutHeader()
-        }, headerFadeWaitTime);
-      }
-    });
-  }
-
   // When user click on play button start modal video and pause background video
   $('.vs-video__play-button').click(function() {
     const $body = $('body');
