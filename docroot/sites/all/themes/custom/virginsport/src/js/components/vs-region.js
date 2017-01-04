@@ -1,5 +1,6 @@
 import onResize from '../helper/on-resize';
 import $ from '../lib/jquery';
+import ieVersion from '../lib/ie-version';
 
 /**
  * Adjustment value to the gradient rotation so that
@@ -44,7 +45,14 @@ const SELF_PADDED_COMPONENTS = [
  *
  * @type {Region[]}
  */
-const regions = [];
+let regions = [];
+
+/**
+ * The current IE version
+ *
+ * @type {Number}
+ */
+let currentIEVersion = ieVersion();
 
 /**
  * Tracks if the vs-region script has run at least once
@@ -163,6 +171,12 @@ class Region {
     let svgHeight = this.isCurved ? (height + curveHeight) : height;
     let offsetHeight = this.isCurved ? curveHeight * -1 : 0;
     
+    // Hack: For IE <= 11 the SVG the offset must be 0 or the SVG is pushed
+    // higher than the region it is in.
+    if (currentIEVersion >= 10 && currentIEVersion <= 11) {
+      offsetHeight = 0;
+    }
+
     // And update the drawn path properties accordingly
     setAttributes(this.svg, {
       viewBox: `0 0 ${width} ${svgHeight}`,
