@@ -4,6 +4,16 @@
 
 .vs-header__nav-wrapper {
   top: 0;
+
+  @media screen and (min-width: $main-nav-breakpoint) {
+    .vs-header--pinned & {
+      top: 0;
+    }
+
+    .vs-header--top & {
+      top: .3rem;
+    }
+  }
 }
 
 .vs-menu-trigger--top {
@@ -14,4 +24,20 @@
   .vs-menu-trigger--top {
     top: 3rem;
   }
+}
+
+.vs-header__logo {
+  top: .55rem;
+
+  @include media-breakpoint-up(md) {
+    top: -.5rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    top: -.5625rem;
+  }
+}
+
+.vs-menu-open {
+  position: fixed;
 }
