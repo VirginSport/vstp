@@ -138,10 +138,6 @@ vs-teaser,
 }
 
 @include media-breakpoint-up(lg) {
-  [class*="vs-teaser__layout"] {
-    padding: 5rem 0;
-  }
-
   .vs-teaser__title {
     font-size: 5.625rem;
     line-height: 5.3125rem;
@@ -182,6 +178,13 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--portrait {
+  .vs-teaser__title {
+    text-align: center;
+    margin-top: -.875rem;
+    margin-bottom: 1.875rem;
+    z-index: 3;
+  }
+
   .vs-teaser__image-a {
     width: 10rem;
     margin: 0 auto;
@@ -189,6 +192,16 @@ vs-teaser,
 
   .vs-outline {
     margin-bottom: 0;
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(md) {
+      .col-xs-12:first-child {
+        .vs-teaser__image-a {
+          right: auto;
+        }
+      }
+    }
   }
 
   $p_xl_height: 29.325rem;
@@ -200,6 +213,11 @@ vs-teaser,
 
     .vs-teaser__col {
       min-height: $p_md_height;
+    }
+
+    .vs-teaser__title {
+      @include make-col(12);
+      text-align: left;
     }
 
     .vs-outline {
@@ -223,12 +241,26 @@ vs-teaser,
       min-height: $p_lg_height;
     }
 
+    .vs-teaser__title {
+      display: block;
+      float: right;
+      max-width: none;
+      width: auto;
+    }
+
     .vs-outline {
       margin-bottom: -2.325rem;
     }
 
     .vs-teaser__image-a {
       width: 18.5rem;
+    }
+
+    &.vs-teaser--reverse {
+      .vs-teaser__title {
+        float: left;
+        margin-left: 0;
+      }
     }
   }
 
@@ -241,6 +273,10 @@ vs-teaser,
 
     .vs-outline {
       margin-bottom: -3.6125rem;
+    }
+
+    .vs-teaser__title {
+      text-align: right;
     }
 
     .vs-teaser__image-a {
@@ -259,9 +295,22 @@ vs-teaser,
     margin: 0 auto;
   }
 
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
   @include media-breakpoint-up(md) {
     .vs-teaser__image-a {
       width: 100%;
+    }
+
+    .row {
+      @include align-items(center);
+      @include justify-content(center);
+    }
+
+    .vs-teaser__content {
+      padding-left: 0;
     }
   }
 
@@ -269,11 +318,21 @@ vs-teaser,
     .vs-teaser__image-a {
       float: right;
     }
+
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
   }
 
   @include media-breakpoint-up(xl) {
     .vs-teaser__image-a {
       width: 30rem;
+    }
+
+    .vs-teaser__content {
+      padding-left: 3.75rem;
     }
 
     &.vs-teaser--reverse {
@@ -305,7 +364,12 @@ vs-teaser,
     margin-bottom: 1.875rem;
   }
 
-  $ll_xl_height: 31.75rem;
+  .vs-teaser__title {
+    @include make-col(8);
+    z-index: 4;
+  }
+
+  $ll_xl_height: 32.532rem;
   $ll_lg_height: 26rem;
   $ll_md_height: 19.575rem;
 
@@ -325,7 +389,13 @@ vs-teaser,
       width: auto;
     }
 
+    .vs-teaser__image-a {
+      margin-right: 3.9375rem;
+      width: 30.5rem;
+    }
+
     .vs-teaser__image-b {
+      margin-top: 15.3125rem;
       width: 25.8125rem;
     }
 
@@ -335,13 +405,8 @@ vs-teaser,
       transform-origin: top right;
     }
 
-    .vs-teaser__image-a {
-      margin-right: 3.9375rem;
-      width: 30.5rem;
-    }
-
-    .vs-teaser__image-b {
-      margin-top: 15.3125rem;
+    .vs-teaser__content {
+      padding-left: 0;
     }
   }
 
@@ -387,13 +452,25 @@ vs-teaser,
   .vs-teaser__image-a {
     width: 11.875rem;
     margin: 0 auto 2.125rem;
-    margin-bottom: 0;
   }
 
   .vs-teaser__image-b {
     width: calc(100% + #{$grid-gutter-width});
     margin-left: -$grid-gutter-width/2;
-    margin-bottom: 0;
+  }
+
+  .vs-teaser__images {
+    padding: 0;
+  }
+
+  .vs-teaser__subtitle {
+    @include make-col(8);
+    float: none;
+    color: $c-black;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
   }
 
   $pu_xl_height: 35.1375rem;
@@ -405,6 +482,11 @@ vs-teaser,
 
     .vs-teaser__col {
       min-height: $pu_md_height;
+    }
+
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      padding: 0;
     }
 
     .vs-teaser__image-scale {
@@ -451,6 +533,12 @@ vs-teaser,
       min-height: $pu_xl_height;
     }
 
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(1));
     }
@@ -473,6 +561,29 @@ vs-teaser,
     margin-bottom: 0;
   }
 
+  .vs-teaser__images {
+    padding: 0 .9375rem;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
+  &.vs-teaser--reverse {
+    @include media-breakpoint-up(xl) {
+      .vs-teaser__text,
+      .vs-teaser__subtitle {
+        @include make-col(11);
+        @include make-col-offset(0);
+      }
+
+      .vs-teaser__image-b {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+
   $pl_xl_height: 23.4625rem;
   $pl_lg_height: 16.4625rem;
   $pl_md_height: 13rem;
@@ -482,6 +593,10 @@ vs-teaser,
 
     .vs-teaser__col {
       min-height: $pl_md_height;
+    }
+
+    .vs-teaser__wrapper {
+      min-height: 22.1875rem;
     }
 
     .vs-teaser__image-scale {
@@ -528,6 +643,25 @@ vs-teaser,
       min-height: $pl_xl_height;
     }
 
+    .vs-teaser__wrapper {
+      min-height: 25.625rem;
+    }
+
+    .vs-teaser__text,
+    .vs-teaser__subtitle {
+      @include make-col(12);
+    }
+
+    .vs-teaser__content {
+      @include make-col-offset(2);
+    }
+
+    .vs-teaser__subtitle {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(1));
     }
@@ -550,8 +684,16 @@ vs-teaser,
     margin-bottom: 0;
   }
 
+  .vs-teaser__images {
+    padding: 0 .9375rem;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 1.875rem;
+  }
+
   $sp_xl_height: 29.3125rem;
-  $sp_lg_height: 20.5125rem;
+  $sp_lg_height: 16.5125rem;
   $sp_md_height: 15.5125rem;
 
   @include media-breakpoint-up(md) {
@@ -595,6 +737,14 @@ vs-teaser,
       @include transform(scale(.7));
     }
 
+    .vs-teaser__title {
+      text-align: right;
+      float: right;
+      padding-left: 0;
+      max-width: none;
+      margin-top: 2.25rem;
+    }
+
     .vs-teaser__image-a {
       width: 21.4375rem;
     }
@@ -610,6 +760,19 @@ vs-teaser,
 
     .vs-teaser__col {
       min-height: $sp_xl_height;
+    }
+
+    .vs-teaser__wrapper {
+      min-height: 25.625rem;
+    }
+
+    .vs-teaser__text,
+    .vs-teaser__subtitle {
+      @include make-col(12);
+    }
+
+    .vs-teaser__content {
+      @include make-col-offset(2);
     }
 
     .vs-teaser__image-scale {
@@ -658,6 +821,12 @@ vs-teaser,
         @include transform(scale(1));
       }
 
+      .vs-teaser__text,
+      .vs-teaser__subtitle {
+        @include make-col(11);
+        @include make-col-offset(0);
+      }
+
       .vs-teaser__image-b {
         right: 0;
       }
@@ -671,6 +840,16 @@ vs-teaser,
 
 .vs-teaser--landscape-square {
   overflow: hidden;
+
+  .vs-teaser__title {
+    float: left;
+    clear: both;
+    z-index: 1;
+  }
+
+  .vs-teaser__text {
+    margin-bottom: 2.5rem;
+  }
 
   .vs-teaser__image-a,
   .vs-teaser__image-b {
@@ -709,7 +888,14 @@ vs-teaser,
     }
 
     .vs-teaser__content {
+      padding-left: 0;
       padding-bottom: 0;
+    }
+
+    .vs-teaser__title,
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      @include make-col(12);
     }
 
     .vs-teaser__image-scale {
@@ -726,20 +912,13 @@ vs-teaser,
 
     .vs-teaser__image-a {
       width: 17.4375rem;
-    }
-
-    .vs-teaser__image-b {
-      width: 30.25rem;
-    }
-
-
-    .vs-teaser__image-a {
       margin: 0;
       top: 9.375rem;
       right: 0;
     }
 
     .vs-teaser__image-b {
+      width: 30.25rem;
       margin-bottom: 0;
       right: 8.5625rem;
       top: 0;
@@ -757,8 +936,14 @@ vs-teaser,
       padding-bottom: 5.8375rem;
     }
 
+    .vs-teaser__subtitle,
+    .vs-teaser__text {
+      @include make-col(11);
+    }
+
     .vs-outline {
-      margin-top: -5.8375rem;
+      margin-top: -5.4375rem;
+      margin-bottom: -1.4375rem;
     }
 
     .vs-teaser__image-scale {
@@ -778,7 +963,7 @@ vs-teaser,
     }
 
     .vs-outline {
-      margin-top: -9.4375rem;
+      margin-top: -8.8375rem;
     }
 
     .vs-teaser__image-scale {
@@ -805,8 +990,10 @@ vs-teaser,
 
     @include media-breakpoint-up(lg) {
       .vs-teaser__title {
-        padding-left: 12.8125rem;
-        text-align: left;
+        text-align: right;
+        float: right;
+        padding-left: 0;
+        max-width: none;
       }
     }
 
@@ -825,9 +1012,9 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--portrait-upperportrait-portrait {
-  .vs-teaser__image-a,
-  .vs-teaser__image-b {
-    margin-bottom: 0;
+  .vs-teaser__title {
+    text-align: center;
+    z-index: 4;
   }
 
   .vs-outline {
@@ -838,6 +1025,12 @@ vs-teaser,
     width: 100%;
   }
 
+  .vs-teaser__image-a {
+    width: 10rem;
+    display: block;
+    margin: 0 auto;
+  }
+
   .vs-teaser__image-b {
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
@@ -846,17 +1039,9 @@ vs-teaser,
     margin-bottom: 1.875rem;
   }
 
-  .vs-teaser__image-a {
-    width: 10rem;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .vs-teaser__image-scale,
-  &.vs-teaser--reverse .vs-teaser__image-scale {
-    margin-top: 0;
-    -webkit-transform-origin: top center;
-    transform-origin: top center;
+  .vs-teaser__image-a,
+  .vs-teaser__image-b {
+    margin-bottom: 0;
   }
 
   $pup_xl_height: 35.75rem;
@@ -865,21 +1050,29 @@ vs-teaser,
 
   @include media-breakpoint-up(md) {
     min-height: $pup_md_height;
-    padding-top: 5.625rem;
 
     .vs-teaser__col {
       min-height: $pup_md_height;
     }
 
     .vs-teaser__title {
-      margin-bottom: 3.875rem;
+      @include make-col(12);
+      text-align: left;
+    }
+
+    .vs-teaser__text {
+      @include make-col(8);
+    }
+
+    .vs-teaser__content {
+      padding-left: 0;
     }
 
     .vs-teaser__image-scale {
       @include transform(scale(.55));
-      -webkit-transform-origin: center;
-      transform-origin: center;
-      margin-top: -50%;
+      -webkit-transform-origin: top center;
+      transform-origin: top center;
+      margin-top: 0;
       left: auto;
     }
 
@@ -914,7 +1107,6 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
-    padding-top: 5rem;
     min-height: $pup_lg_height;
 
     .vs-teaser__col {
@@ -927,7 +1119,6 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(xl) {
-    padding-top: 0;
     min-height: $pup_xl_height;
 
     .vs-outline {
@@ -941,6 +1132,15 @@ vs-teaser,
     .vs-teaser__image-scale {
       @include transform(scale(1));
     }
+
+    .vs-teaser__text {
+      @include make-col(10);
+    }
+
+    .row {
+      @include align-items(initial);
+      @include justify-content(initial);
+    }
   }
 
   &.vs-teaser--reverse {
@@ -950,7 +1150,6 @@ vs-teaser,
 
     @include media-breakpoint-up(md) {
       .vs-teaser__image-scale {
-        margin-top: -50%;
         left: 0;
         right: -3.75rem;
       }
@@ -981,352 +1180,6 @@ vs-teaser,
     }
   }
 }
-
-
-// Layout 1-a
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-1-a {
-  .vs-teaser__title {
-    text-align: center;
-    margin-top: -.875rem;
-    margin-bottom: 1.875rem;
-    z-index: 3;
-  }
-
-  @include media-breakpoint-up(md) {
-    min-height: 20rem;
-
-    .vs-teaser__title {
-      @include make-col(12);
-      text-align: left;
-      margin-bottom: 0;
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    min-height: 31.4375rem;
-
-    .vs-teaser__title {
-      display: block;
-      float: right;
-      padding-top: 1.5625rem;
-      max-width: none;
-      width: auto;
-    }
-
-    &.vs-teaser--reverse {
-      .vs-teaser__title {
-        float: left;
-        margin-left: 0;
-      }
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    min-height: 40rem;
-
-    .vs-teaser__title {
-      text-align: right;
-    }
-  }
-
-  &.vs-teaser--reverse {
-    @include media-breakpoint-up(md) {
-      .col-xs-12:first-child {
-        .vs-teaser__image-a {
-          right: auto;
-        }
-      }
-    }
-  }
-}
-
-
-// Layout 1-b
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-1-b {
-  .vs-teaser__text {
-    margin-bottom: 1.875rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    .row {
-      @include align-items(center);
-      @include justify-content(center);
-    }
-
-    .vs-teaser__content {
-      padding-left: 0;
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    .vs-teaser__subtitle {
-      font-size: 1.75rem;
-      line-height: 2rem;
-      font-weight: 500;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .vs-teaser__content {
-      padding-left: 3.75rem;
-    }
-  }
-}
-
-
-// Layout 2-a
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-2-a {
-  .vs-teaser__title {
-    @include make-col(8);
-    z-index: 4;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__content {
-      padding-left: 0;
-    }
-  }
-}
-
-
-// Layout 2-b
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-2-b {
-  .vs-teaser__images {
-    padding: 0;
-  }
-
-  .vs-teaser__subtitle {
-    @include make-col(8);
-    float: none;
-    color: $c-black;
-  }
-
-  .vs-teaser__text {
-    margin-bottom: 1.875rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__subtitle,
-    .vs-teaser__text {
-      padding: 0;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .vs-teaser__subtitle {
-      font-size: 1.75rem;
-      line-height: 2rem;
-      font-weight: 500;
-    }
-  }
-}
-
-
-// Layout 2-c
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-2-c {
-  .vs-teaser__images {
-    padding: 0 .9375rem;
-  }
-
-  .vs-teaser__text {
-    margin-bottom: 1.875rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__wrapper {
-      min-height: 22.1875rem;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .vs-teaser__wrapper {
-      min-height: 25.625rem;
-    }
-
-    .vs-teaser__text,
-    .vs-teaser__subtitle {
-      @include make-col(12);
-    }
-
-    .vs-teaser__content {
-      @include make-col-offset(2);
-    }
-
-    .vs-teaser__subtitle {
-      font-size: 1.75rem;
-      line-height: 2rem;
-      font-weight: 500;
-    }
-  }
-
-  &.vs-teaser--reverse {
-    @include media-breakpoint-up(xl) {
-      .vs-teaser__text,
-      .vs-teaser__subtitle {
-        @include make-col(11);
-        @include make-col-offset(0);
-      }
-
-      .vs-teaser__image-b {
-        left: auto;
-        right: 0;
-      }
-    }
-  }
-}
-
-
-// Layout 2-d
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-2-d {
-  .vs-teaser__title {
-    float: left;
-    clear: both;
-    z-index: 1;
-  }
-
-  .vs-teaser__text {
-    margin-bottom: 2.5rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__content {
-      padding-left: 0;
-    }
-
-    .vs-teaser__title,
-    .vs-teaser__subtitle,
-    .vs-teaser__text {
-      @include make-col(12);
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    .vs-teaser__subtitle,
-    .vs-teaser__text {
-      @include make-col(11);
-    }
-
-    .vs-teaser__title {
-      margin-top: 2.25rem;
-    }
-  }
-
-  &.vs-teaser--reverse {
-    @include media-breakpoint-up(lg) {
-      .vs-teaser__title {
-        text-align: right;
-        float: right;
-        padding-left: 0;
-        max-width: none;
-      }
-    }
-  }
-}
-
-
-// Layout 2-e
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-2-e {
-  .vs-teaser__images {
-    padding: 0 .9375rem;
-  }
-
-  .vs-teaser__text {
-    margin-bottom: 1.875rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__wrapper {
-      min-height: 22.1875rem;
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    .vs-teaser__title {
-      text-align: right;
-      float: right;
-      padding-left: 0;
-      max-width: none;
-      margin-top: 2.25rem;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .vs-teaser__wrapper {
-      min-height: 25.625rem;
-    }
-
-    .vs-teaser__text,
-    .vs-teaser__subtitle {
-      @include make-col(12);
-    }
-
-    .vs-teaser__content {
-      @include make-col-offset(2);
-    }
-  }
-
-  &.vs-teaser--reverse {
-    @include media-breakpoint-up(xl) {
-      .vs-teaser__text,
-      .vs-teaser__subtitle {
-        @include make-col(11);
-        @include make-col-offset(0);
-      }
-    }
-  }
-}
-
-
-// Layout 3-a
-// ----------------------------------------------------------------------------
-
-.vs-teaser__layout-3-a {
-  .vs-teaser__title {
-    text-align: center;
-    z-index: 4;
-  }
-
-  @include media-breakpoint-up(md) {
-    .vs-teaser__text {
-      @include make-col(8);
-    }
-    
-    .vs-teaser__content {
-      padding-left: 0;
-    }
-
-    .vs-teaser__title {
-      @include make-col(12);
-      text-align: left;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    .vs-teaser__title {
-      margin-bottom: 12.8125rem;
-      margin-top: 2.75rem;
-    }
-
-    .vs-teaser__text {
-      @include make-col(10);
-    }
-  }
-}
-
 
 // Modifiers
 // ----------------------------------------------------------------------------
