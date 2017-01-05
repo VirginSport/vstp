@@ -143,7 +143,7 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
 function virgin_user_page_basket_claim($rego) {
   // An anonymous, has to login or register to claim a ticket.
   if (user_is_anonymous()) {
-    _virgin_user_page_basket_redirect('/user/login', array(
+    _virgin_user_page_basket_redirect('/user/register', array(
       'basket-action' => 'claim',
       'rego' => $rego
     ));
@@ -222,7 +222,7 @@ function virgin_user_page_basket_authenticate() {
   // An anonymous user will have to login or register in order
   // to be able to checkout.
   if (user_is_anonymous()) {
-    _virgin_user_page_basket_redirect('/user/login', array(
+    _virgin_user_page_basket_redirect('/user/register', array(
       'basket-action' => 'authenticate'
     ));
 
