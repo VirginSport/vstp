@@ -6,6 +6,13 @@ vs-teaser,
 .vs-teaser {
   @include clearfix();
   display: block;
+
+  @include media-breakpoint-up(md) {
+    .row {
+      @include align-items(center);
+      @include justify-content(center);
+    }
+  }
 }
 
 
@@ -13,7 +20,7 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 [class*="vs-teaser__layout"] {
-  padding: 1.5625rem 0;
+  padding: 0;
 
   .row {
     @include flexbox();
@@ -34,8 +41,10 @@ vs-teaser,
 
 .vs-teaser__content {
   @include clearfix();
+  position: relative;
   padding-left: 1.5625rem;
   padding-right: 1.5625rem;
+  z-index: 3;
 
   @include media-breakpoint-up(md) {
     .vs-teaser--reverse & {
@@ -53,6 +62,14 @@ vs-teaser,
   line-height: 3.125rem;
   position: relative;
   display: block;
+
+  &.vs-outline {
+    padding-top: 0;
+  }
+}
+
+.vs-outline {
+  margin: 0;
 }
 
 .vs-teaser__subtitle {
@@ -170,7 +187,25 @@ vs-teaser,
     margin: 0 auto;
   }
 
+  .vs-outline {
+    margin-bottom: 0;
+  }
+
+  $p_xl_height: 29.325rem;
+  $p_lg_height: 25.325rem;
+  $p_md_height: 18.325rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $p_md_height;
+
+    .vs-teaser__col {
+      min-height: $p_md_height;
+    }
+
+    .vs-outline {
+      margin-bottom: -1.325rem;
+    }
+
     .vs-teaser__image-a {
       @include transform(translateY(-50%));
       top: 50%;
@@ -182,12 +217,32 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
+    min-height: $p_lg_height;
+
+    .vs-teaser__col {
+      min-height: $p_lg_height;
+    }
+
+    .vs-outline {
+      margin-bottom: -2.325rem;
+    }
+
     .vs-teaser__image-a {
       width: 18.5rem;
     }
   }
 
   @include media-breakpoint-up(xl) {
+    min-height: $p_xl_height;
+
+    .vs-teaser__col {
+      min-height: $p_xl_height;
+    }
+
+    .vs-outline {
+      margin-bottom: -3.6125rem;
+    }
+
     .vs-teaser__image-a {
       width: 21.4375rem;
     }
@@ -201,7 +256,7 @@ vs-teaser,
 .vs-teaser--landscape {
   .vs-teaser__image-a {
     width: 13.625rem;
-    margin: 0 auto 1.875rem;
+    margin: 0 auto;
   }
 
   @include media-breakpoint-up(md) {
@@ -234,6 +289,8 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--landscape-lowerlandscape {
+  overflow: hidden;
+
   .vs-teaser__image-scale {
     position: absolute;
     right: 0;
@@ -248,7 +305,17 @@ vs-teaser,
     margin-bottom: 1.875rem;
   }
 
+  $ll_xl_height: 31.75rem;
+  $ll_lg_height: 26rem;
+  $ll_md_height: 19.575rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $ll_md_height;
+
+    .vs-teaser__col {
+      min-height: $ll_md_height;
+    }
+
     .vs-teaser__image-a,
     .vs-teaser__image-b {
       position: absolute;
@@ -279,12 +346,24 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
+    min-height: $ll_lg_height;
+
+    .vs-teaser__col {
+      min-height: $ll_lg_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(.8));
     }
   }
 
   @include media-breakpoint-up(xl) {
+    min-height: $ll_xl_height;
+
+    .vs-teaser__col {
+      min-height: $ll_xl_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(1));
     }
@@ -308,15 +387,26 @@ vs-teaser,
   .vs-teaser__image-a {
     width: 11.875rem;
     margin: 0 auto 2.125rem;
+    margin-bottom: 0;
   }
 
   .vs-teaser__image-b {
     width: calc(100% + #{$grid-gutter-width});
     margin-left: -$grid-gutter-width/2;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0;
   }
 
+  $pu_xl_height: 35.1375rem;
+  $pu_lg_height: 28.1375rem;
+  $pu_md_height: 21.1375rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $pu_md_height;
+
+    .vs-teaser__col {
+      min-height: $pu_md_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(0.6));
       -webkit-transform-origin: left center;
@@ -343,7 +433,11 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
-    min-height: 43rem;
+    min-height: $pu_lg_height;
+
+    .vs-teaser__col {
+      min-height: $pu_lg_height;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(0.8));
@@ -351,6 +445,12 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(xl) {
+    min-height: $pu_xl_height;
+
+    .vs-teaser__col {
+      min-height: $pu_xl_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(1));
     }
@@ -362,14 +462,28 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--portrait-landscape {
+  .vs-teaser__image-a {
+    margin-bottom: 0;
+  }
+
   .vs-teaser__image-b {
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     height: auto;
-    margin-bottom: 1.875rem;
+    margin-bottom: 0;
   }
 
+  $pl_xl_height: 23.4625rem;
+  $pl_lg_height: 16.4625rem;
+  $pl_md_height: 13rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $pl_md_height;
+
+    .vs-teaser__col {
+      min-height: $pl_md_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(.55));
       -webkit-transform-origin: left;
@@ -396,13 +510,23 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
+    min-height: $pl_lg_height;
+
+    .vs-teaser__col {
+      min-height: $pl_lg_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(.7));
     }
   }
 
   @include media-breakpoint-up(xl) {
-    min-height: 30rem;
+    min-height: $pl_xl_height;
+
+    .vs-teaser__col {
+      min-height: $pl_xl_height;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(1));
@@ -421,7 +545,22 @@ vs-teaser,
     max-width: 25.625rem;
   }
 
+  .vs-teaser__image-a,
+  .vs-teaser__image-b {
+    margin-bottom: 0;
+  }
+
+  $sp_xl_height: 29.3125rem;
+  $sp_lg_height: 20.5125rem;
+  $sp_md_height: 15.5125rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $sp_md_height;
+
+    .vs-teaser__col {
+      min-height: $sp_md_height;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(.55));
       -webkit-transform-origin: right;
@@ -446,6 +585,12 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
+    min-height: $sp_lg_height;
+
+    .vs-teaser__col {
+      min-height: $sp_lg_height;
+    }
+    ´
     .vs-teaser__image-scale {
       @include transform(scale(.7));
     }
@@ -461,7 +606,11 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(xl) {
-    min-height: 34rem;
+    min-height: $sp_xl_height;
+
+    .vs-teaser__col {
+      min-height: $sp_xl_height;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(1));
@@ -521,6 +670,19 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--landscape-square {
+  overflow: hidden;
+
+  .vs-teaser__image-a,
+  .vs-teaser__image-b {
+    margin-bottom: 0;
+  }
+
+  .vs-outline {
+    margin-top: 0;
+    margin-bottom: -1.6125rem;
+    z-index: 3;
+  }
+
   .vs-teaser__image-b {
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
@@ -529,7 +691,27 @@ vs-teaser,
     margin-bottom: 1.875rem;
   }
 
+  $ls_xl_height: 26.8125rem;
+  $ls_lg_height: 18.8125rem;
+  $ls_md_height: 14.8125rem;
+
+  @include media-breakpoint-up(sm) {
+    .vs-outline {
+      margin-bottom: 0;
+    }
+  }
+
   @include media-breakpoint-up(md) {
+    min-height: $ls_md_height;
+
+    .vs-teaser__col {
+      min-height: $ls_md_height;
+    }
+
+    .vs-teaser__content {
+      padding-bottom: 0;
+    }
+
     .vs-teaser__image-scale {
       @include transform(scale(.55));
       -webkit-transform-origin: top right;
@@ -565,7 +747,19 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(lg) {
-    min-height: 29rem;
+    min-height: $ls_lg_height;
+
+    .vs-teaser__col {
+      min-height: $ls_lg_height;
+    }
+
+    .vs-teaser__content {
+      padding-bottom: 5.8375rem;
+    }
+
+    .vs-outline {
+      margin-top: -5.8375rem;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(.7));
@@ -573,7 +767,19 @@ vs-teaser,
   }
 
   @include media-breakpoint-up(xl) {
-    min-height: 37rem;
+    min-height: $ls_xl_height;
+
+    .vs-teaser__col {
+      min-height: $ls_xl_height;
+    }
+
+    .vs-teaser__content {
+      padding-bottom: 9.4375rem;
+    }
+
+    .vs-outline {
+      margin-top: -9.4375rem;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(1));
@@ -619,6 +825,15 @@ vs-teaser,
 // ----------------------------------------------------------------------------
 
 .vs-teaser--portrait-upperportrait-portrait {
+  .vs-teaser__image-a,
+  .vs-teaser__image-b {
+    margin-bottom: 0;
+  }
+
+  .vs-outline {
+    margin: 0;
+  }
+
   .vs-teaser__wrapper {
     width: 100%;
   }
@@ -637,12 +852,23 @@ vs-teaser,
     margin: 0 auto;
   }
 
+  .vs-teaser__image-scale,
+  &.vs-teaser--reverse .vs-teaser__image-scale {
+    margin-top: 0;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+  }
+
+  $pup_xl_height: 35.75rem;
+  $pup_lg_height: 25.10rem;
+  $pup_md_height: 19.75rem;
+
   @include media-breakpoint-up(md) {
+    min-height: $pup_md_height;
     padding-top: 5.625rem;
 
-    .row {
-      @include align-items(center);
-      @include justify-content(center);
+    .vs-teaser__col {
+      min-height: $pup_md_height;
     }
 
     .vs-teaser__title {
@@ -689,6 +915,11 @@ vs-teaser,
 
   @include media-breakpoint-up(lg) {
     padding-top: 5rem;
+    min-height: $pup_lg_height;
+
+    .vs-teaser__col {
+      min-height: $pup_lg_height;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(.7));
@@ -697,6 +928,15 @@ vs-teaser,
 
   @include media-breakpoint-up(xl) {
     padding-top: 0;
+    min-height: $pup_xl_height;
+
+    .vs-outline {
+      min-height: 20.625rem;
+    }
+
+    .vs-teaser__col {
+      min-height: $pup_xl_height;
+    }
 
     .vs-teaser__image-scale {
       @include transform(scale(1));
