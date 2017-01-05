@@ -40,16 +40,17 @@ class VirginComponentPhotoGallery implements VirginComponentsInterface {
     $variables['thumbnail'] = $virgin->fieldGetOne('field_thumbnail');
     $slides = array();
 
-    foreach($variables['field_slides'] as $slide) {
-      $entity = entity_load_single('paragraphs_item', $slide['value']);
-      $grapher = new VirginEntityGrapher('paragraphs_item', $entity);
-      $slides[] = array(
-        'entity_grapher' => $grapher,
-        'picture' => $grapher->relation('field_slide_image'),
-      );
+    if (!empty($variables['field_slides'])) {
+      foreach($variables['field_slides'] as $slide) {
+        $entity = entity_load_single('paragraphs_item', $slide['value']);
+        $grapher = new VirginEntityGrapher('paragraphs_item', $entity);
+        $slides[] = array(
+          'entity_grapher' => $grapher,
+          'picture' => $grapher->relation('field_slide_image'),
+        );
+      }
     }
 
     $variables['slides'] = $slides;
-
   }
 }
