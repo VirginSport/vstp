@@ -39,6 +39,19 @@ body.panels-ipe-editing {
   .panels-ipe-placeholder h3 {
     width: auto;
   }
+
+  .vs-overlay-blur {
+    position: relative !important;
+    z-index: 0 !important;
+
+    > * {
+      display: none;
+    }
+
+    > .page-wrapper {
+      display: block;
+    }
+  }
 }
 
 // Improve IPE elements
