@@ -24,6 +24,7 @@ import vsGtm from './components/vs-gtm';
 import vsCarousel from './components/vs-carousel';
 import vsScroller from './components/vs-scroller';
 import vsPhotoGallery from './components/vs-photo-gallery';
+import vsUserMenu from './components/vs-user-menu';
 
 
 vsBasket();
@@ -50,6 +51,7 @@ vsGtm();
 vsCarousel();
 vsScroller();
 vsPhotoGallery();
+vsUserMenu();
 
 // Libs
 import bootstrap from './lib/bootstrap';
