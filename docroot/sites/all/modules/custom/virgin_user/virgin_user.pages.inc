@@ -260,6 +260,12 @@ function virgin_user_page_basket_checkout_finished() {
   // Fetch the required query parameter that contains the ciphered regos
   $ciphered_regos = virgin_param('rego');
 
+  // If there are no ciphered regos, then there's nothing to uncipher and this
+  // means that the user has not acquired tickets for himself.
+  if (empty($ciphered_regos)) {
+    _virgin_user_page_basket_redirect('/user/' . $user->uid);
+  }
+
   try {
     $unciphered_regos = virgin_cipher()->uncipher($ciphered_regos);
     $regos = explode('|', $unciphered_regos);
