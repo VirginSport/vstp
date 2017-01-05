@@ -1,3 +1,4 @@
+
 // When doing IPE editing, hide some elements that might conflict with
 // the editing UX.
 body.panels-ipe-editing {
@@ -7,6 +8,16 @@ body.panels-ipe-editing {
   .vs-region__bg { display: none !important; }
   .vs-region__bg-spacer { display: none !important; }
   .vs-region > :first-child { margin-top: 0 !important; }
+
+  // Fix IPE drag-and-drop for components with large height
+  .vs-ipe-drag-on {
+    overflow: hidden;
+    min-height: 100px;
+
+    .panels-ipe-portlet-wrapper:hover .panels-ipe-portlet-content {
+      height: 100px;
+    }
+  }
 
   .panels-ipe-placeholder {
     border-style: solid;
@@ -32,8 +43,14 @@ body.panels-ipe-editing {
     display: none !important;
   }
 
+  .panels-ipe-portlet-wrapper {
+    position: inherit;
+    z-index: inherit;
+  }
+
   .panels-ipe-portlet-content {
     background-color: $c-gray-light;
+    overflow: hidden;
   }
 
   .panels-ipe-placeholder h3 {
