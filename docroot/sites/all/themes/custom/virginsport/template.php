@@ -80,6 +80,14 @@ function virginsport_js_alter(&$js) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for html theme.
+ */
+function virginsport_preprocess_html(&$vars) {
+  global $base_path, $theme_path;
+  $vars['current_path'] = $base_path . $theme_path;
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page theme.
  */
 function virginsport_preprocess_page(&$vars) {
