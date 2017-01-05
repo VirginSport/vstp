@@ -52,12 +52,12 @@ function virginsport_theme($existing, $type, $theme, $path) {
   ) + $default;
 
   $themes['virginsport_share_buttons'] = array(
-      'template' => 'virginsport-share-buttons',
-      'variables' => array(
-        'subject' => '',
-        'url' => ''
-      )
-    ) + $default;
+    'template' => 'virginsport-share-buttons',
+    'variables' => array(
+      'subject' => '',
+      'url' => ''
+    )
+  ) + $default;
 
   return $themes;
 }
@@ -169,6 +169,15 @@ function virginsport_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = sprintf('node__%s__%s', $vars['type'], $vars['view_mode']);
 
   $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for mimemail_message theme.
+ */
+function virginsport_preprocess_mimemail_message(&$vars) {
+  global $base_root, $base_path, $theme_path;
+
+  $vars['theme_url'] = $base_root . $base_path . $theme_path;
 }
 
 // Template Overrides
