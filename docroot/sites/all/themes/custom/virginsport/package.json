@@ -40,6 +40,6 @@
   "scripts": {
     "watch": "webpack --progress --colors --watch",
     "build": "webpack --optimize-minimize",
-    "sync": "git clone git@github.com:acquia-pso/vstp-frontend.git .temp-sync --depth=1 --branch=develop --single-branch && rm -rf src/scss/ && rm -rf src/img/ && rm -rf src/fonts && cp -R .temp-sync/src/css src/scss && cp -R .temp-sync/src/img src/img && cp -R .temp-sync/src/fonts src/fonts && rm -rf .temp-sync && npm install && npm run build && echo 'Sync finished!'"
+    "sync": "git clone git@github.com:acquia-pso/vstp-frontend.git .temp-sync --depth=1 --branch=bugfix/crossbrowser --single-branch && rm -rf src/scss/ && rm -rf src/img/ && rm -rf src/fonts && cp -R .temp-sync/src/css src/scss && cp -R .temp-sync/src/img src/img && cp -R .temp-sync/src/fonts src/fonts && rm -rf .temp-sync && npm install && npm run build && echo 'Sync finished!'"
   }
 }
