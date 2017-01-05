@@ -10,6 +10,23 @@
 
 .vs-scroller {
   position: relative;
+
+  &.vs-scroller--active {
+    @include cursor(grab);
+
+    &:active {
+      @include cursor(grabbing);
+    }
+  }
+}
+
+.vs-scroller__wrapper {
+  overflow: hidden;
+}
+
+.vs-scroller--basic-content-block {
+  margin-bottom: -1.250rem;
+  padding-bottom: 1.438rem;
 }
 
 .vs-scroller--prev,
@@ -45,4 +62,28 @@
 .vs-scroller--next {
   background-image: url(../img/arrow-right.svg);
   right: -3.4rem;
+}
+
+.vs-scroller--bullets {
+  text-align: center;
+  padding: 1rem 0;
+
+  span {
+    @include border-radius(50%);
+    display: inline-block;
+    background-color: $c-black;
+    cursor: pointer;
+    opacity: .2;
+    width: 6px;
+    height: 6px;
+    margin: 4px;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
 }
