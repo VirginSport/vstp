@@ -41,7 +41,6 @@ vs-header,
 }
 
 .vs-header__logo {
-  @include transition(all .5s ease-in-out);
   position: absolute;
   background: transparent url('../img/vs-logo.svg') no-repeat left center;
   background-size: contain;
@@ -326,6 +325,7 @@ vs-header,
   }
 
   .vs-header__logo {
+    @include transition(all .5s ease-in-out);
     height: 4.125rem;
     width: 11.25rem;
     top: -.8125rem;
