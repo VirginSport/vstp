@@ -74,8 +74,7 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
       $event_state_grapher = $event_grapher->relation('field_event_state');
 
       $festival_grapher = virgin_base_event_festival($event_grapher->property('nid'));
-      $festival_state_grapher = $festival_grapher->relation('field_festival_state');
-      $variables['festival_nid'] = $festival_state_grapher->property('nid');
+      $variables['festival_nid'] = $festival_grapher->property('nid');
 
       $products = array(
         'name' => $event_grapher->property('title'),
