@@ -6,7 +6,7 @@ export default () => {
   let isTouchDevice = 'ontouchstart' in document.documentElement;
 
   if (isTouchDevice) {
-    $('.vs-user-menu__trigger').addClass('has-touch');
+    $('body').addClass('has-touch');
   }
 
 };

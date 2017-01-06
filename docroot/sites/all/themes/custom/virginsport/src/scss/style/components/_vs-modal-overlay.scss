@@ -35,8 +35,12 @@ vs-modal-overlay,
   left: .3125rem;
   right: .3125rem;
   top: .3125rem;
-  bottom: .3125rem;
-  overflow-y: scroll;
+
+
+  .has-touch & {
+    bottom: .3125rem;
+    overflow-y: scroll;
+  }
 
   .modal-dialog__close {
     position: absolute;
@@ -70,7 +74,7 @@ vs-modal-overlay,
       content: '';
       position: absolute;
 
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         background: $c-gray-light;
       }
     }
@@ -132,8 +136,14 @@ vs-modal-overlay,
 
 @include media-breakpoint-up(md) {
   .modal-dialog {
+    position: relative;
     margin-left: 16%;
     margin-right: 16%;
+    overflow-y: auto;
+
+    .has-touch & {
+      position:fixed;
+    }
   }
 
   .modal-header .close {
@@ -141,6 +151,12 @@ vs-modal-overlay,
     height: 1.25rem;
     margin-top: 4px;
     margin-right: 0;
+  }
+
+  .modal-content {
+    .has-touch & {
+      overflow-y:scroll;
+    }
   }
 }
 

@@ -2,7 +2,7 @@
 // This file handles user menu component
 // ----------------------------------------------------------------------------
 
-.vs-user-menu__trigger.has-touch {
+.has-touch .vs-user-menu__trigger {
   &:hover {
     @include box-shadow(inset 0 0 0 1.5px $c-white);
     background-color: transparent;
