@@ -180,14 +180,13 @@ vs-teaser,
 .vs-teaser--portrait {
   .vs-teaser__title {
     text-align: center;
-    margin-top: -.875rem;
     margin-bottom: 1.875rem;
     z-index: 3;
   }
 
   .vs-teaser__image-a {
     width: 15rem;
-    margin: 0 auto;
+    margin: -1.875rem auto 1.875rem auto;
   }
 
   .vs-outline {
@@ -302,6 +301,7 @@ vs-teaser,
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     margin-bottom: 1.875rem;
+    margin-top: -1.875rem;
   }
 
   .vs-teaser__text {
@@ -473,7 +473,7 @@ vs-teaser,
 .vs-teaser--portrait-upperportrait {
   .vs-teaser__image-a {
     width: 15rem;
-    margin: 0 auto 2.125rem;
+    margin: -2.125rem auto 2.125rem;
   }
 
   .vs-teaser__image-b {
@@ -489,10 +489,6 @@ vs-teaser,
     @include make-col(8);
     float: none;
     color: $c-black;
-  }
-
-  .vs-teaser__text {
-    margin-bottom: 0;
   }
 
   $pu_xl_height: 35.1375rem;
@@ -589,6 +585,7 @@ vs-teaser,
     margin-left: -.9375rem;
     height: auto;
     margin-bottom: 1.875rem;
+    margin-top: -1.875rem;
   }
 
   .vs-teaser__images {
@@ -1017,6 +1014,13 @@ vs-teaser,
         right: auto;
       }
 
+      .vs-teaser__title {
+        text-align: right;
+        float: right;
+        padding-left: 0;
+        max-width: none;
+      }
+
       .vs-teaser__image-a {
         right: auto;
       }
@@ -1024,15 +1028,6 @@ vs-teaser,
       .vs-teaser__image-b {
         right: auto;
         margin-left: 5.625rem;
-      }
-    }
-
-    @include media-breakpoint-up(lg) {
-      .vs-teaser__title {
-        text-align: right;
-        float: right;
-        padding-left: 0;
-        max-width: none;
       }
     }
 
@@ -1079,6 +1074,7 @@ vs-teaser,
     margin-left: -.9375rem;
     height: auto;
     margin-bottom: 1.875rem;
+    margin-top: -1.875rem;
   }
 
   .vs-teaser__image-a {
