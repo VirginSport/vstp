@@ -23,6 +23,13 @@ vs-modal-overlay,
   }
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .modal-content .container {
+    display: block;
+    padding: 0 20%;
+  }
+}
+
 .modal-dialog {
   position: fixed;
   left: .3125rem;
@@ -69,14 +76,22 @@ vs-modal-overlay,
     &:before {
       width: 3px;
       height: 21px;
-      top: 0;
+      //top: 0;
+
+      top: auto;
+	    left: auto;
+	    transform: translate(-1px, -10px);
     }
 
     &:after {
       height: 3px;
-      left: 2px;
-      top: 9px;
+      //left: 2px;
+      //top: 9px;
       width: 21px;
+
+      top: auto;
+	    left: auto;
+	    transform: translate(-10px, -1px);
     }
   }
 }
@@ -123,9 +138,8 @@ vs-modal-overlay,
 
 @include media-breakpoint-up(md) {
   .modal-dialog {
-    max-width: $modal-md;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 16%;
+    margin-right: 16%;
   }
 
   .modal-header .close {
