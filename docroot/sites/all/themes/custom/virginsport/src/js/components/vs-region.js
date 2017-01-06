@@ -307,6 +307,7 @@ class Region {
         fill: `url(#${this.patternID})`
       });
   
+      this.el.classList.add('vs-region--bg-image');
       this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
       this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
     }
