@@ -5,7 +5,7 @@ import Drupal from '../lib/drupal';
  * Activates the basic content block timeline images scroll
  */
 export default () => {
-  Drupal.behaviors.virginSportSlick = {
+  Drupal.behaviors.virginSportScroller = {
     attach: () => findScrollers()
   };
 };
