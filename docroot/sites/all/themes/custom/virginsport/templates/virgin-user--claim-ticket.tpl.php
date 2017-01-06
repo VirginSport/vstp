@@ -60,13 +60,13 @@ $t_args = array(
                 </h1>
 
                 <?php if (user_is_anonymous() && !$uses_purchaser_email): // 1.1 ?>
-                  <p><?php print t('Sign up for a Virgin Sport profile or log in to claim the ticket @purchaser purchased for @recipient.', $t_args); ?></p>
+                  <p><?php print t('Sign up for a Virgin Sport profile or log in to review the details that @purchaser entered and associate the pass with your account.', $t_args); ?></p>
 
                 <?php elseif (user_is_anonymous() && $uses_purchaser_email): // 2.1 ?>
-                  <p><?php print t('Sign up for a Virgin Sport profile or log in to claim the ticket @purchaser purchased for @recipient.', $t_args); ?></p>
+                  <p><?php print t('Sign up for a Virgin Sport profile or log in to review the details that @purchaser entered and associate the pass with your account.', $t_args); ?></p>
 
                 <?php elseif ($is_recipient && !$has_been_claimed): // 1.2 ?>
-                  <p><?php print t('Click the button below to associate the ticket @purchaser purchased with your Virgin Sport profile.', $t_args); ?></p>
+                  <p><?php print t('Click the button below to review the pass details that @purchaser entered and add the pass to your account', $t_args); ?></p>
                   <button class="btn vs-btn vs-btn--min-sm"><?php print t('Add ticket to your profile'); ?></button>
 
                 <?php elseif ($is_purchaser && !$has_been_claimed): // 2.2 ?>
@@ -74,7 +74,7 @@ $t_args = array(
                   <button class="btn vs-btn vs-btn--min-sm"><?php print t("Add @recipient's ticket to your profile", $t_args); ?></button>
 
                 <?php elseif (!$is_recipient && !$is_purchaser && !$has_been_claimed): ?>
-                  <p><?php print t('Click the button below to associate the ticket @purchaser purchased with your Virgin Sport profile.', $t_args); ?></p>
+                  <p><?php print t('Click the button below to review the pass details that @purchaser entered and add the pass to your account.', $t_args); ?></p>
                   <button class="btn vs-btn vs-btn--min-sm"><?php print t('Add ticket to your profile'); ?></button>
 
                 <?php elseif ($claimed_by_me): // 3.2 ?>
