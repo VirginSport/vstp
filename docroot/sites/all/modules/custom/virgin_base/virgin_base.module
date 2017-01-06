@@ -151,6 +151,25 @@ function virgin_base_date_select_process_alter(&$element, &$form_state, $context
   $element['year']['#options'][''] = t('Year');
 }
 
+/**
+ * Implements hook_metatag_pattern_alter().
+ */
+function virgin_base_metatag_pattern_alter(&$pattern, &$types, $tag_name) {
+
+  // Override the og image metatag with the header image if the node has one
+  if ($tag_name == 'og:image:url' && !empty($types['node'])) {
+    if (!empty($types['node']->field_header_image['und'][0]['sid'])) {
+      $atom = scald_atom_load($types['node']->field_header_image['und'][0]['sid']);
+
+      if ($atom) {
+        $pattern = image_style_url('virgin_original', $atom->file_source);
+      } else {
+        $pattern = '';
+      }
+    }
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
