@@ -76,8 +76,6 @@ vs-modal-overlay,
     &:before {
       width: 3px;
       height: 21px;
-      //top: 0;
-
       top: auto;
 	    left: auto;
 	    transform: translate(-1px, -10px);
@@ -85,8 +83,6 @@ vs-modal-overlay,
 
     &:after {
       height: 3px;
-      //left: 2px;
-      //top: 9px;
       width: 21px;
 
       top: auto;
@@ -130,9 +126,6 @@ vs-modal-overlay,
   .modal-dialog {
     margin: 30px;
     max-width: 90%;
-
-    //margin-left: auto;
-    //margin-right: auto;
   }
 }
 
