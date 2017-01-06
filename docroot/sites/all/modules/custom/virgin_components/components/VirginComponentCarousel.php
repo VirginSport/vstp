@@ -42,16 +42,18 @@ class VirginComponentCarousel implements VirginComponentsInterface {
 
     $banners = array();
 
-    foreach($variables['field_banners'] as $banner) {
-      $entity = entity_load_single('paragraphs_item', $banner['value']);
-      $grapher = new VirginEntityGrapher('paragraphs_item', $entity);
+    if (!empty($variables['field_banners'])) {
+      foreach ($variables['field_banners'] as $banner) {
+        $entity = entity_load_single('paragraphs_item', $banner['value']);
+        $grapher = new VirginEntityGrapher('paragraphs_item', $entity);
 
-      $bundle = $grapher->property('bundle');
-      $variables['bundle'] = $bundle;
+        $bundle = $grapher->property('bundle');
+        $variables['bundle'] = $bundle;
 
-      $banners[] = array(
-        'entity_grapher' => $entity,
-      );
+        $banners[] = array(
+          'entity_grapher' => $entity,
+        );
+      }
     }
 
     $variables['banners'] = $banners;

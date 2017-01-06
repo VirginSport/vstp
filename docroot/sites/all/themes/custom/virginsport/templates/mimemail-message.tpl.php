@@ -46,14 +46,14 @@
                 <table class="table-sizer" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">
                   <tr>
                     <td width="600" valign="top" style="border-collapse:collapse">
-                      <img class="image_fix" src="http://i.imgur.com/rrbxkx1.jpg" class="banner" width="600" style="display:block;width:100%" alt="" />
+                      <img class="image_fix" src="<?php print $theme_url . '/email/header.jpg'; ?>" class="banner" width="600" style="display:block;width:100%" alt="" />
                     </td>
                   </tr>
                 </table>
                 <table class="table-sizer" cellpadding="0" cellspacing="0" border="0" align="center" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;background-color:#f43d15">
                   <tr>
                     <td width="20" valign="top" style="border-collapse:collapse;background-color:#f43d15">
-                      <img class="image_fix" src="http://i.imgur.com/Tpg5f1t.gif" width="20" />
+                      <img class="image_fix" src="<?php print $theme_url . '/email/spacer.gif'; ?>" width="20" />
                     </td>
                     <td width="560" valign="top" style="border-collapse:collapse;background-color:#f43d15">
                       <table id="content-area" cellpadding="40" cellspacing="0" border="0" style="background-color:white;border-radius:10px" width="100%">
@@ -66,7 +66,7 @@
                       </table>
                     </td>
                     <td width="20" valign="top" style="border-collapse:collapse;background-color:#f43d15">
-                      <img class="image_fix" src="http://i.imgur.com/Tpg5f1t.gif" width="20" />
+                      <img class="image_fix" src="<?php print $theme_url . '/email/spacer.gif'; ?>" width="20" />
                     </td>
                   </tr>
                 </table>

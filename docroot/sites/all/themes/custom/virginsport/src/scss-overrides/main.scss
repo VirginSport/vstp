@@ -1,12 +1,15 @@
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins/breakpoints";
 @import "../scss/variables";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 // Helper functions
 @import "functions";
 
 // FILE TO BE REMOVED AS SOON THE MOBILE MENU IS FIXED!
 @import "hacks";
+
+// Mixin functions
+@import "mixins/cursor";
 
 // Fixes per module/feature
 @import "cta";
@@ -33,3 +36,4 @@
 @import "vs-video";
 @import "vs-carousel";
 @import "vs-scroller";
+@import "vs-user-menu";
