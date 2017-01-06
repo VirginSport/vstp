@@ -133,7 +133,18 @@
 
         <?php if (!$logged_in): ?>
         <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">&nbsp;</a>
+          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">
+            <svg id="avatar" data-name="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.17 38.17">
+              <defs>
+                <style>
+                  .vs-user-menu__trigger__icon{stroke-linecap:round;stroke-linejoin:round;stroke-width:1.55px;}
+                </style>
+              </defs>
+              <path class="vs-user-menu__trigger__icon" d="M24.54 23.89h-10.9M32.31 31.7a7.82 7.82 0 0 0-7.82-7.82M5.82 31.7a7.82 7.82 0 0 1 7.82-7.82"/>
+              <circle class="vs-user-menu__trigger__icon" cx="19.09" cy="13.13" r="6.66"/>
+              <circle class="vs-user-menu__trigger__icon" cx="19.09" cy="19.09" r="18.31"/>
+            </svg>
+          </a>
         </div>
         <?php endif; ?>
 
