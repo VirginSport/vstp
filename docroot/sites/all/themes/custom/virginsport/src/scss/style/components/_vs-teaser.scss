@@ -382,8 +382,9 @@ vs-teaser,
   }
 
   .vs-teaser__title {
-    @include make-col(8);
     z-index: 4;
+    text-align: center;
+    margin-bottom: 0;
   }
 
   $ll_xl_height: 32.532rem;
@@ -420,6 +421,10 @@ vs-teaser,
       @include transform(scale(.6));
       -webkit-transform-origin: top right;
       transform-origin: top right;
+    }
+
+    .vs-teaser__title {
+      text-align: left;
     }
 
     .vs-teaser__content {
@@ -879,15 +884,11 @@ vs-teaser,
     float: left;
     clear: both;
     z-index: 1;
+    text-align: center;
   }
 
   .vs-teaser__text {
     margin-bottom: 2.5rem;
-  }
-
-  .vs-teaser__image-a,
-  .vs-teaser__image-b {
-    //margin-bottom: 0;
   }
 
   .vs-outline {
@@ -930,6 +931,10 @@ vs-teaser,
     .vs-teaser__subtitle,
     .vs-teaser__text {
       @include make-col(12);
+    }
+
+    .vs-teaser__title {
+      text-align: left;
     }
 
     .vs-teaser__image-scale {
