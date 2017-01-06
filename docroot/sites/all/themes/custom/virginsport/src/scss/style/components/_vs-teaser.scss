@@ -260,6 +260,10 @@ vs-teaser,
       width: 18.5rem;
     }
 
+    .vs-teaser__content {
+      padding-left: 1.5625rem;
+    }
+
     &.vs-teaser--reverse {
       .vs-teaser__title {
         float: left;
@@ -543,7 +547,7 @@ vs-teaser,
     }
 
     .vs-teaser__content {
-      padding-left: 1.5625rem;
+      padding-left: 2.34375rem;
     }
   }
 
@@ -660,6 +664,10 @@ vs-teaser,
     .vs-teaser__image-scale {
       @include transform(scale(.7));
     }
+
+    .vs-teaser__content {
+      padding-left: 0;
+    }
   }
 
   @include media-breakpoint-up(xl) {
@@ -774,6 +782,10 @@ vs-teaser,
     .vs-teaser__image-b {
       width: 17.5rem;
       left: -11rem;
+    }
+
+    .vs-teaser__content {
+      padding-left: .78125rem;
     }
   }
 
