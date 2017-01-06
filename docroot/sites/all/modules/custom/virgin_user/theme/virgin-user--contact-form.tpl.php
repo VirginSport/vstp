@@ -61,16 +61,16 @@ $mkt_id = 'mkt-' . uniqid();
                     <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_contact_form_validator.type.dirty || submitted) && !$vs_contact_form_validator.type.valid }">
                       <label for="type" class="vs-focus-label"><?php print t("I'd like to know more about"); ?>*</label>
                       <select class="form-control" v-model="form.type" id="type" name="type" v-validate:type="['required']">
-                          <option value="festival-event"><?php print t('Festival/Event'); ?></option>
-                          <option value="volunteering"><?php print t('Volunteering'); ?></option>
-                          <option value="fans"><?php print t('Fans'); ?></option>
-                          <option value="tickets"><?php print t('Tickets'); ?></option>
-                          <option value="vs-membership"><?php print t('Virgin Sport Membership'); ?></option>
-                          <option value="results"><?php print t('Results'); ?></option>
-                          <option value="potential-partnership"><?php print t('Potential Partnership'); ?></option>
-                          <option value="press-inquiry"><?php print t('Results'); ?></option>
-                          <option value="results"><?php print t('Press Inquiry'); ?></option>
-                          <option value="careers"><?php print t('Careers'); ?></option>
+                        <option value="careers"><?php print t('Careers'); ?></option>
+                        <option value="charities"><?php print t('Charities'); ?></option>
+                        <option value="fans"><?php print t('Fans'); ?></option>
+                        <option value="festival-event"><?php print t('Festival/Event'); ?></option>
+                        <option value="passes"><?php print t('Passes'); ?></option>
+                        <option value="potential-partnership"><?php print t('Potential Partnership'); ?></option>
+                        <option value="press-inquiry"><?php print t('Press Inquiry'); ?></option>
+                        <option value="results"><?php print t('Results'); ?></option>
+                        <option value="volunteering"><?php print t('Volunteering'); ?></option>
+                        <option value="other"><?php print t('Other'); ?></option>
                       </select>
                       <div class="vs-error-label" v-if="($vs_contact_form_validator.type.dirty || submitted) && $vs_contact_form_validator.type.required"><?php print t('Type is required'); ?></div>
                     </div>
@@ -120,15 +120,16 @@ $mkt_id = 'mkt-' . uniqid();
                 </validator>
                 <div v-if="form.submitted">
                   <h4 class="vs-form-header">
-                    <span v-if="form.type === 'festival-event'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'volunteering'"><?php print t("Brilliant! We're excited to have you on board! We'll be in touch soon."); ?></span>
+                    <span v-if="form.type === 'careers'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'charities'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
                     <span v-if="form.type === 'fans'"><?php print t("Brilliant! We're excited that you're excited! We'll be in touch soon."); ?></span>
-                    <span v-if="form.type === 'tickets'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'vs-membership'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'results'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'festival-event'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'passes'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
                     <span v-if="form.type === 'potential-partnership'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
                     <span v-if="form.type === 'press-inquiry'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'careers'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'results'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'volunteering'"><?php print t("Brilliant! We're excited to have you on board! We'll be in touch soon."); ?></span>
+                    <span v-if="form.type === 'other'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
                   </h4>
 
                   <button v-if="inModal" v-on:click="closeModal" class="btn vs-btn vs-btn--min-sm"><?php print t('Ok'); ?></button>
