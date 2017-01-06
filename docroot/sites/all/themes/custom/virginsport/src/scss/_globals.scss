@@ -20,6 +20,18 @@ body {
   }
 }
 
+.modal-open {
+  .page-wrapper {
+    overflow: hidden;
+  }
+
+    @include media-breakpoint-down(md) {
+      .vs-overlay-blur {
+        position:fixed;
+      }
+    }
+}
+
 p {
   margin-bottom: 1.875rem;
   font-weight: 400;
