@@ -77,17 +77,16 @@ vs-modal-overlay,
       width: 3px;
       height: 21px;
       top: auto;
-	    left: auto;
-	    transform: translate(-1px, -10px);
+      left: auto;
+      transform: translate(-1px, -10px);
     }
 
     &:after {
       height: 3px;
       width: 21px;
-
       top: auto;
-	    left: auto;
-	    transform: translate(-10px, -1px);
+      left: auto;
+      transform: translate(-10px, -1px);
     }
   }
 }
