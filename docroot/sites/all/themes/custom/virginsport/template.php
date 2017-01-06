@@ -52,12 +52,12 @@ function virginsport_theme($existing, $type, $theme, $path) {
   ) + $default;
 
   $themes['virginsport_share_buttons'] = array(
-      'template' => 'virginsport-share-buttons',
-      'variables' => array(
-        'subject' => '',
-        'url' => ''
-      )
-    ) + $default;
+    'template' => 'virginsport-share-buttons',
+    'variables' => array(
+      'subject' => '',
+      'url' => ''
+    )
+  ) + $default;
 
   return $themes;
 }
@@ -77,6 +77,14 @@ function virginsport_js_alter(&$js) {
   // by bootstrap theme.
   unset($js['sites/all/themes/contrib/bootstrap/js/misc/_vertical-tabs.js']);
   $js['misc/vertical-tabs.js'] = drupal_js_defaults('misc/vertical-tabs.js');
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for html theme.
+ */
+function virginsport_preprocess_html(&$vars) {
+  global $base_path, $theme_path;
+  $vars['current_path'] = $base_path . $theme_path;
 }
 
 /**
@@ -161,6 +169,15 @@ function virginsport_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = sprintf('node__%s__%s', $vars['type'], $vars['view_mode']);
 
   $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for mimemail_message theme.
+ */
+function virginsport_preprocess_mimemail_message(&$vars) {
+  global $base_root, $base_path, $theme_path;
+
+  $vars['theme_url'] = $base_root . $base_path . $theme_path;
 }
 
 // Template Overrides
