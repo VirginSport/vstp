@@ -24,9 +24,6 @@ vs-modal-overlay,
 }
 
 .modal-dialog {
-  //margin-left: .3125rem;
-  //margin-right: .3125rem;
-
   position: fixed;
   left: .3125rem;
   right: .3125rem;
@@ -119,12 +116,6 @@ vs-modal-overlay,
     margin: 30px;
     max-width: 90%;
 
-    // position: fixed;
-    // left: .3125rem;
-    // right: .3125rem;
-    // top: .3125rem;
-
-
     //margin-left: auto;
     //margin-right: auto;
   }
@@ -135,11 +126,6 @@ vs-modal-overlay,
     max-width: $modal-md;
     margin-left: auto;
     margin-right: auto;
-
-    // position: fixed;
-    // left: .3125rem;
-    // right: .3125rem;
-    // top: .3125rem;
   }
 
   .modal-header .close {
