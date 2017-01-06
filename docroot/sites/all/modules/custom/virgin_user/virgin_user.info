@@ -35,7 +35,6 @@ features[field_instance][] = user-user-field_medications
 features[field_instance][] = user-user-field_region
 features[field_instance][] = user-user-field_sugar_id
 features[field_instance][] = user-user-field_uk_athletics_number
-features[user_permission][] = use hybridauth
 features[variable][] = field_bundle_settings_user__user
 features[variable][] = hybridauth_destination
 features[variable][] = hybridauth_disable_username_change
