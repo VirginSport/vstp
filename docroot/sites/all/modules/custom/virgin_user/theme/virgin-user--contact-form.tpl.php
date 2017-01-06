@@ -118,7 +118,7 @@ $mkt_id = 'mkt-' . uniqid();
                     <button v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
                   </form>
                 </validator>
-                <div v-if="form.submitted">
+                <div v-if="form.submitted" class="form-completion">
                   <h4 class="vs-form-header">
                     <span v-if="form.type === 'careers'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
                     <span v-if="form.type === 'charities'"><?php print t("Thanks for your inquiry. We'll get back to you in a jiffy!"); ?></span>
