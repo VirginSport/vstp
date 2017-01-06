@@ -425,7 +425,7 @@ This link expires in one day and nothing will happen if it is not used.
   $strongarm->name = 'user_mail_password_reset_body';
   $strongarm->value = 'Hi [user:field_first_name],
 
-Forgotten your [site:name] password? Need a new one? No problem. Click or copy and paste the link below and grab a fresh one. They cost 5 press ups... just kidding. They\'re free. Or are they?...
+Forgotten your [site:name] password? Need a new one? No problem. Click or copy and paste the link below to get access to your account where you can set a new one. It will cost 5 press ups... just kidding. It\'s free. Or is it?...
 
 Free password link: [user:one-time-login-url]
 
