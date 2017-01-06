@@ -209,31 +209,29 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
                 <?php endif; ?>
 
                 <?php if(!empty($body)): ?>
-                  <div class="vs-teaser__text hidden-sm-down"><?php print $body; ?></div>
-                <?php endif; ?>
+                  <div class="vs-teaser__text hidden-sm-down">
+                    <?php print $body; ?>
+                    <?php print
+                      theme('virginsport_cta_links',
+                        array(
+                          'links' => $cta_links,
+                          'classes' => 'vs-teaser__cta-btn hidden-sm-down'
+                        )
+                      );
+                    ?>
+                  </div>
+                  <?php endif; ?>
 
-                <?php print
-                  theme('virginsport_cta_links',
-                    array(
-                      'links' => $cta_links,
-                      'classes' => 'vs-teaser__cta-btn hidden-sm-down'
-                    )
-                  );
-                ?>
 
-                <?php if(!empty($teaser_images[1]['sid'])): ?>
-                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_portrait', 'image_classes' => 'vs-teaser__image-b hidden-md-up')); ?>
-                <?php endif; ?>
-
-                <?php print
-                  theme('virginsport_cta_links',
-                    array(
-                      'links' => $cta_links,
-                      'classes' => 'vs-teaser__cta-btn hidden-md-up'
-                    )
-                  );
-                ?>
-              </div>
+                  <?php print
+                    theme('virginsport_cta_links',
+                      array(
+                        'links' => $cta_links,
+                        'classes' => 'vs-teaser__cta-btn hidden-md-up'
+                      )
+                    );
+                  ?>
+                </div>
             </div>
           </div>
         </div>
@@ -329,28 +327,31 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
                   <?php if(!empty($body)): ?>
                     <div class="vs-teaser__text hidden-md-up"><?php print $body; ?></div>
                   <?php endif; ?>
-
-                  <?php if(!empty($teaser_images[0]['sid'])): ?>
-                    <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[0]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-b')); ?>
-                  <?php endif; ?>
-
-                  <?php if(!empty($teaser_images[1]['sid'])): ?>
-                    <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-a hidden-sm-down')); ?>
-                  <?php endif; ?>
-
-                  <?php if(!empty($teaser_images[2]['sid'])): ?>
-                    <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[2]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-c hidden-sm-down')); ?>
-                  <?php endif; ?>
-
-                  <?php print
-                    theme('virginsport_cta_links',
-                      array(
-                        'links' => $cta_links,
-                        'classes' => 'vs-teaser__cta-btn hidden-md-up'
-                      )
-                    );
-                  ?>
                 </div>
+
+                <?php if(!empty($teaser_images[0]['sid'])): ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[0]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-b')); ?>
+                <?php endif; ?>
+
+                <?php if(!empty($teaser_images[1]['sid'])): ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-a hidden-sm-down')); ?>
+                <?php endif; ?>
+
+                <?php if(!empty($teaser_images[2]['sid'])): ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[2]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-c hidden-sm-down')); ?>
+                <?php endif; ?>
+
+                <div class="vs-teaser__content">
+                <?php print
+                  theme('virginsport_cta_links',
+                    array(
+                      'links' => $cta_links,
+                      'classes' => 'vs-teaser__cta-btn hidden-md-up'
+                    )
+                  );
+                ?>
+                </div>
+
               </div>
             </div>
           </div>
@@ -402,7 +403,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
                   <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[1]['sid'], 'image_style' => 'vs_teaser_landscape', 'image_classes' => 'vs-teaser__image-b')); ?>
                 <?php endif; ?>
 
-                <div class="vs-teaser__coontent">
+                <div class="vs-teaser__content">
                   <?php print
                     theme('virginsport_cta_links',
                       array(

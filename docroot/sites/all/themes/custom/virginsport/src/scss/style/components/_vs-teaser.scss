@@ -186,7 +186,7 @@ vs-teaser,
   }
 
   .vs-teaser__image-a {
-    width: 10rem;
+    width: 15rem;
     margin: 0 auto;
   }
 
@@ -229,8 +229,12 @@ vs-teaser,
       top: 50%;
       position: absolute;
       width: 13.5rem;
-      margin: 0;
+      margin: 0 15px 0 0;
       right: 0;
+    }
+
+    .vs-teaser__content {
+      padding-left: 0;
     }
   }
 
@@ -291,8 +295,9 @@ vs-teaser,
 
 .vs-teaser--landscape {
   .vs-teaser__image-a {
-    width: 13.625rem;
-    margin: 0 auto;
+    width: calc(100% + 1.875rem);
+    margin-left: -.9375rem;
+    margin-bottom: 1.875rem;
   }
 
   .vs-teaser__text {
@@ -312,6 +317,10 @@ vs-teaser,
     .vs-teaser__content {
       padding-left: 0;
     }
+
+    .vs-teaser__image-a {
+      margin-bottom: 0  ;
+    }
   }
 
   @include media-breakpoint-up(lg) {
@@ -323,6 +332,10 @@ vs-teaser,
       font-size: 1.75rem;
       line-height: 2rem;
       font-weight: 500;
+    }
+
+    .vs-teaser__content {
+      padding-left: 1.5625rem;
     }
   }
 
@@ -450,7 +463,7 @@ vs-teaser,
 
 .vs-teaser--portrait-upperportrait {
   .vs-teaser__image-a {
-    width: 11.875rem;
+    width: 15rem;
     margin: 0 auto 2.125rem;
   }
 
@@ -470,7 +483,7 @@ vs-teaser,
   }
 
   .vs-teaser__text {
-    margin-bottom: 1.875rem;
+    margin-bottom: 0;
   }
 
   $pu_xl_height: 35.1375rem;
@@ -512,6 +525,10 @@ vs-teaser,
       margin-left: 8.125rem;
       width: 25.6875rem
     }
+
+    .vs-teaser__content {
+      padding-left: .78125rem;
+    }
   }
 
   @include media-breakpoint-up(lg) {
@@ -523,6 +540,10 @@ vs-teaser,
 
     .vs-teaser__image-scale {
       @include transform(scale(0.8));
+    }
+
+    .vs-teaser__content {
+      padding-left: 1.5625rem;
     }
   }
 
@@ -558,7 +579,7 @@ vs-teaser,
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     height: auto;
-    margin-bottom: 0;
+    margin-bottom: 1.875rem;
   }
 
   .vs-teaser__images {
@@ -611,6 +632,7 @@ vs-teaser,
       position: absolute;
       left: 0;
       top: 50%;
+      margin-bottom: 0;
     }
 
     .vs-teaser__image-a {
@@ -621,6 +643,10 @@ vs-teaser,
       width: 26rem;
       left: 11.8125rem;
       right: 0;
+    }
+
+    .vs-teaser__content {
+      padding-left: .78125rem;
     }
   }
 
@@ -676,12 +702,7 @@ vs-teaser,
   .vs-teaser__image-a {
     margin: 0 auto 1.875rem auto;
     height: auto;
-    max-width: 25.625rem;
-  }
-
-  .vs-teaser__image-a,
-  .vs-teaser__image-b {
-    margin-bottom: 0;
+    width: 15rem;
   }
 
   .vs-teaser__images {
@@ -719,6 +740,7 @@ vs-teaser,
 
     .vs-teaser__image-a {
       right: 0;
+      width: auto;
     }
 
     .vs-teaser__image-b {
@@ -853,7 +875,7 @@ vs-teaser,
 
   .vs-teaser__image-a,
   .vs-teaser__image-b {
-    margin-bottom: 0;
+    //margin-bottom: 0;
   }
 
   .vs-outline {
@@ -1003,6 +1025,10 @@ vs-teaser,
         text-align: left;
         top: 0.25rem;
       }
+
+      .col-md-5 {
+        left: 56%;
+      }
     }
   }
 }
@@ -1035,13 +1061,15 @@ vs-teaser,
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     height: auto;
-    margin-top: -1.375rem;
     margin-bottom: 1.875rem;
   }
 
-  .vs-teaser__image-a,
-  .vs-teaser__image-b {
+  .vs-teaser__image-a {
     margin-bottom: 0;
+  }
+
+  .vs-teaser__image-b {
+    margin-bottom: 1.875rem;
   }
 
   $pup_xl_height: 35.75rem;
@@ -1061,11 +1089,12 @@ vs-teaser,
     }
 
     .vs-teaser__text {
-      @include make-col(8);
+      @include make-col(12);
     }
 
     .vs-teaser__content {
       padding-left: 0;
+      padding-right: 6.25rem;
     }
 
     .vs-teaser__image-scale {
@@ -1098,6 +1127,7 @@ vs-teaser,
       margin-top: 7.9375rem;
       width: 26rem;
       height: 17.3125rem;
+      margin-bottom: 0;
     }
 
     .vs-teaser__image-c {
@@ -1115,6 +1145,10 @@ vs-teaser,
 
     .vs-teaser__image-scale {
       @include transform(scale(.7));
+    }
+
+    .vs-teaser__content {
+      padding-left: 1.5625rem;
     }
   }
 
@@ -1156,6 +1190,10 @@ vs-teaser,
 
       .vs-teaser__image-b {
         margin-right: 11.5625rem;
+      }
+
+      .vs-teaser__content {
+        padding-right: 0;
       }
     }
 
@@ -1229,7 +1267,7 @@ vs-teaser,
     }
 
     .col-md-5 {
-      @include make-col-push(7);
+      @include make-col-push(6);
     }
 
     .col-md-7 {
