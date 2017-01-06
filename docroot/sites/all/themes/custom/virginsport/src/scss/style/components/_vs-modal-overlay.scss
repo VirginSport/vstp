@@ -6,6 +6,7 @@ vs-modal-overlay,
 .vs-modal-overlay {
   @include clearfix();
   display: block;
+  position: fixed;
 }
 
 
@@ -23,8 +24,61 @@ vs-modal-overlay,
 }
 
 .modal-dialog {
-  margin-left: .3125rem;
-  margin-right: .3125rem;
+  position: fixed;
+  left: .3125rem;
+  right: .3125rem;
+  top: .3125rem;
+
+  .modal-dialog__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    outline: 0;
+    border: 0;
+    background: 0;
+    transform: rotate(45deg);
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+
+    &:hover,
+    &:active {
+
+      &:before,
+      &:after {
+        @include media-breakpoint-up(lg) {
+          @include transition(all .4s);
+          background: $c-black;
+        }
+      }
+    }
+
+    &:before,
+    &:after {
+      @include transition(all .4s);
+      background: $c-black;
+      content: '';
+      position: absolute;
+
+      @include media-breakpoint-up(md) {
+        background: $c-gray-light;
+      }
+    }
+
+    &:before {
+      width: 3px;
+      height: 21px;
+      top: 0;
+    }
+
+    &:after {
+      height: 3px;
+      left: 2px;
+      top: 9px;
+      width: 21px;
+    }
+  }
 }
 
 .modal-footer {
@@ -61,6 +115,7 @@ vs-modal-overlay,
   .modal-dialog {
     margin: 30px;
     max-width: 90%;
+
     //margin-left: auto;
     //margin-right: auto;
   }

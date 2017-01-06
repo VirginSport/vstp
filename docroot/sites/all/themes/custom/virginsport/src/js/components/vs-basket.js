@@ -41,7 +41,7 @@ export default () => {
 function enableBasketCounter() {
   let $link = $('.vs-header__link');
   let $counter = $link.find('.vs-header__basket__value');
-  
+
   window.setInterval(() => {
     let total = totalBasketItems();
 
@@ -49,7 +49,7 @@ function enableBasketCounter() {
       if (!$counter.hasClass('vs-header__basket__value__ready')) {
         $counter.addClass('vs-header__basket__value__ready');
       }
-      
+
       $counter.trigger('basket_counter_changed', total);
       $counter.html(total);
     }
@@ -75,16 +75,16 @@ function totalBasketItems() {
  * Binds all the behaviour related to region change triggers
  */
 function bindRegionChangeTriggers() {
-  
+
   // If no region information is available, bailout now
   if (!Drupal.settings.vsRegions) {
     return;
   }
-  
+
   // Otherwise fetch the available information
   let origin = undefined;
   let destinations = [];
-  
+
   Drupal.settings.vsRegions.forEach((r) => {
     if (r.active) {
       origin = r;
@@ -92,14 +92,14 @@ function bindRegionChangeTriggers() {
     }
     destinations.push(r);
   });
-  
+
   // Get the region-change query parameter from the URL
   let querystring = window.location.search.substring(1); // Remove the initial ? symbol
   let query = qs.parse(querystring);
   let regionChange = query['region-change'] || null;
-  
+
   destinations.forEach((destination) => {
-  
+
     // For all the regions that exist, with the exception of the
     // current region, do a lookup for all the links in the page
     // that might point to that hostname, and if the user clicks
@@ -110,14 +110,14 @@ function bindRegionChangeTriggers() {
         showRegionChangeModal(origin, destination, $(this).attr('href'));
       }
     });
-    
+
     // Also do a lookup for all the links that point to ticket
     // operations for content of different regions
     $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
       e.preventDefault();
       showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
     });
-  
+
     // If there's a region change query parameter and it matches
     // one of the regions, show the region change modal to let
     // the user select if he wants to change region.
@@ -145,35 +145,35 @@ function showRegionChangeModal(origin, destination, path) {
     '@dest1': destination.title,
     '@dest2': destination.title
   };
-  
+
   let message = Drupal.t('Going to the @dest1 site will allow you to add @dest2 tickets to your basket, but will mean losing your @origin1 tickets. Would you like to stay on the @origin2 site and complete your purchases first?', args);
   let continueBtn = Drupal.t('Continue to @dest1 site*', args);
   let continueNotice = Drupal.t('*@origin1 tickets will be removed from basket', args)
   let stayBtn = Drupal.t('Stay on @origin1 site', args);
-  
+
   // Build the modal HTML contents
   let content = `
     <div class="row">
       <div class="col-xs-12">
         <p>${message}</p>
       </div>
-      
+
       <div class="col-xs-6">
         <a href="${path}" class="btn vs-btn vs-btn--sm vs-btn--outline-black vs-basket-modal__continue">${continueBtn}</a>
         <p>${continueNotice}</p>
       </div>
-      
+
       <div class="col-xs-6">
         <a href="#" class="btn vs-btn vs-btn--sm vs-basket-modal__stay">${stayBtn}</a>
       </div>
     </div>
   `;
-  
+
   modal().content(content);
-  
+
   // Bind events to the buttons in the modal
   let $dialog = $(modal().dialog);
-  
+
   // If the user wants to continue, then wipe all the basket
   // cookies and set the basket hostname to be the same as
   // the destination hostname.
@@ -181,13 +181,13 @@ function showRegionChangeModal(origin, destination, path) {
     deleteBasketCookies();
     setBasketHostnameCookie(destination.hostname);
   });
-  
+
   // If the user however wishes to stay, then do nothing.
   $dialog.find('.vs-basket-modal__stay').on('click', (e) => {
     e.preventDefault();
     modal().close();
   });
-  
+
   // And finally, open the modal
   modal().open();
 }
@@ -209,30 +209,30 @@ function showTicketsRegionChangeModal(origin, destination, path) {
     '@dest1': destination.title,
     '@dest2': destination.title
   };
-  
+
   let message = Drupal.t('To add @dest1 tickets to your basket we need to take you to the @dest2 site.', args);
   let continueBtn = Drupal.t('Continue', args);
   let continueNotice = Drupal.t('*@origin1 tickets will be removed from basket', args)
-  
+
   // Build the modal HTML contents
   let content = `
     <div class="row">
       <div class="col-xs-12">
         <p>${message}</p>
       </div>
-      
+
       <div class="col-xs-6">
         <a href="${destination.address + path}" class="btn vs-btn vs-btn--sm vs-basket-modal__continue">${continueBtn}</a>
         <p>${continueNotice}</p>
       </div>
     </div>
   `;
-  
+
   modal().content(content);
-  
+
   // Bind events to the buttons in the modal
   let $dialog = $(modal().dialog);
-  
+
   // If the user wants to continue, then wipe all the basket
   // cookies and set the basket hostname to be the same as
   // the destination hostname.
@@ -275,18 +275,19 @@ function modal() {
   if (basketModal) {
     return basketModal;
   }
-  
+
   let html = `
     <div id="vs-basket-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
+        <button type="button" class="modal-dialog__close" data-dismiss="modal" aria-label="Close"></button>
         <div class="modal-content"></div>
       </div>
     </div>
   `;
-  
+
   let $modal = $(html);
   $modal.appendTo('body');
   basketModal = new bootstrap.Modal($modal.get(0));
-  
+
   return basketModal;
 }
