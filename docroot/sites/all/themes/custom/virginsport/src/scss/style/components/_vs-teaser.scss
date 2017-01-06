@@ -898,7 +898,6 @@ vs-teaser,
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     height: auto;
-    margin-top: -1.375rem;
     margin-bottom: 1.875rem;
   }
 
@@ -909,6 +908,10 @@ vs-teaser,
   @include media-breakpoint-up(sm) {
     .vs-outline {
       margin-bottom: 0;
+    }
+
+    .vs-teaser__image-b {
+      margin-top: -1.375rem;
     }
   }
 
