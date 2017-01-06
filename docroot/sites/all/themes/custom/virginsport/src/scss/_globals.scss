@@ -25,11 +25,12 @@ body {
     overflow: hidden;
   }
 
-    @include media-breakpoint-down(md) {
-      .vs-overlay-blur {
-        position:fixed;
-      }
+  /* Fix for iphone/ipad issues with modal jumping on interaction */
+  @include media-breakpoint-down(md) {
+    .vs-overlay-blur {
+      position:fixed;
     }
+  }
 }
 
 p {
