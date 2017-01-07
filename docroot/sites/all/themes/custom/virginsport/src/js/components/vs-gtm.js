@@ -20,4 +20,15 @@ export default () => {
       });
     }
   });
+
+  $('[vs-share-event]').click(function() {
+    // Push event to google tag manager data layer
+    if (dataLayer) {
+      dataLayer.push({
+        'event' : 'share',
+        'origin' : $(this).attr('vs-share-event'),
+        'url' : $(this).attr('href')
+      });
+    }
+  });
 };
