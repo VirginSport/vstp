@@ -1,0 +1,20 @@
+Index: docroot/.htaccess
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- docroot/.htaccess	(date 1483716757000)
++++ docroot/.htaccess	(revision )
+@@ -109,6 +109,12 @@
+   # uncomment the following line:
+   # RewriteBase /
+ 
++  # Prevent hotlinking from external domains by forcing a 403 forbidden
++  # for all requests to font assets to satisfy licensing requirements
++  RewriteCond %{HTTP_REFERER} !^$
++  RewriteCond %{HTTP_REFERER} !^https?://([^.]+\.)*virginsport.com/.*$ [NC]
++  RewriteRule \.(woff2?|eot|otf|ttf)$ - [NC,F,L]
++
+   # Pass all requests not referring directly to files in the filesystem to
+   # index.php. Clean URLs are handled in drupal_environment_initialize().
+   RewriteCond %{REQUEST_FILENAME} !-f
