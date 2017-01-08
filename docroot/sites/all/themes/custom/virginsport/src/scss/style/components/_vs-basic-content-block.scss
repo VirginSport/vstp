@@ -6,6 +6,8 @@ vs-basic-content-block,
 .vs-basic-content-block {
   @include clearfix();
   display: block;
+  position: relative;
+  z-index: 3;
 }
 
 

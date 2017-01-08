@@ -52,12 +52,12 @@ function virginsport_theme($existing, $type, $theme, $path) {
   ) + $default;
 
   $themes['virginsport_share_buttons'] = array(
-      'template' => 'virginsport-share-buttons',
-      'variables' => array(
-        'subject' => '',
-        'url' => ''
-      )
-    ) + $default;
+    'template' => 'virginsport-share-buttons',
+    'variables' => array(
+      'subject' => '',
+      'url' => ''
+    )
+  ) + $default;
 
   return $themes;
 }
@@ -77,6 +77,14 @@ function virginsport_js_alter(&$js) {
   // by bootstrap theme.
   unset($js['sites/all/themes/contrib/bootstrap/js/misc/_vertical-tabs.js']);
   $js['misc/vertical-tabs.js'] = drupal_js_defaults('misc/vertical-tabs.js');
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for html theme.
+ */
+function virginsport_preprocess_html(&$vars) {
+  global $base_path, $theme_path;
+  $vars['current_path'] = $base_path . $theme_path;
 }
 
 /**
@@ -163,6 +171,15 @@ function virginsport_preprocess_node(&$vars) {
   $vars['grapher'] = new VirginEntityGrapher('node', $vars['node']);
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for mimemail_message theme.
+ */
+function virginsport_preprocess_mimemail_message(&$vars) {
+  global $base_root, $base_path, $theme_path;
+
+  $vars['theme_url'] = $base_root . $base_path . $theme_path;
+}
+
 // Template Overrides
 // -----------------------------------------------------------------------------
 
@@ -232,12 +249,16 @@ function virginsport_menu_tree($menu_name, $max_depth = NULL) {
  *
  * @param $atom
  *  The asset id
- * @param $style
+ * @param string $style
  *  The image style
+ * @param bool $url_only
+ *  Whether the only the URL should be returned with no background-image css
+ *  attribute.
  * @return string
- *  HTML style attribute with background-image. For example: background-image: url(...);"
+ *  HTML style attribute with background-image e.g "background-image: url(...)"
+ *  OR the URL is url_only is set to TRUE
  */
-function virginsport_atom_background($atom, $style = 'virgin_original') {
+function virginsport_atom_background($atom, $style = 'virgin_original', $url_only = FALSE) {
   if (empty($atom) || empty($atom->sid)) {
     return '';
   }
@@ -248,7 +269,7 @@ function virginsport_atom_background($atom, $style = 'virgin_original') {
 
   $image_url = image_style_url($style, $atom->file_source);
 
-  return 'background-image: url(' . $image_url . ');';
+  return $url_only ? $image_url : 'background-image: url(' . $image_url . ');';
 }
 
 /**

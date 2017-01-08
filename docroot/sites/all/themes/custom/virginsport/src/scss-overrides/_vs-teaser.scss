@@ -1,0 +1,17 @@
+
+// Teaser css override
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-down(sm) {
+  .vs-teaser--square-portrait picture {
+    margin: 0 auto 1.875rem auto;
+    height: auto;
+    max-width: 25.625rem;
+
+    img {
+      display: block;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+  }
+}

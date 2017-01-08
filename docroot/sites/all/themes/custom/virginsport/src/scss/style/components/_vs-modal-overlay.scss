@@ -6,6 +6,7 @@ vs-modal-overlay,
 .vs-modal-overlay {
   @include clearfix();
   display: block;
+  position: fixed;
 }
 
 
@@ -22,9 +23,74 @@ vs-modal-overlay,
   }
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .modal-content .container {
+    display: block;
+    padding: 0 20%;
+  }
+}
+
 .modal-dialog {
-  margin-left: .3125rem;
-  margin-right: .3125rem;
+  position: fixed;
+  left: .3125rem;
+  right: .3125rem;
+  top: .3125rem;
+  bottom: .3125rem;
+  overflow-y: scroll;
+
+  .modal-dialog__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    outline: 0;
+    border: 0;
+    background: 0;
+    transform: rotate(45deg);
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+
+    &:hover,
+    &:active {
+
+      &:before,
+      &:after {
+        @include media-breakpoint-up(lg) {
+          @include transition(all .4s);
+          background: $c-black;
+        }
+      }
+    }
+
+    &:before,
+    &:after {
+      @include transition(all .4s);
+      background: $c-black;
+      content: '';
+      position: absolute;
+
+      @include media-breakpoint-up(md) {
+        background: $c-gray-light;
+      }
+    }
+
+    &:before {
+      width: 3px;
+      height: 21px;
+      top: auto;
+      left: auto;
+      transform: translate(-1px, -10px);
+    }
+
+    &:after {
+      height: 3px;
+      width: 21px;
+      top: auto;
+      left: auto;
+      transform: translate(-10px, -1px);
+    }
+  }
 }
 
 .modal-footer {
@@ -61,16 +127,13 @@ vs-modal-overlay,
   .modal-dialog {
     margin: 30px;
     max-width: 90%;
-    //margin-left: auto;
-    //margin-right: auto;
   }
 }
 
 @include media-breakpoint-up(md) {
   .modal-dialog {
-    max-width: $modal-md;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 16%;
+    margin-right: 16%;
   }
 
   .modal-header .close {

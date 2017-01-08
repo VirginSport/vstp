@@ -26,3 +26,10 @@
   background-color: transparent;
   border: 0;
 }
+
+@include media-breakpoint-up(sm) {
+  .vs-video__wrapper {
+    // slick items width grows exponentially if display is table
+    display: block;
+  }
+}

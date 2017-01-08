@@ -40,5 +40,6 @@ class VirginComponentHeroBannerBlock implements VirginComponentsInterface {
     $variables['hero_banner_image'] = $virgin->relation('field_hero_image');
     $variables['cta_links'] = $virgin->fieldGetAll('field_cta_links');
     $variables['apply_constraint'] = $virgin->fieldGetOne('field_constrained_width');
+    $variables['vs_classes'] = $virgin->fieldGetOne('field_hero_banner_shorter') ? 'vs-hero-banner--small' : '';
   }
 }

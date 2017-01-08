@@ -1,7 +1,25 @@
+// Block
+// ----------------------------------------------------------------------------
+
 .vs-iframe {
   width: 100%;
   border: none;
   margin: 0;
   padding: 0;
   min-height: 400px;
+}
+
+// Elements
+// ----------------------------------------------------------------------------
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-iframe--hide-load {
+  @include transition(opacity 0.3s ease);
+  opacity: 0;
+
+  &.vs-iframe--loaded {
+    opacity: 1;
+  }
 }

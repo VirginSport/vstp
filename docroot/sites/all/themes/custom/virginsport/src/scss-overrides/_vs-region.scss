@@ -1,11 +1,6 @@
 // This file covers specific behaviour of the vs-region component when injected
 // into Drupal, specifically, the overlapping mechanism.
 
-// Variables
-@import "../scss/variables";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-
 // The different overlap sizes and breakpoints supported by the region style.
 $vs-region-overlap-sizes: (
   'small': (
@@ -58,17 +53,18 @@ html[vs-region-loading="true"] { opacity: 0; }
 }
 
 // Ensure regions curves are visible
-.vs-region[data-vs-region-curved='1'] {
+.vs-region {
   z-index: 1;
 
-  // IMPORTANT! Without padding the negative margin-top in the first child
-  // element will not work, and negative margin-top is used for the
-  // overlap mechanism.
-  padding-top: 1px;
+  // IMPORTANT! Without border-top the overlap mechanism will not work, as it applies
+  // a negative margin top to the first child of the region. The 1px negative margin
+  // applied in the region is used to nullify the 1px width of the applied border.
+  border-top: 1px solid transparent;
+  margin-top: -1px;
 }
 
 // Ensure children of the region are visible even with the background active
-.vs-region[data-vs-region-curved='1'] > * {
+.vs-region > * {
   z-index: 1;
   position: relative;
 }
@@ -172,5 +168,12 @@ html[vs-region-loading="true"] { opacity: 0; }
         margin-bottom: 40px;
       }
     }
+  }
+}
+
+// Fix IE 10-11 curve rendering
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vs-region__bg {
+    overflow: auto !important;
   }
 }

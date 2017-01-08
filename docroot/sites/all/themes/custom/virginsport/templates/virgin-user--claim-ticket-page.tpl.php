@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-xs-12">
               <h2 class="vs-hero-banner__title">
-                <?php print t('Claim Ticket'); ?>
+                <?php print t('Claim Your Pass'); ?>
               </h2>
             </div>
           </div>

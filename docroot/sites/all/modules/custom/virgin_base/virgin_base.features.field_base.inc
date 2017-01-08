@@ -649,6 +649,9 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'white' => 'White',
+        'black' => 'Black',
+        'gray' => 'Gray',
         'blue' => 'Blue',
         'blue-solid' => 'Blue (Solid)',
         'teal' => 'Teal',
@@ -666,6 +669,7 @@ function virgin_base_field_default_field_bases() {
         'red' => 'Red',
         'red-yellow' => 'Red / Yellow',
         'red-pinky-red' => 'Red / Pinky-Red',
+        'red-dark-red-darker' => 'Red Dark / Red Darker',
         'festival-hackney' => 'Festival: Hackney',
         'festival-british' => 'Festival: British',
         'festival-sanfran' => 'Festival: SanFran',
@@ -1698,6 +1702,32 @@ function virgin_base_field_default_field_bases() {
     'type' => 'atom_reference',
   );
 
+  // Exported field_base: 'field_hero_banner_shorter'.
+  $field_bases['field_hero_banner_shorter'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hero_banner_shorter',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_hero_event_align'.
   $field_bases['field_hero_event_align'] = array(
     'active' => 1,
@@ -2576,14 +2606,14 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'portrait' => 'Portrait (Outline)',
-        'landscape' => 'Landscape',
-        'portrait_lower_portrait' => 'Portrait, Lower Portrait (Outline)',
-        'portrait_large_portrait' => 'Portrait, Large Portrait',
-        'portrait_landscape' => 'Portrait, Landscape',
-        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape (Outline)',
-        'landscape_square_right' => 'Landscape, Square Right (Outline)',
-        'portrait_square' => 'Portrait, Square',
+        'portrait' => 'Portrait (1 Image with Outline)',
+        'landscape' => 'Landscape (1 Image)',
+        'portrait_lower_portrait' => 'Portrait, Lower Portrait (2 Images with Outline)',
+        'portrait_large_portrait' => 'Portrait, Large Portrait (2 Images)',
+        'portrait_landscape' => 'Portrait, Landscape (2 Images)',
+        'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape (3 Images with Outline)',
+        'landscape_square_right' => 'Landscape, Square Right (2 Images with Outline)',
+        'portrait_square' => 'Portrait, Square (2 Images)',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -2607,6 +2637,32 @@ function virgin_base_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'paragraphs',
+  );
+
+  // Exported field_base: 'field_thumbnail'.
+  $field_bases['field_thumbnail'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_thumbnail',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Thumbnails',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
   );
 
   // Exported field_base: 'field_ticket_cards'.

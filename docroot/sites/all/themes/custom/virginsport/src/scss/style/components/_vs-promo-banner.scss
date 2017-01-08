@@ -11,6 +11,7 @@ vs-promo-banner,
 .vs-promo-banner {
   display: block;
   margin-bottom: 9.5rem;
+  z-index: 3;
 
   &:last-child {
     margin-bottom: 0;
@@ -112,6 +113,10 @@ vs-promo-banner,
   .vs-promo-banner--color-#{$color} {
     .vs-promo-banner__title:after {
       background-color: map_get($map, 'solid-color');
+    }
+
+    .vs-promo-banner__caption {
+      color: map_get($map, 'solid-color');
     }
   }
 }

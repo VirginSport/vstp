@@ -67,6 +67,20 @@ $last-child-count: 3;
   .panels-ipe-editing & { margin-bottom: 0; }
 }
 
-.vs-claim-ticket {
+.vs-card-untimed-event,
+.panels-ipe--vs-card-untimed-event {
   margin-bottom: 80px;
+  .panels-ipe-editing & { margin-bottom: 0; }
+}
+
+.vs-claim-ticket,
+.panels-ipe--vs-claim-ticket {
+  margin-bottom: 80px;
+  .panels-ipe-editing & { margin-bottom: 0; }
+}
+
+.vs-teaser,
+.panels-ipe--vs-teaser {
+  margin-bottom: 80px;
+  .panels-ipe-editing & { margin-bottom: 0; }
 }

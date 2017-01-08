@@ -70,8 +70,14 @@
                   <?php print theme('virginsport_picture', array('atom_id' => $scrollable_image->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid')); ?>
                 </div>
               <?php else: ?>
-                <div class="vs-scroller vs-scroller--basic-content-block">
-                  <?php print theme('virginsport_picture', array('atom_id' => $scrollable_image->property('sid'), 'image_style' => 'virgin_original')); ?>
+                <div class="vs-scroller vs-scroller--active">
+                  <span class="vs-scroller--prev"></span>
+                  <span class="vs-scroller--next"></span>
+                  <div class="vs-scroller__wrapper">
+                    <div class="vs-scroller--basic-content-block dragscroll">
+                      <?php print theme('virginsport_picture', array('atom_id' => $scrollable_image->property('sid'), 'image_style' => 'virgin_original')); ?>
+                    </div>
+                  </div>
                 </div>
               <?php endif; ?>
             <?php endif; ?>

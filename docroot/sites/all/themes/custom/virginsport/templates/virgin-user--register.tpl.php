@@ -92,9 +92,10 @@ $query = drupal_get_query_parameters();
                             <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_confirm_mail.dirty || submitted) && !$vs_user_register_validator.field_confirm_mail.valid }">
                               <input class="form-control" type="email" v-model="profile.field_confirm_mail" name="field_confirm_mail" id="field_confirm_mail" v-validate:field_confirm_mail="{ required: true, match: profile.field_mail }">
                               <label class="vs-focus-label" for="field_confirm_mail"><?php print t('Confirm Email Address'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_confirm_mail.dirty || submitted) && $vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
-                              <div class="vs-error-label" v-if="!$vs_user_register_validator.field_email.email && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              <div v-if="$vs_user_register_validator.field_confirm_mail.dirty || submitted">
+                                <div class="vs-error-label" v-if="$vs_user_register_validator.field_confirm_mail.required"><?php print t('Email is required'); ?></div>
+                                <div class="vs-error-label" v-if="!$vs_user_register_validator.field_confirm_mail.required && $vs_user_register_validator.field_confirm_mail.match"><?php print t('Email do not match'); ?></div>
+                              </div>
                             </div>
                           </div>
 
@@ -118,52 +119,59 @@ $query = drupal_get_query_parameters();
                           </div>
 
                           <div class="field-address">
-                            <div class="vs-form-group">
+                            <div v-show="!address_manual" class="vs-form-group">
                               <input class="form-control" @keydown.13.prevent id="google-autocomplete" placeholder="" type="text">
                               <label class="vs-focus-label" for="google-autocomplete"><?php print t('Address'); ?></label>
+                              <button class="btn btn-link vs-user-profile-form__manual-link" v-show="!address_manual" v-on:click="address_manual = true"><?php print t('Enter manually'); ?></button>
                             </div>
 
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_line_1.dirty || submitted) && !$vs_user_register_validator.field_address_line_1.valid }">
-                              <input :class="{'vs-form-control--not-empty': profile.field_address_line_1.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" id="field_address_line_1" v-validate:field_address_line_1="['required']">
-                              <label class="vs-focus-label" for="field_address_line_1"><?php print t('Address Line 1'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_line_1.dirty || submitted) && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
-                            </div>
+                            <button class="btn btn-link vs-user-profile-form__manual-link vs-user-profile-form__manual-link--close" v-show="address_manual" v-on:click="address_manual = false"><?php print t('Close manual'); ?></button>
 
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_line_2.dirty || submitted) && !$vs_user_register_validator.field_address_line_2.valid }">
-                              <input :class="{'vs-form-control--not-empty': profile.field_address_line_2.length > 1 }" class="form-control" type="text" v-model="profile.field_address_line_2" name="field_address_line_2" id="field_address_line_2">
-                              <label class="vs-focus-label" for="field_address_line_2"><?php print t('Address Line 2'); ?></label>
-                            </div>
-
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_city.dirty || submitted) && !$vs_user_register_validator.field_address_city.valid }">
-                              <input :class="{'vs-form-control--not-empty': profile.field_address_city.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_city" name="field_address_city" id="field_address_city" v-validate:field_address_city="['required']">
-                              <label class="vs-focus-label" for="field_address_city"><?php print t('City'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_city.dirty || submitted) && $vs_user_register_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
-                            </div>
-
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_state.dirty || submitted) && !$vs_user_register_validator.field_address_state.valid }">
-                              <input :class="{'vs-form-control--not-empty': profile.field_address_state.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_state" name="field_address_state" id="field_address_state" v-validate:field_address_state="['required']">
-                              <label class="vs-focus-label" for="field_address_state"><?php print t('State'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_state.dirty || submitted) && $vs_user_register_validator.field_address_state.required"><?php print t('State is required'); ?></div>
-                            </div>
-
-                            <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_postcode.dirty || submitted) && !$vs_user_register_validator.field_address_postcode.valid }">
-                              <input :class="{'vs-form-control--not-empty': profile.field_address_postcode.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" id="field_address_postcode" v-validate:field_address_postcode="['required']">
-                              <label class="vs-focus-label" for="field_address_postcode"><?php print t('Postcode'); ?>*</label>
-                              <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_postcode.dirty || submitted) && $vs_user_register_validator.field_address_postcode.required"><?php print t('Postcode is required'); ?></div>
-                            </div>
-
-                            <div class="field-country vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_country.dirty || submitted) && !$vs_user_register_validator.field_address_country.valid }">
-                              <div class="vs-select-wrapper vs-select-wrapper--manual">
-                                <select class="form-control" required v-model="profile.field_address_country" name="field_address_country" id="field_address_country" v-validate:field_address_country="['required']">
-                                </select>
-                                <label class="vs-focus-label" for="field_address_country"><?php print t('Country'); ?>*</label>
-                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_country.dirty || submitted) && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
+                            <div v-show="address_manual">
+                              <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_line_1.dirty || submitted) && !$vs_user_register_validator.field_address_line_1.valid }">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_line_1.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_line_1" name="field_address_line_1" id="field_address_line_1" v-validate:field_address_line_1="['required']">
+                                <label class="vs-focus-label" for="field_address_line_1"><?php print t('Address Line 1'); ?>*</label>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_line_1.dirty || submitted) && $vs_user_register_validator.field_address_line_1.required"><?php print t('Address Line 1 is required'); ?></div>
                               </div>
-                              <?php
-                              /* TODO implement tootip field
-                                <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
-                              */
-                              ?>
+
+                              <div class="vs-form-group">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_line_2.length > 1 }" class="form-control" type="text" v-model="profile.field_address_line_2" name="field_address_line_2" id="field_address_line_2">
+                                <label class="vs-focus-label" for="field_address_line_2"><?php print t('Address Line 2'); ?></label>
+                              </div>
+
+                              <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_city.dirty || submitted) && !$vs_user_register_validator.field_address_city.valid }">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_city.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_city" name="field_address_city" id="field_address_city" v-validate:field_address_city="['required']">
+                                <label class="vs-focus-label" for="field_address_city"><?php print t('City'); ?>*</label>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_city.dirty || submitted) && $vs_user_register_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
+                              </div>
+
+                              <div v-show="profile.field_address_country == 'US'" class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_state.dirty || submitted) && !$vs_user_register_validator.field_address_state.valid }">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_state.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_state" name="field_address_state" id="field_address_state" v-validate:field_address_state="['required']">
+                                <label class="vs-focus-label" for="field_address_state"><?php print t('State'); ?>*</label>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_state.dirty || submitted) && $vs_user_register_validator.field_address_state.required"><?php print t('State is required'); ?></div>
+                              </div>
+
+                              <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_postcode.dirty || submitted) && !$vs_user_register_validator.field_address_postcode.valid }">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_postcode.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_postcode" name="field_address_postcode" id="field_address_postcode" v-validate:field_address_postcode="['required']">
+                                <label v-if="profile.field_address_country != 'US'" class="vs-focus-label" for="field_address_postcode"><?php print t('Postcode'); ?>*</label>
+                                <label v-if="profile.field_address_country == 'US'" class="vs-focus-label" for="field_address_postcode"><?php print t('Zipcode'); ?>*</label>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_postcode.dirty || submitted) && $vs_user_register_validator.field_address_postcode.required && profile.field_address_country != 'US'"><?php print t('Postcode is required'); ?></div>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_postcode.dirty || submitted) && $vs_user_register_validator.field_address_postcode.required && profile.field_address_country == 'US'"><?php print t('Zipcode is required'); ?></div>
+                              </div>
+
+                              <div class="field-country vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_country.dirty || submitted) && !$vs_user_register_validator.field_address_country.valid }">
+                                <div class="vs-chosen-wrapper">
+                                  <select required v-model="profile.field_address_country" name="field_address_country" id="field_address_country" v-validate:field_address_country="['required']">
+                                  </select>
+                                  <label class="vs-focus-label" for="field_address_country"><?php print t('Country'); ?>*</label>
+                                  <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_country.dirty || submitted) && $vs_user_register_validator.field_address_country.required"><?php print t('Country is required'); ?></div>
+                                </div>
+                                <?php
+                                /* TODO implement tootip field
+                                  <a class="vs-tooltip-trigger" data-placement="right" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" >i</a>
+                                */
+                                ?>
+                              </div>
                             </div>
                           </div>
 
@@ -194,7 +202,7 @@ $query = drupal_get_query_parameters();
                                 </div>
 
                                 <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
-                                  <?php print t("We love your enthusiasm, but you're below the minimum age for this event. But please do come back soon."); ?>
+                                  <?php print t("We love your enthusiasm, but you must be 13 to create an account."); ?>
                                 </div>
 
                               <?php
@@ -205,9 +213,11 @@ $query = drupal_get_query_parameters();
                             </div>
                           </validator>
 
-                          <div class="field-gender vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
-                            <label for="field_gender" class="vs-focus-label"><?php print t('Gender'); ?>*</label>
-                            <select class="form-control" v-model="profile.field_gender" name="field_gender" id="field_gender" v-validate:field_gender="['required']"></select>
+                          <div class="field-gender vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
+                            <div class="vs-chosen-wrapper">
+                              <label for="field_gender" class="vs-focus-label"><?php print t('Gender'); ?>*</label>
+                              <select v-model="profile.field_gender" name="field_gender" id="field_gender" v-validate:field_gender="['required']"></select>
+                            </div>
                             <div class="vs-error-label" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
                           </div>
 

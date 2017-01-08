@@ -47,17 +47,6 @@
     border-bottom: 1px solid rgba(#d8d8d8, .5);
   }
 
-  .vs-form-group {
-    margin: 0 .625rem .875rem;
-    line-height: normal;
-    clear: both;
-  }
-
-  .vs-form-group--manual {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   .vs-btn {
     display: block;
     margin-bottom: 1.25rem;
@@ -94,10 +83,6 @@
 // ----------------------------------------------------------------------------
 
 .vs-form-group--chosen {
-  ~ label {
-
-  }
-
   .form-control {
     height: auto;
     padding-top: 1.5rem;
@@ -180,7 +165,7 @@
 }
 
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-  width: 100%;
+  width: 100% !important;
 }
 
 .vs-user-profile-form--password {
@@ -252,8 +237,6 @@ label.vs-form-label--large {
   .vs-user-profile-form--body {
     .vs-form-group {
       margin-bottom: 1.75rem;
-      margin-left: 0;
-      margin-right: 0;
     }
 
     .vs-btn {

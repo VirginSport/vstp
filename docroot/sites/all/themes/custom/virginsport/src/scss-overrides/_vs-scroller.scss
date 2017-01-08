@@ -1,0 +1,89 @@
+
+// This file covers the scroller component
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  .vs-basic-content-block__text-wrapper {
+    padding: 2.125rem 4.5rem 2.125rem 2.5rem;
+  }
+}
+
+.vs-scroller {
+  position: relative;
+
+  &.vs-scroller--active {
+    @include cursor(grab);
+
+    &:active {
+      @include cursor(grabbing);
+    }
+  }
+}
+
+.vs-scroller__wrapper {
+  overflow: hidden;
+}
+
+.vs-scroller--basic-content-block {
+  margin-bottom: -1.250rem;
+  padding-bottom: 1.438rem;
+}
+
+.vs-scroller--prev,
+.vs-scroller--next {
+  display: none;
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 2rem;
+  height: 3rem;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+
+  &.active {
+    cursor: pointer;
+    opacity: 1;
+  }
+}
+
+.vs-scroller--prev {
+  background-image: url(../img/arrow-left.svg);
+  left: -3.4rem;
+}
+
+.vs-scroller--next {
+  background-image: url(../img/arrow-right.svg);
+  right: -3.4rem;
+}
+
+.vs-scroller--bullets {
+  text-align: center;
+  padding: 1rem 0;
+
+  span {
+    @include border-radius(50%);
+    display: inline-block;
+    background-color: $c-black;
+    cursor: pointer;
+    opacity: .2;
+    width: 6px;
+    height: 6px;
+    margin: 4px;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+}

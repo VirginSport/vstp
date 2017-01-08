@@ -81,7 +81,7 @@ $mkt_id = 'mkt-' . uniqid();
                     <div class="vs-form-description"><?php print t('By registering your interest, you are agreeing to receive information about Virgin Sport events and partners. Game on!'); ?></div>
                   </form>
                 </validator>
-                <div v-if="form.submitted">
+                <div v-if="form.submitted" class="form-completion">
                   <h4 class="vs-form-header">
                     <?php print t("Brilliant! We're excited that you're excited! We'll be in touch soon."); ?>
                   </h4>

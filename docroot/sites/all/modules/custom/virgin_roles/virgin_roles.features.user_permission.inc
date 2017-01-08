@@ -1677,6 +1677,17 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'edit meta tags'.
+  $permissions['edit meta tags'] = array(
+    'name' => 'edit meta tags',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'metatag',
+  );
+
   // Exported permission: 'edit own atom'.
   $permissions['edit own atom'] = array(
     'name' => 'edit own atom',
@@ -1883,6 +1894,15 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'use hybridauth'.
+  $permissions['use hybridauth'] = array(
+    'name' => 'use hybridauth',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+    ),
+    'module' => 'hybridauth',
   );
 
   // Exported permission: 'use ipe with page manager'.
