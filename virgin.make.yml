@@ -91,13 +91,13 @@ projects:
   honeypot:
     version: "1.22"
 
-#  scald_extra:
-#    type: module
-#    download:
-#      type: git
-#      url: git@gitlab.driven.pt:drupal/scald-extra.git
-#      revision: f16debef129d247fb9931399ec645d0e7152c625
-#      branch: master
+  scald_extra:
+    type: module
+    download:
+      type: git
+      url: git@gitlab.driven.pt:drupal/scald-extra.git
+      revision: f16debef129d247fb9931399ec645d0e7152c625
+      branch: master
 
   service_links:
     version: "2.3"
