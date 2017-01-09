@@ -49,7 +49,7 @@ function virgin_base_metatag_export_default() {
       'og:description' => array(
         'value' => '[node:field_description]',
       ),
-      'og:image:url' => array(
+      'og:image' => array(
         'value' => '[node:field_header_image]',
       ),
     ),
@@ -65,7 +65,7 @@ function virgin_base_metatag_export_default() {
       'og:description' => array(
         'value' => '[node:field_description]',
       ),
-      'og:image:url' => array(
+      'og:image' => array(
         'value' => '[node:field_header_image]',
       ),
     ),
@@ -81,7 +81,7 @@ function virgin_base_metatag_export_default() {
       'og:description' => array(
         'value' => '[node:summary]',
       ),
-      'og:image:url' => array(
+      'og:image' => array(
         'value' => '[node:field_header_image]',
       ),
     ),
