@@ -15,7 +15,7 @@
                 <?php print $row['festival_grapher']->fieldGetOne('title_field'); ?>
               </div>
               <div class="vs-festival-profile-header__date">
-                <?php print virginsport_date_interval($row['festival_state_grapher']->fieldGetOne('field_start_date'),$row['festival_state_grapher']->fieldGetOne('field_end_date')); ?>
+                <?php print virginsport_date_interval($row['festival_state_grapher']->fieldGetOne('field_start_date'), $row['festival_state_grapher']->fieldGetOne('field_end_date'), $row['festival_state_grapher']->fieldGetOne('field_timezone')); ?>
               </div>
               <div class="vs-festival-profile-header__buttons-wrapper">
                 <a
@@ -54,7 +54,7 @@
                 <?php print $row['festival_grapher']->fieldGetOne('title_field'); ?>
               </div>
               <div class="vs-festival-profile-header__date">
-                <?php print virginsport_date_interval($row['festival_state_grapher']->fieldGetOne('field_start_date'),$row['festival_state_grapher']->fieldGetOne('field_end_date')); ?>
+                <?php print virginsport_date_interval($row['festival_state_grapher']->fieldGetOne('field_start_date'), $row['festival_state_grapher']->fieldGetOne('field_end_date'), $row['festival_state_grapher']->fieldGetOne('field_timezone')); ?>
               </div>
               <div class="vs-festival-profile-header__buttons-wrapper">
                 <a

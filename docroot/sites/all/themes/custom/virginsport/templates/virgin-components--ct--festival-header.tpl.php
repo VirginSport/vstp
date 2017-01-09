@@ -57,7 +57,7 @@
           <?php else: ?>
             <h2 class="vs-hero-banner__title"><?php print check_plain($title); ?></h2>
           <?php endif; ?>
-          <div class="vs-hero-banner__date"><?php print virginsport_date_interval($start_date, $end_date); ?></div>
+          <div class="vs-hero-banner__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone); ?></div>
 
           <div class="vs-hero-banner__days-left-wrapper hidden-md-up" style="display: none">
             <span class="vs-hero-banner__days-left"></span>

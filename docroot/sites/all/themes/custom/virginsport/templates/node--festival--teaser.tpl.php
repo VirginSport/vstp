@@ -107,7 +107,7 @@
           <?php endif; ?>
 
           <div class="vs-card-upcoming__date">
-           <?php print virginsport_date_interval($grapher->relation('field_festival_state')->fieldGetOne('field_start_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_end_date')); ?>
+           <?php print virginsport_date_interval($grapher->relation('field_festival_state')->fieldGetOne('field_start_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_end_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_timezone')); ?>
           </div>
 
           <?php if (!empty($grapher->fieldRendered('field_description'))): ?>
