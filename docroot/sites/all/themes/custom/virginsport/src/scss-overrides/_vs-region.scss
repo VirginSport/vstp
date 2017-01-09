@@ -116,10 +116,10 @@ html[vs-region-loading="true"] { opacity: 0; }
   .vs-region--gradient-#{$color} {
 
     .vs-region__bg {
-      // HACK: We're passing the background rotation value vie the background
-      // size property to the JS. This value will be parsed by the JS and
+      // HACK: We're passing the background rotation value via the word
+      // spacing property to the JS. This value will be parsed by the JS and
       // transformed to the rotation value of the region background.
-      background-size: str-replace(inspect(map_get($map, 'rotate')), 'deg', '%');
+      word-spacing: str-replace(inspect(map_get($map, 'rotate')), 'deg', 'px');
     }
 
     .vs-region__bg .stop-a {
