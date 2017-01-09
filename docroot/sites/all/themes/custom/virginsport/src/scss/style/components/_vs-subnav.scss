@@ -36,6 +36,10 @@ vs-subnav,
   width: 60px;
   right: 0;
   z-index: 3;
+
+  .vs-region--bg-image & {
+    display: none;
+  }
 }
 
 @each $color in map-keys($color-schemes) {
@@ -117,7 +121,6 @@ vs-subnav,
 .vs-subnav--unpinned,
 .vs-subnav--not-top {
   @include transition(all .5s ease-in-out, background-color 1ms);
-  background-color: $c-gray-light;
   position: fixed;
   top: 0;
 }

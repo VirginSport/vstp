@@ -24,13 +24,14 @@ export default () => {
 
 /**
  * Add modal container to page
- * 
+ *
  * @returns {bootstrap.Modal}
  */
 function init() {
   let html = `
     <div id="vs-contact-form-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
+        <button type="button" class="modal-dialog__close" data-dismiss="modal" aria-label="Close"></button>
         <div class="modal-content"></div>
       </div>
     </div>
@@ -68,7 +69,7 @@ function bind($el) {
 
     // Run attachBehaviors to run libraries like chosen and apply to new elements
     Drupal.attachBehaviors();
-    
+
     // Attach blur event to new form elements
     blur();
   };

@@ -1,0 +1,6 @@
+@mixin cursor($property) {
+  cursor: -webkit-#{$property};
+  cursor: -moz-#{$property};
+  cursor: -o-#{$property};
+  cursor: #{$property};
+}

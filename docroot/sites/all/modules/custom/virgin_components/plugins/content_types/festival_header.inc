@@ -110,6 +110,9 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     $atom = $g_festival->relation('field_header_image');
   }
 
+  // Get current menu path
+  $menu_item = menu_get_item();
+
   // Build the template variables
   $vars = array(
     'title' => $g->fieldGetOne('title_field'),
@@ -127,7 +130,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'event_nid' => empty($festival_nid) ? '' : $g->property('nid'),
     'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
-    'link_label' => '' // Small link at the bottom, not used tm
+    'link_label' => '', // Small link at the bottom, not used tm
+    'is_tickets_page' => !empty($menu_item['path']) && $menu_item['path'] == 'node/%/tickets'
   );
 
   $block = new stdClass();

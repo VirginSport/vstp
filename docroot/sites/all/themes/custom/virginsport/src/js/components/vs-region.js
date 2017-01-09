@@ -1,5 +1,6 @@
 import onResize from '../helper/on-resize';
 import $ from '../lib/jquery';
+import ieVersion from '../lib/ie-version';
 
 /**
  * Adjustment value to the gradient rotation so that
@@ -44,7 +45,14 @@ const SELF_PADDED_COMPONENTS = [
  *
  * @type {Region[]}
  */
-const regions = [];
+let regions = [];
+
+/**
+ * The current IE version
+ *
+ * @type {Number}
+ */
+let currentIEVersion = ieVersion();
 
 /**
  * Tracks if the vs-region script has run at least once
@@ -59,7 +67,7 @@ export default () => {
   let update = () => {
     regions.forEach(r => r.update());
   };
-  
+
   // Whenever the window is resized, check if the elements need to be resized
   onResize(update);
 
@@ -131,7 +139,8 @@ class Region {
     this.lastHeight = 0;
     this.isCurved = el.getAttribute('data-vs-region-curved') == true;
     this.previousRegion = previousRegion;
-    
+    this.background = $(el).find('[data-vs-region-background]').first().attr('data-vs-region-background');
+
     this.setup();
     this.update();
   }
@@ -161,11 +170,24 @@ class Region {
     let curveHeight = width * CURVE_WIDTH_HEIGHT_RATIO;
     let svgHeight = this.isCurved ? (height + curveHeight) : height;
     let offsetHeight = this.isCurved ? curveHeight * -1 : 0;
+    let zIndex = 0;
     
+    // Hack: For IE <= 11 the SVG the offset must be 0 or the SVG is pushed
+    // higher than the region it is in.
+    if (currentIEVersion >= 10 && currentIEVersion <= 11) {
+      offsetHeight = 0;
+    }
+    
+    // Hack: For IE 10 the z-index must be set to -1 or the rendering might
+    // hide other elements in the page on the first pass render.
+    if (currentIEVersion == 10) {
+      zIndex = -1;
+    }
+
     // And update the drawn path properties accordingly
     setAttributes(this.svg, {
       viewBox: `0 0 ${width} ${svgHeight}`,
-      style: `position: absolute; top: ${offsetHeight}px; left: 0; bottom: 0; right: 0; z-index: 0`
+      style: `position: absolute; top: ${offsetHeight}px; left: 0; bottom: 0; right: 0; z-index: ${zIndex}`
     });
     
     setAttributes(this.spacer, {
@@ -198,11 +220,14 @@ class Region {
     
     // If for some reason rotation could not be parsed, fallback to 0
     bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
+    
+    if (bgRotation) {
+      setAttributes(this.gradient, {
+        gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
+      });
+    }
   
-    setAttributes(this.gradient, {
-      gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
-    });
-
+    // Once the region has been updated, fire an event to any listeners
     $('body').trigger('vs_region__finished');
   }
 
@@ -255,6 +280,38 @@ class Region {
       class: 'stop-b'
     });
     
+    // Setup background image if the region has one
+    if (this.background) {
+      this.patternID = id();
+  
+      this.defs = element(this.svg, 'defs');
+  
+      this.pattern = element(this.defs, 'pattern', {
+        id: this.patternID,
+        patternUnits: 'userSpaceOnUse',
+        width: '100%',
+        height: '100%',
+        x: 0,
+        y: 0
+      });
+  
+      this.image = element(this.pattern, 'image', {
+        x: 0,
+        y: 0,
+        width: '100%',
+        height: '100%',
+        preserveAspectRatio: 'xMinYMin slice'
+      });
+  
+      setAttributes(this.path, {
+        fill: `url(#${this.patternID})`
+      });
+  
+      this.el.classList.add('vs-region--bg-image');
+      this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
+      this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
+    }
+
     // Create a spacer element to cover region spacing
     this.spacer = window.document.createElement('div');
     

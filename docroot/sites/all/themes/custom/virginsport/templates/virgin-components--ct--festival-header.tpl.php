@@ -71,7 +71,7 @@
               </a>
             <?php endif; ?>
 
-            <?php if (in_array($status, array('open', 'in-progress'))): ?>
+            <?php if (in_array($status, array('open', 'in-progress')) && !$is_tickets_page): ?>
               <a
                 href="<?php print url('node/' . $nid . '/tickets'); ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>"

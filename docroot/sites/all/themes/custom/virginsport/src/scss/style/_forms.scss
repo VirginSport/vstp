@@ -77,6 +77,15 @@ label {
   }
 }
 
+.form-completion {
+    padding: 0 40px;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      padding: 0;
+    }
+}
+
 .vs-form-header {
   font-family: $font-family-serif;
   color: $c-orange-bright;
@@ -87,6 +96,10 @@ label {
 
   @include media-breakpoint-up(md) {
     font-size: 1.5625rem;
+    max-width: none;
+  }
+
+  .form-completion & {
     max-width: none;
   }
 }

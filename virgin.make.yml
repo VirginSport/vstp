@@ -11,6 +11,8 @@ projects:
   lightning:
     type: "core"
     version: "7.x-1.x"
+    patch:
+      - ./patches/lightning/prevent-hotlinking-VS16-1207.patch
 
   acquia_connector:
     version: "3.0"
@@ -85,6 +87,9 @@ projects:
 
   scald:
     version: "1.8"
+
+  honeypot:
+    version: "1.22"
 
   scald_extra:
     type: module
