@@ -57,12 +57,15 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $festival = empty($result->nid) ? NULL : node_load($result->nid);  //loads the festival
     $festival_grapher = new VirginEntityGrapher('node', $festival);
 
+    $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+    $timezone = $event_state_grapher->fieldGetOne('field_timezone');
+
     $variables['title'] = $event_grapher->fieldGetOne('title_field');
     $variables['description'] = $event_grapher->fieldRendered('field_description');
     $variables['card_image'] = $event_grapher->relation('field_card_image');
     $variables['card_pattern'] = $event_grapher->fieldGetOne('field_brand_pattern');
     $variables['brand_color'] = $event_grapher->fieldGetOne('field_brand_color');
-    $variables['start_date'] = date('d M', $event_state_grapher->fieldGetOne('field_start_date'));
+    $variables['start_date'] = virgin_date($start_date, $timezone)->format('d M');
     $variables['festival_id'] = $festival_grapher->property('nid');
     $price = $paragraph_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['event_price'] = $price;

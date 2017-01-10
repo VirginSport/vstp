@@ -372,16 +372,8 @@ function virginsport_days_left($date) {
  * The formatted date interval
  */
 function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_from = 'UTC') {
-  $tz_from = new DateTimeZone($tz_from);
-  $tz_to = new DateTimeZone($tz_to);
-
-  $start = new \DateTime('now', $tz_from);
-  $start->setTimestamp($start_date);
-  $start->setTimezone($tz_to);
-
-  $end = new \DateTime('now', $tz_from);
-  $end->setTimestamp($end_date);
-  $end->setTimezone($tz_to);
+  $start = virgin_date($start_date, $tz_to, $tz_from);
+  $end = virgin_date($end_date, $tz_to, $tz_from);
 
   // If the end date and start date are the same, simply return
   // the fully formatted start date.
