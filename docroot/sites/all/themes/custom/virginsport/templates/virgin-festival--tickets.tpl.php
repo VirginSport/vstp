@@ -10,6 +10,8 @@
  *  The festival subnav
  * @var string $iframe_url
  *  The attendly iframe URL for the festival cart
+ * @var string $brand_color
+ *  The brand color of the festival
  */
 ?>
 
@@ -50,7 +52,7 @@
           </div>
           <div class="col-xs-6 text-xs-center text-md-right">
             <a
-              class="btn vs-btn vs-btn--lg vs-btn--gradient-blue vs-sticky-basket__btn vs-sticky-basket__btn--right"
+              class="btn vs-btn vs-btn--lg vs-btn--gradient-<?php print $brand_color; ?> vs-sticky-basket__btn vs-sticky-basket__btn--right"
               href="<?php print url($basket_url); ?>"
             >
               <span class="vs-sticky-basket__btn-label"><?php print t('View Basket'); ?></span>

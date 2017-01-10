@@ -41,6 +41,7 @@ function virgin_festival_page_tickets($node) {
     'basket_url' => $basket_url,
     'iframe_url' => $iframe_url,
     'header' => empty($header->content) ? '' : $header->content,
-    'subnav' => empty($subnav->content) ? '' : $subnav->content
+    'subnav' => empty($subnav->content) ? '' : $subnav->content,
+    'brand_color' => $g->fieldGetOne('field_brand_color')
   ));
 }
