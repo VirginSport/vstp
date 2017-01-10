@@ -75,8 +75,12 @@ $last-child-count: 3;
 
 .vs-claim-ticket,
 .panels-ipe--vs-claim-ticket {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   .panels-ipe-editing & { margin-bottom: 0; }
+
+  @include media-breakpoint-down('sm') {
+    margin-bottom: 30px;
+  }
 }
 
 .vs-teaser,

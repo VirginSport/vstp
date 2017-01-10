@@ -4,6 +4,14 @@
 vs-claim-ticket,
 .vs-claim-ticket {
   display: block;
+
+  @include media-breakpoint-only('xs') {
+    padding-top: 1.2rem;
+  }
+
+  @include media-breakpoint-up('lg') {
+    padding-top: 2rem;
+  }
 }
 
 vs-claim-ticket + vs-claim-ticket,
