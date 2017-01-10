@@ -261,7 +261,11 @@
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">
-                <a class="vs-footer__social vs-footer__social--<?php print $network['key']; ?>" href="<?php print $network['url']; ?>">
+                <a
+                  class="vs-footer__social vs-footer__social--<?php print $network['key']; ?>"
+                  href="<?php print $network['url']; ?>"
+                  vs-share-event="<?php print $network['key']; ?>"
+                >
                   <span class="sr-only"><?php print t('Visit our @name', array('@name' => $network['label'])); ?></span>
                 </a>
               </li>
