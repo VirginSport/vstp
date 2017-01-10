@@ -8,13 +8,12 @@ function virgin_region_page_splash () {
 
   // Add Javascript files to handle region cookie and redirection to correct region
   drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
-  drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash_redirect.js');
   drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash.js');
 
-  // We don't want to use template page.tpl.php which includes elements
-  // like navbars, logo and other things that we don't want on this page,
-  // so we're printing directly the html theme with page splash theme as a children
-  // the html theme with t
+  // We don't want to use template page.tpl.php which includes elements like
+  // navbars, logo and other things that we don't want on this page, so we're
+  // printing directly the html theme with page splash theme as a children
+  // the html theme.
   print theme('html', array(
     'page' => array(
       'page_top' => array(),
