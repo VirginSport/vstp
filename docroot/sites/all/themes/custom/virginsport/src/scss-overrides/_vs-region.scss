@@ -31,7 +31,6 @@ $vs-region-overlap-sizes: (
 // the vs-region-loading attribute which is added via a script in the
 // <head> tag and removed via JS once the regions are rendered for the
 // first time.
-html { @include transition(opacity 0.3s ease); }
 html[vs-region-loading="true"] { opacity: 0; }
 
 // For the first ctools region, forcefully disable the spacer
