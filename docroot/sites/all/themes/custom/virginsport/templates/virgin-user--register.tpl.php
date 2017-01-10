@@ -24,7 +24,9 @@ $query = drupal_get_query_parameters();
   </div>
 </div>
 
-<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default">
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default" data-vs-region-overlap="<?php print empty($claim_ticket) ? 'none' : 'medium'; ?>">
+  <?php print $claim_ticket; ?>
+
   <div class="container vs-user-register v-element">
     <div class="row">
       <div class="col-xs-12">
