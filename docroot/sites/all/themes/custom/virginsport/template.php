@@ -364,26 +364,32 @@ function virginsport_days_left($date) {
  *  The start date timestamp
  * @param $end_date
  *  The end date timestamp
+ * @param string $tz_to
+ *  The timezone the date interval should be converted to
+ * @param string $tz_from
+ *  The timezone the timestamps are relative to
  * @return string
- *  The formatted date interval
+ * The formatted date interval
  */
-function virginsport_date_interval($start_date, $end_date) {
+function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_from = 'UTC') {
+  $start = virgin_date($start_date, $tz_to, $tz_from);
+  $end = virgin_date($end_date, $tz_to, $tz_from);
 
   // If the end date and start date are the same, simply return
   // the fully formatted start date.
-  if (date('d M Y', $start_date) == date('d M Y', $end_date)) {
-    return date('d M Y', $start_date);
+  if ($start->format('d M Y') == $end->format('d M Y')) {
+    return $start->format('d M Y');
   }
 
   // Otherwise, build the start/end date string
   $start_date_parts = array(
-    'year' => date('Y', $start_date),
-    'month' => date('M', $start_date)
+    'year' => $start->format('Y'),
+    'month' => $end->format('M')
   );
 
   $end_date_parts = array(
-    'year' => date('Y', $end_date),
-    'month' => date('M', $end_date)
+    'year' => $end->format('Y'),
+    'month' => $end->format('M')
   );
 
   $start_date_format = 'd M Y';
@@ -399,7 +405,7 @@ function virginsport_date_interval($start_date, $end_date) {
     }
   }
 
-  return date($start_date_format, $start_date) . ' - ' . date('d M Y', $end_date);
+  return $start->format($start_date_format) . ' - ' . $end->format('d M Y');
 }
 
 /**

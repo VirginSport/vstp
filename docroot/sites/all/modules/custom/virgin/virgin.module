@@ -536,3 +536,22 @@ function _virgin_check_state_node_access() {
     }
   }
 }
+
+/**
+ * Get a DateTime object for the given timestamp/timezone configuration
+ *
+ * @param $timestamp
+ *  The timestamp of the date
+ * @param string $tz_to
+ *  The timezone the date interval should be converted to
+ * @param string $tz_from
+ *  The timezone the timestamps are relative to
+ * @return \DateTime
+ */
+function virgin_date($timestamp, $tz_to = 'UTC', $tz_from = 'UTC') {
+  $tz_from = new DateTimeZone($tz_from);
+  $tz_to = new DateTimeZone($tz_to);
+  $date = new \DateTime('now', $tz_from);
+
+  return $date->setTimestamp($timestamp)->setTimezone($tz_to);
+}

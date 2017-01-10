@@ -13,6 +13,8 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $event_state_grapher = $event_grapher->relation('field_event_state');
   $event_start_date = $event_state_grapher->fieldGetOne('field_start_date');
   $event_end_date = $event_state_grapher->fieldGetOne('field_end_date');
+  $event_timezone = $event_state_grapher->fieldGetOne('field_timezone');
+  $start_date = virgin_date($event_start_date, $event_timezone);
 
   $ticket_type = $vars['ticket_type'];
   $ticket_type_grapher = new VirginEntityGrapher('node', node_load($ticket_type->nid));
@@ -56,14 +58,14 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['ticket_type_title'] = $ticket_type_grapher->fieldGetOne('title_field');;
   $vars['brand_color'] = $ticket_type_grapher->fieldGetOne('field_brand_color');
   $vars['brand_pattern'] = $ticket_type_grapher->fieldGetOne('field_brand_pattern');
-  $vars['ticket_start_time'] = date('g:ia', $event_start_date);
+  $vars['ticket_start_time'] = $start_date->format('g:ia');
   $vars['event_grapher'] = $event_grapher;
   $vars['event_state_grapher'] = $event_state_grapher;
   $vars['event_start_date'] = $event_start_date;
   $vars['event_end_date'] = $event_end_date;
   $vars['event_started'] = $event_start_date < time();
   $vars['event_past'] = $event_end_date < time();
-  $vars['event_date'] = date('l, d M Y', $event_start_date);
+  $vars['event_date'] = $start_date->format('l, d M Y');
 }
 
 /**

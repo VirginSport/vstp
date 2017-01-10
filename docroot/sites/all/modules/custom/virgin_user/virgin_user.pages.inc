@@ -504,12 +504,13 @@ function virgin_user_page_ajax_form_post() {
     // If form is interested in send google tag manager info to push into data layer
     if ($data['type'] == 'interested_in') {
       $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+      $timezone = $event_state_grapher->fieldGetOne('field_timezone');
 
       $gtm_event = array(
         'event' => 'RegisterInterest',
         'EventType' => $event_state_grapher->fieldGetOne('field_event_type'),
         'EventName' => $event_grapher->property('title'),
-        'EventDate' => date('d.m.Y', $start_date)
+        'EventDate' => virgin_date($start_date, $timezone)->format('d.m.Y')
       );
 
       $gtm[] = $gtm_event;
