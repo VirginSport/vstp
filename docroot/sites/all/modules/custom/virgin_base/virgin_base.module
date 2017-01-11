@@ -111,6 +111,7 @@ function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form
   if (!empty($form['atom0'])) {
     $form['atom0']['scald_authors']['#access'] = FALSE;
     $form['atom0']['scald_actions']['#access'] = FALSE;
+    $form['atom0']['redirect']['#access'] = FALSE;
   }
 }
 
