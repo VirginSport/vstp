@@ -22,6 +22,14 @@ define('VIRGIN_REGION_ROUTE_SPLASH', 'splash');
 define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 
 /**
+ * The hostname of the default region
+ *
+ * If this variable is set and a region with this hostname exists, users will be
+ * automatically redirected to this region when visiting the splash page.
+ */
+define('VIRGIN_REGION_VAR_DEFAULT_REGION', 'vs_region_default_hostname');
+
+/**
  * Implements hook_views_api().
  */
 function virgin_region_views_api() {
@@ -205,6 +213,7 @@ function virgin_region_regions() {
         'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
+        'is_default' => (variable_get(VIRGIN_REGION_VAR_DEFAULT_REGION) == $hostname),
         'hostname' => $hostname
       );
     }
