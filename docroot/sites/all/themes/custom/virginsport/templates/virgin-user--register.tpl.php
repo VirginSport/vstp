@@ -147,10 +147,10 @@ $query = drupal_get_query_parameters();
                                 <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_city.dirty || submitted) && $vs_user_register_validator.field_address_city.required"><?php print t('City 1 is required'); ?></div>
                               </div>
 
-                              <div v-show="profile.field_address_country == 'US'" class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_state.dirty || submitted) && !$vs_user_register_validator.field_address_state.valid }">
-                                <input :class="{'vs-form-control--not-empty': profile.field_address_state.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_state" name="field_address_state" id="field_address_state" v-validate:field_address_state="['required']">
-                                <label class="vs-focus-label" for="field_address_state"><?php print t('State'); ?>*</label>
-                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_state.dirty || submitted) && $vs_user_register_validator.field_address_state.required"><?php print t('State is required'); ?></div>
+                              <div v-show="profile.field_address_country != 'GB'" class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_state.dirty || submitted) && !$vs_user_register_validator.field_address_state.valid }">
+                                <input :class="{'vs-form-control--not-empty': profile.field_address_state.length > 1 }" class="form-control" required type="text" v-model="profile.field_address_state" name="field_address_state" id="field_address_state" v-validate:field_address_state="{ required_if: [{ value: profile.field_address_country, equals: 'US' }] }">
+                                <label class="vs-focus-label" for="field_address_state"><?php print t('State'); ?><span v-if="profile.field_address_country == 'US'">*</span></label>
+                                <div class="vs-error-label" v-if="($vs_user_register_validator.field_address_state.dirty || submitted) && $vs_user_register_validator.field_address_state.required_if"><?php print t('State is required'); ?></div>
                               </div>
 
                               <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_address_postcode.dirty || submitted) && !$vs_user_register_validator.field_address_postcode.valid }">
