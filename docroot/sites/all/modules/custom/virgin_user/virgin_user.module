@@ -813,10 +813,25 @@ function virgin_user_bind_attendly_checkout_session() {
  *  The ticket rego ID
  * @return array|null
  *  Either the ticket with the given rego or a null if no ticket was found
+ * @throws \VirginException
+ *  If there a communication error happened while calling SugarCRM
  */
 function _virgin_user_get_ticket($rego) {
-  $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
-  $ticket = sugarcrm_client()->systemGet($path);
+  try {
+    $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
+    $ticket = sugarcrm_client()->systemGet($path);
+  } catch (\Exception $e) {
+    watchdog(
+      'virgin_user',
+      'Failed to fetch ticket (@rego) from SugarCRM: @err',
+      array(
+        '@rego' => $rego,
+        '@err' => $e->getMessage()
+      )
+    );
+
+    throw new VirginException($e->getMessage(), t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."));
+  }
 
   return empty($ticket['id']) ? NULL : $ticket;
 }
