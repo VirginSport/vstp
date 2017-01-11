@@ -506,14 +506,14 @@ function virginsport_add_gtm_data_layer(&$vars) {
         $start_date = $festival_state_grapher->fieldGetOne('field_start_date');
         $end_date = $festival_state_grapher->fieldGetOne('field_end_date');
 
-        $properties['Festival Name'] = $metadata['vs-festival-name'] = check_plain($festival_grapher->property('title'));
+        $properties['Festival Name'] = $metadata['vs-festival-name'] = $festival_grapher->property('title');
         $properties['Festival Date'] = $metadata['vs-festival-date'] = sprintf('%s - %s', date($date_format, $start_date),  date($date_format, $end_date));
       }
     };
 
     switch ($grapher->property('type')) {
       case 'region':
-        $properties['PageName'] = $metadata['vs-page-name'] = check_plain($grapher->property('title')) . ' Homepage';
+        $properties['PageName'] = $metadata['vs-page-name'] = $grapher->property('title') . ' Homepage';
         break;
 
       case 'page':
@@ -531,13 +531,13 @@ function virginsport_add_gtm_data_layer(&$vars) {
 
         $event_state_grapher = $grapher->relation('field_event_state');
         $start_date = $event_state_grapher->fieldGetOne('field_start_date');
-        $properties['Event Name'] = $metadata['vs-event-name'] = check_plain($grapher->property('title'));
+        $properties['Event Name'] = $metadata['vs-event-name'] = $grapher->property('title');
         $properties['Event Type'] = $metadata['vs-event-type'] = $event_state_grapher->fieldGetOne('field_event_type');
         $properties['Event Date'] = $metadata['vs-event-date'] = date($date_format, $start_date);
         break;
 
       default:
-        $properties['PageName'] = $metadata['vs-page-name'] = check_plain($grapher->property('title'));
+        $properties['PageName'] = $metadata['vs-page-name'] = $grapher->property('title');
     }
   }
 

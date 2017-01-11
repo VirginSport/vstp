@@ -73,7 +73,7 @@
     <meta name="theme-color" content="#830A2A">
 
     <?php foreach ($gtm_metadata as $key => $value): ?>
-      <meta name="<?php print $key; ?>" content="<?php print $value; ?>">
+      <meta name="<?php print $key; ?>" content="<?php print check_plain($value); ?>">
     <?php endforeach; ?>
 
     <!-- Stylesheets -->
