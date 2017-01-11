@@ -365,7 +365,22 @@ function virgin_user_page_user_login() {
 function virgin_user_page_user_register() {
   $register_form = drupal_get_form('user_register_form');
 
-  return theme('virgin_user__register', array('register_form' => $register_form, 'hybridauth_widget' => array('#type' => 'hybridauth_widget')));
+  // If the basket action parameter is for claiming a ticket
+  // load the ticket and render the claim ticket widget.
+  $claim_ticket = '';
+  if (virgin_param('basket-action') == 'claim') {
+    $rego = virgin_param('rego');
+    $ticket = _virgin_user_get_ticket($rego);
+    $claim_ticket = theme('virgin_user__claim_ticket', array('ticket' => $ticket));
+  }
+
+  return theme('virgin_user__register', array(
+    'register_form' => $register_form,
+    'claim_ticket' => $claim_ticket,
+    'hybridauth_widget' => array(
+      '#type' => 'hybridauth_widget'
+    )
+  ));
 }
 
 /**
@@ -489,12 +504,13 @@ function virgin_user_page_ajax_form_post() {
     // If form is interested in send google tag manager info to push into data layer
     if ($data['type'] == 'interested_in') {
       $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+      $timezone = $event_state_grapher->fieldGetOne('field_timezone');
 
       $gtm_event = array(
         'event' => 'RegisterInterest',
         'EventType' => $event_state_grapher->fieldGetOne('field_event_type'),
         'EventName' => $event_grapher->property('title'),
-        'EventDate' => date('d.m.Y', $start_date)
+        'EventDate' => virgin_date($start_date, $timezone)->format('d.m.Y')
       );
 
       $gtm[] = $gtm_event;

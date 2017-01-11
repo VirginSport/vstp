@@ -18,7 +18,8 @@
       <?php foreach ($regions as $region): ?>
       <a
         href="<?php print virgin_region_add_hostname_protocol($region['hostname']) ?>"
-        region-hostname="<?php print $region['hostname'] ?>"
+        vs-region-hostname="<?php print $region['hostname'] ?>"
+        vs-region-default="<?php print (int) $region['is_default']; ?>"
         class="vs-splash__link"
       >
         <?php if(!empty($region['icon'])): ?>

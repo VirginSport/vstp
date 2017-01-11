@@ -1,7 +1,20 @@
 <?php
 /**
  * @file
- * Virgin images template.
+ * Virgin image template.
+ *
+ * @var stdClass $atom
+ *  The picture atom object
+ * @var string $image_style
+ *  The image style key
+ * @var string $image_style_hdpi
+ *  The HDPI image style key
+ * @var string $alt_text
+ *  The image alt text
+ * @var string $classes
+ *  The classes to be applied to the picture element
+ * @var string $image_classes
+ *  The classes to be applied to the image element
  */
 ?>
 
@@ -15,7 +28,7 @@
   <img
     src="<?php print image_style_url($image_style, $atom->file_source); ?>"
     class="<?php print empty($image_classes) ? '' : $image_classes; ?>"
-    alt=""
+    alt="<?php print check_plain($alt_text); ?>"
   >
 </picture>
 <?php endif; ?>
