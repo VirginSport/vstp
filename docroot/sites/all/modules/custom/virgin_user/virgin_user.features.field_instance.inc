@@ -236,7 +236,7 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_address_state',
     'label' => 'State',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => '',
       'dnd_enabled' => 0,
