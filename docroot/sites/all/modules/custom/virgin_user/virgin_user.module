@@ -814,7 +814,7 @@ function virgin_user_bind_attendly_checkout_session() {
  * @return array|null
  *  Either the ticket with the given rego or a null if no ticket was found
  * @throws \VirginException
- *  If there a communication error happened while calling SugarCRM
+ *  If a communication error happened while calling SugarCRM
  */
 function _virgin_user_get_ticket($rego) {
   try {
