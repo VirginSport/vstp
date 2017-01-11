@@ -71,12 +71,19 @@
     <meta name="msapplication-TileImage" content="<?php print $current_path;  ?>/favicons/ms-icon-144x144.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="#830A2A">
     <meta name="theme-color" content="#830A2A">
+
+    <?php foreach ($gtm_metadata as $key => $value): ?>
+      <meta name="<?php print $key; ?>" content="<?php print $value; ?>">
+    <?php endforeach; ?>
+
     <!-- Stylesheets -->
     <?php print $styles; ?>
+
     <!-- Render Blocking Scripts -->
     <script>
       window.document.documentElement.setAttribute('vs-region-loading', 'true');
     </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
