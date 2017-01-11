@@ -85,6 +85,14 @@ function virginsport_js_alter(&$js) {
 function virginsport_preprocess_html(&$vars) {
   global $base_path, $theme_path;
   $vars['current_path'] = $base_path . $theme_path;
+
+  $vars['node'] = menu_get_object('node');
+
+  // Add content data to google tag manager data layer
+  virginsport_add_gtm_data_layer($vars);
+
+  // Add collected google tag manager data layer events
+  $vars['data_layer_events'] = virgin_gtm()->get();
 }
 
 /**
@@ -153,12 +161,6 @@ function virginsport_preprocess_page(&$vars) {
   $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
   $cookie_template = theme('virginsport_notification', array('message' => $message));
   drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
-
-  // Add content data to google tag manager data layer
-  virginsport_add_gtm_data_layer($vars);
-
-  // Add collected google tag manager data layer events
-  $vars['data_layer_events'] = virgin_gtm()->get();
 }
 
 /**
