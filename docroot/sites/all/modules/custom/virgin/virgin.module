@@ -297,13 +297,13 @@ function virgin_element_email_validate($element, &$form_state, $form) {
  * handler exits.
  *
  * @param $exception
- *   The exception object that was thrown.
+ *  The exception object that was thrown.
  *
  * @see virgin_boot().
  */
 function _virgin_exception_handler($exception) {
 
-  // If it's an unhandled VirginException, attempt to handle it "gracefully".
+  // If it's an unhandled VirginException, attempt to handle it "gracefully"
   if ($exception instanceof VirginException) {
 
     // Register exceptions in GTM
@@ -313,9 +313,9 @@ function _virgin_exception_handler($exception) {
       drupal_set_message($exception->getUserMessage(), 'error');
     }
 
-    // If redirect path configured send user to it, otherwise send 500 error
+    // If redirect path is configured send user to it, otherwise send the user
+    // to the home page.
     if ($exception->getRedirectPath()) {
-      // Redirect to configured path
       drupal_goto($exception->getRedirectPath());
     } else {
       drupal_goto('<front>');
