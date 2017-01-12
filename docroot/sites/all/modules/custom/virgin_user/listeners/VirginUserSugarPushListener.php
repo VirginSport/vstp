@@ -210,21 +210,10 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
    *  The facebook id or an empty string if the user has no facebook id
    */
   private function getFacebookID($account) {
-    $sql = "
-      SELECT data
-      FROM {hybridauth_identity}
-      WHERE uid = :uid
-      AND provider = 'Facebook'
-    ";
-
-    $args = array(':uid' => $account->uid);
-    $raw_data = db_query($sql, $args)->fetchField();
-
-    if (empty($raw_data)) {
+    if (empty($account->data['hybridauth']['identifier'])) {
       return '';
     }
 
-    $data = unserialize($raw_data);
-    return empty($data['identifier']) ? '' : $data['identifier'];
+    return $account->data['hybridauth']['identifier'];
   }
 }
