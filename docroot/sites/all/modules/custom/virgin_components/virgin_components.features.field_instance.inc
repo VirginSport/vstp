@@ -404,7 +404,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_cta_links',
     'label' => 'Call to action buttons',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
@@ -593,7 +593,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_page_body',
     'label' => 'Content',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'context' => 'virgin_full',
       'context_default' => 'virgin_full',
