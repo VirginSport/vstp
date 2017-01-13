@@ -47,7 +47,7 @@
 
 <!DOCTYPE html>
 
-<html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>>
+<html vs-region-loading="true" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces;?>>
   <head profile="<?php print $grddl_profile; ?>">
     <?php print $head; ?>
     <title><?php print $head_title; ?></title>
@@ -73,10 +73,6 @@
     <meta name="theme-color" content="#830A2A">
     <!-- Stylesheets -->
     <?php print $styles; ?>
-    <!-- Render Blocking Scripts -->
-    <script>
-      window.document.documentElement.setAttribute('vs-region-loading', 'true');
-    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
