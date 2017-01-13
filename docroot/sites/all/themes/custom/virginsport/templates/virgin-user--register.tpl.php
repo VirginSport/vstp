@@ -48,6 +48,7 @@ $query = drupal_get_query_parameters();
               <?php print drupal_render($register_form); ?>
             </div>
 
+            <?php /* FIXME Facebook auth login link code placeholder
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="social-networks">
@@ -55,10 +56,15 @@ $query = drupal_get_query_parameters();
                 </div>
               </div>
             </div>
+            */ ?>
 
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
+
+                <?php /* FIXME Facebook auth login link code placeholder
                 <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
+                */ ?><div style="clear: both; height: 40px;"></div>
+
                 <form @submit.prevent class="vs-user-register--form" novalidate>
                   <!-- Profile Block -->
                   <validator name="vs_user_register_validator">
