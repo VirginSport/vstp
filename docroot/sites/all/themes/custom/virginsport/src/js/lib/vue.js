@@ -27,7 +27,7 @@ Vue.validator('match', {
   }
 });
 
-/*
+/**
  * Conditional requirement
  */
 Vue.validator('conditional_required', {
@@ -60,6 +60,38 @@ Vue.validator('conditional_required', {
     }
 
     // Otherwise the field is valid
+    return true;
+  }
+});
+
+/**
+ * Conditional requirement
+ */
+Vue.validator('required_if', {
+  message: 'field is required',
+
+  /**
+   * Validate a field is required conditionally to other fields populated
+   *
+   * @param val1
+   *  The field value
+   * @param values
+   *  An array of the conditional fields values
+   * @returns boolean
+   */
+  check: function (value, checks) {
+    if (!checks.length) return true;
+    
+    let check = checks[0];
+    
+    if (check.value == check.equals) {
+      if (!value.trim().length) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
     return true;
   }
 });

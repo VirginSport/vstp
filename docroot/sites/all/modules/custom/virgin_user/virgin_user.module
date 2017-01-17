@@ -809,14 +809,41 @@ function virgin_user_bind_attendly_checkout_session() {
 /**
  * Helper function to fetch a ticket from SugarCRM
  *
- * @param $rego
+ * @param string $rego
  *  The ticket rego ID
  * @return array|null
  *  Either the ticket with the given rego or a null if no ticket was found
+ * @throws \VirginException
+ *  If a communication error happened while calling SugarCRM
  */
 function _virgin_user_get_ticket($rego) {
-  $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
-  $ticket = sugarcrm_client()->systemGet($path);
+  try {
+    $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
+    $ticket = sugarcrm_client()->systemGet($path);
+    return empty($ticket['id']) ? NULL : $ticket;
 
-  return empty($ticket['id']) ? NULL : $ticket;
+  } catch (\Exception $e) {
+
+    // If the exception is a 404 that either means the ticket does not exist or
+    // that it has not yet been processed by SugarCRM. Either way we return
+    // NULL and let the caller handle that.
+    if (
+      $e instanceof \Guzzle\Http\Exception\BadResponseException &&
+      $e->getResponse()->getStatusCode() == 404
+    ) {
+      return NULL;
+    }
+
+    // Otherwise log the issue and throw a VirginException
+    watchdog(
+      'virgin_user',
+      'Failed to fetch ticket (@rego) from SugarCRM: @err',
+      array(
+        '@rego' => $rego,
+        '@err' => $e->getMessage()
+      )
+    );
+
+    throw new VirginException($e->getMessage(), t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."));
+  }
 }
