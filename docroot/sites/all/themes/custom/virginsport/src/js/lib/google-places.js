@@ -70,7 +70,7 @@ addLib();
 
 function addLib() {
   let callback = 'initPlacesAutocomplete'; // Needs to be a global function
-  let key = 'AIzaSyA8cMG-CBDDRy-W2nS6yAN3rr41Mx4PhE8'; // TODO move to Drupal.settings somewhere!!!
+  let key = 'AIzaSyA2QJCdZiMdEG4S1Xgdo00zopSgew5gV6Y'; // TODO move to Drupal.settings somewhere!!!
   let src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places&callback=${callback}`;
 
   $('body').append(`<script src="${src}"></script>`);
