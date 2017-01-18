@@ -66,7 +66,7 @@ $query = drupal_get_query_parameters();
                   <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
                   */ ?><div style="clear: both; height: 40px;"></div>
 
-                  <form @submit.prevent class="vs-user-login--form" novalidate>
+                  <div class="vs-user-login--form" v-on:keyup.enter="submit">
                     <validator name="vs_user_login_validator">
                       <div class="row">
                         <div class="col-xs-12">
@@ -99,7 +99,7 @@ $query = drupal_get_query_parameters();
                         </div>
                       </div>
                     </validator>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
