@@ -549,8 +549,24 @@ function _virgin_check_state_node_access() {
  * @return \DateTime
  */
 function virgin_date($timestamp, $tz_to = 'UTC', $tz_from = 'UTC') {
-  $tz_from = new DateTimeZone($tz_from);
-  $tz_to = new DateTimeZone($tz_to);
+  try {
+    $tz_from = new DateTimeZone($tz_from);
+    $tz_to = new DateTimeZone($tz_to);
+
+  } catch (\Exception $e) {
+
+    // Fallback to UTC if the timezone is invalid and log the issue
+    watchdog(
+      'virgin',
+      'Could not create timezone for date: @err',
+      array('@err' => $e->getMessage()),
+      WATCHDOG_ERROR
+    );
+
+    $tz_from = new DateTimeZone('UTC');
+    $tz_to = new DateTimeZone('UTC');
+  }
+
   $date = new \DateTime('now', $tz_from);
 
   return $date->setTimestamp($timestamp)->setTimezone($tz_to);
