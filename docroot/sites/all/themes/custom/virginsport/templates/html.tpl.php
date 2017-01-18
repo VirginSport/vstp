@@ -84,6 +84,12 @@
       window.document.documentElement.setAttribute('vs-region-loading', 'true');
     </script>
 
+    <!-- Google Tag Manager Data Layer -->
+    <script>
+      dataLayer = <?php print $gtm_data_layer; ?>;
+    </script>
+    <!-- End Google Tag Manager Data Layer -->
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -110,12 +116,6 @@
 
     <!-- Non-blocking Scripts -->
     <?php print $scripts; ?>
-
-    <!-- Google Tag Manager Data Layer -->
-    <script>
-      dataLayer = <?php print $gtm_data_layer; ?>;
-    </script>
-    <!-- End Google Tag Manager Data Layer -->
 
     <!-- Push collected events to Google Tag Manager Data Layer -->
     <script>
