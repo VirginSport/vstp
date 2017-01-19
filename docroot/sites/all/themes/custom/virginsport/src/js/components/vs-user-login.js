@@ -90,7 +90,9 @@ export default () => {
         }
         
         this.applyValues();
-        let form = $('.vs-user-login--form-drupal form').submit();
+
+        // IOS have bug with password save and form submit function, must use click on button
+        let form = $('.vs-user-login--form-drupal form button[type="submit"]').click();
       }
     },
     data: {

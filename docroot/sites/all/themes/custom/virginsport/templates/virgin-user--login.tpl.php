@@ -66,13 +66,13 @@ $query = drupal_get_query_parameters();
                   <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
                   */ ?><div style="clear: both; height: 40px;"></div>
 
-                  <form @submit.prevent class="vs-user-login--form" novalidate>
+                  <div class="vs-user-login--form" v-on:keyup.enter="submit">
                     <validator name="vs_user_login_validator">
                       <div class="row">
                         <div class="col-xs-12">
                           <div class="vs-user-form__wrapper">
                             <div class="field-name vs-form-group" :class="{ 'vs-has-error': ($vs_user_login_validator.name.dirty || submitted) && !$vs_user_login_validator.name.valid }">
-                              <input id="name" class="form-control" type="text" v-model="profile.name" name="name" v-validate:name="['required']">
+                              <input autocorrect="off" autocapitalize="none" id="name" class="form-control" type="email" v-model="profile.name" name="name" v-validate:name="['required']">
                               <label for="name" class="vs-focus-label"><?php print t('Email'); ?>*</label>
                               <div class="vs-error-label" v-if="($vs_user_login_validator.name.dirty || submitted) && $vs_user_login_validator.name.required"><?php print t('Name is required'); ?></div>
                             </div>
@@ -99,7 +99,7 @@ $query = drupal_get_query_parameters();
                         </div>
                       </div>
                     </validator>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
