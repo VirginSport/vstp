@@ -131,6 +131,10 @@
     padding-top: 2.5rem;
     padding-bottom: 1.250rem;
   }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 3.25rem;
+  }
 }
 
 .vs-festival-results-card__info-block {
@@ -175,6 +179,14 @@
 
 .vs-festival-results-card__button-wrapper {
   padding-top: 1rem;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: .375rem;
+  }
 }
 
 .vs-festival-results-card__button {
