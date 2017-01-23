@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Code for the Virgin Frontend feature.
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_frontend_menu() {
+  $items = array();
+
+  $items['virgin-frontend'] = array(
+    'title' => 'Virgin Frontend',
+    'page callback' => 'theme',
+    'page arguments' => array('virgin_frontend__page'),
+    'access callback' => 'user_is_logged_in',
+    'menu type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function virgin_frontend_theme($existing, $type, $theme, $path) {
+  $themes = array();
+
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  // PAGES ---------------------------------------------------------------------
+  $themes['virgin_frontend__page'] = array(
+      'template' => 'virgin-frontend--page',
+      'variables' => array()
+    ) + $default;
+
+  // COMPONENTS ----------------------------------------------------------------
+  $themes['virgin_frontend__festival_results_card'] = array(
+      'template' => 'virgin-frontend--festival-results-card',
+      'variables' => array(
+        'class' => ''
+      )
+    ) + $default;
+
+  return $themes;
+}
