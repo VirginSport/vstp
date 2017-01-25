@@ -400,7 +400,6 @@ function virgin_user_page_user_password() {
   return theme('virgin_user__password', array('password_form' => $password_form));
 }
 
-
 /**
  * Page callback for the user contact form
  */
