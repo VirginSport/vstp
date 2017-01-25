@@ -499,7 +499,7 @@ function virgin_user_page_ajax_form_post() {
     $event = node_load($event_id);
 
     // If event does not exist continue
-    if (empty($event->nid)) {
+    if (empty($event->nid) || $event->type != 'event') {
       continue;
     }
 
