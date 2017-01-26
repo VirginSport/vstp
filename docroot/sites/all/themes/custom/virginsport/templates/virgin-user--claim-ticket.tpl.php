@@ -26,7 +26,7 @@ $t_args = array(
               <div class="col-xs-12 col-md-9">
                 <h1 class="vs-claim-ticket__recipient">Ooops!</h1>
                 <p>
-                  <?php print t("Oops! This ticket url doesn't appear to be valid. <a href='@get_in_touch_link'>Get in touch with us</a> or send us an email at hello@virginsport.com.", $t_args); ?>
+                  <?php print t("Your link doesn't appear to be valid, try again or <a href='@get_in_touch_link'>get in touch with us</a>.", $t_args); ?>
                 </p>
               </div>
             </div>
