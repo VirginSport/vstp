@@ -82,6 +82,12 @@
  * @ingroup themeable
  */
 
+// Sort by the view row position if inside the context of a view, otherwise
+// fallback to the global zebra.
+if (!empty($view) && isset($view->row_index)) {
+  $zebra = ($view->row_index % 2) ? 'even' : 'odd';
+}
+
 ?>
 
 <div class="vs-card-upcoming">
