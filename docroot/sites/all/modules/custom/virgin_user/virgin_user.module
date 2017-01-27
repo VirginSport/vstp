@@ -568,7 +568,9 @@ function virgin_user_user_login(&$edit, $account) {
       virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $prefered_hostname);
 
       // And finally redirect him to his preferred region
-      $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
+      $redirect = empty($edit['redirect']) ? NULL : $edit['redirect'];
+      $destination = empty($_GET['destination']) ? $redirect : $_GET['destination'];
+
       virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
     }
 
