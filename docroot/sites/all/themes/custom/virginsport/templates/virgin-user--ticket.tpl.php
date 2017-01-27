@@ -141,7 +141,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                     href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>"
                     interaction-type="fans"
                   >
-                    <i class="icon-average-pace"></i>
+                    <i class="icon-high-five"></i>
                     <?php print t('fans'); ?>
                   </a>
                 </div>
@@ -169,7 +169,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                       href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>"
                       interaction-type="invite fans"
                     >
-                      <i class="icon-average-pace"></i>
+                      <i class="icon-high-five"></i>
                       <?php print t('invite fans'); ?>
                     </a>
                   </div>
