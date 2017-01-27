@@ -115,7 +115,8 @@ function bindRegionChangeTriggers() {
     // operations for content of different regions
     $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
       e.preventDefault();
-      showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
+      // showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
+      showRegionChangeModal(origin, destination, $(this).attr('href'));
     });
 
     // If there's a region change query parameter and it matches
@@ -153,19 +154,29 @@ function showRegionChangeModal(origin, destination, path) {
 
   // Build the modal HTML contents
   let content = `
-    <div class="row">
-      <div class="col-xs-12">
-        <p>${message}</p>
+    <div class="modal-header"></div>
+    <div class="vs-basket-modal__body">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+        <p class="vs-basket-modal__message text-xs-center">${message}</p>
       </div>
-
-      <div class="col-xs-6">
-        <a href="${path}" class="btn vs-btn vs-btn--sm vs-btn--outline-black vs-basket-modal__continue">${continueBtn}</a>
-        <p>${continueNotice}</p>
-      </div>
-
-      <div class="col-xs-6">
-        <a href="#" class="btn vs-btn vs-btn--sm vs-basket-modal__stay">${stayBtn}</a>
-      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <div class="row">
+            <div class="col-xs-12 col-lg-6">
+              <a href="${path}" class="btn vs-btn vs-btn--sm vs-btn--outline-black vs-basket-modal__continue">${continueBtn}</a>
+              <p class="vs-basket-modal__footer-message vs-basket-modal__footer-message--continue text-xs-center">${continueNotice}</p>
+            </div>
+      
+            <div class="col-xs-12 col-lg-6">
+              <a href="#" class="btn vs-btn vs-btn--sm vs-basket-modal__stay">${stayBtn}</a>
+            </div>
+           </div>
+         </div>
+       </div>
     </div>
   `;
 
@@ -216,14 +227,18 @@ function showTicketsRegionChangeModal(origin, destination, path) {
 
   // Build the modal HTML contents
   let content = `
-    <div class="row">
-      <div class="col-xs-12">
-        <p>${message}</p>
+    <div class="modal-header"></div>
+    <div class="vs-basket-modal__body">
+      <div class="row">
+        <div class="col-xs-12 col-md-8 offset-md-2">
+          <p class="vs-basket-modal__message text-xs-center">${message}</p>
+        </div>
       </div>
-
-      <div class="col-xs-6">
+    </div>
+    <div class="modal-footer">
+      <div class="col-xs-12 col-md-8 offset-md-2">
         <a href="${destination.address + path}" class="btn vs-btn vs-btn--sm vs-basket-modal__continue">${continueBtn}</a>
-        <p>${continueNotice}</p>
+        <p class="vs-basket-modal__footer-message text-xs-center">${continueNotice}</p>
       </div>
     </div>
   `;
