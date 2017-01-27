@@ -115,8 +115,7 @@ function bindRegionChangeTriggers() {
     // operations for content of different regions
     $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
       e.preventDefault();
-      // showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
-      showRegionChangeModal(origin, destination, $(this).attr('href'));
+      showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
     });
 
     // If there's a region change query parameter and it matches
