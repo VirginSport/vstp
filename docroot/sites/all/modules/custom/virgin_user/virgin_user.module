@@ -572,6 +572,7 @@ function virgin_user_user_login(&$edit, $account) {
       $destination = empty($_GET['destination']) ? $redirect : $_GET['destination'];
 
       virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
+      return;
     }
 
     // If the user however has items in his basket, check if he's currently in
