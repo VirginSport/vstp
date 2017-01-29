@@ -32,6 +32,10 @@ vs-user-menu,
   border-radius: 50%;
   font-size: $font-size-xs;
 
+  .android & {
+    padding-top: 1px;
+  }
+
   &:hover,
   &.vs-user-menu__trigger--active {
     background-color: $c-orange;

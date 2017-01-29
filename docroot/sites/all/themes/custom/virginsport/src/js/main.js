@@ -25,6 +25,7 @@ import vsCarousel from './components/vs-carousel';
 import vsScroller from './components/vs-scroller';
 import vsPhotoGallery from './components/vs-photo-gallery';
 import vsUserMenu from './components/vs-user-menu';
+import vsDetectMobile from './components/vs-detect-mobile';
 
 
 vsBasket();
@@ -52,6 +53,7 @@ vsCarousel();
 vsScroller();
 vsPhotoGallery();
 vsUserMenu();
+vsDetectMobile();
 
 // Libs
 import bootstrap from './lib/bootstrap';
