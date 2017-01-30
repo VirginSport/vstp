@@ -26,6 +26,15 @@ $last-child-count: 3;
 .panels-ipe--vs-cta-block {
   margin-bottom: 80px;
   .panels-ipe-editing & { margin-bottom: 0; }
+
+  + .vs-hero-banner,
+  + .panels-ipe--vs-hero-banner {
+    margin-top: -70px;
+
+    @include media-breakpoint-down('md') {
+      margin-top: -78px;
+    }
+  }
 }
 
 .vs-basic-content-block,

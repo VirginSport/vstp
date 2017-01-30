@@ -45,21 +45,17 @@ vs-sticky-basket,
   fill: currentColor;
   min-width: initial;
   white-space: normal;
-  position: absolute;
-  top: 50%;
   height: .75rem;
   width: .4375rem
 }
 
 .vs-sticky-basket__chevron--back {
-  @include transform(translateY(-50%));
-  left: .9375rem;
+  margin-right: .5em;
 }
 
 .vs-sticky-basket__chevron--next {
-  @include transform(rotate(180deg) translateY(50%));
+  @include transform(rotate(180deg));
   margin-left: .5em;
-  right: .9375rem;
 }
 
 .vs-sticky-basket__btn {
@@ -67,14 +63,8 @@ vs-sticky-basket,
   position: relative;
 }
 
-.vs-sticky-basket__btn--left {
-  float: left;
-}
-
 .vs-sticky-basket__btn--right {
-  float: right;
   white-space: nowrap;
-  padding-right: 1.875rem;
 }
 
 

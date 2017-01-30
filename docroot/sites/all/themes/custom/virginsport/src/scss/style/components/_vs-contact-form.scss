@@ -1,0 +1,54 @@
+
+// Elements
+// ----------------------------------------------------------------------------
+.vs-contact-form__wrapper {
+  @include border-radius(.625rem);
+  background-color: $c-white;
+  margin-left: -.625rem;
+  margin-right: -.625rem;
+  margin-top: 2.5rem;
+
+  @include media-breakpoint-up(md) {
+    margin: 2.5rem 0 0;
+  }
+}
+
+.vs-contact-form__form {
+  padding-left: .3125rem;
+  padding-right: .3125rem;
+  max-width: 21.75rem;
+  margin: 0 auto;
+
+  @include media-breakpoint-up(md) {
+    padding: 0;
+  }
+}
+
+.vs-contact-form__prefix {
+  padding: 2.1875rem .9375rem;
+  border-bottom: 2px solid $c-gray-light;
+}
+
+.vs-contact-form__content {
+  padding: 2.1875rem 0;
+}
+
+.vs-contact-form__suffix {
+  padding: 0 .9375rem 2.1875rem;
+}
+
+@include media-breakpoint-up(md) {
+  .vs-contact-form__prefix {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+
+  .vs-contact-form__content {
+    padding-top: 2.625rem;
+    padding-bottom: 2.625rem;
+  }
+
+  .vs-contact-form__suffix {
+    padding-bottom: 2.625rem;
+  }
+}

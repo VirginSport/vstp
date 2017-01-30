@@ -33,12 +33,14 @@ class VirginException extends Exception {
    *  A safe message to be shown to the users
    * @param string $redirectPath
    *  Path to redirect user on exception
+   * @param $previous \Exception
+   *  The previous exception used for the exception chaining
    */
-  public function __construct($message = '', $userMessage = '', $redirectPath = '') {
+  public function __construct($message = '', $userMessage = '', $redirectPath = '', $previous = NULL) {
     $this->userMessage = $userMessage;
     $this->redirectPath = $redirectPath;
 
-    parent::__construct($message);
+    parent::__construct($message, 0, $previous);
   }
 
   /**
