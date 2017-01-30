@@ -568,8 +568,11 @@ function virgin_user_user_login(&$edit, $account) {
       virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $prefered_hostname);
 
       // And finally redirect him to his preferred region
-      $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
+      $redirect = empty($edit['redirect']) ? NULL : $edit['redirect'];
+      $destination = empty($_GET['destination']) ? $redirect : $_GET['destination'];
+
       virgin_region_user_redirect($account->uid, virgin_region_current(), $destination);
+      return;
     }
 
     // If the user however has items in his basket, check if he's currently in
@@ -657,6 +660,23 @@ function virgin_user_observer_notify($account) {
     try {
       observer_notify(VirginUserEvents::USER_UPDATED, $account);
     } catch (\Exception $e) {
+      $previous = $e->getPrevious();
+
+      // If the user is trying to use an e-mail address that's already in use by
+      // SugarCRM, alert the user of an error and ask him to contact support.
+      if ($previous instanceof \Guzzle\Http\Exception\ClientErrorResponseException) {
+        $data = $previous->getResponse()->json();
+
+        if (
+          isset($data['error']) &&
+          $data['error'] == 'invalid_parameter' &&
+          strpos($data['error_message'], 'contact with email address') !== FALSE
+        ) {
+          throw new VirginException('SugarCRM synchronization problem.', t('The e-mail address @email is already registered, please enter a unique email address or contact hello@virginsport.com to resolve.', array('@email' => $account->mail)), url('user'));
+        }
+      }
+
+      // Otherwise fallback to a generic try again later exception
       throw new VirginException('SugarCRM synchronization problem.', t('Oops, sorry we cannot update your profile at this moment, please try again later'), url('user'));
     }
   }

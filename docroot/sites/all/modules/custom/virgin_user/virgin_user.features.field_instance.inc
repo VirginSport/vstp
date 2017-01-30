@@ -386,7 +386,7 @@ function virgin_user_field_default_field_instances() {
         'label_position' => 'within',
         'no_fieldset' => 0,
         'text_parts' => array(),
-        'year_range' => '-100:+0',
+        'year_range' => '-0:-100',
       ),
       'type' => 'date_select',
       'weight' => 5,

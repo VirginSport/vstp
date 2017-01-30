@@ -264,6 +264,7 @@
                 <a
                   class="vs-footer__social vs-footer__social--<?php print $network['key']; ?>"
                   href="<?php print $network['url']; ?>"
+                  target="_blank"
                   vs-share-event="<?php print $network['key']; ?>"
                 >
                   <span class="sr-only"><?php print t('Visit our @name', array('@name' => $network['label'])); ?></span>
