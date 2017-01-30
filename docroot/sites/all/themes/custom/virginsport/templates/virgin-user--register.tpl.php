@@ -210,6 +210,10 @@ $query = drupal_get_query_parameters();
                                 </div>
 
                                 <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
+                                  <?php print t("This is an invalid date"); ?>
+                                </div>
+
+                                <div class="vs-error-label" v-if="validBirthDate() && !greaterThan()">
                                   <?php print t("We love your enthusiasm, but you must be 13 to create an account."); ?>
                                 </div>
 
