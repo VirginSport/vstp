@@ -21,7 +21,7 @@ $modal_id = uniqid();
     <?php endif; ?>
 
     <?php if (!empty($video_url)): ?>
-      <div class="vs-video__video-wrapper hidden-sm-down">
+      <div class="vs-video__video-wrapper vs-video__video-wrapper__inline">
         <video
           loop
           class="vs-video__video"
@@ -33,7 +33,7 @@ $modal_id = uniqid();
       </div>
     <?php endif; ?>
 
-    <div class="vs-video-banner__slider slider hidden-md-up">
+    <div class="vs-video-banner__slider slider">
       <?php foreach ($slider_images as $atom_grapher): ?>
         <?php if (!empty($atom_grapher->property('sid'))): ?>
           <div
