@@ -52,7 +52,7 @@ $mkt_id = 'mkt-' . uniqid();
                         name="festival_id"
                         id="festival_id"
                         v-model="form.festival_id"
-                        v-init='{ events: <?php print $vars['events']; ?>, event_id: <?php print $vars['event_id']; ?> }'
+                        v-init='<?php print $vars['events_list'] ?>'
                         v-validate:festival_id="['required']"
                       >
                         <?php foreach ($vars['festivals'] as $key => $title): ?>

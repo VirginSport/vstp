@@ -38,7 +38,7 @@ $mkt_id = 'mkt-' . uniqid();
                         id="festival_id"
                         name="festival_id"
                         v-model="form.festival_id"
-                        v-init='{ events: <?php print $vars['events']; ?>, event_id: <?php print $vars['event_id']; ?> }'
+                        v-init='<?php print $vars['events_list'] ?>'
                       >
                         <?php foreach ($vars['festivals'] as $key => $title): ?>
                           <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
