@@ -503,11 +503,12 @@ function virginsport_add_gtm_data_layer(&$vars) {
     $addFestivalMetadata = function(&$properties, &$metadata, $festival_grapher, $date_format) {
       if ($festival_grapher->property('type') == 'festival') {
         $festival_state_grapher = $festival_grapher->relation('field_festival_state');
-        $start_date = $festival_state_grapher->fieldGetOne('field_start_date');
-        $end_date = $festival_state_grapher->fieldGetOne('field_end_date');
+        $timezone = $festival_state_grapher->fieldGetOne('field_timezone');
+        $start_date = virgin_date($festival_state_grapher->fieldGetOne('field_start_date'), $timezone)->format($date_format);
+        $end_date = virgin_date($festival_state_grapher->fieldGetOne('field_end_date'), $timezone)->format($date_format);
 
         $properties['Festival Name'] = $metadata['vs-festival-name'] = $festival_grapher->property('title');
-        $properties['Festival Date'] = $metadata['vs-festival-date'] = sprintf('%s - %s', date($date_format, $start_date),  date($date_format, $end_date));
+        $properties['Festival Date'] = $metadata['vs-festival-date'] = sprintf('%s - %s', $start_date,  $end_date);
       }
     };
 
@@ -530,10 +531,12 @@ function virginsport_add_gtm_data_layer(&$vars) {
         $addFestivalMetadata($properties, $metadata, $festival_grapher, $date_format);
 
         $event_state_grapher = $grapher->relation('field_event_state');
-        $start_date = $event_state_grapher->fieldGetOne('field_start_date');
+        $timezone = $event_state_grapher->fieldGetOne('field_timezone');
+
+        $start_date = virgin_date($event_state_grapher->fieldGetOne('field_start_date'), $timezone)->format($date_format);
         $properties['Event Name'] = $metadata['vs-event-name'] = $grapher->property('title');
         $properties['Event Type'] = $metadata['vs-event-type'] = $event_state_grapher->fieldGetOne('field_event_type');
-        $properties['Event Date'] = $metadata['vs-event-date'] = date($date_format, $start_date);
+        $properties['Event Date'] = $metadata['vs-event-date'] = $start_date;
         break;
 
       default:
