@@ -86,7 +86,10 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
       AND r.entity_id = :nid
   ";
 
+  // Event will return the festival nid, if it is not an event we'll use the
+  // grapher nid because it will correspond to the festival nid
   $festival_nid = empty($festival_nid) ? $g->property('nid') : $festival_nid;
+
   $hostname = db_query($sql, array(':nid' => $festival_nid))->fetchField();
 
   // Fetch the right state depending if the grapher contains a festival
@@ -126,8 +129,8 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'color' => $g->fieldGetOne('field_brand_color', ''),
     'show_sharer' => $show_sharer,
     'nid' => $g->property('nid'),
-    'festival_nid' => empty($festival_nid) ? $g->property('nid') : $festival_nid,
-    'event_nid' => empty($festival_nid) ? '' : $g->property('nid'),
+    'festival_nid' => $festival_nid,
+    'event_nid' => $g->property('type') == 'festival' ? '' : $g->property('nid'),
     'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '', // Small link at the bottom, not used tm
