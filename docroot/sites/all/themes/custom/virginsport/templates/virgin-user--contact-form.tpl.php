@@ -24,7 +24,7 @@ $mkt_id = 'mkt-' . uniqid();
 
           <div class="vs-contact-form__content">
             <div class="row">
-              <div :class="{ 'col-md-8 offset-md-2': !inModal, 'col-md-6 offset-md-3': inModal }">
+              <div :class="{ 'col-md-8 offset-md-2': !inModal, 'col-xs-12 col-md-8 offset-md-2': inModal }">
                 <validator name="vs_contact_form_validator" v-if="!form.submitted">
                   <form @submit.prevent novalidate class="vs-contact-form__form">
                     <h4 class="vs-form-header">
@@ -111,11 +111,14 @@ $mkt_id = 'mkt-' . uniqid();
                       </div>
                     <?php endif; ?>
 
-                    <div class="vs-form-description">*<?php print t('mandatory fields'); ?></div>
+                    <div class="vs-form-description text-xs-center">*<?php print t('mandatory fields'); ?></div>
 
                     <div v-if="form.error" class="vs-error-label"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></div>
 
-                    <button v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                    <div class="vs-contact-form__submit text-xs-center">
+                      <button v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                    </div>
+                    
                   </form>
                 </validator>
                 <div v-if="form.submitted" class="form-completion">
@@ -141,7 +144,7 @@ $mkt_id = 'mkt-' . uniqid();
           <?php if (!empty($vars['post_form']['value'])): ?>
           <div class="vs-contact-form__suffix">
             <div class="row">
-              <div class="col-md-8 offset-md-2">
+              <div class="col-md-8 offset-md-2 text-xs-center">
                 <?php print check_markup($vars['post_form']['value'], $vars['post_form']['format']); ?>
               </div>
             </div>

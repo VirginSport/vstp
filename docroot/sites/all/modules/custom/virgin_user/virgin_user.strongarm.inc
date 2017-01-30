@@ -427,7 +427,7 @@ This link expires in one day and nothing will happen if it is not used.
 
 Forgotten your [site:name] password? Need a new one? No problem. Click or copy and paste the link below to get access to your account where you can set a new one. It will cost 5 press ups... just kidding. It\'s free. Or is it?...
 
-Free password link: [user:one-time-login-url]
+<a href="[user:one-time-login-url]">Free password link</a>
 
 Just a heads up, this link can only be used once and runs out after one day.
 

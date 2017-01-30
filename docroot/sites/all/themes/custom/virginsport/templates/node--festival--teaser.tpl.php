@@ -82,19 +82,25 @@
  * @ingroup themeable
  */
 
+// Sort by the view row position if inside the context of a view, otherwise
+// fallback to the global zebra.
+if (!empty($view) && isset($view->row_index)) {
+  $zebra = ($view->row_index % 2) ? 'even' : 'odd';
+}
+
 ?>
 
 <div class="vs-card-upcoming">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-7 vs-card-upcoming__image-wrapper <?php print ($zebra == 'even') ? '' : 'push-md-5'; ?>">
-          <div
-            class="vs-card-upcoming__image"
-            <?php if (!empty($grapher->relation('field_card_image')->property('sid'))): ?>
-            style="<?php print virginsport_atom_background($grapher->relation('field_card_image')->getEntity()); ?>"
-            <?php endif; ?>
-          >
-          </div>
+        <div
+          class="vs-card-upcoming__image"
+          <?php if (!empty($grapher->relation('field_card_image')->property('sid'))): ?>
+          style="<?php print virginsport_atom_background($grapher->relation('field_card_image')->getEntity()); ?>"
+          <?php endif; ?>
+        >
+        </div>
       </div>
       <div class="col-xs-12 col-md-5 vs-card-upcoming__content-wrapper <?php print ($zebra == 'even') ? '' : 'pull-md-7'; ?>">
         <div class="vs-card-upcoming__content vs-card-upcoming__content--gradient-<?php print $grapher->fieldGetOne('field_brand_color'); ?>">
