@@ -103,6 +103,19 @@ vs-promo-banner,
   text-align: right;
 }
 
+.vs-promo-banner-constraint {
+  overflow: hidden;
+}
+
+.vs-promo-banner-constraint__container.container {
+  padding: 0;
+
+  .vs-promo-banner-wrapper {
+    @include make-constrained();
+  }
+}
+
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
