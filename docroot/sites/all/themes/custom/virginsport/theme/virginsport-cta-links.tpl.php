@@ -36,6 +36,11 @@
       $attributes['virgin-event'] = $link['attributes']['virgin_gtm_event'];
     }
 
+    // Add target attribute if available
+    if (!empty($link['attributes']['target'])) {
+      $attributes['target'] = $link['attributes']['target'];
+    }
+
     print sprintf('<a %s>%s</a>', drupal_attributes($attributes), $link['title']); ?>
 
   <?php endforeach; ?>
