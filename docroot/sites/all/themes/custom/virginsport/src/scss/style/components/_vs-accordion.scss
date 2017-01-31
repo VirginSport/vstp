@@ -47,7 +47,7 @@ vs-accordion,
 
 .vs-accordion__panel-heading {
   > a {
-    @include transition(all .5s ease-in-out);
+    @include transition(all .2s ease-in-out);
     display: block;
     padding: 0 1.25rem;
     text-align: center;
@@ -94,6 +94,12 @@ vs-accordion,
   font-size: .75rem;
   line-height: 1.25rem;
   font-weight: 500;
+}
+
+.vs-accordion__panel-text {
+  background-color: #fafafa;
+  padding: 0 1.25rem;
+  text-align: center;
 }
 
 .vs-accordion__panel-text {
@@ -162,6 +168,10 @@ vs-accordion,
     }
   }
 
+  .vs-accordion__panel-text {
+    padding: 0 8.75rem;
+  }
+
   .vs-accordion__panel-title {
     padding: 1.438rem 0;
     font-size: 1.25rem;
@@ -188,6 +198,10 @@ vs-accordion,
     > a {
       padding: 0 11.25rem;
     }
+  }
+
+  .vs-accordion__panel-text {
+    padding: 0 11.25rem;
   }
 
   .vs-accordion__arrow {
