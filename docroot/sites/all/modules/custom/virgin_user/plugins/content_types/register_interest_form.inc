@@ -22,12 +22,13 @@ $plugin = array(
 function virgin_user_register_interest_form_content_type_render($subtype, $conf, $panel_args, $context) {
   $festival_id = empty($conf['festival_id']) ? array() : $conf['festival_id'];
   $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
+  $event_id = empty($conf['event_id']) ? '' : $conf['event_id'];
 
   $vars = array(
     'festival_id' => $festival_id,
     'festivals' => virgin_base_festivals(),
     'event_id' => empty($conf['event_id']) ? array() : $conf['event_id'],
-    'events' => drupal_json_encode($events),
+    'events_list' => drupal_json_encode(array('events' => $events, 'event_id' => $event_id)),
   );
 
   $block = new stdClass();
