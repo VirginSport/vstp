@@ -400,7 +400,6 @@ function virgin_user_page_user_password() {
   return theme('virgin_user__password', array('password_form' => $password_form));
 }
 
-
 /**
  * Page callback for the user contact form
  */
@@ -481,7 +480,14 @@ function virgin_user_page_ajax_form_post() {
   );
 
   if (!empty($data['festival_id'])) {
-    $festival_grapher = new VirginEntityGrapher('node', node_load($data['festival_id']));
+    $festival = node_load((int) $data['festival_id']);
+
+    if (empty($festival) || $festival->type != 'festival') {
+      drupal_access_denied();
+      drupal_exit();
+    }
+
+    $festival_grapher = new VirginEntityGrapher('node', $festival);
     $festival_state_grapher = $festival_grapher->relation('field_festival_state');
     $params['festival'] = $festival_state_grapher->fieldGetOne('field_sugar_id');
   }
@@ -493,7 +499,7 @@ function virgin_user_page_ajax_form_post() {
     $event = node_load($event_id);
 
     // If event does not exist continue
-    if (empty($event->nid)) {
+    if (empty($event->nid) || $event->type != 'event') {
       continue;
     }
 

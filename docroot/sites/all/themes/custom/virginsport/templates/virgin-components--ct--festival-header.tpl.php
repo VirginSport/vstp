@@ -66,7 +66,10 @@
 
           <div class="vs-hero-banner__button-wrapper">
             <?php if (in_array($status, array('announced', 'over'))): ?>
-              <a virgin-type="<?php print VIRGIN_BASE_REGISTER_INTEREST_FORM; ?>" href="?festival_id=<?php print $festival_nid; ?>&event_id=<?php print $event_nid; ?>" class="btn vs-btn vs-btn--min-sm vs-hero-banner__button">
+              <a
+                virgin-type="<?php print VIRGIN_BASE_REGISTER_INTEREST_FORM; ?>"
+                href="?festival_id=<?php print $festival_nid; ?><?php print empty($event_nid) ? '' : '&event_id=' . $event_nid; ?>"
+                class="btn vs-btn vs-btn--min-sm vs-hero-banner__button">
                 <?php print t('Register interest'); ?>
               </a>
             <?php endif; ?>
