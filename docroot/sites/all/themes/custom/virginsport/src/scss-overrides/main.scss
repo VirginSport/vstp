@@ -8,9 +8,6 @@
 // FILE TO BE REMOVED AS SOON THE MOBILE MENU IS FIXED!
 @import "hacks";
 
-// Mixin functions
-@import "mixins/cursor";
-
 // Fixes per module/feature
 @import "cta";
 @import "ipe";
@@ -34,5 +31,4 @@
 @import "vs-teaser";
 @import "vs-video";
 @import "vs-carousel";
-@import "vs-scroller";
 @import "vs-user-menu";

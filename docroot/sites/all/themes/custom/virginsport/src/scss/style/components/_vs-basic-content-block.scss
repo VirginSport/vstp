@@ -91,12 +91,10 @@ vs-basic-content-block,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(sm) {
-
   .vs-basic-content-block__image {
       height: 140px;
       min-width: 544px;
   }
-
 }
 
 @include media-breakpoint-up(md) {
@@ -111,7 +109,7 @@ vs-basic-content-block,
   }
 
   .vs-basic-content-block__text-wrapper {
-    padding: 2.125rem 2.5rem;
+    padding: 2.125rem 4.5rem 2.125rem 2.5rem;
   }
 
   .vs-basic-content-block__static-title {
@@ -130,5 +128,4 @@ vs-basic-content-block,
       height: 184px;
       min-width: 740px;
   }
-
 }
