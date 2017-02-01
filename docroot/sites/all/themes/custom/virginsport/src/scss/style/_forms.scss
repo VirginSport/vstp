@@ -92,7 +92,7 @@ label {
   text-transform: uppercase;
   font-size: 1.125rem;
   margin-bottom: .75rem;
-  max-width: 60%;
+  max-width: 80%;
 
   @include media-breakpoint-up(md) {
     font-size: 1.5625rem;
@@ -111,43 +111,6 @@ label {
   max-width: 21.75rem;
   color: rgba(#767676, .7);
   font-weight: 400;
-}
-
-
-// Form wrappers
-// ----------------------------------------------------------------------------
-
-.vs-contact-form__wrapper {
-  @include border-radius(.625rem);
-  background-color: $c-white;
-}
-
-.vs-contact-form__prefix {
-  padding: 2.1875rem .9375rem;
-  border-bottom: 2px solid $c-gray-light;
-}
-
-.vs-contact-form__content {
-  padding: 2.1875rem .9375rem;
-}
-
-.vs-contact-form__suffix {
-  padding: 0 .9375rem 2.1875rem;
-}
-
-@include media-breakpoint-up(md) {
-  .vs-contact-form__prefix {
-    padding-top: 2.625rem;
-    padding-bottom: 2.625rem;
-  }
-
-  .vs-contact-form__content {
-    padding-top: 2.625rem;
-    padding-bottom: 2.625rem;
-  }
-  .vs-contact-form__suffix {
-    padding-bottom: 2.625rem;
-  }
 }
 
 

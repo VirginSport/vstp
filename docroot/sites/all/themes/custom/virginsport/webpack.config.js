@@ -3,6 +3,8 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
+var token = Math.round(Math.random() * 1000000);
+
 module.exports = {
   entry: './webpack.entry.js',
   output: {
@@ -30,13 +32,13 @@ module.exports = {
       // Preprocess Font files
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
-        loader: 'file?name=public/fonts/[name].[ext]'
+        loader: `file?name=public/fonts/[name].[ext]?${token}`
       },
 
       // Preprocess Image files
       {
         test: /\.(png|jpg|jpeg|svg|gif)$/,
-        loader: 'file?name=public/img/[name].[ext]'
+        loader: `file?name=public/img/[name].[ext]?${token}`
       },
   
       // Add support for JSON files

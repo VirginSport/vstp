@@ -25,9 +25,13 @@ export default () => {
     // Push event to google tag manager data layer
     if (dataLayer) {
       dataLayer.push({
-        'event' : 'share',
-        'origin' : $(this).attr('vs-share-event'),
-        'url' : $(this).attr('href')
+        'event' : 'Socialshare',
+        'ContentType' : $('meta[name="vs-content-type"]').attr('content'),
+        'EventType' : $('meta[name="vs-event-type"]').attr('content'),
+        'EventName' : $('meta[name="vs-event-name"]').attr('content'),
+        'FestivalName' : $('meta[name="vs-festival-name"]').attr('content'),
+        'VSExperience' : '',
+        'SocialMediaType' : $(this).attr('vs-share-event')
       });
     }
   });

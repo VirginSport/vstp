@@ -88,8 +88,14 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
 <?php if(!empty($past_festivals->content)): ?>
   <div class="vs-region vs-region--gradient-gray">
-      <div class="vs-festival-profile-header__title">
-        <?php print t('Past Events'); ?>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="vs-festival-profile-header__past-title">
+              <?php print t('Past Events'); ?>
+            </h3>
+          </div>
+        </div>
       </div>
       <?php print $past_festivals->content; ?>
   </div>

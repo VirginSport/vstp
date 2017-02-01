@@ -119,9 +119,26 @@ vs-modal-overlay,
   }
 }
 
+.vs-basket-modal__message:last-child {
+  margin-bottom: 1.875rem;
+}
+
+.vs-basket-modal__body {
+  padding: 0 1.875rem;
+}
+
+.vs-basket-modal__footer-message {
+  font-size: .625rem;
+  margin-top: .9375rem;
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
+
+.vs-basket-modal__footer-message--continue:last-child {
+  margin: .3125rem 0 .9375rem;
+}
 
 
 // Responsive
