@@ -101,9 +101,9 @@
           Share
         </span>
     <div class="vs-share-button__social-links">
-      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-twitter"><i class="icon-twitter"></i><span></span></a>
-      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-facebook"><i class="icon-facebook"></i><span></span></a>
-      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-email"><i class="icon-email-filled"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-button--popup vs-share-button__icon-twitter"><i class="icon-twitter"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-button--popup vs-share-button__icon-facebook"><i class="icon-facebook"></i><span></span></a>
+      <a href="#" class="vs-share-button__icon-button vs-share-button__icon-button--popup vs-share-button__icon-email"><i class="icon-email-filled"></i><span></span></a>
     </div>
   </div>
 </div>

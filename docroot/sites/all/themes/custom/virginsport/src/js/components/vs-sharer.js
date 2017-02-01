@@ -32,13 +32,12 @@ function share() {
     e.stopPropagation();
   });
 
-  $(document).click(function() {
+  $(document).bind('click touchend', function () {
     $('.vs-share-button .vs-share-button__icon-share').removeClass('vs-share-button__icon-share--active');
     $('.vs-share-button .vs-share-button__social-links').removeClass('vs-share-button__social-links--active');
     $('.vs-share-button').removeClass('vs-share-button__content--active');
     $('body').removeClass('vs-mobile-sharer-open');
   });
-
 }
 
 function hrefCopy() {
