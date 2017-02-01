@@ -2,12 +2,6 @@
 // This file covers the scroller component
 // ----------------------------------------------------------------------------
 
-@include media-breakpoint-up(md) {
-  .vs-basic-content-block__text-wrapper {
-    padding: 2.125rem 4.5rem 2.125rem 2.5rem;
-  }
-}
-
 .vs-scroller {
   position: relative;
 
@@ -17,6 +11,11 @@
     &:active {
       @include cursor(grabbing);
     }
+  }
+
+  @include media-breakpoint-up(md) {
+    width: calc(100% - 40px);
+    margin-left: 2.5rem;
   }
 }
 
@@ -31,8 +30,9 @@
 
 .vs-scroller--prev,
 .vs-scroller--next {
+  @include transform(translateY(-50%));
+  @include transition(all .2s ease-in-out);
   display: none;
-  transform: translateY(-50%);
   top: 50%;
   position: absolute;
   z-index: 1;
