@@ -112,6 +112,10 @@ vs-promo-banner,
 
   .vs-promo-banner-wrapper {
     @include make-constrained();
+
+    .vs-promo-banner .vs-promo-banner__background {
+      border-radius: .625rem;
+    }
   }
 }
 
