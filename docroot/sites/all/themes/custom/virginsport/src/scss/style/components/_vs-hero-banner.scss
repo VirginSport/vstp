@@ -143,7 +143,10 @@ vs-hero-banner,
   padding: 0;
 
   .vs-hero-banner__background--fixed {
-    @include make-constrained();
+
+    @media screen and (min-width: 1440px) {
+      @include make-constrained();
+    }
   }
 }
 

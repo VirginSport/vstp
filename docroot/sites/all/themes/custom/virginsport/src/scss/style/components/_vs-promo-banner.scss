@@ -111,7 +111,10 @@ vs-promo-banner,
   padding: 0;
 
   .vs-promo-banner-wrapper {
-    @include make-constrained();
+
+    @media screen and (min-width: 1440px) {
+      @include make-constrained();
+    }
 
     .vs-promo-banner .vs-promo-banner__background {
       border-radius: .625rem;
