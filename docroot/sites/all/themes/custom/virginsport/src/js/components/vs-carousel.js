@@ -89,16 +89,20 @@ function initCarousels() {
       var currentSlideContent = currentSlide.find("vs-promo-banner, .vs-promo-banner, .vs-carousel__image");
       var targetSlideContent = targetSlide.find("vs-promo-banner, .vs-promo-banner, .vs-carousel__image");
 
-      if (currentSlideContent.length) {
-        currentSlideContent[0].classList.forEach(function(className) {
+      if (currentSlideContent.length && currentSlideContent[0].classList.length) {
+        for (let i = 0; i < currentSlideContent[0].classList.length; i++) {
+          let className = currentSlideContent[0].classList[i];
+
           wrapper.removeClass(className);
-        });
+        }
       }
 
       if (targetSlideContent.length) {
-        targetSlideContent[0].classList.forEach(function(className) {
+        for (let i = 0; i < targetSlideContent[0].classList.length; i++) {
+          let className = targetSlideContent[0].classList[i];
+
           wrapper.addClass(className);
-        });
+        }
       }
 
       // Update the class list of the slick-dots element
