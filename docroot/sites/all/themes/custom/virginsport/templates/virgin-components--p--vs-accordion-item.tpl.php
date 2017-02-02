@@ -27,15 +27,15 @@
           <i class="vs-accordion__arrow">&gt;</i>
         </h4>
       <?php endif; ?>
-      <div
-        class="panel-collapse collapse vs-accordion__panel-text"
-        role="tabpanel"
-        id="paragraph-item-<?php print $id; ?>"
-      >
-        <?php if(!empty($content)): ?>
-          <?php print $content; ?>
-        <?php endif; ?>
-      </div>
     </a>
+    <div
+      class="panel-collapse collapse vs-accordion__panel-text"
+      role="tabpanel"
+      id="paragraph-item-<?php print $id; ?>"
+    >
+      <?php if(!empty($content)): ?>
+        <?php print $content; ?>
+      <?php endif; ?>
+    </div>
   </div>
 </div>
