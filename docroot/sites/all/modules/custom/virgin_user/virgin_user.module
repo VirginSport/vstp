@@ -95,6 +95,9 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       'template' => 'virgin_user__claim_ticket',
       'variables' => array(
         'ticket' => '',
+        'logged_name' => '',
+        'recipient' => '',
+        'purchaser' => ''
       )
     ) + $default,
     'virgin_user__claim_ticket_page' => array(
