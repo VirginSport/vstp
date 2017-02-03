@@ -44,6 +44,9 @@ function virgin_api_default_services_endpoint() {
         'checkout-finished' => array(
           'enabled' => '1',
         ),
+        'fetch-ids' => array(
+          'enabled' => '1',
+        ),
       ),
     ),
   );
