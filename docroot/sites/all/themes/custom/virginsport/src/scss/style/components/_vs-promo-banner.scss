@@ -103,6 +103,26 @@ vs-promo-banner,
   text-align: right;
 }
 
+.vs-promo-banner-constraint {
+  overflow: hidden;
+}
+
+.vs-promo-banner-constraint__container.container {
+  padding: 0;
+
+  .vs-promo-banner-wrapper {
+
+    @media screen and (min-width: 1440px) {
+      @include make-constrained();
+    }
+
+    .vs-promo-banner .vs-promo-banner__background {
+      border-radius: .625rem;
+    }
+  }
+}
+
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
