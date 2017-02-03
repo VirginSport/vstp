@@ -24,6 +24,7 @@ function virgin_api_default_services_endpoint() {
       'jsonp' => FALSE,
       'php' => FALSE,
       'xml' => FALSE,
+      'yaml' => FALSE
     ),
     'parsers' => array(
       'application/json' => TRUE,
