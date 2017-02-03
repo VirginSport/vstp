@@ -4,3 +4,10 @@
   -moz-appearance: $value;
   appearance: $value;
 }
+
+@mixin make-constrained () {
+  $offset: 20;
+
+  width: (100 + $offset)#{"%"};
+  margin-left: -($offset/2#{"%"});
+}

@@ -8,15 +8,22 @@
  *  $promo_banners - Promo banners html output
  */
 ?>
+<?php if ($apply_constraint) : ?>
+<div class="vs-promo-banner-constraint">
+  <div class="vs-promo-banner-constraint__container container">
+    <?php endif; ?>
+    <div class="vs-promo-banner-wrapper">
+      <?php if (!empty($component_heading)): ?>
+        <div class="vs-component-heading vs-promo-banner-heading">
+          <?php print check_plain($component_heading); ?>
+        </div>
+      <?php endif; ?>
 
-<div class="vs-promo-banner-wrapper">
-  <?php if (!empty($component_heading)): ?>
-    <div class="vs-component-heading vs-promo-banner-heading">
-      <?php print check_plain($component_heading); ?>
+      <?php if (!empty($promo_banners)): ?>
+        <?php print $promo_banners; ?>
+      <?php endif; ?>
     </div>
-  <?php endif; ?>
-
-  <?php if (!empty($promo_banners)): ?>
-    <?php print $promo_banners; ?>
-  <?php endif; ?>
+    <?php if ($apply_constraint) : ?>
+  </div>
 </div>
+<?php endif; ?>

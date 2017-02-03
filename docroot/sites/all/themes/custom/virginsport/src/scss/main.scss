@@ -24,6 +24,7 @@
 @import "mixins/transform";
 @import "mixins/transition";
 @import "mixins/alignment";
+@import "mixins/cursor";
 
 
 // Fonts
@@ -89,6 +90,7 @@
 @import "style/components/vs-card-past";
 @import "style/components/_vs-carousel";
 @import "style/components/vs-contact-form";
+@import "style/components/vs-scroller";
 
 // Pages
 @import "style/components/vs-splash";

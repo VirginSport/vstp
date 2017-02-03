@@ -37,5 +37,6 @@ class VirginComponentPromotionalBanner implements VirginComponentsInterface {
 
     $variables['component_heading'] = $virgin->fieldGetOne('field_component_heading');
     $variables['promo_banners'] = $virgin->fieldRendered('field_promo_banners');
+    $variables['apply_constraint'] = $virgin->fieldGetOne('field_constrained_width');
   }
 }
