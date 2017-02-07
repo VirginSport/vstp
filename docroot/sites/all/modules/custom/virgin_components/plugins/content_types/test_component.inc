@@ -44,7 +44,15 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
   switch ($conf['component']) {
 
     case 'results-introduction':
-      $output = 'results-introduction-theme';
+      $output = theme('virgin_components__ct__results_introduction', array(
+        'title' => 'Event Results',
+        'description' => 'Praesent et magna sit amet libero semper facilisis vel ac enim. Aliquam consectetur tellus ipsum, vel aliquet nibh elementum vitae. met libero semper facilisis vel ac enim. Ali ibh elementum vitae.',
+        'link_label' => 'Festival Page',
+        'link_url' => url('<front>'),
+        'link_color' => $conf['brand_color'],
+        'brand_color' => $conf['brand_color'],
+        'image_atom' => empty($conf['asset_id']) ? '' : scald_atom_load($conf['asset_id']),
+      ));
       break;
 
     case 'results-overview':

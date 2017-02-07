@@ -47,7 +47,15 @@ function virgin_components_theme() {
     ),
     'virgin_components__ct__results_introduction' => array(
       'template'  => 'virgin-components__ct__results-introduction',
-      'variables' => array('class' => '')
+      'variables' => array(
+        'title' => '',
+        'description' => '',
+        'link_label' => '',
+        'link_url' => '',
+        'link_color' => '',
+        'brand_color' => '',
+        'image_atom' => ''
+      )
     )
   );
 }
