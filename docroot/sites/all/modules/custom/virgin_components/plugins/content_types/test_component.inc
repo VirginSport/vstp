@@ -17,6 +17,8 @@ $plugin = array(
     'component' => 'results-introduction',
     'festival_id' => '',
     'event_id' => '',
+    'asset_id' => '',
+    'brand_color' => ''
   ),
 );
 
@@ -34,6 +36,7 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
 
   /** @var \VirginEntityGrapher $festival */
   $festival = $load_node($conf['festival_id']);
+  
   /** @var \VirginEntityGrapher $event */
   $event = $load_node($conf['event_id']);
 
@@ -108,6 +111,38 @@ function virgin_components_test_component_content_type_edit_form($form, &$form_s
     '#type' => 'textfield',
     '#title' => t('Event ID'),
     '#default_value' => empty($conf['event_id']) ? '' : $conf['event_id']
+  );
+  
+  $form['asset_id'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Asset ID'),
+    '#default_value' => empty($conf['asset_id']) ? '' : $conf['asset_id']
+  );
+  
+  // Field brand color has the virgin brand colors
+  $field = field_info_field('field_brand_color');
+  
+  // Extra button color options not covered by brand colors
+  $options = array(
+    '' => t('Default'),
+    'transparent' => t('Transparent'),
+    'orange' => t('Solid Orange'),
+    'link' => t('Link'),
+    'outline-black' => t('Outline-black'),
+    'outline-white' => t('Outline-white'),
+  );
+  
+  // Append gradient prefix to all brand colors
+  foreach ($field['settings']['allowed_values'] as $key => $value) {
+    $options[$key] = $value;
+  }
+  
+  $form['brand_color'] = array(
+    '#type' => 'select',
+    '#title' => t('Brand Color'),
+    '#options' => $options,
+    '#default_value' => empty($conf['brand_color']) ? '' : $conf['brand_color'],
+    '#required' => TRUE,
   );
 
   return $form;
