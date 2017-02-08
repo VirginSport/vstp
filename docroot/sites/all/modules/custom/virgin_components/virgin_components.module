@@ -47,7 +47,17 @@ function virgin_components_theme() {
     ),
     'virgin_components__ct__festival_results_card' => array(
       'template'  => 'virgin-components__ct__festival-results-card',
-      'variables' => array('class' => '')
+      'variables' => array(
+        'festival_name' => '',
+        'festival_date' => '',
+        'race_name' => '',
+        'race_start' => '',
+        'race_end' => '',
+        'link_label' => '',
+        'link_url' => '',
+        'brand_color' => '',
+        'image_atom' => ''
+      )
     )
   );
 }
