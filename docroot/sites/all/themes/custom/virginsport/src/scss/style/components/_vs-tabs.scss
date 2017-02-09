@@ -11,6 +11,11 @@ vs-tabs,
 // Elements
 // ----------------------------------------------------------------------------
 
+.vs-tabs__nav-link-wrapper {
+  margin-bottom: 0;
+  padding-top: .375rem;
+}
+
 .nav-tabs {
   border-bottom-color: #B2B2B2;
   background-color: $c-white;
