@@ -42,6 +42,7 @@ dependencies[] = path
 dependencies[] = pathauto
 dependencies[] = scald_extra
 dependencies[] = scald_image
+dependencies[] = seckit
 dependencies[] = service_links
 dependencies[] = services
 dependencies[] = smtp

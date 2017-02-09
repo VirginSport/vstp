@@ -72,7 +72,7 @@ function virgin_update_7007() {
 }
 
 /**
- * Enables admin_views, views_bulk_operations
+ * Enables admin_views, views_bulk_operations modules.
  */
 function virgin_update_7008() {
   module_enable(array('admin_views', 'views_bulk_operations'));
@@ -90,4 +90,11 @@ function virgin_update_7009() {
  */
 function virgin_update_7010() {
   module_enable(array('metatag', 'metatag_opengraph', 'metatag_facebook'));
+}
+
+/**
+ * Enables seckit module.
+ */
+function virgin_update_7011() {
+  module_enable(array('seckit'));
 }
