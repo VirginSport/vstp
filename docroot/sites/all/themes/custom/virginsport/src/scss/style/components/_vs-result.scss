@@ -1,0 +1,234 @@
+@import "../../shared";
+
+// Block
+// ----------------------------------------------------------------------------
+
+.vs-result {
+
+}
+
+// Element
+// ----------------------------------------------------------------------------
+
+.vs-result-col {
+  display: block;
+  float: left;
+  min-height: 1px;
+
+  .vs-results__table-head & {
+    font-size: rem(13);
+    font-weight: 500;
+  }
+
+  .vs-result__head & {
+    font-size: rem(14);
+    line-height: rem(67);
+  }
+
+  &-rank { width: 6%; }
+  &-name { width: 16% }
+  &-bib { width: 7.5% }
+  &-club { width: 15% }
+  &-team { width: 15% }
+  &-category { width: 10% }
+  &-gender { width: 7.5% }
+  &-pace { width: 10% }
+  &-chip { width: 10% }
+}
+
+.vs-result {
+  &__head {
+    @include clearfix;
+    border-radius: rem(10) rem(10) 0 0;
+    padding: 0 rem(15) 0 rem(30);
+    cursor: pointer;
+  }
+
+  &__border { border-top: 1px solid rgba(178, 178, 178, 0.3); }
+  &__strong { font-weight: 500; }
+  &__muted { color: $c-gray; }
+
+  &__body {
+    @include clearfix;
+    display: none;
+    background-color: white;
+    border-radius: 0 0 rem(10) rem(10);
+  }
+
+  &__meta-wrapper {
+    margin: 0 rem(30) rem(46) rem(30);
+    padding-top: rem(24);
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: $c-gray;
+  }
+
+  &__meta-first { padding-left: 6%; }
+  &__meta-last { padding-right: 6%; }
+
+  &__meta-label {
+    font-weight: 500;
+    text-transform: none;
+    color: $c-gray-dark;
+    padding-right: rem(5);
+  }
+
+  &__times {
+    width: 70%;
+    margin-bottom: rem(40);
+    float: left;
+  }
+
+  &__average-label {
+    padding-left: 40%;
+    font-weight: 500;
+    font-size: rem(12);
+    text-transform: uppercase;
+    text-align: center;
+    color: $c-green;
+  }
+
+  &__time {
+    @include clearfix;
+
+    // Modify the first stage to have the circle highlighted and hide avg. bar
+    &:first-child {
+      .vs-result__time-stage:after { background-color: $c-green; }
+      .vs-result__time-stage:before { display: none; }
+      .vs-result__time-average { display: none; }
+    }
+
+    // Modify the last stage to have the circle highlighted
+    &:last-child {
+      .vs-result__time-stage:after { background-color: $c-green; }
+    }
+  }
+
+  &__time-stage {
+    width: 40%;
+    clear: both;
+    position: relative;
+    height: rem(7);
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      right: 27%;
+    }
+
+    // Circle
+    &:after {
+      height: rem(12);
+      width: rem(12);
+      bottom: 0;
+      margin-right: rem(-5.5);
+      background-color: $c-gray;
+      border-radius: 100%;
+    }
+
+    // Gray line
+    &:before {
+      top: rem(-28);
+      bottom: 0;
+      background-color: rgba($c-gray, 0.6);
+      width: rem(1.5);
+    }
+  }
+
+  &__time-average {
+    padding-left: 40%;
+    width: 100%;
+    position: relative;
+  }
+
+  &__time-stage-name {
+    position: absolute;
+    bottom: rem(-3);
+    right: 36%;
+    font-size: rem(13);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  &__time-stage-time {
+    position: absolute;
+    bottom: rem(-3);
+    left: 81%;
+    font-size: rem(12);
+    color: $c-gray;
+  }
+
+  &__progress {
+    width: 100%;
+    background-color: $c-green-lighter;
+    border-radius: rem(30);
+  }
+
+  &__progress-state {
+    @include gradient-directional($c-green-light, $c-green, 90deg);
+    height: rem(28);
+    line-height: rem(28);
+    border-radius: rem(30);
+    color: $c-white;
+    text-align: right;
+    padding: 0 rem(20);
+    font-size: rem(13);
+  }
+
+  &__stats {
+    float: left;
+    width: 30%;
+  }
+
+  &__stat {
+    width: 100%;
+    text-align: center;
+    padding: rem(15) 0;
+  }
+
+  &__stat-value {
+    font-size: rem(26);
+    font-weight: 500;
+  }
+
+  &__stat-label {
+    font-weight: 500;
+    font-size: rem(13);
+    text-transform: uppercase;
+    color: $c-green;
+    display: block;
+    width: 100%;
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-result:first-child {
+  .vs-result__border { border: none; }
+}
+
+.vs-result--open + .vs-result {
+  .vs-result__border { border-color: rgba(0,0,0,0); }
+}
+
+.vs-result--open + .vs-result--open {
+  margin-top: rem(15);
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-result--color-#{$color} {
+    .vs-result-col-rank { color: map_get($map, 'solid-color'); }
+
+    &.vs-result--open {
+      .vs-result__head { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
+      .vs-result-col { color: map_get($map, 'text-color'); }
+      .vs-result-col-bib { opacity: 0.8; }
+      .vs-result__body { display: block; }
+    }
+  }
+}

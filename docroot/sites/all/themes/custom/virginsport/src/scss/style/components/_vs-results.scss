@@ -1,0 +1,290 @@
+@import "../../shared";
+
+// Block
+// ----------------------------------------------------------------------------
+
+.vs-results {
+  margin-bottom: rem(100);
+}
+
+// Element
+// ----------------------------------------------------------------------------
+
+.vs-results {
+  &__teaser {
+    padding: rem(30);
+    border-radius: rem(15) rem(15) 0 0;
+  }
+
+  &__filters {
+    padding: rem(25) rem(25) rem(30) rem(25);
+    border-radius: rem(10);
+    margin: 0 rem(-10);
+    position: relative;
+  }
+
+  &__form {
+    @include clearfix;
+    width: 76%;
+    padding-top: rem(23);
+
+    .vs-form-group {
+      width: calc(50% - #{rem(5)});
+      float: left;
+      max-width: initial;
+      margin: rem(10) rem(10) 0 0;
+
+      &:nth-child(even) { margin-right: 0 }
+    }
+
+    .vs-focus-label {
+      color: rgba($c-white, 0.8);
+    }
+
+    .form-control {
+      background: none;
+      border-color: rgba($c-white, 0.4);
+      color: $c-white;
+
+      &:focus ~ .vs-focus-label,
+      &.vs-form-control--not-empty ~ .vs-focus-label {
+        color: rgba($c-white, 1);
+      }
+    }
+
+    .vs-chosen-wrapper { border-color: rgba($c-white, 0.4); }
+    .chosen-single { box-shadow: none !important; }
+  }
+
+  &__form-select.vs-form-group {
+    width: 100%;
+    float: none;
+    margin: 0;
+  }
+
+  &__rankings {
+    padding: rem(27) rem(27) rem(15) rem(27);
+    background: white;
+    text-align: center;
+  }
+
+  &__ranking {
+    display: inline-block;
+    line-height: rem(34);
+    margin-bottom: rem(12);
+    text-transform: uppercase;
+
+    + .vs-results__ranking {
+      padding-left: rem(42);
+    }
+  }
+
+  &__ranking-label {
+    color: $c-gray-dark;
+    padding-right: rem(18);
+    font-size: rem(12);
+  }
+
+  &__ranking-options {
+    display: inline-block;
+    background-color: rgba($c-gray, 0.2);
+    border-radius: rem(30);
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      position: relative;
+      padding: 0 rem(13);
+      font-size: rem(12);
+      color: rgba($c-gray-dark, 0.5);
+      cursor: pointer;
+
+      &:first-child { padding-left: rem(30); }
+      &:last-child { padding-right: rem(30); }
+
+      span {
+        @include transition(transform .3s ease);
+        @include transform(translateX(rem(0)));
+        position: relative;
+        display: inline-block;
+        font-weight: 500;
+      }
+
+      &:before {
+        @include transition(opacity .4s ease);
+        border-radius: rem(30);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 0;
+        opacity: 0;
+      }
+
+      &.vs-results__ranking--active {
+        span {
+          color: $c-white;
+        }
+
+        &:first-child span { @include transform(translateX(rem(-8))) }
+        &:last-child span { @include transform(translateX(rem(8))) }
+        &:before { opacity: 1; }
+      }
+    }
+  }
+
+  &__table {
+    padding: rem(30) rem(13) 0 rem(13);
+    background-color: white;
+    color: $c-gray-dark;
+    border-radius: 0 0 rem(15) rem(15);
+  }
+
+  &__table-head {
+    @include clearfix;
+    padding: 0 rem(15) 0 rem(30);
+  }
+
+  &__bib {
+    color: $c-gray;
+  }
+
+  &__btn {
+    @include transition(opacity .3s ease);
+    background-color: white;
+    line-height: rem(35);
+    padding: 0 rem(35);
+    border-radius: rem(35);
+    font-size: rem(13);
+    text-transform: uppercase;
+    display: inline-block;
+
+    + .vs-results__btn {
+      margin-left: rem(17);
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+
+  &__btn-wrap {
+    float: right;
+  }
+
+  &__find-btn {
+    position: absolute;
+    bottom: rem(30);
+    right: rem(30);
+  }
+
+  &__photos-btn {
+    position: absolute;
+    top: rem(20);
+    right: rem(20);
+    width: rem(120);
+    height: rem(120);
+    line-height: rem(170);
+    font-size: rem(11);
+    text-align: center;
+    display: block;
+    background-color: rgba($c-white, 0.2);
+    color: $c-white;
+    border-radius: 100%;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: rem(28);
+    text-transform: uppercase;
+    margin-bottom: rem(4);
+  }
+
+  &__date {
+    font-size: rem(18);
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    padding-top: rem(30);
+    margin-bottom: rem(9) !important;
+    width: 60%;
+    opacity: 0.85;
+  }
+
+  &__footer {
+    display: block;
+    text-align: center;
+    padding: rem(17) 0 rem(17) 0;
+  }
+
+  &__more-btn {
+    @include transition(opacity .3s ease);
+    line-height: rem(35);
+    padding: 0 rem(55);
+    border-radius: rem(35);
+    font-size: rem(14);
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid rgba($c-gray, 0.6);
+    color: rgba($c-gray, 0.7);
+    letter-spacing: 0.04em;
+
+    &:hover,
+    &:focus {
+      color: rgba($c-gray, 0.7);
+      opacity: 0.7;
+    }
+  }
+}
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-results--truncated {
+  .vs-results__table { padding-bottom: rem(10); }
+  tbody tr:last-child td { border-bottom: none; }
+}
+
+.vs-results--sub-filtered {
+  .vs-results__table {
+    background-color: $c-gray-lighter;
+  }
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-results--color-#{$color} {
+    .vs-results__filters,
+    .vs-results__teaser {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      color: map_get($map, 'text-color');
+    }
+
+    .vs-results__btn {
+      color: darken(map_get($map, 'solid-color'), 25%);
+    }
+
+    .vs-results__table {
+      thead td {
+        color: darken(map_get($map, 'solid-color'), 25%);
+      }
+
+      .vs-results__table-row td:first-child {
+        color: darken(map_get($map, 'solid-color'), 10%);
+      }
+    }
+
+    .vs-results__ranking--active {
+      span { color: map_get($map, 'text-color'); }
+      &:before { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
+    }
+  }
+}
