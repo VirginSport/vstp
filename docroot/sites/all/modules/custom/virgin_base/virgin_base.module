@@ -175,6 +175,25 @@ function virgin_base_metatag_pattern_alter(&$pattern, &$types, $tag_name) {
   }
 }
 
+/**
+ * Implements hook_metatag_metatags_view_alter().
+ */
+function virgin_base_metatag_metatags_view_alter(&$output, $instance, $options) {
+  if (module_exists('metatag_twitter_cards')) {
+    // Add site name to twitter site variable not available by default on metatag
+    $output['twitter:site']['#attached']['drupal_add_html_head'][0] = array(
+      array(
+        '#theme' => 'metatag_twitter_cards',
+        '#tag' => 'meta',
+        '#id' => 'twitter:site',
+        '#name' => 'twitter:site',
+        '#value' => variable_get('site_name', ''),
+      ),
+      'twitter:site',
+    );
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
