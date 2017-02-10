@@ -114,7 +114,20 @@
     <?php print $messages; ?>
   </div>
 
-  <div class="vs-header">
+  <?php if ($apply_attendly_header): ?>
+    <div class="vs-attendly-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="vs-attendly-header__background"></div>
+            <a href="" class="vs-attendly-header__logo"></a>
+            <h1 class="vs-attendly-header__title"><?php print $title ?></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php else: ?>
+    <div class="vs-header">
     <div class="container-fluid clearfix">
       <div class="vs-header__logo-wrapper">
         <a class="vs-header__logo" href="<?php print url($front_page); ?>">
@@ -180,6 +193,7 @@
       </div>
     </div>
   </div>
+  <?php endif; ?>
 
   <div class="page-wrapper">
     <?php if (!$apply_page_wrapper): ?>
