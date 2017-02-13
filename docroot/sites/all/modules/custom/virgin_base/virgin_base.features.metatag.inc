@@ -62,6 +62,9 @@ function virgin_base_metatag_export_default() {
       'twitter:image' => array(
         'value' => '[node:field_header_image]',
       ),
+      'twitter:description' => array(
+        'value' => '[node:field_description]',
+      ),
     ),
   );
 
@@ -81,6 +84,9 @@ function virgin_base_metatag_export_default() {
       ),
       'twitter:image' => array(
         'value' => '[node:field_header_image]',
+      ),
+      'twitter:description' => array(
+        'value' => '[node:field_description]',
       ),
     ),
   );
