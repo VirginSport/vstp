@@ -36,12 +36,19 @@ function virgin_base_metatag_export_default() {
       'og:updated_time' => array(
         'value' => '[node:changed:custom:c]',
       ),
+      'twitter:title' => array(
+        'value' => '[node:title]',
+      ),
+      'twitter:description' => array(
+        'value' => '[node:summary]',
+      ),
     ),
   );
 
   // Exported Metatag config instance: node:event.
   $config['node:event'] = array(
     'instance' => 'node:event',
+    'disabled' => FALSE,
     'config' => array(
       'description' => array(
         'value' => '[node:field_description]',
@@ -50,6 +57,9 @@ function virgin_base_metatag_export_default() {
         'value' => '[node:field_description]',
       ),
       'og:image' => array(
+        'value' => '[node:field_header_image]',
+      ),
+      'twitter:image' => array(
         'value' => '[node:field_header_image]',
       ),
     ),
@@ -58,6 +68,7 @@ function virgin_base_metatag_export_default() {
   // Exported Metatag config instance: node:festival.
   $config['node:festival'] = array(
     'instance' => 'node:festival',
+    'disabled' => FALSE,
     'config' => array(
       'description' => array(
         'value' => '[node:field_description]',
@@ -68,20 +79,21 @@ function virgin_base_metatag_export_default() {
       'og:image' => array(
         'value' => '[node:field_header_image]',
       ),
+      'twitter:image' => array(
+        'value' => '[node:field_header_image]',
+      ),
     ),
   );
 
   // Exported Metatag config instance: node:page.
   $config['node:page'] = array(
     'instance' => 'node:page',
+    'disabled' => FALSE,
     'config' => array(
-      'description' => array(
-        'value' => '[node:summary]',
-      ),
-      'og:description' => array(
-        'value' => '[node:summary]',
-      ),
       'og:image' => array(
+        'value' => '[node:field_header_image]',
+      ),
+      'twitter:image' => array(
         'value' => '[node:field_header_image]',
       ),
     ),
