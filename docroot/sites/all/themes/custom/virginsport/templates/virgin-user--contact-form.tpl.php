@@ -74,9 +74,10 @@ $mkt_id = 'mkt-' . uniqid();
                       <div class="vs-error-label" v-if="($vs_contact_form_validator.type.dirty || submitted) && $vs_contact_form_validator.type.required"><?php print t('Type is required'); ?></div>
                     </div>
 
-                    <div class="vs-form-group vs-form-group--textarea">
-                      <textarea name="message" v-model="form.message" class="form-control vs-textarea" id="message" rows="5"></textarea>
-                      <label class="vs-focus-label" for="message"><?php print t('Please write a message'); ?></label>
+                    <div class="vs-form-group vs-form-group--textarea" :class="{ 'vs-has-error': ($vs_contact_form_validator.message.dirty || submitted) && !$vs_contact_form_validator.message.valid }">
+                      <textarea name="message" v-model="form.message" class="form-control vs-textarea" id="message" rows="5" v-validate:message="['required']"></textarea>
+                      <label class="vs-focus-label" for="message"><?php print t('Please write a message'); ?>*</label>
+                      <div class="vs-error-label" v-if="($vs_contact_form_validator.message.dirty || submitted) && $vs_contact_form_validator.message.required"><?php print t('Message is required'); ?></div>
                     </div>
 
                     <?php if (user_is_anonymous()): ?>
