@@ -237,6 +237,15 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['user/results/%virgin_user_ticket'] = array(
+    'title' => 'User Event Results',
+    'page callback' => 'virgin_user_page_results',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 
@@ -827,6 +836,20 @@ function virgin_user_bind_attendly_checkout_session() {
     );
     return FALSE;
   }
+}
+
+/**
+ * Loads a user ticket object.
+ */
+function virgin_user_ticket_load($rego_id) {
+  $ticket = db_select('virgin_user_tickets')
+    ->fields('virgin_user_tickets')
+    ->condition('attendly_rego_id', $rego_id, '=')
+    ->execute()
+    ->fetchObject()
+  ;
+
+  return empty($ticket) ? FALSE : $ticket;
 }
 
 /**

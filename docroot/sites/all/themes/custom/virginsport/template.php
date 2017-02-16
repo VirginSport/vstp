@@ -422,6 +422,7 @@ function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_f
 function virginsport_check_is_attendly_header() {
   $routes = array(
     'user/photos/%/%',
+    'user/results/%',
     'node/%/photos'
   );
 
