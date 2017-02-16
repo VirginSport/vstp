@@ -183,6 +183,7 @@ function virgin_preprocess_page(&$vars) {
 
   drupal_add_js(array(
     'virgin' => array(
+      'raceDayUrl' => variable_get('virgin_raceday_url'),
       'cookieDomain' => $params['domain'],
       'cookieSecure' => $params['secure']
     )
