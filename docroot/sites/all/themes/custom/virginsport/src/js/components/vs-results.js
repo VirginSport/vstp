@@ -165,6 +165,7 @@ function initResultsComponents() {
             this.noResults = true;
           }
 
+          this.ready = true;
           this.loading[loadingProperty] = false;
         });
       }
@@ -178,6 +179,7 @@ function initResultsComponents() {
           more: false
         },
         filter: {
+          'ready': false,
           'ranks': [],
           'originalOffset': 0,
           'limit': 0,
@@ -226,6 +228,7 @@ function initResultsComponents() {
     template: '#tpl-vs-result',
     data() {
       return {
+        ready: false,
         result: null,
         cachedPassings: null
       }
@@ -344,6 +347,7 @@ function initResultsComponents() {
             this.result = result.data;
           }
 
+          this.ready = true;
           this.loading = false;
         });
       },

@@ -64,7 +64,7 @@ $template_rendered = TRUE;
 <script type="text/x-template" id="tpl-vs-results">
   <div
     class="vs-results"
-    v-bind:class="['vs-results--color-' + brandColor, { 'vs-results--sub-filtered': hasSubFilter, 'vs-results--truncated': isTruncated, 'vs-results--loading': loading.find, 'vs-results--card': isCard }]"
+    v-bind:class="['vs-results--color-' + brandColor, { 'vs-results--sub-filtered': hasSubFilter, 'vs-results--truncated': isTruncated, 'vs-results--ready': ready, 'vs-results--loading': loading.find, 'vs-results--card': isCard }]"
   >
     <div v-if="hasTeaser" class="vs-results__teaser">
       <div class="vs-results__btn-wrap">
@@ -243,7 +243,11 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ rank.chipTime }}</span>
       </div>
 
-      <div class="vs-result__body" v-if="isOpen && result">
+      <div
+        class="vs-result__body"
+        v-if="isOpen && result"
+        v-bind:class="{ 'vs-result__body--ready': ready }"
+      >
         <div class="vs-result__meta-wrapper">
           <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
           <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
