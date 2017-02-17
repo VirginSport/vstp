@@ -555,35 +555,18 @@ function virgin_user_page_ajax_form_post() {
 /**
  * Page callback for user event results page
  */
-  $query = db_select('virgin_user_tickets', 'tickets');
 function virgin_user_page_results($ticket, $bib) {
+  $event = virgin_user_ticket_event($ticket->attendly_rego_id);
 
-  $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
-  $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
-  $query->join('field_data_field_event_state', 'ev', 'ev.field_event_state_target_id = sugar.entity_id');
-  $query->join('field_data_field_festival_state', 'f', 'f.field_festival_state_target_id = fs.field_festival_state_target_id');
-  $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
-  $query->join('node', 'n', 'n.nid = f.entity_id AND n.status = 1');
-  $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
-
-  $query->addField('n', 'nid', 'festival_node_id');
-  $query->addField('nev', 'nid', 'event_node_id');
-
-  $query
-    ->fields('tickets')
-    ->condition('tickets.attendly_rego_id', $ticket->attendly_rego_id, '=')
-    ->condition('tickets.ticket_status', 'active', '=')
-    ->condition('n.type', 'festival', '=')
-    ->condition('nev.type', 'event', '=')
-    ->condition('f.bundle', 'festival', '=')
-  ;
-
-  $result = $query->execute()->fetchAssoc();
-
-  $event = new VirginEntityGrapher('node', node_load($result['event_node_id']));
+  if (empty($event)) {
+    drupal_not_found();
+    return;
+  }
 
   $conf = array(
-    'event_id' => $event->property('nid')
+    'is_card' => TRUE,
+    'event_id' => $event->property('nid'),
+    'bib' => $bib
   );
 
   ctools_include('content');
