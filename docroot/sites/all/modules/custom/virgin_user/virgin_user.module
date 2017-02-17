@@ -237,10 +237,10 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
-  $items['user/results/%virgin_user_ticket'] = array(
-    'title' => 'User Event Results',
+  $items['user/results/%virgin_user_ticket/%'] = array(
+    'title' => 'Results',
     'page callback' => 'virgin_user_page_results',
-    'page arguments' => array(2),
+    'page arguments' => array(2, 3),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
     'file' => 'virgin_user.pages.inc',

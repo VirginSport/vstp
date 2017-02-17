@@ -555,8 +555,8 @@ function virgin_user_page_ajax_form_post() {
 /**
  * Page callback for user event results page
  */
-function virgin_user_page_results($ticket) {
   $query = db_select('virgin_user_tickets', 'tickets');
+function virgin_user_page_results($ticket, $bib) {
 
   $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
   $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
