@@ -25,8 +25,8 @@ function share() {
   });
 
   $('.vs-share-button__icon-button--popup').click(function (e) {
-    var w = 700;
-    var h = 350;
+    let w = 700;
+    let h = 350;
     e.preventDefault();
     window.open($(this).attr('href'), $(this).attr('title'), 'width=' + w + ',height=' + h + ',menubar=no,location=no,status=no');
     e.stopPropagation();
@@ -41,9 +41,9 @@ function share() {
 }
 
 function hrefCopy() {
-  var email = '';
-  var facebook = '';
-  var twitter = '';
+  let email = '';
+  let facebook = '';
+  let twitter = '';
 
   $('.vs-share-button').click(function () {
     email = $(this).find('.vs-share-button__icon-button.vs-share-button__icon-email').attr('href');
