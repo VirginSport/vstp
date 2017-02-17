@@ -105,17 +105,12 @@ $event_days_left = virginsport_days_left($event_start_date);
 
           <div class="row clearfix vs-ticket-card__ctas-wrapper">
             <?php if ($event_past): ?>
-              <?php
-              /* TODO placeholder for release 2 when there's results
               <div class="vs-ticket-card__cta-wrapper">
-                <a class="vs-ticket-card__cta--full-results" href="#">
+                <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->attendly_rego_id); ?>">
                   <i class="icon-results-medal"></i>
-                  <span>full results</span>
+                  <span><?php print t('full results'); ?></span>
                 </a>
               </div>
-              */
-              ?>
-
               <?php
               /* TODO link up to an event photo page and pass bib# and the GamefaceID for the associated event */
               ?>
