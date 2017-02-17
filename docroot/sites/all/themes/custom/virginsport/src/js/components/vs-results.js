@@ -39,7 +39,8 @@ function initResultsComponents() {
   Vue.component('vs-results', {
     cache: false,
     props: [
-      'defaultRace',
+      'isCard',
+      'bib',
       'brandColor',
       'hasTeaser',
       'hasFilter',
@@ -47,7 +48,7 @@ function initResultsComponents() {
       'resultsPath',
       'replayPath',
       'photoPath',
-      'isTruncated',
+      'festivalId',
       'eventId',
       'eventName',
       'eventDate',
@@ -57,6 +58,7 @@ function initResultsComponents() {
     template: '#tpl-vs-results',
     ready() {
       this.filter.limit = this.maxRows;
+      this.filter.bib = this.bib;
 
       this.getRaces();
     },
@@ -79,12 +81,12 @@ function initResultsComponents() {
        * Load the available races
        */
       getRaces() {
-        request(this, `${raceDayUrl}/api/v1/event/${this.eventId}`).then((result) => {
+        request(this, `${raceDayUrl}/api/v1/event/${this.festivalId}`).then((result) => {
           if (result.data) {
             this.event = result.data;
 
             let firstRace = this.event.races.length ? this.event.races[0] : {};
-            this.filter.race = this.defaultRace ? this.getRace(this.defaultRace) : firstRace;
+            this.filter.race = this.eventID ? this.getRace(this.eventID) : firstRace;
 
             this.findRaceResults();
 
@@ -154,7 +156,7 @@ function initResultsComponents() {
 
         this.loading[loadingProperty] = true;
 
-        request(this, `${raceDayUrl}/api/v1/event/${this.eventId}/race/${this.filter.race.id}/results`, params).then((result) => {
+        request(this, `${raceDayUrl}/api/v1/event/${this.festivalId}/race/${this.filter.race.id}/results`, params).then((result) => {
 
           if (result.data) {
             this.ranks.push.apply(this.ranks, result.data);
@@ -226,6 +228,14 @@ function initResultsComponents() {
       return {
         result: null,
         cachedPassings: null
+      }
+    },
+    ready() {
+      // If isOpen set to true load the participanmt details
+      if (this.isOpen) {
+        // because participant details makes the toggle default isOpen to false
+        this.isOpen = false;
+        this.getParticipantDetails(this.rank.participantId)
       }
     },
     methods: {

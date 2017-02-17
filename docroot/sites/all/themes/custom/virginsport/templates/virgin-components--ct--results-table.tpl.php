@@ -41,6 +41,8 @@ $template_rendered = TRUE;
 <div class="vs-results-container">
   <div class="container">
     <vs-results
+      is-card="<?php print check_plain($is_card); ?>"
+      bib="<?php print check_plain($bib); ?>"
       brand-color="<?php print check_plain($brand_color); ?>"
       :has-teaser="<?php print (bool) $is_summary; ?>"
       :has-filter="<?php print (bool) !$is_summary; ?>"
@@ -48,11 +50,11 @@ $template_rendered = TRUE;
       :is-truncated="<?php print (bool) $is_truncated; ?>"
       replay-path="<?php print check_plain($replay_path); ?>"
       photo-path="<?php print check_plain($photo_path); ?>"
+      festival-id="<?php print check_plain($festival_id); ?>"
       event-id="<?php print check_plain($event_id); ?>"
       event-name="<?php print check_plain($event_name); ?>"
       event-date="<?php print check_plain($event_date); ?>"
       event-description="<?php print check_plain($event_description); ?>"
-      default-race="OXFORD16-OXFORD16 - HM"
       :max-rows="<?php print (int) $max_rows; ?>"
     ></vs-results>
   </div>
@@ -62,7 +64,7 @@ $template_rendered = TRUE;
 <script type="text/x-template" id="tpl-vs-results">
   <div
     class="vs-results"
-    v-bind:class="['vs-results--color-' + brandColor, { 'vs-results--sub-filtered': hasSubFilter, 'vs-results--truncated': isTruncated, 'vs-results--loading': loading.find }]"
+    v-bind:class="['vs-results--color-' + brandColor, { 'vs-results--sub-filtered': hasSubFilter, 'vs-results--truncated': isTruncated, 'vs-results--loading': loading.find, 'vs-results--card': isCard }]"
   >
     <div v-if="hasTeaser" class="vs-results__teaser">
       <div class="vs-results__btn-wrap">
@@ -75,7 +77,7 @@ $template_rendered = TRUE;
       <p class="vs-results__description">{{ eventDescription }}</p>
     </div>
 
-    <div v-if="hasFilter" class="vs-results__filters">
+    <div v-if="hasFilter && !isCard" class="vs-results__filters">
       <h4 class="vs-results__title"><?php print t('See how they run'); ?></h4>
 
       <div class="vs-results__form">
@@ -117,8 +119,12 @@ $template_rendered = TRUE;
       <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
     </div>
     <div>
-      <div v-if="hasSubFilter" class="vs-results__rankings">
+      <div
+        v-if="hasSubFilter"
+        v-bind:class="['vs-results__rankings', { 'vs-results__rankings--card': isCard }]"
+      >
         <vs-results-ranking
+          v-if="!isCard"
           label="<?php print t('Gender'); ?>"
           model="gender"
           :options='<?php print json_encode(array(
@@ -131,6 +137,7 @@ $template_rendered = TRUE;
         ></vs-results-ranking>
 
         <vs-results-ranking
+          v-if="!isCard"
           label="<?php print t('Age'); ?>"
           model="category"
           :options='<?php print json_encode(array(
@@ -177,7 +184,7 @@ $template_rendered = TRUE;
 
         <div class="vs-results__table-list">
           <vs-result v-for="(i, rank) in ranks"
-            :is-open="false"
+            :is-open="ranks.length == 1"
             :brand-color="brandColor"
             :rank="rank"
             :race="filter.race"
@@ -188,7 +195,7 @@ $template_rendered = TRUE;
         <div v-if="!isTruncated" class="vs-results__footer">
           <a href
             class="vs-results__more-btn"
-             v-if="!noResults"
+             v-if="!noResults && !isCard"
              v-on:click.stop.prevent="getRaceResults('more')"
              v-bind:class="{ 'vs-results__more-btn--loading': loading.more  }"
           >
@@ -236,7 +243,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ rank.chipTime }}</span>
       </div>
 
-      <div class="vs-result__body" v-if="isOpen">
+      <div class="vs-result__body" v-if="isOpen && result">
         <div class="vs-result__meta-wrapper">
           <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
           <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
