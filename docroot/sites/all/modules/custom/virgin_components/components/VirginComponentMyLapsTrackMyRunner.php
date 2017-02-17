@@ -27,7 +27,17 @@ class VirginComponentMyLapsTrackMyRunner implements VirginComponentsInterface {
   /**
    * {@inheritdoc}
    */
-  public function preProcess(&$variables) {
-    // TODO
+  public function preProcess(&$vars) {
+    $vars['fpp'] = $vars['elements']['#fieldable_panels_pane'];
+    $g = new VirginEntityGrapher('fieldable_panels_pane', $vars['fpp']);
+
+    $manual_mylaps_id = $g->fieldGetOne('field_mylaps_id');
+    $event_mylaps_id = $g->relation('field_event')->fieldGetOne('field_mylaps_id');
+
+    if (empty($manual_mylaps_id) && empty($event_mylaps_id)) {
+      return;
+    }
+
+    $vars['mylaps_id'] = empty($manual_mylaps_id) ? $event_mylaps_id : $manual_mylaps_id;
   }
 }
