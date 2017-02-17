@@ -92,6 +92,15 @@ function bindRegionChangeTriggers() {
     }
     destinations.push(r);
   });
+  
+  // If the origin is not set that means we're not within the context of a
+  // region, set a fallback title text for a "global" region to be shown in the
+  // region switch modals.
+  if (!origin) {
+    origin = {
+      title: Drupal.t('Global')
+    };
+  }
 
   // Get the region-change query parameter from the URL
   let querystring = window.location.search.substring(1); // Remove the initial ? symbol
