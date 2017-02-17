@@ -893,3 +893,34 @@ function _virgin_user_get_ticket($rego) {
     throw new VirginException($e->getMessage(), t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."));
   }
 }
+
+/**
+ * Fetch a grapher object containing the event related to the given
+ * ticket rego
+ *
+ * @param $ticket_rego
+ *  The ticket rego ID
+ * @return \VirginEntityGrapher|Null
+ *  An object containing the event graphers or null
+ */
+function virgin_user_ticket_event($ticket_rego) {
+  $query = db_select('virgin_user_tickets', 'tickets');
+
+  $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
+  $query->join('field_data_field_event_state', 'ev', 'ev.field_event_state_target_id = sugar.entity_id');
+  $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
+
+  $query->addField('nev', 'nid', 'event_node_id');
+
+  $query
+    ->condition('tickets.attendly_rego_id', $ticket_rego, '=')
+    ->condition('tickets.ticket_status', 'active', '=')
+    ->condition('nev.type', 'event', '=')
+  ;
+
+  $event_id = $query->execute()->fetchField();
+
+  $node = node_load($event_id);
+
+  return empty($node) ? NULL : new VirginEntityGrapher('node', $node);
+}
