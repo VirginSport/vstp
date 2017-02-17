@@ -65,6 +65,7 @@ features[field_base][] = field_description_results
 features[field_base][] = field_description_short
 features[field_base][] = field_description_short_past
 features[field_base][] = field_end_date
+features[field_base][] = field_event
 features[field_base][] = field_event_state
 features[field_base][] = field_event_status
 features[field_base][] = field_event_type
