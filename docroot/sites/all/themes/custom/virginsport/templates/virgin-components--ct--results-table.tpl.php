@@ -42,7 +42,7 @@ $template_rendered = TRUE;
   <div class="container">
     <vs-results
       is-card="<?php print check_plain($is_card); ?>"
-      bib="<?php print check_plain($bib); ?>"
+      ticket-id="<?php print check_plain($ticket_id); ?>"
       brand-color="<?php print check_plain($brand_color); ?>"
       :has-teaser="<?php print (bool) $is_summary; ?>"
       :has-filter="<?php print (bool) !$is_summary; ?>"
@@ -170,7 +170,7 @@ $template_rendered = TRUE;
       </div>
 
       <div class="vs-results__table">
-        <div class="vs-results__table-head">
+        <div v-if="!isCard" class="vs-results__table-head">
           <span class="vs-result-col vs-result-col-rank"></span>
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
@@ -182,13 +182,26 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-chip"><?php print t('Chip Time'); ?></span>
         </div>
 
-        <div class="vs-results__table-list">
-          <vs-result v-for="(i, rank) in ranks"
+        <div v-if="ranks.length" class="vs-results__table-list">
+          <vs-result
+            v-for="(i, rank) in ranks"
             :is-open="ranks.length == 1"
             :brand-color="brandColor"
             :rank="rank"
             :race="filter.race"
             :unit="filter.unit"
+            :multiple="ranks.length > 1"
+          ></vs-result>
+        </div>
+
+        <div v-if="ticketId && !ranks.length" class="vs-results__table-list">
+          <vs-result
+            :is-open="true"
+            :brand-color="brandColor"
+            :race="filter.race"
+            :unit="filter.unit"
+            :ticket-id="ticketId"
+            :multiple="false"
           ></vs-result>
         </div>
 
@@ -231,7 +244,7 @@ $template_rendered = TRUE;
       class="vs-result"
       v-bind:class="['vs-result--color-' + brandColor, { 'vs-result--open': isOpen, 'vs-result--loading': loading }]"
     >
-      <div class="vs-result__head" v-on:click="getParticipantDetails(rank.participantId)">
+      <div v-if="rank" class="vs-result__head" v-on:click="getParticipantDetails(rank.participantId)">
         <span class="vs-result-col vs-result-col-rank">{{ rank.rank }}</span>
         <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">{{ rank.participantFirstName }} {{ rank.participantLastName }}</span>
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">{{ rank.participantBibNumber }}</span>
@@ -239,21 +252,36 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantCategory }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
-        <span class="vs-result-col vs-result-col-pace vs-result__border">TODO</span>
-        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ rank.chipTime }}</span>
+        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
+        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
+      </div>
+
+      <div v-if="!rank && result" class="vs-result__head">
+        <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">Name: {{ result.firstName }} {{ result.lastName }}</span>
+        <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">Bib: {{ result.bibNumber }}</span>
+        <span class="vs-result-col vs-result-col-club vs-result__border">Club: {{ result.club }}</span>
+        <span class="vs-result-col vs-result-col-team vs-result__border">Team: {{ result.team }}</span>
+        <span class="vs-result-col vs-result-col-age vs-result__border">Age: {{ result.age }}</span>
+        <span class="vs-result-col vs-result-col-gender vs-result__border">Gender: {{ result.gender == 'male' ? 'M' : 'F' }}</span>
+        <span class="vs-result-col vs-result-col-chip vs-result__border">ChipTime: {{ result.displayChipTime }}</span>
       </div>
 
       <div
         class="vs-result__body"
-        v-if="isOpen && result"
+        v-if="isOpen && result && race.id"
         v-bind:class="{ 'vs-result__body--ready': ready }"
       >
         <div class="vs-result__meta-wrapper">
           <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
           <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('Overall Place'); ?></span> {{ result.generalGunTime }}/{{ race.participants.total }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span> {{ result.genderGunTime }}/{{ race.participants[rank.participantGender] }}</div>
-          <div class="vs-result__meta-last"><span class="vs-result__meta-label"><?php print t('Division Place'); ?></span> {{ result.categoryGunTime }}/{{ race.participants[rank.participantCategory] }}</div>
+          <div>
+            <span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span>
+            {{ result.genderGunTime }}/{{ race.participants[rank ? rank.participantGender : result.gender] }}
+          </div>
+          <div class="vs-result__meta-last">
+            <span class="vs-result__meta-label"><?php print t('Division Place'); ?></span>
+            {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
+          </div>
         </div>
 
         <div class="vs-result__times">
@@ -263,7 +291,7 @@ $template_rendered = TRUE;
             <div class="vs-result__time" v-for="p in getPassings()">
               <div class="vs-result__time-average">
                 <div class="vs-result__progress">
-                  <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+                  <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
                 </div>
               </div>
 

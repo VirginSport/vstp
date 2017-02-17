@@ -40,7 +40,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     $vars = array(
       'is_summary' => FALSE,
       'is_card' => empty($conf['is_card']) ? NULL : $conf['is_card'],
-      'bib' => empty($conf['bib']) ? NULL : $conf['bib'],
+      'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
       'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
       'event_id' => $event_state->fieldGetOne('field_sugar_id'),
       'brand_color' => $event->fieldGetOne('field_brand_color'),
@@ -55,7 +55,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     $vars = array( 
       'is_summary' => TRUE,
       'is_card' => empty($conf['is_card']) ? NULL : $conf['is_card'],
-      'bib' => empty($conf['bib']) ? NULL : $conf['bib'],
+      'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
       'brand_color' => $event->fieldGetOne('field_brand_color'),
       'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
       'event_id' => $event_state->fieldGetOne('field_sugar_id'),
