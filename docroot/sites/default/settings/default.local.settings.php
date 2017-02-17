@@ -45,4 +45,4 @@ $conf['stage_file_proxy_origin'] = '';
 //$conf['virgin_attendly_api_pass'] = 'attendly-api-token';
 
 // DrupalRaceday Integration
-//$conf['virgin_raceday_url'] = 'development';
+//$conf['virgin_raceday_url'] = 'https://drupalraceday.virginsport.com';
