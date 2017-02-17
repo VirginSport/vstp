@@ -148,7 +148,7 @@ function showRegionChangeModal(origin, destination, path) {
 
   let message = Drupal.t('Going to the @dest1 site will allow you to add @dest2 tickets to your basket, but will mean losing your @origin1 tickets. Would you like to stay on the @origin2 site and complete your purchases first?', args);
   let continueBtn = Drupal.t('Continue to @dest1 site*', args);
-  let continueNotice = Drupal.t('*@origin1 tickets will be removed from basket', args)
+  let continueNotice = Drupal.t('*@origin1 tickets will be removed from basket', args);
   let stayBtn = Drupal.t('Stay on @origin1 site', args);
 
   // Build the modal HTML contents
