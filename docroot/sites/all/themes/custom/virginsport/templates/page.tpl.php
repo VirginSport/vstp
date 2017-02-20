@@ -266,6 +266,7 @@
                   href="<?php print $network['url']; ?>"
                   target="_blank"
                   vs-share-event="<?php print $network['key']; ?>"
+                  vs-location="Footer"
                 >
                   <span class="sr-only"><?php print t('Visit our @name', array('@name' => $network['label'])); ?></span>
                 </a>
