@@ -348,8 +348,8 @@ function initResultsComponents() {
 
         request(this, `${raceDayUrl}/api/v1/participant/${participantID}`).then((result) => {
           if (result.data) {
-            this.toggleOpen();
             this.result = result.data;
+            this.toggleOpen();
           }
 
           this.ready = true;
@@ -368,7 +368,7 @@ function initResultsComponents() {
           } else {
             $el.slideUp();
           }
-        }, 0);
+        }, 100);
       }
     }
   });

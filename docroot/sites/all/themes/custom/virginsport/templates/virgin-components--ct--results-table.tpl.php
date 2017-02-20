@@ -169,7 +169,7 @@ $template_rendered = TRUE;
         ></vs-results-ranking>
       </div>
 
-      <div class="vs-results__table">
+      <div v-if="filter.race" class="vs-results__table">
         <div v-if="!isCard" class="vs-results__table-head">
           <span class="vs-result-col vs-result-col-rank"><?php print t('Rank'); ?></span>
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
@@ -257,21 +257,20 @@ $template_rendered = TRUE;
       </div>
 
       <div v-if="!rank && result" class="vs-result__head">
-        <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">Name: {{ result.firstName }} {{ result.lastName }}</span>
-        <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">Bib: {{ result.bibNumber }}</span>
-        <span class="vs-result-col vs-result-col-club vs-result__border">Club: {{ result.club }}</span>
-        <span class="vs-result-col vs-result-col-team vs-result__border">Team: {{ result.team }}</span>
-        <span class="vs-result-col vs-result-col-age vs-result__border">Age: {{ result.age }}</span>
-        <span class="vs-result-col vs-result-col-gender vs-result__border">Gender: {{ result.gender == 'male' ? 'M' : 'F' }}</span>
-        <span class="vs-result-col vs-result-col-chip vs-result__border">ChipTime: {{ result.displayChipTime }}</span>
+        <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">Name:<br>{{ result.firstName }} {{ result.lastName }}</span>
+        <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">Bib:<br>{{ result.bibNumber }}</span>
+        <span class="vs-result-col vs-result-col-club vs-result__border">Club:<br>{{ result.club }}</span>
+        <span class="vs-result-col vs-result-col-team vs-result__border">Team:<br>{{ result.team }}</span>
+        <span class="vs-result-col vs-result-col-age vs-result__border">Age:<br>{{ result.age }}</span>
+        <span class="vs-result-col vs-result-col-gender vs-result__border">Gender:<br>{{ result.gender == 'male' ? 'M' : 'F' }}</span>
+        <span class="vs-result-col vs-result-col-chip vs-result__border">ChipTime:<br>{{ result.displayChipTime }}</span>
       </div>
 
       <div
         class="vs-result__body"
-        v-if="isOpen && result && race.id"
         v-bind:class="{ 'vs-result__body--ready': ready }"
       >
-        <div v-if="result">
+        <div v-if="result && race.id">
         <div class="vs-result__meta-wrapper">
           <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
           <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
