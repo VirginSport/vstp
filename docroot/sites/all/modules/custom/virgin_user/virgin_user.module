@@ -723,7 +723,7 @@ function virgin_user_form_user_register_form_validate(&$form, &$form_state) {
   // Users must be at least of a certain age to register to Virgin Sport
   $birth_date = strtotime(virgin_form_value('field_birth_date', $form_state));
 
-  if (!$birth_date || (date('Y', time()) - date('Y', $birth_date)) < VIRGIN_USER_MIN_AGE) {
+  if ($birth_date === FALSE || (date('Y', time()) - date('Y', $birth_date)) < VIRGIN_USER_MIN_AGE) {
     form_set_error('field_birth_date', t("We love your enthusiasm, but you must be 13 to create an account."));
   }
 

@@ -134,7 +134,7 @@ class VirginUserSugarPushListener implements ObserverObserverInterface {
       'first_name' => $account_wrapper->field_first_name->value(),
       'last_name' => $account_wrapper->field_last_name->value(),
       'gender' => $account_wrapper->field_gender->value(),
-      'birthdate' => empty($birth_date) ? '' : format_date($birth_date, 'custom', 'Y-m-d'),
+      'birthdate' => is_numeric($birth_date) ? format_date($birth_date, 'custom', 'Y-m-d') : '',
       'phone_mobile' => $account_wrapper->field_contact_number->value(),
       'email1' => $account_wrapper->mail->value(),
       'primary_address_street' => $account_wrapper->field_address_line_1->value() . PHP_EOL . $account_wrapper->field_address_line_2->value(),
