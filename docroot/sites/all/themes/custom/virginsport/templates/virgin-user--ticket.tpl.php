@@ -179,7 +179,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                     >
                       <i class="icon-join-team"></i>
                       <?php if (empty($ticket->team_name)): ?>
-                        <?php print t('join / create team'); ?>
+                        <?php print t('join / create crew'); ?>
                       <?php else: ?>
                         <?php print t('view your crew'); ?>
                       <?php endif; ?>

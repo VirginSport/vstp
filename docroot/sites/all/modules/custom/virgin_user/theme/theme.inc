@@ -122,7 +122,7 @@ function virgin_user_preprocess_virgin_user__claim_ticket(&$vars) {
   $account_g = new VirginEntityGrapher('user', user_load($user->uid));
   $event_g = new VirginEntityGrapher('node', $event);
   $user_sugar_id = $account_g->fieldGetOne('field_sugar_id');
-  $image = $event_g->relation('field_header_image');
+  $image = $event_g->relation('field_card_image');
   $purchaser_names = explode(' ', $vars['ticket']['purchaser_contact_tickets_name']);
   $email = empty($user->mail) ? '' : $user->mail;
 
