@@ -354,6 +354,16 @@ function initResultsComponents() {
 
       toggleOpen() {
         this.isOpen = this.isOpen ? false : true;
+
+        let $el = $(this.$el).find('.vs-result__body');
+
+        window.setTimeout(() => {
+          if (this.isOpen) {
+            $el.slideDown();
+          } else {
+            $el.slideUp();
+          }
+        }, 0);
       }
     }
   });

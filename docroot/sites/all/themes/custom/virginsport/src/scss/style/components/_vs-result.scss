@@ -1,4 +1,3 @@
-@import "../../shared";
 
 // Block
 // ----------------------------------------------------------------------------
@@ -22,7 +21,7 @@
 
   .vs-result__head & {
     font-size: rem(14);
-    line-height: rem(67);
+    padding: rem(24) 0;
   }
 
   &-rank { width: 6%; }
@@ -50,7 +49,7 @@
 
   &__body {
     @include clearfix;
-    display: none;
+    //display: none;
     background-color: white;
     border-radius: 0 0 rem(10) rem(10);
   }
@@ -64,8 +63,8 @@
     color: $c-gray;
   }
 
-  &__meta-first { padding-left: 6%; }
-  &__meta-last { padding-right: 6%; }
+  &__meta--first { padding-left: 6%; }
+  &__meta--last { padding-right: 6%; }
 
   &__meta-label {
     font-weight: 500;
@@ -228,7 +227,17 @@
       .vs-result__head { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
       .vs-result-col { color: map_get($map, 'text-color'); }
       .vs-result-col-bib { opacity: 0.8; }
-      .vs-result__body { display: block; }
+      //.vs-result__body { display: block; }
     }
   }
+}
+
+
+// Results table animations
+// ----------------------------------------------------------------------------
+
+.vs-result--open {}
+
+.vs-result__body {
+  display: none;
 }

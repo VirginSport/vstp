@@ -171,7 +171,7 @@ $template_rendered = TRUE;
 
       <div class="vs-results__table">
         <div class="vs-results__table-head">
-          <span class="vs-result-col vs-result-col-rank"></span>
+          <span class="vs-result-col vs-result-col-rank"><?php print t('Rank'); ?></span>
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
           <span class="vs-result-col vs-result-col-club"><?php print t('Club'); ?></span>
@@ -245,15 +245,15 @@ $template_rendered = TRUE;
 
       <div
         class="vs-result__body"
-        v-if="isOpen && result"
         v-bind:class="{ 'vs-result__body--ready': ready }"
       >
+        <div v-if="result">
         <div class="vs-result__meta-wrapper">
-          <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('Overall Place'); ?></span> {{ result.generalGunTime }}/{{ race.participants.total }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span> {{ result.genderGunTime }}/{{ race.participants[rank.participantGender] }}</div>
-          <div class="vs-result__meta-last"><span class="vs-result__meta-label"><?php print t('Division Place'); ?></span> {{ result.categoryGunTime }}/{{ race.participants[rank.participantCategory] }}</div>
+          <div class="vs-result__meta vs-result__meta--first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
+          <div class="vs-result__meta"><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
+          <div class="vs-result__meta"><span class="vs-result__meta-label"><?php print t('Overall Place'); ?></span> {{ result.generalGunTime }}/{{ race.participants.total }}</div>
+          <div class="vs-result__meta"><span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span> {{ result.genderGunTime }}/{{ race.participants[rank.participantGender] }}</div>
+          <div class="vs-result__meta vs-result__meta--last"><span class="vs-result__meta-label"><?php print t('Division Place'); ?></span> {{ result.categoryGunTime }}/{{ race.participants[rank.participantCategory] }}</div>
         </div>
 
         <div class="vs-result__times">
@@ -286,6 +286,7 @@ $template_rendered = TRUE;
             <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
             <span class="vs-result__stat-label">Total Time</span>
           </div>
+        </div>
         </div>
       </div>
     </div>
