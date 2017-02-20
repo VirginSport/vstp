@@ -40,7 +40,7 @@ function initResultsComponents() {
     cache: false,
     props: [
       'isCard',
-      'bib',
+      'ticketId',
       'brandColor',
       'hasTeaser',
       'hasFilter',
@@ -58,12 +58,10 @@ function initResultsComponents() {
     template: '#tpl-vs-results',
     ready() {
       this.filter.limit = this.maxRows;
-      this.filter.bib = this.bib;
 
       this.getRaces();
     },
     methods: {
-
       getRace(id) {
         if (this.event && this.event.races.length) {
           for (let i = 0; i < this.event.races.length; i++) {
@@ -88,7 +86,9 @@ function initResultsComponents() {
             let firstRace = this.event.races.length ? this.event.races[0] : {};
             this.filter.race = this.eventID ? this.getRace(this.eventID) : firstRace;
 
-            this.findRaceResults();
+            if (!this.ticketId) {
+              this.findRaceResults();
+            }
 
             window.setTimeout(() => {
               $('#input-race')
@@ -159,6 +159,8 @@ function initResultsComponents() {
         request(this, `${raceDayUrl}/api/v1/event/${this.festivalId}/race/${this.filter.race.id}/results`, params).then((result) => {
 
           if (result.data) {
+            this.noResults = this.filter.offset + this.filter.limit >= result.meta.total;
+
             this.ranks.push.apply(this.ranks, result.data);
             this.filter.offset += this.filter.limit;
           } else {
@@ -218,8 +220,10 @@ function initResultsComponents() {
   Vue.component('vs-result', {
     cache: false,
     props: [
+      'multiple',
       'loading',
       'race',
+      'ticketId',
       'rank',
       'unit',
       'isOpen',
@@ -230,15 +234,16 @@ function initResultsComponents() {
       return {
         ready: false,
         result: null,
-        cachedPassings: null
+        cachedPassings: [],
+        maxAverage: []
       }
     },
     ready() {
-      // If isOpen set to true load the participanmt details
+      // If isOpen set to true load the participant details
       if (this.isOpen) {
         // because participant details makes the toggle default isOpen to false
         this.isOpen = false;
-        this.getParticipantDetails(this.rank.participantId)
+        this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
       }
     },
     methods: {
@@ -298,8 +303,8 @@ function initResultsComponents() {
       },
 
       getPassings() {
-        if (this.cachedPassings) {
-          return this.cachedPassings;
+        if (this.cachedPassings[this.unit]) {
+          return this.cachedPassings[this.unit];
         }
 
         this.max = 0;
@@ -312,7 +317,7 @@ function initResultsComponents() {
             let startTime = index == 0 ? moment().format("yyyy-mm-dd") : list[index - 1].pass.chipTime;
             let distance = index == 0 ? s.distance : s.distance - list[index - 1].stage.distance;
             let average = this.diff(startTime, p.chipTime) / this.getDistanceFormatted(distance);
-            this.maxAverage = this.max > average ? this.max : average;
+            this.maxAverage[this.unit] = this.max > average ? this.max : average;
 
             list.push({
               startTime: startTime,
@@ -330,7 +335,7 @@ function initResultsComponents() {
           this.lastTime = list[list.length - 1].pass.chipTime;
         }
 
-        this.cachedPassings = list;
+        this.cachedPassings[this.unit] = list;
         return list;
       },
 
@@ -353,7 +358,7 @@ function initResultsComponents() {
       },
 
       toggleOpen() {
-        this.isOpen = this.isOpen ? false : true;
+        this.isOpen = this.isOpen ? !this.multiple : true;
 
         let $el = $(this.$el).find('.vs-result__body');
 

@@ -555,7 +555,7 @@ function virgin_user_page_ajax_form_post() {
 /**
  * Page callback for user event results page
  */
-function virgin_user_page_results($ticket, $bib) {
+function virgin_user_page_results($ticket) {
   $event = virgin_user_ticket_event($ticket->attendly_rego_id);
 
   if (empty($event)) {
@@ -566,7 +566,7 @@ function virgin_user_page_results($ticket, $bib) {
   $conf = array(
     'is_card' => TRUE,
     'event_id' => $event->property('nid'),
-    'bib' => $bib
+    'ticket_id' => $ticket->sugar_id
   );
 
   ctools_include('content');
