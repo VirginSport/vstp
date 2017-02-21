@@ -236,6 +236,15 @@ function initResultsComponents() {
     template: '#tpl-vs-results-ranking'
   });
 
+  Vue.component('vs-result-share', {
+    cache: false,
+    methods: {},
+    props: [
+      'url'
+    ],
+    template: '#tpl-vs-result-share'
+  });
+
   Vue.component('vs-result', {
     cache: false,
     props: [
