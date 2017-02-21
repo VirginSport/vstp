@@ -1,7 +1,9 @@
 import $ from '../lib/jquery';
 import Vue from '../lib/vue';
 import Drupal from '../lib/drupal';
+import {getRacedayEvent, getRacedayRace, getRacedayParticipant} from '../lib/raceday';
 import moment from 'moment';
+
 import "moment-duration-format";
 
 export default () => {
@@ -11,29 +13,15 @@ export default () => {
 }
 
 /**
- * Make a request using vue-resource
- *
- * @param vue
- * @param $path
- * @param $params
- * @returns {Promise}
- */
-function request(vue, $path, $params) {
-  return new Promise((resolve, reject) => {
-    vue.$http.get($path, $params).then((response) => {
-      if (response.data) {
-        resolve(response.data);
-      }
-    }).then(() => {
-      reject();
-    });
-  });
-}
-
-/**
  * Initialize results components
  */
 function initResultsComponents() {
+  let targetElement = 'body';
+
+  if (!document.querySelector(targetElement)) {
+    return;
+  }
+
   let raceDayUrl = Drupal.settings.virgin.raceDayUrl;
 
   Vue.component('vs-results', {
@@ -80,7 +68,7 @@ function initResultsComponents() {
        * Load the available races
        */
       getRaces() {
-        request(this, `${raceDayUrl}/api/v1/event/${this.festivalId}`).then((result) => {
+        getRacedayEvent(raceDayUrl, this.festivalId).then((result) => {
           if (result.data) {
             this.event = result.data;
 
@@ -159,14 +147,12 @@ function initResultsComponents() {
       getGenderResults(loadingProperty) {
         this.loading[loadingProperty] = true;
 
-        let url = `${raceDayUrl}/api/v1/event/${this.festivalId}/race/${this.filter.race.id}/results`;
-
         // Get male results
-        request(this, url, { params: { gender: 'male', limit: this.maxRows } }).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'male', limit: this.maxRows } }).then((result) => {
           this.genderRanks.male = result.data;
 
           // Get female results
-          request(this, url, { params: { gender: 'female', limit: this.maxRows } }).then((result) => {
+          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'female', limit: this.maxRows } }).then((result) => {
             this.genderRanks.female = result.data;
 
             this.loading[loadingProperty] = true;
@@ -185,7 +171,7 @@ function initResultsComponents() {
 
         this.loading[loadingProperty] = true;
 
-        request(this, `${raceDayUrl}/api/v1/event/${this.festivalId}/race/${this.filter.race.id}/results`, params).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
 
           if (result.data) {
             this.noResults = this.filter.offset + this.filter.limit >= result.meta.total;
@@ -248,15 +234,6 @@ function initResultsComponents() {
       'activeKey'
     ],
     template: '#tpl-vs-results-ranking'
-  });
-
-  Vue.component('vs-result-share', {
-    cache: false,
-    methods: {},
-    props: [
-      'url'
-    ],
-    template: '#tpl-vs-result-share'
   });
 
   Vue.component('vs-result', {
@@ -389,7 +366,7 @@ function initResultsComponents() {
 
         this.loading = true;
 
-        request(this, `${raceDayUrl}/api/v1/participant/${participantID}`).then((result) => {
+        getRacedayParticipant(raceDayUrl, participantID).then((result) => {
           if (result.data) {
             this.result = result.data;
             this.toggleOpen();
@@ -418,9 +395,10 @@ function initResultsComponents() {
     }
   });
 
+
   new Vue({
     cache: false,
-    el: 'body'
+    el: targetElement
   });
 
   // Apply chosen after behaviors
