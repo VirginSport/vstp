@@ -13,10 +13,11 @@
   display: block;
   float: left;
   min-height: 1px;
+  position: relative;
 
   .vs-results__table-head & {
     font-size: rem(13);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .vs-result__head & {
@@ -39,9 +40,11 @@
 .vs-result {
   &__head {
     @include clearfix;
+    @include transition(all .5s ease-in-out);
     border-radius: rem(10) rem(10) 0 0;
     padding: 0 rem(15) 0 rem(30);
     cursor: pointer;
+    position: relative;
   }
 
   &__border { border-top: 1px solid rgba(178, 178, 178, 0.3); }
@@ -50,9 +53,9 @@
 
   &__body {
     @include clearfix;
-    //display: none;
     background-color: white;
     border-radius: 0 0 rem(10) rem(10);
+    position: relative;
   }
 
   &__meta-wrapper {
@@ -62,6 +65,7 @@
     justify-content: space-between;
     text-transform: uppercase;
     color: $c-gray;
+    width: calc(100% - 160px);
   }
 
   &__meta--first { padding-left: 6%; }
@@ -168,6 +172,7 @@
 
   &__progress-state {
     @include gradient-directional($c-green-light, $c-green, 90deg);
+    @include transition(all 1.5s ease-in-out);
     height: rem(28);
     line-height: rem(28);
     border-radius: rem(30);
@@ -175,6 +180,7 @@
     text-align: right;
     padding: 0 rem(20);
     font-size: rem(13);
+    width: 0;
   }
 
   &__stats {
@@ -203,9 +209,36 @@
   }
 }
 
+.vs-result__head:before {
+  @include transition(all .5s ease-in-out);
+  border-radius: rem(10) rem(10) 0 0;
+  bottom: 0;
+  content: '';
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @each $color in map-keys($color-schemes) {
+    .vs-result--color-#{$color} & {
+      $map: map_get($color-schemes, $color);
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+    }
+  }
+}
+
+.vs-result__share {
+  position: absolute;
+  width: rem(60);
+  height: rem(60);
+  top: rem(12);
+  right: 0;
+}
+
+
 // Modifiers
 // ----------------------------------------------------------------------------
-
 .vs-result:first-child {
   .vs-result__border { border: none; }
 }
@@ -225,20 +258,149 @@
     .vs-result-col-rank { color: map_get($map, 'solid-color'); }
 
     &.vs-result--open {
-      .vs-result__head { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
+      .vs-result__head:before { opacity: 1; }
       .vs-result-col { color: map_get($map, 'text-color'); }
       .vs-result-col-bib { opacity: 0.8; }
-      //.vs-result__body { display: block; }
     }
   }
 }
 
 
-// Results table animations
+// Initial animation setup
 // ----------------------------------------------------------------------------
 
-.vs-result--open {}
+.vs-result__progress-state--force-zero {
+  width: 0 !important;
+}
 
 .vs-result__body {
-  display: none;
+  @include transition(all .2s ease-in-out);
+  //max-height: 0;
+  overflow: hidden;
+}
+
+.vs-result__meta-wrapper {
+  @include transition(all .5s ease-in-out .25s);
+  @include transform(translateX(30px));
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    @include transition(all .5s ease-in-out 1.75s);
+  }
+}
+
+.vs-result__share {
+  @include transition(all .5s ease-in-out .25s);
+  @include transform(translateX(-30px));
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    @include transition(all .5s ease-in-out 1.75s);
+  }
+}
+
+.vs-result__average-label {
+  @include transition(all .5s ease-in-out .5s);
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    @include transition(all .5s ease-in-out 1.5s);
+  }
+}
+
+.vs-result__time {
+  @for $i from 1 through 100 {
+    &:nth-child(#{$i}) {
+      transition-delay: $i * .25s;
+
+      .vs-result__time-stage-name {
+        transition-delay: $i * .25s;
+      }
+
+      .vs-result__progress-state {
+        transition-delay: $i * .25s;
+      }
+    }
+  }
+
+  .vs-result:not(.vs-result--open) & {
+    @for $i from 1 through 100 {
+      &:nth-last-child(#{$i}) {
+        transition-delay: $i * .25s;
+
+        .vs-result__time-stage-name {
+          transition-delay: $i * .25s;
+        }
+
+        .vs-result__progress-state {
+          transition-delay: $i * .25s;
+        }
+      }
+    }
+  }
+
+  @include transition(all 1s ease-in-out);
+  opacity: 0;
+
+  .vs-result__time-stage-name {
+    @include transition(all 1s ease-in-out);
+    @include transform(translateX(-30px));
+    opacity: 0;
+  }
+}
+
+.vs-result__stat {
+  @include transition(all .5s ease-in-out 1.5s);
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    @include transition(all .5s ease-in-out .5s);
+  }
+}
+
+.vs-result__stat-value {
+  @include transition(all .5s ease-in-out 1.75s);
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    @include transition(all .5s ease-in-out .25s);
+  }
+}
+
+
+
+// Animations end values
+// ----------------------------------------------------------------------------
+
+.vs-result--open .vs-result__body--ready {
+  .vs-result__meta-wrapper {
+    @include transform(translateX(0));
+    opacity: 1;
+  }
+
+  .vs-result__share {
+    @include transform(translateX(0));
+    opacity: 1;
+  }
+
+  .vs-result__average-label {
+    opacity: 1;
+  }
+
+  .vs-result__time {
+    opacity: 1;
+  }
+
+  .vs-result__time-stage-name {
+    @include transform(translateX(0));
+    opacity: 1;
+  }
+
+  .vs-result__stat {
+    opacity: 1;
+  }
+
+  .vs-result__stat-value {
+    opacity: 1;
+  }
 }

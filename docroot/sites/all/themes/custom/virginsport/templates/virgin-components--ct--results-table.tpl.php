@@ -40,6 +40,8 @@ $template_rendered = TRUE;
 
 <div class="vs-results-container">
   <div class="container">
+    <?php print theme('virginsport_share_buttons', array('subject' => 'dfsdgf', 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+  
     <vs-results
       is-card="<?php print check_plain($is_card); ?>"
       ticket-id="<?php print check_plain($ticket_id); ?>"
@@ -268,53 +270,63 @@ $template_rendered = TRUE;
 
       <div
         class="vs-result__body"
-        v-bind:class="{ 'vs-result__body--ready': ready }"
+        v-bind:class="{ 'vs-result__body--ready': ready, 'vs-result__body--down': downFinished, 'vs-result__body--up': upFinished }"
       >
         <div v-if="result && race.id">
-        <div class="vs-result__meta-wrapper">
-          <div class="vs-result__meta-first"><span class="vs-result__meta-label"><?php print t('Country'); ?></span> {{ result.country }}</div>
-          <div><span class="vs-result__meta-label"><?php print t('City'); ?></span> {{ result.city }}</div>
-          <div>
-            <span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span>
-            {{ result.genderGunTime }}/{{ race.participants[rank ? rank.participantGender : result.gender] }}
+          <div class="vs-result__meta-wrapper">
+            <div class="vs-result__meta-first">
+              <span class="vs-result__meta-label"><?php print t('Country'); ?></span>
+              {{ result.country }}
+            </div>
+            <div>
+              <span class="vs-result__meta-label"><?php print t('City'); ?></span>
+              {{ result.city }}
+            </div>
+            <div>
+              <span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span>
+              {{ result.genderGunTime }}/{{ race.participants[rank ? rank.participantGender : result.gender] }}
+            </div>
+            <div class="vs-result__meta-last">
+              <span class="vs-result__meta-label"><?php print t('Division Place'); ?></span>
+              {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
+            </div>
           </div>
-          <div class="vs-result__meta-last">
-            <span class="vs-result__meta-label"><?php print t('Division Place'); ?></span>
-            {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
+          
+          <div class="vs-result__share">
+            share<br>button
           </div>
-        </div>
-
-        <div class="vs-result__times">
-          <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
-
-          <div>
-            <div class="vs-result__time" v-for="p in getPassings()">
-              <div class="vs-result__time-average">
-                <div class="vs-result__progress">
-                  <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+  
+          <div class="vs-result__times">
+            <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
+  
+            <div>
+              <div class="vs-result__time" v-for="p in getPassings()">
+                <div class="vs-result__time-average">
+                  <div class="vs-result__progress">
+                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+                  </div>
                 </div>
-              </div>
-
-              <div class="vs-result__time-stage">
-                <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                <span class="vs-result__time-stage-time">{{ diffFormat("hh:mm:ss", p.startTime, p.pass.chipTime) }}</span>
-
+  
+                <div class="vs-result__time-stage">
+                  <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
+                  <span class="vs-result__time-stage-time">{{ diffFormat("hh:mm:ss", p.startTime, p.pass.chipTime) }}</span>
+  
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="vs-result__stats">
-          <div class="vs-result__stat">
-            <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-            <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+  
+          <div class="vs-result__stats">
+            <div class="vs-result__stat">
+              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+            </div>
+  
+            <div class="vs-result__stat">
+              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-label">Total Time</span>
+            </div>
           </div>
-
-          <div class="vs-result__stat">
-            <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
-            <span class="vs-result__stat-label">Total Time</span>
-          </div>
-        </div>
         </div>
       </div>
     </div>
