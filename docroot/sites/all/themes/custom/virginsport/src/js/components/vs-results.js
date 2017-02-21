@@ -398,11 +398,11 @@ function initResultsComponents() {
 
         window.setTimeout(() => {
           if (this.isOpen) {
-            // $el.css('max-height', `${$el[0].scrollHeight}px`);
-            $('.vs-result__progress-state').removeClass('vs-result__progress-state--force-zero');
+            $el.css('max-height', `${$el[0].scrollHeight}px`);
+            $el.find('.vs-result__progress-state').removeClass('vs-result__progress-state--force-zero');
           } else {
-            // $el.css('max-height', 0);
-            $('.vs-result__progress-state').addClass('vs-result__progress-state--force-zero');
+            $el.css('max-height', 0);
+            $el.find('.vs-result__progress-state').addClass('vs-result__progress-state--force-zero');
           }
         }, 100);
       }

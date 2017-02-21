@@ -44,7 +44,6 @@ $template_rendered = TRUE;
 
 <div class="vs-results-container">
   <div class="container">
-    <?php print theme('virginsport_share_buttons', array('subject' => 'dfsdgf', 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
   
     <vs-results
       is-card="<?php print check_plain($is_card); ?>"

@@ -275,7 +275,7 @@
 
 .vs-result__body {
   @include transition(all .2s ease-in-out);
-  //max-height: 0;
+  max-height: 0;
   overflow: hidden;
 }
 
