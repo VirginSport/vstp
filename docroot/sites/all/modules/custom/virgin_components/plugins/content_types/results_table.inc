@@ -7,6 +7,8 @@
  * This component is to be removed once all the components have been implemented
  */
 
+define('RESULTS_TABLE_MAX_ROWS', 10);
+
 $plugin = array(
   'single' => TRUE,
   'title' => t('Results table'),
@@ -14,7 +16,9 @@ $plugin = array(
   'category' => 'VirginSport',
   'required context' => array(),
   'defaults' => array(
-    'summary' => FALSE,
+    'is_summary' => FALSE,
+    'show_top' => FALSE,
+    'max_rows' => RESULTS_TABLE_MAX_ROWS,
     'event_id' => '',
   ),
 );
@@ -36,17 +40,17 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
   $festival = virgin_base_event_festival($event->property('nid'));
   $festival_state = $festival->relation('field_festival_state');
 
-  if (empty($conf['summary'])) {
+  if (empty($conf['is_summary'])) {
     $vars = array(
       'is_summary' => FALSE,
-      'is_card' => empty($conf['is_card']) ? NULL : $conf['is_card'],
+      'is_card' => empty($conf['is_card']) ? FALSE : $conf['is_card'],
       'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
       'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
       'event_id' => $event_state->fieldGetOne('field_sugar_id'),
       'brand_color' => $event->fieldGetOne('field_brand_color'),
       'replay_path' => url('/node/' . $event->property('nid')),
       'photo_path' => url('/node/' . $event->property('nid')),
-      'max_rows' => 10
+      'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
     );
   } else {
     $start_date = $event_state->fieldGetOne('field_start_date');
@@ -54,7 +58,8 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
 
     $vars = array( 
       'is_summary' => TRUE,
-      'is_card' => empty($conf['is_card']) ? NULL : $conf['is_card'],
+      'show_top' => empty($conf['show_top']) ? FALSE : $conf['show_top'],
+      'is_card' => empty($conf['is_card']) ? FALSE : $conf['is_card'],
       'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
       'brand_color' => $event->fieldGetOne('field_brand_color'),
       'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
@@ -64,7 +69,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
       'event_description' => strip_tags($event->fieldGetOne('field_description')),
       'replay_path' => url('/node/' . $event->property('nid')),
       'results_path' => url('/node/' . $event->property('nid')),
-      'max_rows' => 5
+      'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
     );
   }
 
@@ -89,10 +94,27 @@ function virgin_components_results_table_content_type_edit_form($form, &$form_st
     '#default_value' => empty($conf['event_id']) ? '' : $conf['event_id']
   );
 
-  $form['summary'] = array(
+  $form['is_summary'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Show summary'),
-    '#default_value' => empty($conf['summary']) ? '' : $conf['summary']
+    '#title' => t('Show Summary'),
+    '#default_value' => empty($conf['is_summary']) ? '' : $conf['is_summary']
+  );
+
+  $form['show_top'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show Male/Female Tops'),
+    '#default_value' => empty($conf['show_top']) ? '' : $conf['show_top'],
+    '#states' => array(
+      'visible' => array(
+        ':input[name="is_summary"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
+  $form['max_rows'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Maximum number of rows'),
+    '#default_value' => empty($conf['max_rows']) ? '' : $conf['max_rows'],
   );
 
   return $form;

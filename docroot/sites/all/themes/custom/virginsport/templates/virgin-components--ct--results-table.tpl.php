@@ -7,6 +7,8 @@
  *
  * @var bool $is_summary
  *  If the results table is to be rendered as a summary (requires event id)
+ * @var bool $is_card
+ *  Show in a card format only with 1 result
  * @var bool $is_truncated
  *  If the results are truncated or paginated
  * @var string $brand_color
@@ -19,6 +21,8 @@
  *  The URL path to the festival photos
  * @var string $festival_id
  *  The SugarCRM ID of the festival
+ * @var string $ticket_id
+ *  The SugarCRM ID of the ticket
  * @var string $event_id
  *  The SugarCRM ID of the event
  * @var string $event_name
@@ -45,6 +49,7 @@ $template_rendered = TRUE;
       ticket-id="<?php print check_plain($ticket_id); ?>"
       brand-color="<?php print check_plain($brand_color); ?>"
       :has-teaser="<?php print (bool) $is_summary; ?>"
+      :show-top="<?php print (bool) $show_top; ?>"
       :has-filter="<?php print (bool) !$is_summary; ?>"
       :has-sub-filter="<?php print (bool) !$is_summary; ?>"
       :is-truncated="<?php print (bool) $is_truncated; ?>"
@@ -182,7 +187,8 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-chip"><?php print t('Chip Time'); ?></span>
         </div>
 
-        <div v-if="ranks.length" class="vs-results__table-list">
+        <!-- Normal Ranking Results -->
+        <div v-if="ranks.length && !showTop" class="vs-results__table-list">
           <vs-result
             v-for="(i, rank) in ranks"
             :is-open="ranks.length == 1"
@@ -194,6 +200,37 @@ $template_rendered = TRUE;
           ></vs-result>
         </div>
 
+        <!-- Top Results -->
+        <div v-if="showTop" class="vs-results__table-list">
+
+          <div class="vs-results__table-list__group"><?php print t('Top'); ?> {{ maxRows }} <?php print t('male'); ?></div>
+
+          <vs-result
+            v-for="(i, rank) in genderRanks.male"
+            :is-open="genderRanks.male.length == 1"
+            :brand-color="brandColor"
+            :rank="rank"
+            :race="filter.race"
+            :unit="filter.unit"
+            :multiple="genderRanks.male.length > 1"
+            :index="i + 1"
+          ></vs-result>
+
+          <div class="vs-results__table-list__group"><?php print t('Top'); ?> {{ maxRows }} <?php print t('female'); ?></div>
+
+          <vs-result
+            v-for="(i, rank) in genderRanks.female"
+            :is-open="genderRanks.female.length == 1"
+            :brand-color="brandColor"
+            :rank="rank"
+            :race="filter.race"
+            :unit="filter.unit"
+            :multiple="genderRanks.female.length > 1"
+            :index="i + 1"
+          ></vs-result>
+        </div>
+
+        <!-- Result Card -->
         <div v-if="ticketId && !ranks.length" class="vs-results__table-list">
           <vs-result
             :is-open="true"
@@ -205,10 +242,9 @@ $template_rendered = TRUE;
           ></vs-result>
         </div>
 
-        <div v-if="!isTruncated" class="vs-results__footer">
+        <div v-if="!isTruncated && !noResults && !isCard && !showTop" class="vs-results__footer">
           <a href
             class="vs-results__more-btn"
-             v-if="!noResults && !isCard"
              v-on:click.stop.prevent="getRaceResults('more')"
              v-bind:class="{ 'vs-results__more-btn--loading': loading.more  }"
           >
@@ -245,7 +281,7 @@ $template_rendered = TRUE;
       v-bind:class="['vs-result--color-' + brandColor, { 'vs-result--open': isOpen, 'vs-result--loading': loading }]"
     >
       <div v-if="rank" class="vs-result__head" v-on:click="getParticipantDetails(rank.participantId)">
-        <span class="vs-result-col vs-result-col-rank">{{ rank.rank }}</span>
+        <span class="vs-result-col vs-result-col-rank">{{ index ? index : rank.rank }}</span>
         <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">{{ rank.participantFirstName }} {{ rank.participantLastName }}</span>
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">{{ rank.participantBibNumber }}</span>
         <span class="vs-result-col vs-result-col-club vs-result__border">{{ rank.participantClub }}</span>
