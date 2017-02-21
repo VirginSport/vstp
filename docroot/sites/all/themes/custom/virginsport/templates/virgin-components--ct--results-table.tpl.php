@@ -140,6 +140,7 @@ $template_rendered = TRUE;
           )); ?>'
           :active-key="filter.gender"
           :callback="applySubFilterSearch"
+          :is-select="true"
         ></vs-results-ranking>
 
         <vs-results-ranking
@@ -161,6 +162,7 @@ $template_rendered = TRUE;
           ));?>'
           :active-key="filter.age"
           :callback="applySubFilterSearch"
+          :is-select="true"
         ></vs-results-ranking>
 
         <vs-results-ranking
@@ -260,9 +262,16 @@ $template_rendered = TRUE;
 
 <?php if ($requires_templates): ?>
 <script type="text/x-template" id="tpl-vs-results-ranking">
-  <div class="vs-results__ranking">
+  <div class="vs-results__ranking vs-results__ranking--chosen">
     <span class="vs-results__ranking-label">{{ label }}</span>
-    <ul class="vs-results__ranking-options">
+    
+    <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
+      <option v-for="(key, option) in options" v-bind:value="key">
+        {{ option }}
+      </option>
+    </select>
+    
+    <ul v-if="!isSelect" class="vs-results__ranking-options">
       <li
         v-for="(key, option) in options"
         v-bind:class="{ 'vs-results__ranking--active': (key == activeKey)  }"
