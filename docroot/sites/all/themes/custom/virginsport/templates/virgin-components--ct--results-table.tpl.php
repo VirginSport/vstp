@@ -327,12 +327,11 @@ $template_rendered = TRUE;
             </div>
           </div>
           
-          <div class="vs-result__share">
-            share<br>button
-          </div>
+          <vs-result-share
+            :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
+          >
+          </vs-result-share>
           
-          <?php print theme('virginsport_share_buttons', array('subject' => 'dfsdgf', 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
-  
           <div class="vs-result__times">
             <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
   
@@ -369,3 +368,9 @@ $template_rendered = TRUE;
     </div>
   </script>
 <?php endif; ?>
+
+<?php if ($requires_templates): ?>
+  <script type="text/x-template" id="tpl-vs-result-share">
+    <?php print theme('virginsport_share_buttons', array('subject' => t('Check my results'), 'use_placeholder' => TRUE)); ?>
+  </script>
+<?php endif;
