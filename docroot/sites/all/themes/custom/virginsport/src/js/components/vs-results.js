@@ -39,6 +39,7 @@ function initResultsComponents() {
   Vue.component('vs-results', {
     cache: false,
     props: [
+      'showTop',
       'isCard',
       'ticketId',
       'brandColor',
@@ -133,7 +134,14 @@ function initResultsComponents() {
        */
       findRaceResults() {
         this.clearRaceResults();
-        this.getRaceResults('find');
+
+        let loadProperty = 'find';
+
+        if (this.showTop) {
+          this.getGenderResults(loadProperty);
+        } else {
+          this.getRaceResults(loadProperty);
+        }
       },
 
       /**
@@ -143,6 +151,27 @@ function initResultsComponents() {
         this.ranks = [];
         this.noResults = false;
         this.filter.offset = this.filter.originalOffset;
+      },
+
+      /**
+       *
+       */
+      getGenderResults(loadingProperty) {
+        this.loading[loadingProperty] = true;
+
+        let url = `${raceDayUrl}/api/v1/event/${this.festivalId}/race/${this.filter.race.id}/results`;
+
+        // Get male results
+        request(this, url, { params: { gender: 'male', limit: this.maxRows } }).then((result) => {
+          this.genderRanks.male = result.data;
+
+          // Get female results
+          request(this, url, { params: { gender: 'female', limit: this.maxRows } }).then((result) => {
+            this.genderRanks.female = result.data;
+
+            this.loading[loadingProperty] = true;
+          });
+        });
       },
 
       /**
@@ -191,7 +220,11 @@ function initResultsComponents() {
           'age': '',
           'unit': 'miles'
         },
-        ranks: []
+        ranks: [],
+        genderRanks: {
+          'male': [],
+          'female': []
+        }
       };
     }
   });
@@ -220,6 +253,7 @@ function initResultsComponents() {
   Vue.component('vs-result', {
     cache: false,
     props: [
+      'index',
       'multiple',
       'loading',
       'race',
