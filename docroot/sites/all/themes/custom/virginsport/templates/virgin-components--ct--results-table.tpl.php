@@ -330,6 +330,8 @@ $template_rendered = TRUE;
           <div class="vs-result__share">
             share<br>button
           </div>
+          
+          <?php print theme('virginsport_share_buttons', array('subject' => 'dfsdgf', 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
   
           <div class="vs-result__times">
             <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
