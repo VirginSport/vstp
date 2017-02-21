@@ -31,9 +31,9 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
             <div class="vs-color__layer-3"></div>
           </div>
           <?php if(!empty($title)): ?>
-          <h2 class="vs-ticket-type__title">
+          <h3 class="vs-ticket-type__title">
             <?php print check_plain($title); ?>
-          </h2>
+          </h3>
           <?php endif; ?>
           <?php if(!empty($description)): ?>
           <div class="vs-ticket-type__text <?php print $vip_class; ?>">

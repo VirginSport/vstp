@@ -175,7 +175,7 @@ function virgin_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_allowed_layouts';
-  $strongarm->value = 'O:22:"panels_allowed_layouts":4:{s:9:"allow_new";b:1;s:11:"module_name";s:11:"panels_page";s:23:"allowed_layout_settings";a:16:{s:8:"flexible";b:0;s:27:"demonstratie_layout_stagger";b:0;s:34:"demonstratie_layout_split_features";b:0;s:26:"demonstratie_layout_single";b:0;s:27:"demonstratie_layout_landing";b:0;s:29:"demonstratie_layout_full_side";b:0;s:14:"twocol_stacked";b:0;s:13:"twocol_bricks";b:0;s:6:"twocol";b:0;s:25:"threecol_33_34_33_stacked";b:0;s:17:"threecol_33_34_33";b:0;s:25:"threecol_25_50_25_stacked";b:0;s:17:"threecol_25_50_25";b:0;s:6:"onecol";b:0;s:29:"demonstratie_layout_three_col";b:0;s:11:"virginsport";b:1;}s:10:"form_state";N;}';
+  $strongarm->value = 'O:22:"panels_allowed_layouts":4:{s:9:"allow_new";b:1;s:11:"module_name";s:11:"panels_page";s:23:"allowed_layout_settings";a:11:{s:8:"flexible";b:0;s:14:"twocol_stacked";b:0;s:13:"twocol_bricks";b:0;s:6:"twocol";b:0;s:25:"threecol_33_34_33_stacked";b:0;s:17:"threecol_33_34_33";b:0;s:25:"threecol_25_50_25_stacked";b:0;s:17:"threecol_25_50_25";b:0;s:6:"onecol";b:0;s:11:"virginsport";b:1;s:18:"virginsport_states";b:1;}s:10:"form_state";N;}';
   $export['panels_page_allowed_layouts'] = $strongarm;
 
   $strongarm = new stdClass();

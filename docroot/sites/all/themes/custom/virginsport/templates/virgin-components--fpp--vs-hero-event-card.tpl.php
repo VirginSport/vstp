@@ -25,9 +25,9 @@
     <div class="col-xs-12 col-lg-10 offset-lg-1 col-xl-12 offset-xl-0">
       <div class="vs-hero-event-card__content">
         <?php if (!empty($event_title)): ?>
-          <h4 class="vs-hero-event-card__title">
+          <h3 class="vs-hero-event-card__title">
             <?php print check_plain($event_title); ?>
-          </h4>
+          </h3>
         <?php endif; ?>
 
         <?php if (!empty($event_date)): ?>

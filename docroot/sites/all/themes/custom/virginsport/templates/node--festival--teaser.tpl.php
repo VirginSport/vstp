@@ -107,9 +107,9 @@ if (!empty($view) && isset($view->row_index)) {
           <?php print theme('virginsport_color', array('brand_color' => $grapher->fieldGetOne('field_brand_color'), 'brand_pattern' => $grapher->fieldGetOne('field_brand_pattern'))); ?>
 
           <?php if(!empty($grapher->fieldGetOne('title_field'))): ?>
-            <h4 class="vs-card-upcoming__title">
+            <h3 class="vs-card-upcoming__title">
               <?php print $grapher->fieldGetOne('title_field'); ?>
-            </h4>
+            </h3>
           <?php endif; ?>
 
           <div class="vs-card-upcoming__date">

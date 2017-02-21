@@ -15,9 +15,9 @@ $query = drupal_get_query_parameters();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="vs-hero-banner__title"><?php print t(
+              <h1 class="vs-hero-banner__title"><?php print t(
                   'Recover Password'
-                ); ?></h2>
+                ); ?></h1>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>

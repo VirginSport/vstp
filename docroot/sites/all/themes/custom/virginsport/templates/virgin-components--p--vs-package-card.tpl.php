@@ -34,7 +34,7 @@
 
           <div class="vs-package-card-content">
             <?php if (!empty($package_title)): ?>
-            <h2 class="vs-package-card__title"><?php print check_plain($package_title); ?></h2>
+            <h3 class="vs-package-card__title"><?php print check_plain($package_title); ?></h3>
             <?php endif; ?>
             <?php if (!empty($package_description)): ?>
             <p class="vs-package-card__description"><?php print strip_tags($package_description); ?></p>
@@ -55,7 +55,7 @@
       <div class="col-xs-12 col-md-6">
         <div class="vs-package-card-descriptive-wrapper">
           <?php if (!empty($title)): ?>
-          <h2 class="vs-package-card__descriptive-title"><?php print check_plain($title); ?></h2>
+          <h4 class="vs-package-card__descriptive-title"><?php print check_plain($title); ?></h4>
           <?php endif; ?>
           <?php if (!empty($description)): ?>
           <div class="vs-package-card__descriptive-content"><?php print $description; ?></div>

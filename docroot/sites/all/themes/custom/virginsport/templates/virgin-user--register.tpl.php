@@ -14,7 +14,7 @@ $query = drupal_get_query_parameters();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="vs-hero-banner__title"><?php print t('Login'); ?></h2>
+              <h1 class="vs-hero-banner__title"><?php print t('Login'); ?></h1>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>
@@ -32,14 +32,18 @@ $query = drupal_get_query_parameters();
       <div class="col-xs-12">
         <ul class="nav nav-tabs vs-tabs--color-blue">
           <li class="nav-item">
-            <a class="nav-link" href="<?php print url('user/login', array('query' => $query)); ?>">
-              <?php print t('Sign In'); ?>
-            </a>
+            <h3 class="vs-tabs__nav-link-wrapper">
+              <a class="nav-link" href="<?php print url('user/login', array('query' => $query)); ?>">
+                <?php print t('Sign In'); ?>
+              </a>
+            </h3>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="<?php print url('user/register', array('query' => $query)); ?>">
-              <?php print t('Sign Up'); ?>
-            </a>
+            <h3 class="vs-tabs__nav-link-wrapper">
+              <a class="nav-link" href="<?php print url('user/register', array('query' => $query)); ?>">
+                <?php print t('Sign Up'); ?>
+              </a>
+            </h3>
           </li>
         </ul>
         <div class="tab-content">
@@ -210,6 +214,10 @@ $query = drupal_get_query_parameters();
                                 </div>
 
                                 <div class="vs-error-label" v-if="$vs_user_register_date_validator.valid && !validBirthDate()">
+                                  <?php print t("This is an invalid date"); ?>
+                                </div>
+
+                                <div class="vs-error-label" v-if="validBirthDate() && !greaterThan()">
                                   <?php print t("We love your enthusiasm, but you must be 13 to create an account."); ?>
                                 </div>
 

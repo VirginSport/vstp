@@ -61,6 +61,24 @@ export default () => {
        * Check if birth date is valid
        */
       validBirthDate() {
+        let birthDateData = [
+          this.profile.field_date_year,
+          this.profile.field_date_month - 1,
+          this.profile.field_date_day
+        ];
+
+        let birthDate = moment(birthDateData);
+
+        return birthDate.isValid();
+      },
+
+      /**
+       *  Check if user has more than parameter years
+       *
+       * @param age
+       * The number of years the user must have at minimum
+       */
+      greaterThan(age = 13) {
         let now = moment();
 
         let birthDateData = [
@@ -73,7 +91,7 @@ export default () => {
         let duration = moment.duration(now.diff(birthDate));
         let yearsNumber = duration.asYears();
 
-        return yearsNumber > 13;
+        return yearsNumber > age;
       },
 
       /**

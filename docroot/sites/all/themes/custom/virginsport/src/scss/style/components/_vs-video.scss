@@ -72,12 +72,6 @@ vs-video,
   }
 }
 
-.slider img {
-  width: 100%;
-  height: auto;
-}
-
-
 .vs-video-modal--opened {
   .modal-content {
     background-color: transparent;
@@ -121,6 +115,12 @@ vs-video,
 
   video {
     width: 100%;
+  }
+}
+
+.vs-video__video-wrapper__inline.ios-unsupported {
+  .vs-head-region & {
+    display: none;
   }
 }
 
@@ -170,6 +170,16 @@ vs-video,
     width: 3.125rem;
     height: 3.125rem;
   }
+
+  .vs-video-banner__slider:not(.ios-unsupported) {
+    .vs-head-region & {
+      display: none;
+    }
+  }
+
+  .vs-video-banner__slider .slick-slide-img {
+    min-height: 36rem;
+  }
 }
 
 @include media-breakpoint-up(lg) {
@@ -179,5 +189,13 @@ vs-video,
 
   .vs-video__title {
     font-size: 3.75rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .vs-video__video-wrapper__inline {
+    .vs-head-region & {
+      display: none;
+    }
   }
 }

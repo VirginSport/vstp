@@ -21,7 +21,7 @@ $modal_id = uniqid();
     <?php endif; ?>
 
     <?php if (!empty($video_url)): ?>
-      <div class="vs-video__video-wrapper hidden-sm-down">
+      <div class="vs-video__video-wrapper vs-video__video-wrapper__inline">
         <video
           loop
           class="vs-video__video"
@@ -33,7 +33,7 @@ $modal_id = uniqid();
       </div>
     <?php endif; ?>
 
-    <div class="vs-video-banner__slider slider hidden-md-up">
+    <div class="vs-video-banner__slider slider">
       <?php foreach ($slider_images as $atom_grapher): ?>
         <?php if (!empty($atom_grapher->property('sid'))): ?>
           <div
@@ -50,7 +50,7 @@ $modal_id = uniqid();
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 text-xs-center">
-              <h2 class="vs-video__title"><?php print check_plain($title); ?></h2>
+              <h1 class="vs-video__title"><?php print check_plain($title); ?></h1>
               <?php if(!empty($cta_links)): ?>
                 <?php print
                   theme('virginsport_cta_links',
