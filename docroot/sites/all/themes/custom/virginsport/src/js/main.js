@@ -27,6 +27,7 @@ import vsPhotoGallery from './components/vs-photo-gallery';
 import vsUserMenu from './components/vs-user-menu';
 import vsDetectMobile from './components/vs-detect-mobile';
 import vsResults from './components/vs-results';
+import vsUserTicket from './components/vs-user-ticket';
 
 vsBasket();
 vsContactForm();
@@ -55,6 +56,7 @@ vsPhotoGallery();
 vsUserMenu();
 vsDetectMobile();
 vsResults();
+vsUserTicket();
 
 // Libs
 import bootstrap from './lib/bootstrap';

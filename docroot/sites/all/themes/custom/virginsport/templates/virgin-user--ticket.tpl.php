@@ -8,7 +8,11 @@
 $event_days_left = virginsport_days_left($event_start_date);
 ?>
 
-<div class="vs-ticket-card vs-ticket-card--<?php print $ticket->attendly_rego_id; ?> vs-ticket-card--color-<?php print $brand_color; ?>">
+<div
+  id="vs-ticket-card--<?php print $ticket->attendly_rego_id; ?>"
+  class="vs-ticket-card vs-ticket-card--<?php print $ticket->attendly_rego_id; ?> vs-ticket-card--color-<?php print $brand_color; ?>"
+  v-init='<?php print drupal_json_encode($ticket->sugar_id) ?>'
+>
   <div class="container">
     <div
       class="vs-ticket-card-wrapper materialShadow"
@@ -118,7 +122,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
                     class="vs-ticket-card__cta--event-photos"
-                    href="#"
+                    href="<?php print url(sprintf('node/%s/photos', $event_grapher->property('nid'))); ?>?bib={{ participant.bibNumber }}"
                     interaction-type="event photos"
                   >
                     <i class="icon-event-selfie"></i>
