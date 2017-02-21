@@ -845,10 +845,10 @@ function virgin_user_bind_attendly_checkout_session() {
 /**
  * Loads a user ticket object.
  */
-function virgin_user_ticket_load($rego_id) {
+function virgin_user_ticket_load($sugar_id) {
   $ticket = db_select('virgin_user_tickets')
     ->fields('virgin_user_tickets')
-    ->condition('attendly_rego_id', $rego_id, '=')
+    ->condition('sugar_id', $sugar_id, '=')
     ->execute()
     ->fetchObject()
   ;

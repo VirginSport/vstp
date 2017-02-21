@@ -106,7 +106,7 @@ $event_days_left = virginsport_days_left($event_start_date);
           <div class="row clearfix vs-ticket-card__ctas-wrapper">
             <?php if ($event_past): ?>
               <div class="vs-ticket-card__cta-wrapper">
-                <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->attendly_rego_id); ?>">
+                <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->sugar_id); ?>">
                   <i class="icon-results-medal"></i>
                   <span><?php print t('full results'); ?></span>
                 </a>
