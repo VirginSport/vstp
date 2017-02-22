@@ -122,7 +122,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
                     class="vs-ticket-card__cta--event-photos"
-                    href="<?php print url(sprintf('node/%s/photos', $event_grapher->property('nid'))); ?>?bib={{ participant.bibNumber }}"
+                    href="<?php print url(sprintf('node/%s/photos', $event_grapher->property('nid'))); ?>?bib={{ participant.bibNumber || '' }}"
                     interaction-type="event photos"
                   >
                     <i class="icon-event-selfie"></i>
