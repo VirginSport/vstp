@@ -1,7 +1,7 @@
 import $ from '../lib/jquery';
 import Vue from '../lib/vue';
 import Drupal from '../lib/drupal';
-import {getRacedayEvent, getRacedayRace, getRacedayParticipant} from '../lib/raceday';
+import {getRacedayEvent, getRacedayRace, getRacedayParticipant} from '../helper/raceday';
 import moment from 'moment';
 
 import "moment-duration-format";

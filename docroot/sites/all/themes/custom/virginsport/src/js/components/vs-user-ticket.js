@@ -1,6 +1,6 @@
 import Vue from '../lib/vue';
 import Drupal from '../lib/drupal';
-import {getRacedayParticipant} from '../lib/raceday';
+import {getRacedayParticipant} from '../helper/raceday';
 
 export default () => {
   Drupal.behaviors.virginUserTicket = {
