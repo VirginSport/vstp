@@ -17,6 +17,9 @@ function virgin_event_page_photos($node, $bib_number = NULL) {
 
   $query = array();
 
+  // If bib_number is empty and bib query string exists add it.
+  $bib_number = empty($bib_number) ? (empty($_GET['bib']) ? NULL : $_GET['bib']) : $bib_number;
+
   if ($bib_number) {
     $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
