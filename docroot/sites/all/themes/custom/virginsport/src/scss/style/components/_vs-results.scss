@@ -64,7 +64,7 @@
   &__rankings {
     padding: rem(27) rem(27) rem(15) rem(27);
     background: white;
-    text-align: center;
+    text-align: right;
   }
 
   &__ranking {
@@ -285,5 +285,76 @@
       span { color: map_get($map, 'text-color'); }
       &:before { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
     }
+  }
+}
+
+
+// Specific chosen style overrides (completely new design)
+// ----------------------------------------------------------------------------
+
+.vs-results__ranking--chosen {
+  .chosen-container {
+    background: $c-gray-light;
+    border-radius: rem(30);
+    min-width: rem(140);
+  }
+
+  .chosen-container-single .chosen-single {
+    background: $c-gray-light;
+    border: 0;
+    padding-left: rem(30);
+    box-shadow: none;
+    text-align: left;
+    height: rem(34);
+    line-height: rem(34);
+    border-radius: rem(30);
+  }
+
+  .chosen-container-single .chosen-single span {
+    color: rgba($c-gray-dark, 0.5);
+    font-size: rem(12);
+    font-weight: 500;
+  }
+
+  .chosen-container-single .chosen-single div {
+    width: rem(30);
+  }
+
+  .chosen-container-single .chosen-single div b {
+    background-position: 0 14px !important;
+  }
+
+  .chosen-with-drop .chosen-single {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .chosen-drop {
+    background-color: $c-gray-light;
+    border-radius: 0 0 rem(10) rem(10);
+    border: 0;
+    box-shadow: none;
+  }
+
+  .chosen-search {
+    display: none;
+  }
+
+  .chosen-container .chosen-results {
+    color: rgba($c-gray-dark, 0.5);
+  }
+
+  .chosen-container .chosen-results li {
+    @include transition(all .5s ease-in-out);
+    text-align: left;
+    padding-left: rem(26);
+    font-size: rem(12);
+    font-weight: 500;
+  }
+
+  .chosen-container .chosen-results li.highlighted {
+    background: transparent;
+    color: $c-gray-dark;
+    padding-left: rem(36);
   }
 }

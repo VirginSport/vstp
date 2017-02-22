@@ -228,6 +228,7 @@ function initResultsComponents() {
     },
     props: [
       'label',
+      'isSelect',
       'callback',
       'model',
       'options',
