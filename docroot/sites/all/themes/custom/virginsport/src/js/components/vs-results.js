@@ -16,7 +16,7 @@ export default () => {
  * Initialize results components
  */
 function initResultsComponents() {
-  let targetElement = 'body';
+  let targetElement = '.vs-results-container';
 
   if (!document.querySelector(targetElement)) {
     return;
