@@ -335,11 +335,13 @@ $template_rendered = TRUE;
               {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
             </div>
           </div>
-          
-          <vs-result-share
-            :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
-          >
-          </vs-result-share>
+  
+          <div class="vs-result__share">
+            <vs-result-share
+              :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
+            >
+            </vs-result-share>
+          </div>
           
           <div class="vs-result__times">
             <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>

@@ -275,6 +275,9 @@ function initResultsComponents() {
         this.isOpen = false;
         this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
       }
+
+      let $el = $(this.$el);
+
     },
     methods: {
       getSortedStages() {
@@ -394,10 +397,11 @@ function initResultsComponents() {
 
         window.setTimeout(() => {
           if (this.isOpen) {
-            $el.css('max-height', `${$el[0].scrollHeight}px`);
+            // $el.css('max-height', `${$el[0].scrollHeight}px`);
             $el.find('.vs-result__progress-state').removeClass('vs-result__progress-state--force-zero');
+
           } else {
-            $el.css('max-height', 0);
+            // $el.css('max-height', 0);
             $el.find('.vs-result__progress-state').addClass('vs-result__progress-state--force-zero');
           }
         }, 100);
@@ -405,6 +409,17 @@ function initResultsComponents() {
     }
   });
 
+  let $body = $('body');
+  let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+
+
+  $body.on(events, '.vs-result__time:nth-child(2)', (e) => {
+    $(e.currentTarget).closest('.vs-result').addClass('vs-result--first-child');
+  });
+
+  $body.on(events, '.vs-result__time:nth-last-child(2)', (e) => {
+    $(e.currentTarget).closest('.vs-result').addClass('vs-result--last-child');
+  });
 
   new Vue({
     cache: false,

@@ -230,8 +230,6 @@
 
 .vs-result__share {
   position: absolute;
-  width: rem(60);
-  height: rem(60);
   top: rem(12);
   right: 0;
 }
@@ -275,7 +273,7 @@
 
 .vs-result__body {
   @include transition(all .2s ease-in-out);
-  max-height: 0;
+  //max-height: 0;
   overflow: hidden;
 }
 
