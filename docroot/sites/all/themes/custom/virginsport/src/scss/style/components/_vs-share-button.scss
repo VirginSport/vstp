@@ -372,9 +372,4 @@ vs-share-button,
     @include transform(scale(.6));
     background-color: #cfcfcf;
   }
-
-  .vs-share-button__social-links {
-    @include transform(scale(.6));
-    margin-right: rem(-54);
-  }
 }
