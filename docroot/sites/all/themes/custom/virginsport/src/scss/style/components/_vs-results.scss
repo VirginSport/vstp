@@ -140,10 +140,21 @@
   }
 
   &__table {
-    padding: rem(30) rem(13) 0 rem(13);
+    padding: rem(30) rem(30) 0;
     background-color: white;
     color: $c-gray-dark;
     border-radius: 0 0 rem(15) rem(15);
+  }
+
+  &__table-list__group {
+    background-color: #cfcfcf;
+    border-radius: rem(30);
+    color: $c-white;
+    font-size: rem(14);
+    font-weight: 500;
+    margin: rem(24) rem(30);
+    padding: rem(6) rem(30);
+    text-transform: uppercase;
   }
 
   &__table-head {

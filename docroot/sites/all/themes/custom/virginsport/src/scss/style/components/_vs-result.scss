@@ -266,6 +266,10 @@
   }
 }
 
+.vs-results__table-list__group + .vs-result {
+  .vs-result__border { border: none; }
+}
+
 
 // Initial animation setup
 // ----------------------------------------------------------------------------
