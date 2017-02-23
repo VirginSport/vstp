@@ -604,7 +604,7 @@ function virgin_base_views_default_views() {
   );
 
   /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'vs_upcoming_festivals_pane');
+  $handler = $view->new_display('panel_pane', 'Content pane', 'pane');
   $handler->display->display_options['pane_title'] = 'Past Festivals';
   $handler->display->display_options['pane_category']['name'] = 'Lists';
   $handler->display->display_options['pane_category']['weight'] = '0';
@@ -614,7 +614,7 @@ function virgin_base_views_default_views() {
   $handler->display->display_options['allow']['link_to_view'] = 0;
   $handler->display->display_options['allow']['more_link'] = 0;
   $handler->display->display_options['allow']['path_override'] = 0;
-  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
   $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
   $handler->display->display_options['allow']['fields_override'] = 0;
   $translatables['vs_past_festivals'] = array(
