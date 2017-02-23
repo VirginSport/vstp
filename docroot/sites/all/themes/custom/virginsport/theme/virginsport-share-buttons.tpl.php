@@ -12,7 +12,7 @@
  */
 ?>
 
-<div class="vs-share-button">
+<div class="vs-share-button <?php print $classes; ?>">
   <div class="vs-share-button__content">
     <div class="hidden-xs-down vs-share-button__social-links">
       <a

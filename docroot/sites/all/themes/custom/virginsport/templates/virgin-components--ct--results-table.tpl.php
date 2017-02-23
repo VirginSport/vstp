@@ -382,6 +382,6 @@ $template_rendered = TRUE;
 
 <?php if ($requires_templates): ?>
   <script type="text/x-template" id="tpl-vs-result-share">
-    <?php print theme('virginsport_share_buttons', array('subject' => t('Check my results'), 'use_placeholder' => TRUE)); ?>
+    <?php print theme('virginsport_share_buttons', array('subject' => t('Check my results'), 'use_placeholder' => TRUE, 'classes' => 'vs-share-button--results')); ?>
   </script>
 <?php endif;
