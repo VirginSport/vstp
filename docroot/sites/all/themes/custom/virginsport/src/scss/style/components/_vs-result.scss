@@ -61,8 +61,8 @@
   &__meta-wrapper {
     margin: 0 rem(30) rem(46) rem(30);
     padding-top: rem(24);
-    display: flex;
-    justify-content: space-between;
+    @include flexbox;
+    @include justify-content(space-between);
     text-transform: uppercase;
     color: $c-gray;
     width: calc(100% - 160px);
@@ -165,9 +165,12 @@
   }
 
   &__progress {
+    overflow: hidden;
     width: 100%;
     background-color: $c-green-lighter;
     border-radius: rem(30);
+    position:relative;
+    z-index:1;
   }
 
   &__progress-state {
@@ -267,104 +270,157 @@
 // Initial animation setup
 // ----------------------------------------------------------------------------
 
-.vs-result__progress-state--force-zero {
-  width: 0 !important;
+@keyframes header {
+  from  { @include transform(translateX(30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes header-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(30px)); opacity: 0; }
+}
+
+@keyframes share {
+  from  { @include transform(translateX(-30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes share-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(-30px)); opacity: 0; }
+}
+
+@keyframes average-label {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes average-label-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes stage-name {
+  from  { @include transform(translateX(-30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes stage-name-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(-30px)); opacity: 0; }
+}
+
+@keyframes result-time {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-time-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes progress-state {
+  from    { @include transform(translateX(-100%)); }
+  to      { @include transform(translateX(0)); }
+}
+
+@keyframes progress-state-reverse {
+  from    { @include transform(translateX(0)); }
+  to      { @include transform(translateX(-100%)); }
+}
+
+@keyframes result-stat {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-stat-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes result-value {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-value-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
 }
 
 .vs-result__body {
-  @include transition(all .2s ease-in-out);
-  //max-height: 0;
+  @include transition(all .5s ease-in-out);
   overflow: hidden;
+  max-height: 0;
+}
+
+.vs-result:not(.vs-result--first-child) .vs-result__body {
+  //max-height: 0 !important;
 }
 
 .vs-result__meta-wrapper {
-  @include transition(all .5s ease-in-out .25s);
-  @include transform(translateX(30px));
-  opacity: 0;
-
   .vs-result:not(.vs-result--open) & {
-    @include transition(all .5s ease-in-out 1.75s);
-  }
-}
-
-.vs-result__share {
-  @include transition(all .5s ease-in-out .25s);
-  @include transform(translateX(-30px));
-  opacity: 0;
-
-  .vs-result:not(.vs-result--open) & {
-    @include transition(all .5s ease-in-out 1.75s);
-  }
-}
-
-.vs-result__average-label {
-  @include transition(all .5s ease-in-out .5s);
-  opacity: 0;
-
-  .vs-result:not(.vs-result--open) & {
-    @include transition(all .5s ease-in-out 1.5s);
-  }
-}
-
-.vs-result__time {
-  @for $i from 1 through 100 {
-    &:nth-child(#{$i}) {
-      transition-delay: $i * .25s;
-
-      .vs-result__time-stage-name {
-        transition-delay: $i * .25s;
-      }
-
-      .vs-result__progress-state {
-        transition-delay: $i * .25s;
-      }
-    }
-  }
-
-  .vs-result:not(.vs-result--open) & {
-    @for $i from 1 through 100 {
-      &:nth-last-child(#{$i}) {
-        transition-delay: $i * .25s;
-
-        .vs-result__time-stage-name {
-          transition-delay: $i * .25s;
-        }
-
-        .vs-result__progress-state {
-          transition-delay: $i * .25s;
-        }
-      }
-    }
-  }
-
-  @include transition(all 1s ease-in-out);
-  opacity: 0;
-
-  .vs-result__time-stage-name {
-    @include transition(all 1s ease-in-out);
-    @include transform(translateX(-30px));
+    animation: header-reverse .5s;
     opacity: 0;
   }
 }
 
+.vs-result__share {
+  .vs-result:not(.vs-result--open) & {
+    animation: share-reverse .5s;
+    opacity: 0;
+  }
+}
+
+.vs-result__average-label {
+  .vs-result:not(.vs-result--open) & {
+    animation: average-label-reverse .5s;
+    opacity: 0;
+  }
+}
+
+$stages: 20;      // Number of race stages
+$timelapse: .25s; // Time to start next stage animation
+
+.vs-result__time {
+  .vs-result:not(.vs-result--open) & {
+    @for $i from 1 through $stages {
+      &:nth-last-child(#{$i}) {
+        animation: result-time-reverse $i * $timelapse;
+        opacity: 0;
+
+        .vs-result__time-stage-name {
+          animation: stage-name-reverse $i * $timelapse;
+          opacity: 0;
+        }
+
+        .vs-result__progress-state {
+          animation: progress-state-reverse $i * $timelapse;
+        }
+      }
+    }
+  }
+}
+
 .vs-result__stat {
-  @include transition(all .5s ease-in-out 1.5s);
   opacity: 0;
 
   .vs-result:not(.vs-result--open) & {
-    @include transition(all .5s ease-in-out .5s);
+    animation: result-stat-reverse .5s;
+    opacity: 0;
   }
 }
 
 .vs-result__stat-value {
-  @include transition(all .5s ease-in-out 1.75s);
   opacity: 0;
 
   .vs-result:not(.vs-result--open) & {
-    @include transition(all .5s ease-in-out .25s);
+    animation: result-value-reverse .5s;
+    opacity: 0;
   }
 }
-
 
 
 // Animations end values
@@ -372,33 +428,43 @@
 
 .vs-result--open .vs-result__body--ready {
   .vs-result__meta-wrapper {
-    @include transform(translateX(0));
-    opacity: 1;
+    animation: header .5s;
   }
 
   .vs-result__share {
-    @include transform(translateX(0));
-    opacity: 1;
+    animation: share .5s;
   }
 
   .vs-result__average-label {
-    opacity: 1;
+    animation: average-label .5s;
   }
 
   .vs-result__time {
-    opacity: 1;
-  }
+    @for $i from 1 through $stages {
+      &:nth-child(#{$i}) {
+        animation: result-time $i * $timelapse;
 
-  .vs-result__time-stage-name {
-    @include transform(translateX(0));
-    opacity: 1;
-  }
+        .vs-result__time-stage-name {
+          animation: stage-name $i * $timelapse;
+        }
 
+        .vs-result__progress-state {
+          @include transition(all);
+          animation: progress-state $i * $timelapse;
+        }
+      }
+    }
+  }
+}
+
+.vs-result--open.vs-result--last-child {
   .vs-result__stat {
+    animation: result-stat .5s;
     opacity: 1;
   }
 
   .vs-result__stat-value {
+    animation: result-value .5s;
     opacity: 1;
   }
 }

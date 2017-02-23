@@ -30,7 +30,7 @@
     .vs-form-group {
       width: calc(50% - #{rem(5)});
       float: left;
-      max-width: initial;
+      max-width: none;
       margin: rem(10) rem(10) 0 0;
 
       &:nth-child(even) { margin-right: 0 }
@@ -59,6 +59,10 @@
     width: 100%;
     float: none;
     margin: 0;
+  }
+
+  &__form-select .chosen-container-single .chosen-single div b {
+    background-image: url('../img/chosen-arrow-down-white.png') !important;
   }
 
   &__rankings {
@@ -182,6 +186,7 @@
   }
 
   &__photos-btn {
+    @include transition(all .5s ease-in-out);
     position: absolute;
     top: rem(20);
     right: rem(20);
@@ -191,10 +196,15 @@
     font-size: rem(11);
     text-align: center;
     display: block;
-    background-color: rgba($c-white, 0.2);
+    background: rgba($c-white, 0.2) url('../img/results-camera-icon.svg') no-repeat center 22px;
     color: $c-white;
     border-radius: 100%;
     text-transform: uppercase;
+
+    &:hover {
+      opacity: .7;
+      color: $c-white;
+    }
   }
 
   &__title {

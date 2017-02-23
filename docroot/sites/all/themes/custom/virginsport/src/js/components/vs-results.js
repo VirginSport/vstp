@@ -397,12 +397,9 @@ function initResultsComponents() {
 
         window.setTimeout(() => {
           if (this.isOpen) {
-            // $el.css('max-height', `${$el[0].scrollHeight}px`);
-            $el.find('.vs-result__progress-state').removeClass('vs-result__progress-state--force-zero');
-
+            $el.css('max-height', `${$el[0].scrollHeight}px`);
           } else {
-            // $el.css('max-height', 0);
-            $el.find('.vs-result__progress-state').addClass('vs-result__progress-state--force-zero');
+            $el.removeClass('vs-result--last-child').css('max-height', 0);
           }
         }, 100);
       }
@@ -411,14 +408,28 @@ function initResultsComponents() {
 
   let $body = $('body');
   let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+  let animationName = 'progress-state';
 
+  $body.on(events, '.vs-result__time:nth-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--first-child';
 
-  $body.on(events, '.vs-result__time:nth-child(2)', (e) => {
-    $(e.currentTarget).closest('.vs-result').addClass('vs-result--first-child');
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
   });
 
-  $body.on(events, '.vs-result__time:nth-last-child(2)', (e) => {
-    $(e.currentTarget).closest('.vs-result').addClass('vs-result--last-child');
+  $body.on(events, '.vs-result__time:nth-last-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--last-child';
+
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
   });
 
   new Vue({
