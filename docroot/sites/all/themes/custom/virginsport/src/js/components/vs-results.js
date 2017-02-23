@@ -214,6 +214,11 @@ function initResultsComponents() {
 
   Vue.component('vs-results-ranking', {
     cache: false,
+    ready() {
+      if (this.isSelect) {
+        this.bindSelect();
+      }
+    },
     methods: {
       onClick(key) {
         if (key != this.activeKey) {
@@ -221,6 +226,18 @@ function initResultsComponents() {
         }
 
         this.activeKey = key;
+      },
+
+      /**
+       * Because of a conflict with chosen and vue v-model is not updated
+       */
+      bindSelect() {
+        let $select = $(this.$el).find('select');
+
+        $select.on("change", (e) => {
+          let $el = $(e.currentTarget);
+          this.onClick($el.val());
+        });
       }
     },
     props: [
