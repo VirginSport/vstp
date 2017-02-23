@@ -97,16 +97,13 @@ function initResultsComponents() {
        *
        */
       applySubFilter(name, key) {
-        if (name == 'category') {
-          if (key == '') {
-            delete this.filter[name];
-          } else {
-            let prefix = '*';
-            this.filter[name] = prefix + key;
-          }
-        } else {
-          this.filter[name] = key;
+        if (!key || key == 0) {
+          delete this.filter[name];
+          return;
         }
+
+        let prefix = (name == 'category') ? '*' : '';
+        this.filter[name] = prefix + key;
       },
 
       /**
@@ -203,7 +200,7 @@ function initResultsComponents() {
           'race': {},
           'gender': '',
           'category': '',
-          'age': '',
+          'age': 0,
           'unit': 'miles'
         },
         ranks: [],
