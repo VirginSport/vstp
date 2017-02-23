@@ -159,6 +159,7 @@ features[views_view][] = event_reference
 features[views_view][] = festival_event_reference
 features[views_view][] = package_reference
 features[views_view][] = ticket_reference
+features[views_view][] = vs_past_festivals
 features[views_view][] = vs_upcoming_festivals
 features[workbench_moderation_transitions][] = draft:published
 features_exclude[dependencies][entityreference] = entityreference
