@@ -613,13 +613,15 @@ function virgin_base_views_default_views() {
     11 => 0,
     16 => 0,
   );
-  /* Filter criterion: Content: Start Date (field_start_date) */
-  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
-  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
-  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
-  $handler->display->display_options['filters']['field_start_date_value']['relationship'] = 'field_festival_state_target_id';
-  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'today';
+  /* Filter criterion: Content: Status (field_status) */
+  $handler->display->display_options['filters']['field_status_value']['id'] = 'field_status_value';
+  $handler->display->display_options['filters']['field_status_value']['table'] = 'field_data_field_status';
+  $handler->display->display_options['filters']['field_status_value']['field'] = 'field_status_value';
+  $handler->display->display_options['filters']['field_status_value']['value'] = array(
+    'announced' => 'announced',
+    'open' => 'open',
+    'in-progress' => 'in-progress',
+  );
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'vs_upcoming_festivals_pane');
