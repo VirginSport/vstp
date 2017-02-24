@@ -142,10 +142,14 @@ $template_rendered = TRUE;
         v-if="hasSubFilter"
         v-bind:class="['vs-results__rankings', { 'vs-results__rankings--card': isCard }]"
       >
-        <a class="vs-results__collapse-button btn btn-block vs-btn vs-btn--lg vs-btn--min-lg vs-btn--outline-black collapsed" data-toggle="vs-collapse" href="#filters" aria-expanded="false">
+        <a v-if="!isCard" class="vs-results__collapse-button btn btn-block vs-btn vs-btn--lg vs-btn--min-lg vs-btn--outline-black collapsed" data-toggle="vs-collapse" href="#filters" aria-expanded="false">
           <span class="vs-results__collapse-label"><?php print t('Filter'); ?></span>
         </a>
-        <div class="vs-results__collapse-content collapse" id="filters">
+        <div
+          class="vs-results__collapse-content"
+          v-bind:class="[{ 'collapse': !isCard }]"
+          id="filters"
+        >
           <vs-results-ranking
             v-if="!isCard"
             label="<?php print t('Gender'); ?>"

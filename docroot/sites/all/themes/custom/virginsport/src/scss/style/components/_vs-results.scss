@@ -15,6 +15,10 @@
     padding: rem(15) rem(10);
     border-radius: rem(15) rem(15) 0 0;
 
+    @include media-breakpoint-only(xs) {
+      margin: 0 -0.625rem;
+    }
+
     @include media-breakpoint-up(md) {
       padding: rem(30);
     }
@@ -205,6 +209,12 @@
 
     @include media-breakpoint-up(md) {
       margin: 0;
+    }
+  }
+
+  @include media-breakpoint-only(xs) {
+    &__table-list {
+      margin: 0 -0.625rem;
     }
   }
 
@@ -439,6 +449,7 @@
     }
   }
 }
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
