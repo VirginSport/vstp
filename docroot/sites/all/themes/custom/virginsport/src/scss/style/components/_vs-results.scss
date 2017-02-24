@@ -39,10 +39,13 @@
     .vs-form-group {
       float: left;
       max-width: none;
-      margin: rem(10) rem(10) 0 0;
       width: 100%;
 
       &:nth-child(even) { margin-right: 0 }
+
+      @include media-breakpoint-up(md) {
+        margin: rem(10) rem(10) 0 0;
+      }
     }
 
     .vs-focus-label {
@@ -257,7 +260,6 @@
   }
 
   &__find-btn {
-    margin: rem(15) 0 0;
     width: 100%;
     text-align: center;
 
@@ -363,13 +365,80 @@
 }
 
 .vs-results__collapse-link {
+  @include transition(all .5s ease-in-out);
   color: rgba($c-white, .6);
   font-size: rem(12);
   text-align: center;
   display: block;
-  padding: rem(6) 0;
+  position: relative;
+  height: rem(40);
+
+  &:hover,
+  &:focus {
+    span {
+      color: $c-white;
+    }
+  }
+
+  span {
+    @include transition(all .5s ease-in-out);
+    @include transform(translate(-50%, -50%));
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+
+    &:last-child {
+      opacity: 0;
+    }
+  }
+
+  &:not(.collapsed) {
+    span:first-child { opacity: 0; }
+    span:last-child { opacity: 1; }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+
+    + .collapse {
+      display: block;
+    }
+  }
 }
 
+.vs-results__collapse-label {
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    @include transition(all .5s ease-in-out);
+    background: transparent url('../img/filter-arrow.svg') no-repeat center center;
+    display: inline-block;
+    content: '';
+    height: rem(6);
+    position: absolute;
+    opacity: 0;
+    right: rem(-20);
+    top: rem(6);
+    width: rem(10);
+  }
+}
+
+.vs-results__collapse-button {
+  &:not(.collapsed) .vs-results__collapse-label:after {
+    opacity: 1;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+
+    + .collapse {
+      display: block;
+    }
+  }
+}
 
 // Modifiers
 // ----------------------------------------------------------------------------

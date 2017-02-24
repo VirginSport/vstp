@@ -100,8 +100,9 @@ $template_rendered = TRUE;
 
         <div class="clearfix">
   
-          <a class="vs-results__collapse-link" data-toggle="vs-collapse" href="#options" aria-expanded="false">
-            more options
+          <a class="vs-results__collapse-link collapsed" data-toggle="vs-collapse" href="#options" aria-expanded="false">
+            <span><?php print t('more options'); ?></span>
+            <span><?php print t('hide options'); ?></span>
           </a>
   
           <div class="vs-results__collapse-content collapse" id="options">
@@ -141,8 +142,8 @@ $template_rendered = TRUE;
         v-if="hasSubFilter"
         v-bind:class="['vs-results__rankings', { 'vs-results__rankings--card': isCard }]"
       >
-        <a class="vs-results__collapse-button btn btn-block vs-btn vs-btn--lg vs-btn--min-lg vs-btn--outline-black" data-toggle="vs-collapse" href="#filters" aria-expanded="false">
-          filter
+        <a class="vs-results__collapse-button btn btn-block vs-btn vs-btn--lg vs-btn--min-lg vs-btn--outline-black collapsed" data-toggle="vs-collapse" href="#filters" aria-expanded="false">
+          <span class="vs-results__collapse-label"><?php print t('Filter'); ?></span>
         </a>
         <div class="vs-results__collapse-content collapse" id="filters">
           <vs-results-ranking
