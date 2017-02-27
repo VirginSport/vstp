@@ -339,6 +339,8 @@ $template_rendered = TRUE;
           <div class="vs-result__share">
             <vs-result-share
               :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
+              :participant-name="result.firstName + ' ' + result.lastName"
+              :finish-time="diffFormat('hh:mm:ss', initialTime, lastTime)"
             >
             </vs-result-share>
           </div>
@@ -382,6 +384,15 @@ $template_rendered = TRUE;
 
 <?php if ($requires_templates): ?>
   <script type="text/x-template" id="tpl-vs-result-share">
-    <?php print theme('virginsport_share_buttons', array('subject' => t('Check my results'), 'use_placeholder' => TRUE, 'classes' => 'vs-share-button--results')); ?>
+    <?php print theme('virginsport_share_buttons',
+      array(
+        'facebook_text' => t("@participantName has just crossed the finish line at @eventName with a time of @finishTime! Let's celebrate with a beer (or three).", array('@participantName' => '{{ participantName }}', '@finishTime' => '{{ finishTime }}', '@eventName' => check_plain($event_name))),
+        'twitter_text' => t('@participantName just rocked the @eventName with a time of @finishTime. 3 Cheers!', array('@participantName' => '{{ participantName }}', '@finishTime' => '{{ finishTime }}', '@eventName' => check_plain($event_name))),
+        'subject' => t('@participantName has just crossed the finish line @eventName', array('@participantName' => '{{ participantName }}', '@eventName' => check_plain($event_name))),
+        'body' => t("You know how hard @participantName has been training for @eventName at @festivalName and we've got exciting news. @participantName has just crossed the finish line with a time of @finishTime! Give them a high five and treat them to a drink at the pub.", array('@participantName' => '{{ participantName }}', '@finishTime' => '{{ finishTime }}', '@eventName' => check_plain($event_name), '@festivalName' => check_plain($festival_name))),
+        'use_placeholder' => TRUE,
+        'classes' => 'vs-share-button--results'
+      )
+    ); ?>
   </script>
 <?php endif;

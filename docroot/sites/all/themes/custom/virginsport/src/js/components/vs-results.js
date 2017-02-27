@@ -255,7 +255,9 @@ function initResultsComponents() {
     cache: false,
     methods: {},
     props: [
-      'url'
+      'url',
+      'finishTime',
+      'participantName'
     ],
     template: '#tpl-vs-result-share'
   });
