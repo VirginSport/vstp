@@ -132,6 +132,12 @@ function virgin_user_theme($existing, $type, $theme, $path) {
           'form' => '',
         )
       ) + $default,
+    'virgin_user__password_reset' => array(
+      'template' => 'virgin-user--password_reset',
+      'variables' => array(
+        'form' => '',
+      )
+    ) + $default,
     'virgin_user__contact_form' => array(
       'template' => 'virgin-user--contact-form',
       'variables' => array(
@@ -270,6 +276,11 @@ function virgin_user_menu_alter(&$items) {
   $items['user/password']['page callback'] = 'virgin_user_page_user_password';
   $items['user/password']['file'] = $file;
   $items['user/password']['file path'] = $file_path;
+
+  // Override password reset page
+  $items['user/reset/%/%/%']['page callback'] = 'virgin_user_page_user_password_reset';
+  $items['user/reset/%/%/%']['file'] = $file;
+  $items['user/reset/%/%/%']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(

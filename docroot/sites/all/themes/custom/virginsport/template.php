@@ -422,6 +422,7 @@ function virginsport_check_wrapper_required() {
     'user/login',
     'user/register',
     'user/password',
+    'user/reset/%/%/%',
     'user/%',
     'user/%/edit',
     'node/%/tickets',
