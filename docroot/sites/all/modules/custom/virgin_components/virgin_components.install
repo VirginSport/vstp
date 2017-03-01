@@ -26,3 +26,22 @@ function virgin_components_update_7002() {
     field_delete_instance($instance);
   }
 }
+
+/**
+ * Allow to insert festival results list components
+ */
+function virgin_components_update_7003() {
+  $table_name = 'panels_allowed_types';
+
+  if (db_table_exists($table_name)) {
+    db_merge('panels_allowed_types')
+      ->key(array('module' => 'panels_page', 'type' => 'festival_results_list-festival_results_list'))
+      ->fields(array(
+        'module' => 'panels_page',
+        'type' => 'festival_results_list-festival_results_list',
+        'allowed' => 1,
+      ))
+      ->execute()
+    ;
+  }
+}
