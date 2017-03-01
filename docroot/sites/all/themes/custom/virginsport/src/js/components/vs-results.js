@@ -3,7 +3,6 @@ import Vue from '../lib/vue';
 import Drupal from '../lib/drupal';
 import {getRacedayEvent, getRacedayRace, getRacedayParticipant} from '../helper/raceday';
 import moment from 'moment';
-
 import "moment-duration-format";
 
 export default () => {
