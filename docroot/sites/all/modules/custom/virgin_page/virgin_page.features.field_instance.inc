@@ -24,6 +24,12 @@ function virgin_page_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -92,6 +98,12 @@ function virgin_page_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -143,6 +155,12 @@ function virgin_page_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -210,6 +228,12 @@ function virgin_page_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -271,6 +295,12 @@ function virgin_page_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -316,6 +346,12 @@ function virgin_page_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

@@ -7,6 +7,7 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = fieldable_panels_panes
 dependencies[] = filter
+dependencies[] = hybridauth
 dependencies[] = menu
 dependencies[] = metatag
 dependencies[] = navbar
