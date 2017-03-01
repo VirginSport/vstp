@@ -31,14 +31,24 @@ function virgin_components_update_7002() {
  * Allow to insert festival results list components
  */
 function virgin_components_update_7003() {
+  virgin_components_allow_type('festival_results_list-festival_results_list');
+}
+
+/**
+ * Allow component to be added in frontend
+ *
+ * @param $type
+ * The component key type
+ */
+function virgin_components_allow_type($type) {
   $table_name = 'panels_allowed_types';
 
   if (db_table_exists($table_name)) {
     db_merge('panels_allowed_types')
-      ->key(array('module' => 'panels_page', 'type' => 'festival_results_list-festival_results_list'))
+      ->key(array('module' => 'panels_page', 'type' => $type))
       ->fields(array(
         'module' => 'panels_page',
-        'type' => 'festival_results_list-festival_results_list',
+        'type' => $type,
         'allowed' => 1,
       ))
       ->execute()
