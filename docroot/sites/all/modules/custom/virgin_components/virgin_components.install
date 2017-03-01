@@ -32,6 +32,7 @@ function virgin_components_update_7002() {
  */
 function virgin_components_update_7003() {
   virgin_components_allow_type('festival_results_list-festival_results_list');
+  virgin_components_allow_type('views_panes-vs_past_festivals-pane');
 }
 
 /**
