@@ -99,3 +99,53 @@ function _virgin_api_virgin_checkout_finished_action($args = array()) {
 
   observer_notify(VirginUserEvents::NO_SYNC_BASKET_CHECKOUT, $basket_event);
 }
+
+/**
+ * Callback for virgin fetch-ids API endpoint
+ *
+ * @param array $args
+ * @return array
+ */
+function _virgin_api_virgin_fetch_ids($args = array()) {
+  if (!is_array($args)) {
+    return array();
+  }
+
+  // Extract the Contact IDs from the posted list
+  $ids = array();
+
+  foreach ($args as $arg) {
+    if (!is_string($arg)) {
+      continue;
+    }
+
+    $ids[] = $arg;
+  }
+
+  // Fetch the corresponding UIDs
+  $sql = "
+    SELECT
+      field_sugar_id_value as id,
+      entity_id as uid
+    FROM {field_data_field_sugar_id}
+    WHERE entity_type = 'user'
+    AND field_sugar_id_value IN (:ids)
+  ";
+
+  $params = array(
+    ':ids' => $ids
+  );
+
+  try {
+    return db_query($sql, $params)->fetchAllKeyed();
+  } catch (\Exception $e) {
+    watchdog(
+      'virgin_api',
+      'Could not fetch Virgin Sport IDs from the database: @err',
+      array('@err' => $e->getMessage()),
+      WATCHDOG_ERROR
+    );
+
+    return array();
+  }
+}

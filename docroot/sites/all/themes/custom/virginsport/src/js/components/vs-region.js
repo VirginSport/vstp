@@ -26,6 +26,7 @@ const CURVE_WIDTH_HEIGHT_RATIO = 0.041;
  */
 const SPACERLESS_LAST_COMPONENTS = [
   '.vs-hero-banner',
+  '.vs-mylaps'
 ];
 
 /**

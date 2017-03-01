@@ -14,6 +14,17 @@
  * A list of paragraphs
  */
 ?>
+<div class="container">
+  <div class="row">
+    <div class="vs-component-heading vs-photo-gallery-heading">
+      <?php if(!empty($heading)): ?>
+
+        <?php print $heading; ?>
+        
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
 <div class="vs-photo-gallery">
   <div class="vs-photo-gallery-wrapper">
     <div class="row">

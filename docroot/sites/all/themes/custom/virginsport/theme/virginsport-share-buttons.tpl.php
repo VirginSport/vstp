@@ -31,7 +31,7 @@
       </a>
       <a
         class="vs-share-button__icon-button vs-share-button__icon-email"
-        href="mailto:?subject=<?php print $subject; ?>"
+        href="mailto:?subject=<?php print urlencode($subject); ?>&body=<?php print urlencode($url); ?>"
         vs-share-event="email"
       >
         <i class="icon-email-filled"></i>

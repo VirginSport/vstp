@@ -24,6 +24,7 @@ function virgin_api_default_services_endpoint() {
       'jsonp' => FALSE,
       'php' => FALSE,
       'xml' => FALSE,
+      'yaml' => FALSE
     ),
     'parsers' => array(
       'application/json' => TRUE,
@@ -41,6 +42,9 @@ function virgin_api_default_services_endpoint() {
           'enabled' => '1',
         ),
         'checkout-finished' => array(
+          'enabled' => '1',
+        ),
+        'fetch-ids' => array(
           'enabled' => '1',
         ),
       ),

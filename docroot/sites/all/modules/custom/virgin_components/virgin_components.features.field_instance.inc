@@ -1997,6 +1997,43 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_mylaps_track_my_runner-field_event'.
+  $field_instances['fieldable_panels_pane-vs_mylaps_track_my_runner-field_event'] = array(
+    'bundle' => 'vs_mylaps_track_my_runner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_event',
+    'label' => 'Event',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_mylaps_track_my_runner-field_mylaps_id'.
   $field_instances['fieldable_panels_pane-vs_mylaps_track_my_runner-field_mylaps_id'] = array(
     'bundle' => 'vs_mylaps_track_my_runner',
@@ -2019,7 +2056,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_mylaps_id',
     'label' => 'MyLaps ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -5536,6 +5573,7 @@ function virgin_components_field_default_field_instances() {
   t('Component Heading');
   t('Constrained width');
   t('Content');
+  t('Event');
   t('Gameface ID');
   t('Header Image');
   t('Heading');

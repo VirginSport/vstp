@@ -91,3 +91,10 @@ function virgin_update_7009() {
 function virgin_update_7010() {
   module_enable(array('metatag', 'metatag_opengraph', 'metatag_facebook'));
 }
+
+/**
+ * Enables metatag_twitter_cards.
+ */
+function virgin_update_7011() {
+  module_enable(array('metatag_twitter_cards'));
+}
