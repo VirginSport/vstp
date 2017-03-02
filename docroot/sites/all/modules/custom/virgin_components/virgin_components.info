@@ -181,3 +181,4 @@ files[] = components/VirginComponentCustomBannerItem.php
 files[] = components/VirginComponentUntimedEventCardItem.php
 files[] = components/VirginComponentSlideItem.php
 files[] = components/VirginComponentAccordionItem.php
+files[] = components/VirginComponentResultsIntroduction.php
