@@ -70,6 +70,7 @@ features[field_base][] = field_event_status
 features[field_base][] = field_event_type
 features[field_base][] = field_festival
 features[field_base][] = field_festival_event_reference
+features[field_base][] = field_festival_reference
 features[field_base][] = field_festival_state
 features[field_base][] = field_first_name
 features[field_base][] = field_flag_image
