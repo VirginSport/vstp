@@ -45,6 +45,23 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__page_header',
     ),
+    'virgin_components__ct__results_table' => array(
+      'variables' => array(
+        'is_summary' => false,
+        'is_truncated' => true,
+        'brand_color' => 'blue',
+        'results_path' => '',
+        'replay_path' => '',
+        'photo_path' => '',
+        'festival_id' => '',
+        'event_id' => '',
+        'event_name' => '',
+        'event_date' => '',
+        'event_description' => '',
+        'max_rows' => 10
+      ),
+      'template' => 'virgin-components__ct__results_table',
+    ),
   );
 }
 

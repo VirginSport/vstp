@@ -96,14 +96,17 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     if (empty($data[$ticket->festival_node_id])) {
       // Tickets query guarantees that festival always exist
       $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_node_id));
+      $festival_state_grapher = $festival_grapher->relation('field_festival_state');
 
       $attributes = array(
         'festival_grapher' => $festival_grapher,
-        'festival_state_grapher' => $festival_grapher->relation('field_festival_state'),
+        'festival_state_grapher' => $festival_state_grapher,
         'tickets' => ''
       );
 
       $data[$ticket->festival_node_id] = $attributes;
+
+      $ticket->festival_id = $festival_state_grapher->fieldGetOne('field_sugar_id');
     }
 
     // Add ticket to to festival array
