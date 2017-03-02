@@ -45,18 +45,6 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__page_header',
     ),
-    'virgin_components__ct__results_introduction' => array(
-      'template'  => 'virgin-components__ct__results-introduction',
-      'variables' => array(
-        'title' => '',
-        'description' => '',
-        'link_label' => '',
-        'link_url' => '',
-        'link_color' => '',
-        'brand_color' => '',
-        'image_atom' => ''
-      )
-    )
   );
 }
 
