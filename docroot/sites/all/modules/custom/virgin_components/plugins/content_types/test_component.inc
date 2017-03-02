@@ -60,7 +60,18 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
       break;
 
     case 'results-card':
-      $output = 'results-card-theme';
+      $output = theme('virgin_components__ct__festival_results_card', array(
+        'festival_name' => 'Hackney Festival',
+        'festival_date' => '03-04 Aug 16',
+        'race_name' => '5K Run',
+        'race_start' => 'Saturday, 03 Aug 16',
+        'race_end' => 'Sunday, 04 Aug 16',
+        'link_label' => 'View results',
+        'link_url' => url('<front>'),
+        'link_color' => $conf['brand_color'],
+        'brand_color' => $conf['brand_color'],
+        'image_atom' => empty($conf['asset_id']) ? '' : scald_atom_load($conf['asset_id']),
+      ));
       break;
 
     case 'results-table':
