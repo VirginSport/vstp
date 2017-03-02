@@ -95,6 +95,17 @@ function virgin_components_ctools_plugin_post_alter(&$plugin, &$info) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
+ */
+function virgin_components_form_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_alter(&$form, &$form_state) {
+  if ($form['#bundle'] == 'vs_mylaps_track_my_runner') {
+    $form['notice'] = array(
+      '#markup' => t('<p>If an event is selected, the MyLaps ID stored in the selected event will take precedence over the MyLaps ID entered in the component.</p>')
+    );
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 

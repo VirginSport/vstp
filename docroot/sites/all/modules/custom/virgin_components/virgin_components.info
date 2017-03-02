@@ -59,6 +59,7 @@ features[field_instance][] = fieldable_panels_pane-vs_hero_event_card-title_fiel
 features[field_instance][] = fieldable_panels_pane-vs_hootsuite_feed-field_hootsuite_campaign_url
 features[field_instance][] = fieldable_panels_pane-vs_hootsuite_feed-title_field
 features[field_instance][] = fieldable_panels_pane-vs_mylaps_track_my_runner-field_component_heading
+features[field_instance][] = fieldable_panels_pane-vs_mylaps_track_my_runner-field_event
 features[field_instance][] = fieldable_panels_pane-vs_mylaps_track_my_runner-field_mylaps_id
 features[field_instance][] = fieldable_panels_pane-vs_mylaps_track_my_runner-title_field
 features[field_instance][] = fieldable_panels_pane-vs_package_cards-field_component_heading

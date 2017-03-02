@@ -45,9 +45,9 @@
       <div class="row">
         <?php if(!empty($content_heading)): ?>
           <div class="col-xs-12 col-md-3">
-            <h4 class="vs-basic-content-block__static-title">
+            <h3 class="vs-basic-content-block__static-title">
               <?php print check_plain($content_heading); ?>
-            </h4>
+            </h3>
           </div>
         <div class="col-xs-12 col-md-9">
         <?php else: ?>
@@ -55,9 +55,9 @@
         <?php endif; ?>
           <div class="vs-basic-content-block__text-wrapper <?php print $content_align_to == 'left' ? '' : 'text-xs-center'; ?>">
             <?php if (!empty($content_sub_heading)): ?>
-              <h5 class="vs-basic-content-block__date">
+              <h3 class="vs-basic-content-block__date">
                 <?php print check_plain($content_sub_heading); ?>
-              </h5>
+              </h3>
             <?php endif; ?>
 
             <?php if (!empty($page_body)): ?>

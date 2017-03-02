@@ -34,7 +34,7 @@
         <div class="vs-card-untimed-event__content">
           <div class="col-xs-12 vs-card-untimed-event__content-header">
             <?php if (!empty($title)): ?>
-            <h4 class="col-xs-7 col-xl-12 vs-card-untimed-event__title"><?php print check_plain($title); ?></h4>
+            <h3 class="col-xs-7 col-xl-12 vs-card-untimed-event__title"><?php print check_plain($title); ?></h3>
             <?php endif; ?>
 
             <?php if ($event_price !== ''): ?>

@@ -30,6 +30,16 @@ function virgin_base_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function virgin_base_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['alternate_teaser'] = array(
+    'label' => t('Alternate Teaser'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
  * Implements hook_element_info_alter().
  */
 function virgin_base_element_info_alter(&$elements) {
@@ -156,9 +166,13 @@ function virgin_base_date_select_process_alter(&$element, &$form_state, $context
  * Implements hook_metatag_pattern_alter().
  */
 function virgin_base_metatag_pattern_alter(&$pattern, &$types, $tag_name) {
+  $image_tags = array(
+    'og:image',
+    'twitter:image'
+  );
 
   // Override the og image metatag with the header image if the node has one
-  if ($tag_name == 'og:image' && !empty($types['node'])) {
+  if (in_array($tag_name, $image_tags) && !empty($types['node'])) {
     if (!empty($types['node']->field_header_image['und'][0]['sid'])) {
       $atom = scald_atom_load($types['node']->field_header_image['und'][0]['sid']);
 
@@ -168,6 +182,25 @@ function virgin_base_metatag_pattern_alter(&$pattern, &$types, $tag_name) {
         $pattern = '';
       }
     }
+  }
+}
+
+/**
+ * Implements hook_metatag_metatags_view_alter().
+ */
+function virgin_base_metatag_metatags_view_alter(&$output, $instance, $options) {
+  if (module_exists('metatag_twitter_cards')) {
+    // Add site name to twitter site variable not available by default on metatag
+    $output['twitter:site']['#attached']['drupal_add_html_head'][0] = array(
+      array(
+        '#theme' => 'metatag_twitter_cards',
+        '#tag' => 'meta',
+        '#id' => 'twitter:site',
+        '#name' => 'twitter:site',
+        '#value' => variable_get('site_name', ''),
+      ),
+      'twitter:site',
+    );
   }
 }
 

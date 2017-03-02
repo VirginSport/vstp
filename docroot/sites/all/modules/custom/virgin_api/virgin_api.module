@@ -62,6 +62,24 @@ function virgin_api_services_resources() {
             'optional' => FALSE,
           ),
         ),
+      ),
+      'fetch-ids' => array(
+        'file' => array(
+          'type' => 'inc',
+          'module' => 'virgin_api',
+          'name' => 'resources/virgin_resource'
+        ),
+        'callback' => '_virgin_api_virgin_fetch_ids',
+        'access callback' => 'virgin_api_token_access',
+        'args' => array(
+          array(
+            'name' => 'ids',
+            'type' => 'array',
+            'description' => 'The sugarcrm ids',
+            'source' => 'data',
+            'optional' => FALSE,
+          ),
+        ),
       )
     ),
   );

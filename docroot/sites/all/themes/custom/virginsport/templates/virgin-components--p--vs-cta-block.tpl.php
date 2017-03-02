@@ -16,7 +16,7 @@
 <div class="vs-cta-block__item">
   <div class="vs-cta-block__background--with-image-limited-opacity" style="<?php print virginsport_atom_background($card_image->getEntity()); ?>"></div>
   <?php if(!empty($title)): ?>
-  <h1 class="vs-cta-block__title"><?php print check_plain($title); ?></h1>
+  <h3 class="vs-cta-block__title"><?php print check_plain($title); ?></h3>
   <?php endif; ?>
   <?php if(!empty($description)): ?>
   <p class="vs-cta-block__content"><?php print $description; ?></p>
