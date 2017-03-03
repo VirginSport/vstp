@@ -36,7 +36,7 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
 
   /** @var \VirginEntityGrapher $festival */
   $festival = $load_node($conf['festival_id']);
-  
+
   /** @var \VirginEntityGrapher $event */
   $event = $load_node($conf['event_id']);
 
@@ -67,7 +67,31 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
       break;
 
     case 'results-table':
-      $output = 'results-table-theme';
+      $output = theme('virgin_components__ct__results_table', array(
+        'is_summary' => FALSE,
+        'is_truncated' => FALSE,
+        'brand_color' => $festival->fieldGetOne('field_brand_color'),
+        'replay_path' => url('/node/' . $event->property('nid')),
+        'photo_path' => url('/node/' . $event->property('nid')),
+        'max_rows' => 10
+      ));
+      break;
+
+    case 'summary-results-table':
+      $event_state = $event->relation('field_event_state');
+      $start_date = $event_state->fieldGetOne('field_start_date');
+      $timezone = $event_state->fieldGetOne('field_timezone');
+
+      $output = theme('virgin_components__ct__results_table', array(
+        'is_summary' => TRUE,
+        'brand_color' => $event->fieldGetOne('field_brand_color'),
+        'event_name' => $event->fieldGetOne('title_field'),
+        'event_date' => virgin_date($start_date, $timezone)->format('d M'),
+        'event_description' => strip_tags($event->fieldGetOne('field_description')),
+        'replay_path' => url('/node/' . $event->property('nid')),
+        'results_path' => url('/node/' . $event->property('nid')),
+        'max_rows' => 5
+      ));
       break;
 
     case 'result-card':
@@ -105,6 +129,7 @@ function virgin_components_test_component_content_type_edit_form($form, &$form_s
       'results-overview' => 'Results Overview',
       'results-card' => 'Results Card',
       'results-table' => 'Results Table',
+      'summary-results-table' => 'Summary Results Table',
       'result-card' => 'Result Card',
       'youtube-video' => 'Youtube Video',
     ),
@@ -123,16 +148,16 @@ function virgin_components_test_component_content_type_edit_form($form, &$form_s
     '#title' => t('Event ID'),
     '#default_value' => empty($conf['event_id']) ? '' : $conf['event_id']
   );
-  
+
   $form['asset_id'] = array(
     '#type' => 'textfield',
     '#title' => t('Asset ID'),
     '#default_value' => empty($conf['asset_id']) ? '' : $conf['asset_id']
   );
-  
+
   // Field brand color has the virgin brand colors
   $field = field_info_field('field_brand_color');
-  
+
   // Extra button color options not covered by brand colors
   $options = array(
     '' => t('Default'),
@@ -142,12 +167,12 @@ function virgin_components_test_component_content_type_edit_form($form, &$form_s
     'outline-black' => t('Outline-black'),
     'outline-white' => t('Outline-white'),
   );
-  
+
   // Append gradient prefix to all brand colors
   foreach ($field['settings']['allowed_values'] as $key => $value) {
     $options[$key] = $value;
   }
-  
+
   $form['brand_color'] = array(
     '#type' => 'select',
     '#title' => t('Brand Color'),
