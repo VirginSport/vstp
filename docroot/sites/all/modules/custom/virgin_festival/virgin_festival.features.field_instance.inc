@@ -10,6 +10,57 @@
 function virgin_festival_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-festival-field_alert'.
+  $field_instances['node-festival-field_alert'] = array(
+    'bundle' => 'festival',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'If set an alert message will be shown to all users in all pages related to this festival.',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 25,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_alert',
+    'label' => 'Alert',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 2,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 16,
+    ),
+  );
+
   // Exported field_instance: 'node-festival-field_brand_color'.
   $field_instances['node-festival-field_brand_color'] = array(
     'bundle' => 'festival',
@@ -1887,6 +1938,7 @@ function virgin_festival_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Alert');
   t('Attendly ID');
   t('Brand Color');
   t('Brand Pattern');
@@ -1897,6 +1949,7 @@ function virgin_festival_field_default_field_instances() {
   t('Festival State');
   t('Hashtag');
   t('Header Image');
+  t('If set an alert message will be shown to all users in all pages related to this festival.');
   t('Introduction');
   t('Introduction Image');
   t('Logo');
