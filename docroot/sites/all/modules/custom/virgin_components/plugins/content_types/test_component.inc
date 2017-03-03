@@ -48,7 +48,7 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
       break;
 
     case 'results-overview':
-      $output = 'results-overview-theme';
+      $output = theme('virgin_components__ct__results_overview');
       break;
 
     case 'results-card':
