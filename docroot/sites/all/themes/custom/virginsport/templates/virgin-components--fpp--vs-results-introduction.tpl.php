@@ -23,7 +23,7 @@
               theme('virginsport_cta_links',
                 array(
                   'links' => $cta_links,
-                  'classes' => 'vs-results-introduction__button vs-btn--gradient-' . $link_color
+                  'classes' => 'vs-results-introduction__button'
                 )
               );
             ?>
