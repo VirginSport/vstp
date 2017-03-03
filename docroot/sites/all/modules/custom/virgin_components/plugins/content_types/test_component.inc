@@ -48,8 +48,19 @@ function virgin_components_test_component_content_type_render($subtype, $conf, $
       break;
 
     case 'results-overview':
-      $output = theme('virgin_components__ct__results_overview');
+      $output = theme('virgin_components__ct__results_overview', array(
+        'race_name' => '5K Run',
+        'race_date' => '03 Aug',
+        'race_description' => 'Conversa coeptis norant. Aestu gravitate vis sibi tonitrua. Poena solum hominum onus duris gravitate faecis umor praecipites. Sua consistere elementaque limitibus concordi passim pluvialibus cepit! Speciem premuntur. Invasit instabilis circumfuso',
+        'link_label' => 'Race results',
+        'link_url' => url('<front>'),
+        'link_color' => $conf['brand_color'],
+        'brand_color' => $conf['brand_color'],
+        'image_atom' => empty($conf['asset_id']) ? '' : scald_atom_load($conf['asset_id']),
+      ));
       break;
+    
+    
 
     case 'results-card':
       $output = 'results-card-theme';
