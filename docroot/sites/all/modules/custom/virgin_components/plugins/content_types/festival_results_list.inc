@@ -7,9 +7,9 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Festival Results List'),
+  'title' => t('Festival Results'),
   'description' => '',
-  'category' => 'VirginSport',
+  'category' => 'Lists',
   'defaults' => array(),
 );
 
