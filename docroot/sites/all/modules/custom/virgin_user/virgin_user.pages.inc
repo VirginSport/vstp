@@ -551,3 +551,26 @@ function virgin_user_page_ajax_form_post() {
 
   drupal_exit();
 }
+
+/**
+ * Page callback for user event results page
+ */
+function virgin_user_page_results($ticket) {
+  $event = virgin_user_ticket_event($ticket->attendly_rego_id);
+
+  if (empty($event)) {
+    drupal_not_found();
+    return;
+  }
+
+  $conf = array(
+    'is_card' => TRUE,
+    'event_id' => $event->property('nid'),
+    'ticket_id' => $ticket->sugar_id
+  );
+
+  ctools_include('content');
+  $results_table = ctools_content_render('results_table', null, $conf, array(), array());
+
+  return $results_table->content;
+}

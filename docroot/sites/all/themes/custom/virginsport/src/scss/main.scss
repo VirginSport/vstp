@@ -41,6 +41,10 @@
 @import "globals";
 
 
+// Functions
+@import "functions";
+
+
 // Styles
 @import "style/buttons";
 @import "style/forms";
@@ -93,6 +97,8 @@
 @import "style/components/vs-scroller";
 @import "style/components/vs-results-introduction";
 @import "style/components/vs-festival-results-card";
+@import "style/components/vs-result";
+@import "style/components/vs-results";
 @import "style/components/vs-mylaps";
 
 

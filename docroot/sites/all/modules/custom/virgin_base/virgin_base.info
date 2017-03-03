@@ -30,6 +30,7 @@ features[field_base][] = field_address_line_2
 features[field_base][] = field_address_postcode
 features[field_base][] = field_address_state
 features[field_base][] = field_agree_share_medical_info
+features[field_base][] = field_alert
 features[field_base][] = field_alignment
 features[field_base][] = field_allergies
 features[field_base][] = field_alternative_text
