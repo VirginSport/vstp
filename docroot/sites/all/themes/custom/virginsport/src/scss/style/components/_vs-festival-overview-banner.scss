@@ -2,13 +2,8 @@
 // Blocks
 // ----------------------------------------------------------------------------
 
-.vs-festival-overview-banner-heading {
-  margin-bottom: 0.625rem;
-  padding-left: 1.25rem;
-}
-
-vs-festival-overview-banner,
-.vs-festival-overview-banner {
+vs-results-overview-banner,
+.vs-results-overview-banner {
   display: block;
   margin-bottom: 9.5rem;
   z-index: 3;
@@ -21,30 +16,53 @@ vs-festival-overview-banner,
 // Elements
 // ----------------------------------------------------------------------------
 
-.vs-festival-overview-banner-block-wrapper {
+.vs-results-overview-banner-block-wrapper {
   position: relative;
   min-width: 20rem;
   min-height: 16.25rem;
   width: 100%;
   overflow: hidden;
+
+  @media screen and (min-width: 1440px) {
+    @include make-constrained();
+  }
 }
 
-.vs-festival-overview-banner__background {
-  width: 100%;
+.vs-results-overview-banner__background {
+  border-radius: .625rem .625rem 0 0;
   min-height: 16.25rem;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  margin-left: -$grid-gutter-width/4;
+  margin-right: -$grid-gutter-width/4;
+
+  @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    border-radius: .625rem;
+  }
 }
 
-.vs-festival-overview-banner__content-wrapper {
+.vs-results-overview-banner__content-wrapper {
   background-color: $c-white;
+  border-radius: 0 0 .625rem .625rem;
   min-height: 16.5625rem;
-  padding: 1.875rem 2.5rem 1.875rem 2.5rem;
+  padding: 1.875rem 2.5rem 4.875rem 2.5rem;
   position: relative;
+  margin-left: -$grid-gutter-width/4;
+  margin-right: -$grid-gutter-width/4;
+
+  @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
-.vs-festival-overview-banner__title {
+.vs-results-overview-banner__title {
   position: relative;
   display: block;
   margin: 0 0 1.2rem 0;
@@ -56,51 +74,29 @@ vs-festival-overview-banner,
   text-align: center;
 }
 
-.vs-festival-overview-banner__content {
+.vs-results-overview-banner__content {
   display: block;
   text-align: center;
-  padding-bottom: 5.5rem;
 
   > p:first-child {
     margin-bottom: 1.1875rem;
   }
 }
 
-.vs-festival-overview-banner__ctaButton-wrapper {
-  text-align: center;
-  text-transform: uppercase;
+.vs-results-overview-banner_button {
+  @include transform(translateX(-50%));
+  bottom: 1.84rem;
+  display: block;
+  left: 50%;
   position: absolute;
-  width: calc(100% - 3.75rem);
-  bottom: 1.875rem;
-}
+  width: calc(100% - 5rem);
 
-.vs-festival-overview-banner__ctaButton {
-  margin-right: 0.9375rem;
-  margin-top: 0.9375rem;
-}
-
-.vs-festival-overview-banner__ctaTexts-wrapper {
-  font-family: $font-family-serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1.25rem;
-  text-transform: uppercase;
-  text-align: center;
-  color: $c-blue;
-}
-
-.vs-festival-overview-banner__caption {
-  position: absolute;
-  right: 4.1875rem;
-  bottom: 1.25rem;
-  left: 35.4375rem;
-  font-family: $font-family-sans-serif;
-  font-weight: 300;
-  font-size: 0.9375rem;
-  color: $c-white;
-  line-height: 1.5rem;
-  text-transform: uppercase;
-  text-align: right;
+  @include media-breakpoint-up(md) {
+    @include transform(translateX(0));
+    display: inline-block;
+    left: 1.84rem;
+    width: auto;
+  }
 }
 
 
@@ -110,12 +106,12 @@ vs-festival-overview-banner,
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
-  .vs-festival-overview-banner--color-#{$color} {
-    .vs-festival-overview-banner__title:after {
+  .vs-results-overview-banner--color-#{$color} {
+    .vs-results-overview-banner__title:after {
       background-color: map_get($map, 'solid-color');
     }
 
-    .vs-festival-overview-banner__caption {
+    .vs-results-overview-banner__caption {
       color: map_get($map, 'solid-color');
     }
   }
@@ -126,11 +122,11 @@ vs-festival-overview-banner,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(lg) {
-  .vs-festival-overview-banner-block-wrapper {
+  .vs-results-overview-banner-block-wrapper {
     min-height: 26.875rem;
   }
 
-  .vs-festival-overview-banner__background {
+  .vs-results-overview-banner__background {
     min-height: 26.875rem;
     position: absolute;
     top: 0;
@@ -139,7 +135,7 @@ vs-festival-overview-banner,
     left: 0;
   }
 
-  .vs-festival-overview-banner__content-wrapper {
+  .vs-results-overview-banner__content-wrapper {
     @include border-radius(.625rem);
     left: 8.125rem;
     width: 31.25rem;
@@ -149,7 +145,7 @@ vs-festival-overview-banner,
     padding: 1.84rem 4.375rem 2.5rem 1.875rem;
   }
 
-  .vs-festival-overview-banner__title {
+  .vs-results-overview-banner__title {
     margin-bottom: 2.8rem;
     font-size: 3.125rem;
     line-height: 3.125rem;
@@ -166,19 +162,11 @@ vs-festival-overview-banner,
     }
   }
 
-  .vs-festival-overview-banner__content {
+  .vs-results-overview-banner__content {
     text-align: left;
 
     > p:first-child {
       margin-bottom: 1.25rem;
     }
-  }
-
-  .vs-festival-overview-banner__ctaTexts-wrapper {
-    text-align: left;
-  }
-
-  .vs-festival-overview-banner__ctaButton-wrapper {
-    text-align: left;
   }
 }

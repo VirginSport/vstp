@@ -15,18 +15,23 @@
  */
 ?>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="vs-promo-banner-block-wrapper">
-      <div class="vs-promo-banner__background" style="<?php print virginsport_atom_background($image_atom->getEntity()); ?>"></div>
-      <div class="col-xs-12 vs-promo-banner__content-wrapper">
-        <h1 class="vs-promo-banner__title"><?php print $race_name; ?></h1>
-        <div class="vs-promo-banner__content">
-          <p><?php print $race_description; ?></p>
+    <div class="vs-results-overview-banner-block-wrapper vs-results-overview-banner--color-<?php print $brand_color; ?>">
+      <div class="col-xs-12">
+        <div class="vs-results-overview-banner__background" style="<?php print virginsport_atom_background($image_atom); ?>"></div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="vs-results-overview-banner__content-wrapper">
+              <h2 class="vs-results-overview-banner__title"><?php print check_plain($race_name); ?></h2>
+              <div class="vs-results-overview-banner__content">
+                <p><?php print check_plain($race_description); ?></p>
+              </div>
+              <a href="<?php print $link_url; ?>" class="btn vs-btn vs-btn--min-sm vs-results-overview-banner_button vs-btn--gradient-<?php print $brand_color; ?>"><?php print check_plain($link_label); ?></a>
+            </div>
+          </div>
         </div>
-        <a href="<?php print $link_url; ?>" class="btn vs-btn vs-btn--min-sm vs-btn--gradient-<?php print $brand_color; ?>"><?php print $link_label; ?></a>
       </div>
-      <div class="hidden-md-down vs-promo-banner__caption"></div>
     </div>
   </div>
 </div>
