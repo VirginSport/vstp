@@ -108,7 +108,9 @@
   </div>
 </div>
 <div class="vs-overlay-blur">
-  <div class="vs-notification vs-notification--not-sticky"></div>
+  <div class="vs-notification vs-notification--not-sticky">
+    <?php print $alerts; ?>
+  </div>
 
   <div class="vs-notification vs-notification--sticky">
     <?php print $messages; ?>

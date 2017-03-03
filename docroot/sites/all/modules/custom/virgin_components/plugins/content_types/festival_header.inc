@@ -106,11 +106,25 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   $atom = $g->relation('field_header_image');
   $logo = $g->relation('field_logo');
 
-  // If the header image could not be loaded, and there's a festival nid
-  // available, then fetch the header image from the festival instead.
-  if (!empty($festival_nid) && ($atom->getEntityType() != 'scald_atom')) {
+  // Load the festival node, if a festival nid is available.
+  $g_festival = NULL;
+
+  if (!empty($festival_nid)) {
     $g_festival = new VirginEntityGrapher('node', node_load($festival_nid));
+  }
+
+  // If the header image could not be loaded, and there's a festival available,
+  // then fetch the header image from the festival instead.
+  if ($g_festival && ($atom->getEntityType() != 'scald_atom')) {
     $atom = $g_festival->relation('field_header_image');
+  }
+
+  // Ensure any alerts in the related festival are visible in the page where
+  // the festival header component is visible.
+  if ($g->property('type') == 'festival') {
+    virgin_set_alert($g->fieldGetOne('field_alert'));
+  } else if ($g_festival) {
+    virgin_set_alert($g_festival->fieldGetOne('field_alert'));
   }
 
   // Get current menu path

@@ -165,6 +165,9 @@ function virginsport_preprocess_page(&$vars) {
   // Fetch the list of regions
   $vars['regions'] = virginsport_regions();
 
+  // Setup the alerts
+  $vars['alerts'] = virginsport_alerts();
+
   // Make cookie template available in javascript
   $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
   $cookie_template = theme('virginsport_notification', array('message' => $message));
@@ -577,4 +580,20 @@ function virginsport_add_gtm_data_layer(&$vars) {
   // Add data layer encoded JSON
   $vars['gtm_metadata'] = $metadata;
   $vars['gtm_data_layer'] = drupal_json_encode(array($properties));
+}
+
+/**
+ * Get the HTML of the list of alerts in the current request
+ *
+ * @return string
+ *  The HTML of the list of alerts
+ */
+function virginsport_alerts() {
+  $content = '';
+
+  foreach (virgin_get_alerts() as $alert) {
+    $content .= theme('virginsport_notification', array('message' => filter_xss($alert)));
+  }
+
+  return $content;
 }
