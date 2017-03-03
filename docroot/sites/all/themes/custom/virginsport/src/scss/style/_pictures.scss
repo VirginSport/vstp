@@ -1,0 +1,36 @@
+.vs-placeholder-bg:before {
+  @include transition(opacity .6s ease);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+  z-index: 0;
+}
+
+.vs-placeholder-bg--disabled:before {
+  opacity: 0;
+}
+
+.picture-wrapper__placeholder {
+  @include transition(opacity .6s ease);
+  opacity: 1;
+}
+
+.picture-wrapper__placeholder--disabled {
+  opacity: 0;
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-placeholder-bg--#{$color}:before {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
+  }
+
+  .picture-wrapper__placeholder--#{$color} {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
+  }
+}

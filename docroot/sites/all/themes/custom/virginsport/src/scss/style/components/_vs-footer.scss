@@ -20,6 +20,10 @@ vs-footer,
 .vs-footer__language {
   margin-bottom: 1.875rem;
   padding: 0 .9375rem;
+
+  .picture-wrapper {
+    display: inline-block;
+  }
 }
 
 .vs-footer__language-list {
@@ -43,6 +47,10 @@ vs-footer,
     border-bottom: 0;
     border-right: 0;
     right: 18px;
+  }
+
+  .picture-wrapper {
+    display: inline-block;
   }
 }
 
@@ -127,6 +135,7 @@ vs-footer,
   height: auto;
 }
 
+.vs-footer__region__
 .vs-footer__region-label {
   position: relative;
   top: 1px;

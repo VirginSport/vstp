@@ -413,7 +413,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
             <div class="col-xs-12 col-md-6 vs-teaser__col">
               <div class="vs-teaser__image-scale">
                 <?php if(!empty($teaser_images[0]['sid'])): ?>
-                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[0]['sid'], 'image_style' => 'vs_teaser_portrait', 'classes' => 'vs-teaser__image-a', 'image_classes' => 'img-fluid')); ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $teaser_images[0]['sid'], 'image_style' => 'vs_teaser_portrait', 'image_classes' => 'vs-teaser__image-a img-fluid')); ?>
                 <?php endif; ?>
 
                 <?php if(!empty($teaser_images[1]['sid'])): ?>

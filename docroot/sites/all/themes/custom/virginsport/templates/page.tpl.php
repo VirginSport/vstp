@@ -228,7 +228,7 @@
           <div class="btn-group vs-footer__language">
 
             <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
-              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'placeholder' => FALSE, 'image_classes' => 'vs-footer__flags')); ?>
               <span class="vs-footer__region-label"><?php print $regions['current']['country_letter_code']; ?></span>
             </button>
 
@@ -236,7 +236,7 @@
               <?php foreach ($regions['other'] as $region): ?>
               <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
                 <?php if (!empty($region['flag'])): ?>
-                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'image_classes' => 'vs-footer__flags')); ?>
+                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'placeholder' => FALSE, 'image_classes' => 'vs-footer__flags')); ?>
                   <?php print check_plain($region['country_letter_code']); ?>
                 <?php endif; ?>
               </a>

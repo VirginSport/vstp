@@ -13,6 +13,11 @@
     }
   }
 
+  .picture-wrapper__placeholder {
+    position: absolute;
+    top: 0;
+  }
+
   @include media-breakpoint-up(md) {
     width: calc(100% - 40px);
     margin-left: 2.5rem;
