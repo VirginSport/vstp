@@ -1,5 +1,6 @@
 .vs-placeholder-bg:before {
   @include transition(opacity .6s ease);
+  border-radius: .625rem;
   content: "";
   position: absolute;
   top: 0;
@@ -8,6 +9,29 @@
   right: 0;
   opacity: 1;
   z-index: 0;
+}
+
+/**
+ * These classes refer to vs-image.js class list
+ */
+
+.vs-card-past__image,
+.vs-package-card-wrapper,
+.vs-card-untimed-event__image,
+.vs-claim-ticket__background,
+.vs-festival-profile-header__background,
+.vs-carousel__image,
+.vs-promo-banner__background,
+.vs-hero-banner__background--fixed,
+.vs-promo-banner__background,
+.vs-hero-event-card__image,
+.vs-card-upcoming__image,
+.vs-cta-block__background--with-image-limited-opacity,
+.vs-basic-content-block__hero-image,
+.vs-photo-gallery__thumbnail {
+  &:not(.vs-placeholder-bg) {
+    background-size: 0.001%;
+  }
 }
 
 .vs-placeholder-bg--disabled:before {

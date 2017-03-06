@@ -2,6 +2,11 @@ import $ from '../lib/jquery';
 
 const VIRGIN_DEFAULT_COLOR = 'red';
 
+/**
+ * This class list must be used on pictures.scss file to fix image loading on
+ * Internet Explorer 10+
+ */
+
 const BACKGROUND_SELECTORS = [
   '.vs-card-past__image',
   '.vs-package-card-wrapper',
@@ -70,7 +75,7 @@ export default () => {
       let percentage = parseInt(imgHeight) / srcHeight;
 
       imgWidth = Math.ceil(srcWidth * percentage);
-    } 
+    }
 
     $placeholder.css('height', imgHeight);
     $placeholder.css('width', imgWidth);
