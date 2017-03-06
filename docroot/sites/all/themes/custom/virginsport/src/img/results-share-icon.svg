@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="20px" viewBox="0 0 17 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Group-28" transform="translate(1.000000, 1.000000)">
+                <circle id="Oval-52-Copy-2" fill="#FFFFFF" transform="translate(2.700000, 9.000000) scale(1, -1) translate(-2.700000, -9.000000) " cx="2.7" cy="9" r="2.7"></circle>
+                <g id="Group-22" transform="translate(2.400000, 0.000000)">
+                    <path d="M8.7,5.4 C10.1911688,5.4 11.4,4.19116882 11.4,2.7 C11.4,1.20883118 10.1911688,0 8.7,0 C7.20883118,0 6,1.20883118 6,2.7 C6,4.19116882 7.20883118,5.4 8.7,5.4 Z" id="Oval-52" fill="#FFFFFF"></path>
+                    <path d="M0,9 L8.4,3" id="Line" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                    <path d="M8.7,18 C10.1911688,18 11.4,16.7911688 11.4,15.3 C11.4,13.8088312 10.1911688,12.6 8.7,12.6 C7.20883118,12.6 6,13.8088312 6,15.3 C6,16.7911688 7.20883118,18 8.7,18 Z" id="Oval-52" fill="#FFFFFF" transform="translate(8.700000, 15.300000) scale(1, -1) translate(-8.700000, -15.300000) "></path>
+                    <path d="M0,15 L8.4,9" id="Line" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" transform="translate(4.200000, 12.000000) scale(1, -1) translate(-4.200000, -12.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -99,82 +99,104 @@ $template_rendered = TRUE;
         </div>
 
         <div class="clearfix">
-          <div class="vs-form-group">
-            <input class="form-control" type="text" id="input-runner-name" v-model="filter.name">
-            <label class="vs-focus-label" for="input-runner-name"><?php print t("Runner's Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+  
+          <a class="vs-results__collapse-link collapsed" data-toggle="vs-collapse" href="#options" aria-expanded="false">
+            <span><?php print t('more options'); ?></span>
+            <span><?php print t('hide options'); ?></span>
+          </a>
+  
+          <div class="vs-results__collapse-content collapse" id="options">
+            <div class="vs-form-group">
+              <input class="form-control" type="text" id="input-runner-name" v-model="filter.name">
+              <label class="vs-focus-label" for="input-runner-name"><?php print t("Runner's Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+            </div>
+  
+            <div class="vs-form-group">
+              <input class="form-control" type="text" id="input-bib-number" v-model="filter.bib">
+              <label class="vs-focus-label" for="input-bib-number"><?php print t("BIB Number"); ?> <em><?php print t('(optional)'); ?></em></label>
+            </div>
+  
+            <div class="vs-form-group">
+              <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
+              <label class="vs-focus-label" for="input-team-name"><?php print t("Team Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+            </div>
+  
+            <div class="vs-form-group">
+              <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
+              <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+            </div>
           </div>
-
-          <div class="vs-form-group">
-            <input class="form-control" type="text" id="input-bib-number" v-model="filter.bib">
-            <label class="vs-focus-label" for="input-bib-number"><?php print t("BIB Number"); ?> <em><?php print t('(optional)'); ?></em></label>
-          </div>
-
-          <div class="vs-form-group">
-            <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
-            <label class="vs-focus-label" for="input-team-name"><?php print t("Team Name"); ?> <em><?php print t('(optional)'); ?></em></label>
-          </div>
-
-          <div class="vs-form-group">
-            <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
-            <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
-          </div>
+          
         </div>
       </div>
 
-      <a v-if="photoPath" href="{{ photoPath }}" class="vs-results__photos-btn"><?php print t('Event Photos'); ?></a>
-      <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
+      <span>
+        <a v-if="photoPath" href="{{ photoPath }}" class="vs-results__btn vs-results__photos-btn"><?php print t('Event Photos'); ?></a>
+      </span>
+      <span>
+        <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
+      </span>
     </div>
     <div>
       <div
         v-if="hasSubFilter"
         v-bind:class="['vs-results__rankings', { 'vs-results__rankings--card': isCard }]"
       >
-        <vs-results-ranking
-          v-if="!isCard"
-          label="<?php print t('Gender'); ?>"
-          model="gender"
-          :options='<?php print json_encode(array(
-            '' => t('All'),
-            'male' => t('Male'),
-            'female' => t('Female')
-          )); ?>'
-          :active-key="filter.gender"
-          :callback="applySubFilterSearch"
-          :is-select="true"
-        ></vs-results-ranking>
-
-        <vs-results-ranking
-          v-if="!isCard"
-          label="<?php print t('Age'); ?>"
-          model="category"
-          :options='<?php print json_encode(array(
-              '0' => t('All'),
-              'sen' => t('SEN'),
-              '30' => t('30'),
-              '35' => t('35'),
-              '40' => t('40'),
-              '45' => t('45'),
-              '50' => t('50'),
-              '55' => t('55'),
-              '60' => t('60'),
-              '65' => t('65'),
-              '65+' => t('65+'),
-          ));?>'
-          :active-key="filter.age"
-          :callback="applySubFilterSearch"
-          :is-select="true"
-        ></vs-results-ranking>
-
-        <vs-results-ranking
-          label="<?php print t('Unit'); ?>"
-          model="unit"
-          :options='<?php print json_encode(array(
-            'km' => t('KM'),
-            'miles' => t('Miles')
-          )); ?>'
-          :active-key="filter.unit"
-          :callback="applySubFilter"
-        ></vs-results-ranking>
+        <a v-if="!isCard" class="vs-results__collapse-button btn btn-block vs-btn vs-btn--lg vs-btn--min-lg vs-btn--outline-black collapsed" data-toggle="vs-collapse" href="#filters" aria-expanded="false">
+          <span class="vs-results__collapse-label"><?php print t('Filter'); ?></span>
+        </a>
+        <div
+          class="vs-results__collapse-content"
+          v-bind:class="[{ 'collapse': !isCard }]"
+          id="filters"
+        >
+          <vs-results-ranking
+            v-if="!isCard"
+            label="<?php print t('Gender'); ?>"
+            model="gender"
+            :options='<?php print json_encode(array(
+              '' => t('All'),
+              'male' => t('Male'),
+              'female' => t('Female')
+            )); ?>'
+            :active-key="filter.gender"
+            :callback="applySubFilterSearch"
+            :is-select="true"
+          ></vs-results-ranking>
+  
+          <vs-results-ranking
+            v-if="!isCard"
+            label="<?php print t('Age'); ?>"
+            model="category"
+            :options='<?php print json_encode(array(
+                '0' => t('All'),
+                'sen' => t('SEN'),
+                '30' => t('30'),
+                '35' => t('35'),
+                '40' => t('40'),
+                '45' => t('45'),
+                '50' => t('50'),
+                '55' => t('55'),
+                '60' => t('60'),
+                '65' => t('65'),
+                '65+' => t('65+'),
+            ));?>'
+            :active-key="filter.age"
+            :callback="applySubFilterSearch"
+            :is-select="true"
+          ></vs-results-ranking>
+  
+          <vs-results-ranking
+            label="<?php print t('Unit'); ?>"
+            model="unit"
+            :options='<?php print json_encode(array(
+              'km' => t('KM'),
+              'miles' => t('Miles')
+            )); ?>'
+            :active-key="filter.unit"
+            :callback="applySubFilter"
+          ></vs-results-ranking>
+        </div>
       </div>
 
       <div v-if="filter.race" class="vs-results__table">
@@ -204,7 +226,7 @@ $template_rendered = TRUE;
         </div>
 
         <!-- Top Results -->
-        <div v-if="showTop" class="vs-results__table-list">
+        <div v-if="showTop && filter.race.id" class="vs-results__table-list">
 
           <div class="vs-results__table-list__group"><?php print t('Top'); ?> {{ maxRows }} <?php print t('male'); ?></div>
 
@@ -234,7 +256,7 @@ $template_rendered = TRUE;
         </div>
 
         <!-- Result Card -->
-        <div v-if="ticketId && !ranks.length" class="vs-results__table-list">
+        <div v-if="ticketId && !ranks.length && filter.race.id" class="vs-results__table-list">
           <vs-result
             :is-open="true"
             :brand-color="brandColor"
@@ -262,25 +284,27 @@ $template_rendered = TRUE;
 
 <?php if ($requires_templates): ?>
 <script type="text/x-template" id="tpl-vs-results-ranking">
-  <div class="vs-results__ranking vs-results__ranking--chosen">
-    <span class="vs-results__ranking-label">{{ label }}</span>
-    
-    <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
-      <option v-for="(key, option) in options" v-bind:value="key">
-        {{ option }}
-      </option>
-    </select>
-    
-    <ul v-if="!isSelect" class="vs-results__ranking-options">
-      <li
-        v-for="(key, option) in options"
-        v-bind:class="{ 'vs-results__ranking--active': (key == activeKey)  }"
-        v-on:click="onClick(key)"
-      >
-        <span>{{ option }}</span>
-      </li>
-    </ul>
-  </div>
+  
+    <div class="vs-results__ranking vs-results__ranking--chosen">
+      <span class="vs-results__ranking-label">{{ label }}</span>
+      
+      <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
+        <option v-for="(key, option) in options" v-bind:value="key">
+          {{ option }}
+        </option>
+      </select>
+      
+      <ul v-if="!isSelect" class="vs-results__ranking-options">
+        <li
+          v-for="(key, option) in options"
+          v-bind:class="{ 'vs-results__ranking--active': (key == activeKey)  }"
+          v-on:click="onClick(key)"
+        >
+          <span>{{ option }}</span>
+        </li>
+      </ul>
+    </div>
+  
 </script>
 <?php endif; ?>
 
@@ -316,21 +340,21 @@ $template_rendered = TRUE;
         class="vs-result__body"
         v-bind:class="{ 'vs-result__body--ready': ready, 'vs-result__body--down': downFinished, 'vs-result__body--up': upFinished }"
       >
-        <div v-if="result && race.id">
-          <div class="vs-result__meta-wrapper">
-            <div class="vs-result__meta-first">
+        <div v-if="result">
+          <div class="vs-result__meta-wrapper clearfix">
+            <div class="vs-result__meta vs-result__meta--first">
               <span class="vs-result__meta-label"><?php print t('Country'); ?></span>
               {{ result.country }}
             </div>
-            <div>
+            <div class="vs-result__meta">
               <span class="vs-result__meta-label"><?php print t('City'); ?></span>
               {{ result.city }}
             </div>
-            <div>
+            <div class="vs-result__meta">
               <span class="vs-result__meta-label"><?php print t('Gender Place'); ?></span>
               {{ result.genderGunTime }}/{{ race.participants[rank ? rank.participantGender : result.gender] }}
             </div>
-            <div class="vs-result__meta-last">
+            <div class="vs-result__meta vs-result__meta--last">
               <span class="vs-result__meta-label"><?php print t('Division Place'); ?></span>
               {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
             </div>
@@ -343,6 +367,18 @@ $template_rendered = TRUE;
               :finish-time="diffFormat('hh:mm:ss', initialTime, lastTime)"
             >
             </vs-result-share>
+          </div>
+  
+          <div class="vs-result__stats hidden-lg-up">
+            <div class="vs-result__stat">
+              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+            </div>
+    
+            <div class="vs-result__stat">
+              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-label">Total Time</span>
+            </div>
           </div>
           
           <div class="vs-result__times">
@@ -365,7 +401,7 @@ $template_rendered = TRUE;
             </div>
           </div>
   
-          <div class="vs-result__stats">
+          <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
