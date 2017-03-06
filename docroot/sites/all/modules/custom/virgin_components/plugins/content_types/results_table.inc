@@ -40,41 +40,20 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
   $festival = virgin_base_event_festival($event->property('nid'));
   $festival_state = $festival->relation('field_festival_state');
 
-  if (empty($conf['is_summary'])) {
-    $vars = array(
-      'is_summary' => FALSE,
-      'is_card' => empty($conf['is_card']) ? FALSE : $conf['is_card'],
-      'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
-      'festival_name' => $festival->fieldGetOne('title_field'),
-      'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
-      'event_id' => $event_state->fieldGetOne('field_sugar_id'),
-      'event_name' => $event->fieldGetOne('title_field'),
-      'brand_color' => $event->fieldGetOne('field_brand_color'),
-      'replay_path' => url('/node/' . $event->property('nid')),
-      'photo_path' => url('/node/' . $event->property('nid')),
-      'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
-    );
-  } else {
-    $start_date = $event_state->fieldGetOne('field_start_date');
-    $timezone = $event_state->fieldGetOne('field_timezone');
-
-    $vars = array( 
-      'is_summary' => TRUE,
-      'show_top' => empty($conf['show_top']) ? FALSE : $conf['show_top'],
-      'is_card' => empty($conf['is_card']) ? FALSE : $conf['is_card'],
-      'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
-      'brand_color' => $event->fieldGetOne('field_brand_color'),
-      'festival_name' => $festival->fieldGetOne('title_field'),
-      'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
-      'event_id' => $event_state->fieldGetOne('field_sugar_id'),
-      'event_name' => $event->fieldGetOne('title_field'),
-      'event_date' => virgin_date($start_date, $timezone)->format('d M'),
-      'event_description' => strip_tags($event->fieldGetOne('field_description')),
-      'replay_path' => url('/node/' . $event->property('nid')),
-      'results_path' => url('/node/' . $event->property('nid')),
-      'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
-    );
-  }
+  $vars = array(
+    'is_summary' => !empty($conf['is_summary']),
+    'show_top' => !empty($conf['show_top']),
+    'is_card' => !empty($conf['is_card']),
+    'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
+    'festival_name' => $festival->fieldGetOne('title_field'),
+    'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
+    'event_id' => $event_state->fieldGetOne('field_sugar_id'),
+    'event_name' => $event->fieldGetOne('title_field'),
+    'brand_color' => $event->fieldGetOne('field_brand_color'),
+    'replay_path' => url('/node/' . $event->property('nid')),
+    'photo_path' => url('/node/' . $event->property('nid')),
+    'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
+  );
 
   $block = new stdClass();
   $block->module = '';
