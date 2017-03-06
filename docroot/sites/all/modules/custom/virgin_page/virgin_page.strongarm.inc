@@ -183,6 +183,7 @@ function virgin_page_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_allowed_types';
   $strongarm->value = array(
+    'results_table-results_table' => TRUE,
     'festival_subnav-festival_subnav' => TRUE,
     'contact_form-contact_form' => TRUE,
     'fieldable_panels_pane-vs_video_banner' => TRUE,

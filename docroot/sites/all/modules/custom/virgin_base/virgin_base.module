@@ -367,6 +367,7 @@ function virgin_base_festivals() {
  * @param $festival_id
  *  The festival id to filter events
  * @return array
+ * An array with the festival events or all if festival_id does not exist
  */
 function virgin_base_events($festival_id) {
   // Get events related to given festival

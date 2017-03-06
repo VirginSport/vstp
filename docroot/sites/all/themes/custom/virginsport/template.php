@@ -55,7 +55,12 @@ function virginsport_theme($existing, $type, $theme, $path) {
   $themes['virginsport_share_buttons'] = array(
     'template' => 'virginsport-share-buttons',
     'variables' => array(
+      'use_placeholder' => FALSE,
+      'twitter_text' => '',
+      'facebook_text' => '',
+      'classes' => '',
       'subject' => '',
+      'body' => '',
       'url' => ''
     )
   ) + $default;
@@ -104,6 +109,9 @@ function virginsport_preprocess_page(&$vars) {
 
   drupal_add_library('system', 'drupal.ajax');
   drupal_add_library('chosen', 'drupal.chosen');
+
+  // Check if this page has attendly header
+  $vars['apply_attendly_header'] = virginsport_check_is_attendly_header();
 
   // Check if page manager is handling the current page
   $vars['apply_page_wrapper'] = virginsport_check_wrapper_required();
@@ -157,6 +165,9 @@ function virginsport_preprocess_page(&$vars) {
 
   // Fetch the list of regions
   $vars['regions'] = virginsport_regions();
+
+  // Setup the alerts
+  $vars['alerts'] = virginsport_alerts();
 
   // Make cookie template available in javascript
   $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
@@ -412,6 +423,28 @@ function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_f
 }
 
 /**
+ * Checks if a page applies the attendly header
+ *
+ * @return bool
+ *  TRUE the page applies the attendly header, FALSE otherwise
+ */
+function virginsport_check_is_attendly_header() {
+  $routes = array(
+    'user/photos/%/%',
+    'user/results/%',
+    'node/%/photos'
+  );
+
+  $item = menu_get_item();
+
+  if (in_array($item['path'], $routes)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
  * Checks whether a default page wrapper is required
  *
  * @return bool
@@ -431,7 +464,7 @@ function virginsport_check_wrapper_required() {
 
   $item = menu_get_item();
 
-  if (in_array($item['path'], $excluded_routes)) {
+  if (in_array($item['path'], $excluded_routes) || virginsport_check_is_attendly_header()) {
     return FALSE;
   }
 
@@ -548,4 +581,20 @@ function virginsport_add_gtm_data_layer(&$vars) {
   // Add data layer encoded JSON
   $vars['gtm_metadata'] = $metadata;
   $vars['gtm_data_layer'] = drupal_json_encode(array($properties));
+}
+
+/**
+ * Get the HTML of the list of alerts in the current request
+ *
+ * @return string
+ *  The HTML of the list of alerts
+ */
+function virginsport_alerts() {
+  $content = '';
+
+  foreach (virgin_get_alerts() as $alert) {
+    $content .= theme('virginsport_notification', array('message' => filter_xss($alert)));
+  }
+
+  return $content;
 }
