@@ -6,34 +6,50 @@
   margin-bottom: rem(100);
 }
 
+
 // Element
 // ----------------------------------------------------------------------------
 
 .vs-results {
   &__teaser {
-    padding: rem(30);
+    padding: rem(15) rem(10);
     border-radius: rem(15) rem(15) 0 0;
+
+    @include media-breakpoint-only(xs) {
+      margin: 0 -0.625rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: rem(30);
+    }
   }
 
   &__filters {
-    padding: rem(25) rem(25) rem(30) rem(25);
-    border-radius: rem(10);
+    padding: rem(15) rem(10);
+    border-radius: rem(10) rem(10) 0 0;
     margin: 0 rem(-10);
     position: relative;
+
+    @include media-breakpoint-up(md) {
+      padding: rem(25) rem(25) rem(30);
+      border-radius: rem(10);
+    }
   }
 
   &__form {
     @include clearfix;
-    width: 76%;
     padding-top: rem(23);
 
     .vs-form-group {
-      width: calc(50% - #{rem(5)});
       float: left;
       max-width: none;
-      margin: rem(10) rem(10) 0 0;
+      width: 100%;
 
       &:nth-child(even) { margin-right: 0 }
+
+      @include media-breakpoint-up(md) {
+        margin: rem(10) rem(10) 0 0;
+      }
     }
 
     .vs-focus-label {
@@ -53,6 +69,14 @@
 
     .vs-chosen-wrapper { border-color: rgba($c-white, 0.4); }
     .chosen-single { box-shadow: none !important; }
+
+    @include media-breakpoint-up(md) {
+      width: 76%;
+
+      .vs-form-group {
+        width: calc(50% - #{rem(5)});
+      }
+    }
   }
 
   &__form-select.vs-form-group {
@@ -66,9 +90,15 @@
   }
 
   &__rankings {
-    padding: rem(27) rem(27) rem(15) rem(27);
+    padding: rem(15) rem(10);
     background: white;
-    text-align: right;
+    margin: 0 rem(-10);
+
+    @include media-breakpoint-up(md) {
+      padding: rem(27) rem(27) rem(15);
+      text-align: right;
+      margin: 0;
+    }
   }
 
   &__ranking {
@@ -76,20 +106,39 @@
     line-height: rem(34);
     margin-bottom: rem(12);
     text-transform: uppercase;
+    width: 100%;
 
-    + .vs-results__ranking {
-      padding-left: rem(42);
+    @include media-breakpoint-up(md) {
+      width: 32%;
+
+      + .vs-results__ranking {
+        padding-left: rem(22);
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: auto;
+
+      + .vs-results__ranking {
+        padding-left: rem(42);
+      }
     }
   }
 
   &__ranking-label {
+    display: block;
     color: $c-gray-dark;
     padding-right: rem(18);
     font-size: rem(12);
+    font-weight: 500;
+
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+    }
   }
 
   &__ranking-options {
-    display: inline-block;
+    display: block;
     background-color: rgba($c-gray, 0.2);
     border-radius: rem(30);
     padding: 0;
@@ -102,6 +151,8 @@
       font-size: rem(12);
       color: rgba($c-gray-dark, 0.5);
       cursor: pointer;
+      text-align: center;
+      width: 50%;
 
       &:first-child { padding-left: rem(30); }
       &:last-child { padding-right: rem(30); }
@@ -136,6 +187,16 @@
         &:last-child span { @include transform(translateX(rem(8))) }
         &:before { opacity: 1; }
       }
+
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+        text-align: left;
+        width: auto;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      display: inline-block;
     }
   }
 
@@ -144,6 +205,17 @@
     background-color: white;
     color: $c-gray-dark;
     border-radius: 0 0 rem(15) rem(15);
+    margin: 0 rem(-10);
+
+    @include media-breakpoint-up(md) {
+      margin: 0;
+    }
+  }
+
+  @include media-breakpoint-only(xs) {
+    &__table-list {
+      margin: 0 -0.625rem;
+    }
   }
 
   &__table-list__group {
@@ -159,7 +231,10 @@
 
   &__table-head {
     @include clearfix;
-    padding: 0 rem(15) 0 rem(30);
+
+    @include media-breakpoint-up(md) {
+      padding: 0 rem(15) 0 rem(30);
+    }
   }
 
   &__bib {
@@ -170,11 +245,15 @@
     @include transition(opacity .3s ease);
     background-color: white;
     line-height: rem(35);
-    padding: 0 rem(35);
+    padding: 0 rem(15);
     border-radius: rem(35);
     font-size: rem(13);
     text-transform: uppercase;
     display: inline-block;
+
+    @include media-breakpoint-up(md) {
+      padding: 0 rem(35);
+    }
 
     + .vs-results__btn {
       margin-left: rem(17);
@@ -191,37 +270,64 @@
   }
 
   &__find-btn {
-    position: absolute;
-    bottom: rem(30);
-    right: rem(30);
+    width: 100%;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      bottom: rem(30);
+      right: rem(30);
+      width: auto;
+    }
   }
 
   &__photos-btn {
     @include transition(all .5s ease-in-out);
     position: absolute;
-    top: rem(20);
-    right: rem(20);
-    width: rem(120);
-    height: rem(120);
-    line-height: rem(170);
-    font-size: rem(11);
+    top: rem(15);
+    right: rem(10);
+    font-size: rem(12);
     text-align: center;
     display: block;
-    background: rgba($c-white, 0.2) url('../img/results-camera-icon.svg') no-repeat center 22px;
-    color: $c-white;
-    border-radius: 100%;
+    color: #337EE5;
     text-transform: uppercase;
+    background-color: $c-white;
+    line-height: rem(35);
+    padding: 0 rem(19);
+    border-radius: rem(35);
 
     &:hover {
       opacity: .7;
-      color: $c-white;
+    }
+
+    @include media-breakpoint-up(md) {
+      background: rgba($c-white, 0.2) url('../img/results-camera-icon.svg') no-repeat center 22px;
+      width: rem(123);
+      height: rem(123);
+      line-height: rem(170);
+      font-size: rem(11);
+      border-radius: 100%;
+      color: $c-white !important;
+      top: rem(20);
+      right: rem(20);
+
+      &:hover {
+        color: $c-white;
+      }
     }
   }
 
   &__title {
-    font-size: rem(28);
+    font-size: rem(18);
     text-transform: uppercase;
     margin-bottom: rem(4);
+    max-width: 40%;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(28);
+      max-width: none;
+
+    }
   }
 
   &__date {
@@ -233,8 +339,12 @@
   &__description {
     padding-top: rem(30);
     margin-bottom: rem(9) !important;
-    width: 60%;
+    width: 100%;
     opacity: 0.85;
+
+    @include media-breakpoint-up(md) {
+      width: 60%;
+    }
   }
 
   &__footer {
@@ -263,6 +373,83 @@
     }
   }
 }
+
+.vs-results__collapse-link {
+  @include transition(all .5s ease-in-out);
+  color: rgba($c-white, .6);
+  font-size: rem(12);
+  text-align: center;
+  display: block;
+  position: relative;
+  height: rem(40);
+
+  &:hover,
+  &:focus {
+    span {
+      color: $c-white;
+    }
+  }
+
+  span {
+    @include transition(all .5s ease-in-out);
+    @include transform(translate(-50%, -50%));
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+
+    &:last-child {
+      opacity: 0;
+    }
+  }
+
+  &:not(.collapsed) {
+    span:first-child { opacity: 0; }
+    span:last-child { opacity: 1; }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+
+    + .collapse {
+      display: block;
+    }
+  }
+}
+
+.vs-results__collapse-label {
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    @include transition(all .5s ease-in-out);
+    background: transparent url('../img/filter-arrow.svg') no-repeat center center;
+    display: inline-block;
+    content: '';
+    height: rem(6);
+    position: absolute;
+    opacity: 0;
+    right: rem(-20);
+    top: rem(6);
+    width: rem(10);
+  }
+}
+
+.vs-results__collapse-button {
+  &:not(.collapsed) .vs-results__collapse-label:after {
+    opacity: 1;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+
+    + .collapse {
+      display: block;
+    }
+  }
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -306,6 +493,10 @@
       span { color: map_get($map, 'text-color'); }
       &:before { @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg); }
     }
+
+    .vs-results__table-head .vs-result-col {
+      color: map_get($map, 'solid-color');
+    }
   }
 }
 
@@ -318,6 +509,10 @@
     background: $c-gray-light;
     border-radius: rem(30);
     min-width: rem(140);
+
+    @include media-breakpoint-down(md) {
+      min-width: 100%;
+    }
   }
 
   .chosen-container-single .chosen-single {
@@ -373,9 +568,10 @@
     font-weight: 500;
   }
 
-  .chosen-container .chosen-results li.highlighted {
+  .chosen-container .chosen-results li.highlighted,
+  .chosen-container .chosen-results li.result-selected,
+  .chosen-container .chosen-results li:hover {
     background: transparent;
     color: $c-gray-dark;
-    padding-left: rem(36);
   }
 }
