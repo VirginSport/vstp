@@ -53,14 +53,18 @@
         <div class="vs-festival-results-card__info">
           <div class="row">
             <div class="col-xs-12 col-md-8">
-              <?php foreach($events as $event): ?>
-                <div class="vs-festival-results-card__info-block">
-                  <h5 class="vs-festival-results-card__event-name"><?php print check_plain($event->fieldGetOne('title_field')); ?></h5>
-                </div>
-              <?php endforeach; ?>
+              <div class="row">
+                <?php foreach($events as $event): ?>
+                  <div class="col-xs-6 vs-festival-results-card__grid-break">
+                    <div class="vs-festival-results-card__info-block">
+                      <h5 class="vs-festival-results-card__event-name"><?php print check_plain($event->fieldGetOne('title_field')); ?></h5>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
             </div>
             <div class="col-xs-12 col-md-4">
-              <div class="vs-festival-results-card__button-wrapper text-md-right">
+              <div class="vs-festival-results-card__button-wrapper text-xs-center text-md-right">
                 <a href="<?php print $link_url ?>" class="btn vs-btn vs-btn--outline-black vs-festival-results-card__button"><?php print t('View Results'); ?></a>
               </div>
             </div>
