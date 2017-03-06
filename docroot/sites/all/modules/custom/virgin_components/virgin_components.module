@@ -55,7 +55,7 @@ function virgin_components_theme() {
         'link_url' => '',
         'brand_color' => '',
       )
-    )
+    ),
     'virgin_components__ct__results_table' => array(
       'variables' => array(
         'is_summary' => false,
