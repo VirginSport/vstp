@@ -36,6 +36,8 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
 
   $event = new VirginEntityGrapher('node', $node);
   $event_state = $event->relation('field_event_state');
+  $start_date = $event_state->fieldGetOne('field_start_date');
+  $timezone = $event_state->fieldGetOne('field_timezone');
 
   $festival = virgin_base_event_festival($event->property('nid'));
   $festival_state = $festival->relation('field_festival_state');
@@ -49,6 +51,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'festival_id' => $festival_state->fieldGetOne('field_sugar_id'),
     'event_id' => $event_state->fieldGetOne('field_sugar_id'),
     'event_name' => $event->fieldGetOne('title_field'),
+    'event_date' => virgin_date($start_date, $timezone)->format('d M'),
     'brand_color' => $event->fieldGetOne('field_brand_color'),
     'replay_path' => url('/node/' . $event->property('nid')),
     'photo_path' => url('/node/' . $event->property('nid')),
