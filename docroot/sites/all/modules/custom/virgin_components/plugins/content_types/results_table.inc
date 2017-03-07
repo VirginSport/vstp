@@ -52,6 +52,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'event_id' => $event_state->fieldGetOne('field_sugar_id'),
     'event_name' => $event->fieldGetOne('title_field'),
     'event_date' => virgin_date($start_date, $timezone)->format('d M'),
+    'event_description' => $event->fieldGetOne('field_results_summary'),
     'brand_color' => $event->fieldGetOne('field_brand_color'),
     'replay_path' => url('/node/' . $event->property('nid')),
     'photo_path' => url('/node/' . $event->property('nid')),
