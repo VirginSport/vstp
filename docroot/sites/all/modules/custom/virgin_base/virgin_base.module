@@ -44,6 +44,7 @@ function virgin_base_entity_info_alter(&$entity_info) {
  */
 function virgin_base_element_info_alter(&$elements) {
   if (!empty($elements['link_field'])) {
+    $elements['link_field']['#process'][] = 'virgin_base_cta_link_field_process';
     $elements['link_field']['#process'][] = 'virgin_base_link_field_process';
   }
 }
@@ -208,11 +209,11 @@ function virgin_base_metatag_metatags_view_alter(&$output, $instance, $options) 
 // ----------------------------------------------------------------------------
 
 /**
- * Convert the link field class to a select
+ * Convert the cta links field class to a select
  *
  * @see link_field_process
  */
-function virgin_base_link_field_process($element, $form_state, $complete_form) {
+function virgin_base_cta_link_field_process($element, $form_state, $complete_form) {
   // The supported link fields to override class textfield with a select list
   $supported = array(
     'field_cta_links'
@@ -332,6 +333,28 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     'visible' => array(
       '#' . $id => array('value' => VIRGIN_BASE_LINK),
     )
+  );
+
+  return $element;
+}
+
+/**
+ * Convert the cta links field class to a select
+ *
+ * @see link_field_process
+ */
+function virgin_base_link_field_process($element, $form_state, $complete_form) {
+  if ($element['#field_name'] != 'field_links') {
+    return $element;
+  }
+
+  // Load element attributes
+  $attributes = empty($element['#value']['attributes']) ? array() : $element['#value']['attributes'];
+
+  $element['attributes']['virgin_show'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Visible'),
+    '#default_value' => isset($attributes['virgin_show']) ? $attributes['virgin_show'] : TRUE
   );
 
   return $element;
