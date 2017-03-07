@@ -49,6 +49,17 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components--ct--results-overview',
     ),
+    'virgin_components__ct__festival_results_card' => array(
+      'template'  => 'virgin-components__ct__festival-results-card',
+      'variables' => array(
+        'festival' => '',
+        'festival_state' => '',
+        'image_atom' => '',
+        'events' => array(),
+        'link_url' => '',
+        'brand_color' => '',
+      )
+    ),
     'virgin_components__ct__results_table' => array(
       'variables' => array(
         'is_summary' => false,
@@ -146,6 +157,7 @@ function virgin_components_list() {
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
+      new VirginComponentResultsIntroduction(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),
