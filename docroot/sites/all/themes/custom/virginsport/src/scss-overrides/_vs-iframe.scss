@@ -6,7 +6,28 @@
   border: none;
   margin: 0;
   padding: 0;
-  min-height: 400px;
+  min-height: 25rem;
+
+  &.vs-iframe--gameface {
+    min-height: 40.625rem;
+
+    @media screen and (min-width: 20.0625rem) {
+      min-height: 49.625rem;
+    }
+
+    @media screen and (min-width: 23.0625rem) {
+      min-height: 46.625rem;
+    }
+
+    @media screen and (min-width: 48rem) {
+      min-height: 43.75rem;
+    }
+
+    // Media query original from gameface css
+    @media only screen and (-webkit-min-device-pixel-ratio: 3) and (max-device-width: 46rem) and (min-device-width: 25.875rem) and (orientation: portrait) {
+      min-height: 38.75rem;
+    }
+  }
 }
 
 // Elements

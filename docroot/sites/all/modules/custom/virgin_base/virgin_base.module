@@ -30,6 +30,16 @@ function virgin_base_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function virgin_base_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['alternate_teaser'] = array(
+    'label' => t('Alternate Teaser'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
  * Implements hook_element_info_alter().
  */
 function virgin_base_element_info_alter(&$elements) {
@@ -357,6 +367,7 @@ function virgin_base_festivals() {
  * @param $festival_id
  *  The festival id to filter events
  * @return array
+ * An array with the festival events or all if festival_id does not exist
  */
 function virgin_base_events($festival_id) {
   // Get events related to given festival

@@ -254,7 +254,7 @@ vs-share-button,
 
 			@include transform(rotate(0deg));
 			left: calc(50% - 6.563rem);
-			position: absolute; 
+			position: absolute;
 			opacity: 1;
 			visibility: visible;
 		}
@@ -358,7 +358,56 @@ vs-share-button,
 	{
 		visibility: visible;
 		left: 0;
-		opacity: 1; 
+		opacity: 1;
 	}
 
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-share-button--results {
+  .vs-share-button__social-links {}
+
+  .vs-share-button__icon-button {
+    background-color: #cfcfcf;
+    height: rem(34);
+    line-height: rem(34);
+    width: rem(34);
+    margin: 0 rem(5);
+
+    i {
+      height: rem(34);
+      line-height: rem(34);
+      width: rem(34);
+
+      &:before {
+        font-size: rem(17);
+        position: relative;
+        top: rem(-2);
+      }
+    }
+
+    &.vs-share-button__icon-email {
+      margin-right: 0;
+    }
+
+    &:hover span {
+      height: rem(34);
+      line-height: rem(34);
+      width: rem(34);
+      margin: rem(-17);
+    }
+  }
+
+  .icon-share {
+    background-image: url('../img/results-share-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:before {
+      content: '';
+    }
+  }
 }

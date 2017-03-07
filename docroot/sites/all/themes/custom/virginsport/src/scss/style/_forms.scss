@@ -35,7 +35,6 @@ label {
 .form-control {
   font-weight: 500;
   color: $c-black;
-  line-height: 0;
   padding: 1.25rem .625rem .625rem;
 
   &:focus ~ .vs-focus-label,

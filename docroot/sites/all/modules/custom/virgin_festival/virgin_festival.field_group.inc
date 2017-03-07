@@ -31,6 +31,8 @@ function virgin_festival_field_group_info() {
       5 => 'field_region',
       6 => 'field_status',
       7 => 'title_field',
+      8 => 'field_logo',
+      9 => 'field_alert',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -59,6 +61,9 @@ function virgin_festival_field_group_info() {
     'children' => array(
       0 => 'field_card_image_past',
       1 => 'field_description_short_past',
+      2 => 'field_review_url',
+      3 => 'field_results_url',
+      4 => 'field_replay_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -85,10 +90,10 @@ function virgin_festival_field_group_info() {
     'label' => 'Results',
     'weight' => '15',
     'children' => array(
-      0 => 'field_card_image_results',
-      1 => 'field_description_results',
-      2 => 'field_hero_image_results',
-      3 => 'field_caption',
+      0 => 'field_caption',
+      1 => 'field_card_image_results',
+      2 => 'field_description_results',
+      3 => 'field_hero_image_results',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

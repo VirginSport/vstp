@@ -42,6 +42,11 @@ define('VIRGIN_VAR_CIPHER_KEY', 'virgin_cipher_key');
 define('VIRGIN_VAR_GET_IN_TOUCH_URL', 'virgin_get_in_touch_url');
 
 /**
+ * The name of the drupal static variable where virgin alerts are stored.
+ */
+define('VIRGIN_STATIC_ALERTS', 'virgin_alerts');
+
+/**
  * Implements hook_menu().
  */
 function virgin_menu() {
@@ -183,6 +188,7 @@ function virgin_preprocess_page(&$vars) {
 
   drupal_add_js(array(
     'virgin' => array(
+      'raceDayUrl' => variable_get('virgin_raceday_url'),
       'cookieDomain' => $params['domain'],
       'cookieSecure' => $params['secure']
     )
@@ -570,4 +576,32 @@ function virgin_date($timestamp, $tz_to = 'UTC', $tz_from = 'UTC') {
   $date = new \DateTime('now', $tz_from);
 
   return $date->setTimestamp($timestamp)->setTimezone($tz_to);
+}
+
+/**
+ * Get the list of alerts added for this request
+ *
+ * Differs from drupal_get_messages in that the alerts added are not persisted
+ * in a session but only exist for the duration of the current request.
+ *
+ * @return array
+ *  An a array of not escaped strings.
+ */
+function virgin_get_alerts() {
+  return drupal_static(VIRGIN_STATIC_ALERTS, array());
+}
+
+/**
+ * Adds an alert to the current request
+ *
+ * @param $message
+ *  The alert message
+ *
+ * @see virgin_get_alerts()
+ */
+function virgin_set_alert($message) {
+  if (!empty($message)) {
+    $alerts = &drupal_static(VIRGIN_STATIC_ALERTS, array());
+    $alerts[] = $message;
+  }
 }

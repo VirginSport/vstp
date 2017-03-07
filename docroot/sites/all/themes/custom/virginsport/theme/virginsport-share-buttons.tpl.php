@@ -3,6 +3,8 @@
  * @file
  * Share buttons template.
  *
+ * @var bool $use_placeholder
+ *  If the url will be provided by a VueJs variable
  * @var string $url
  *  The URL to be shared
  * @var string subject
@@ -10,12 +12,12 @@
  */
 ?>
 
-<div class="vs-share-button">
+<div class="vs-share-button <?php print $classes; ?>">
   <div class="vs-share-button__content">
     <div class="hidden-xs-down vs-share-button__social-links">
       <a
         class="vs-share-button__icon-button vs-share-button__icon-twitter vs-share-button__icon-button--popup"
-        href="http://twitter.com/share?url=<?php print urlencode($url); ?>"
+        href="http://twitter.com/share?text=<?php print check_plain($twitter_text); ?>&url=<?php print $use_placeholder ? '{{ url }}' : urlencode($url); ?>"
         vs-share-event="twitter"
       >
         <i class="icon-twitter"></i>
@@ -23,7 +25,7 @@
       </a>
       <a
         class="vs-share-button__icon-button vs-share-button__icon-facebook vs-share-button__icon-button--popup"
-        href="http://www.facebook.com/sharer/sharer.php?u=<?php print urlencode($url); ?>"
+        href="http://www.facebook.com/sharer/sharer.php?title=<?php print check_plain($facebook_text); ?>&u=<?php print $use_placeholder ? '{{ url }}' : urlencode($url); ?>"
         vs-share-event="facebook"
       >
         <i class="icon-facebook"></i>
@@ -31,7 +33,7 @@
       </a>
       <a
         class="vs-share-button__icon-button vs-share-button__icon-email"
-        href="mailto:?subject=<?php print $subject; ?>"
+        href="mailto:?subject=<?php print check_plain($subject); ?>&body=<?php print $body ? check_plain($body) : urlencode($url); ?>"
         vs-share-event="email"
       >
         <i class="icon-email-filled"></i>

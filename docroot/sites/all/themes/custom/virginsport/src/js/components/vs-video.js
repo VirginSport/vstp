@@ -76,25 +76,4 @@ export default () => {
       modalClose();
     });
   });
-
-  // Scroll to content area on homepage
-  $('.vs-video__arrow').click(function(event) {
-    var target = $('.vs-head-region').next('.vs-region');
-
-    $('html, body').animate({
-      scrollTop:$(target).offset().top
-    }, 'slow');
-    event.preventDefault();
-  });
-
-  $(window).resize(function() {
-    if ($(window).width() >= xs_max) {
-      $('.vs-video__video').each(function() {
-        let self = this;
-        setTimeout(function() {
-          self.play();
-        }, 0);
-      });
-    }
-  }).resize();
 };

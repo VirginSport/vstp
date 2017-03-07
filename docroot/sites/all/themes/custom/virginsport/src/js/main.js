@@ -9,7 +9,7 @@ import vsIPE from './components/vs-ipe';
 import vsOutline from './components/vs-outline';
 import vsRegion from './components/vs-region';
 import vsSharer from './components/vs-sharer';
-import vsSlick from './components/vs-slick';
+import vsVideoBanner from './components/vs-video-banner';
 import vsStickyBasket from './components/vs-sticky-basket';
 import vsSubnav from './components/vs-subnav';
 import vsUserLogin from './components/vs-user-login';
@@ -26,7 +26,8 @@ import vsScroller from './components/vs-scroller';
 import vsPhotoGallery from './components/vs-photo-gallery';
 import vsUserMenu from './components/vs-user-menu';
 import vsDetectMobile from './components/vs-detect-mobile';
-
+import vsResults from './components/vs-results';
+import vsUserTicket from './components/vs-user-ticket';
 
 vsBasket();
 vsContactForm();
@@ -37,7 +38,7 @@ vsIPE();
 vsOutline();
 vsRegion();
 vsSharer();
-vsSlick();
+vsVideoBanner();
 vsStickyBasket();
 vsSubnav();
 vsUserLogin();
@@ -54,6 +55,8 @@ vsScroller();
 vsPhotoGallery();
 vsUserMenu();
 vsDetectMobile();
+vsResults();
+vsUserTicket();
 
 // Libs
 import bootstrap from './lib/bootstrap';

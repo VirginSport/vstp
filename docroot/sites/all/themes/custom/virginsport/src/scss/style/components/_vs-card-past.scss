@@ -95,7 +95,7 @@ vs-card-past,
 
 .vs-card-past__cta-wrapper {
   @include make-col(4);
-  
+
   text-align: center;
 
   &:nth-child(1) {
@@ -193,8 +193,8 @@ vs-card-past,
 @include media-breakpoint-up(sm) {
 
   .vs-card-past__past-title {
-    padding-bottom: 1.5rem;
     font-size: 1.875rem;
+    padding: .5rem .5rem 0 .5rem;
     text-align: left;
   }
 
@@ -252,6 +252,10 @@ vs-card-past,
     padding: 1.25rem;
   }
 
+  .vs-card-past__past-title {
+    padding: 1.25rem 1.25rem 0.25rem 1.25rem;
+  }
+
   .vs-card-past__container {
     display: inline-flex;
     min-height: 12.5rem;
@@ -288,16 +292,16 @@ vs-card-past,
   .vs-card-past__cta-wrapper {
     display: inline-block;
     width: 6.563rem;
-  
+
     &:nth-child(1) {
       padding-left: 0;
     }
-    
+
     &:nth-child(3n) {
       padding-right: 0;
-    }  
+    }
   }
- 
+
 }
 
 @include media-breakpoint-up(lg) {
