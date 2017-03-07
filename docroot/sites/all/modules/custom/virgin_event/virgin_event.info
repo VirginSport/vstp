@@ -28,7 +28,6 @@ features[field_instance][] = node-event-field_hashtag
 features[field_instance][] = node-event-field_header_image
 features[field_instance][] = node-event-field_logo
 features[field_instance][] = node-event-field_mylaps_id
-features[field_instance][] = node-event-field_show_in_festival_menu
 features[field_instance][] = node-event-title_field
 features[field_instance][] = node-event_state-field_attendly_id
 features[field_instance][] = node-event_state-field_description

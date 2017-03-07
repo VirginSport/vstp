@@ -853,60 +853,6 @@ function virgin_event_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_show_in_festival_menu'.
-  $field_instances['node-event-field_show_in_festival_menu'] = array(
-    'bundle' => 'event',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'alternate_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
-        ),
-        'type' => 'list_default',
-        'weight' => 14,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_show_in_festival_menu',
-    'label' => 'Show in festival menu',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance: 'node-event-title_field'.
   $field_instances['node-event-title_field'] = array(
     'bundle' => 'event',
@@ -1883,7 +1829,6 @@ function virgin_event_field_default_field_instances() {
   t('MyLaps ID');
   t('Name');
   t('Results Introduction');
-  t('Show in festival menu');
   t('Start Date');
   t('Status');
   t('SugarCRM ID');
