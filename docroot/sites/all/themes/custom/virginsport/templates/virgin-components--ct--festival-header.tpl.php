@@ -31,7 +31,12 @@
  */
 ?>
 
-<div class="vs-hero-banner" data-vs-countdown-ts="<?php print $start_date_formatted; ?>" data-vs-countdown-tz="<?php print $timezone; ?>">
+<div
+  class="vs-hero-banner"
+  data-vs-countdown-ts="<?php print $start_date_formatted; ?>"
+  data-vs-countdown-tz="<?php print $timezone; ?>"
+  data-vs-hostname="<?php print check_plain($festival_hostname); ?>"
+>
   <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
 
   <div class="vs-hero-banner__background">

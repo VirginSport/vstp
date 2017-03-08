@@ -29,6 +29,7 @@ import vsUserMenu from './components/vs-user-menu';
 import vsDetectMobile from './components/vs-detect-mobile';
 import vsResults from './components/vs-results';
 import vsUserTicket from './components/vs-user-ticket';
+import vsCtaLinks from './components/vs-cta-links';
 
 vsBasket();
 vsContactForm();
@@ -59,6 +60,7 @@ vsUserMenu();
 vsDetectMobile();
 vsResults();
 vsUserTicket();
+vsCtaLinks();
 
 // Libs
 import bootstrap from './lib/bootstrap';
