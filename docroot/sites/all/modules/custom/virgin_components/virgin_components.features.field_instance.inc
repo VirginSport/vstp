@@ -1178,6 +1178,43 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_gameface_gallery-field_event_reference'.
+  $field_instances['fieldable_panels_pane-vs_gameface_gallery-field_event_reference'] = array(
+    'bundle' => 'vs_gameface_gallery',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_event_reference',
+    'label' => 'Event',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_gameface_gallery-field_gameface_id'.
   $field_instances['fieldable_panels_pane-vs_gameface_gallery-field_gameface_id'] = array(
     'bundle' => 'vs_gameface_gallery',
@@ -1200,7 +1237,7 @@ function virgin_components_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_gameface_id',
     'label' => 'Gameface ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
