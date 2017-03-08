@@ -56,7 +56,6 @@
               <?php foreach($events as $event): ?>
                 <div class="vs-festival-results-card__info-block">
                   <h5 class="vs-festival-results-card__event-name"><?php print check_plain($event->fieldGetOne('title_field')); ?></h5>
-                  <div class="vs-festival-results-card__event-date"><?php print virgin_date($event->relation('field_event_state')->fieldGetOne('field_start_date'))->format('l, d M Y'); ?></div>
                 </div>
               <?php endforeach; ?>
             </div>

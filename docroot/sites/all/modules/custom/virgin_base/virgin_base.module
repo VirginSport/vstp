@@ -286,6 +286,15 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
     '#default_value' => isset($attributes['virgin_gtm_event']) ? $attributes['virgin_gtm_event'] : '',
   );
 
+  $element['attributes']['virgin_show_region_modal'] = array(
+    '#prefix' => '<div class="vs-cta-btn__show_region">',
+    '#suffix' => '</div>',
+    '#type' => 'checkbox',
+    '#title' => t('Check region'),
+    '#description' => t('If page is on other region then display modal'),
+    '#default_value' => isset($attributes['virgin_show_region_modal']) ? $attributes['virgin_show_region_modal'] : FALSE,
+  );
+
   $element['attributes']['virgin_festival'] = array(
     '#prefix' => '<div class="vs-cta-btn__festival">',
     '#suffix' => '</div>',

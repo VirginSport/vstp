@@ -85,14 +85,14 @@ function virgin_user_theme($existing, $type, $theme, $path) {
   return array(
     'virgin_user__ct__user_tickets' => array(
       'variables' => array('data'),
-      'template' => 'virgin-user__ct__user_tickets',
+      'template' => 'virgin-user--ct--user-tickets',
     ) + $default,
     'virgin_user__ticket' => array(
       'variables' => array('ticket', 'ticket_type', 'event'),
-      'template' => 'virgin-user__ticket',
+      'template' => 'virgin-user--ticket',
     ) + $default,
     'virgin_user__claim_ticket' => array(
-      'template' => 'virgin_user__claim_ticket',
+      'template' => 'virgin-user--claim_ticket',
       'variables' => array(
         'ticket' => '',
         'logged_name' => '',
@@ -101,7 +101,7 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       )
     ) + $default,
     'virgin_user__claim_ticket_page' => array(
-      'template' => 'virgin_user__claim_ticket_page',
+      'template' => 'virgin-user--claim-ticket-page',
       'variables' => array(
         'ticket' => '',
       )
@@ -113,25 +113,31 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       )
     ) + $default,
     'virgin_user__login' => array(
-      'template' => 'virgin-user__login',
+      'template' => 'virgin-user--login',
       'variables' => array(
         'login_form' => '',
         'hybridauth_widget' => '',
       )
     ) + $default,
     'virgin_user__register' => array(
-      'template' => 'virgin-user__register',
+      'template' => 'virgin-user--register',
       'variables' => array(
         'register_form' => '',
         'hybridauth_widget' => '',
       )
     ) + $default,
     'virgin_user__password' => array(
-        'template' => 'virgin-user__password',
-        'variables' => array(
-          'form' => '',
-        )
-      ) + $default,
+      'template' => 'virgin-user--password',
+      'variables' => array(
+        'form' => '',
+      )
+    ) + $default,
+    'virgin_user__password_reset' => array(
+      'template' => 'virgin-user--password_reset',
+      'variables' => array(
+        'form' => '',
+      )
+    ) + $default,
     'virgin_user__contact_form' => array(
       'template' => 'virgin-user--contact-form',
       'variables' => array(
@@ -279,6 +285,11 @@ function virgin_user_menu_alter(&$items) {
   $items['user/password']['page callback'] = 'virgin_user_page_user_password';
   $items['user/password']['file'] = $file;
   $items['user/password']['file path'] = $file_path;
+
+  // Override password reset page
+  $items['user/reset/%/%/%']['page callback'] = 'virgin_user_page_user_password_reset';
+  $items['user/reset/%/%/%']['file'] = $file;
+  $items['user/reset/%/%/%']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(

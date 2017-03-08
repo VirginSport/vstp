@@ -64,14 +64,15 @@
           <?php endif; ?>
           <?php if (!empty($festival_id)): ?>
           <div class="col-xs-12 vs-card-untimed-event__content-footer">
-            <a
-              class="btn vs-btn vs-btn--min-sm vs-card-untimed-event__button vs-btn--gradient-<?php print $brand_color; ?>"
-              href="<?php print url('node/' . $festival_id . '/tickets'); ?>"
-              vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
-              vs-ticket-event="GetTicketsCTA"
-            >
-              <?php print t('Get Passes'); ?>
-            </a>
+
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $cta_links,
+                  'classes' => 'vs-btn--min-sm vs-card-untimed-event__button'
+                )
+              );
+            ?>
 
             <?php if ($event_price !== ''): ?>
               <div class="hidden-lg-down col-lg-5 vs-card-untimed-event__price">

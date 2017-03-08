@@ -4,8 +4,20 @@
  * Main template for virgin components fieldable panel panes vs_gameface_gallery
  *
  * Variables available:
- * TODO
+ *  $url - The Gameface iframe url
  */
 ?>
 
-Gameface Photo Template
+<?php if (!empty($url)): ?>
+  <?php if (!empty($component_heading)): ?>
+    <div class="container">
+      <div class="row">
+        <div class="vs-component-heading">
+          <?php print check_plain($component_heading); ?>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <iframe scrolling="no" class="vs-iframe vs-iframe--gameface" src="<?php print url($url); ?>"></iframe>
+<?php endif; ?>
