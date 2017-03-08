@@ -45,6 +45,10 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__page_header',
     ),
+    'virgin_components__ct__results_overview' => array(
+      'variables' => array(),
+      'template' => 'virgin-components--ct--results-overview',
+    ),
     'virgin_components__ct__festival_results_card' => array(
       'template'  => 'virgin-components__ct__festival-results-card',
       'variables' => array(
