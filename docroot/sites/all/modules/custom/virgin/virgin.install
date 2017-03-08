@@ -98,3 +98,17 @@ function virgin_update_7010() {
 function virgin_update_7011() {
   module_enable(array('metatag_twitter_cards'));
 }
+
+/**
+ * Delete show in festival menu fields
+ */
+function virgin_update_7012() {
+  $instances = array(
+    field_info_instance('node', 'field_show_in_festival_menu', 'event'),
+    field_info_instance('node', 'field_show_in_festival_menu', 'page')
+  );
+
+  foreach ($instances as $instance) {
+    field_delete_instance($instance);
+  }
+}

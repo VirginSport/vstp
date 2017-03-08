@@ -49,6 +49,60 @@ function virgin_festival_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu_tab|node|festival|form';
+  $field_group->group_name = 'group_menu_tab';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Menu',
+    'weight' => '20',
+    'children' => array(
+      0 => 'group_menu',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Menu',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-menu-tab field-group-tab',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_menu_tab|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu|node|festival|form';
+  $field_group->group_name = 'group_menu';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_menu_tab';
+  $field_group->data = array(
+    'label' => 'Menu',
+    'weight' => '22',
+    'children' => array(
+      0 => 'field_links',
+    ),
+    'format_type' => 'tabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-menu field-group-tabs',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_menu|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_past_state|node|festival|form';
   $field_group->group_name = 'group_past_state';
   $field_group->entity_type = 'node';
@@ -61,9 +115,9 @@ function virgin_festival_field_group_info() {
     'children' => array(
       0 => 'field_card_image_past',
       1 => 'field_description_short_past',
-      2 => 'field_review_url',
+      2 => 'field_replay_url',
       3 => 'field_results_url',
-      4 => 'field_replay_url',
+      4 => 'field_review_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -167,6 +221,7 @@ function virgin_festival_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Global');
+  t('Menu');
   t('Past State');
   t('Results');
   t('Tabs');

@@ -72,7 +72,43 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
     return;
   }
 
-  $festival_grapher = $g;
+  $festival_links = $g->fieldGetAll('field_links');
+
+  if (!empty($festival_links)) {
+    $links = array();
+
+    foreach ($festival_links as $link) {
+      $url = $link['url'];
+      $attributes = $link['attributes'] + array('virgin_show' => '', 'target' => '');
+
+      if (empty($attributes['virgin_show'])) {
+        continue;
+      }
+
+      $target = empty($attributes['target']) ? '' : $attributes['target'];
+
+      $links[] = virgin_components_festival_subnav_content_type_get_link($link['title'], $url, $attributes['virgin_show'], $target);
+    }
+  } else {
+    $links = virgin_components_festival_subnav_automatic_links($g);
+  }
+
+  $block = new stdClass();
+  $block->module = '';
+  $block->delta = '';
+  $block->content = theme('virgin_components__ct__festival_subnav', array('links' => $links));
+  $block->title = '';
+
+  return $block;
+}
+
+/**
+ * Get the festival automatic links
+ *
+ * @param VirginEntityGrapher $festival_grapher
+ * @return array links
+ */
+function virgin_components_festival_subnav_automatic_links($festival_grapher) {
   $festival_nid = $festival_grapher->property('nid');
   $festival_state_grapher = $festival_grapher->relation('field_festival_state');
 
@@ -150,13 +186,7 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
 
   $links = array_merge($links, virgin_components_festival_subnav_content_type_order_links_array($page_links));
 
-  $block = new stdClass();
-  $block->module = '';
-  $block->delta = '';
-  $block->content = theme('virgin_components__ct__festival_subnav', array('links' => $links));
-  $block->title = '';
-
-  return $block;
+  return $links;
 }
 
 /**
@@ -171,11 +201,13 @@ function virgin_components_festival_subnav_content_type_edit_form($form, &$form_
  *
  * @return array
  */
-function virgin_components_festival_subnav_content_type_get_link($title, $url) {
+function virgin_components_festival_subnav_content_type_get_link($title, $url, $show = TRUE, $target = '') {
   return array(
     'url' => url($url),
     'title' => $title,
-    'active' => current_path() == $url
+    'active' => current_path() == $url,
+    'show' => $show,
+    'target' => $target,
   );
 }
 
