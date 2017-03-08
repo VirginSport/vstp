@@ -80,7 +80,7 @@ $template_rendered = TRUE;
 
       <h4 class="vs-results__title">{{ eventName }}</h4>
       <p class="vs-results__date">{{ eventDate }}</p>
-      <p class="vs-results__description">{{ eventDescription }}</p>
+      <div class="vs-results__description">{{{ eventDescription }}}</div>
     </div>
 
     <div v-if="hasFilter && !isCard" class="vs-results__filters">
