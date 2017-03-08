@@ -158,6 +158,7 @@ function virgin_components_list() {
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
       new VirginComponentResultsIntroduction(),
+      new VirginComponentResultsOverview(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),
