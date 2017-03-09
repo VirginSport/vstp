@@ -54,10 +54,13 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'event_date' => virgin_date($start_date, $timezone)->format('d M'),
     'event_description' => $event->fieldRendered('field_results_summary'),
     'brand_color' => $event->fieldGetOne('field_brand_color'),
-    'replay_path' => url('/node/' . $event->property('nid')),
     'photo_path' => url('/node/' . $event->property('nid')),
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
   );
+
+  if (!empty($event->fieldGetOne('field_mylaps_id'))) {
+    $vars['replay_path'] = url('/node/' . $event->property('nid'));
+  }
 
   $block = new stdClass();
   $block->module = '';
