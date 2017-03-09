@@ -44,7 +44,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
 
   $vars = array(
     'is_summary' => !empty($conf['is_summary']),
-    'show_top' => !empty($conf['show_top']),
+    'show_top' => !empty($conf['is_summary']) && !empty($conf['show_top']),
     'is_card' => !empty($conf['is_card']),
     'ticket_id' => empty($conf['ticket_id']) ? NULL : $conf['ticket_id'],
     'festival_name' => $festival->fieldGetOne('title_field'),
