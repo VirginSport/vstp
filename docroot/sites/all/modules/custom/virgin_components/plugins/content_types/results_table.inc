@@ -59,6 +59,13 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
   );
 
+  $results_url = $festival->fieldGetOne('field_results_url', '', 'url');
+
+  if (!empty($results_url)) {
+    $vars['results_path'] = url($results_url);
+  }
+
+//  field_results_url
   $block = new stdClass();
   $block->module = '';
   $block->delta = '';
