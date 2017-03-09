@@ -14,6 +14,7 @@ import vsStickyBasket from './components/vs-sticky-basket';
 import vsSubnav from './components/vs-subnav';
 import vsUserLogin from './components/vs-user-login';
 import vsUserPassword from './components/vs-user-password';
+import vsUserPasswordReset from './components/vs-user-password-reset';
 import vsUserProfile from './components/vs-user-profile';
 import vsUserRegister from './components/vs-user-register';
 import vsVideo from './components/vs-video';
@@ -28,6 +29,7 @@ import vsUserMenu from './components/vs-user-menu';
 import vsDetectMobile from './components/vs-detect-mobile';
 import vsResults from './components/vs-results';
 import vsUserTicket from './components/vs-user-ticket';
+import vsCtaLinks from './components/vs-cta-links';
 
 vsBasket();
 vsContactForm();
@@ -43,6 +45,7 @@ vsStickyBasket();
 vsSubnav();
 vsUserLogin();
 vsUserPassword();
+vsUserPasswordReset();
 vsUserProfile();
 vsUserRegister();
 vsVideo();
@@ -57,6 +60,7 @@ vsUserMenu();
 vsDetectMobile();
 vsResults();
 vsUserTicket();
+vsCtaLinks();
 
 // Libs
 import bootstrap from './lib/bootstrap';

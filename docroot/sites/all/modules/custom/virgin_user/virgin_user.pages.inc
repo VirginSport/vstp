@@ -387,17 +387,24 @@ function virgin_user_page_user_register() {
  * Page callback for the user password route
  *
  * This callback overrides the core drupal user password route
- *
- * @return string
- *  The html template
  */
 function virgin_user_page_user_password() {
-  // Load user pages to render the registaer password form
   module_load_include('inc', 'user', 'user.pages');
-
   $password_form = drupal_get_form('user_pass');
 
   return theme('virgin_user__password', array('password_form' => $password_form));
+}
+
+/**
+ * Page callback for the user password reset route
+ *
+ * This callback overrides the core drupal user password reset route
+ */
+function virgin_user_page_user_password_reset($form_name, $uid, $timestamp, $hashed_pass, $action = NULL) {
+  module_load_include('inc', 'user', 'user.pages');
+  $form = drupal_get_form($form_name, $uid, $timestamp, $hashed_pass, $action);
+
+  return theme('virgin_user__password_reset', array('form' => $form));
 }
 
 /**

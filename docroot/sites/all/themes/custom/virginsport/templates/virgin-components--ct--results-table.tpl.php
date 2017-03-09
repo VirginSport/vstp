@@ -80,7 +80,7 @@ $template_rendered = TRUE;
 
       <h4 class="vs-results__title">{{ eventName }}</h4>
       <p class="vs-results__date">{{ eventDate }}</p>
-      <p class="vs-results__description">{{ eventDescription }}</p>
+      <div class="vs-results__description">{{{ eventDescription }}}</div>
     </div>
 
     <div v-if="hasFilter && !isCard" class="vs-results__filters">
@@ -206,7 +206,7 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
           <span class="vs-result-col vs-result-col-club"><?php print t('Club'); ?></span>
           <span class="vs-result-col vs-result-col-team"><?php print t('Team'); ?></span>
-          <span class="vs-result-col vs-result-col-category"><?php print t('Category'); ?></span>
+          <span class="vs-result-col vs-result-col-category"><?php print t('Age'); ?></span>
           <span class="vs-result-col vs-result-col-gender"><?php print t('Gender'); ?></span>
           <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?>/{{ filter.unit | capitalize }}</span>
           <span class="vs-result-col vs-result-col-chip"><?php print t('Chip Time'); ?></span>
@@ -320,7 +320,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">{{ rank.participantBibNumber }}</span>
         <span class="vs-result-col vs-result-col-club vs-result__border">{{ rank.participantClub }}</span>
         <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
-        <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantCategory }}</span>
+        <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
