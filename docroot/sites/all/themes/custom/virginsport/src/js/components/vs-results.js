@@ -41,11 +41,13 @@ function initResultsComponents() {
       'eventName',
       'eventDate',
       'eventDescription',
-      'maxRows'
+      'maxRows',
+      'unit'
     ],
     template: '#tpl-vs-results',
     ready() {
       this.filter.limit = this.maxRows;
+      this.filter.unit = this.unit;
 
       this.getRaces();
     },

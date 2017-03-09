@@ -62,6 +62,7 @@ $template_rendered = TRUE;
       event-date="<?php print check_plain($event_date); ?>"
       event-description="<?php print check_plain($event_description); ?>"
       :max-rows="<?php print (int) $max_rows; ?>"
+      unit="<?php print $unit; ?>"
     ></vs-results>
   </div>
 </div>
