@@ -1053,7 +1053,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 21,
+      'weight' => 1,
     ),
   );
 
