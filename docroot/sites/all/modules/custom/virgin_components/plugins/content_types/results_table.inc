@@ -42,6 +42,8 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
   $festival = virgin_base_event_festival($event->property('nid'));
   $festival_state = $festival->relation('field_festival_state');
 
+  $current_region = virgin_region_current() + array('country_letter_code');
+
   $vars = array(
     'is_summary' => !empty($conf['is_summary']),
     'show_top' => !empty($conf['is_summary']) && !empty($conf['show_top']),
@@ -57,6 +59,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'replay_path' => url('/node/' . $event->property('nid')),
     'photo_path' => url('/node/' . $event->property('nid')),
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
+    'unit' => $current_region['country_letter_code'] == 'UK' ? 'miles' : 'km',
   );
 
   $block = new stdClass();
