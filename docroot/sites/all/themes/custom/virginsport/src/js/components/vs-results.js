@@ -101,8 +101,7 @@ function initResultsComponents() {
           return;
         }
 
-        let prefix = (name == 'category') ? '*' : '';
-        this.filter[name] = prefix + key;
+        this.filter[name] = key;
       },
 
       /**
@@ -120,7 +119,6 @@ function initResultsComponents() {
         this.clearRaceResults();
 
         let loadProperty = 'find';
-
         if (this.showTop) {
           this.getGenderResults(loadProperty);
         } else {
@@ -143,12 +141,18 @@ function initResultsComponents() {
       getGenderResults(loadingProperty) {
         this.loading[loadingProperty] = true;
 
+        let filter = JSON.parse(JSON.stringify(this.filter));
+        delete filter.race;
+        let params = {params: filter};
+        params.gender = 'male';
+
         // Get male results
-        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'male', limit: this.maxRows } }).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
           this.genderRanks.male = result.data;
+          params.gender = 'female';
 
           // Get female results
-          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'female', limit: this.maxRows } }).then((result) => {
+          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
             this.genderRanks.female = result.data;
 
             this.loading[loadingProperty] = true;
