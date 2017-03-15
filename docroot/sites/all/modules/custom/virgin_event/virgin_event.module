@@ -7,6 +7,50 @@
 include_once 'virgin_event.features.inc';
 
 /**
+ * Implements hook_theme().
+ */
+function virgin_event_theme($existing, $type, $theme, $path) {
+  $default = array(
+    'file' => 'theme.inc',
+    'path' => $path . '/theme'
+  );
+
+  return array(
+    'virgin_event__photos' => array(
+        'variables' => array('node'),
+        'template' => 'virgin-event--photos',
+      ) + $default
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function virgin_event_menu() {
+  $items = array();
+
+  $items['node/%node/photos'] = array(
+    'title' => 'Event Photos',
+    'page callback' => 'virgin_event_page_photos',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_event.pages.inc',
+  );
+
+  $items['user/photos/%node/%'] = array(
+    'title' => 'User Event Photos',
+    'page callback' => 'virgin_event_page_photos',
+    'page arguments' => array(2, 3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_event.pages.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function virgin_event_form_event_node_form_alter(&$form, &$form_state) {
@@ -71,6 +115,20 @@ function virgin_event_pathauto_alias_alter(&$alias, array &$context) {
   }
 
   $alias = pathauto_clean_alias(implode('/', $parts));
+
+  // Create the alias for all other machine handled sub-event pages
+  $sub_paths = array(
+    'photos'
+  );
+
+  foreach ($sub_paths as $sub_path) {
+    $path = array(
+      'source' => $context['source'] . '/' . $sub_path,
+      'alias' => $alias . '/' . $sub_path
+    );
+
+    path_save($path);
+  }
 }
 
 // Helpers

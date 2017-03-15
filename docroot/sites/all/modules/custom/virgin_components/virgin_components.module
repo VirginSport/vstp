@@ -45,6 +45,38 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__page_header',
     ),
+    'virgin_components__ct__results_overview' => array(
+      'variables' => array(),
+      'template' => 'virgin-components--ct--results-overview',
+    ),
+    'virgin_components__ct__festival_results_card' => array(
+      'template'  => 'virgin-components__ct__festival-results-card',
+      'variables' => array(
+        'festival' => '',
+        'festival_state' => '',
+        'image_atom' => '',
+        'events' => array(),
+        'link_url' => '',
+        'brand_color' => '',
+      )
+    ),
+    'virgin_components__ct__results_table' => array(
+      'variables' => array(
+        'is_summary' => false,
+        'is_truncated' => true,
+        'brand_color' => 'blue',
+        'results_path' => '',
+        'replay_path' => '',
+        'photo_path' => '',
+        'festival_id' => '',
+        'event_id' => '',
+        'event_name' => '',
+        'event_date' => '',
+        'event_description' => '',
+        'max_rows' => 10
+      ),
+      'template' => 'virgin-components__ct__results_table',
+    ),
   );
 }
 
@@ -83,6 +115,17 @@ function virgin_components_ctools_plugin_post_alter(&$plugin, &$info) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
+ */
+function virgin_components_form_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_alter(&$form, &$form_state) {
+  if ($form['#bundle'] == 'vs_mylaps_track_my_runner') {
+    $form['notice'] = array(
+      '#markup' => t('<p>If an event is selected, the MyLaps ID stored in the selected event will take precedence over the MyLaps ID entered in the component.</p>')
+    );
+  }
+}
+
 // Helpers
 // ----------------------------------------------------------------------------
 
@@ -114,6 +157,7 @@ function virgin_components_list() {
       new VirginComponentHootsuiteSocialFeed(),
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
+      new VirginComponentResultsIntroduction(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),

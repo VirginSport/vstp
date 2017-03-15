@@ -881,6 +881,17 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
+  // Exported permission: 'create fieldable vs_results_introduction'.
+  $permissions['create fieldable vs_results_introduction'] = array(
+    'name' => 'create fieldable vs_results_introduction',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
   // Exported permission: 'create fieldable vs_teaser_block'.
   $permissions['create fieldable vs_teaser_block'] = array(
     'name' => 'create fieldable vs_teaser_block',
@@ -1217,6 +1228,17 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'delete fieldable vs_results_introduction'.
+  $permissions['delete fieldable vs_results_introduction'] = array(
+    'name' => 'delete fieldable vs_results_introduction',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1623,6 +1645,17 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+    ),
+    'module' => 'fieldable_panels_panes',
+  );
+
+  // Exported permission: 'edit fieldable vs_results_introduction'.
+  $permissions['edit fieldable vs_results_introduction'] = array(
+    'name' => 'edit fieldable vs_results_introduction',
+    'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );

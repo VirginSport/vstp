@@ -31,6 +31,8 @@ function virgin_festival_field_group_info() {
       5 => 'field_region',
       6 => 'field_status',
       7 => 'title_field',
+      8 => 'field_logo',
+      9 => 'field_alert',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -43,6 +45,61 @@ function virgin_festival_field_group_info() {
     ),
   );
   $field_groups['group_global|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu_tab|node|festival|form';
+  $field_group->group_name = 'group_menu_tab';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Menu',
+    'weight' => '20',
+    'children' => array(
+      0 => 'group_menu',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Menu',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-menu-tab field-group-tab',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_menu_tab|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu|node|festival|form';
+  $field_group->group_name = 'group_menu';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'Menu',
+    'weight' => '13',
+    'children' => array(
+      0 => 'field_links',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_menu|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -59,6 +116,9 @@ function virgin_festival_field_group_info() {
     'children' => array(
       0 => 'field_card_image_past',
       1 => 'field_description_short_past',
+      2 => 'field_replay_url',
+      3 => 'field_results_url',
+      4 => 'field_review_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -85,10 +145,10 @@ function virgin_festival_field_group_info() {
     'label' => 'Results',
     'weight' => '15',
     'children' => array(
-      0 => 'field_card_image_results',
-      1 => 'field_description_results',
-      2 => 'field_hero_image_results',
-      3 => 'field_caption',
+      0 => 'field_caption',
+      1 => 'field_card_image_results',
+      2 => 'field_description_results',
+      3 => 'field_hero_image_results',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -119,6 +179,7 @@ function virgin_festival_field_group_info() {
       1 => 'group_past_state',
       2 => 'group_results',
       3 => 'group_upcoming_state',
+      4 => 'group_menu',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -162,6 +223,7 @@ function virgin_festival_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Global');
+  t('Menu');
   t('Past State');
   t('Results');
   t('Tabs');

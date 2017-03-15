@@ -18,43 +18,44 @@ export default () => {
 function overrideMailTo() {
   let pageTitle = $('head title').text();
   let $mails = $('.vs-head-region .vs-share-button__icon-email');
-  
+
   $mails.each((idx, el) => {
     let $mail = $(el);
     let href = $mail.attr('href');
     let q = url.query(href);
-    
+
     if (!q.hasOwnProperty('subject')) {
       return;
     }
-    
+
     let encodedBody = encodeURIComponent(q.body);
     let encodedSubject = encodeURIComponent(pageTitle);
-    
+
     $mail.attr('href', `mailto:?subject=${encodedSubject}&body=${encodedBody}`)
   });
 }
 
 function share() {
+  let $body = $('body');
 
-  $('.vs-share-button').click(function(e) {
+  $body.on('click', '.vs-share-button', function(e) {
     if ($(this).find('.vs-share-button__icon-share--active').length) {
       $(this).find('.vs-share-button__icon-share').removeClass('vs-share-button__icon-share--active');
       $(this).find('.vs-share-button__social-links').removeClass('vs-share-button__social-links--active');
       $(this).find('.vs-share-button__content').removeClass('vs-share-button__content--active');
-      $('body').removeClass('vs-mobile-sharer-open');
+      $body.removeClass('vs-mobile-sharer-open');
     }
 
     else {
       $(this).find('.vs-share-button__icon-share').addClass('vs-share-button__icon-share--active');
       $(this).find('.vs-share-button__social-links').addClass('vs-share-button__social-links--active');
       $(this).find('.vs-share-button__content').addClass('vs-share-button__content--active');
-      $('body').addClass('vs-mobile-sharer-open');
+      $body.addClass('vs-mobile-sharer-open');
     }
     e.stopPropagation();
   });
 
-  $('.vs-share-button__icon-button--popup').click(function (e) {
+  $body.on('click', '.vs-share-button__icon-button--popup', function(e) {
     let w = 700;
     let h = 350;
     e.preventDefault();
@@ -66,7 +67,7 @@ function share() {
     $('.vs-share-button .vs-share-button__icon-share').removeClass('vs-share-button__icon-share--active');
     $('.vs-share-button .vs-share-button__social-links').removeClass('vs-share-button__social-links--active');
     $('.vs-share-button').removeClass('vs-share-button__content--active');
-    $('body').removeClass('vs-mobile-sharer-open');
+    $body.removeClass('vs-mobile-sharer-open');
   });
 }
 
