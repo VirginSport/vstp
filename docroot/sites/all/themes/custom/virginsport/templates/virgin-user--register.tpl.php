@@ -159,12 +159,16 @@ $query = drupal_get_query_parameters();
                             </div>
                           </validator>
 
-                          <div class="field-gender vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
-                            <div class="vs-chosen-wrapper">
-                              <label for="field_gender" class="vs-focus-label"><?php print t('Gender'); ?>*</label>
-                              <select v-model="profile.field_gender" name="field_gender" id="field_gender" v-validate:field_gender="['required']"></select>
+                          <div class="field-gender vs-form-group vs-form-group--radio-buttons vs-form-group--radio-buttons--inline" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
+                            <div class="vs-form-radio">
+                              <input class="vs-form-input vs-form-input--radio" v-model="profile.field_gender" id="gender_female" name="field_gender" tabindex="1" type="radio" value="female" v-validate:field_gender="['required']">
+                              <label class="vs-form-label vs-form-label--radio" for="gender_female"><?php print t('Female'); ?></label>
                             </div>
-                            <div class="vs-error-label" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
+                            <div class="vs-form-radio">
+                              <input class="vs-form-input vs-form-input--radio" v-model="profile.field_gender" id="gender_male" name="field_gender" tabindex="1" type="radio" value="male" v-validate:field_gender="['required']">
+                              <label class="vs-form-label vs-form-label--radio" for="gender_male"><?php print t('Male'); ?></label>
+                            </div>
+                            <div class="vs-error-label d-block" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
                           </div>
 
                           <div class="field-marketing vs-form-group vs-form-group--checkboxes">
