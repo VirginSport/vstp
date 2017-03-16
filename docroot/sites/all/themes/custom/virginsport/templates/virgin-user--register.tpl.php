@@ -48,7 +48,7 @@ $query = drupal_get_query_parameters();
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade in active">
-            <div class="vs-user-login--form-drupal hidden-xs-up">
+            <div class="vs-user-login--form-drupal">
               <?php print drupal_render($register_form); ?>
             </div>
 
