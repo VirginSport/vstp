@@ -145,13 +145,13 @@ function initResultsComponents() {
 
         let filter = JSON.parse(JSON.stringify(this.filter));
         delete filter.race;
-        let params = {params: filter};
-        params.gender = 'male';
+        let params = { params: filter };
+        params.params.gender = 'male';
 
         // Get male results
         getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
           this.genderRanks.male = result.data;
-          params.gender = 'female';
+          params.params.gender = 'female';
 
           // Get female results
           getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
