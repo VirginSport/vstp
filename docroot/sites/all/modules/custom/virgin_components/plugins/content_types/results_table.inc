@@ -59,7 +59,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'replay_path' => url('/node/' . $event->property('nid')),
     'photo_path' => url('/node/' . $event->property('nid')),
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
-    'unit' => $current_region['country_letter_code'] == 'UK' ? 'miles' : 'km',
+    'unit' => $current_region['country_letter_code'] == 'US' ? 'miles' : 'km',
   );
 
   $block = new stdClass();
