@@ -355,6 +355,13 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
     '#required' => TRUE
   );
 
+  // This fields are not available on register page
+  $form['field_address_city']['#access'] = FALSE;
+  $form['field_address_country']['#access'] = FALSE;
+  $form['field_address_line_1']['#access'] = FALSE;
+  $form['field_address_postcode']['#access'] = FALSE;
+  $form['field_contact_number']['#access'] = FALSE;
+
   // Ensure the email fields ordering
   $form['account']['mail']['#weight'] = -2;
   $form['account']['mail_confirm']['#weight'] = -1;
