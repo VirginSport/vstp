@@ -140,6 +140,12 @@ class SmtpMailSystem implements MailSystemInterface {
         }
       }
     }
+
+    // Use the smtp from as the form address if the smtp_from variable is set
+    $smtp_from = variable_get('smtp_from');
+    $site_mail = variable_get('site_mail');
+    $from = empty($smtp_from) ? $site_mail : $smtp_from;
+
     $from_comp = $this->_get_components($from);
 
     if (!valid_email_address($from_comp['email'])) {
