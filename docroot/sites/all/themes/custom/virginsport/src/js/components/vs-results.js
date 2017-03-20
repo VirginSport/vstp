@@ -361,7 +361,7 @@ function initResultsComponents() {
           return this.cachedPassings[this.unit];
         }
 
-        this.max = 0;
+        this.maxAverage[this.unit] = 0;
         let list = [];
 
         this.getSortedStages().forEach((s, index) => {
@@ -371,7 +371,10 @@ function initResultsComponents() {
             let startTime = index == 0 ? moment().format("yyyy-mm-dd") : list[index - 1].pass.chipTime;
             let distance = index == 0 ? s.distance : s.distance - list[index - 1].stage.distance;
             let average = this.diff(startTime, p.chipTime) / this.getDistanceFormatted(distance);
-            this.maxAverage[this.unit] = this.max > average ? this.max : average;
+
+            if (this.maxAverage[this.unit] < average) {
+              this.maxAverage[this.unit] = average;
+            }
 
             list.push({
               startTime: startTime,
