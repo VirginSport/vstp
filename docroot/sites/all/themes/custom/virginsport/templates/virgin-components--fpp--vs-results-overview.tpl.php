@@ -17,6 +17,7 @@
             <div class="col-xs-12">
               <div class="vs-results-overview-banner__content-wrapper">
                 <h2 class="vs-results-overview-banner__title"><?php print check_plain($title); ?></h2>
+                <div class="vs-results-overview-banner__date"><?php print $start_date; ?></div>
                 <div class="vs-results-overview-banner__content">
                   <p><?php print $description; ?></p>
                 </div>
