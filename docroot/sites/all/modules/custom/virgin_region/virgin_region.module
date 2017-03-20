@@ -82,6 +82,9 @@ function virgin_region_init() {
   // Fetch the current active region
   $region = virgin_region_current();
 
+  // Add js variable to check if region is available or not
+  drupal_add_js(array('virgin_region' => array('region_available' => !empty($region))), array('type' => 'setting'));
+
   // Build the front-page URL from the current region node it exists or fallback
   // to the splash page path if no region host matches the current hostname.
   if ($region) {
