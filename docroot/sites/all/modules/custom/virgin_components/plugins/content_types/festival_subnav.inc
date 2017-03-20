@@ -79,6 +79,21 @@ function virgin_components_festival_subnav_content_type_render($subtype, $conf, 
 
     foreach ($festival_links as $link) {
       $url = $link['url'];
+
+      // For some reason after/while saving the page in panels IPE where this
+      // component is included, the attributes property is a serialized array,
+      // therefore saving and subsequent render fails with an error 500. The
+      // following workaround ensures rendering in these circumstances will not
+      // fail due to the attributes being serialized.
+      if (is_string($link['attributes'])) {
+        $link['attributes'] = @unserialize($link['attributes']);
+
+        if (!is_array($link['attributes'])) {
+          continue;
+        }
+      }
+
+      // Proceed to render the link using the un-serialized attributes property
       $attributes = $link['attributes'] + array('virgin_show' => '', 'target' => '');
 
       if (empty($attributes['virgin_show'])) {
