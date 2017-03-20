@@ -23,7 +23,7 @@
         <div class="vs-hero-banner__background">
           <?php if(!empty($show_share)): ?>
             <div class="vs-hero-banner__social-wrapper">
-              <?php print theme('virginsport_share_buttons', array('subject' => $hero_banner_title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+              <?php print theme('virginsport_share_buttons', array('location' => 'Hero Banner Block', 'subject' => $hero_banner_title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
             </div>
           <?php endif; ?>
 

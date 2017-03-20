@@ -31,7 +31,8 @@ export default () => {
         'EventName' : $('meta[name="vs-event-name"]').attr('content'),
         'FestivalName' : $('meta[name="vs-festival-name"]').attr('content'),
         'VSExperience' : '',
-        'SocialMediaType' : $(this).attr('vs-share-event')
+        'SocialMediaType' : $(this).attr('vs-share-event'),
+        'Location' : $(this).attr('vs-location')
       });
     }
   });

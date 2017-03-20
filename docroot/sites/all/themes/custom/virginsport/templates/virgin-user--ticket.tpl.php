@@ -219,7 +219,7 @@ $unit = 'km';
               <?php endif; ?>
             <?php endif; ?>
             <div class="vs-ticket-card__social-wrapper">
-              <?php print theme('virginsport_share_buttons', array('subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
+              <?php print theme('virginsport_share_buttons', array('location' => 'User Ticket', 'subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
             </div>
           </div>
         </div>
