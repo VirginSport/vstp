@@ -1,7 +1,7 @@
 (function ($) {
 
-  const VIRGIN_REGION_REGION_COOKIE = 'vs_region_hostname';
-  const VIRGIN_REGION_BASKET_REGION_COOKIE = 'vs_basket_region_hostname';
+  var VIRGIN_REGION_REGION_COOKIE = 'vs_region_hostname';
+  var VIRGIN_REGION_BASKET_REGION_COOKIE = 'vs_basket_region_hostname';
 
   /**
    * Executes on document ready
