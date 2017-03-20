@@ -170,6 +170,26 @@ function virgin_region_clear_cache($node) {
 }
 
 /**
+ * Get a region by its nid
+ *
+ * @param $nid
+ *  The region nid
+ *
+ * @return []|null
+ */
+function virgin_region_region_load($nid) {
+  $regions = virgin_region_regions();
+
+  foreach ($regions as $region) {
+    if ($region['nid'] == $nid) {
+      return $region;
+    }
+  }
+
+  return NULL;
+}
+
+/**
  * Get the list of active regions
  *
  * @return array
