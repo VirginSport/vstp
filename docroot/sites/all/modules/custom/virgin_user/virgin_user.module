@@ -85,14 +85,14 @@ function virgin_user_theme($existing, $type, $theme, $path) {
   return array(
     'virgin_user__ct__user_tickets' => array(
       'variables' => array('data'),
-      'template' => 'virgin-user__ct__user_tickets',
+      'template' => 'virgin-user--ct--user-tickets',
     ) + $default,
     'virgin_user__ticket' => array(
       'variables' => array('ticket', 'ticket_type', 'event'),
-      'template' => 'virgin-user__ticket',
+      'template' => 'virgin-user--ticket',
     ) + $default,
     'virgin_user__claim_ticket' => array(
-      'template' => 'virgin_user__claim_ticket',
+      'template' => 'virgin-user--claim_ticket',
       'variables' => array(
         'ticket' => '',
         'logged_name' => '',
@@ -101,7 +101,7 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       )
     ) + $default,
     'virgin_user__claim_ticket_page' => array(
-      'template' => 'virgin_user__claim_ticket_page',
+      'template' => 'virgin-user--claim-ticket-page',
       'variables' => array(
         'ticket' => '',
       )
@@ -113,25 +113,31 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       )
     ) + $default,
     'virgin_user__login' => array(
-      'template' => 'virgin-user__login',
+      'template' => 'virgin-user--login',
       'variables' => array(
         'login_form' => '',
         'hybridauth_widget' => '',
       )
     ) + $default,
     'virgin_user__register' => array(
-      'template' => 'virgin-user__register',
+      'template' => 'virgin-user--register',
       'variables' => array(
         'register_form' => '',
         'hybridauth_widget' => '',
       )
     ) + $default,
     'virgin_user__password' => array(
-        'template' => 'virgin-user__password',
-        'variables' => array(
-          'form' => '',
-        )
-      ) + $default,
+      'template' => 'virgin-user--password',
+      'variables' => array(
+        'form' => '',
+      )
+    ) + $default,
+    'virgin_user__password_reset' => array(
+      'template' => 'virgin-user--password_reset',
+      'variables' => array(
+        'form' => '',
+      )
+    ) + $default,
     'virgin_user__contact_form' => array(
       'template' => 'virgin-user--contact-form',
       'variables' => array(
@@ -237,6 +243,15 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['user/results/%virgin_user_ticket'] = array(
+    'title' => 'Results',
+    'page callback' => 'virgin_user_page_results',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 
@@ -270,6 +285,11 @@ function virgin_user_menu_alter(&$items) {
   $items['user/password']['page callback'] = 'virgin_user_page_user_password';
   $items['user/password']['file'] = $file;
   $items['user/password']['file path'] = $file_path;
+
+  // Override password reset page
+  $items['user/reset/%/%/%']['page callback'] = 'virgin_user_page_user_password_reset';
+  $items['user/reset/%/%/%']['file'] = $file;
+  $items['user/reset/%/%/%']['file path'] = $file_path;
 
   // Restrict certain user administration routes to website administrators.
   $admin_routes = array(
@@ -334,6 +354,13 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
     '#title' => t('Confirm E-mail'),
     '#required' => TRUE
   );
+
+  // This fields are not available on register page
+  $form['field_address_city']['#access'] = FALSE;
+  $form['field_address_country']['#access'] = FALSE;
+  $form['field_address_line_1']['#access'] = FALSE;
+  $form['field_address_postcode']['#access'] = FALSE;
+  $form['field_contact_number']['#access'] = FALSE;
 
   // Ensure the email fields ordering
   $form['account']['mail']['#weight'] = -2;
@@ -834,6 +861,20 @@ function virgin_user_bind_attendly_checkout_session() {
 }
 
 /**
+ * Loads a user ticket object.
+ */
+function virgin_user_ticket_load($sugar_id) {
+  $ticket = db_select('virgin_user_tickets')
+    ->fields('virgin_user_tickets')
+    ->condition('sugar_id', $sugar_id, '=')
+    ->execute()
+    ->fetchObject()
+  ;
+
+  return empty($ticket) ? FALSE : $ticket;
+}
+
+/**
  * Helper function to fetch a ticket from SugarCRM
  *
  * @param string $rego
@@ -873,4 +914,35 @@ function _virgin_user_get_ticket($rego) {
 
     throw new VirginException($e->getMessage(), t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."));
   }
+}
+
+/**
+ * Fetch a grapher object containing the event related to the given
+ * ticket rego
+ *
+ * @param $ticket_rego
+ *  The ticket rego ID
+ * @return \VirginEntityGrapher|Null
+ *  An object containing the event graphers or null
+ */
+function virgin_user_ticket_event($ticket_rego) {
+  $query = db_select('virgin_user_tickets', 'tickets');
+
+  $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
+  $query->join('field_data_field_event_state', 'ev', 'ev.field_event_state_target_id = sugar.entity_id');
+  $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
+
+  $query->addField('nev', 'nid', 'event_node_id');
+
+  $query
+    ->condition('tickets.attendly_rego_id', $ticket_rego, '=')
+    ->condition('tickets.ticket_status', 'active', '=')
+    ->condition('nev.type', 'event', '=')
+  ;
+
+  $event_id = $query->execute()->fetchField();
+
+  $node = node_load($event_id);
+
+  return empty($node) ? NULL : new VirginEntityGrapher('node', $node);
 }

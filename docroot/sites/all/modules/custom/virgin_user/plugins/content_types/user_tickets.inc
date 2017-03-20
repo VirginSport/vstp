@@ -49,6 +49,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
 
   $query->join('field_data_field_sugar_id', 'sugar', 'sugar.field_sugar_id_value = tickets.event_id');
   $query->join('field_data_field_festival_state', 'fs', 'sugar.entity_id = fs.entity_id');
+  $query->join('field_data_field_sugar_id', 'fssid', 'fssid.entity_id = fs.field_festival_state_target_id');
   $query->join('field_data_field_event_state', 'ev', 'ev.field_event_state_target_id = sugar.entity_id');
   $query->join('field_data_field_festival_state', 'f', 'f.field_festival_state_target_id = fs.field_festival_state_target_id');
   $query->join('field_data_field_end_date', 'd', 'fs.field_festival_state_target_id = d.entity_id');
@@ -56,6 +57,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
   $query->join('node', 'nev', 'nev.nid = ev.entity_id AND nev.status = 1');
 
   $query->addField('n', 'nid', 'festival_node_id');
+  $query->addField('fssid', 'field_sugar_id_value', 'festival_id');
   $query->addField('n', 'title', 'festival_node_title');
   $query->addField('nev', 'nid', 'event_node_id');
 
@@ -65,6 +67,7 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     ->condition('tickets.ticket_status', 'active', '=')
     ->condition('n.type', 'festival', '=')
     ->condition('nev.type', 'event', '=')
+    ->condition('fssid.bundle', 'festival_state', '=')
     ->condition('f.bundle', 'festival', '=')
   ;
 
@@ -96,10 +99,11 @@ function virgin_user_user_tickets_content_type_render($subtype, $conf, $panel_ar
     if (empty($data[$ticket->festival_node_id])) {
       // Tickets query guarantees that festival always exist
       $festival_grapher = new VirginEntityGrapher('node', node_load($ticket->festival_node_id));
+      $festival_state_grapher = $festival_grapher->relation('field_festival_state');
 
       $attributes = array(
         'festival_grapher' => $festival_grapher,
-        'festival_state_grapher' => $festival_grapher->relation('field_festival_state'),
+        'festival_state_grapher' => $festival_state_grapher,
         'tickets' => ''
       );
 

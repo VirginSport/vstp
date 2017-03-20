@@ -6,9 +6,16 @@
 
 // Get number of days lefting to the festival
 $event_days_left = virginsport_days_left($event_start_date);
+
+// TODO, move the unit for a user configuration
+$unit = 'km';
 ?>
 
-<div class="vs-ticket-card vs-ticket-card--<?php print $ticket->attendly_rego_id; ?> vs-ticket-card--color-<?php print $brand_color; ?>">
+<div
+  id="vs-ticket-card--<?php print $ticket->attendly_rego_id; ?>"
+  class="vs-ticket-card vs-ticket-card--<?php print $ticket->attendly_rego_id; ?> vs-ticket-card--color-<?php print $brand_color; ?>"
+  v-init='<?php print drupal_json_encode(array('unit' => $unit, 'ticket_id' => $ticket->sugar_id, 'festival_id' => $ticket->festival_id, 'event_id' => $ticket->event_id)) ?>'
+>
   <div class="container">
     <div
       class="vs-ticket-card-wrapper materialShadow"
@@ -56,6 +63,7 @@ $event_days_left = virginsport_days_left($event_start_date);
             <div class="col-xs-12 col-md-7 col-lg-8 clearfix">
               <?php if ($event_past): ?>
                 <div class="row vs-ticket-card__past-event-details">
+
                   <?php if ($ticket->club_name): ?>
                   <div class="col-xs-6 col-md-6 col-lg-3 vs-ticket-card__club">
                     <span class="vs-ticket-card__club-label">
@@ -64,6 +72,7 @@ $event_days_left = virginsport_days_left($event_start_date);
                     <p><?php print check_plain($ticket->club_name); ?></p>
                   </div>
                   <?php endif; ?>
+
                   <?php if ($ticket->team_name): ?>
                     <div class="col-xs-6 col-md-6 col-lg-4 vs-ticket-card__team">
                     <span class="vs-ticket-card__team-label">
@@ -72,22 +81,20 @@ $event_days_left = virginsport_days_left($event_start_date);
                       <p><?php print check_plain($ticket->team_name); ?></p>
                     </div>
                   <?php endif; ?>
-                  <?php
-                  /* TODO placeholder for release 2 when there's results
-                    <div class="col-xs-6 col-md-6 col-lg-3 vs-ticket-card__session-time">
+
+                  <div v-if="participant" class="col-xs-6 col-md-6 col-lg-3 vs-ticket-card__session-time">
                     <span class="vs-ticket-card__session-time-label">
                       time
                     </span>
-                      <p>48:25</p>
-                    </div>
-                    <div class="col-xs-6 col-md-6 col-lg-2 vs-ticket-card__distance">
+                    <p>{{ participant.displayChipTime }}</p>
+                  </div>
+
+                  <div v-if="race && participant" class="col-xs-6 col-md-6 col-lg-2 vs-ticket-card__distance">
                     <span class="vs-ticket-card__distance-label">
-                      km/h
+                      {{ unit }}/h
                     </span>
-                      <p>9.43</p>
-                    </div>
-                  */
-                  ?>
+                    <p>{{ getAverageDistance() }}</p>
+                  </div>
                 </div>
               <?php elseif (!empty($event_days_left)): ?>
                 <div class="vs-ticket-card__days-left-wrapper hidden-sm-down">
@@ -105,25 +112,17 @@ $event_days_left = virginsport_days_left($event_start_date);
 
           <div class="row clearfix vs-ticket-card__ctas-wrapper">
             <?php if ($event_past): ?>
-              <?php
-              /* TODO placeholder for release 2 when there's results
               <div class="vs-ticket-card__cta-wrapper">
-                <a class="vs-ticket-card__cta--full-results" href="#">
+                <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->sugar_id); ?>">
                   <i class="icon-results-medal"></i>
-                  <span>full results</span>
+                  <span><?php print t('full results'); ?></span>
                 </a>
               </div>
-              */
-              ?>
-
-              <?php
-              /* TODO link up to an event photo page and pass bib# and the GamefaceID for the associated event */
-              ?>
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
                     class="vs-ticket-card__cta--event-photos"
-                    href="#"
+                    href="<?php print url(sprintf('node/%s/photos', $event_grapher->property('nid'))); ?>{{ participant  ? `?bib=${participant.bibNumber}`: '' }}"
                     interaction-type="event photos"
                   >
                     <i class="icon-event-selfie"></i>

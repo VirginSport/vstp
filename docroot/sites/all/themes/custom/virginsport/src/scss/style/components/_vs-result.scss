@@ -1,0 +1,616 @@
+
+// Block
+// ----------------------------------------------------------------------------
+
+.vs-result {
+
+}
+
+// Element
+// ----------------------------------------------------------------------------
+
+.vs-result-col {
+  display: block;
+  float: left;
+  min-height: 1px;
+  position: relative;
+
+  .vs-results__table-head & {
+    font-size: rem(13);
+    font-weight: 600;
+  }
+
+  .vs-result__head & {
+    font-size: rem(14);
+    padding: rem(24) 0;
+  }
+
+  &-rank {
+    width: 10%;
+
+    .vs-results__table-head & {
+      font-size: 0;
+    }
+  }
+
+  &-name {
+    width: 45%;
+
+    .vs-results__table-head & {
+      padding-left: rem(10);
+    }
+  }
+
+  &-bib {
+    width: 20%;
+
+    .page-user-results & {
+      width: 30%;
+
+      @include media-breakpoint-up(md) {
+        width: 20%;
+      }
+    }
+  }
+
+  &-club { display: none; }
+  &-team { display: none; }
+  &-age { display: none; }
+  &-category { display: none; }
+  &-gender { display: none; }
+  &-pace { display: none; }
+  &-chip { width: 25%; }
+
+  @include media-breakpoint-up(lg) {
+    &-rank {
+      width: 6%;
+
+      .vs-results__table-head & {
+        font-size: rem(13);
+      }
+    }
+
+    &-name {
+      width: 16%;
+
+      .vs-results__table-head & {
+        padding-left: 0;
+      }
+    }
+
+    &-bib { width: 7.5%; }
+    &-club { display: block; width: 15%; }
+    &-team { display: block; width: 15%; }
+    &-age { display: block; width: 15%; }
+    &-category { display: block; width: 10%; }
+    &-gender { display: block; width: 7.5%; }
+    &-pace { display: block; width: 10%; }
+    &-chip { width: 10%; }
+  }
+}
+
+.vs-result {
+  &__head {
+    @include clearfix;
+    @include transition(all .5s ease-in-out);
+    border-radius: rem(10) rem(10) 0 0;
+    padding: 0 rem(10);
+    cursor: pointer;
+    position: relative;
+
+    @include media-breakpoint-up(lg) {
+      padding: 0 rem(15) 0 rem(30);
+    }
+  }
+
+  &__border { border-top: 1px solid rgba(178, 178, 178, 0.3); }
+  &__strong { font-weight: 500; }
+  &__muted { color: $c-gray; }
+
+  &__body {
+    @include clearfix;
+    background-color: white;
+    border-radius: 0 0 rem(10) rem(10);
+    position: relative;
+  }
+
+  &__meta-wrapper {
+    margin: 0 rem(20);
+    padding-top: rem(24);
+    text-transform: uppercase;
+    color: $c-gray;
+
+    @include media-breakpoint-up(md) {
+      @include flexbox;
+      @include justify-content(space-between);
+      margin: 0 rem(30) rem(20) rem(30);
+      width: calc(100% - 100px);
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: rem(46);
+      width: calc(100% - 160px);
+    }
+  }
+
+  &__meta {
+    float: left;
+    font-size: rem(12);
+    margin-bottom: rem(10);
+    width: 50%;
+
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-base;
+      margin-bottom: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    &__meta--first { padding-left: 6%; }
+    &__meta--last { padding-right: 6%; }
+  }
+
+  &__meta-label {
+    display: block;
+    font-weight: 500;
+    text-transform: none;
+    color: $c-gray-dark;
+    padding-right: rem(5);
+
+    @include media-breakpoint-up(lg) {
+      display: inline-block;
+    }
+  }
+
+  &__times {
+    width: 100%;
+    margin-bottom: rem(40);
+    float: left;
+
+    @include media-breakpoint-up(lg) {
+      width: 70%;
+    }
+  }
+
+  &__average-label {
+    padding-left: 50%;
+    font-weight: 500;
+    font-size: rem(10);
+    text-transform: uppercase;
+    text-align: center;
+    color: $c-green;
+
+    @include media-breakpoint-up(md) {
+      padding-left: 40%;
+      font-size: rem(12);
+    }
+  }
+
+  &__time {
+    @include clearfix;
+
+    // Modify the first stage to have the circle highlighted and hide avg. bar
+    &:first-child {
+      .vs-result__time-stage:after { background-color: $c-green; }
+      .vs-result__time-stage:before { display: none; }
+      .vs-result__time-average { display: none; }
+    }
+
+    // Modify the last stage to have the circle highlighted
+    &:last-child {
+      .vs-result__time-stage:after { background-color: $c-green; }
+    }
+  }
+
+  &__time-stage {
+    width: 40%;
+    clear: both;
+    position: relative;
+    height: rem(7);
+
+    @include media-breakpoint-up(md) {
+      width: 35%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 36%;
+    }
+
+    @include media-breakpoint-up(lxl) {
+      width: 40%;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      right: 27%;
+    }
+
+    // Circle
+    &:after {
+      height: rem(12);
+      width: rem(12);
+      bottom: 0;
+      margin-right: rem(-5.5);
+      background-color: $c-gray;
+      border-radius: 100%;
+    }
+
+    // Gray line
+    &:before {
+      top: rem(-28);
+      bottom: 0;
+      background-color: rgba($c-gray, 0.6);
+      width: rem(1.5);
+    }
+  }
+
+  &__time-average {
+    padding-left: 50%;
+    width: calc(100% - 20px);
+    position: relative;
+
+    @include media-breakpoint-up(md) {
+      padding-left: 40%;
+    }
+  }
+
+  &__time-stage-name {
+    position: absolute;
+    bottom: rem(-3);
+    right: 36%;
+    font-size: rem(12);
+    text-transform: uppercase;
+    font-weight: 500;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(13);
+    }
+  }
+
+  &__time-stage-time {
+    position: absolute;
+    bottom: rem(-3);
+    left: 81%;
+    font-size: rem(10);
+    color: $c-gray;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(12);
+    }
+  }
+
+  &__progress {
+    overflow: hidden;
+    width: 100%;
+    background-color: $c-green-lighter;
+    border-radius: rem(30);
+    position:relative;
+    z-index:1;
+  }
+
+  &__progress-state {
+    @include gradient-directional($c-green-light, $c-green, 90deg);
+    @include transition(all 1.5s ease-in-out);
+    height: rem(28);
+    line-height: rem(28);
+    border-radius: rem(30);
+    color: $c-white;
+    text-align: right;
+    padding: 0 rem(20);
+    font-size: rem(13);
+    width: 0;
+  }
+
+  &__stats {
+    float: left;
+    margin-bottom: rem(20);
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0;
+      width: 30%;
+    }
+  }
+
+  &__stat {
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding: rem(15) 0;
+
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+      float: none;
+    }
+  }
+
+  &__stat-value {
+    font-size: rem(20);
+    font-weight: 500;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(26);
+    }
+  }
+
+  &__stat-label {
+    font-weight: 500;
+    font-size: rem(10);
+    text-transform: uppercase;
+    color: $c-green;
+    display: block;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      font-size: rem(13);
+    }
+  }
+}
+
+.vs-result__head:before {
+  @include transition(all .5s ease-in-out);
+  border-radius: rem(10) rem(10) 0 0;
+  bottom: 0;
+  content: '';
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @each $color in map-keys($color-schemes) {
+    .vs-result--color-#{$color} & {
+      $map: map_get($color-schemes, $color);
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+    }
+  }
+}
+
+.vs-result__share {
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+    position: absolute;
+    top: rem(20);
+    right: rem(20);
+  }
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+.vs-result:first-child {
+  .vs-result__border { border: none; }
+}
+
+.vs-result--open + .vs-result {
+  .vs-result__border { border-color: rgba(0,0,0,0); }
+}
+
+.vs-result--open + .vs-result--open {
+  margin-top: rem(15);
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-result--color-#{$color} {
+    .vs-result-col-rank { color: map_get($map, 'solid-color'); }
+
+    &.vs-result--open {
+      .vs-result__head:before { opacity: 1; }
+      .vs-result-col { color: map_get($map, 'text-color'); }
+      .vs-result-col-bib { opacity: 0.8; }
+    }
+  }
+}
+
+.vs-results__table-list__group + .vs-result {
+  .vs-result__border { border: none; }
+}
+
+
+// Initial animation setup
+// ----------------------------------------------------------------------------
+
+@keyframes header {
+  from  { @include transform(translateX(30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes header-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(30px)); opacity: 0; }
+}
+
+@keyframes share {
+  from  { @include transform(translateX(-30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes share-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(-30px)); opacity: 0; }
+}
+
+@keyframes average-label {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes average-label-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes stage-name {
+  from  { @include transform(translateX(-30px)); opacity: 0; }
+  to    { @include transform(translateX(0)); opacity: 1; }
+}
+
+@keyframes stage-name-reverse {
+  from  { @include transform(translateX(0)); opacity: 1; }
+  to    { @include transform(translateX(-30px)); opacity: 0; }
+}
+
+@keyframes result-time {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-time-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes progress-state {
+  from    { @include transform(translateX(-100%)); }
+  to      { @include transform(translateX(0)); }
+}
+
+@keyframes progress-state-reverse {
+  from    { @include transform(translateX(0)); }
+  to      { @include transform(translateX(-100%)); }
+}
+
+@keyframes result-stat {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-stat-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+@keyframes result-value {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}
+
+@keyframes result-value-reverse {
+  from  { opacity: 1; }
+  to    { opacity: 0; }
+}
+
+.vs-result__body {
+  @include transition(all .5s ease-in-out);
+  overflow: hidden;
+  max-height: 0;
+}
+
+.vs-result:not(.vs-result--first-child) .vs-result__body {
+  //max-height: 0 !important;
+}
+
+.vs-result__meta-wrapper {
+  .vs-result:not(.vs-result--open) & {
+    animation: header-reverse .5s;
+    opacity: 0;
+  }
+}
+
+.vs-result__share {
+  .vs-result:not(.vs-result--open) & {
+    animation: share-reverse .5s;
+    opacity: 0;
+  }
+}
+
+.vs-result__average-label {
+  .vs-result:not(.vs-result--open) & {
+    animation: average-label-reverse .5s;
+    opacity: 0;
+  }
+}
+
+$stages: 20;      // Number of race stages
+$timelapse: .25s; // Time to start next stage animation
+
+.vs-result__time {
+  .vs-result:not(.vs-result--open) & {
+    @for $i from 1 through $stages {
+      &:nth-last-child(#{$i}) {
+        animation: result-time-reverse $i * $timelapse;
+        opacity: 0;
+
+        .vs-result__time-stage-name {
+          animation: stage-name-reverse $i * $timelapse;
+          opacity: 0;
+        }
+
+        .vs-result__progress-state {
+          animation: progress-state-reverse $i * $timelapse;
+        }
+      }
+    }
+  }
+}
+
+.vs-result__stat {
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    animation: result-stat-reverse .5s;
+    opacity: 0;
+  }
+}
+
+.vs-result__stat-value {
+  opacity: 0;
+
+  .vs-result:not(.vs-result--open) & {
+    animation: result-value-reverse .5s;
+    opacity: 0;
+  }
+}
+
+
+// Animations end values
+// ----------------------------------------------------------------------------
+
+.vs-result--open .vs-result__body--ready {
+  .vs-result__meta-wrapper {
+    animation: header .5s;
+  }
+
+  .vs-result__share {
+    animation: share .5s;
+  }
+
+  .vs-result__average-label {
+    animation: average-label .5s;
+  }
+
+  .vs-result__time {
+    @for $i from 1 through $stages {
+      &:nth-child(#{$i}) {
+        animation: result-time $i * $timelapse;
+
+        .vs-result__time-stage-name {
+          animation: stage-name $i * $timelapse;
+        }
+
+        .vs-result__progress-state {
+          @include transition(all);
+          animation: progress-state $i * $timelapse;
+        }
+      }
+    }
+  }
+}
+
+.vs-result--open.vs-result--last-child {
+  .vs-result__stat {
+    animation: result-stat .5s;
+    opacity: 1;
+  }
+
+  .vs-result__stat-value {
+    animation: result-value .5s;
+    opacity: 1;
+  }
+}

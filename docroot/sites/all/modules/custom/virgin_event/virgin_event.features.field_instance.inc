@@ -23,6 +23,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -79,6 +85,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -129,6 +141,12 @@ function virgin_event_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -179,6 +197,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -246,6 +270,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -304,6 +334,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -373,6 +409,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -437,6 +479,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -488,6 +536,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -554,6 +608,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -615,6 +675,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'atom_reference',
@@ -671,6 +737,12 @@ function virgin_event_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'atom_reference',
@@ -727,6 +799,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -775,6 +853,57 @@ function virgin_event_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_results_summary'.
+  $field_instances['node-event-field_results_summary'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_results_summary',
+    'label' => 'Results Summary',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_show_in_festival_menu'.
   $field_instances['node-event-field_show_in_festival_menu'] = array(
     'bundle' => 'event',
@@ -786,6 +915,12 @@ function virgin_event_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -831,6 +966,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -891,6 +1032,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -957,6 +1104,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -1010,10 +1163,17 @@ function virgin_event_field_default_field_instances() {
   // Exported field_instance: 'node-event_state-field_end_date'.
   $field_instances['node-event_state-field_end_date'] = array(
     'bundle' => 'event_state',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1073,7 +1233,7 @@ function virgin_event_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_popup',
+      'type' => 'date_select',
       'weight' => 7,
     ),
   );
@@ -1086,6 +1246,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1143,6 +1309,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1216,6 +1388,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -1271,6 +1449,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1336,6 +1520,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -1396,6 +1586,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'list',
@@ -1442,10 +1638,17 @@ function virgin_event_field_default_field_instances() {
   // Exported field_instance: 'node-event_state-field_start_date'.
   $field_instances['node-event_state-field_start_date'] = array(
     'bundle' => 'event_state',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1505,7 +1708,7 @@ function virgin_event_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_popup',
+      'type' => 'date_select',
       'weight' => 6,
     ),
   );
@@ -1518,6 +1721,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1584,6 +1793,12 @@ function virgin_event_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -1640,6 +1855,12 @@ function virgin_event_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'alternate' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'alternate_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1715,6 +1936,7 @@ function virgin_event_field_default_field_instances() {
   t('MyLaps ID');
   t('Name');
   t('Results Introduction');
+  t('Results Summary');
   t('Show in festival menu');
   t('Start Date');
   t('Status');

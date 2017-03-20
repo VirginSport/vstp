@@ -8,7 +8,8 @@ $last-child-count: 3;
 .vs-hero-banner,
 .panels-ipe--vs-hero-banner,
 .vs-cta-block,
-.panels-ipe--vs-cta-block {
+.panels-ipe--vs-cta-block,
+.vs-mylaps {
   &:last-child,
   &:nth-last-child(#{$last-child-count}) {
     margin-bottom: 0;
