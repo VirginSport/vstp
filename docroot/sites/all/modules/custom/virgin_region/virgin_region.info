@@ -32,4 +32,5 @@ features[variable][] = panelizer_node:region_allowed_layouts_default
 features[variable][] = panelizer_node:region_allowed_types_default
 features[variable][] = panelizer_node:region_default
 features[variable][] = site_frontpage
+scripts[] = js/virgin_region.js
 files[] = views/virgin_region_handler_filter_region.inc
