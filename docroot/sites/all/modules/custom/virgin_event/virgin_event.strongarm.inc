@@ -35,13 +35,13 @@ function virgin_event_strongarm() {
           'weight' => '16',
         ),
         'path' => array(
-          'weight' => '15',
-        ),
-        'redirect' => array(
           'weight' => '14',
         ),
+        'redirect' => array(
+          'weight' => '15',
+        ),
         'language' => array(
-          'weight' => '13',
+          'weight' => '17',
         ),
       ),
       'display' => array(),
