@@ -43,6 +43,13 @@ function virgin_components_update_7004() {
 }
 
 /**
+ * Allow to insert fpp results overview
+ */
+function virgin_components_update_7005() {
+  virgin_components_allow_type('fieldable_panels_pane-vs_results_overview');
+}
+
+/**
  * Allow component to be added in frontend
  *
  * @param $type
