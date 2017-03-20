@@ -235,6 +235,10 @@
     <?php endif; ?>
   </div>
 
+  <?php if ($apply_attendly_header): ?>
+    <?php print theme('virginsport_bar', array('use_path' => TRUE)); ?>
+  <?php endif; ?>
+
   <div class="vs-footer">
     <div class="container">
       <div class="row">

@@ -1,0 +1,99 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-bar,
+.vs-bar {
+  @include clearfix();
+  display: block;
+  height: 5.625rem;
+  position: relative;
+  z-index: 5;
+
+  &:not(.vs-bar--top) .vs-bar__wrapper {
+     @include transform(none);
+     @include transition-duration(0s);
+  }
+
+  &.vs-bar--top .vs-bar__wrapper {
+    opacity: 0;
+    @include transform(translateY(100%));
+  }
+
+   &.vs-bar--reset-opacity .vs-bar__wrapper {
+    opacity: 1;
+  }
+
+  &.vs-bar--reveal .vs-bar__wrapper {
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-bar__wrapper {
+  @include transition(transform .5s ease-in-out);
+  @include box-shadow(0 0 15px rgba($c-black, .15));
+  background-color: $c-white;
+  padding: 1.5625rem 0;
+}
+
+.vs-bar__chevron {
+  fill: currentColor;
+  min-width: initial;
+  white-space: normal;
+  height: .75rem;
+  width: .4375rem
+}
+
+.vs-bar__chevron--back {
+  margin-right: .5em;
+}
+
+.vs-bar__chevron--next {
+  @include transform(rotate(180deg));
+  margin-left: .5em;
+}
+
+.vs-bar__btn {
+  white-space: normal;
+  position: relative;
+}
+
+.vs-bar__btn--right {
+  white-space: nowrap;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+.vs-bar--top .vs-bar__wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.vs-bar--bottom .vs-bar__wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+// Responsive
+// ----------------------------------------------------------------------------
+
+@include media-breakpoint-up(md) {
+  vs-bar,
+  .vs-bar {
+    height: $bar-height;
+  }
+
+  .vs-bar__btn-right {
+    min-width: 13.75rem;
+  }
+}
