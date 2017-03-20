@@ -371,7 +371,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_description_results',
-    'label' => 'Results Introduction',
+    'label' => 'Introduction',
     'required' => 0,
     'settings' => array(
       'context' => 'title',
@@ -882,7 +882,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_results_overview_content',
-    'label' => 'Results Overview Content',
+    'label' => 'Overview Content',
     'required' => 0,
     'settings' => array(
       'context' => 'title',
@@ -938,7 +938,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_results_overview_image',
-    'label' => 'Results Overview Image',
+    'label' => 'Overview Image',
     'required' => 0,
     'settings' => array(
       'allow_override' => 0,
@@ -988,7 +988,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_results_summary',
-    'label' => 'Results Summary',
+    'label' => 'Summary',
     'required' => 0,
     'settings' => array(
       'context' => 'title',
@@ -2038,17 +2038,17 @@ function virgin_event_field_default_field_instances() {
   t('Has Teams');
   t('Hashtag');
   t('Header Image');
+  t('Introduction');
   t('Logo');
   t('MyLaps ID');
   t('Name');
-  t('Results Introduction');
-  t('Results Overview Content');
-  t('Results Overview Image');
-  t('Results Summary');
+  t('Overview Content');
+  t('Overview Image');
   t('Show in festival menu');
   t('Start Date');
   t('Status');
   t('SugarCRM ID');
+  t('Summary');
   t('Timezone');
 
   return $field_instances;
