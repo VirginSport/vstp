@@ -2939,7 +2939,7 @@ function virgin_base_field_default_field_bases() {
       'allowed_values' => array(
         'portrait' => 'Portrait (1 Image with Outline)',
         'landscape' => 'Landscape (1 Image)',
-        'portrait_lower_portrait' => 'Portrait, Lower Portrait (2 Images with Outline)',
+        'portrait_lower_portrait' => 'Landscape, Lower Landscape (2 Images with Outline)',
         'portrait_large_portrait' => 'Portrait, Large Portrait (2 Images)',
         'portrait_landscape' => 'Portrait, Landscape (2 Images)',
         'portrait_upper_portrait_portrait' => 'Landscape, Upper Landscape, Landscape (3 Images with Outline)',
