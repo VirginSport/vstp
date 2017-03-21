@@ -217,6 +217,7 @@ function initVue(selector, inModal = false) {
         }
 
         let self = this;
+        this.waitingSubmit = true;
 
         this.$http.post(path() + 'ajax/contact-form/post', this.form).then((response) => {
           // success callback
@@ -232,10 +233,13 @@ function initVue(selector, inModal = false) {
           } else {
             self.form.error = true;
           }
+
+          self.waitingSubmit = false;
         });
       }
     },
     data: {
+      waitingSubmit: false,
       submitted: false,
       inModal: inModal,
       loading: false,
