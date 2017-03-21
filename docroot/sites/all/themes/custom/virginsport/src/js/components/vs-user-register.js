@@ -199,12 +199,16 @@ export default () => {
           return;
         }
 
+        // Prevent multiple clicks
+        this.validSubmit = true;
+
         this.applyValues();
         let form = $('.vs-user-login--form-drupal form').submit();
       }
     },
     data: {
       submitted: false,
+      validSubmit: false,
       address_manual: false,
       profile: {
         current_pass: '',
