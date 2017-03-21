@@ -19,7 +19,7 @@
                 <h2 class="vs-results-overview-banner__title"><?php print check_plain($title); ?></h2>
                 <div class="vs-results-overview-banner__date"><?php print $start_date; ?></div>
                 <div class="vs-results-overview-banner__content">
-                  <p><?php print $description; ?></p>
+                  <?php print $description; ?>
                 </div>
                 <?php print
                   theme('virginsport_cta_links',
