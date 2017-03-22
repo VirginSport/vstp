@@ -85,7 +85,7 @@ $template_rendered = TRUE;
     </div>
 
     <div v-if="hasFilter && !isCard" class="vs-results__filters">
-      <h4 class="vs-results__title"><?php print t('See how they run'); ?></h4>
+      <h4 class="vs-results__title"><?php print t('Finishers'); ?></h4>
 
       <div class="vs-results__form">
         <div class="vs-form-group vs-results__form-select">
@@ -124,7 +124,7 @@ $template_rendered = TRUE;
   
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
-              <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+              <label class="vs-focus-label" for="input-club-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
           </div>
           
@@ -209,11 +209,11 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-rank"><?php print t('Rank'); ?></span>
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
-          <span class="vs-result-col vs-result-col-club"><?php print t('Club'); ?></span>
+          <span class="vs-result-col vs-result-col-club"><?php print t('Crew'); ?></span>
           <span class="vs-result-col vs-result-col-team"><?php print t('Team'); ?></span>
           <span class="vs-result-col vs-result-col-category"><?php print t('Age'); ?></span>
           <span class="vs-result-col vs-result-col-gender"><?php print t('Gender'); ?></span>
-          <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?>/{{ filter.unit | capitalize }}</span>
+          <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?> / {{ filter.unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
           <span class="vs-result-col vs-result-col-chip"><?php print t('Chip Time'); ?></span>
         </div>
 
@@ -377,17 +377,17 @@ $template_rendered = TRUE;
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+              <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
     
             <div class="vs-result__stat">
               <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
-              <span class="vs-result__stat-label">Total Time</span>
+              <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
           
           <div class="vs-result__times">
-            <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
+            <div class="vs-result__average-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
   
             <div>
               <div class="vs-result__time" v-for="p in getPassings()">
@@ -409,12 +409,12 @@ $template_rendered = TRUE;
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+              <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
   
             <div class="vs-result__stat">
               <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
-              <span class="vs-result__stat-label">Total Time</span>
+              <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
         </div>
