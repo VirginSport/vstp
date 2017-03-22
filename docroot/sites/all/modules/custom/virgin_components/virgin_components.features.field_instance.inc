@@ -5429,65 +5429,6 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'paragraphs_item-vs_untimed_event_card-field_cta_links'.
-  $field_instances['paragraphs_item-vs_untimed_event_card-field_cta_links'] = array(
-    'bundle' => 'vs_untimed_event_card',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 2,
-      ),
-      'paragraphs_editor_preview' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_cta_links',
-    'label' => 'Call to action button',
-    'required' => 0,
-    'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'user',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'entity_translation_sync' => FALSE,
-      'rel_remove' => 'default',
-      'title' => 'required',
-      'title_label_use_field_label' => 0,
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 'optional',
-      'user_register_form' => FALSE,
-      'validate_url' => 1,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance:
   // 'paragraphs_item-vs_untimed_event_card-field_price'.
   $field_instances['paragraphs_item-vs_untimed_event_card-field_price'] = array(
     'bundle' => 'vs_untimed_event_card',

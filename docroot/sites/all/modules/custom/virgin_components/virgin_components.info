@@ -128,7 +128,6 @@ features[field_instance][] = paragraphs_item-vs_teaser-field_teaser_layout
 features[field_instance][] = paragraphs_item-vs_teaser-title_field
 features[field_instance][] = paragraphs_item-vs_ticket_card-field_ticket_reference
 features[field_instance][] = paragraphs_item-vs_untimed_event_card-field_cta_link
-features[field_instance][] = paragraphs_item-vs_untimed_event_card-field_cta_links
 features[field_instance][] = paragraphs_item-vs_untimed_event_card-field_price
 features[field_instance][] = paragraphs_item-vs_untimed_event_card-field_untimed_event_reference
 features[fieldable_panels_pane_type][] = vs_accordion
