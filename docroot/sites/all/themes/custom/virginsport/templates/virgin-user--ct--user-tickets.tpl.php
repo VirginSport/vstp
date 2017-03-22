@@ -61,13 +61,13 @@
                   class="btn vs-btn vs-festival-profile-header__button hidden-md-up vs-btn--min-sm vs-btn--gradient-<?php print $row['festival_grapher']->fieldGetOne('field_brand_color'); ?>"
                   href="<?php print url('node/' . $row['festival_grapher']->property('nid')); ?>"
                 >
-                  <?php print t('Sign up for next year'); ?>
+                  <?php print t('Festival Review'); ?>
                 </a>
                 <a
                   class="btn vs-btn vs-festival-profile-header__button hidden-sm-down vs-btn--lg vs-btn--min-lg vs-btn--gradient-<?php print $row['festival_grapher']->fieldGetOne('field_brand_color'); ?>"
                   href="<?php print url('node/' . $row['festival_grapher']->property('nid')); ?>"
                 >
-                  <?php print t('Sign up for next year'); ?>
+                  <?php print t('Festival Review'); ?>
                 </a>
               </div>
             </div>
