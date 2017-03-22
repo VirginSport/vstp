@@ -71,7 +71,7 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $variables['event_price'] = $price;
     $variables['event_currency'] = $paragraph_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['no_card_pattern_class'] = ($variables['card_pattern'] == 'none') ? 'vs-card-untimed-event--outline-remove' : '';
-    $variables['cta_links'] = $paragraph_grapher->fieldGetAll('field_cta_links');
+    $variables['cta_links'] = $paragraph_grapher->fieldGetAll('field_cta_link');
 
     $products = array(
       'name' => $event_grapher->property('title'),
