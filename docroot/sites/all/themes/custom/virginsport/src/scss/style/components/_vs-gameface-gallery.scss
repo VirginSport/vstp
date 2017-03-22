@@ -1,0 +1,17 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+.vs-gameface-gallery {
+  @include clearfix();
+  display: block;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-gameface-gallery-heading {
+  margin: 0 1rem 0.625rem;
+  text-align: left;
+}
