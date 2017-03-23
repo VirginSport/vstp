@@ -327,7 +327,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
-        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
+        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
       </div>
 
@@ -376,7 +376,7 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
             </div>
     
@@ -393,13 +393,13 @@ $template_rendered = TRUE;
               <div class="vs-result__time" v-for="p in getPassings()">
                 <div class="vs-result__time-average">
                   <div class="vs-result__progress">
-                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("mm:ss", p.average) }}</div>
                   </div>
                 </div>
   
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ diffFormat("hh:mm:ss", p.startTime, p.pass.chipTime) }}</span>
+                  <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
   
                 </div>
               </div>
@@ -408,7 +408,7 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
             </div>
   
