@@ -1039,7 +1039,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_results_url',
-    'label' => 'URL',
+    'label' => 'Full Results URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -2114,7 +2114,7 @@ function virgin_event_field_default_field_instances() {
   t('SugarCRM ID');
   t('Summary');
   t('Timezone');
-  t('URL');
+  t('Full Results URL');
 
   return $field_instances;
 }
