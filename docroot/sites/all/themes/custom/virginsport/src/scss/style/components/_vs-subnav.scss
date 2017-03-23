@@ -9,7 +9,6 @@ vs-subnav,
   display: block;
   background-color: transparent;
   text-align: center;
-  padding: .875rem 0;
   left: 0;
   right: 0;
   z-index: 999;
@@ -22,7 +21,7 @@ vs-subnav,
 
 .vs-subnav__list {
   margin: 0;
-  padding: 0 1.25rem;
+  padding: .875rem 1.25rem;
   white-space: nowrap;
   overflow-x: auto;
 }
@@ -31,7 +30,7 @@ vs-subnav,
   @include transition(all .5s ease-in-out);
   background-image: linear-gradient(-90deg, #F0F0F0 10%, rgba(240,240,240,0.00) 100%);
   content: '';
-  height: 1.875rem;
+  height: 3.5rem;
   position: absolute;
   width: 60px;
   right: 0;
@@ -123,6 +122,11 @@ vs-subnav,
   @include transition(all .5s ease-in-out, background-color 1ms);
   position: fixed;
   top: 0;
+
+  .vs-subnav__list {
+    padding-top: rem(19);
+    padding-bottom: rem(20);
+  }
 }
 
 .vs-subnav--pinned-on-main-nav {
@@ -143,7 +147,7 @@ vs-subnav,
 
 @include media-breakpoint-up(md) {
   .vs-subnav__overlay {
-    height: 1.75rem;
+    height: rem(68);
   }
 
   .vs-subnav__item {
@@ -156,6 +160,13 @@ vs-subnav,
     line-height: 1rem;
     letter-spacing: 0.2px;
     padding-bottom: .55rem;
+  }
+
+  .vs-subnav--unpinned,
+  .vs-subnav--not-top {
+    .vs-subnav__list {
+      padding-top: rem(20);
+    }
   }
 }
 
