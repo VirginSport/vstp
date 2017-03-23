@@ -54,6 +54,7 @@ $template_rendered = TRUE;
       :has-filter="<?php print (bool) !$is_summary; ?>"
       :has-sub-filter="<?php print (bool) !$is_summary; ?>"
       :is-truncated="<?php print (bool) $is_truncated; ?>"
+      results-path="<?php print check_plain($results_path); ?>"
       replay-path="<?php print check_plain($replay_path); ?>"
       photo-path="<?php print check_plain($photo_path); ?>"
       festival-id="<?php print check_plain($festival_id); ?>"
