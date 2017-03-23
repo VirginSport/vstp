@@ -37,7 +37,7 @@ vs-photo-gallery,
 
       &.slick-active button::before {
         opacity: 1;
-      }      
+      }
     }
   }
 
@@ -48,6 +48,7 @@ vs-photo-gallery,
 
 .vs-photo-gallery-heading {
   margin: 0 1rem 0.625rem;
+  text-align: left;
 }
 
 // Elements
@@ -60,7 +61,7 @@ vs-photo-gallery,
     padding-right: 0 !important;
   }
 
-  .slick-arrow, 
+  .slick-arrow,
   &--fullscreen .slick-arrow {
     @include transition(all 0.3s ease);
 
@@ -83,9 +84,9 @@ vs-photo-gallery,
   }
 
   &--fullscreen.hide-controls .slick-arrow,
-  &--fullscreen.hide-controls .close, {
+  &--fullscreen.hide-controls .close {
     opacity: 0;
-  } 
+  }
 
   &--fullscreen .slick-arrow {
     border-color: $c-white;
@@ -128,7 +129,7 @@ vs-photo-gallery,
     cursor: pointer;
   }
 
-  &--fullscreen .slick-list, 
+  &--fullscreen .slick-list,
   &--fullscreen .slick-track {
     height: 100%;
   }
@@ -157,7 +158,7 @@ vs-photo-gallery,
 
     .vs-photo-gallery-wrapper--fullscreen & {
       border-top: 0.125rem solid $c-white;
-      margin-bottom: 0; 
+      margin-bottom: 0;
       height: 100%;
     }
 
@@ -243,7 +244,7 @@ vs-photo-gallery,
         &:after {
           background-color: rgba(255, 255, 255, .7);
         }
-      } 
+      }
     }
   }
 }
@@ -256,7 +257,7 @@ vs-photo-gallery,
 
   .vs-photo-gallery--color-#{$color} {
 
-    .vs-photo-gallery__thumbnails-wrapper .slick-slide:not(.slick-current):after {    
+    .vs-photo-gallery__thumbnails-wrapper .slick-slide:not(.slick-current):after {
       background-color: rgba(red(map_get($map, 'solid-color')), green(map_get($map, 'solid-color')), blue(map_get($map, 'solid-color')), .7);
     }
   }
@@ -302,7 +303,7 @@ vs-photo-gallery,
       height: 2.125rem;
       border-width: 0.5rem;
     }
-  } 
+  }
 }
 
 @include media-breakpoint-down(md) {
@@ -334,7 +335,7 @@ vs-photo-gallery,
       }
     }
   }
-  
+
   .vs-photo-gallery-heading {
     margin: 0 1.1875rem 0.875rem;
   }
@@ -347,7 +348,7 @@ vs-photo-gallery,
       border-radius: .625rem;
     }
   }
-  
+
   .vs-photo-gallery__image-wrapper {
     .slick-slide {
       height: 37.5rem;
