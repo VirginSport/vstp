@@ -50,6 +50,17 @@ function virgin_components_update_7005() {
 }
 
 /**
+ * Delete field cta links from untimed event card.
+ */
+function virgin_components_update_7006() {
+  $instance = field_info_instance('paragraphs_item', 'field_cta_links', 'vs_untimed_event_card');
+
+  if (!empty($instance)) {
+    field_delete_instance($instance);
+  }
+}
+
+/**
  * Allow component to be added in frontend
  *
  * @param $type
