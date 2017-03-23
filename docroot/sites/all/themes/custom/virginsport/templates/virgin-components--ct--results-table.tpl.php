@@ -119,12 +119,12 @@ $template_rendered = TRUE;
   
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
-              <label class="vs-focus-label" for="input-team-name"><?php print t("Team Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+              <label class="vs-focus-label" for="input-team-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
   
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
-              <label class="vs-focus-label" for="input-club-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+              <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
           </div>
           
@@ -209,8 +209,8 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-rank"><?php print t('Rank'); ?></span>
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
-          <span class="vs-result-col vs-result-col-club"><?php print t('Crew'); ?></span>
-          <span class="vs-result-col vs-result-col-team"><?php print t('Team'); ?></span>
+          <span class="vs-result-col vs-result-col-club"><?php print t('Club'); ?></span>
+          <span class="vs-result-col vs-result-col-team"><?php print t('Crew'); ?></span>
           <span class="vs-result-col vs-result-col-category"><?php print t('Age'); ?></span>
           <span class="vs-result-col vs-result-col-gender"><?php print t('Gender'); ?></span>
           <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?> / {{ filter.unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
@@ -324,7 +324,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">{{ rank.participantFirstName }} {{ rank.participantLastName }}</span>
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">{{ rank.participantBibNumber }}</span>
         <span class="vs-result-col vs-result-col-club vs-result__border">{{ rank.participantClub }}</span>
-        <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
+        <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantCrew }}</span>
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
@@ -335,7 +335,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">Name:<br>{{ result.firstName }} {{ result.lastName }}</span>
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">Bib:<br>{{ result.bibNumber }}</span>
         <span class="vs-result-col vs-result-col-club vs-result__border">Club:<br>{{ result.club }}</span>
-        <span class="vs-result-col vs-result-col-team vs-result__border">Team:<br>{{ result.team }}</span>
+        <span class="vs-result-col vs-result-col-team vs-result__border">Crew:<br>{{ result.team }}</span>
         <span class="vs-result-col vs-result-col-age vs-result__border">Age:<br>{{ result.age }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">Gender:<br>{{ result.gender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">ChipTime:<br>{{ result.displayChipTime }}</span>
