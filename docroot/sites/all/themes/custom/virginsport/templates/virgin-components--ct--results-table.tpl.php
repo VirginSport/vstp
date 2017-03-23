@@ -63,6 +63,7 @@ $template_rendered = TRUE;
       event-date="<?php print check_plain($event_date); ?>"
       event-description="<?php print check_plain($event_description); ?>"
       :max-rows="<?php print (int) $max_rows; ?>"
+      unit="<?php print $unit; ?>"
     ></vs-results>
   </div>
 </div>
@@ -171,16 +172,20 @@ $template_rendered = TRUE;
             model="category"
             :options='<?php print json_encode(array(
                 '0' => t('All'),
-                'sen' => t('SEN'),
-                '30' => t('30'),
-                '35' => t('35'),
-                '40' => t('40'),
-                '45' => t('45'),
-                '50' => t('50'),
-                '55' => t('55'),
-                '60' => t('60'),
-                '65' => t('65'),
-                '65+' => t('65+'),
+                '*20' => t('Under 20'),
+                '*20-*24' => t('20 - 24'),
+                '*25-*29' => t('25 - 29'),
+                '*30-*34' => t('30 - 34'),
+                '*35-*39' => t('35 - 39'),
+                '*40-*44' => t('40 - 44'),
+                '*45-*49' => t('45 - 49'),
+                '*50-*54' => t('50 - 54'),
+                '*55-*59' => t('55 - 59'),
+                '*60-*64' => t('60 - 64'),
+                '*65-*69' => t('65 - 69'),
+                '*70-*74' => t('70 - 74'),
+                '*75-*79' => t('75 - 79'),
+                '*80+' => t('80 +'),
             ));?>'
             :active-key="filter.age"
             :callback="applySubFilterSearch"
@@ -323,7 +328,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
-        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
+        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
       </div>
 
@@ -372,7 +377,7 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
             </div>
     
@@ -389,13 +394,13 @@ $template_rendered = TRUE;
               <div class="vs-result__time" v-for="p in getPassings()">
                 <div class="vs-result__time-average">
                   <div class="vs-result__progress">
-                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("mm:ss", p.average) }}</div>
                   </div>
                 </div>
   
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ diffFormat("hh:mm:ss", p.startTime, p.pass.chipTime) }}</span>
+                  <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
   
                 </div>
               </div>
@@ -404,7 +409,7 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
             </div>
   

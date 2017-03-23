@@ -116,7 +116,7 @@ $mkt_id = 'mkt-' . uniqid();
                     <div v-if="form.error" class="vs-error-label"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></div>
 
                     <div class="vs-contact-form__submit text-xs-center">
-                      <button v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                      <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
                     </div>
 
                   </form>

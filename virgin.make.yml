@@ -110,6 +110,8 @@ projects:
 
   smtp:
     version: "1.4"
+    patch:
+      - ./patches/smtp/use-smtp-from-variable-as-from-VS16-1567.patch
 
   title:
     version: "1.0-alpha8"

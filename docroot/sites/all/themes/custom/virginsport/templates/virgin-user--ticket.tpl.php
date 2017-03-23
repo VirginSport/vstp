@@ -115,7 +115,7 @@ $unit = 'km';
               <div class="vs-ticket-card__cta-wrapper">
                 <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->sugar_id); ?>">
                   <i class="icon-results-medal"></i>
-                  <span><?php print t('full results'); ?></span>
+                  <span><?php print t('personal results'); ?></span>
                 </a>
               </div>
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
@@ -219,7 +219,7 @@ $unit = 'km';
               <?php endif; ?>
             <?php endif; ?>
             <div class="vs-ticket-card__social-wrapper">
-              <?php print theme('virginsport_share_buttons', array('subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
+              <?php print theme('virginsport_share_buttons', array('location' => 'User Ticket', 'subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
             </div>
           </div>
         </div>

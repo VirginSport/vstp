@@ -54,6 +54,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
   $themes['virginsport_share_buttons'] = array(
     'template' => 'virginsport-share-buttons',
     'variables' => array(
+      'location' => '',
       'use_placeholder' => FALSE,
       'twitter_text' => '',
       'facebook_text' => '',
