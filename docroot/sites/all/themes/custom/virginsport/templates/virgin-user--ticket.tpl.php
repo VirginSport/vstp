@@ -133,7 +133,7 @@ $unit = 'km';
                 </div>
               <?php endif; ?>
 
-              <?php if (!empty($member_is_participant) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
+              <?php if (!empty($member_is_participant) && !empty($ticket->spectators) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
                     class="vs-ticket-card__cta--invite-fans"
