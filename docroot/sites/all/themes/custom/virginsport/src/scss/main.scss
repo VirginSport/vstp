@@ -25,6 +25,7 @@
 @import "mixins/transition";
 @import "mixins/alignment";
 @import "mixins/cursor";
+@import "mixins/component-margin";
 
 
 // Fonts
@@ -100,7 +101,9 @@
 @import "style/components/vs-result";
 @import "style/components/vs-results";
 @import "style/components/vs-mylaps";
-@import "style/components/vs-festival-overview-banner";
+@import "style/components/vs-results-overview-banner";
+@import "style/components/vs-component-margin";
+@import "style/components/vs-gameface-gallery";
 
 
 // Pages

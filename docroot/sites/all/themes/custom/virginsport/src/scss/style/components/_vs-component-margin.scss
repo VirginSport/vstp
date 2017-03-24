@@ -1,0 +1,50 @@
+
+// Components
+// ----------------------------------------------------------------------------
+
+// Photo gallery
+@include vs-region-space('vs-photo-gallery', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Basic content block
+@include vs-region-space('vs-basic-content-block', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Carousel
+@include vs-region-space('vs-carousel', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Cta block
+@include vs-region-space('vs-cta-block', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Results overview
+@include vs-region-space('vs-results-overview', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Gameface gallery
+@include vs-region-space('vs-gameface-gallery', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Hero banner block
+@include vs-region-space('vs-hero-banner', rem(40), rem(50), rem(60), rem(70), rem(80), 'margin');
+
+// Ticket card
+@include vs-region-space('vs-ticket-type-wrapper', rem(40), rem(50), rem(60), rem(70), rem(80), 'margin');
+
+// Hero event card
+@include vs-region-space('vs-hero-event-card', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Card untimed event
+@include vs-region-space('vs-card-untimed-event', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Video banner
+@include vs-region-space('vs-video', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Package card
+@include vs-region-space('vs-package-cards-wrapper', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Card upcoming
+@include vs-region-space('view-vs-upcoming-festivals', rem(30), rem(40), rem(50), rem(60), rem(70), 'padding');
+
+// Past festivals
+@include vs-region-space('view-vs-past-festivals', rem(30), rem(40), rem(50), rem(60), rem(70), 'padding');
+
+// Past festivals
+@include vs-region-space('vs-results-container', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+

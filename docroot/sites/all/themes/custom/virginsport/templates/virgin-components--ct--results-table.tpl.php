@@ -54,6 +54,7 @@ $template_rendered = TRUE;
       :has-filter="<?php print (bool) !$is_summary; ?>"
       :has-sub-filter="<?php print (bool) !$is_summary; ?>"
       :is-truncated="<?php print (bool) $is_truncated; ?>"
+      results-path="<?php print check_plain($results_path); ?>"
       replay-path="<?php print check_plain($replay_path); ?>"
       photo-path="<?php print check_plain($photo_path); ?>"
       festival-id="<?php print check_plain($festival_id); ?>"
@@ -85,7 +86,7 @@ $template_rendered = TRUE;
     </div>
 
     <div v-if="hasFilter && !isCard" class="vs-results__filters">
-      <h4 class="vs-results__title"><?php print t('See how they run'); ?></h4>
+      <h4 class="vs-results__title"><?php print t('Finishers'); ?></h4>
 
       <div class="vs-results__form">
         <div class="vs-form-group vs-results__form-select">
@@ -119,7 +120,7 @@ $template_rendered = TRUE;
   
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
-              <label class="vs-focus-label" for="input-team-name"><?php print t("Team Name"); ?> <em><?php print t('(optional)'); ?></em></label>
+              <label class="vs-focus-label" for="input-team-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
   
             <div class="vs-form-group">
@@ -210,10 +211,10 @@ $template_rendered = TRUE;
           <span class="vs-result-col vs-result-col-name"><?php print t('Name'); ?></span>
           <span class="vs-result-col vs-result-col-bib"><?php print t('BIB'); ?></span>
           <span class="vs-result-col vs-result-col-club"><?php print t('Club'); ?></span>
-          <span class="vs-result-col vs-result-col-team"><?php print t('Team'); ?></span>
+          <span class="vs-result-col vs-result-col-team"><?php print t('Crew'); ?></span>
           <span class="vs-result-col vs-result-col-category"><?php print t('Age'); ?></span>
           <span class="vs-result-col vs-result-col-gender"><?php print t('Gender'); ?></span>
-          <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?>/{{ filter.unit | capitalize }}</span>
+          <span class="vs-result-col vs-result-col-pace"><?php print t('Pace'); ?> / {{ filter.unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
           <span class="vs-result-col vs-result-col-chip"><?php print t('Chip Time'); ?></span>
         </div>
 
@@ -327,7 +328,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-team vs-result__border">{{ rank.participantTeam }}</span>
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
-        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("hh:mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
+        <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
       </div>
 
@@ -335,7 +336,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-name vs-result__border vs-result__strong">Name:<br>{{ result.firstName }} {{ result.lastName }}</span>
         <span class="vs-result-col vs-result-col-bib vs-result__border vs-result__muted">Bib:<br>{{ result.bibNumber }}</span>
         <span class="vs-result-col vs-result-col-club vs-result__border">Club:<br>{{ result.club }}</span>
-        <span class="vs-result-col vs-result-col-team vs-result__border">Team:<br>{{ result.team }}</span>
+        <span class="vs-result-col vs-result-col-team vs-result__border">Crew:<br>{{ result.team }}</span>
         <span class="vs-result-col vs-result-col-age vs-result__border">Age:<br>{{ result.age }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">Gender:<br>{{ result.gender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-chip vs-result__border">ChipTime:<br>{{ result.displayChipTime }}</span>
@@ -376,30 +377,30 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
     
             <div class="vs-result__stat">
               <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
-              <span class="vs-result__stat-label">Total Time</span>
+              <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
           
           <div class="vs-result__times">
-            <div class="vs-result__average-label"><?php print t('Average Pace'); ?>/{{ unit | capitalize }}</div>
+            <div class="vs-result__average-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
   
             <div>
               <div class="vs-result__time" v-for="p in getPassings()">
                 <div class="vs-result__time-average">
                   <div class="vs-result__progress">
-                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("hh:mm:ss", p.average) }}</div>
+                    <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("mm:ss", p.average) }}</div>
                   </div>
                 </div>
   
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ diffFormat("hh:mm:ss", p.startTime, p.pass.chipTime) }}</span>
+                  <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
   
                 </div>
               </div>
@@ -408,13 +409,13 @@ $template_rendered = TRUE;
   
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value"> {{ timeStampFormat("hh:mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+              <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
+              <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
   
             <div class="vs-result__stat">
               <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
-              <span class="vs-result__stat-label">Total Time</span>
+              <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
         </div>
