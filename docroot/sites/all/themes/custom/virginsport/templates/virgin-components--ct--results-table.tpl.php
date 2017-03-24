@@ -410,7 +410,7 @@ $template_rendered = TRUE;
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
-              <span class="vs-result__stat-label">Average Pace/{{ unit | capitalize }}</span>
+              <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
   
             <div class="vs-result__stat">
