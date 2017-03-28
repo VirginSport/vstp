@@ -23,6 +23,7 @@ projects:
       - "http://drupal.org/files/issues/pass-page-callback-result-897504-2.patch"
       # Xss filter() ignores malicious content in data-attributes and mangles image captions. http://drupal.org/node/2105841
       - "http://drupal.org/files/issues/do-2105841_no_protocol_filter-90.patch"
+      - "./patches/lightning/prevent-hotlinking-VS16-1207.patch"
 
 defaults:
   projects:
@@ -31,10 +32,8 @@ defaults:
 projects:
 
   lightning:
-    type: "core"
+    type: "profile"
     version: "7.x-1.x"
-    patch:
-      - ./patches/lightning/prevent-hotlinking-VS16-1207.patch
 
   acquia_connector:
     version: "3.0"
