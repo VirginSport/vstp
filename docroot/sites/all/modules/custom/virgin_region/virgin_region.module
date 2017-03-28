@@ -78,10 +78,17 @@ function virgin_region_theme($existing, $type, $theme, $path) {
  * Implements hook_init().
  */
 function virgin_region_init() {
+  global $cookie_domain;
 
   // Fetch the current active region
   $region = virgin_region_current();
 
+  // Add js variable to check if region is available or not
+  drupal_add_js(array('virgin_region' => array('region_available' => !empty($region))), array('type' => 'setting'));
+
+  // Add Javascript files to handle region cookie and redirection to correct region
+  drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
+  
   // Build the front-page URL from the current region node it exists or fallback
   // to the splash page path if no region host matches the current hostname.
   if ($region) {
@@ -120,6 +127,14 @@ function virgin_region_form_user_register_form_alter(&$form, &$form_state, $form
 
   // Region is defined by system on user registration
   $form['field_region']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_register_form.
+ */
+function virgin_region_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  // Add submission callback handler
+  array_unshift($form['#submit'], 'virgin_region_form_user_profile_form_submit');
 }
 
 /**
@@ -167,6 +182,26 @@ function virgin_region_clear_cache($node) {
   if ($node->type == 'region') {
     cache_clear_all(VIRGIN_REGION_CACHE, 'cache');
   }
+}
+
+/**
+ * Get a region by its nid
+ *
+ * @param $nid
+ *  The region nid
+ *
+ * @return []|null
+ */
+function virgin_region_region_load($nid) {
+  $regions = virgin_region_regions();
+
+  foreach ($regions as $region) {
+    if ($region['nid'] == $nid) {
+      return $region;
+    }
+  }
+
+  return NULL;
 }
 
 /**
@@ -267,6 +302,27 @@ function virgin_region_form_user_register_form_submit(&$form, &$form_state) {
     virgin_region_region_cookie_set($current_region);
   }
 }
+
+/**
+ * Submit callback for the user_profile_form form.
+ *
+ * @see virgin_region_form_user_profile_form_alter()
+ */
+function virgin_region_form_user_profile_form_submit(&$form, &$form_state) {
+  $region_id = null;
+
+  if (!empty($form_state['values']['field_region'][LANGUAGE_NONE][0]['target_id'])) {
+    $region_id = $form_state['values']['field_region'][LANGUAGE_NONE][0]['target_id'];
+  }
+
+  $region = virgin_region_region_load($region_id);
+
+  if (!empty($region)) {  
+    // Set user region cookie on registration
+    virgin_region_region_cookie_set($region);
+  }
+}
+
 
 /**
  * Redirect user to its region.

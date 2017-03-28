@@ -123,7 +123,7 @@ $replay_url = $grapher->fieldGetOne('field_replay_url', '', 'url');
               <div class="vs-card-past__cta-wrapper">
                 <a class="vs-card-past__cta--read-review" href="<?php print url($review_url); ?>">
                   <i class="icon-review"></i>
-                  <?php print t('Read Review'); ?>
+                  <?php print t('Recap'); ?>
                 </a>
               </div>
               <?php endif; ?>
@@ -132,7 +132,7 @@ $replay_url = $grapher->fieldGetOne('field_replay_url', '', 'url');
               <div class="vs-card-past__cta-wrapper">
                 <a class="vs-card-past__cta--full-results" href="<?php print url($results_url); ?>">
                   <i class="icon-results-medal"></i>
-                  <?php print t('Full Results'); ?>
+                  <?php print t('Results'); ?>
                 </a>
               </div>
               <?php endif; ?>

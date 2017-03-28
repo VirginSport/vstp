@@ -36,6 +36,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
 
   $event = new VirginEntityGrapher('node', $node);
   $gameface_id = $event->fieldGetOne('field_gameface_id');
+  $results_url = $event->fieldGetOne('field_results_url', '', 'url');
 
   $event_state = $event->relation('field_event_state');
   $start_date = $event_state->fieldGetOne('field_start_date');
@@ -58,8 +59,9 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'event_date' => virgin_date($start_date, $timezone)->format('d M'),
     'event_description' => $event->fieldRendered('field_results_summary'),
     'brand_color' => $event->fieldGetOne('field_brand_color'),
-    'replay_path' => url('/node/' . $event->property('nid')),
-    'photo_path' => empty($gameface_id) ? NULL : url('/node/' . $event->property('nid') . '/photos'),
+    'replay_path' => url('node/' . $event->property('nid')),
+    'results_path' => empty($results_url) ? NULL : url($results_url),
+    'photo_path' => empty($gameface_id) ? NULL : url('node/' . $event->property('nid') . '/photos'),
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
     'unit' => $current_region['country_letter_code'] == 'US' ? 'miles' : 'km',
   );

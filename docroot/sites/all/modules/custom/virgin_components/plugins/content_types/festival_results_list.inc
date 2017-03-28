@@ -34,10 +34,18 @@ function virgin_components_festival_results_list_content_type_render($subtype, $
     $fg = new VirginEntityGrapher('node', node_load($festival_nid));
     $fsg = $fg->relation('field_festival_state');
 
-    $events = virgin_base_events($fg->property('nid'));
+    $festival_events = virgin_base_events($fg->property('nid'));
+    $events = array();
 
-    foreach ($events as $nid => $name) {
-      $events[$nid] = new VirginEntityGrapher('node', node_load($nid));
+    foreach ($festival_events as $nid => $name) {
+      $eg = new VirginEntityGrapher('node', node_load($nid));
+      $esg = $eg->relation('field_event_state');
+
+      if ($esg->fieldGetOne('field_event_type') != 'timed_event') {
+        continue;
+      }
+
+      $events[$nid] = $eg;
     }
 
     $results_url = $fg->fieldGetOne('field_results_url', 'node/' . $festival_nid, 'url');

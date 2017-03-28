@@ -433,6 +433,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
         'club_number' => $ticket->get('club_number')->value(),
         'club_name' => $ticket->get('club_name')->value(),
         'team_name' => $ticket->get('team_name')->value(),
+        'spectators' => $ticket->get('spectators')->value(),
         'has_answered_mkt_questions' => (int) $ticket->get('has_answered_mkt_questions')->value(),
         'is_wheelchair_user' => (int) $ticket->get('is_wheelchair_user')->value(),
         'is_placeholder' => (int) FALSE, // If the ticket has been fetched that means it's not a placeholder ticket

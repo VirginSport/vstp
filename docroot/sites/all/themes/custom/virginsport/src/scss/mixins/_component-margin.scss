@@ -1,0 +1,26 @@
+
+// This mixin controls the component's top margin when in first place on the page
+// Usage: @include vs-region-space(vs-component, 0, 10, 20, 30, 40);
+// ----------------------------------------------------------------------------
+
+@mixin vs-region-space($component, $xs: 0, $sm: 0, $md: 0, $lg: 0, $xl: 0, $type: padding) {
+  .vs-head-region + .vs-region > .#{$component}:first-child {
+    @include media-breakpoint-only(xs) { #{$type}-top: $xs };
+  }
+
+  .vs-head-region + .vs-region > .#{$component}:first-child {
+    @include media-breakpoint-only(sm) { #{$type}-top: $sm };
+  }
+
+  .vs-head-region + .vs-region > .#{$component}:first-child {
+    @include media-breakpoint-only(md) { #{$type}-top: $md };
+  }
+
+  .vs-head-region + .vs-region > .#{$component}:first-child {
+    @include media-breakpoint-only(lg) { #{$type}-top: $lg };
+  }
+
+  .vs-head-region + .vs-region > .#{$component}:first-child {
+    @include media-breakpoint-only(xl) { #{$type}-top: $xl };
+  }
+}

@@ -4,10 +4,6 @@
  * Page callback for the splash page
  */
 function virgin_region_page_splash () {
-  global $cookie_domain;
-
-  // Add Javascript files to handle region cookie and redirection to correct region
-  drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
   drupal_add_js(drupal_get_path('module', 'virgin_region') . '/js/virgin_region_page_splash.js');
 
   // We don't want to use template page.tpl.php which includes elements like
