@@ -5370,8 +5370,8 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'paragraphs_item-vs_untimed_event_card-field_cta_links'.
-  $field_instances['paragraphs_item-vs_untimed_event_card-field_cta_links'] = array(
+  // 'paragraphs_item-vs_untimed_event_card-field_cta_link'.
+  $field_instances['paragraphs_item-vs_untimed_event_card-field_cta_link'] = array(
     'bundle' => 'vs_untimed_event_card',
     'default_value' => NULL,
     'deleted' => 0,
@@ -5382,7 +5382,7 @@ function virgin_components_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -5392,7 +5392,7 @@ function virgin_components_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_cta_links',
+    'field_name' => 'field_cta_link',
     'label' => 'Call to action button',
     'required' => 0,
     'settings' => array(
@@ -5424,7 +5424,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
