@@ -388,7 +388,7 @@ $template_rendered = TRUE;
           </div>
           
           <div class="vs-result__times">
-            <div class="vs-result__average-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
+            <div class="vs-result__average-label"><?php print t('Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
   
             <div>
               <div class="vs-result__time" v-for="p in getPassings()">
