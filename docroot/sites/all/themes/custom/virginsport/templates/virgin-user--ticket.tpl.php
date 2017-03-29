@@ -118,6 +118,7 @@ $unit = 'km';
                   <span><?php print t('personal results'); ?></span>
                 </a>
               </div>
+
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
@@ -129,19 +130,6 @@ $unit = 'km';
                     <span>
                       <?php print t('event photos'); ?>
                     </span>
-                  </a>
-                </div>
-              <?php endif; ?>
-
-              <?php if (!empty($member_is_participant) && !empty($ticket->spectators) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
-                <div class="vs-ticket-card__cta-wrapper">
-                  <a
-                    class="vs-ticket-card__cta--invite-fans"
-                    href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>"
-                    interaction-type="fans"
-                  >
-                    <i class="icon-high-five"></i>
-                    <?php print t('fans'); ?>
                   </a>
                 </div>
               <?php endif; ?>
