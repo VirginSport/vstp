@@ -9,7 +9,7 @@ defaults:
 projects:
   drupal:
     type: "core"
-    version: "7.53"
+    version: "7.54"
     patch:
       # Allow install profiles to change the system requirements. http://drupal.org/node/1772316
       - "http://drupal.org/files/drupal-7.x-allow_profile_change_sys_req-1772316-21.patch"
