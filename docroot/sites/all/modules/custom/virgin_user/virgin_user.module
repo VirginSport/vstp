@@ -942,7 +942,7 @@ function virgin_user_ticket_event($ticket_rego) {
 
   $event_id = $query->execute()->fetchField();
 
-  $node = node_load($event_id);
+  $node = empty($event_id) ? NULL : node_load($event_id);
 
   return empty($node) ? NULL : new VirginEntityGrapher('node', $node);
 }
