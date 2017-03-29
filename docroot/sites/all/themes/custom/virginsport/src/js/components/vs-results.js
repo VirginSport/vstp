@@ -49,9 +49,25 @@ function initResultsComponents() {
       this.filter.limit = this.maxRows;
       this.filter.unit = this.unit;
 
-      this.getRaces();
+      !!this.ticketId ? this.getParticipantDetails(this.ticketId) : this.getRaces();
     },
     methods: {
+      getParticipantDetails(participantID) {
+        getRacedayParticipant(raceDayUrl, participantID).then((result) => {
+          if (!result || !result.data) {
+            return;
+          }
+
+          this.participant = result.data;
+          this.festivalId = result.data.eventId;
+          this.eventId = result.data.raceId;
+
+          this.getRaces();
+        }).catch(() => {
+          $(this.$el).addClass('vs-results--not-found');
+        });
+      },
+
       getRace(id) {
         if (this.event && this.event.races.length) {
           for (let i = 0; i < this.event.races.length; i++) {
@@ -192,6 +208,7 @@ function initResultsComponents() {
     data() {
       return {
         event: '',
+        participant: '',
         noResults: false,
         loading: {
           find: false,
@@ -275,6 +292,7 @@ function initResultsComponents() {
       'loading',
       'race',
       'ticketId',
+      'participant',
       'rank',
       'unit',
       'isOpen',
@@ -294,7 +312,12 @@ function initResultsComponents() {
       if (this.isOpen) {
         // because participant details makes the toggle default isOpen to false
         this.isOpen = false;
-        this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
+
+        this.result = this.participant;
+
+        if (!this.result) {
+          this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
+        }
       }
 
       let $el = $(this.$el);
