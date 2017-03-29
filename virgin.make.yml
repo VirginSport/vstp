@@ -32,7 +32,7 @@ projects:
   lightning:
     subdir: ""
     type: "profile"
-    version: "1.0-beta17"
+    version: "1.0-beta19"
     patch:
       # Disable faulty JS in panels_ipe attach removal behaviour
       - "./patches/lightning/panels/faulty-panels-ipe-attach-removal-behaviour.patch"
