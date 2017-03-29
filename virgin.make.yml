@@ -38,7 +38,7 @@ projects:
       - "./patches/lightning/panels/faulty-panels-ipe-attach-removal-behaviour.patch"
 
   acquia_connector:
-    version: "3.0"
+    version: "3.1"
 
   coder:
     version: "2.6"
