@@ -87,7 +87,7 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 <?php endif; ?>
 
 <?php if(!empty($past_festivals->content)): ?>
-  <div class="vs-region vs-region--gradient-gray">
+  <div class="vs-region vs-region--gradient-gray-dark">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">

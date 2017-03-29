@@ -92,6 +92,7 @@ vs-festival-profile-header,
   color: rgba($c-black, .6);
   text-align: center;
   text-transform: uppercase;
+  padding-top: rem(28);
 }
 
 .vs-festival-profile-header__date {
@@ -232,7 +233,7 @@ vs-festival-profile-header,
 
   .vs-festival-profile-header__past-title {
     margin-left: 4.0625rem;
-    padding-top: 1.25rem;
+    padding-top: 2.25rem;
   }
 }
 
@@ -248,5 +249,11 @@ vs-festival-profile-header,
     .vs-festival-profile-header--upcoming & {
       right: 3.938rem;
     }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-festival-profile-header__past-title {
+    padding-top: 3.625rem;
   }
 }
