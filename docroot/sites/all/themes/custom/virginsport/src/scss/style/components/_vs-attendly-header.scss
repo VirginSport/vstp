@@ -14,7 +14,7 @@ vs-attendly-header,
 
 .vs-attendly-header__background {
   @include transition(all .5s ease-in-out);
-  background: $c-white url('../img/splash-page-pattern.png') no-repeat center top;
+  background: $c-white url('../img/attendly-header-pattern.png') no-repeat center top;
   background-size: 125%;
   min-height: 3.625rem;
   margin-left: -$grid-gutter-width/2;
