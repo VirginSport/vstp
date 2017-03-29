@@ -126,7 +126,7 @@ projects:
     version: "2.3"
 
   services:
-    version: "3.17"
+    version: "3.19"
 
   shield:
     version: "1.3"
