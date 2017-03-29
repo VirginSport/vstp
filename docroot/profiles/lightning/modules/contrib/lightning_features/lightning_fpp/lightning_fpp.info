@@ -53,10 +53,7 @@ features[views_view][] = entity_reference_view_widget_nodes
 files[] = lightning_fpp.nodes.article.inc
 files[] = lightning_fpp.fpp.content.inc
 
-
-; Information added by drush on 2016-11-28
-version = "7.x-1.0-beta17+0-dev"
-core = "7.x"
+; Information added by drush on 2017-02-24
+version = "7.x-1.0-beta19+4-dev"
 project = "lightning_features"
-datestamp = "1480366998"
-
+datestamp = "1487972098"

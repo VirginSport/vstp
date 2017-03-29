@@ -142,9 +142,7 @@ settings[zurb_foundation_html_tags] = 1
 settings[zurb_foundation_messages_modal] = 0
 settings[zurb_foundation_pager_center] = 1
 
-; Information added by Drupal.org packaging script on 2016-11-28
+; Information added by drush on 2016-11-22
 version = "7.x-1.0-beta17+1-dev"
-core = "7.x"
 project = "lightning"
-datestamp = "1480366993"
-
+datestamp = "1479833130"

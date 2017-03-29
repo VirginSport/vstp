@@ -95,11 +95,11 @@ projects[dialog][version] = "2.0-beta1"
 projects[dialog][type] = "module"
 projects[dialog][subdir] = "contrib"
 
-projects[diff][version] = "3.2"
+projects[diff][version] = "3.3"
 projects[diff][type] = "module"
 projects[diff][subdir] = "contrib"
 
-projects[drafty][version] = "1.0-beta3"
+projects[drafty][version] = "1.0-beta4"
 projects[drafty][type] = "module"
 projects[drafty][subdir] = "contrib"
 
@@ -141,7 +141,7 @@ projects[entityreference][version] = "1.2"
 projects[entityreference][type] = "module"
 projects[entityreference][subdir] = "contrib"
 
-projects[entityreference_prepopulate][version] = "1.6"
+projects[entityreference_prepopulate][version] = "1.7"
 projects[entityreference_prepopulate][type] = "module"
 projects[entityreference_prepopulate][subdir] = "contrib"
 
@@ -191,7 +191,7 @@ projects[focal_point][version] = "1.0"
 projects[focal_point][type] = "module"
 projects[focal_point][subdir] = "contrib"
 
-projects[form_builder][version] = "1.19"
+projects[form_builder][version] = "1.20"
 projects[form_builder][type] = "module"
 projects[form_builder][subdir] = "contrib"
 
@@ -243,7 +243,7 @@ projects[magic_beans][subdir] = "contrib"
 projects[magic_beans][download][type] = "git"
 projects[magic_beans][download][branch] = "7.x-1.x"
 
-projects[media][version] = "2.0-beta7"
+projects[media][version] = "2.0-rc5"
 projects[media][type] = "module"
 projects[media][subdir] = "contrib"
 
@@ -255,7 +255,7 @@ projects[media_youtube][version] = "3.0"
 projects[media_youtube][type] = "module"
 projects[media_youtube][subdir] = "contrib"
 
-projects[metatag][version] = "1.17"
+projects[metatag][version] = "1.21"
 projects[metatag][type] = "module"
 projects[metatag][subdir] = "contrib"
 
@@ -311,7 +311,7 @@ projects[panelizer][subdir] = "contrib"
 ; http://drupal.org/node/2457113
 projects[panelizer][patch][2457113] = "http://drupal.org/files/issues/panelizer-n2457113-69.patch"
 
-projects[panels][version] = "3.8"
+projects[panels][version] = "3.9"
 projects[panels][type] = "module"
 projects[panels][subdir] = "contrib"
 ; Fix IPE JS alert (Panelizer is Incompatible with Moderation)
@@ -370,7 +370,7 @@ projects[rules][version] = "2.9"
 projects[rules][type] = "module"
 projects[rules][subdir] = "contrib"
 
-projects[simple_gmap][version] = "1.3"
+projects[simple_gmap][version] = "1.4"
 projects[simple_gmap][type] = "module"
 projects[simple_gmap][subdir] = "contrib"
 
@@ -394,7 +394,7 @@ projects[strongarm][version] = "2.0"
 projects[strongarm][type] = "module"
 projects[strongarm][subdir] = "contrib"
 
-projects[token][version] = "1.6"
+projects[token][version] = "1.7"
 projects[token][type] = "module"
 projects[token][subdir] = "contrib"
 
@@ -412,7 +412,7 @@ projects[ux_elements][download][branch] = "master"
 ; http://drupal.org/node/1224568
 projects[ux_elements][patch][1224568] = "http://drupal.org/files/issues/1224568-ux_elements_redeclare.patch"
 
-projects[views][version] = "3.14"
+projects[views][version] = "3.15"
 projects[views][type] = "module"
 projects[views][subdir] = "contrib"
 
@@ -424,7 +424,7 @@ projects[views_field_view][version] = "1.2"
 projects[views_field_view][type] = "module"
 projects[views_field_view][subdir] = "contrib"
 
-projects[views_bulk_operations][version] = "3.3"
+projects[views_bulk_operations][version] = "3.4"
 projects[views_bulk_operations][type] = "module"
 projects[views_bulk_operations][subdir] = "contrib"
 
@@ -435,7 +435,7 @@ projects[views_content_cache][download][type] = "git"
 projects[views_content_cache][download][revision] = "45863c3"
 projects[views_content_cache][download][branch] = "7.x-3.x"
 
-projects[views_fieldsets][version] = "1.3"
+projects[views_fieldsets][version] = "2.1"
 projects[views_fieldsets][type] = "module"
 projects[views_fieldsets][subdir] = "contrib"
 
