@@ -30,9 +30,9 @@ Drupal.behaviors.PanelsIPE = {
     for (var i in Drupal.PanelsIPE.editors) {
       if (Drupal.settings.PanelsIPECacheKeys.indexOf(i) === -1) {
         // Clean-up a little bit and remove it.
-        // Drupal.PanelsIPE.editors[i].editing = false;
-        // Drupal.PanelsIPE.editors[i].changed = false;
-        // delete Drupal.PanelsIPE.editors[i];
+        Drupal.PanelsIPE.editors[i].editing = false;
+        Drupal.PanelsIPE.editors[i].changed = false;
+        delete Drupal.PanelsIPE.editors[i];
       }
     }
 

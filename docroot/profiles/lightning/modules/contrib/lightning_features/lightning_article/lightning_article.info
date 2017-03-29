@@ -41,10 +41,9 @@ features[variable][] = node_submitted_article
 
 features_exclude[dependencies][lightning_sps] = lightning_sps
 
-
-; Information added by drush on 2016-11-28
-version = "7.x-1.0-beta17+0-dev"
+; Information added by Drupal.org packaging script on 2016-11-22
+version = "7.x-1.0-beta17"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1480366998"
+datestamp = "1479832146"
 

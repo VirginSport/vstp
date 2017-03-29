@@ -5,10 +5,7 @@ package = User interface
 core = 7.x
 files[] = responsive_preview.test
 
-
-; Information added by drush on 2016-11-28
+; Information added by drush on 2015-04-25
 version = "7.x-1.1+17-dev"
-core = "7.x"
 project = "responsive_preview"
-datestamp = "1480367013"
-
+datestamp = "1429913092"
