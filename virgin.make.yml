@@ -137,7 +137,7 @@ projects:
       - ./patches/smtp/use-smtp-from-variable-as-from-VS16-1567.patch
 
   title:
-    version: "1.0-alpha8"
+    version: "1.0-alpha9"
 
   user_registrationpassword:
     version: "1.4"
