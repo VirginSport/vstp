@@ -62,7 +62,7 @@ projects:
     version: "1.5"
 
   entity_translation:
-    version: "1.0-beta5"
+    version: "1.0-beta6"
 
   field_group:
     version: "1.5"
