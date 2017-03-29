@@ -236,7 +236,7 @@
   </div>
 
   <?php if ($apply_attendly_header): ?>
-    <?php print theme('virginsport_bar', array('use_path' => TRUE)); ?>
+    <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
   <?php endif; ?>
 
   <div class="vs-footer">
