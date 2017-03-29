@@ -80,7 +80,7 @@ projects:
     version: "2.34"
 
   memcache:
-    version: "1.5"
+    version: "1.6"
 
   mimemail:
     version: "1.0-beta4"
