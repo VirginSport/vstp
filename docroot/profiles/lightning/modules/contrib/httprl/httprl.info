@@ -3,10 +3,7 @@ description = Send http requests out in parallel in a blocking or non-blocking m
 package = Performance and scalability
 core = 7.x
 
-
-; Information added by drush on 2016-11-28
+; Information added by drush on 2015-01-09
 version = "7.x-1.14+26-dev"
-core = "7.x"
 project = "httprl"
-datestamp = "1480367018"
-
+datestamp = "1420766673"

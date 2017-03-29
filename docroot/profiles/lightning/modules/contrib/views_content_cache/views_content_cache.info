@@ -20,10 +20,7 @@ he.inc
 ; Tests
 files[] = tests/views_content_cache.test
 
-
-; Information added by drush on 2016-11-28
+; Information added by drush on 2014-07-14
 version = "7.x-3.0-alpha3+1-dev"
-core = "7.x"
 project = "views_content_cache"
-datestamp = "1480367010"
-
+datestamp = "1405342036"
