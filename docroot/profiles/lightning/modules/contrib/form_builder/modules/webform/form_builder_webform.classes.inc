@@ -2,8 +2,6 @@
 
 
 class FormBuilderWebformForm extends FormBuilderFormBase {
-  const LABEL_PREFIX = 'progressbar_label_first';
-
   /**
    * {@inheritdoc}
    */
@@ -22,22 +20,9 @@ class FormBuilderWebformForm extends FormBuilderFormBase {
     if (array_key_exists('progressbar_label_first', $node->webform)) {
       $first = reset($components);
       if ($first['type'] != 'pagebreak') {
-        $form_keys = array();
-        foreach ($components as $c) {
-          if ($c['pid'] === 0) {
-            $form_keys[$c['form_key']] = TRUE;
-          }
-        }
-
-        $form_key = self::LABEL_PREFIX;
-        $i = 0;
-        while (!empty($form_keys[$form_key])) {
-          $form_key = self::LABEL_PREFIX . ++$i;
-        }
-
         $element = _form_builder_webform_default('pagebreak', array(), array(
           'name' => $node->webform['progressbar_label_first'],
-          'form_key' => $form_key,
+          'form_key' => 'progressbar_label_first',
           'weight' => -100,
         ));
         $components = array($element['#webform_component']) + $components;
@@ -151,14 +136,10 @@ class FormBuilderWebformForm extends FormBuilderFormBase {
     $first = reset($components);
     if ($first['type'] == 'pagebreak') {
       $node->webform['progressbar_label_first'] = $first['name'];
-
-      // Remove pagebreak if it has the right key.
-      if (substr($first['form_key'], 0, strlen(self::LABEL_PREFIX)) === self::LABEL_PREFIX) {
-        unset($components[$first['cid']]);
-        foreach ($components as &$c) {
-          $c['page_num']--;
-        }
-      }
+    }
+    // Remove transient pagebreak.
+    if ($first['form_key'] == 'progressbar_label_first') {
+      unset($components[$first['cid']]);
     }
     $node->webform['components'] = $components;
   }
@@ -227,9 +208,6 @@ class FormBuilderWebformProperty extends FormBuilderPropertyBase {
     // We use the rendered element here to re-use the form-API functions.
     $e = $element->render();
     $e += array("#{$this->property}" => $this->getValue($e['#webform_component']));
-    // Set weight to just anything. Element positions aren't configured in
-    // this way in form_builder.
-    $e['#webform_component']['weight'] = 0;
     if (isset($this->params['form']) && function_exists($this->params['form'])) {
       $function = $this->params['form'];
       return $function($form_state, $this->formTypeName, $e, $this->property);

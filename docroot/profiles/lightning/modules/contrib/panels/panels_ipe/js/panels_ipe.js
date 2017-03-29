@@ -30,9 +30,9 @@ Drupal.behaviors.PanelsIPE = {
     for (var i in Drupal.PanelsIPE.editors) {
       if (Drupal.settings.PanelsIPECacheKeys.indexOf(i) === -1) {
         // Clean-up a little bit and remove it.
-        Drupal.PanelsIPE.editors[i].editing = false;
-        Drupal.PanelsIPE.editors[i].changed = false;
-        delete Drupal.PanelsIPE.editors[i];
+        // Drupal.PanelsIPE.editors[i].editing = false;
+        // Drupal.PanelsIPE.editors[i].changed = false;
+        // delete Drupal.PanelsIPE.editors[i];
       }
     }
 
@@ -50,7 +50,7 @@ Drupal.behaviors.PanelsIPE = {
           Drupal.PanelsIPE.editors[key].showContainer();
         });
     }
-    $('.panels-ipe-hide-bar').once('panels-ipe-hide-bar').click(function() {
+    $('.panels-ipe-hide-bar').once('panels-ipe-hide-bar-processed').click(function() {
       Drupal.PanelsIPE.editors[key].hideContainer();
     });
     Drupal.PanelsIPE.bindClickDelete(context);
@@ -83,7 +83,6 @@ function DrupalPanelsIPE(cache_key, cfg) {
     items: 'div.panels-ipe-portlet-wrapper',
     handle: 'div.panels-ipe-draghandle',
     cancel: '.panels-ipe-nodrag',
-    tolerance: 'pointer',
     dropOnEmpty: true
   }, cfg.sortableOptions || {});
 
@@ -317,7 +316,6 @@ function DrupalPanelsIPE(cache_key, cfg) {
       // @todo this isn't ideal but I can't seem to figure out how to keep an unprocessed backup
       // that will later get processed.
       $('.ctools-use-modal-processed', ipe.topParent).removeClass('ctools-use-modal-processed');
-      $('.panels-ipe-hide-bar-processed', ipe.topParent).removeClass('panels-ipe-hide-bar-processed');
       $('.pane-delete-processed', ipe.topParent).removeClass('pane-delete-processed');
       ipe.topParent.fadeIn('medium');
       Drupal.attachBehaviors();

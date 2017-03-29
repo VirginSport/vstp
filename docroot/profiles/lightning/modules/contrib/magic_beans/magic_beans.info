@@ -6,7 +6,9 @@ dependencies[] = bean
 dependencies[] = panels
 
 
-; Information added by drush on 2015-10-29
-version = "7.x-1.x-dev"
+
+; Information added by drush on 2016-11-28
+version = ""
 project = "magic_beans"
-datestamp = "1446141755"
+datestamp = "1480367016"
+

@@ -6,7 +6,10 @@ core = 7.x
 
 dependencies[] = sps
 
-; Information added by drush on 2014-05-08
+
+; Information added by drush on 2016-11-28
 version = "7.x-1.0-beta1+29-dev"
+core = "7.x"
 project = "sps"
-datestamp = "1399566430"
+datestamp = "1480367013"
+

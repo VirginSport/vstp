@@ -2,10 +2,6 @@
 api: 2
 core: 7.x
 
-defaults:
-  projects:
-    subdir: "contrib"
-
 projects:
   drupal:
     type: "core"
@@ -29,13 +25,15 @@ projects:
       - "http://drupal.org/files/issues/do-2105841_no_protocol_filter-90.patch"
       - "./patches/lightning/prevent-hotlinking-VS16-1207.patch"
 
+defaults:
+  projects:
+    subdir: "contrib"
+
+projects:
+
   lightning:
-    subdir: ""
     type: "profile"
-    download:
-      type: git
-      revision: ab9d05fae2f66989d5d8fa1e81da0fba080062da
-      branch: 7.x-1.x
+    version: "7.x-1.x"
 
   acquia_connector:
     version: "3.0"
