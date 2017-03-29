@@ -10,7 +10,7 @@
 ?>
 
 <?php if(!empty($url)): ?>
-  <div class="vs-bar <?php print $classes; ?>">
+  <div class="vs-bar vs-bar--reveal<?php print $classes; ?>">
     <div class="vs-bar__wrapper">
       <div class="container">
         <div class="row">
