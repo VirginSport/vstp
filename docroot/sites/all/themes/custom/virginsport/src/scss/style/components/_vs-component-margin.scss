@@ -47,4 +47,5 @@
 // Past festivals
 @include vs-region-space('vs-results-container', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
 
-
+// Introduction wrapper
+@include vs-region-space('vs-introduction__container-wrapper', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
