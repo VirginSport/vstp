@@ -154,6 +154,9 @@ label {
 // ----------------------------------------------------------------------------
 
 .vs-form-group--radio-buttons {
+  padding-top: 20px;
+  margin-bottom: 24px;
+
   .vs-form-group--checkboxes + & {
     padding-top: 0.0625rem;
   }
@@ -350,6 +353,11 @@ label {
   .vs-form-check + & {
     padding-top: 0;
   }
+}
+
+.vs-form-submit {
+  text-align: center;
+  padding: rem(30) 0 rem(10);
 }
 
 // Responsive
