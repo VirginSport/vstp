@@ -122,7 +122,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="vs-attendly-header__background"></div>
-            <a href="" class="vs-attendly-header__logo"></a>
+            <a href="<?php print url($front_page); ?>" class="vs-attendly-header__logo"></a>
             <h1 class="vs-attendly-header__title"><?php print $title ?></h1>
           </div>
         </div>
@@ -234,6 +234,10 @@
       </div>
     <?php endif; ?>
   </div>
+
+  <?php if ($apply_attendly_header): ?>
+    <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
+  <?php endif; ?>
 
   <div class="vs-footer">
     <div class="container">

@@ -20,4 +20,3 @@ function virginsport_preprocess_virginsport_picture(&$vars) {
   // If hdpi image style does not exist fallback to original
   $vars['image_style_hdpi'] = empty($image_style_hdpi) ? $vars['image_style'] : $image_style_hdpi_name;
 }
-
