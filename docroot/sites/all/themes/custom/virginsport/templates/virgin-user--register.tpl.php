@@ -184,8 +184,9 @@ $query = drupal_get_query_parameters();
 
                   <div class="col-xs-12">
                     <div class="vs-user-form__wrapper">
-                      <button :disabled="validSubmit" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-register--form-submit"><?php print ('Sign Up'); ?></button>
-
+                      <div class="vs-form-submit">
+                        <button :disabled="validSubmit" v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-register--form-submit"><?php print ('Sign Up'); ?></button>
+                      </div>
                       <div class="vs-user-form__member-text">
                         <?php print t('Already a member?'); ?>
                         <a href="<?php print url('user/login', array('query' => $query)); ?>">
