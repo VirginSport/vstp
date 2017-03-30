@@ -33,9 +33,6 @@ projects:
     subdir: ""
     type: "profile"
     version: "1.0-beta19"
-    patch:
-      # Disable faulty JS in panels_ipe attach removal behaviour
-      - "./patches/lightning/panels/faulty-panels-ipe-attach-removal-behaviour.patch"
 
   acquia_connector:
     version: "3.1"
@@ -99,6 +96,12 @@ projects:
 
   observer:
     version: "1.0"
+
+  panels:
+    version: "3.9"
+    patch:
+      # Disable faulty JS in panels_ipe attach removal behaviour
+      - "./patches/panels/faulty-panels-ipe-attach-removal-behaviour.patch"
 
   paragraphs:
     version: "1.0-rc5"

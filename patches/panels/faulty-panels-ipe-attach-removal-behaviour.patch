@@ -1,7 +1,7 @@
-diff --git a/modules/contrib/panels/panels_ipe/js/panels_ipe.js b/modules/contrib/panels/panels_ipe/js/panels_ipe.js
+diff --git a/panels_ipe/js/panels_ipe.js b/panels_ipe/js/panels_ipe.js
 index 1021eb0..47de52a 100644
---- a/modules/contrib/panels/panels_ipe/js/panels_ipe.js
-+++ b/modules/contrib/panels/panels_ipe/js/panels_ipe.js
+--- a/panels_ipe/js/panels_ipe.js
++++ b/panels_ipe/js/panels_ipe.js
 @@ -30,9 +30,9 @@ Drupal.behaviors.PanelsIPE = {
      for (var i in Drupal.PanelsIPE.editors) {
        if (Drupal.settings.PanelsIPECacheKeys.indexOf(i) === -1) {
