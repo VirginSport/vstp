@@ -20,7 +20,7 @@
 
 ?>
 
-<div class="vs-festival-results-card vs-festival-results-card--color-<?php print $brand_color; ?>">
+<div class="vs-festival-results-card">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -32,7 +32,7 @@
             <div class="col-xs-12 col-md-6">
               <div class="vs-festival-results-card__name-date">
                 <div class="vs-color">
-                  <div class="vs-color vs-color--color-blue vs-color--pattern-<?php print $brand_pattern; ?>">
+                  <div class="vs-color vs-color--color-<?php print $brand_color; ?> vs-color--pattern-<?php print $brand_pattern; ?>">
                     <div class="vs-color__layer-1"></div>
                     <div class="vs-color__layer-2"></div>
                     <div class="vs-color__layer-3"></div>
