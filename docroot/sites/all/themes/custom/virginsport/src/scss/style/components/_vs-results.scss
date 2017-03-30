@@ -465,6 +465,10 @@
   }
 }
 
+.vs-results--not-found {
+  display: none;
+}
+
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
