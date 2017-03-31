@@ -36,7 +36,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
 
   $event = new VirginEntityGrapher('node', $node);
   $results_url = $event->fieldGetOne('field_results_url', '', 'url');
-  $gameface_url = $event->fieldGetOne('field_results_url', '', 'url');
+  $gameface_url = $event->fieldGetOne('field_gameface_url', '', 'url');
 
   $event_state = $event->relation('field_event_state');
   $start_date = $event_state->fieldGetOne('field_start_date');
