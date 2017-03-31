@@ -243,7 +243,7 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
-  $items['user/results/%virgin_user_ticket'] = array(
+  $items['user/results/%'] = array(
     'title' => 'Results',
     'page callback' => 'virgin_user_page_results',
     'page arguments' => array(2),
