@@ -77,6 +77,7 @@ features[field_base][] = field_festival_state
 features[field_base][] = field_first_name
 features[field_base][] = field_flag_image
 features[field_base][] = field_gameface_id
+features[field_base][] = field_gameface_url
 features[field_base][] = field_gender
 features[field_base][] = field_has_fans
 features[field_base][] = field_has_marketing_questions
