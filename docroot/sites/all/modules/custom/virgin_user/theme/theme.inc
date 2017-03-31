@@ -52,6 +52,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $ticket = $vars['ticket'];
   $ticket_user_dob = strtotime($ticket->date_of_birth);
   $ticket_user_name = preg_replace('/\s+/', '', $ticket->first_name . $ticket->last_name);
+  $now = time();
 
   // Get the number of days remaining for event
   $vars['member_is_participant'] = ($user_dob == $ticket_user_dob);
@@ -64,8 +65,12 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['event_start_date'] = $event_start_date;
   $vars['event_end_date'] = $event_end_date;
   $vars['event_started'] = $event_start_date < time();
-  $vars['event_past'] = $event_end_date < time();
   $vars['event_date'] = $start_date->format('l, d M Y');
+  $vars['event_past'] = $event_end_date < time();
+
+  // Just allow to edit tickets 14 days before the event start date
+  $days_for_event = ($event_start_date - $now) / (60 * 60 * 24);
+  $vars['ticket_is_editable'] = $days_for_event > 14;
 }
 
 /**
