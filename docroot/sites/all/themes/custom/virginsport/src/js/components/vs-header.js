@@ -153,7 +153,7 @@ function headerAnimation() {
         // Append floating element to avoid z-index restrictions
         let $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass);
 
-        $('body').append($subnavClone);
+        $('.vs-header__nav-wrapper').append($subnavClone);
       }
     });
 
