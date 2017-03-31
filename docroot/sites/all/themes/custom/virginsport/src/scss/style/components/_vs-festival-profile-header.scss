@@ -209,6 +209,7 @@ vs-festival-profile-header,
   .vs-festival-profile-header__past-title {
     font-size: 1.875rem;
     text-align: left;
+    margin-bottom: rem(16);
   }
 }
 
@@ -234,6 +235,7 @@ vs-festival-profile-header,
   .vs-festival-profile-header__past-title {
     margin-left: 4.0625rem;
     padding-top: 2.25rem;
+    margin-bottom: rem(22);
   }
 }
 
@@ -254,6 +256,6 @@ vs-festival-profile-header,
 
 @include media-breakpoint-up(xl) {
   .vs-festival-profile-header__past-title {
-    padding-top: 3.625rem;
+    padding-top: rem(35);
   }
 }
