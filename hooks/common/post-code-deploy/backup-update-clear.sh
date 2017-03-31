@@ -22,6 +22,10 @@ if [ "$target_env" != 'prod' ]; then
   #
   echo "Updating database."
   drush @$drush_alias updb -y
+
+  echo "Clearing memcache."
+  drush @$drush_alias mcf
+
   echo "Running feature revert."
   drush @$drush_alias fra -y
   #
