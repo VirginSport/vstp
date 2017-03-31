@@ -19,7 +19,7 @@
 ?>
 
 <?php if (!empty($atom)): ?>
-<picture class="<?php print empty($classes) ? '' : $classes; ?>">
+<picture class="vs-picture <?php print empty($classes) ? '' : $classes; ?>">
   <source
     srcset="<?php print image_style_url($image_style_hdpi, $atom->file_source); ?>"
     media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
