@@ -12,9 +12,9 @@ features[field_base][] = field_file_image_alt_text
 features[field_base][] = field_file_image_title_text
 features[field_base][] = field_image
 
-; Information added by Drupal.org packaging script on 2016-11-22
-version = "7.x-1.0-beta17"
+; Information added by Drupal.org packaging script on 2017-02-17
+version = "7.x-1.0-beta19"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1479832146"
+datestamp = "1487347393"
 
