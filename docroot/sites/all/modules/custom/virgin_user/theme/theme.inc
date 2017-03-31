@@ -70,7 +70,7 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
 
   // Just allow to edit tickets 14 days before the event start date
   $days_for_event = ($event_start_date - $now) / (60 * 60 * 24);
-  $vars['ticket_is_editable'] = $days_for_event > 0 && $days_for_event <= 14;
+  $vars['ticket_is_editable'] = $days_for_event > 14;
 }
 
 /**
