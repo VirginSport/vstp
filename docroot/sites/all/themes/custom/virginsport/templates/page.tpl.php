@@ -115,6 +115,20 @@
   <div class="vs-notification vs-notification--sticky">
     <?php print $messages; ?>
   </div>
+  
+  <?php if ($logged_in): ?>
+    <ul class="vs-user-dropdown">
+      <li class="vs-user-dropdown__item vs-user-dropdown__item--header">
+        <?php print $account['first_name'] . ' ' . $account['last_name']; ?>
+      </li>
+      <li class="vs-user-dropdown__item">
+        <a class="vs-user-dropdown__link btn vs-btn vs-btn--min-sm" href="<?php print url('/user'); ?>"><?php print t('View profile'); ?></a>
+      </li>
+      <li class="vs-user-dropdown__item">
+        <a class="vs-user-dropdown__link--logout btn btn-link btn-block" href="<?php print url('/user/logout'); ?>"><?php print t('Sign out'); ?></a>
+      </li>
+    </ul>
+  <?php endif; ?>
 
   <?php if ($apply_attendly_header): ?>
     <div class="vs-attendly-header">
@@ -122,7 +136,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="vs-attendly-header__background"></div>
-            <a href="" class="vs-attendly-header__logo"></a>
+            <a href="<?php print url($front_page); ?>" class="vs-attendly-header__logo"></a>
             <h1 class="vs-attendly-header__title"><?php print $title ?></h1>
           </div>
         </div>
@@ -234,6 +248,10 @@
       </div>
     <?php endif; ?>
   </div>
+
+  <?php if ($apply_attendly_header): ?>
+    <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
+  <?php endif; ?>
 
   <div class="vs-footer">
     <div class="container">

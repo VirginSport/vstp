@@ -35,6 +35,11 @@ vs-attendly-header,
   &:hover {
     opacity: .7;
   }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background: transparent url('../img/vs-logo-red@2x.png') no-repeat left center;
+    background-size: cover;
+  }
 }
 
 .vs-attendly-header__title {

@@ -65,6 +65,16 @@ function virginsport_theme($existing, $type, $theme, $path) {
     )
   ) + $default;
 
+  $themes['virginsport_bar'] = array(
+    'template' => 'virginsport-bar',
+    'variables' => array(
+      'use_path' => FALSE,
+      'classes' => '',
+      'label' => '',
+      'url' => '',
+    )
+  ) + $default;
+
   return $themes;
 }
 

@@ -48,7 +48,7 @@ $unit = 'km';
                   </p>
                 <?php endif; ?>
 
-                <?php if (!$event_started): ?>
+                <?php if ($ticket_is_editable): ?>
                   <a
                     class="vs-ticket-card__edit-ticket"
                     href="<?php print url(sprintf('basket/ticket/%s/personal', $ticket->attendly_rego_id)); ?>"

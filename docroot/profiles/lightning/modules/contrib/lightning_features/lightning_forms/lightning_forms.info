@@ -29,9 +29,9 @@ features[variable][] = node_submitted_webform
 features[variable][] = webform_node_webform
 features[variable][] = workbench_moderation_default_state_webform
 
-; Information added by Drupal.org packaging script on 2016-11-22
-version = "7.x-1.0-beta17"
+; Information added by Drupal.org packaging script on 2017-02-17
+version = "7.x-1.0-beta19"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1479832146"
+datestamp = "1487347393"
 
