@@ -17,8 +17,8 @@ if ($is_ah_env) {
       // setting this to a non-zero value as it impacts the block cache as well.
       $conf['cache_lifetime'] = 0;
 
-      // Set default cache expiration to 5 mins.
-      $conf['page_cache_maximum_age'] = 300;
+      // Allow per environment page_cache_maximum_age via settings.
+      // $conf['page_cache_maximum_age'] = 300;
 
       $conf['block_cache'] = TRUE;
 
