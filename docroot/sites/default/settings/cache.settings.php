@@ -107,3 +107,51 @@ if ($is_ah_env) {
   // stored in the page cache will set the appropriate cache headers.
   $conf['redirect_page_cache'] = TRUE;
 }
+
+
+/** Override and configure domain detection in Acquia Purge. */
+if ($is_ah_env) {
+
+  // Only purge https content as all requests are routed to https
+  $conf['acquia_purge_https'] = TRUE;
+  $conf['acquia_purge_http'] = FALSE;
+
+  switch ($ah_env) {
+    case 'prod': // Production environment.
+      $conf['acquia_purge_domains'] = array(
+      'www.virginsport.com','uk.virginsport.com','us.virginsport.com',
+        );
+      // Don't log successful purges to avoid flooding prod,
+      // errors are always logged.
+      $conf['acquia_purge_log_success'] = FALSE;
+      break;
+    case 'prelaunch': // Staging environment.
+      $conf['acquia_purge_domains'] = array(
+        'www-prelaunch.virginsport.com','uk-prelaunch.virginsport.com','us-prelaunch.virginsport.com',
+      );
+      break;
+    case 'test': // Staging environment.
+      $conf['acquia_purge_domains'] = array(
+        'www-stg.virginsport.com','uk-stg.virginsport.com','us-stg.virginsport.com',
+        );
+      break;
+    case 'dev': // Development environment.
+      $conf['acquia_purge_domains'] = array(
+        'www-dev.virginsport.com','uk-dev.virginsport.com','us-dev.virginsport.com',
+        );
+      break;
+    case 'ra': // RA environment
+      $conf['acquia_purge_domains'] = array(
+        'www-ra.virginsport.com','uk-ra.virginsport.com','us-ra.virginsport.com',
+        );
+      break;
+    default:
+      // Default purge domains if no specific environment detected.
+      $conf['acquia_purge_domains'] = array(
+        'www.virginsport.com','uk.virginsport.com','us.virginsport.com',
+        );
+  }
+} else {
+  // Do not purge in other environments (such as local development).
+  $conf['acquia_purge_passivemode'] = TRUE;
+}
