@@ -128,7 +128,7 @@ if ($is_ah_env) {
     case 'prelaunch': // Staging environment.
       $conf['acquia_purge_domains'] = array(
         'www-prelaunch.virginsport.com','uk-prelaunch.virginsport.com','us-prelaunch.virginsport.com',
-      );
+        );
       break;
     case 'test': // Staging environment.
       $conf['acquia_purge_domains'] = array(
@@ -146,10 +146,7 @@ if ($is_ah_env) {
         );
       break;
     default:
-      // Default purge domains if no specific environment detected.
-      $conf['acquia_purge_domains'] = array(
-        'www.virginsport.com','uk.virginsport.com','us.virginsport.com',
-        );
+      // Do nothing if no specific environment detected.
   }
 } else {
   // Do not purge in other environments (such as local development).
