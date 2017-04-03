@@ -978,7 +978,7 @@ vs-teaser,
       min-height: $ls_lg_height;
     }
 
-    .vs-teaser__content {
+    .vs-teaser__content.vs-teaser__content--outline {
       padding-bottom: 5.8375rem;
     }
 
@@ -1004,8 +1004,8 @@ vs-teaser,
       min-height: $ls_xl_height;
     }
 
-    .vs-teaser__content {
-      padding-bottom: 2.4375rem;
+    .vs-teaser__content.vs-teaser__content--outline {
+      padding-bottom: 9.4375rem;
     }
 
     .vs-outline {
