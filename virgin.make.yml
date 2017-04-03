@@ -64,6 +64,9 @@ projects:
   entity_translation:
     version: "1.0-beta6"
 
+  expire:
+    version: "2.0-rc4"
+
   field_group:
     version: "1.5"
 
