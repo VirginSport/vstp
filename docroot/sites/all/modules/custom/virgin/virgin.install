@@ -98,3 +98,33 @@ function virgin_update_7010() {
 function virgin_update_7011() {
   module_enable(array('metatag_twitter_cards'));
 }
+
+/**
+ * Update panels and views modules paths.
+ */
+function virgin_update_7012() {
+  _virgin_update_path('profiles/lightning/modules/contrib/views/', 'sites/all/modules/contrib/views/');
+  _virgin_update_path('profiles/lightning/modules/contrib/panels/', 'sites/all/modules/contrib/panels/');
+}
+
+/**
+ * Update a module/theme path
+ *
+ * @param $old_path
+ *  The old path ex: 'profiles/lightning/modules/contrib/views/'
+ * @param $new_path
+ *  The new path ex: 'sites/all/modules/contrib/views/'
+ */
+function _virgin_update_path($old_path, $new_path) {
+  // Update module paths
+  db_query("UPDATE system SET filename = REPLACE(filename, :old_path, :new_path)", array(':old_path' => $old_path, ':new_path' => $new_path));
+  db_query("UPDATE registry_file SET filename = REPLACE(filename, :old_path, :new_path)", array(':old_path' => $old_path, ':new_path' => $new_path));
+  db_query("UPDATE registry SET filename = REPLACE(filename, :old_path, :new_path)", array(':old_path' => $old_path, ':new_path' => $new_path));
+
+  // Delete caches
+  db_query("TRUNCATE TABLE cache");
+  db_query("TRUNCATE TABLE cache_bootstrap");
+  db_query("TRUNCATE TABLE cache_menu");
+  db_query("TRUNCATE TABLE cache_page");
+  db_query("TRUNCATE TABLE cache_path");
+}

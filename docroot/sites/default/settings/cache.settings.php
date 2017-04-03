@@ -45,6 +45,10 @@ if ($is_ah_env) {
       break;
   }
 
+  // Added to the memcache module in version 7.x-1.6
+  // Force memcache to use PHP's core serialize functions.
+  $conf['memcache_serialize'] = 'serialize';
+
   // Memcache for caching on Acquia Cloud.
   $conf['cache_backends'][] = $module_dir . '/contrib/memcache/memcache.inc';
   $conf['lock_inc'] =  $module_dir . '/contrib/memcache/memcache-lock.inc';

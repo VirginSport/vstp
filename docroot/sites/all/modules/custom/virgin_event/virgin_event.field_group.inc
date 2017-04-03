@@ -68,6 +68,7 @@ function virgin_event_field_group_info() {
       2 => 'field_results_overview_content',
       3 => 'field_results_overview_image',
       4 => 'field_results_url',
+      5 => 'field_gameface_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

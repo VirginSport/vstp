@@ -169,7 +169,8 @@ vs-photo-gallery,
       img {
         cursor: pointer;
         display: block;
-        height: 100%;
+        width: 100%;
+        height: auto;
         overflow-x: hidden;
       }
 
@@ -312,6 +313,12 @@ vs-photo-gallery,
   }
 }
 
+@include media-breakpoint-up(sm) {
+  .vs-photo-gallery__image-wrapper .slick-list {
+    border-radius: .625rem;
+  }
+}
+
 @include media-breakpoint-up(md) {
   vs-photo-gallery,
   .vs-photo-gallery {
@@ -343,15 +350,20 @@ vs-photo-gallery,
   .vs-photo-gallery-wrapper {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-
-    .vs-photo-gallery__image-wrapper .slick-list {
-      border-radius: .625rem;
-    }
   }
 
   .vs-photo-gallery__image-wrapper {
     .slick-slide {
-      height: 37.5rem;
+      height: 27.5rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+
+  .vs-photo-gallery__image-wrapper {
+    .slick-slide {
+      height: 36.5rem;
     }
   }
 }

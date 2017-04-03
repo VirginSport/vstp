@@ -19,6 +19,10 @@ vs-teaser,
 // Common elements between layouts
 // ----------------------------------------------------------------------------
 
+.vs-picture {
+  display: block;
+}
+
 [class*="vs-teaser__layout"] {
   padding: 0;
 
@@ -894,6 +898,9 @@ vs-teaser,
     width: calc(100% + 1.875rem);
     margin-left: -.9375rem;
     height: auto;
+  }
+
+  .vs-picture--two {
     margin-bottom: 1.875rem;
   }
 
@@ -913,6 +920,10 @@ vs-teaser,
 
   @include media-breakpoint-up(md) {
     min-height: $ls_md_height;
+
+    .vs-picture--two {
+      margin-bottom: 0;
+    }
 
     .vs-teaser__col {
       min-height: $ls_md_height;
