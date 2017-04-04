@@ -37,7 +37,7 @@ vs-photo-gallery,
 
       &.slick-active button::before {
         opacity: 1;
-      }      
+      }
     }
   }
 
@@ -48,6 +48,7 @@ vs-photo-gallery,
 
 .vs-photo-gallery-heading {
   margin: 0 1rem 0.625rem;
+  text-align: left;
 }
 
 // Elements
@@ -60,7 +61,7 @@ vs-photo-gallery,
     padding-right: 0 !important;
   }
 
-  .slick-arrow, 
+  .slick-arrow,
   &--fullscreen .slick-arrow {
     @include transition(all 0.3s ease);
 
@@ -85,7 +86,7 @@ vs-photo-gallery,
   &--fullscreen.hide-controls .slick-arrow,
   &--fullscreen.hide-controls .close {
     opacity: 0;
-  } 
+  }
 
   &--fullscreen .slick-arrow {
     border-color: $c-white;
@@ -128,7 +129,7 @@ vs-photo-gallery,
     cursor: pointer;
   }
 
-  &--fullscreen .slick-list, 
+  &--fullscreen .slick-list,
   &--fullscreen .slick-track {
     height: 100%;
   }
@@ -164,7 +165,7 @@ vs-photo-gallery,
 
     .vs-photo-gallery-wrapper--fullscreen & {
       border-top: 0.125rem solid $c-white;
-      margin-bottom: 0; 
+      margin-bottom: 0;
       height: 100%;
     }
 
@@ -178,7 +179,8 @@ vs-photo-gallery,
       img {
         cursor: pointer;
         display: block;
-        height: 100%;
+        width: 100%;
+        height: auto;
         overflow-x: hidden;
       }
 
@@ -254,7 +256,7 @@ vs-photo-gallery,
         &:after {
           background-color: rgba(255, 255, 255, .7);
         }
-      } 
+      }
     }
   }
 }
@@ -313,12 +315,18 @@ vs-photo-gallery,
       height: 2.125rem;
       border-width: 0.5rem;
     }
-  } 
+  }
 }
 
 @include media-breakpoint-down(md) {
   .vs-photo-gallery__thumbnails-wrapper {
     max-width: 30rem;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .vs-photo-gallery__image-wrapper .slick-list {
+    border-radius: .625rem;
   }
 }
 
@@ -345,7 +353,7 @@ vs-photo-gallery,
       }
     }
   }
-  
+
   .vs-photo-gallery-heading {
     margin: 0 1.1875rem 0.875rem;
   }
@@ -353,16 +361,21 @@ vs-photo-gallery,
   .vs-photo-gallery-wrapper {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+  }
 
-    .vs-photo-gallery__image-wrapper .slick-list {
-      border-radius: .625rem;
+  .vs-photo-gallery__image-wrapper {
+    .slick-slide {
+      height: 27.5rem;
     }
   }
+}
+
+@include media-breakpoint-up(lg) {
 
   .vs-photo-gallery__image-wrapper {
     .slick-slide,
     .picture-wrapper {
-      height: 37.5rem;
+      height: 36.5rem;
     }
   }
 }

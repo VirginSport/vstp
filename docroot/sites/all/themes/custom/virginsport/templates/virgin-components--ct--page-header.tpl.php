@@ -19,7 +19,7 @@
   <div class="vs-hero-banner__background <?php print is_null($atom) ? 'vs-hero-banner__default-background' : ''; ?>">
     <?php if ($variables['show_sharer']==1):?>
     <div class="vs-hero-banner__social-wrapper">
-      <?php print theme('virginsport_share_buttons', array('subject' => $title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+      <?php print theme('virginsport_share_buttons', array('location' => 'Page Header', 'subject' => $title, 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
     </div>
     <?php endif; ?>
     <div class="container">

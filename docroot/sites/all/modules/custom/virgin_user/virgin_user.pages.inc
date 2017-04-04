@@ -387,17 +387,24 @@ function virgin_user_page_user_register() {
  * Page callback for the user password route
  *
  * This callback overrides the core drupal user password route
- *
- * @return string
- *  The html template
  */
 function virgin_user_page_user_password() {
-  // Load user pages to render the registaer password form
   module_load_include('inc', 'user', 'user.pages');
-
   $password_form = drupal_get_form('user_pass');
 
   return theme('virgin_user__password', array('password_form' => $password_form));
+}
+
+/**
+ * Page callback for the user password reset route
+ *
+ * This callback overrides the core drupal user password reset route
+ */
+function virgin_user_page_user_password_reset($form_name, $uid, $timestamp, $hashed_pass, $action = NULL) {
+  module_load_include('inc', 'user', 'user.pages');
+  $form = drupal_get_form($form_name, $uid, $timestamp, $hashed_pass, $action);
+
+  return theme('virgin_user__password_reset', array('form' => $form));
 }
 
 /**
@@ -555,22 +562,11 @@ function virgin_user_page_ajax_form_post() {
 /**
  * Page callback for user event results page
  */
-function virgin_user_page_results($ticket) {
-  $event = virgin_user_ticket_event($ticket->attendly_rego_id);
-
-  if (empty($event)) {
-    drupal_not_found();
-    return;
-  }
-
-  $conf = array(
+function virgin_user_page_results($ticket_sugar_id) {
+  $vars = array(
     'is_card' => TRUE,
-    'event_id' => $event->property('nid'),
-    'ticket_id' => $ticket->sugar_id
+    'ticket_id' => $ticket_sugar_id
   );
 
-  ctools_include('content');
-  $results_table = ctools_content_render('results_table', null, $conf, array(), array());
-
-  return $results_table->content;
+  return theme('virgin_components__ct__results_table', $vars);
 }

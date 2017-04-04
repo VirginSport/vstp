@@ -7,15 +7,38 @@ defaults:
     subdir: "contrib"
 
 projects:
+  drupal:
+    type: "core"
+    version: "7.54"
+    patch:
+      # Allow install profiles to change the system requirements. http://drupal.org/node/1772316
+      - "http://drupal.org/files/drupal-7.x-allow_profile_change_sys_req-1772316-21.patch"
+      # Load multiple revisions at once. http://drupal.org/node/1730874
+      - "http://drupal.org/files/1730874_0.patch"
+      # Registry rebuild should not parse the same file twice in the same request. http://drupal.org/node/1470656
+      - "http://drupal.org/files/drupal-1470656-14.patch"
+      # user_role_grant_permissions() throws PDOException when used for a disabled. module's permission or with non-existent permissions. http://drupal.org/comment/7285420#comment-7285420
+      - "http://drupal.org/files/drupal-fix_pdoexception_grant_permissions-737816-36-do-not-test.patch"
+      # image_get_info always populates file_size, even if already set. http://drupal.org/node/2289493
+      - "http://drupal.org/files/issues/drupal-2289493-3-image_get_info-filesize-D7.patch"
+      # Remove all occurences of sourceMappingURL and sourceURL. when JS files are aggregated. http://drupal.org/node/2400287
+      - "http://drupal.org/files/issues/Issue-2400287-by-hass-Remove-JS-source-and-source-map-D7_0.patch"
+      # Pass $page_callback_result through hook_page_delivery_callback_alter(). http://drupal.org/node/897504
+      - "http://drupal.org/files/issues/pass-page-callback-result-897504-2.patch"
+      # Xss filter() ignores malicious content in data-attributes and mangles image captions. http://drupal.org/node/2105841
+      - "http://drupal.org/files/issues/do-2105841_no_protocol_filter-90.patch"
+      - "./patches/lightning/prevent-hotlinking-VS16-1207.patch"
 
   lightning:
-    type: "core"
-    version: "7.x-1.x"
-    patch:
-      - ./patches/lightning/prevent-hotlinking-VS16-1207.patch
+    subdir: ""
+    type: "profile"
+    version: "1.0-beta19"
 
   acquia_connector:
-    version: "3.0"
+    version: "3.1"
+
+  acquia_purge:
+    version: "1.3"
 
   coder:
     version: "2.6"
@@ -39,7 +62,10 @@ projects:
     version: "1.5"
 
   entity_translation:
-    version: "1.0-beta5"
+    version: "1.0-beta6"
+
+  expire:
+    version: "2.0-rc4"
 
   field_group:
     version: "1.5"
@@ -51,13 +77,13 @@ projects:
     version: "2.15"
 
   i18n:
-    version: "1.14"
+    version: "1.15"
 
   mailsystem:
     version: "2.34"
 
   memcache:
-    version: "1.5"
+    version: "1.6"
 
   mimemail:
     version: "1.0-beta4"
@@ -72,13 +98,19 @@ projects:
       branch: 7.x-1.x
 
   oauth:
-    version: "3.2"
+    version: "3.3"
 
   observer:
     version: "1.0"
 
+  panels:
+    version: "3.9"
+    patch:
+      # Disable faulty JS in panels_ipe attach removal behaviour
+      - "./patches/panels/faulty-panels-ipe-attach-removal-behaviour.patch"
+
   paragraphs:
-    version: "1.0-rc4"
+    version: "1.0-rc5"
     patch:
       - "https://www.drupal.org/files/issues/paragraphs-field-validation-2558517-3.patch"
 
@@ -103,22 +135,27 @@ projects:
     version: "2.3"
 
   services:
-    version: "3.17"
+    version: "3.19"
 
   shield:
     version: "1.3"
 
   smtp:
     version: "1.4"
+    patch:
+      - ./patches/smtp/use-smtp-from-variable-as-from-VS16-1567.patch
 
   title:
-    version: "1.0-alpha8"
+    version: "1.0-alpha9"
 
   user_registrationpassword:
     version: "1.4"
 
   variable:
     version: "2.5"
+
+  views:
+    version: "3.15"
 
   view_unpublished:
     version: "1.2"

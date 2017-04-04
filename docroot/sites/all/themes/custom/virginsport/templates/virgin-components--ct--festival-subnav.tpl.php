@@ -30,6 +30,7 @@
         <a
           class="vs-subnav__link <?php print empty($link['active']) ? '' : 'vs-subnav__link--active'; ?>"
           href="<?php print $link['url']; ?>"
+          target="<?php print $link['target']; ?>"
         >
           <?php print $link['title']; ?>
         </a>

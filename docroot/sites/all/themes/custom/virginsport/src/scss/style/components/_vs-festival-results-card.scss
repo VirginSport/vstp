@@ -49,6 +49,12 @@
   }
 }
 
+.vs-festival-results-card__grid-break {
+  @include each(3) {
+    clear: left;
+  }
+}
+
 .vs-festival-results-card__name-date {
   border-radius: 0 0 .625rem .625rem;
   padding: 1.250rem;
@@ -108,12 +114,14 @@
   color: $c-white;
   font-family: $font-family-serif;
   font-size: .75rem;
+  font-weight: 500;
   line-height: 0.875rem;
   position: relative;
   text-transform: uppercase;
+  opacity: .6;
 
   @include media-breakpoint-up(lg) {
-    font-size: 1.25rem;
+    font-size: 1.875rem;
   }
 }
 
@@ -131,7 +139,7 @@
   @include media-breakpoint-up(md) {
     margin-left: .9375rem;
     margin-right: .9375rem;
-    padding-top: 3.125rem;
+    padding-top: 1.875rem;
     padding-bottom: 1.250rem;
   }
 }
@@ -139,11 +147,6 @@
 .vs-festival-results-card__info-block {
   @include media-breakpoint-up(md) {
     display: inline-block;
-    padding-right: 2.1375rem;
-  }
-
-  @include media-breakpoint-up(lg) {
-    padding-right: 4.375rem;
   }
 }
 
@@ -152,14 +155,12 @@
   display: block;
   font-family: $font-family-serif;
   font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.25rem;
-  margin: 0;
+  font-size: .875rem;
   text-transform: uppercase;
 
   @include media-breakpoint-up(lg) {
-    font-size: 1.875rem;
-    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -189,7 +190,9 @@
 }
 
 .vs-festival-results-card__button {
-  display: block;
+  @include media-breakpoint-down(sm) {
+    min-width: 13.75rem;
+  }
 
   @include media-breakpoint-up(md) {
     display: inline-block;

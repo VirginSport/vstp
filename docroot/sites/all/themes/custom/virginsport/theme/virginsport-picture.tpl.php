@@ -36,7 +36,7 @@ $image_info = $image_info($image_style, $atom->file_source);
 
 <?php if (!empty($atom)): ?>
   <div class="picture-wrapper">
-    <picture class="<?php print empty($classes) ? '' : $classes; ?>">
+    <picture class="vs-picture <?php print empty($classes) ? '' : $classes; ?>">
       <source
         srcset="<?php print image_style_url($image_style_hdpi, $atom->file_source); ?>"x  
         media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"

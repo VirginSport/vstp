@@ -71,7 +71,7 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $variables['event_price'] = $price;
     $variables['event_currency'] = $paragraph_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['no_card_pattern_class'] = ($variables['card_pattern'] == 'none') ? 'vs-card-untimed-event--outline-remove' : '';
-    $variables['ticket_hostname'] = $this->getTicketHostname($festival_grapher->property('nid'));
+    $variables['cta_links'] = $paragraph_grapher->fieldGetAll('field_cta_link');
 
     $products = array(
       'name' => $event_grapher->property('title'),
@@ -83,27 +83,5 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     );
 
     $variables['products'] = drupal_json_encode(array($products));
-  }
-
-  /**
-   * Gets the hostname of the region this ticket belongs to
-   *
-   * @param int $festival_nid
-   *  The NID of the festival
-   * @return string
-   *  The hostname of the region this ticket belongs to
-   */
-  protected function getTicketHostname($festival_nid) {
-    $sql = "
-      SELECT h.field_hostname_value as hostname
-      FROM {field_data_field_region} r
-      JOIN {field_data_field_hostname} h
-        ON h.entity_id = r.field_region_target_id
-        AND h.bundle = 'region'
-      WHERE r.bundle = 'festival'
-      AND r.entity_id = :nid
-    ";
-
-    return db_query($sql, array(':nid' => $festival_nid))->fetchField();
   }
 }

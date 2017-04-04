@@ -15,9 +15,7 @@ $query = drupal_get_query_parameters();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h1 class="vs-hero-banner__title"><?php print t(
-                  'Recover Password'
-                ); ?></h1>
+              <h1 class="vs-hero-banner__title"><?php print t('Password Reset'); ?></h1>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>
@@ -56,7 +54,7 @@ $query = drupal_get_query_parameters();
 
           <div class="col-xs-12">
             <div class="vs-user-form__wrapper">
-              <button v-on:click="submit" class="btn vs-btn vs-btn--min-xxl vs-user-password--form-submit"><?php print ('E-mail new Password'); ?></button>
+              <button v-on:click="submit" class="btn vs-btn vs-btn--min-xxl vs-user-password--form-submit"><?php print ('Email Password Reset Link'); ?></button>
             </div>
           </div>
         </form>

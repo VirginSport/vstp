@@ -89,6 +89,12 @@ $last-child-count: 3;
   .panels-ipe-editing & { margin-bottom: 0; }
 }
 
+.vs-results-overview,
+.panels-ipe--vs-results-overview {
+  margin-bottom: 80px;
+  .panels-ipe-editing & { margin-bottom: 0; }
+}
+
 .vs-claim-ticket,
 .panels-ipe--vs-claim-ticket {
   margin-bottom: 60px;

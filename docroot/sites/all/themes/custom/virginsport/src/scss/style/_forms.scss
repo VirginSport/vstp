@@ -56,7 +56,7 @@ label {
 .vs-form-group--textarea:before {
   content: '';
   width: calc(100% - 2px);
-  height: 1.75rem;
+  height: 1.5rem;
   position: absolute;
   top: 1px;
   left: 1px;
@@ -132,8 +132,7 @@ label {
 // Inline forms
 // ----------------------------------------------------------------------------
 
-.vs-form-group--checkboxes > div,
-.vs-form-group--radio-buttons > div {
+.vs-form-group--checkboxes > div {
   display: inline-block;
 
   & {
@@ -155,12 +154,19 @@ label {
 // ----------------------------------------------------------------------------
 
 .vs-form-group--radio-buttons {
-  .vs-form-group + & {
-    padding-top: 0.5625rem;
-  }
+  padding-top: 20px;
+  margin-bottom: 24px;
 
   .vs-form-group--checkboxes + & {
     padding-top: 0.0625rem;
+  }
+
+  &.vs-form-group--radio-buttons--inline > div {
+    display: inline-block;
+
+    & {
+      padding-right: 1.875rem;
+    }
   }
 
   & + & {
@@ -169,8 +175,6 @@ label {
 }
 
 .vs-form-radio {
-  padding-bottom: 0.9375rem;
-
   &:last-child {
     padding-bottom: 0;
   }
@@ -189,7 +193,7 @@ label {
 }
 
 .vs-form-label--radio {
-  font-size: 0.875rem;
+  font-size: .9375rem;
   padding-left: 1.875rem;
   position: relative;
   cursor: pointer;
@@ -231,7 +235,6 @@ label {
   .vs-form-group + & {
     padding-top: 0.625rem;
   }
-
   & + & {
     padding-top: 0.125rem;
     padding-bottom: 0;
@@ -347,10 +350,14 @@ label {
   line-height: 0.75rem;
   padding: .3125rem 0;
 
-  .vs-form-radio + &,
   .vs-form-check + & {
     padding-top: 0;
   }
+}
+
+.vs-form-submit {
+  text-align: center;
+  padding: rem(30) 0 rem(10);
 }
 
 // Responsive
@@ -394,12 +401,6 @@ label {
 
   .vs-error-label {
     padding: .5rem 0;
-  }
-
-  .vs-form-group {
-    & + .vs-form-group--radio-buttons {
-      padding-top: 0.6875rem;
-    }
   }
 
   .vs-form-check {

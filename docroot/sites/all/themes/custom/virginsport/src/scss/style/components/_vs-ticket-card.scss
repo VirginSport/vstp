@@ -184,6 +184,15 @@ vs-ticket-card,
 
 .vs-ticket-card__ctas-wrapper {
   position: relative;
+  padding-bottom: rem(40);
+
+  @include media-breakpoint-up(sm) {
+    padding-bottom: rem(50);
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: 0;
+  }
 }
 
 .vs-ticket-card__cta-wrapper {
@@ -290,6 +299,15 @@ vs-ticket-card,
   min-width: 1.875rem;
   min-height: 1.875rem;
   text-align: right;
+  padding-right: rem(20);
+
+  @include media-breakpoint-up(sm) {
+    padding-right: rem(10);
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-right: 0;
+  }
 }
 
 .vs-ticket-card__ribbon {
@@ -669,8 +687,8 @@ vs-ticket-card,
 
   .vs-ticket-card__session-time > p,
   .vs-ticket-card__distance > p {
-    font-size: 2.25rem;
-    line-height: 2.25rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
 }
 

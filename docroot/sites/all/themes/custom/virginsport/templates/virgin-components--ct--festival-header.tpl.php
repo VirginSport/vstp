@@ -7,9 +7,11 @@
  * @var string $title
  *  The title of the festival
  * @var string $nid
+ *  The NID of the festival OR event
+ * @var string $festival_nid
  *  The NID of the festival
  * @var string $status
- *  The status key of the festival
+ *  The status key of the festival OR event
  * @var int $start_date
  *  The timestamp of the start date of the event
  * @var string $start_date_formatted
@@ -31,7 +33,13 @@
  */
 ?>
 
-<div class="vs-hero-banner" data-vs-countdown-ts="<?php print $start_date_formatted; ?>" data-vs-countdown-tz="<?php print $timezone; ?>" data-color="<?php print $color; ?>">
+<div
+  class="vs-hero-banner"
+  data-vs-countdown-ts="<?php print $start_date_formatted; ?>"
+  data-vs-countdown-tz="<?php print $timezone; ?>"
+  data-color="<?php print $color; ?>"
+  data-vs-hostname="<?php print check_plain($festival_hostname); ?>"
+>
   <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
 
   <div class="vs-hero-banner__background">
@@ -43,7 +51,7 @@
 
     <?php if ($variables['show_sharer']==1):?>
       <div class="vs-hero-banner__social-wrapper">
-        <?php print theme('virginsport_share_buttons', array('subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
+        <?php print theme('virginsport_share_buttons', array('location' => 'Festival Header', 'subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
       </div>
     <?php endif; ?>
 
@@ -76,7 +84,7 @@
 
             <?php if (in_array($status, array('open', 'in-progress')) && !$is_tickets_page): ?>
               <a
-                href="<?php print url('node/' . $nid . '/tickets'); ?>"
+                href="<?php print url('node/' . $festival_nid . '/tickets'); ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>"
                 vs-ticket-hostname="<?php print check_plain($festival_hostname); ?>"
                 vs-ticket-event="SelectTicketsCTA"

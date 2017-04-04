@@ -41,15 +41,33 @@ function initResultsComponents() {
       'eventName',
       'eventDate',
       'eventDescription',
-      'maxRows'
+      'maxRows',
+      'unit'
     ],
     template: '#tpl-vs-results',
     ready() {
       this.filter.limit = this.maxRows;
+      this.filter.unit = this.unit;
 
-      this.getRaces();
+      !!this.ticketId ? this.getParticipantDetails(this.ticketId) : this.getRaces();
     },
     methods: {
+      getParticipantDetails(participantID) {
+        getRacedayParticipant(raceDayUrl, participantID).then((result) => {
+          if (!result || !result.data) {
+            return;
+          }
+
+          this.participant = result.data;
+          this.festivalId = result.data.eventId;
+          this.eventId = result.data.raceId;
+
+          this.getRaces();
+        }).catch(() => {
+          $(this.$el).addClass('vs-results--not-found');
+        });
+      },
+
       getRace(id) {
         if (this.event && this.event.races.length) {
           for (let i = 0; i < this.event.races.length; i++) {
@@ -101,8 +119,7 @@ function initResultsComponents() {
           return;
         }
 
-        let prefix = (name == 'category') ? '*' : '';
-        this.filter[name] = prefix + key;
+        this.filter[name] = key;
       },
 
       /**
@@ -120,7 +137,6 @@ function initResultsComponents() {
         this.clearRaceResults();
 
         let loadProperty = 'find';
-
         if (this.showTop) {
           this.getGenderResults(loadProperty);
         } else {
@@ -143,12 +159,18 @@ function initResultsComponents() {
       getGenderResults(loadingProperty) {
         this.loading[loadingProperty] = true;
 
+        let filter = JSON.parse(JSON.stringify(this.filter));
+        delete filter.race;
+        let params = { params: filter };
+        params.params.gender = 'male';
+
         // Get male results
-        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'male', limit: this.maxRows } }).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
           this.genderRanks.male = result.data;
+          params.params.gender = 'female';
 
           // Get female results
-          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, { params: { gender: 'female', limit: this.maxRows } }).then((result) => {
+          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
             this.genderRanks.female = result.data;
 
             this.loading[loadingProperty] = true;
@@ -186,6 +208,7 @@ function initResultsComponents() {
     data() {
       return {
         event: '',
+        participant: '',
         noResults: false,
         loading: {
           find: false,
@@ -269,6 +292,7 @@ function initResultsComponents() {
       'loading',
       'race',
       'ticketId',
+      'participant',
       'rank',
       'unit',
       'isOpen',
@@ -288,7 +312,12 @@ function initResultsComponents() {
       if (this.isOpen) {
         // because participant details makes the toggle default isOpen to false
         this.isOpen = false;
-        this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
+
+        this.result = this.participant;
+
+        if (!this.result) {
+          this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
+        }
       }
 
       let $el = $(this.$el);
@@ -355,7 +384,7 @@ function initResultsComponents() {
           return this.cachedPassings[this.unit];
         }
 
-        this.max = 0;
+        this.maxAverage[this.unit] = 0;
         let list = [];
 
         this.getSortedStages().forEach((s, index) => {
@@ -365,7 +394,10 @@ function initResultsComponents() {
             let startTime = index == 0 ? moment().format("yyyy-mm-dd") : list[index - 1].pass.chipTime;
             let distance = index == 0 ? s.distance : s.distance - list[index - 1].stage.distance;
             let average = this.diff(startTime, p.chipTime) / this.getDistanceFormatted(distance);
-            this.maxAverage[this.unit] = this.max > average ? this.max : average;
+
+            if (this.maxAverage[this.unit] < average) {
+              this.maxAverage[this.unit] = average;
+            }
 
             list.push({
               startTime: startTime,

@@ -16,10 +16,9 @@ features[defaultconfig][] = strongarm:imageinfo_cache_getimagesize
 features[defaultconfig][] = strongarm:imageinfo_cache_use_httprl
 features[features_api][] = api:2
 
-
-; Information added by drush on 2016-11-28
-version = "7.x-1.0-beta17+0-dev"
+; Information added by Drupal.org packaging script on 2017-02-17
+version = "7.x-1.0-beta19"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1480366998"
+datestamp = "1487347393"
 

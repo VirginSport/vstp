@@ -160,7 +160,12 @@ function virgin_user_schema() {
         'not null' => FALSE,
         'default' => 0,
         'description' => 'Timestamp of the time the ticket was last marked as a placeholder.',
-      )
+      ),
+      'spectators' => array(
+        'description' => 'The spectators count',
+        'type' => 'int',
+        'default' => 0,
+      ),
     ),
     'primary key' => array('attendly_rego_id'),
     'foreign keys' => array(
@@ -192,4 +197,13 @@ function virgin_user_update_7002() {
   $schema = virgin_user_schema();
   $column = $schema['virgin_user_tickets']['fields']['placeholder_date'];
   db_add_field('virgin_user_tickets', 'placeholder_date', $column);
+}
+
+/**
+ * Adds spectators count.
+ */
+function virgin_user_update_7003() {
+  $schema = virgin_user_schema();
+  $column = $schema['virgin_user_tickets']['fields']['spectators'];
+  db_add_field('virgin_user_tickets', 'spectators', $column);
 }

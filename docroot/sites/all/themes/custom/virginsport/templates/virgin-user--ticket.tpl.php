@@ -48,7 +48,7 @@ $unit = 'km';
                   </p>
                 <?php endif; ?>
 
-                <?php if (!$event_started): ?>
+                <?php if ($ticket_is_editable): ?>
                   <a
                     class="vs-ticket-card__edit-ticket"
                     href="<?php print url(sprintf('basket/ticket/%s/personal', $ticket->attendly_rego_id)); ?>"
@@ -115,9 +115,10 @@ $unit = 'km';
               <div class="vs-ticket-card__cta-wrapper">
                 <a class="vs-ticket-card__cta--full-results" href="<?php print url('user/results/' . $ticket->sugar_id); ?>">
                   <i class="icon-results-medal"></i>
-                  <span><?php print t('full results'); ?></span>
+                  <span><?php print t('personal results'); ?></span>
                 </a>
               </div>
+
               <?php if (!empty($event_grapher->fieldGetOne('field_gameface_id'))): ?>
                 <div class="vs-ticket-card__cta-wrapper">
                   <a
@@ -129,19 +130,6 @@ $unit = 'km';
                     <span>
                       <?php print t('event photos'); ?>
                     </span>
-                  </a>
-                </div>
-              <?php endif; ?>
-
-              <?php if (!empty($member_is_participant) && !empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
-                <div class="vs-ticket-card__cta-wrapper">
-                  <a
-                    class="vs-ticket-card__cta--invite-fans"
-                    href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>"
-                    interaction-type="fans"
-                  >
-                    <i class="icon-high-five"></i>
-                    <?php print t('fans'); ?>
                   </a>
                 </div>
               <?php endif; ?>
@@ -219,7 +207,7 @@ $unit = 'km';
               <?php endif; ?>
             <?php endif; ?>
             <div class="vs-ticket-card__social-wrapper">
-              <?php print theme('virginsport_share_buttons', array('subject' => $event_grapher->fieldGetOne('title_field'), 'url' => $GLOBALS['base_url'].'/node/'.$event_grapher->property('nid'))); ?>
+              <?php print theme('virginsport_share_buttons', array('location' => 'User Ticket', 'subject' => $event_grapher->fieldGetOne('title_field'), 'url' => url('node/' . $event_grapher->property('nid'), array('absolute' => TRUE)))); ?>
             </div>
           </div>
         </div>

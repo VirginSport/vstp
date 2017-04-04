@@ -45,6 +45,10 @@ function virgin_components_theme() {
       'variables' => array(),
       'template' => 'virgin-components__ct__page_header',
     ),
+    'virgin_components__ct__results_overview' => array(
+      'variables' => array(),
+      'template' => 'virgin-components--ct--results-overview',
+    ),
     'virgin_components__ct__festival_results_card' => array(
       'template'  => 'virgin-components__ct__festival-results-card',
       'variables' => array(
@@ -58,6 +62,7 @@ function virgin_components_theme() {
     ),
     'virgin_components__ct__results_table' => array(
       'variables' => array(
+        'show_top' => false,
         'is_summary' => false,
         'is_truncated' => true,
         'brand_color' => 'blue',
@@ -65,10 +70,12 @@ function virgin_components_theme() {
         'replay_path' => '',
         'photo_path' => '',
         'festival_id' => '',
+        'festival_name' => '',
         'event_id' => '',
         'event_name' => '',
         'event_date' => '',
         'event_description' => '',
+        'unit' => '',
         'max_rows' => 10
       ),
       'template' => 'virgin-components__ct__results_table',
@@ -154,6 +161,7 @@ function virgin_components_list() {
       new VirginComponentGamefacePhotoGallery(),
       new VirginComponentMyLapsTrackMyRunner(),
       new VirginComponentResultsIntroduction(),
+      new VirginComponentResultsOverview(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),

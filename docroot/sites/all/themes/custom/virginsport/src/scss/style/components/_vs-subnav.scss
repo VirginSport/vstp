@@ -1,6 +1,10 @@
 
 // Blocks
 // ----------------------------------------------------------------------------
+@keyframes subnav {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 vs-subnav,
 .vs-subnav {
@@ -9,11 +13,10 @@ vs-subnav,
   display: block;
   background-color: transparent;
   text-align: center;
-  padding: .875rem 0;
   left: 0;
   right: 0;
-  z-index: 999;
-
+  z-index: 2;
+  opacity: 1;
 }
 
 
@@ -22,7 +25,7 @@ vs-subnav,
 
 .vs-subnav__list {
   margin: 0;
-  padding: 0 1.25rem;
+  padding: .875rem 1.25rem;
   white-space: nowrap;
   overflow-x: auto;
 }
@@ -31,7 +34,7 @@ vs-subnav,
   @include transition(all .5s ease-in-out);
   background-image: linear-gradient(-90deg, #F0F0F0 10%, rgba(240,240,240,0.00) 100%);
   content: '';
-  height: 1.875rem;
+  height: 3.5rem;
   position: absolute;
   width: 60px;
   right: 0;
@@ -118,19 +121,29 @@ vs-subnav,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-subnav--unpinned,
-.vs-subnav--not-top {
+.vs-subnav--clone {
   @include transition(all .5s ease-in-out, background-color 1ms);
-  position: fixed;
-  top: 0;
+  @include transform(translateY(0));
+  animation: subnav .5s;
+
+  &.vs-subnav--unpinned,
+  &.vs-subnav--not-top {
+    position: fixed;
+    top: 0;
+  }
 }
 
-.vs-subnav--pinned-on-main-nav {
-  @include transform(translateY(55px));
+.vs-subnav--hide {
+  opacity: 0;
+}
 
-  &.vs-subnav--top {
-    @include transform(translateY(0));
-  }
+.vs-subnav__list {
+  padding-top: rem(19);
+  padding-bottom: rem(20);
+}
+
+.vs-subnav--clone.vs-subnav--pinned-on-main-nav {
+  @include transform(translateY(56px));
 
   .vs-menu-open & {
     opacity: 0;
@@ -143,7 +156,7 @@ vs-subnav,
 
 @include media-breakpoint-up(md) {
   .vs-subnav__overlay {
-    height: 1.75rem;
+    height: rem(68);
   }
 
   .vs-subnav__item {
@@ -157,19 +170,12 @@ vs-subnav,
     letter-spacing: 0.2px;
     padding-bottom: .55rem;
   }
+
 }
 
 @include media-breakpoint-up(lg) {
   .vs-subnav__item:last-child {
     padding-right: 1.875rem;
-  }
-
-  .vs-subnav--pinned-on-main-nav {
-    @include transform(translateY(60px));
-
-    &.vs-subnav--top {
-      @include transform(translateY(0));
-    }
   }
 }
 

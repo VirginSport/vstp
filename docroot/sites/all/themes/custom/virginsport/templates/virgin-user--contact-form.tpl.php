@@ -116,22 +116,22 @@ $mkt_id = 'mkt-' . uniqid();
                     <div v-if="form.error" class="vs-error-label"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></div>
 
                     <div class="vs-contact-form__submit text-xs-center">
-                      <button v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
+                      <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Send Message'); ?></button>
                     </div>
 
                   </form>
                 </validator>
                 <div v-if="form.submitted" class="form-completion">
                   <h4 class="vs-form-header">
-                    <span v-if="form.type === 'careers'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'charities'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'careers'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'charities'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
                     <span v-if="form.type === 'fans'"><?php print t("Brilliant! We're excited that you're excited! We'll be in touch soon."); ?></span>
-                    <span v-if="form.type === 'festival-event'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'passes'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'potential-partnership'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'press-inquiry'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'results'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'other'"><?php print t("Thanks for your enquiry. We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'festival-event'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'passes'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'potential-partnership'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'press-inquiry'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'results'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span v-if="form.type === 'other'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
                   </h4>
 
                   <button v-if="inModal" v-on:click="closeModal" class="btn vs-btn vs-btn--min-sm"><?php print t('Ok'); ?></button>

@@ -30,10 +30,6 @@ vs-introduction,
   left: 0;
 }
 
-.vs-introduction__content {
-  padding-top: .625rem;
-}
-
 
 // Responsive
 // ----------------------------------------------------------------------------
@@ -41,7 +37,7 @@ vs-introduction,
 @include media-breakpoint-up(md) {
 
   .vs-introduction__content {
-    padding: 4.063rem 0 2.5rem;
+    padding: 0 0 2.5rem;
     margin-left: 0;
     margin-right: 0;
   }

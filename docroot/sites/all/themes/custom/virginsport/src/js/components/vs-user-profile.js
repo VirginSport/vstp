@@ -193,6 +193,15 @@ export default () => {
         this.submitted = false;
       }
     },
+    watch: {
+      'profile.field_medical_conditions': function (curr, prev) {
+        // If the user un-selects the 'other' medical conditions option, ensure
+        // the other medical conditions field is emptied.
+        if (!curr || curr.indexOf('Other') < 0) {
+          this.profile.field_medical_conditions_other = '';
+        }
+      }
+    },
     data: {
       submitted: false,
       edit_mode: false,

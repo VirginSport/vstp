@@ -110,7 +110,7 @@ vs-hero-event-card,
 @include media-breakpoint-up(md) {
 
   .vs-hero-event-card__content {
-    padding: 1.75rem 1.875rem;
+    padding: 1.75rem 2.375rem;
   }
 
   .vs-hero-event-card__title {
@@ -178,6 +178,8 @@ vs-hero-event-card,
   .vs-hero-event-card__content {
     margin-left: -3.75rem;
     margin-top: -6.25rem;
+    padding-left: 3.75rem;
+    padding-right: 3.75rem;
   }
 
   .vs-hero-event-card__text {

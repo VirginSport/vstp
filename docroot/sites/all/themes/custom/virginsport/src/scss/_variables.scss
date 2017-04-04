@@ -442,6 +442,7 @@ $state-danger:                #EA2322;
 $button-hover:                .7;
 $main-nav-breakpoint:         1240px;
 $sticky-basket-height:        6.25rem;
+$bar-height:        6.25rem;
 
 
 // Colors
@@ -510,7 +511,7 @@ $enable-transitions:        true;
 //
 // Settings for the `<body>` element.
 
-// $body-bg:    #fff;
+$body-bg:    #f0f0f0;
 $body-color: rgba($c-black, .6);
 
 

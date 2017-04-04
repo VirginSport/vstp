@@ -23,10 +23,9 @@ features[features_api][] = api:2
 features[variable][] = bean_ctools_prefix
 features[variable][] = bean_ctools_separate
 
-
-; Information added by drush on 2016-11-28
-version = "7.x-1.0-beta17+0-dev"
+; Information added by Drupal.org packaging script on 2017-02-17
+version = "7.x-1.0-beta19"
 core = "7.x"
 project = "lightning_features"
-datestamp = "1480366998"
+datestamp = "1487347393"
 

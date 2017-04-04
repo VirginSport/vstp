@@ -41,6 +41,11 @@
       $attributes['target'] = $link['attributes']['target'];
     }
 
+    // Add region data attribute if available
+    if (!empty($link['attributes']['virgin_show_region_modal'])) {
+      $attributes['virgin-region-modal'] = $link['attributes']['virgin_show_region_modal'];
+    }
+
     print sprintf('<a %s>%s</a>', drupal_attributes($attributes), $link['title']); ?>
 
   <?php endforeach; ?>
