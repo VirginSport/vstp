@@ -10,9 +10,21 @@
 ?>
 
 <?php if (empty($mylaps_id)): ?>
-  <?php print t('The MyLaps ID for the event is not set in either the component or event.'); ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <?php print t('The MyLaps ID for the event is not set in either the component or event.'); ?>
+      </div>
+    </div>
+  </div>
 <?php endif; ?>
 
 <?php if (!empty($mylaps_id)): ?>
-  <iframe class="vs-mylaps" src="<?php print sprintf('//live.sporthive.com/event/%s/live?mode=iframe', $mylaps_id) ;?>"></iframe>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <iframe class="vs-mylaps" src="<?php print sprintf('//live.sporthive.com/event/%s/live?mode=iframe', $mylaps_id) ;?>"></iframe>
+      </div>
+    </div>
+  </div>
 <?php endif; ?>
