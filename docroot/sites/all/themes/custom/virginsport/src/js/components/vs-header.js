@@ -92,6 +92,7 @@ function headerAnimation() {
 
   // Dom elements for headroom
   let header = document.querySelector('.vs-header');
+  var $header = $(header);
   let subnav = document.querySelector('.vs-subnav');
 
   if (!header) {
@@ -119,11 +120,14 @@ function headerAnimation() {
   };
 
   if (subnav) {
+    var $subnav = $(subnav);
+    var $subnavContainer = $('.vs-header__nav-wrapper');
     var subnavCloneClass = 'vs-subnav--clone';
-    let subnavRegionColor = $(subnav).closest('.vs-region').attr('data-vs-region-color');
+    var subnavPinnedClass = 'vs-subnav--pinned-on-main-nav';
+    let subnavRegionColor = $subnav.closest('.vs-region').attr('data-vs-region-color');
     var subnavColorClass = `vs-region--gradient-${subnavRegionColor}`;
 
-    // The deviation is the menu header height that should be contemplated as an increment to subnav offset
+    // The deviation is the menu header height that sh$(`.vs-subnav:not(.${subnavCloneClass})`).offset().topould be contemplated as an increment to subnav offset
     var getOffsets = function () {
       // Get subnav distance to top
       return {
@@ -132,9 +136,11 @@ function headerAnimation() {
       }
     };
 
+    let offsets = getOffsets();
+
     // Headroom vs-subnav element
     var vsSubnav = new Headroom(subnav, {
-      offset: getOffsets().offset,
+      offset: offsets.offset,
       tolerance: 0,
       classes: {
         initial:    "animated",               // when element is initialised
@@ -148,18 +154,30 @@ function headerAnimation() {
       onTop: function() {
         // Remove floating element
         $(`.${subnavCloneClass}`).remove();
+
+        // Remove class hiding original subnav
+        $subnav.removeClass('vs-subnav--hide');
       },
       onNotTop: function() {
         // Append floating element to avoid z-index restrictions
-        let $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass);
+        let $subnavClone = $subnav.clone().addClass(subnavCloneClass).addClass(subnavColorClass).addClass(subnavPinnedClass);
 
-        $('.vs-header__nav-wrapper').append($subnavClone);
+        // Hide real subnav to avoid text above text with clone
+        $subnav.addClass('vs-subnav--hide');
+
+        // Append clone to DOM
+        $subnavContainer.append($subnavClone);
+
+        // To not flash the subnav going up add a delay to remove unpinned class
+        window.setTimeout(() => {
+          $header.removeClass('vs-header--unpinned');
+        }, 500);
       }
     });
 
     headerProperties.onPin = function() {
       // If main nav is pinned, add offset to subnav
-      $(`.${subnavCloneClass}, .vs-subnav`).addClass('vs-subnav--pinned-on-main-nav');
+      $(`.${subnavCloneClass}, .vs-subnav`).addClass(subnavPinnedClass);
 
       let offsets = getOffsets();
       vsSubnav.offset = offsets.offset - offsets.offset_deviation;
@@ -167,23 +185,20 @@ function headerAnimation() {
 
     headerProperties.onUnpin = function() {
       // If main nav is unpinned, remove subnav offset
-      $(`.${subnavCloneClass}, .vs-subnav`).removeClass('vs-subnav--pinned-on-main-nav');
+      $(`.${subnavCloneClass}, .vs-subnav`).removeClass(subnavPinnedClass);
 
-      let offsets = getOffsets();
-      vsSubnav.offset = offsets.offset;
+      offsets = getOffsets();
+      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
     };
 
-    vsSubnav.init();
-
-    $('body').on('vs_region__finished', function() {
-      // Because curve changes the offset, re-calculate it when vs-region.js
+    $(header).one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+      // Because header changes its height, re-calculate offset after transition finished
       // finish processing elements
-      let offsets = getOffsets();
-      vsSubnav.offset = offsets.offset;
+      offsets = getOffsets();
+      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
 
-      if ($(header).hasClass('vs-header--pinned')) {
-        vsSubnav.offset = offsets.offset - offsets.offset_deviation;
-      }
+      // Only init subnav when header transition finished to use correct offset values
+      vsSubnav.init();
     });
   }
 
@@ -217,24 +232,26 @@ function headerAnimation() {
     let $subnavClone = $(`.${subnavCloneClass}`);
 
     if (offset) {
-      vsSubnav.offset = offsets.offset;
+      vsSubnav.offset = offsets.offset - offsets.offset_deviation;
 
       // Remove floating element
       $(`.${subnavCloneClass}`).remove();
+
+      // Hide real subnav to avoid text above text with clone
+      $subnav.removeClass('vs-subnav--hide');
     } else {
 
       if (!$subnavClone.length) {
         // Append floating element to avoid z-index restrictions
-        $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass);
+        $subnavClone = $(subnav).clone().addClass(subnavCloneClass).addClass(subnavColorClass).addClass(subnavPinnedClass);
 
-        $('body').append($subnavClone);
+        // Hide real subnav to avoid text above text with clone
+        $subnav.addClass('vs-subnav--hide');
+
+        $subnavContainer.append($subnavClone);
       }
 
-      $subnavClone
-        .addClass('vs-subnav--not-top')
-        .removeClass('vs-subnav--top')
-      ;
+      $subnavClone.addClass('vs-subnav--not-top').removeClass('vs-subnav--top');
     }
   });
-
 }
