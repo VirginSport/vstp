@@ -345,7 +345,7 @@ $reverse_class = ($reverse_map[$arrangement] == $alignment) ? 'vs-teaser--revers
                 <span class="vs-teaser__title vs-outline hidden-md-up"><?php print $outline; ?></span>
               <?php endif; ?>
 
-              <div class="vs-teaser__content hidden-sm-down">
+              <div class="vs-teaser__content hidden-sm-down <?php print empty($outline) ? '' : 'vs-teaser__content--outline'; ?> ">
                 <?php if(!empty($title)): ?>
                   <h3 class="vs-teaser__subtitle"><?php print $title; ?></h3>
                 <?php endif; ?>
