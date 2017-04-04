@@ -1,6 +1,10 @@
 
 // Blocks
 // ----------------------------------------------------------------------------
+@keyframes subnav {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 vs-subnav,
 .vs-subnav {
@@ -12,7 +16,7 @@ vs-subnav,
   left: 0;
   right: 0;
   z-index: 2;
-
+  opacity: 1;
 }
 
 
@@ -117,24 +121,29 @@ vs-subnav,
 // Modifiers
 // ----------------------------------------------------------------------------
 
-.vs-subnav--unpinned,
-.vs-subnav--not-top {
+.vs-subnav--clone {
   @include transition(all .5s ease-in-out, background-color 1ms);
-  position: fixed;
-  top: 0;
+  @include transform(translateY(0));
+  animation: subnav .5s;
 
-  .vs-subnav__list {
-    padding-top: rem(19);
-    padding-bottom: rem(20);
+  &.vs-subnav--unpinned,
+  &.vs-subnav--not-top {
+    position: fixed;
+    top: 0;
   }
 }
 
-.vs-subnav--pinned-on-main-nav {
-  @include transform(translateY(55px));
+.vs-subnav--hide {
+  opacity: 0;
+}
 
-  &.vs-subnav--top {
-    @include transform(translateY(0));
-  }
+.vs-subnav__list {
+  padding-top: rem(19);
+  padding-bottom: rem(20);
+}
+
+.vs-subnav--clone.vs-subnav--pinned-on-main-nav {
+  @include transform(translateY(56px));
 
   .vs-menu-open & {
     opacity: 0;
@@ -162,25 +171,11 @@ vs-subnav,
     padding-bottom: .55rem;
   }
 
-  .vs-subnav--unpinned,
-  .vs-subnav--not-top {
-    .vs-subnav__list {
-      padding-top: rem(20);
-    }
-  }
 }
 
 @include media-breakpoint-up(lg) {
   .vs-subnav__item:last-child {
     padding-right: 1.875rem;
-  }
-
-  .vs-subnav--pinned-on-main-nav {
-    @include transform(translateY(60px));
-
-    &.vs-subnav--top {
-      @include transform(translateY(0));
-    }
   }
 }
 
