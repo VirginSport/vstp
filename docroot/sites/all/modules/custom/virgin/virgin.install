@@ -6,6 +6,21 @@
  */
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function virgin_update_dependencies() {
+  $dependency = array('virgin' => 7013);
+
+  $dependencies['metatag'][7111] = $dependency;
+  $dependencies['virgin_components'][7003] = $dependency;
+  $dependencies['diff'][7306] = $dependency;
+  $dependencies['entity_translation'][7008] = $dependency;
+  $dependencies['virgin_user'][7003] = $dependency;
+
+  return $dependencies;
+}
+
+/**
  * Enables mimemail, mailsystem and smtp modules.
  */
 function virgin_update_7001() {
@@ -105,6 +120,13 @@ function virgin_update_7011() {
 function virgin_update_7012() {
   _virgin_update_path('profiles/lightning/modules/contrib/views/', 'sites/all/modules/contrib/views/');
   _virgin_update_path('profiles/lightning/modules/contrib/panels/', 'sites/all/modules/contrib/panels/');
+}
+
+/**
+ * Update panels and views modules paths.
+ */
+function virgin_update_7013() {
+  _virgin_update_path('profiles/lightning/modules/contrib/date/', 'sites/all/modules/contrib/date/');
 }
 
 /**
