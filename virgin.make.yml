@@ -55,6 +55,12 @@ projects:
   currency:
     version: "2.6"
 
+  date:
+    version: "2.9"
+    patch:
+      # Fix undefined timezone
+      - "https://www.drupal.org/files/issues/date-undefined_index_timezone_1392472-22.patch"
+
   email_registration:
     version: "1.3"
 
