@@ -108,6 +108,13 @@ function virgin_update_7012() {
 }
 
 /**
+ * Update panels and views modules paths.
+ */
+function virgin_update_7013() {
+  _virgin_update_path('profiles/lightning/modules/contrib/date/', 'sites/all/modules/contrib/date/');
+}
+
+/**
  * Update a module/theme path
  *
  * @param $old_path
