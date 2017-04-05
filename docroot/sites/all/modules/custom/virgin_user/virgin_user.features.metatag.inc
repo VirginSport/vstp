@@ -24,12 +24,15 @@ function virgin_user_metatag_export_default() {
         'value' => '',
       ),
       'og:type' => array(
-        'value' => 'profile',
+        'value' => '',
       ),
       'og:url' => array(
         'value' => '',
       ),
       'og:title' => array(
+        'value' => '',
+      ),
+      'twitter:card' => array(
         'value' => '',
       ),
       'twitter:url' => array(
