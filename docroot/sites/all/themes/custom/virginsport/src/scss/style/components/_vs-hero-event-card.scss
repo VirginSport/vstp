@@ -63,6 +63,14 @@ vs-hero-event-card,
 .vs-hero-event-card__text {
   position: relative;
   z-index: 1;
+
+  + .vs-hero-event-card__buttons {
+    margin-top: rem(35);
+
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+    }
+  }
 }
 
 .vs-hero-event-card__button {
