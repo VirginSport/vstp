@@ -4,9 +4,9 @@
 // The different overlap sizes and breakpoints supported by the region style.
 $vs-region-overlap-sizes: (
   'small': (
-    'xs': 0,
-    'sm': 0,
-    'md': 20px,
+    'xs': 20px,
+    'sm': 30px,
+    'md': 30px,
     'lg': 40px,
     'xl': 80px,
   ),
