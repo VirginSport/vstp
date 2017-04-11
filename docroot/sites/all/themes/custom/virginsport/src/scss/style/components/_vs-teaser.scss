@@ -95,10 +95,6 @@ vs-teaser,
   margin-bottom: 1.875rem;
 }
 
-.vs-teaser--reverse {
-  overflow: hidden;
-}
-
 @include media-breakpoint-up(md) {
   .vs-teaser__image-scale {
     position: absolute;
@@ -305,7 +301,11 @@ vs-teaser,
   }
 
   .vs-teaser__text {
-    margin-bottom: 1.875rem;
+    margin-bottom: 0;
+
+    + .vs-teaser__cta-btn {
+      margin-top: 1.875rem;
+    }
   }
 
   @include media-breakpoint-up(md) {
@@ -323,7 +323,8 @@ vs-teaser,
     }
 
     .vs-teaser__image-a {
-      margin-bottom: 0  ;
+      margin-bottom: 0;
+      margin-top: 0;
     }
   }
 

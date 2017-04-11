@@ -170,6 +170,14 @@ html[vs-region-loading="true"] { opacity: 0; }
   }
 }
 
+.vs-region[data-vs-region-overlap="none"] {
+  &[data-vs-region-curved="0"] {
+    .vs-region-self-padded.vs-introduction__container-wrapper {
+      padding-top: 80px;
+    }
+  }
+}
+
 // Fix IE 10-11 curve rendering
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .vs-region__bg {
