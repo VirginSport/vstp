@@ -73,7 +73,7 @@ function initPhotoGalleries() {
             {
               "breakpoint": 1440,
               "settings": {
-                "arrows": false
+                "arrows": true
               }
             }]
         })
