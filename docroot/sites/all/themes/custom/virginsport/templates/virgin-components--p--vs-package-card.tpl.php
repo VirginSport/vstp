@@ -20,7 +20,7 @@
 
 <div class="vs-package-card vs-package-card--color-<?php print $card_color;?>">
   <div class="container">
-    <div class="row">
+    <div class="row grid-align-bottom--sm-up">
       <div class="col-xs-12 col-md-6">
         <div
           class="vs-package-card-wrapper vs-color-container materialShadow"
