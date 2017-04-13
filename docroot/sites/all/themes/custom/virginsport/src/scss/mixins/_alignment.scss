@@ -12,3 +12,46 @@
     transform: translate(0, -50%);
   }
 }
+
+
+// Vertical alignment (top, center or bottom)
+// ----------------------------------------------------------------------------
+
+@mixin grid-align($alignment) {
+  font-size: 0;
+
+  > [class^=col-] {
+    float: none;
+    display: inline-block;
+
+    @if ($alignment == top) {
+      vertical-align: top;
+    }
+
+    @if ($alignment == middle) {
+      vertical-align: middle;
+    }
+
+    @if ($alignment == bottom) {
+      vertical-align: bottom;
+    }
+  }
+}
+
+.grid-align-top { @include grid-align(top); }
+@include media-breakpoint-up(sm) { .grid-align-top--sm-up { @include grid-align(top); } }
+@include media-breakpoint-up(md) { .grid-align-top--md-up { @include grid-align(top); } }
+@include media-breakpoint-up(lg) { .grid-align-top--lg-up { @include grid-align(top); } }
+@include media-breakpoint-up(xl) { .grid-align-top--xl-up { @include grid-align(top); } }
+
+.grid-align-middle { @include grid-align(middle); }
+@include media-breakpoint-up(sm) { .grid-align-middle--sm-up { @include grid-align(middle); } }
+@include media-breakpoint-up(md) { .grid-align-middle--md-up { @include grid-align(middle); } }
+@include media-breakpoint-up(lg) { .grid-align-middle--lg-up { @include grid-align(middle); } }
+@include media-breakpoint-up(xl) { .grid-align-middle--xl-up { @include grid-align(middle); } }
+
+.grid-align-bottom { @include grid-align(bottom); }
+@include media-breakpoint-up(sm) { .grid-align-bottom--sm-up { @include grid-align(bottom); } }
+@include media-breakpoint-up(md) { .grid-align-bottom--md-up { @include grid-align(bottom); } }
+@include media-breakpoint-up(lg) { .grid-align-bottom--lg-up { @include grid-align(bottom); } }
+@include media-breakpoint-up(xl) { .grid-align-bottom--xl-up { @include grid-align(bottom); } }
