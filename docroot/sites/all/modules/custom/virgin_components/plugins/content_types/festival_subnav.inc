@@ -166,8 +166,7 @@ function virgin_components_festival_subnav_automatic_links($festival_grapher) {
   $festival_status = $festival_grapher->fieldGetOne('field_status');
 
   $show_tickets_states = array(
-    'open',
-    'in-progress'
+    'open'
   );
 
   if (in_array($festival_status, $show_tickets_states)) {
