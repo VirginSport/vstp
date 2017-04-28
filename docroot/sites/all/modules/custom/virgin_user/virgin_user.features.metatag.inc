@@ -13,22 +13,33 @@ function virgin_user_metatag_export_default() {
   // Exported Metatag config instance: user.
   $config['user'] = array(
     'instance' => 'user',
-    'disabled' => TRUE,
     'config' => array(
       'title' => array(
-        'value' => '[user:name] | [site:name]',
+        'value' => '',
       ),
-      'og:title' => array(
-        'value' => '[user:name]',
+      'canonical' => array(
+        'value' => '',
+      ),
+      'shortlink' => array(
+        'value' => '',
       ),
       'og:type' => array(
-        'value' => 'profile',
+        'value' => '',
       ),
-      'profile:username' => array(
-        'value' => '[user:name]',
+      'og:url' => array(
+        'value' => '',
+      ),
+      'og:title' => array(
+        'value' => '',
+      ),
+      'twitter:card' => array(
+        'value' => '',
+      ),
+      'twitter:url' => array(
+        'value' => '',
       ),
       'twitter:title' => array(
-        'value' => '[user:name]',
+        'value' => '',
       ),
     ),
   );
