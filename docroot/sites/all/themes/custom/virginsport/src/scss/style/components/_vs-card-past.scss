@@ -32,6 +32,7 @@ vs-card-past,
 .vs-card-past__container {
   position: relative;
   overflow: hidden;
+  z-index: 0;
   width: 100%;
   min-height: 16.563rem;
   border-radius: .625rem;

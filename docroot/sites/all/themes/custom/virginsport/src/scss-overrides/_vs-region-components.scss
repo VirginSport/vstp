@@ -44,6 +44,12 @@ $last-child-count: 3;
   .panels-ipe-editing & { margin-bottom: 0; }
 }
 
+.vs-carousel,
+.panels-ipe--vs-carousel {
+  margin-bottom: 80px;
+  .panels-ipe-editing & { margin-bottom: 0; }
+}
+
 .vs-hero-event-card,
 .panels-ipe--vs-hero-event-card {
   margin-bottom: 80px;

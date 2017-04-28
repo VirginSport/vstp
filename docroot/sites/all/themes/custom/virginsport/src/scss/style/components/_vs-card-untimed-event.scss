@@ -24,6 +24,9 @@ vs-card-untimed-event,
 // ----------------------------------------------------------------------------
 
 .vs-card-untimed-event__image {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

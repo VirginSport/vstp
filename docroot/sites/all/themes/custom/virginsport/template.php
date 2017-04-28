@@ -37,6 +37,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
   $themes['virginsport_picture'] = array(
     'template' => 'virginsport-picture',
     'variables' => array(
+      'placeholder' => TRUE,
       'image_style' => '',
       'classes' => '',
       'atom_id' => array(),

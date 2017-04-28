@@ -37,6 +37,7 @@
   class="vs-hero-banner"
   data-vs-countdown-ts="<?php print $start_date_formatted; ?>"
   data-vs-countdown-tz="<?php print $timezone; ?>"
+  data-color="<?php print $color; ?>"
   data-vs-hostname="<?php print check_plain($festival_hostname); ?>"
 >
   <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
@@ -59,7 +60,7 @@
         <div class="col-xs-12">
           <?php if(!empty($logo)): ?>
             <div class="vs-hero-banner__logo">
-              <?php print theme('virginsport_picture', array('atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo')); ?>
+              <?php print theme('virginsport_picture', array('placeholder' => FALSE, 'atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo')); ?>
             </div>
           <?php else: ?>
             <h2 class="vs-hero-banner__title"><?php print check_plain($title); ?></h2>

@@ -23,7 +23,7 @@
         class="vs-splash__link"
       >
         <?php if(!empty($region['icon'])): ?>
-          <?php print theme('virginsport_picture', array('atom_id' => $region['icon']->sid, 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid', 'classes' => 'vs-splash__icon')) ?>
+          <?php print theme('virginsport_picture', array('placeholder' => FALSE, 'atom_id' => $region['icon']->sid, 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid', 'classes' => 'vs-splash__icon')) ?>
         <?php endif; ?>
         <span class="vs-splash__icon-label"><?php print $region['title']; ?></span>
       </a>
