@@ -26,6 +26,10 @@ vs-footer,
   }
 }
 
+.vs-picture.vs-footer__language__picture {
+  display: inline;
+}
+
 .vs-footer__language-list {
   @include box-shadow(none);
   border-radius: .375rem;

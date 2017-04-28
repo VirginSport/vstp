@@ -91,6 +91,18 @@ vs-basic-content-block,
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
+
+  img {
+    max-height: rem(220);
+
+    @include media-breakpoint-up(md) {
+      max-height: rem(280);
+    }
+
+    @include media-breakpoint-up(lg) {
+      max-height: none;
+    }
+  }
 }
 
 

@@ -91,15 +91,18 @@ vs-photo-gallery,
   &--fullscreen .slick-arrow {
     border-color: $c-white;
     border-width: 0.8125rem;
-    border-color: $c-white;
     width: 3rem;
     height: 3rem;
   }
 
   .slick-prev, &--fullscreen .slick-prev {
     @include transform(rotate(-45deg));
-    left: -4.1875rem;
+    left: rem(-30);
     border-left-style: solid;
+
+    @include media-breakpoint-up(xl) {
+      left: rem(-67);
+    }
   }
 
   &--fullscreen .slick-prev {
@@ -108,8 +111,12 @@ vs-photo-gallery,
 
   .slick-next, &--fullscreen .slick-next {
     @include transform(rotate(45deg));
-    right: -4.1875rem;
+    right: rem(-30);
     border-right-style: solid;
+
+    @include media-breakpoint-up(xl) {
+      right: rem(-67);
+    }
   }
 
   &--fullscreen .slick-next {

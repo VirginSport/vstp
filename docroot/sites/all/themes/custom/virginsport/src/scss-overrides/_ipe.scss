@@ -425,6 +425,12 @@ div.panels-ipe-placeholder {
       margin-left: 0;
     }
   }
+
+  .vertical-tabs-pane {
+    .chosen-container {
+      min-width: 300px;
+    }
+  }
 }
 
 #panels-ipe-control-container {

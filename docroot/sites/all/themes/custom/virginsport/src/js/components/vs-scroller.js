@@ -53,7 +53,7 @@ function findScrollers() {
     let $el = $(this);
     let $scroll = $el.find('.vs-scroller--basic-content-block');
 
-    let pictureWidth = $el.find('picture').width();
+    let pictureWidth = $el.find('picture img').width();
 
     // Margin set to the container width divided by the number of calculated slides
     let slidesNum = Math.ceil(pictureWidth / $el.width());
