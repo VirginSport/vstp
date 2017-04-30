@@ -90,7 +90,7 @@ function initResultsComponents() {
             this.event = result.data;
 
             let firstRace = this.event.races.length ? this.event.races[0] : {};
-            this.filter.race = this.eventID ? this.getRace(this.eventID) : firstRace;
+            this.filter.race = this.eventId ? this.getRace(this.eventId) : firstRace;
 
             if (!this.ticketId) {
               this.findRaceResults();
