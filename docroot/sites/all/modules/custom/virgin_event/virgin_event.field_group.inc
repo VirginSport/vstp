@@ -34,9 +34,9 @@ function virgin_event_field_group_info() {
       8 => 'field_hashtag',
       9 => 'field_header_image',
       10 => 'field_mylaps_id',
-      11 => 'title_field',
-      12 => 'field_logo',
-      13 => 'field_show_in_festival_menu',
+      11 => 'field_show_in_festival_menu',
+      12 => 'title_field',
+      13 => 'field_logo',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -64,11 +64,12 @@ function virgin_event_field_group_info() {
     'weight' => '21',
     'children' => array(
       0 => 'field_description_results',
-      1 => 'field_results_summary',
+      1 => 'field_gameface_url',
       2 => 'field_results_overview_content',
       3 => 'field_results_overview_image',
-      4 => 'field_results_url',
-      5 => 'field_gameface_url',
+      4 => 'field_results_summary',
+      5 => 'field_results_url',
+      6 => 'field_replay_url',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
