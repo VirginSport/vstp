@@ -44,7 +44,7 @@ function initUserTicket() {
             this.event = result.data;
 
             this.race = this.event.races.find((el) => {
-              if (el.id = this.eventId)
+              if (el.id == this.eventId)
                 return true;
             });
 
