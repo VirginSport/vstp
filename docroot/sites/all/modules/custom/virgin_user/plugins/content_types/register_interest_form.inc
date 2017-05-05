@@ -26,7 +26,7 @@ function virgin_user_register_interest_form_content_type_render($subtype, $conf,
 
   $vars = array(
     'festival_id' => $festival_id,
-    'festivals' => virgin_base_festivals(),
+    'festivals' => virgin_base_festivals(array('over')),
     'event_id' => empty($conf['event_id']) ? array() : $conf['event_id'],
     'events_list' => drupal_json_encode(array('events' => $events, 'event_id' => $event_id)),
   );
