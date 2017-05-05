@@ -148,6 +148,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '', // Small link at the bottom, not used tm
+    'cta_links' => $g->fieldGetAll('field_cta_link'),
     'is_tickets_page' => !empty($menu_item['path']) && $menu_item['path'] == 'node/%/tickets'
   );
 
