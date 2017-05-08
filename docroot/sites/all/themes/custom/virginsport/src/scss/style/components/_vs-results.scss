@@ -508,21 +508,44 @@
 // Results page
 // ----------------------------------------------------------------------------
 
+.page-user-results .vs-attendly-header__background {
+  background-color: transparent;
+  background-position: center bottom;
+  min-height: rem(70);
+
+  @include media-breakpoint-up(sm) {
+    min-height: rem(100);
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: rem(150);
+  }
+
+  @include media-breakpoint-up(lg) {
+    min-height: rem(200);
+  }
+}
+
 .vs-results--card {
   .vs-results__table,
   .vs-results__rankings {
     background-color: transparent;
   }
 
+  .vs-result__head {
+    cursor: default;
+  }
+
   .vs-results__ranking {
     text-align: right;
+    padding: 0 $grid-gutter-width/2;
   }
 
   .vs-results__rankings {
     padding: 0;
 
     @include media-breakpoint-up(md) {
-      padding: rem(80) rem(20) 0 0;
+      padding: rem(48) rem(20) 0 0;
     }
   }
 
