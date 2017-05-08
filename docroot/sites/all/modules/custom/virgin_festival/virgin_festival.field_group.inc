@@ -20,7 +20,7 @@ function virgin_festival_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_past_state';
   $field_group->data = array(
-    'label' => 'Call To actions',
+    'label' => 'Call To action',
     'weight' => '6',
     'children' => array(
       0 => 'field_cta_link',
@@ -251,7 +251,7 @@ function virgin_festival_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Call To actions');
+  t('Call To action');
   t('Global');
   t('Menu');
   t('Past State');
