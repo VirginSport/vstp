@@ -105,34 +105,34 @@ $results_table_id = uniqid();
         </div>
 
         <div class="clearfix">
-  
+
           <a class="vs-results__collapse-link collapsed" data-toggle="vs-collapse" href="#options" aria-expanded="false">
             <span><?php print t('more options'); ?></span>
             <span><?php print t('hide options'); ?></span>
           </a>
-  
+
           <div class="vs-results__collapse-content collapse" id="options">
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-runner-name" v-model="filter.name">
               <label class="vs-focus-label" for="input-runner-name"><?php print t("Runner's Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-bib-number" v-model="filter.bib">
               <label class="vs-focus-label" for="input-bib-number"><?php print t("BIB Number"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
               <label class="vs-focus-label" for="input-team-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
               <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
           </div>
-          
+
         </div>
       </div>
 
@@ -169,7 +169,7 @@ $results_table_id = uniqid();
             :callback="applySubFilterSearch"
             :is-select="true"
           ></vs-results-ranking>
-  
+
           <vs-results-ranking
             v-if="!isCard"
             label="<?php print t('Age'); ?>"
@@ -195,7 +195,7 @@ $results_table_id = uniqid();
             :callback="applySubFilterSearch"
             :is-select="true"
           ></vs-results-ranking>
-  
+
           <vs-results-ranking
             label="<?php print t('Unit'); ?>"
             model="unit"
@@ -294,16 +294,16 @@ $results_table_id = uniqid();
 
 <?php if ($requires_templates): ?>
 <script type="text/x-template" id="tpl-vs-results-ranking">
-  
+
     <div class="vs-results__ranking vs-results__ranking--chosen">
       <span class="vs-results__ranking-label">{{ label }}</span>
-      
+
       <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
         <option v-for="(key, option) in options" v-bind:value="key">
           {{ option }}
         </option>
       </select>
-      
+
       <ul v-if="!isSelect" class="vs-results__ranking-options">
         <li
           v-for="(key, option) in options"
@@ -314,7 +314,7 @@ $results_table_id = uniqid();
         </li>
       </ul>
     </div>
-  
+
 </script>
 <?php endif; ?>
 
@@ -369,7 +369,7 @@ $results_table_id = uniqid();
               {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
             </div>
           </div>
-  
+
           <div class="vs-result__share">
             <vs-result-share
               :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
@@ -378,22 +378,22 @@ $results_table_id = uniqid();
             >
             </vs-result-share>
           </div>
-  
+
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
-    
+
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-value">{{ result.displayChipTime }}</span>
               <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
-          
+
           <div class="vs-result__times">
             <div class="vs-result__average-label"><?php print t('Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
-  
+
             <div>
               <div class="vs-result__time" v-for="p in getPassings()">
                 <div class="vs-result__time-average">
@@ -401,24 +401,24 @@ $results_table_id = uniqid();
                     <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("mm:ss", p.average) }}</div>
                   </div>
                 </div>
-  
+
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
                   <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
-  
+
                 </div>
               </div>
             </div>
           </div>
-  
+
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
-  
+
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-value">{{ result.displayChipTime }}</span>
               <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
