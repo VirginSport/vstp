@@ -40,11 +40,15 @@ $template_rendered = drupal_static(__FILE__, FALSE);
 $requires_templates = !$template_rendered;
 $template_rendered = TRUE;
 
+// Results table unique id
+$results_table_id = uniqid();
 ?>
 
-<div class="vs-results-container">
+<div
+  id="vs-results-container--<?php print $results_table_id; ?>"
+  class="vs-results-container"
+>
   <div class="container">
-
     <vs-results
       is-card="<?php print check_plain($is_card); ?>"
       ticket-id="<?php print check_plain($ticket_id); ?>"

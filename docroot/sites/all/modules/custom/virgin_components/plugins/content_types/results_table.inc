@@ -35,6 +35,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
   }
 
   $event = new VirginEntityGrapher('node', $node);
+  $replay_url = $event->fieldGetOne('field_replay_url', '', 'url');
   $results_url = $event->fieldGetOne('field_results_url', '', 'url');
   $gameface_url = $event->fieldGetOne('field_gameface_url', '', 'url');
 
@@ -59,7 +60,7 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
     'event_date' => virgin_date($start_date, $timezone)->format('d M'),
     'event_description' => $event->fieldRendered('field_results_summary'),
     'brand_color' => $event->fieldGetOne('field_brand_color'),
-    'replay_path' => url('node/' . $event->property('nid')),
+    'replay_path' => empty($replay_url) ? NULL : url($replay_url),
     'results_path' => empty($results_url) ? NULL : url($results_url),
     'photo_path' => empty($gameface_url) ? NULL : url($gameface_url),
     'max_rows' => empty($conf['max_rows']) ? RESULTS_TABLE_MAX_ROWS: $conf['max_rows'],
