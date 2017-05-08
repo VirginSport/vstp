@@ -10,17 +10,52 @@ export default () => {
     attach: () => initResultsComponents()
   };
 }
-
 /**
  * Initialize results components
  */
 function initResultsComponents() {
-  let targetElement = '.vs-results-container';
+  // Init vue for each component
+  $('.vs-results-container').each((idx, el) => {
+    initVueComponent($(el));
+  });
 
-  if (!document.querySelector(targetElement)) {
-    return;
+  // Create sequential animations
+  let $body = $('body');
+  let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+  let animationName = 'progress-state';
+
+  $body.on(events, '.vs-result__time:nth-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--first-child';
+
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
+  });
+
+  $body.on(events, '.vs-result__time:nth-last-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--last-child';
+
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
+  });
+
+  // Apply chosen after behaviors
+  if (Drupal.behaviors.chosen) {
+    Drupal.behaviors.chosen.attach(document, Drupal.settings);
   }
+}
 
+/**
+ * Initialize results components
+ */
+function initVueComponent($el) {
   let raceDayUrl = Drupal.settings.virgin.raceDayUrl;
 
   Vue.component('vs-results', {
@@ -90,14 +125,22 @@ function initResultsComponents() {
             this.event = result.data;
 
             let firstRace = this.event.races.length ? this.event.races[0] : {};
-            this.filter.race = this.eventId ? this.getRace(this.eventId) : firstRace;
+            let race = null;
+
+            if (this.eventId) {
+              race = this.getRace(this.eventId);
+            }
+
+            this.filter.race = race ? race : firstRace;
 
             if (!this.ticketId) {
               this.findRaceResults();
             }
 
             window.setTimeout(() => {
-              $('#input-race')
+              let $el = $(this.$el);
+
+              $el.find('#input-race')
                 .trigger("chosen:updated")
                 .on("change", e =>  {
                   let $el = $(e.currentTarget);
@@ -219,7 +262,9 @@ function initResultsComponents() {
           'ranks': [],
           'originalOffset': 0,
           'limit': 0,
-          'race': {},
+          'race': {
+            'id': ''
+          },
           'gender': '',
           'category': '',
           'age': 0,
@@ -319,9 +364,6 @@ function initResultsComponents() {
           this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
         }
       }
-
-      let $el = $(this.$el);
-
     },
     methods: {
       getSortedStages() {
@@ -453,39 +495,8 @@ function initResultsComponents() {
     }
   });
 
-  let $body = $('body');
-  let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
-  let animationName = 'progress-state';
-
-  $body.on(events, '.vs-result__time:nth-child(2) .vs-result__progress-state', (e) => {
-    let $el = $(e.currentTarget).closest('.vs-result');
-    let className = 'vs-result--first-child';
-
-    if(e.originalEvent.animationName == animationName) {
-      $el.addClass(className)
-    } else {
-      $el.removeClass(className)
-    }
-  });
-
-  $body.on(events, '.vs-result__time:nth-last-child(2) .vs-result__progress-state', (e) => {
-    let $el = $(e.currentTarget).closest('.vs-result');
-    let className = 'vs-result--last-child';
-
-    if(e.originalEvent.animationName == animationName) {
-      $el.addClass(className)
-    } else {
-      $el.removeClass(className)
-    }
-  });
-
   new Vue({
     cache: false,
-    el: targetElement
+    el: `#${$el.attr('id')}`
   });
-
-  // Apply chosen after behaviors
-  if (Drupal.behaviors.chosen) {
-    Drupal.behaviors.chosen.attach(document, Drupal.settings);
-  }
 }
