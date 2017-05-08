@@ -87,8 +87,6 @@ function virgin_festival_pathauto_alias_alter(&$alias, array &$context) {
 
   // Create the alias for all other machine handled sub-festival pages
   $sub_paths = array(
-    'replay',
-    'results',
     'tickets'
   );
 
