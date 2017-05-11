@@ -140,7 +140,7 @@ $results_table_id = uniqid();
         <a v-if="photoPath" href="{{ photoPath }}" class="vs-results__btn vs-results__photos-btn"><?php print t('Event Photos'); ?></a>
       </span>
       <span>
-        <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
+        <a href="" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
       </span>
     </div>
     <div>
