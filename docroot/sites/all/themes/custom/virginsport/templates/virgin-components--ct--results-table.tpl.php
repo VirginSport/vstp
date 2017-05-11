@@ -298,7 +298,7 @@ $results_table_id = uniqid();
     <div class="vs-results__ranking vs-results__ranking--chosen">
       <span class="vs-results__ranking-label">{{ label }}</span>
 
-      <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
+      <select v-if="isSelect" v-model="activeKey" class="chosen-select">
         <option v-for="(key, option) in options" v-bind:value="key">
           {{ option }}
         </option>
