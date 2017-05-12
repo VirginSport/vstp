@@ -140,7 +140,7 @@ $results_table_id = uniqid();
         <a v-if="photoPath" href="{{ photoPath }}" class="vs-results__btn vs-results__photos-btn"><?php print t('Event Photos'); ?></a>
       </span>
       <span>
-        <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
+        <a href="" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
       </span>
     </div>
     <div>
@@ -298,7 +298,7 @@ $results_table_id = uniqid();
     <div class="vs-results__ranking vs-results__ranking--chosen">
       <span class="vs-results__ranking-label">{{ label }}</span>
 
-      <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
+      <select v-if="isSelect" v-model="activeKey" class="chosen-select">
         <option v-for="(key, option) in options" v-bind:value="key">
           {{ option }}
         </option>
@@ -333,7 +333,7 @@ $results_table_id = uniqid();
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
-        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
+        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ rank.displayChipTime }}</span>
       </div>
 
       <div v-if="!rank && result" class="vs-result__head">
@@ -404,8 +404,7 @@ $results_table_id = uniqid();
 
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
-
+                  <span class="vs-result__time-stage-time">{{ this.formatTime("mm:ss", p.passingTime) }}</span>
                 </div>
               </div>
             </div>

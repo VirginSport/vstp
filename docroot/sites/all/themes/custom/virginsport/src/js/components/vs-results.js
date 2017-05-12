@@ -418,7 +418,14 @@ function initVueComponent($el) {
       },
 
       formatTime(format, timestamp) {
-        return moment.unix(timestamp).format(format);
+        // Floor value to avoid bypassing total value
+        let value = Math.floor(timestamp / 1000);
+        return moment.unix(value).format(format);
+      },
+
+      getPassingMillisecs(passing) {
+        // Floor value to avoid bypassing total value
+        return Math.floor(passing.millisecs / 1000);
       },
 
       getPassings() {
@@ -428,14 +435,19 @@ function initVueComponent($el) {
 
         this.maxAverage[this.unit] = 0;
         let list = [];
+        let totalTime = 0;
 
         this.getSortedStages().forEach((s, index) => {
           let p = this.getStagePass(s.id);
 
           if (p !== null) {
-            let startTime = index == 0 ? moment().format("yyyy-mm-dd") : list[index - 1].pass.chipTime;
-            let distance = index == 0 ? s.distance : s.distance - list[index - 1].stage.distance;
-            let average = this.diff(startTime, p.chipTime) / this.getDistanceFormatted(distance);
+            let startTime = (index == 0) ? 0 : this.getPassingMillisecs(list[index - 1].pass);
+            let passingTime = (index == 0) ? 0 : this.diff(startTime, this.getPassingMillisecs(p));
+            let distance = (index == 0) ? s.distance : s.distance - list[index - 1].stage.distance;
+            let average = (index == 0) ? 0 : this.diff(startTime, this.getPassingMillisecs(p)) / this.getDistanceFormatted(distance);
+
+            // Increment total time to calculate then difference with chipTime
+            totalTime += passingTime;
 
             if (this.maxAverage[this.unit] < average) {
               this.maxAverage[this.unit] = average;
@@ -443,6 +455,7 @@ function initVueComponent($el) {
 
             list.push({
               startTime: startTime,
+              passingTime: passingTime,
               average: average,
               stage: s,
               pass: p
@@ -453,8 +466,14 @@ function initVueComponent($el) {
         this.initialTime = this.lastTime = moment();
 
         if (list.length > 1) {
+          let chiptime = this.rank ? this.rank.chipTime : this.result.chipTime;
+
+          // Add rounding difference between all calculated passings
+          // and total time to first passing
+          list[1].passingTime += (chiptime * 1000) - totalTime;
+
           this.initialTime = list[1].startTime;
-          this.lastTime = list[list.length - 1].pass.chipTime;
+          this.lastTime = this.getPassingMillisecs(list[list.length - 1].pass);
         }
 
         this.cachedPassings[this.unit] = list;
