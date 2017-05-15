@@ -46,4 +46,5 @@ then
   echo "Updating region node hostname from *$CLOUD_NODE_REGION_DOMAIN => *$LOCAL_NODE_REGION_DOMAIN"
   echo #
   drush $LOCAL_ALIAS sql-query "UPDATE field_data_field_hostname SET field_hostname_value = REPLACE(field_hostname_value,'$CLOUD_NODE_REGION_DOMAIN','$LOCAL_NODE_REGION_DOMAIN');"
+  drush $LOCAL_ALIAS cc all
 fi
