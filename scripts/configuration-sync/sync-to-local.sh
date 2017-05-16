@@ -30,8 +30,6 @@ then
   drush $LOCAL_ALIAS rsync $CLOUD_ALIAS:%files/ $LOCAL_ALIAS:%files
 fi
 
-source shared-drush-conf.sh
-
 if [[ ! -z ${DRUPAL_ENABLE_MODULES} ]]
 then
   # Local development configuration
@@ -39,6 +37,16 @@ then
   echo #
   drush $LOCAL_ALIAS en $DRUPAL_ENABLE_MODULES --y
 fi
+
+if [[ ! -z ${DRUPAL_DISABLE_MODULES} ]]
+then
+  # Local development configuration
+  echo 'Disabling modules for local development'
+  echo #
+  drush $LOCAL_ALIAS en $DRUPAL_DISABLE_MODULES --y
+fi
+
+source shared-drush-conf.sh
 
 if [ ! -z $CLOUD_NODE_REGION_DOMAIN ]
 then
