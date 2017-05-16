@@ -563,9 +563,13 @@ function virgin_user_page_ajax_form_post() {
  * Page callback for user event results page
  */
 function virgin_user_page_results($ticket_sugar_id) {
+  $current_region = virgin_region_current();
+  $country_code = empty($current_region['country_letter_code']) ? $current_region['country_letter_code'] : '';
+
   $vars = array(
     'is_card' => TRUE,
-    'ticket_id' => $ticket_sugar_id
+    'ticket_id' => $ticket_sugar_id,
+    'unit' => $country_code == 'US' ? 'miles' : 'km'
   );
 
   return theme('virgin_components__ct__results_table', $vars);

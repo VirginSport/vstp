@@ -10,17 +10,52 @@ export default () => {
     attach: () => initResultsComponents()
   };
 }
-
 /**
  * Initialize results components
  */
 function initResultsComponents() {
-  let targetElement = '.vs-results-container';
+  // Init vue for each component
+  $('.vs-results-container').each((idx, el) => {
+    initVueComponent($(el));
+  });
 
-  if (!document.querySelector(targetElement)) {
-    return;
+  // Create sequential animations
+  let $body = $('body');
+  let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+  let animationName = 'progress-state';
+
+  $body.on(events, '.vs-result__time:nth-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--first-child';
+
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
+  });
+
+  $body.on(events, '.vs-result__time:nth-last-child(2) .vs-result__progress-state', (e) => {
+    let $el = $(e.currentTarget).closest('.vs-result');
+    let className = 'vs-result--last-child';
+
+    if(e.originalEvent.animationName == animationName) {
+      $el.addClass(className)
+    } else {
+      $el.removeClass(className)
+    }
+  });
+
+  // Apply chosen after behaviors
+  if (Drupal.behaviors.chosen) {
+    Drupal.behaviors.chosen.attach(document, Drupal.settings);
   }
+}
 
+/**
+ * Initialize results components
+ */
+function initVueComponent($el) {
   let raceDayUrl = Drupal.settings.virgin.raceDayUrl;
 
   Vue.component('vs-results', {
@@ -90,14 +125,22 @@ function initResultsComponents() {
             this.event = result.data;
 
             let firstRace = this.event.races.length ? this.event.races[0] : {};
-            this.filter.race = this.eventId ? this.getRace(this.eventId) : firstRace;
+            let race = null;
+
+            if (this.eventId) {
+              race = this.getRace(this.eventId);
+            }
+
+            this.filter.race = race ? race : firstRace;
 
             if (!this.ticketId) {
               this.findRaceResults();
             }
 
             window.setTimeout(() => {
-              $('#input-race')
+              let $el = $(this.$el);
+
+              $el.find('#input-race')
                 .trigger("chosen:updated")
                 .on("change", e =>  {
                   let $el = $(e.currentTarget);
@@ -219,7 +262,9 @@ function initResultsComponents() {
           'ranks': [],
           'originalOffset': 0,
           'limit': 0,
-          'race': {},
+          'race': {
+            'id': ''
+          },
           'gender': '',
           'category': '',
           'age': 0,
@@ -319,9 +364,6 @@ function initResultsComponents() {
           this.getParticipantDetails(this.ticketId ? this.ticketId : this.rank.participantId)
         }
       }
-
-      let $el = $(this.$el);
-
     },
     methods: {
       getSortedStages() {
@@ -376,7 +418,14 @@ function initResultsComponents() {
       },
 
       formatTime(format, timestamp) {
-        return moment.unix(timestamp).format(format);
+        // Floor value to avoid bypassing total value
+        let value = Math.floor(timestamp / 1000);
+        return moment.unix(value).format(format);
+      },
+
+      getPassingMillisecs(passing) {
+        // Floor value to avoid bypassing total value
+        return Math.floor(passing.millisecs / 1000);
       },
 
       getPassings() {
@@ -386,14 +435,19 @@ function initResultsComponents() {
 
         this.maxAverage[this.unit] = 0;
         let list = [];
+        let totalTime = 0;
 
         this.getSortedStages().forEach((s, index) => {
           let p = this.getStagePass(s.id);
 
           if (p !== null) {
-            let startTime = index == 0 ? moment().format("yyyy-mm-dd") : list[index - 1].pass.chipTime;
-            let distance = index == 0 ? s.distance : s.distance - list[index - 1].stage.distance;
-            let average = this.diff(startTime, p.chipTime) / this.getDistanceFormatted(distance);
+            let startTime = (index == 0) ? 0 : this.getPassingMillisecs(list[index - 1].pass);
+            let passingTime = (index == 0) ? 0 : this.diff(startTime, this.getPassingMillisecs(p));
+            let distance = (index == 0) ? s.distance : s.distance - list[index - 1].stage.distance;
+            let average = (index == 0) ? 0 : this.diff(startTime, this.getPassingMillisecs(p)) / this.getDistanceFormatted(distance);
+
+            // Increment total time to calculate then difference with chipTime
+            totalTime += passingTime;
 
             if (this.maxAverage[this.unit] < average) {
               this.maxAverage[this.unit] = average;
@@ -401,6 +455,7 @@ function initResultsComponents() {
 
             list.push({
               startTime: startTime,
+              passingTime: passingTime,
               average: average,
               stage: s,
               pass: p
@@ -411,8 +466,14 @@ function initResultsComponents() {
         this.initialTime = this.lastTime = moment();
 
         if (list.length > 1) {
+          let chiptime = this.rank ? this.rank.chipTime : this.result.chipTime;
+
+          // Add rounding difference between all calculated passings
+          // and total time to first passing
+          list[1].passingTime += (chiptime * 1000) - totalTime;
+
           this.initialTime = list[1].startTime;
-          this.lastTime = list[list.length - 1].pass.chipTime;
+          this.lastTime = this.getPassingMillisecs(list[list.length - 1].pass);
         }
 
         this.cachedPassings[this.unit] = list;
@@ -453,39 +514,8 @@ function initResultsComponents() {
     }
   });
 
-  let $body = $('body');
-  let events = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
-  let animationName = 'progress-state';
-
-  $body.on(events, '.vs-result__time:nth-child(2) .vs-result__progress-state', (e) => {
-    let $el = $(e.currentTarget).closest('.vs-result');
-    let className = 'vs-result--first-child';
-
-    if(e.originalEvent.animationName == animationName) {
-      $el.addClass(className)
-    } else {
-      $el.removeClass(className)
-    }
-  });
-
-  $body.on(events, '.vs-result__time:nth-last-child(2) .vs-result__progress-state', (e) => {
-    let $el = $(e.currentTarget).closest('.vs-result');
-    let className = 'vs-result--last-child';
-
-    if(e.originalEvent.animationName == animationName) {
-      $el.addClass(className)
-    } else {
-      $el.removeClass(className)
-    }
-  });
-
   new Vue({
     cache: false,
-    el: targetElement
+    el: `#${$el.attr('id')}`
   });
-
-  // Apply chosen after behaviors
-  if (Drupal.behaviors.chosen) {
-    Drupal.behaviors.chosen.attach(document, Drupal.settings);
-  }
 }

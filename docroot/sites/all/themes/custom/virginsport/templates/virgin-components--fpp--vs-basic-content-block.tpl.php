@@ -29,7 +29,7 @@
             style="<?php print virginsport_atom_background($hero_image_grapher->getEntity()); ?>"
           >
             <?php if (!empty($hero_image_title)): ?>
-            <div class="row">
+            <div class="vs-basic-content-block__row row">
               <div class="col-xs-10 offset-xs-1">
                 <h2 class="vs-basic-content-block__hero-title">
                   <?php print check_plain($hero_image_title); ?>

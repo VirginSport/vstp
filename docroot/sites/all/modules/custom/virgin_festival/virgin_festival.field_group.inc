@@ -13,6 +13,34 @@ function virgin_festival_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_call_to_action|node|festival|form';
+  $field_group->group_name = 'group_call_to_action';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_past_state';
+  $field_group->data = array(
+    'label' => 'Call To action',
+    'weight' => '6',
+    'children' => array(
+      0 => 'field_cta_link',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-call-to-action field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_call_to_action|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_global|node|festival|form';
   $field_group->group_name = 'group_global';
   $field_group->entity_type = 'node';
@@ -119,6 +147,7 @@ function virgin_festival_field_group_info() {
       2 => 'field_replay_url',
       3 => 'field_results_url',
       4 => 'field_review_url',
+      5 => 'group_call_to_action',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -176,10 +205,10 @@ function virgin_festival_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_global',
-      1 => 'group_past_state',
-      2 => 'group_results',
-      3 => 'group_upcoming_state',
-      4 => 'group_menu',
+      1 => 'group_menu',
+      2 => 'group_past_state',
+      3 => 'group_results',
+      4 => 'group_upcoming_state',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -222,6 +251,7 @@ function virgin_festival_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Call To action');
   t('Global');
   t('Menu');
   t('Past State');

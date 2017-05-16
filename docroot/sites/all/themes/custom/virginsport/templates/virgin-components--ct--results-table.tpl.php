@@ -40,11 +40,15 @@ $template_rendered = drupal_static(__FILE__, FALSE);
 $requires_templates = !$template_rendered;
 $template_rendered = TRUE;
 
+// Results table unique id
+$results_table_id = uniqid();
 ?>
 
-<div class="vs-results-container">
+<div
+  id="vs-results-container--<?php print $results_table_id; ?>"
+  class="vs-results-container"
+>
   <div class="container">
-  
     <vs-results
       is-card="<?php print check_plain($is_card); ?>"
       ticket-id="<?php print check_plain($ticket_id); ?>"
@@ -101,34 +105,34 @@ $template_rendered = TRUE;
         </div>
 
         <div class="clearfix">
-  
+
           <a class="vs-results__collapse-link collapsed" data-toggle="vs-collapse" href="#options" aria-expanded="false">
             <span><?php print t('more options'); ?></span>
             <span><?php print t('hide options'); ?></span>
           </a>
-  
+
           <div class="vs-results__collapse-content collapse" id="options">
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-runner-name" v-model="filter.name">
               <label class="vs-focus-label" for="input-runner-name"><?php print t("Runner's Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-bib-number" v-model="filter.bib">
               <label class="vs-focus-label" for="input-bib-number"><?php print t("BIB Number"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-team-name" v-model="filter.team">
               <label class="vs-focus-label" for="input-team-name"><?php print t("Crew Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
-  
+
             <div class="vs-form-group">
               <input class="form-control" type="text" id="input-club-name" v-model="filter.club">
               <label class="vs-focus-label" for="input-club-name"><?php print t("Club Name"); ?> <em><?php print t('(optional)'); ?></em></label>
             </div>
           </div>
-          
+
         </div>
       </div>
 
@@ -136,7 +140,7 @@ $template_rendered = TRUE;
         <a v-if="photoPath" href="{{ photoPath }}" class="vs-results__btn vs-results__photos-btn"><?php print t('Event Photos'); ?></a>
       </span>
       <span>
-        <a v-if="replayPath" href="{{ replayPath }}" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
+        <a href="" v-on:click.stop.prevent="findRaceResults()" class="vs-results__btn vs-results__find-btn"><?php print t('Find'); ?></a>
       </span>
     </div>
     <div>
@@ -165,7 +169,7 @@ $template_rendered = TRUE;
             :callback="applySubFilterSearch"
             :is-select="true"
           ></vs-results-ranking>
-  
+
           <vs-results-ranking
             v-if="!isCard"
             label="<?php print t('Age'); ?>"
@@ -191,7 +195,7 @@ $template_rendered = TRUE;
             :callback="applySubFilterSearch"
             :is-select="true"
           ></vs-results-ranking>
-  
+
           <vs-results-ranking
             label="<?php print t('Unit'); ?>"
             model="unit"
@@ -290,16 +294,16 @@ $template_rendered = TRUE;
 
 <?php if ($requires_templates): ?>
 <script type="text/x-template" id="tpl-vs-results-ranking">
-  
+
     <div class="vs-results__ranking vs-results__ranking--chosen">
       <span class="vs-results__ranking-label">{{ label }}</span>
-      
-      <select v-if="isSelect" id="input-race" v-model="activeKey" class="chosen-select">
+
+      <select v-if="isSelect" v-model="activeKey" class="chosen-select">
         <option v-for="(key, option) in options" v-bind:value="key">
           {{ option }}
         </option>
       </select>
-      
+
       <ul v-if="!isSelect" class="vs-results__ranking-options">
         <li
           v-for="(key, option) in options"
@@ -310,7 +314,7 @@ $template_rendered = TRUE;
         </li>
       </ul>
     </div>
-  
+
 </script>
 <?php endif; ?>
 
@@ -329,7 +333,7 @@ $template_rendered = TRUE;
         <span class="vs-result-col vs-result-col-category vs-result__border">{{ rank.participantAge }}</span>
         <span class="vs-result-col vs-result-col-gender vs-result__border">{{ rank.participantGender == 'male' ? 'M' : 'F' }}</span>
         <span class="vs-result-col vs-result-col-pace vs-result__border">{{ timeStampFormat("mm:ss", diff(0, rank.chipTime) / getTotalDistance()) }}</span>
-        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ diffFormat("hh:mm:ss", 0, rank.chipTime) }}</span>
+        <span class="vs-result-col vs-result-col-chip vs-result__border">{{ rank.displayChipTime }}</span>
       </div>
 
       <div v-if="!rank && result" class="vs-result__head">
@@ -365,7 +369,7 @@ $template_rendered = TRUE;
               {{ result.categoryGunTime }}/{{ race.participants[rank ? rank.participantCategory : result.category] }}
             </div>
           </div>
-  
+
           <div class="vs-result__share">
             <vs-result-share
               :url="'<?php print url('user/results/', array('absolute' => TRUE)); ?>' + result.participantId"
@@ -374,22 +378,22 @@ $template_rendered = TRUE;
             >
             </vs-result-share>
           </div>
-  
+
           <div class="vs-result__stats hidden-lg-up">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
-    
+
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-value">{{ result.displayChipTime }}</span>
               <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>
-          
+
           <div class="vs-result__times">
             <div class="vs-result__average-label"><?php print t('Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</div>
-  
+
             <div>
               <div class="vs-result__time" v-for="p in getPassings()">
                 <div class="vs-result__time-average">
@@ -397,24 +401,23 @@ $template_rendered = TRUE;
                     <div class="vs-result__progress-state" v-bind:style='{ "width": ((p.average * 100) / maxAverage[unit]) + "%" }'>{{ timeStampFormat("mm:ss", p.average) }}</div>
                   </div>
                 </div>
-  
+
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ diffFormat("mm:ss", p.startTime, p.pass.chipTime) }}</span>
-  
+                  <span class="vs-result__time-stage-time">{{ this.formatTime("mm:ss", p.passingTime) }}</span>
                 </div>
               </div>
             </div>
           </div>
-  
+
           <div class="vs-result__stats hidden-md-down">
             <div class="vs-result__stat">
               <span class="vs-result__stat-value"> {{ timeStampFormat("mm:ss", diff(initialTime, lastTime) / getTotalDistance()) }} </span>
               <span class="vs-result__stat-label"><?php print t('Average Pace'); ?> / {{ unit == 'km' ? '<?php print t('km'); ?>' : '<?php print t('mile'); ?>' | capitalize }}</span>
             </div>
-  
+
             <div class="vs-result__stat">
-              <span class="vs-result__stat-value">{{ diffFormat("hh:mm:ss", initialTime, lastTime) }}</span>
+              <span class="vs-result__stat-value">{{ result.displayChipTime }}</span>
               <span class="vs-result__stat-label"><?php print t('Total Time'); ?></span>
             </div>
           </div>

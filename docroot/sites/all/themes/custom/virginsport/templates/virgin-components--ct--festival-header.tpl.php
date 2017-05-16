@@ -37,6 +37,7 @@
   class="vs-hero-banner"
   data-vs-countdown-ts="<?php print $start_date_formatted; ?>"
   data-vs-countdown-tz="<?php print $timezone; ?>"
+  data-color="<?php print $color; ?>"
   data-vs-hostname="<?php print check_plain($festival_hostname); ?>"
 >
   <div class="vs-hero-banner__background--fixed" style="<?php print $atom ? virginsport_atom_background($atom->getEntity()) : ''; ?>"></div>
@@ -59,7 +60,7 @@
         <div class="col-xs-12">
           <?php if(!empty($logo)): ?>
             <div class="vs-hero-banner__logo">
-              <?php print theme('virginsport_picture', array('atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo')); ?>
+              <?php print theme('virginsport_picture', array('placeholder' => FALSE, 'atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo')); ?>
             </div>
           <?php else: ?>
             <h2 class="vs-hero-banner__title"><?php print check_plain($title); ?></h2>
@@ -72,13 +73,17 @@
           </div>
 
           <div class="vs-hero-banner__button-wrapper">
-            <?php if (in_array($status, array('announced', 'over'))): ?>
+            <?php if (in_array($status, array('announced'))): ?>
               <a
                 virgin-type="<?php print VIRGIN_BASE_REGISTER_INTEREST_FORM; ?>"
                 href="?festival_id=<?php print $festival_nid; ?><?php print empty($event_nid) ? '' : '&event_id=' . $event_nid; ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button">
                 <?php print t('Register interest'); ?>
               </a>
+            <?php endif; ?>
+
+            <?php if (in_array($status, array('over'))): ?>
+              <?php print theme('virginsport_cta_links', array('links' => $cta_links, 'classes' => 'btn vs-btn vs-btn--min-sm vs-hero-banner__button')); ?>
             <?php endif; ?>
 
             <?php if (in_array($status, array('open')) && !$is_tickets_page): ?>

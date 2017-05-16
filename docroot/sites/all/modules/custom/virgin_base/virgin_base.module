@@ -373,16 +373,25 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 /**
  * Returns an array of published festivals
  *
+ * @param array $exclude_status
+ *  The status festivals we don't want
  * @return array
+ *  An array of festivals
  */
-function virgin_base_festivals() {
-  $ids = db_query("
-    SELECT n.nid
-    FROM {node} n
-    WHERE n.type = 'festival'
-    AND n.status = 1
-  ")->fetchCol();
+function virgin_base_festivals($exclude_status = array()) {
+  $query =
+    db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'festival', '=')
+    ->condition('n.status', NODE_PUBLISHED, '=')
+  ;
 
+  if ($exclude_status) {
+    $query->join('field_data_field_status', 'st', 'n.nid = st.entity_id');
+    $query->condition('st.field_status_value', $exclude_status, 'NOT IN');
+  }
+
+  $ids =  $query->execute()->fetchCol();
   $nodes = node_load_multiple($ids);
 
   $list = array_map(function ($node) {
