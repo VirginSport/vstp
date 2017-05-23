@@ -207,13 +207,16 @@ function initVueComponent($el) {
         let params = { params: filter };
         params.params.gender = 'male';
 
+        // Check if race is available
+        let raceId = this.filter.race ? this.filter.race.id : null;
+
         // Get male results
-        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, raceId, params).then((result) => {
           this.genderRanks.male = result.data;
           params.params.gender = 'female';
 
           // Get female results
-          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
+          getRacedayRace(raceDayUrl, this.festivalId, raceId, params).then((result) => {
             this.genderRanks.female = result.data;
 
             this.loading[loadingProperty] = true;
