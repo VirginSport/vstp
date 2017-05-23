@@ -124,14 +124,20 @@ function initVueComponent($el) {
           if (result.data) {
             this.event = result.data;
 
-            let firstRace = this.event.races.length ? this.event.races[0] : {};
+            let firstRace = this.event.races.length ? this.event.races[0] : null;
             let race = null;
 
+            // Get correspondent race if event id is avaliable
             if (this.eventId) {
               race = this.getRace(this.eventId);
             }
 
-            this.filter.race = race ? race : firstRace;
+            // Fallback filter to first race if filters are available and race is not yet defined
+            if (this.hasFilter && !race) {
+              race = firstRace;
+            }
+
+            this.filter.race = race;
 
             if (!this.ticketId) {
               this.findRaceResults();
