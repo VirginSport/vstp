@@ -32,14 +32,15 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_address_city',
     'label' => 'City',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -74,15 +75,17 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_address_country',
     'label' => 'Country',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 20,
     ),
@@ -110,14 +113,15 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_address_line_1',
     'label' => 'Address Line 1',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -154,12 +158,13 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Address Line 2',
     'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -194,14 +199,15 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_address_postcode',
     'label' => 'Postcode',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -238,12 +244,13 @@ function virgin_user_field_default_field_instances() {
     'label' => 'State',
     'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
       'text_processing' => 0,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -367,14 +374,14 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_birth_date',
     'label' => 'Date of Birth',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
       'entity_translation_sync' => FALSE,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -415,9 +422,10 @@ function virgin_user_field_default_field_instances() {
     'entity_type' => 'user',
     'field_name' => 'field_contact_number',
     'label' => 'Contact Number',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
-      'context' => '',
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -507,7 +515,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 4,
     ),
@@ -584,7 +594,7 @@ function virgin_user_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'user_register_form' => 1,
+      'user_register_form' => 0,
     ),
     'widget' => array(
       'active' => 1,
@@ -627,7 +637,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 9,
     ),
@@ -754,7 +766,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 23,
     ),
