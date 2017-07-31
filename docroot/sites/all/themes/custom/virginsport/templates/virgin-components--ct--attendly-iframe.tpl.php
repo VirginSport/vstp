@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * User profile edit template.
+ * Attendly iFrame template.
  */
 ?>
 <div>
