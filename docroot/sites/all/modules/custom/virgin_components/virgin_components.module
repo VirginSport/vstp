@@ -80,6 +80,12 @@ function virgin_components_theme() {
       ),
       'template' => 'virgin-components__ct__results_table',
     ),
+    'virgin_components__ct__attendly_iframe' => array(
+      'template'  => 'virgin-components__ct__attendly-iframe',
+      'variables' => array(
+        'url' => '',
+      )
+    ),
   );
 }
 
