@@ -10,21 +10,8 @@ let fieldMap = {
   'input#edit-pass-pass1': 'pass1',
   'input#edit-pass-pass2': 'pass2',
   'input#edit-mail': 'field_mail',
-  '#edit-field-contact-number input': 'field_contact_number',
-  '#edit-field-marketing-optin input': 'field_marketing_optin',
   '#edit-field-uk-athletics-number input': 'field_uk_athletics_number',
-  '#edit-field-medical-conditions select': 'field_medical_conditions',
-  '#edit-field-medical-conditions-other textarea': 'field_medical_conditions_other',
-  '#edit-field-medications textarea': 'field_medications',
-  '#edit-field-allergies textarea': 'field_allergies',
-  '#edit-field-agree-share-medical-info input': 'field_agree_share_medical_info',
-  '#edit-field-address-line-1 input': 'field_address_line_1',
-  '#edit-field-address-line-2 input': 'field_address_line_2',
-  '#edit-field-address-city input': 'field_address_city',
-  '#edit-field-address-state input': 'field_address_state',
-  '#edit-field-address-postcode input': 'field_address_postcode',
-  '#edit-field-region select': 'field_region',
-  '#edit-field-address-country select': 'field_address_country'
+  '#edit-field-region select': 'field_region'
 };
 
 export default () => {
@@ -45,7 +32,6 @@ export default () => {
         this.password_mode = true;
       }
 
-      this.bindAutocomplete();
       this.bindLists();
       this.populateLists();
       this.setValues();
@@ -85,21 +71,6 @@ export default () => {
             $('[name=' + field + ']').addClass('vs-form-control--not-empty');
           }
         }
-      },
-
-      bindAutocomplete() {
-        let acField = $('#google-autocomplete').get(0);
-
-        places(acField, (p) => {
-          this.profile.field_address_line_1 = `${p.long('street_number')} ${p.long('route')}`.trim();
-          this.profile.field_address_city = p.short('locality');
-          this.profile.field_address_country = p.short('country');
-          this.profile.field_address_state = p.short('administrative_area_level_1');
-          this.profile.field_address_postcode = p.short('postal_code');
-  
-          this.address_manual = true;
-          this.updateChosen();
-        });
       },
 
       /**
@@ -193,15 +164,6 @@ export default () => {
         this.submitted = false;
       }
     },
-    watch: {
-      'profile.field_medical_conditions': function (curr, prev) {
-        // If the user un-selects the 'other' medical conditions option, ensure
-        // the other medical conditions field is emptied.
-        if (!curr || curr.indexOf('Other') < 0) {
-          this.profile.field_medical_conditions_other = '';
-        }
-      }
-    },
     data: {
       submitted: false,
       edit_mode: false,
@@ -214,21 +176,8 @@ export default () => {
         pass1: '',
         pass2: '',
         field_mail: '',
-        field_allergies: '',
-        field_medications: '',
-        field_contact_number: '',
-        field_marketing_optin: '',
         field_uk_athletics_number: '',
-        field_medical_conditions_other: '',
-        field_agree_share_medical_info: '',
-        field_address_line_1: '',
-        field_address_line_2: '',
-        field_address_city: '',
-        field_address_state: '',
-        field_address_postcode: '',
-        field_region: [],
-        field_address_country: [],
-        field_medical_conditions: []
+        field_region: []
       }
     }
   });
