@@ -25,3 +25,24 @@ function virgin_admin_social_networks_settings($form, &$form_state) {
 
   return system_settings_form($form);
 }
+
+/**
+ * Virgin google libraries administrative callback.
+ */
+function virgin_admin_google_libraries($form, &$form_state) {
+  $form = array();
+
+  $form["ua_code"] = array(
+    '#title' => t('Google UA Code'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('ua_code', '')
+  );
+
+  $form["gtm_code"] = array(
+    '#title' => t('Google TM Code'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('gtm_code', '')
+  );
+
+  return system_settings_form($form);
+}

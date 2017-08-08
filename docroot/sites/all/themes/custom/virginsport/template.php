@@ -110,6 +110,10 @@ function virginsport_preprocess_html(&$vars) {
 
   // Add collected google tag manager data layer events
   $vars['data_layer_events'] = virgin_gtm()->get();
+
+  // Add the Google Libraries defined
+  $vars['ua_code'] = variable_get('ua_code', '');
+  $vars['gtm_code'] = variable_get('gtm_code', '');
 }
 
 /**
