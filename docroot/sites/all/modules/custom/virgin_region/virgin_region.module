@@ -471,37 +471,14 @@ function virgin_region_footer_links() {
     $g = new VirginEntityGrapher('node', $region);
     $items = array();
 
-    $current_path = current_path();
-
-    global $base_url;
-    $home_url = $base_url . base_path();
-
     foreach($g->fieldGetAll('field_links') as $link) {
       if (!$link['attributes']['virgin_show']) {
         continue;
       }
 
-      if (url_is_external($link['url'])) {
-        $active = false;
-
-        //in the case user uses "<front>" in the BO the link given is the full
-        //url, so if we are seeing de front page see if the link is home
-        //TODO: how we get the front page?
-        if (drupal_is_front_page() && $link['url'] === $home_url) {
-          $active = true;
-        }
-      } else {
-        //if it is an alias path return the internal path
-        $path = drupal_lookup_path('source', $link['url']);
-
-        //if is not an alias compare the current path with raw link
-        $active = ($path && $path == $current_path) || $link['url'] == $current_path;
-      }
-
       $items[] = [
-        'url' => url($link['url']),
+        'url' => $link['url'],
         'title' => check_plain($link['title']),
-        'active' => $active,
       ];
     }
 
