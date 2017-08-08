@@ -164,7 +164,8 @@ function virginsport_preprocess_page(&$vars) {
   $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
   $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . '-' . $attendly_env;
 
-  $vars['show_checkout_bar'] = FALSE;
+  $show_checkout_bar = drupal_static('virgin_components_attendly_iframe_content_type_render');
+  $vars['show_checkout_bar'] = isset($show_checkout_bar);
 
   // Setup the social networks
   $vars['social_networks'] = array();
