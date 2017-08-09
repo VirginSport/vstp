@@ -447,6 +447,22 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   }
 }
 
+function virgin_user_form_hybridauth_additional_info_form_alter(&$form, &$form_state, $form_id) {
+  
+}
+
+/**
+ * Implements hook_hybridauth_profile_alter().
+ *
+ * If the gender is different that what is expected than we put it empty and
+ * HybridAuth asks the user for it
+ */
+function virgin_user_hybridauth_profile_alter(&$profile) {
+  if ($profile['gender'] != 'male' && $profile['gender'] != 'female') {
+    $profile['gender'] = '';
+  }
+}
+
 /**
  * Implements hook_hybridauth_userinfo_alter().
  *
