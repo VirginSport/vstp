@@ -98,7 +98,6 @@ features[field_instance][] = fieldable_panels_pane-vs_video_banner-field_video_u
 features[field_instance][] = fieldable_panels_pane-vs_video_block-field_component_heading
 features[field_instance][] = fieldable_panels_pane-vs_video_block-field_video_poster_image
 features[field_instance][] = fieldable_panels_pane-vs_video_block-field_video_url
-features[field_instance][] = node-region-field_links
 features[field_instance][] = paragraphs_item-vs_accordion_item-field_answer
 features[field_instance][] = paragraphs_item-vs_accordion_item-title_field
 features[field_instance][] = paragraphs_item-vs_cta_block-field_cta_card_image

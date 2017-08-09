@@ -74,11 +74,6 @@ function virgin_region_panelizer_defaults() {
         'brand_color' => 'default',
         'overlap' => 'none',
       ),
-      'seventh' => array(
-        'is_curved' => 1,
-        'brand_color' => 'default',
-        'overlap' => 'none',
-      ),
       'nineth' => array(
         'is_curved' => 1,
         'brand_color' => 'default',
@@ -112,9 +107,6 @@ function virgin_region_panelizer_defaults() {
       'style' => 'curve',
     ),
     'eighth' => array(
-      'style' => 'curve',
-    ),
-    'seventh' => array(
       'style' => 'curve',
     ),
     'nineth' => array(
