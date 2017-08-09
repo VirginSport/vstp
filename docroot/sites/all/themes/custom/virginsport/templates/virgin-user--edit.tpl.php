@@ -126,7 +126,7 @@
 
                           <div class="field-contact-number vs-form-group" :class="{ 'vs-has-error': !$vs_user_profile_validator.field_contact_number.valid }">
                             <div v-show="edit_mode">
-                              <input class="form-control" required type="text" v-model="profile.field_contact_number" name="field_contact_number">
+                              <input class="form-control" type="text" v-model="profile.field_contact_number" name="field_contact_number">
                               <label class="vs-focus-label"><?php print t('Telephone Number'); ?></label>
                               <div class="vs-error-label" v-if="$vs_user_profile_validator.field_contact_number.required"><?php print t('Telephone is required'); ?></div>
                             </div>
