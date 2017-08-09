@@ -33,14 +33,16 @@ function virgin_admin_google_libraries($form, &$form_state) {
   $form = array();
 
   $form["ua_code"] = array(
-    '#title' => t('Google UA Code'),
+    '#title' => t('Google Analytics tracking ID'),
     '#type' => 'textfield',
+    '#description' => '',
     '#default_value' => variable_get('ua_code', '')
   );
 
   $form["gtm_code"] = array(
-    '#title' => t('Google TM Code'),
+    '#title' => t('Google Optimize container ID'),
     '#type' => 'textfield',
+    '#description' => '',
     '#default_value' => variable_get('gtm_code', '')
   );
 
