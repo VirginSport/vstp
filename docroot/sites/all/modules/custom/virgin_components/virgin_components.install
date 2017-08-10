@@ -61,6 +61,13 @@ function virgin_components_update_7006() {
 }
 
 /**
+ * Allow to insert fpp results overview
+ */
+function virgin_components_update_7007() {
+  virgin_components_allow_type('attendly_iframe-attendly_iframe');
+}
+
+/**
  * Allow component to be added in frontend
  *
  * @param $type
