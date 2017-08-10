@@ -461,7 +461,7 @@ function virgin_region_footer_links() {
   $current_region = virgin_region_current();
 
   if (!$current_region) {
-    return null;
+    return array();
   }
 
   $menu_items = &drupal_static(__FUNCTION__, array());
