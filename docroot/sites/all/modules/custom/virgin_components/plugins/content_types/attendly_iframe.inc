@@ -45,6 +45,7 @@ function virgin_components_attendly_iframe_content_type_edit_form($form, &$form_
     '#type' => 'textfield',
     '#title' => t('iframe url'),
     '#weight' => -100,
+    '#required' => TRUE,
     '#default_value' => empty($conf['iframe_url']) ? FALSE : $conf['iframe_url'],
   );
 
