@@ -66,7 +66,7 @@ $mkt_id = 'mkt-' . uniqid();
                         </select>
                       </div>
                     <?php else: ?>
-                      <input type="hidden" v-model="form.event_ids" v-init='<?php print $vars['events_list']; ?>' name="event_ids" id="event_ids" value="<?php print $vars['event_id']; ?>">
+                      <input type="hidden" v-model="form.event_ids" name="event_ids" id="event_ids">
                     <?php endif; ?>
 
 

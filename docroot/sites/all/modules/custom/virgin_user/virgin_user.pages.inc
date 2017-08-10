@@ -474,12 +474,6 @@ function virgin_user_page_ajax_form_post() {
     $data['event_ids'] = array_keys($data['events']);
   }
 
-  // If the event is hidden this variable is a string containing and id,
-  // not a array
-  if ($data['type'] == 'interested_in' && is_string($data['event_ids'])) {
-    $data['event_ids'] = array($data['event_ids']);
-  }
-
   if ($data['type'] == 'interested_in') {
     $params = array(
       'type' => $data['type'],
