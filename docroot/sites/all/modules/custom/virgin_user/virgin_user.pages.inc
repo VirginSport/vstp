@@ -474,6 +474,10 @@ function virgin_user_page_ajax_form_post() {
     $data['event_ids'] = array_keys($data['events']);
   }
 
+  if ($data['type'] == 'interested_in' && is_string($data['event_ids'])) {
+    $data['event_ids'] = array($data['event_ids']);
+  }
+
   if ($data['type'] == 'interested_in') {
     $params = array(
       'type' => $data['type'],

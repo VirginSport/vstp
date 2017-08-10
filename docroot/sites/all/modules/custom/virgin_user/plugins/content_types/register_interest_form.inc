@@ -33,6 +33,7 @@ function virgin_user_register_interest_form_content_type_render($subtype, $conf,
 
   $event_id = empty($conf['event_id']) ? '' : $conf['event_id'];
   $event_node = empty($conf['event_id']) ? FALSE : node_load($event_id);
+  $hide_event = FALSE;
 
   // If festival and event are set we need to check if they are related,
   // or else show all events
@@ -40,6 +41,7 @@ function virgin_user_register_interest_form_content_type_render($subtype, $conf,
     $f = virgin_base_event_festival($event_node->nid);
     if($f && $f->property('nid') == $festival_node->nid) {
       $events = array($event_node->nid => $event_node->title);
+      $hide_event = TRUE;
     }
   }
 
@@ -52,6 +54,8 @@ function virgin_user_register_interest_form_content_type_render($subtype, $conf,
     'festivals' => $festivals,
     'event_id' => empty($conf['event_id']) ? array() : $conf['event_id'],
     'events_list' => drupal_json_encode(array('events' => $events, 'event_id' => $event_id)),
+    'hide_festival' => $is_festival,
+    'hide_event' => $hide_event,
   );
 
   $block = new stdClass();
