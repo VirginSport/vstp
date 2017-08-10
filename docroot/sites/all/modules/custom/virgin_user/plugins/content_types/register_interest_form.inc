@@ -22,7 +22,8 @@ $plugin = array(
 function virgin_user_register_interest_form_content_type_render($subtype, $conf, $panel_args, $context) {
   $festival_id = empty($conf['festival_id']) ? array() : $conf['festival_id'];
 
-  // Check if the festival is set and include only it
+  // If the festival is set the end user will have no options so we only include
+  // the chosen festival and avoid to load all the festivals
   $festival_node = empty($conf['festival_id']) ? FALSE : node_load($festival_id);
   $is_festival = $festival_node && $festival_node->type == 'festival';
   if ($is_festival) {
@@ -36,7 +37,8 @@ function virgin_user_register_interest_form_content_type_render($subtype, $conf,
   $hide_event = FALSE;
 
   // If festival and event are set we need to check if they are related,
-  // or else show all events
+  // or else show all events. Again if the event and the festival are set and
+  // related we don't show them to end user so we avoid loading all events
   if ($is_festival && $event_node && $event_node->type == 'event') {
     $f = virgin_base_event_festival($event_node->nid);
     if($f && $f->property('nid') == $festival_node->nid) {
