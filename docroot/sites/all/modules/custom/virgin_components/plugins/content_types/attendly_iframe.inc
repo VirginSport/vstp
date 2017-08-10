@@ -10,9 +10,6 @@ $plugin = array(
   'title' => t('Attendly iframe'),
   'description' => '',
   'category' => 'VirginSport',
-//  'required context' => array(
-//    new ctools_context_required(t('Node'), 'node')
-//  ),
   'defaults' => array(
     'iframe_url' => '',
   ),
