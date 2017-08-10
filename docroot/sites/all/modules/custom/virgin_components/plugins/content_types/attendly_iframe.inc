@@ -24,7 +24,7 @@ function virgin_components_attendly_iframe_content_type_render($subtype, $conf, 
   );
 
   // Set a static variable so we know we have to render the checkout component
-  $block = &drupal_static(__FUNCTION__);
+  $block = &drupal_static(VIRGIN_ATTENDLY_IFRAME_RENDERED);
 
   $block = new stdClass();
   $block->module = '';

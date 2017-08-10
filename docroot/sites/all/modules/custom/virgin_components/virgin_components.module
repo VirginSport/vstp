@@ -4,7 +4,7 @@
  * Code for the Virgin Components feature.
  */
 
-define('VIRGIN_ATTENDLY_IFRAME_RENDERED', 'virgin_components_attendly_iframe_content_type_render');
+define('VIRGIN_ATTENDLY_IFRAME_RENDERED', 'attendly_component_rendered');
 
 include_once 'virgin_components.features.inc';
 
