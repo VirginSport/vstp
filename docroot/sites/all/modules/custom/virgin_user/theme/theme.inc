@@ -68,9 +68,13 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['event_date'] = $start_date->format('l, d M Y');
   $vars['event_past'] = $event_end_date < time();
 
-  // Just allow to edit tickets 14 days before the event start date
+  // Just allow to edit tickets when the defined edit date is not meted
+  // Since before the rule was 14 days before, in old events where the field is
+  // not defined respect the old rule
   $days_for_event = ($event_start_date - $now) / (60 * 60 * 24);
-  $vars['ticket_is_editable'] = $days_for_event > 14;
+  $edit_ticket_end_date = $event_grapher->fieldGetOne('	field_hide_ticket_link');
+
+  $vars['ticket_is_editable'] = ($edit_ticket_end_date == NULL && $days_for_event > 14) || $edit_ticket_end_date < $now;
 }
 
 /**
