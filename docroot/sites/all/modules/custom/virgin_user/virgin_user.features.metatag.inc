@@ -13,7 +13,6 @@ function virgin_user_metatag_export_default() {
   // Exported Metatag config instance: user.
   $config['user'] = array(
     'instance' => 'user',
-    'disabled' => FALSE,
     'config' => array(
       'title' => array(
         'value' => '',
