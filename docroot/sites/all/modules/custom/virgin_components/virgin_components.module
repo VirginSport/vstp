@@ -7,6 +7,11 @@
 include_once 'virgin_components.features.inc';
 
 /**
+ * The cache id that is used to store the newsletters lists from sugar
+ */
+define('VIRGIN_CCMPONENTS_NEWSLETTER_LIST_CID', 'sugar_newsletter_lists');
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function virgin_components_ctools_plugin_directory($module, $plugin) {
@@ -126,6 +131,8 @@ function virgin_components_form_fieldable_panels_panes_fieldable_panels_pane_con
     $form['notice'] = array(
       '#markup' => t('<p>If an event is selected, the MyLaps ID stored in the selected event will take precedence over the MyLaps ID entered in the component.</p>')
     );
+  } else if($form['#bundle'] == 'vs_newsletter') {
+    $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_components_get_newsletter_lists();
   }
 }
 
@@ -162,6 +169,7 @@ function virgin_components_list() {
       new VirginComponentMyLapsTrackMyRunner(),
       new VirginComponentResultsIntroduction(),
       new VirginComponentResultsOverview(),
+      new VirginComponentNewsletter(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),
@@ -197,4 +205,25 @@ function _virgin_components_fieldable_panels_pane_admin_title($subtype, $conf) {
   }
 
   return sprintf('%s %s', $title, $suffix);
+}
+
+
+function virgin_components_get_newsletter_lists() {
+  if ($lists = cache_get(VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID)) {
+    return $lists->data;
+  }
+
+  try {
+//    $lists = sugarcrm_client()->getEndpoint('endoint');
+    $lists = array(
+      'lista1' => 'lista 1',
+      'lista2' => 'lista 2',
+    );
+
+    cache_set(VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID, $lists, 'cache', CACHE_TEMPORARY);
+
+    return $lists;
+  } catch(Exception $e) {
+    return array();
+  }
 }
