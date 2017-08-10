@@ -1314,13 +1314,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'datestamp',
   );
 
-  // Exported field_base: 'field_event_reference'.
-  $field_bases['field_event_reference'] = array(
+  // Exported field_base: 'field_event'.
+  $field_bases['field_event'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_event_reference',
+    'field_name' => 'field_event',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -1349,13 +1349,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_event'.
-  $field_bases['field_event'] = array(
+  // Exported field_base: 'field_event_reference'.
+  $field_bases['field_event_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_event',
+    'field_name' => 'field_event_reference',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -2085,6 +2085,36 @@ function virgin_base_field_default_field_bases() {
     ),
     'translatable' => 1,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_hide_ticket_link'.
+  $field_bases['field_hide_ticket_link'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_hide_ticket_link',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => 'UTC',
+      'todate' => '',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 0,
+    'type' => 'datestamp',
   );
 
   // Exported field_base: 'field_hootsuite_campaign_url'.

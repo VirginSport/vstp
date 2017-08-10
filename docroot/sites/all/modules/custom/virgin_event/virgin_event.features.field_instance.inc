@@ -794,6 +794,68 @@ function virgin_event_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_hide_ticket_link'.
+  $field_instances['node-event-field_hide_ticket_link'] = array(
+    'bundle' => 'event',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hide_ticket_link',
+    'label' => 'Hide ticket link date',
+    'required' => 1,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_text',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_logo'.
   $field_instances['node-event-field_logo'] = array(
     'bundle' => 'event',
@@ -846,7 +908,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 17,
+      'weight' => 13,
     ),
   );
 
@@ -1252,7 +1314,7 @@ function virgin_event_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -2232,6 +2294,7 @@ function virgin_event_field_default_field_instances() {
   t('Has Teams');
   t('Hashtag');
   t('Header Image');
+  t('Hide ticket link date');
   t('Introduction');
   t('Logo');
   t('MyLaps ID');
