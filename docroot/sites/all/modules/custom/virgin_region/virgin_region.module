@@ -472,7 +472,7 @@ function virgin_region_footer_links() {
     $items = array();
 
     foreach($g->fieldGetAll('field_links') as $link) {
-      if (isset($link['attributes']['virgin_show'] && !$link['attributes']['virgin_show']) {
+      if (isset($link['attributes']['virgin_show']) && !$link['attributes']['virgin_show']) {
         continue;
       }
 
