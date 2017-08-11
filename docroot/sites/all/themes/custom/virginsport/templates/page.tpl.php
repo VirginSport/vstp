@@ -292,6 +292,26 @@
         </div>
 
         <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
+          <div class="vs-newsletter-footer">
+            <form>
+              <h4 class="vs-newsletter-footer__title">
+                <?php print t('Be the first to know'); ?>
+              </h4>
+              <div class="vs-form-group vs-newsletter-footer__form-group">
+  
+                <input class="form-control vs-newsletter-footer__input" type="email" name="field_mail" id="field_mail">
+                <label class="vs-focus-label" for="field_mail"><?php print t('Enter email Address'); ?></label>
+                
+                <button class="btn vs-btn vs-newsletter-footer__btn"><?php print ('Submit'); ?></button>
+                
+                <!-- This next line has the button attributes when the form is sent -->
+                <!--<button class="btn vs-btn vs-newsletter-footer__btn" disabled><?php /*print ('Sent'); */?></button>-->
+              </div>
+              <div class="vs-newsletter-footer__message">
+                <?php print ('Thanks! You’ve signed up successfully.'); ?>
+              </div>
+            </form>
+          </div>
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">

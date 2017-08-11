@@ -204,6 +204,16 @@ vs-footer,
     opacity: .7;
     color: $c-white;
   }
+
+  @include media-breakpoint-up(lg) {
+    width: rem(39);
+    height: rem(39);
+    padding-top: rem(9);
+
+    &:before {
+      font-size: rem(20);
+    }
+  }
 }
 
 .vs-footer__social--twitter {
@@ -233,6 +243,47 @@ vs-footer,
     content: $icon-snapchat;
   }
 }
+
+.vs-newsletter-footer {
+  @include media-breakpoint-up(md) {
+    margin-top: rem(-70);
+  }
+}
+
+.vs-newsletter-footer__form-group {
+  position: relative;
+  max-width: rem(348);
+}
+
+.vs-newsletter-footer__title {
+  color: $c-orange-bright;
+  font-size: rem(18);
+  margin-bottom: rem(14);
+  text-transform: uppercase;
+  padding-left: rem(15);
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+  }
+}
+
+.vs-newsletter-footer__input {}
+
+.vs-newsletter-footer__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 rem(4) rem(4) 0;
+  height: rem(50);
+}
+
+.vs-newsletter-footer__message {
+  font-size: rem(12);
+  color: rgba($c-black, .6);
+  line-height: rem(24);
+  margin: rem(8) 0 rem(34);
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -272,12 +323,12 @@ vs-footer,
 
   vs-footer,
   .vs-footer {
-    padding-top: 4.875rem;
+    padding-top: 6.875rem;
   }
 
   .vs-footer__social-item {
     display: inline-block;
-    margin: 0 0 1.25rem 1.25rem;
+    margin: 0 1.25rem 1.25rem 0;
   }
 
   .vs-footer__menu {
@@ -287,9 +338,5 @@ vs-footer,
   .vs-footer__menu-item {
     float: left;
     width: 50%;
-  }
-
-  .vs-footer__social-list {
-    text-align: right;
   }
 }
