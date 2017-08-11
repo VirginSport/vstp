@@ -26,4 +26,4 @@
   <iframe class="vs-iframe vs-iframe--hide-load" src="<?php print $iframe_url; ?>" scrolling="no"></iframe>
 </div>
 
-<?php print theme('virginsport_checkout_bar', array('basket_url' => $basket_url, 'node' => $node)); ?>
+<?php print theme('virginsport_checkout_bar', array('basket_url' => $basket_url, 'node' => $node, 'brand_color' => $brand_color)); ?>

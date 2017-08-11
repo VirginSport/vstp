@@ -80,7 +80,8 @@ function virginsport_theme($existing, $type, $theme, $path) {
     'template' => 'virginsport-checkout-bar',
     'variables' => array(
       'node' => '',
-      'basket_url' => ''
+      'basket_url' => '',
+      'brand_color' => '',
     )
   ) + $default;
 
