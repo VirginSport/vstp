@@ -245,7 +245,7 @@ vs-footer,
 }
 
 .vs-newsletter-footer {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     margin-top: rem(-70);
   }
 }
@@ -266,8 +266,6 @@ vs-footer,
     padding-left: 0;
   }
 }
-
-.vs-newsletter-footer__input {}
 
 .vs-newsletter-footer__btn {
   position: absolute;
