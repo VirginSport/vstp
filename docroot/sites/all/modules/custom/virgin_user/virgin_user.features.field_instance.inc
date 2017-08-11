@@ -34,8 +34,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'City',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -115,8 +114,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Address Line 1',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -158,8 +156,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Address Line 2',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -201,8 +198,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Postcode',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -244,8 +240,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'State',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -424,8 +419,7 @@ function virgin_user_field_default_field_instances() {
     'label' => 'Contact Number',
     'required' => 0,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
+      'context' => '',
       'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'mee_enabled' => 0,
@@ -635,9 +629,7 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 9,
     ),
@@ -764,9 +756,7 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 23,
     ),
