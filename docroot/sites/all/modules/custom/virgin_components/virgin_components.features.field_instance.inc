@@ -2203,6 +2203,46 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_image_caption'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_image_caption'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_image_caption',
+    'label' => 'Image caption',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_newsletter-field_newsletter_image'.
   $field_instances['fieldable_panels_pane-vs_newsletter-field_newsletter_image'] = array(
     'bundle' => 'vs_newsletter',
@@ -6026,6 +6066,7 @@ function virgin_components_field_default_field_instances() {
   t('Hootsuite Campaign URL');
   t('Horizontal Scrolling Image');
   t('Image Effect');
+  t('Image caption');
   t('Images');
   t('Layout arrangement');
   t('MyLaps ID');
