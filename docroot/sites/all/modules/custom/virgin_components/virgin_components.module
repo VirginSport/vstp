@@ -9,7 +9,7 @@ include_once 'virgin_components.features.inc';
 /**
  * The cache id that is used to store the newsletters lists from sugar
  */
-define('VIRGIN_CCMPONENTS_NEWSLETTER_LIST_CID', 'sugar_newsletter_lists');
+define('VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID', 'sugar_newsletter_lists');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -207,23 +207,38 @@ function _virgin_components_fieldable_panels_pane_admin_title($subtype, $conf) {
   return sprintf('%s %s', $title, $suffix);
 }
 
-
+/**
+ * Return the Sugar newsletter lists
+ *
+ * @return array with
+ */
 function virgin_components_get_newsletter_lists() {
   if ($lists = cache_get(VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID)) {
-    return $lists->data;
+    return $lists;
   }
 
   try {
-//    $lists = sugarcrm_client()->getEndpoint('endoint');
-    $lists = array(
-      'lista1' => 'lista 1',
-      'lista2' => 'lista 2',
-    );
+    $remote_lists = sugarcrm_client()->systemGet('Virgin/target-lists');
+
+    $lists = array();
+
+    foreach($remote_lists as $key => $value) {
+      $lists[$value['id']] = $value['name'];
+    }
 
     cache_set(VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID, $lists, 'cache', CACHE_TEMPORARY);
 
     return $lists;
   } catch(Exception $e) {
+
+    watchdog(
+      'virgin_components',
+      'Failed to fetch newsletter lists from SugarCRM: @err',
+      array(
+        '@err' => $e->getMessage()
+      )
+    );
+
     return array();
   }
 }
