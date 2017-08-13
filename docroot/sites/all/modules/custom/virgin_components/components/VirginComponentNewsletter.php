@@ -35,8 +35,13 @@ class VirginComponentNewsletter implements VirginComponentsInterface {
     $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
     $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
 
-//    $variables['heading'] = $virgin->fieldGetOne('field_component_heading');
-//    $variables['paragraphs'] = $virgin->fieldRendered('field_cta_blocks');
-//    $variables['size'] = count($variables['field_cta_blocks']);
+    global $user;
+
+    // If the user is logged in the default value should be his email
+    $variables['default_email'] = $user->uid > 0 ? $user->mail : FALSE;
+    $variables['title'] = $virgin->property("title");
+    $variables['description'] = $virgin->fieldGetOne('field_description');
+    $variables['list'] = $virgin->fieldGetOne('field_sugar_newsletter_list');
+    $variables['image_caption'] = $virgin->fieldGetOne('field_image_caption');
   }
 }
