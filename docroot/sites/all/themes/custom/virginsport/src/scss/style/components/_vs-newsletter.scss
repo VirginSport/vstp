@@ -67,7 +67,7 @@ vs-newsletter,
     left: 0;
     width: 1.25rem;
     height: 0.125rem;
-    background-color: #2084FE;
+    background-color: $c-orange-bright;
   }
 
   @include media-breakpoint-up(lg) {
