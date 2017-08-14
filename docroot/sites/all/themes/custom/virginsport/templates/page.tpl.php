@@ -292,25 +292,36 @@
         </div>
 
         <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
-          <div class="vs-newsletter-footer">
-            <form>
-              <h4 class="vs-newsletter-footer__title">
-                <?php print t('Be the first to know'); ?>
-              </h4>
-              <div class="vs-form-group vs-newsletter-footer__form-group">
-  
-                <input class="form-control vs-newsletter-footer__input" type="email" name="field_mail" id="field_mail">
-                <label class="vs-focus-label" for="field_mail"><?php print t('Enter email Address'); ?></label>
-                
-                <button class="btn vs-btn vs-newsletter-footer__btn"><?php print ('Submit'); ?></button>
-                
-                <!-- This next line has the button attributes when the form is sent -->
-                <!--<button class="btn vs-btn vs-newsletter-footer__btn" disabled><?php /*print ('Sent'); */?></button>-->
-              </div>
-              <div class="vs-newsletter-footer__message">
-                <?php print ('Thanks! You’ve signed up successfully.'); ?>
-              </div>
-            </form>
+          <div class="v-element vs-newsletter-footer">
+            <validator name="vs_newsletter_footer_validator">
+              <form @submit.prevent novalidate class="vs-newsletter-footer__form">
+                <input type="hidden" v-model="form.list" name="list" value="<?php print $newsletter_list; ?>">
+                <h4 class="vs-newsletter-footer__title">
+                  <?php print t('Be the first to know'); ?>
+                </h4>
+                <div class="vs-form-group vs-newsletter-footer__form-group">
+
+                  <input
+                    class="form-control vs-newsletter-footer__input"
+                    type="email"
+                    name="newsletter-email"
+                    id="field_mail"
+                    v-model="form.newsletter_email"
+                    value="<?php print $default_email; ?>"
+                  >
+                  <label class="vs-focus-label" for="field_mail"><?php print t('Enter email Address'); ?></label>
+                  <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter-footer__btn"><?php print t('Submit'); ?></button>
+
+                  <!-- This next line has the button attributes when the form is sent -->
+                  <!--<button class="btn vs-btn vs-newsletter-footer__btn" disabled><?php /*print ('Sent'); */?></button>-->
+                </div>
+                <div class="vs-newsletter-footer__message">
+                  <p v-if="invalid_email" class="vs-newsletter__error-label"><?php print t('Invalid email.')?></p>
+                  <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Thanks! You’ve signed up successfully.')?></p>
+                  <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
+                </div>
+              </form>
+            </validator>
           </div>
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>

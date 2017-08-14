@@ -180,6 +180,10 @@ function virginsport_preprocess_page(&$vars) {
   // Setup the alerts
   $vars['alerts'] = virginsport_alerts();
 
+  // Setup which Sugar target-list the user enrolls in footer
+  $vars['newsletter_list'] = virgin_region_get_current_region_newsletter_list();
+  $vars['default_email'] = $user->uid > 0 ? $user->mail : '';
+
   // Make cookie template available in javascript
   $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
   $cookie_template = theme('virginsport_notification', array('message' => $message));

@@ -8,6 +8,7 @@ import blur from '../helper/input-blur';
 export default () => {
   // Init vue for page components
   initVue('.v-element.vs-newsletter');
+  initVue('.v-element.vs-newsletter-footer');
 }
 
 // Vue.validator('email', function (val) {
