@@ -445,3 +445,18 @@ function virgin_region_user_hostname() {
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter() for region_node_form.
+ *
+ * Injects the sugar remote newsletter target lists into the form and
+ * sets the stored value as default.
+ */
+function virgin_region_form_region_node_form_alter(&$form, $form_state) {
+  $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_components_get_newsletter_lists();
+
+  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
+    $grapher = new VirginEntityGrapher('node', $form['#entity']);
+    $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#default_value'] = $grapher->fieldGetOne('field_sugar_newsletter_list');
+  }
+}
