@@ -1,12 +1,12 @@
 
 <div class="v-element vs-newsletter">
   <div class="container">
-    <div class="row">
+    <div class="row grid-align-middle--md-up">
       
       <div class="col-xs-12 col-md-6 hidden-sm-down">
-        <div class="vs-newsletter__image">
-          <?php print theme('virginsport_picture', array('atom_id' => $field_newsletter_image[0]['sid'], 'image_style' => 'virgin_original', 'image_classes' => 'vs-photo-gallery__image')); ?>
-          <div class="image-capiton"><?php print $image_caption; ?></div>
+        <div class="vs-newsletter__image-wrapper clearfix">
+          <?php print theme('virginsport_picture', array('atom_id' => $field_newsletter_image[0]['sid'], 'image_style' => 'virgin_original', 'image_classes' => 'vs-newsletter__image')); ?>
+          <div class="vs-newsletter__image-caption"><?php print $image_caption; ?></div>
         </div>
       </div>
       
@@ -29,9 +29,11 @@
                       value="<?php print $default_email; ?>"
                     >
                     <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
-                    <p v-if="invalid_email"><?php print t('Invalid email.')?></p>
-                    <p v-if="form.submitted"><?php print t('Email submitted with success.')?></p>
-                    <p v-if="form.error"><?php print t('There was an error submitting your request.')?></p>
+                    <div class="vs-newsletter__message-wrapper">
+                      <p v-if="invalid_email" class="vs-newsletter__error-label"><?php print t('Invalid email.')?></p>
+                      <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Thanks! You’ve signed up successfully.')?></p>
+                      <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
+                    </div>
                     <div class="vs-newsletter__button-wrapper text-xs-center text-md-left">
                       <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm vs-newsletter__button"><?php print t('Submit'); ?></button>
                     </div>
@@ -44,8 +46,9 @@
       </div>
   
       <div class="col-xs-12 col-md-6 hidden-md-up">
-        <div class="vs-newsletter__image">
-          image and description
+        <div class="vs-newsletter__image-wrapper">
+          <?php print theme('virginsport_picture', array('atom_id' => $field_newsletter_image[0]['sid'], 'image_style' => 'virgin_original', 'image_classes' => 'vs-newsletter__image')); ?>
+          <div class="vs-newsletter__image-caption"><?php print $image_caption; ?></div>
         </div>
       </div>
       
