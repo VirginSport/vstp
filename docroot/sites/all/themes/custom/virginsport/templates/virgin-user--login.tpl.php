@@ -69,7 +69,10 @@ $query = drupal_get_query_parameters();
                   <?php /* FIXME Facebook auth login link code placeholder
                   <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
                   */ ?><div style="clear: both; height: 40px;"></div>
-                  <a target="_blank" href="/hybridauth/window/facebook?destination_error=user&destination=user"><i class="icon-facebook"></i></a>
+                  <?php
+                    $element['#type'] = 'hybridauth_widget';
+                    print drupal_render($element);
+                  ?>
                   <div class="vs-user-login--form" v-on:keyup.enter="submit">
                     <validator name="vs_user_login_validator">
                       <div class="row">
