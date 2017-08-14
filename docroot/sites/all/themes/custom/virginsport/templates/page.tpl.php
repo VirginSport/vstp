@@ -310,14 +310,12 @@
                     value="<?php print $default_email; ?>"
                   >
                   <label class="vs-focus-label" for="field_mail"><?php print t('Enter email Address'); ?></label>
-                  <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter-footer__btn"><?php print t('Submit'); ?></button>
-
-                  <!-- This next line has the button attributes when the form is sent -->
-                  <!--<button class="btn vs-btn vs-newsletter-footer__btn" disabled><?php /*print ('Sent'); */?></button>-->
+                  <button v-if="!form.submitted" :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter-footer__btn"><?php print t('Submit'); ?></button>
+                  <button v-if="form.submitted" class="btn vs-btn vs-newsletter-footer__btn" disabled><?php print t('Sent'); ?></button>
                 </div>
-                <div class="vs-newsletter-footer__message">
+                <div class="vs-newsletter-footer__message-wrapper">
                   <p v-if="invalid_email" class="vs-newsletter__error-label"><?php print t('Invalid email.')?></p>
-                  <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Thanks! You’ve signed up successfully.')?></p>
+                  <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Woohoo – you’re in!')?></p>
                   <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
                 </div>
               </form>

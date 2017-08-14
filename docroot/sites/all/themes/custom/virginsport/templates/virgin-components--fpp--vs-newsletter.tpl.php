@@ -31,7 +31,7 @@
                     <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
                     <div class="vs-newsletter__message-wrapper">
                       <p v-if="invalid_email" class="vs-newsletter__error-label"><?php print t('Invalid email.')?></p>
-                      <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Thanks! You’ve signed up successfully.')?></p>
+                      <p v-if="form.submitted" class="vs-newsletter__message-label"><?php print t('Woohoo – you’re in!')?></p>
                       <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
                     </div>
                     <div class="vs-newsletter__button-wrapper text-xs-center text-md-left">
