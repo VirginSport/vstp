@@ -214,7 +214,7 @@ function _virgin_components_fieldable_panels_pane_admin_title($subtype, $conf) {
  */
 function virgin_components_get_newsletter_lists() {
   if ($lists = cache_get(VIRGIN_COMPONENTS_NEWSLETTER_LIST_CID)) {
-    return $lists;
+    return $lists->data;
   }
 
   try {
