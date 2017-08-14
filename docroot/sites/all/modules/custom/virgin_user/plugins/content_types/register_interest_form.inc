@@ -22,42 +22,8 @@ $plugin = array(
 function virgin_user_register_interest_form_content_type_render($subtype, $conf, $panel_args, $context) {
   $festival_id = empty($conf['festival_id']) ? array() : $conf['festival_id'];
 
-  // If the festival is set the end user will have no options so we only include
-  // the chosen festival and avoid to load all the festivals
-  $festival_node = empty($conf['festival_id']) ? FALSE : node_load($festival_id);
-  $is_festival = $festival_node && $festival_node->type == 'festival';
-  if ($is_festival) {
-    $festivals = array($festival_node->nid => $festival_node->title);
-  } else {
-    $festivals = virgin_base_festivals(array('over'));
-  }
-
-  $event_id = empty($conf['event_id']) ? '' : $conf['event_id'];
-  $event_node = empty($conf['event_id']) ? FALSE : node_load($event_id);
-  $hide_event = FALSE;
-
-  // If festival and event are set we need to check if they are related,
-  // or else show all events. Again if the event and the festival are set and
-  // related we don't show them to end user so we avoid loading all events
-  if ($is_festival && $event_node && $event_node->type == 'event') {
-    $f = virgin_base_event_festival($event_node->nid);
-    if($f && $f->property('nid') == $festival_node->nid) {
-      $events = array($event_node->nid => $event_node->title);
-      $hide_event = TRUE;
-    }
-  }
-
-  if (!isset($events)) {
-    $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
-  }
-
   $vars = array(
     'festival_id' => $festival_id,
-    'festivals' => $festivals,
-    'event_id' => empty($conf['event_id']) ? array() : $conf['event_id'],
-    'events_list' => drupal_json_encode(array('events' => $events, 'event_id' => $event_id)),
-    'hide_festival' => $is_festival,
-    'hide_event' => $hide_event,
   );
 
   $block = new stdClass();

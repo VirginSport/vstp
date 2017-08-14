@@ -32,43 +32,7 @@ $mkt_id = 'mkt-' . uniqid();
                       </div>
                     <?php endif; ?>
 
-                    <?php if (!$vars['hide_festival']): ?>
-                      <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_contact_form_validator.festival_id.dirty || submitted) && !$vs_contact_form_validator.festival_id.valid }">
-                        <label for="festival_id" class="vs-focus-label"><?php print t('Festival'); ?>*</label>
-                        <select
-                          class="form-control"
-                          name="festival_id"
-                          id="festival_id"
-                          v-model="form.festival_id"
-                          v-init='<?php print $vars['events_list'] ?>'
-                          v-validate:festival_id="['required']"
-                        >
-                          <?php foreach ($vars['festivals'] as $key => $title): ?>
-                            <option value="<?php print $key; ?>" <?php print $key == $vars['festival_id'] ? 'selected' : ''; ?>>
-                              <?php print $title; ?>
-                            </option>
-                          <?php endforeach; ?>
-                        </select>
-                        <div class="vs-error-label" v-if="($vs_contact_form_validator.festival_id.dirty || submitted) && $vs_contact_form_validator.festival_id.required"><?php print t('Festival is required'); ?></div>
-                        <div class="vs-loading" v-if="loading"><?php print t('loading'); ?>...</div>
-                      </div>
-                    <?php else: ?>
-                      <input type="hidden" v-model="form.festival_id" v-init='<?php print $vars['events_list']; ?>' name="festival_id" id="festival_id" value="<?php print $vars['festival_id']; ?>">
-                    <?php endif; ?>
-
-                    <?php if (!$vars['hide_event']): ?>
-                      <div class="vs-form-group vs-form-group--chosen">
-                        <label for="event_ids" class="vs-focus-label"><?php print t('Event'); ?></label>
-                        <select id="event_ids" multiple="multiple" class="form-control chosen-select" v-model="form.event_ids" name="event_ids">
-                          <option v-for="(index, title) in form.events" v-bind:value="index" :selected="form.event_ids == index">
-                            {{ title }}
-                          </option>
-                        </select>
-                      </div>
-                    <?php else: ?>
-                      <input type="hidden" v-model="form.event_ids" name="event_ids" id="event_ids">
-                    <?php endif; ?>
-
+                    <input type="hidden" v-model="form.festival_id" name="festival_id" id="festival_id" value="<?php print $vars['festival_id']; ?>">
 
                     <div v-if="form.error" class="vs-error-label"><?php print t("Oops! We're sprinting to fix this error and we hope to be back on track shortly."); ?></div>
 

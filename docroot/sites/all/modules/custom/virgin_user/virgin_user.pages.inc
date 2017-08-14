@@ -479,7 +479,6 @@ function virgin_user_page_ajax_form_post() {
     'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
     'festival' => '',
-    'events' => array()
   );
 
   if ($data['type'] != 'interested_in') {
@@ -489,6 +488,7 @@ function virgin_user_page_ajax_form_post() {
       'last_name' => $data['last_name'],
       'contact_number' => $data['contact_number'],
       'message' => $data['message'],
+      'events' => array(),
     );
   }
   
