@@ -443,6 +443,34 @@ function virgin_user_page_ajax_form() {
 }
 
 /**
+ * Page callback for the user newsletter form submission
+ */
+function virgin_user_page_ajax_newsletter_form_post() {
+  if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    drupal_access_denied();
+  }
+
+  $raw = file_get_contents('php://input');
+  $data = drupal_json_decode($raw);
+
+  $params = array(
+    'target_list' => $data['list'],
+	  'contact_id' => '',
+	  'email' => $data['newsletter_email'],
+  );
+
+  try {
+    $result['result'] = sugarcrm_client()->systemPost('Virgin/subscribe-newsletter', $params);
+  } catch (\Exception $e) {
+    $result['result'] = FALSE;
+  }
+
+  print drupal_json_encode($result);
+
+  drupal_exit();
+}
+
+/**
  * Page callback for the user contact form submission
  */
 function virgin_user_page_ajax_form_post() {

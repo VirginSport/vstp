@@ -2161,6 +2161,206 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_description'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_description'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_description',
+    'label' => 'Description',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'display_summary' => 0,
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_image_caption'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_image_caption'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_image_caption',
+    'label' => 'Image caption',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_newsletter_image'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_newsletter_image'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+        ),
+        'type' => 'title',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_newsletter_image',
+    'label' => 'Newsletter Image',
+    'required' => 1,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'image' => 'image',
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => -1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_sugar_newsletter_list'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_sugar_newsletter_list'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_sugar_newsletter_list',
+    'label' => 'Sugar Newsletter List',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance: 'fieldable_panels_pane-vs_newsletter-title_field'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-title_field'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -10,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_package_cards-field_component_heading'.
   $field_instances['fieldable_panels_pane-vs_package_cards-field_component_heading'] = array(
     'bundle' => 'vs_package_cards',
@@ -5852,6 +6052,7 @@ function virgin_components_field_default_field_instances() {
   t('Component Heading');
   t('Constrained width');
   t('Content');
+  t('Description');
   t('Event');
   t('Festival');
   t('Gameface ID');
@@ -5865,9 +6066,11 @@ function virgin_components_field_default_field_instances() {
   t('Hootsuite Campaign URL');
   t('Horizontal Scrolling Image');
   t('Image Effect');
+  t('Image caption');
   t('Images');
   t('Layout arrangement');
   t('MyLaps ID');
+  t('Newsletter Image');
   t('Outline Title');
   t('Overlay Video Poster Image');
   t('Overlay Video URL');
@@ -5881,6 +6084,7 @@ function virgin_components_field_default_field_instances() {
   t('Slider Images');
   t('Smaller height');
   t('Subheading');
+  t('Sugar Newsletter List');
   t('Thumbnails');
   t('Tickets');
   t('Title');

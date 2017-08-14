@@ -49,3 +49,6 @@
 
 // Introduction wrapper
 @include vs-region-space('vs-introduction__container-wrapper', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
+
+// Newsletter
+@include vs-region-space('vs-newsletter', rem(40), rem(50), rem(60), rem(70), rem(80), 'padding');
