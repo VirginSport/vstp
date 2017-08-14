@@ -476,9 +476,11 @@ function virgin_region_footer_links() {
         continue;
       }
 
+      // As the URL is printed in the template using the l() function the
+      // title is passed trough check_plain() in there so here we pass it raw
       $items[] = [
         'url' => $link['url'],
-        'title' => check_plain($link['title']),
+        'title' => $link['title'],
       ];
     }
 
