@@ -1314,13 +1314,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'datestamp',
   );
 
-  // Exported field_base: 'field_event'.
-  $field_bases['field_event'] = array(
+  // Exported field_base: 'field_event_reference'.
+  $field_bases['field_event_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_event',
+    'field_name' => 'field_event_reference',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -1349,13 +1349,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_event_reference'.
-  $field_bases['field_event_reference'] = array(
+  // Exported field_base: 'field_event'.
+  $field_bases['field_event'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_event_reference',
+    'field_name' => 'field_event',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',

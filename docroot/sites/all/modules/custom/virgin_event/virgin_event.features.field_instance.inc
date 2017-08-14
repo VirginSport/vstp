@@ -908,7 +908,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 13,
+      'weight' => 17,
     ),
   );
 
@@ -1314,7 +1314,7 @@ function virgin_event_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
