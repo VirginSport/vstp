@@ -149,7 +149,13 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'vars' => array(),
       )
-    ) + $default
+    ) + $default,
+    'virgin_user__hybridauth_details' => array(
+        'template' => 'virgin-user--hybridauth-details',
+        'variables' => array(
+          'vars' => array(),
+        )
+      ) + $default
   );
 }
 
@@ -301,6 +307,11 @@ function virgin_user_menu_alter(&$items) {
     $items[$route]['access callback'] = 'user_access';
     $items[$route]['access arguments'] = array('administer site configuration');
   }
+
+  // Override the Hybridauth aditional info page
+  $items['hybridauth/window/%hybridauth_provider']['page callback'] = 'virgin_user_page_hybridauth_extra';
+  $items['hybridauth/window/%hybridauth_provider']['file'] = $file;
+  $items['hybridauth/window/%hybridauth_provider']['file path'] = $file_path;
 }
 
 /**
@@ -445,10 +456,6 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
     $options = $form[$list_field][LANGUAGE_NONE]['#options'];
     $form[$list_field][LANGUAGE_NONE]['#options'] = array('' => t('Select a value')) + $options;
   }
-}
-
-function virgin_user_form_hybridauth_additional_info_form_alter(&$form, &$form_state, $form_id) {
-  
 }
 
 /**
