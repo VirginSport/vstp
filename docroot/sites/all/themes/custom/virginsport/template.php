@@ -76,6 +76,19 @@ function virginsport_theme($existing, $type, $theme, $path) {
     )
   ) + $default;
 
+  $themes['virginsport_newsletter_form'] = array(
+      'template' => 'virginsport-newsletter-form',
+      'variables' => array(
+        'default_email' => '',
+        'classes' => '',
+        'target_list' => '',
+        'inline_button' => FALSE,
+        'title' => '',
+        'description' => '',
+        'wrapper_classes' => '',
+      )
+    ) + $default;
+
   return $themes;
 }
 

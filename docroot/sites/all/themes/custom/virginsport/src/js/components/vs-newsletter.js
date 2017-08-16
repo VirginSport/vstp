@@ -7,7 +7,7 @@ import blur from '../helper/input-blur';
 
 export default () => {
   // Init vue for page components
-  initVue('.v-element.vs-newsletter');
+  initVue('.v-element.vs-newsletter__content');
   initVue('.v-element.vs-newsletter-footer');
 }
 
