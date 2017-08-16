@@ -253,6 +253,10 @@
     <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
   <?php endif; ?>
 
+  <?php if ($show_checkout_bar): ?>
+    <?php print theme('virginsport_checkout_bar', array('basket_url' => $basket_url)); ?>
+  <?php endif; ?>
+
   <div class="vs-footer">
     <div class="container">
       <div class="row">

@@ -76,6 +76,15 @@ function virginsport_theme($existing, $type, $theme, $path) {
     )
   ) + $default;
 
+  $themes['virginsport_checkout_bar'] = array(
+    'template' => 'virginsport-checkout-bar',
+    'variables' => array(
+      'node' => '',
+      'basket_url' => '',
+      'brand_color' => '',
+    )
+  ) + $default;
+
   return $themes;
 }
 
@@ -159,6 +168,8 @@ function virginsport_preprocess_page(&$vars) {
 
   $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
   $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . '-' . $attendly_env;
+
+  $vars['show_checkout_bar'] = drupal_static(VIRGIN_ATTENDLY_IFRAME_RENDERED);
 
   // Setup the social networks
   $vars['social_networks'] = array();
