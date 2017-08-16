@@ -289,7 +289,7 @@
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
             <li class="vs-footer__menu-item">
-              <a class="vs-footer__menu-item__link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
+              <?php print l($item['title'], $item['url'], array('attributes' => array('class' => array('vs-footer__menu-item__link')))); ?>
             </li>
             <?php endforeach; ?>
           </ul>

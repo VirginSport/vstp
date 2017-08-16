@@ -161,7 +161,7 @@ function virginsport_preprocess_page(&$vars) {
 
   // Setup the menus
   $vars['main_menu'] = virginsport_menu_items('main-menu');
-  $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
+  $vars['footer_menu'] = virgin_region_footer_links();
 
   // Setup attendly basket link counter
   $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
