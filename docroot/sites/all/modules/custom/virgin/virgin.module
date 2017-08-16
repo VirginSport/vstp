@@ -72,6 +72,15 @@ function virgin_menu() {
     'file' => 'virgin.admin.inc',
   );
 
+  $items['admin/config/virgin/google-libraries'] = array(
+    'title' => 'Google Libraries',
+    'description' => 'Google Libraries configuration for the Virgin Sport website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('virgin_admin_google_libraries'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'virgin.admin.inc',
+  );
+
   return $items;
 }
 

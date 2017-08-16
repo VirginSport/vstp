@@ -183,10 +183,10 @@ function virgin_page_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_allowed_types';
   $strongarm->value = array(
-    'results_table-results_table' => TRUE,
+    'attendly_iframe-attendly_iframe' => TRUE,
     'festival_subnav-festival_subnav' => TRUE,
+    'results_table-results_table' => TRUE,
     'contact_form-contact_form' => TRUE,
-    'fieldable_panels_pane-vs_video_banner' => TRUE,
     'fieldable_panels_pane-vs_accordion' => TRUE,
     'fieldable_panels_pane-vs_basic_content_block' => TRUE,
     'fieldable_panels_pane-vs_carousel' => TRUE,
@@ -202,9 +202,10 @@ function virgin_page_strongarm() {
     'fieldable_panels_pane-vs_teaser_block' => TRUE,
     'fieldable_panels_pane-vs_ticket_cards' => TRUE,
     'fieldable_panels_pane-vs_untimed_event_cards' => TRUE,
+    'fieldable_panels_pane-vs_video_banner' => TRUE,
     'fieldable_panels_pane-vs_video_block' => TRUE,
-    'views_panes-vs_upcoming_festivals-vs_upcoming_festivals_pane' => TRUE,
     'views_panes-vs_past_festivals-pane' => TRUE,
+    'views_panes-vs_upcoming_festivals-vs_upcoming_festivals_pane' => TRUE,
   );
   $export['panels_page_allowed_types'] = $strongarm;
 
