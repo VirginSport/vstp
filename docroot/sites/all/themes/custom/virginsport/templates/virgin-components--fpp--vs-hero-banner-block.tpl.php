@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col-xs-12">
                 <?php if (!empty($hero_banner_title)): ?>
-                  <h2 class="vs-hero-banner__title"><?php print $hero_banner_title; ?></h2>
+                  <h1 class="vs-hero-banner__title"><?php print $hero_banner_title; ?></h1>
                 <?php endif; ?>
 
                 <?php if (!empty($hero_banner_subheading)): ?>

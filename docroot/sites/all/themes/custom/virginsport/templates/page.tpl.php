@@ -253,6 +253,10 @@
     <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
   <?php endif; ?>
 
+  <?php if ($show_checkout_bar): ?>
+    <?php print theme('virginsport_checkout_bar', array('basket_url' => $basket_url)); ?>
+  <?php endif; ?>
+
   <div class="vs-footer">
     <div class="container">
       <div class="row">
@@ -285,7 +289,7 @@
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
             <li class="vs-footer__menu-item">
-              <a class="vs-footer__menu-item__link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
+              <?php print l($item['title'], $item['url'], array('attributes' => array('class' => array('vs-footer__menu-item__link')))); ?>
             </li>
             <?php endforeach; ?>
           </ul>

@@ -4,6 +4,8 @@
  * Code for the Virgin Components feature.
  */
 
+define('VIRGIN_ATTENDLY_IFRAME_RENDERED', 'attendly_component_rendered');
+
 include_once 'virgin_components.features.inc';
 
 /**
@@ -79,6 +81,12 @@ function virgin_components_theme() {
         'max_rows' => 10
       ),
       'template' => 'virgin-components__ct__results_table',
+    ),
+    'virgin_components__ct__attendly_iframe' => array(
+      'template'  => 'virgin-components__ct__attendly-iframe',
+      'variables' => array(
+        'url' => '',
+      )
     ),
   );
 }

@@ -17,14 +17,6 @@ let fieldMap = {
   '.date-day select': 'field_date_day',
   '.date-month select': 'field_date_month',
   '.date-year select': 'field_date_year',
-  '#edit-field-marketing-optin input': 'field_marketing_optin',
-  '#edit-field-contact-number input': 'field_contact_number',
-  '#edit-field-address-line-1 input': 'field_address_line_1',
-  '#edit-field-address-line-2 input': 'field_address_line_2',
-  '#edit-field-address-city input': 'field_address_city',
-  '#edit-field-address-state input': 'field_address_state',
-  '#edit-field-address-postcode input': 'field_address_postcode',
-  '#edit-field-address-country select': 'field_address_country'
 };
 
 export default () => {
@@ -38,7 +30,6 @@ export default () => {
     el: selector,
     compiled() {
 
-      this.bindAutocomplete();
       this.bindLists();
       this.populateLists();
       this.setValues();
@@ -113,21 +104,6 @@ export default () => {
             $('[name=' + field + ']').addClass('vs-form-control--not-empty');
           }
         }
-      },
-
-      bindAutocomplete() {
-        let acField = $('#google-autocomplete').get(0);
-
-        places(acField, (p) => {
-          this.profile.field_address_line_1 = `${p.long('street_number')} ${p.long('route')}`.trim();
-          this.profile.field_address_city = p.short('locality');
-          this.profile.field_address_country = p.short('country');
-          this.profile.field_address_state = p.short('administrative_area_level_1');
-          this.profile.field_address_postcode = p.short('postal_code');
-  
-          this.address_manual = true;
-          this.updateChosen();
-        });
       },
 
       /**
@@ -223,13 +199,6 @@ export default () => {
         field_date_year: '',
         field_gender: '',
         field_contact_number: '',
-        field_marketing_optin: '',
-        field_address_line_1: '',
-        field_address_line_2: '',
-        field_address_city: '',
-        field_address_state: '',
-        field_address_postcode: '',
-        field_address_country: []
       }
     }
   });
