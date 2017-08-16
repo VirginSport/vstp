@@ -16,6 +16,7 @@
             name="newsletter-email"
             v-model="form.newsletter_email"
             value="<?php print $default_email; ?>"
+            v-validate:newsletter-email="['required','email']"
           >
           <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
           <div class="vs-newsletter__message-wrapper">

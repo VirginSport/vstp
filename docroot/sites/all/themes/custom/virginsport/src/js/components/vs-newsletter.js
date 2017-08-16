@@ -1,31 +1,11 @@
-import bootstrap from 'bootstrap.native/dist/bootstrap-native';
 import Drupal from '../lib/drupal';
 import Vue from '../lib/vue';
 import $ from '../lib/jquery';
-import url from '../helper/url';
-import blur from '../helper/input-blur';
 
 export default () => {
   // Init vue for page components
   initVue('.v-element.vs-newsletter__content');
   initVue('.v-element.vs-newsletter-footer');
-}
-
-// Vue.validator('email', function (val) {
-//   return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val)
-// })
-
-function mailIsValid(val) {
-  return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val);
-}
-
-/**
- * Generates a random unique identifier
- *
- * @returns {string}
- */
-function id() {
-  return 'vs-newsletter-form-' + (Math.random().toString(36) + '00000000000000000').slice(2, 10 + 2);
 }
 
 /**
@@ -74,7 +54,7 @@ function initVue(selector, inModal = false) {
         this.form.submitted = false;
         this.form.error = false;
 
-        if(!mailIsValid(this.form.newsletter_email)) {
+        if(!this.$vs_newsletter_form_validator.valid) {
           this.invalid_email = true;
           self.waitingSubmit = false;
           return ;
