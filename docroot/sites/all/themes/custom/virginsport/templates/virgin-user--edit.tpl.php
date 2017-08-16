@@ -3,6 +3,8 @@
  * @file
  * User profile edit template.
  */
+
+$is_hybridauth = isset($user->data['hybridauth']);
 ?>
 
 <div class="vs-head-region">
@@ -106,7 +108,7 @@
 
                 <!-- Profile Block -->
                 <validator name="vs_user_profile_validator">
-                <div class="row">
+                <div class="row <?php print $is_hybridauth ? 'no-border' : ''?>">
                   <div class="col-xs-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <div class="row">
                       <div class="col-xs-12 col-md-6">
@@ -177,6 +179,7 @@
                 </div>
                 </validator>
 
+                <?php if (!$is_hybridauth): ?>
                 <!-- Password Block -->
                 <validator name="vs_user_password_validator">
                 <div class="row">
@@ -217,6 +220,7 @@
                   </div>
                 </div>
                 </validator>
+                <?php endif ;?>
                 </form>
             </validator>
           </div>
