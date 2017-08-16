@@ -41,6 +41,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
       'image_style' => '',
       'classes' => '',
       'atom_id' => array(),
+      'use_h1' => FALSE,
     )
   ) + $default;
 
