@@ -453,7 +453,7 @@ function virgin_region_user_hostname() {
  * sets the stored value as default.
  */
 function virgin_region_form_region_node_form_alter(&$form, $form_state) {
-  $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_components_get_newsletter_lists();
+  $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_base_get_newsletter_lists();
 
   if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
     $grapher = new VirginEntityGrapher('node', $form['#entity']);
