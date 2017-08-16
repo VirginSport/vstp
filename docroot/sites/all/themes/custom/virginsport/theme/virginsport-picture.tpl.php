@@ -46,6 +46,7 @@ $image_info = $image_info($image_style, $atom->file_source);
           data-height="<?php print $image_hdpi_info['height']; ?>"
         <?php endif; ?>
       >
+      <?php if ($use_h1): ?><h1><?endif; ?>
       <img
         src="<?php print image_style_url($image_style, $atom->file_source); ?>"
         class="<?php print empty($image_classes) ? '' : $image_classes; ?>"
@@ -55,6 +56,7 @@ $image_info = $image_info($image_style, $atom->file_source);
           data-height="<?php print $image_info['height']; ?>"
         <?php endif; ?>
       >
+      <?php if ($use_h1): ?></h1><?endif; ?>
     </picture>
 
     <?php if ($placeholder): ?>
