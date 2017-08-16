@@ -250,44 +250,6 @@ vs-footer,
   }
 }
 
-.vs-newsletter-footer__form-group {
-  position: relative;
-  max-width: rem(348);
-  margin-bottom: 0;
-}
-
-.vs-newsletter-footer__title {
-  color: $c-orange-bright;
-  font-size: rem(18);
-  margin-bottom: rem(14);
-  text-transform: uppercase;
-  padding-left: rem(15);
-
-  @include media-breakpoint-up(md) {
-    padding-left: 0;
-  }
-}
-
-.vs-newsletter-footer__message-wrapper {
-  min-height: rem(46);
-  padding-top: rem(4);
-}
-
-.vs-newsletter-footer__btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 0 rem(4) rem(4) 0;
-  height: rem(50);
-}
-
-.vs-newsletter-footer__message {
-  font-size: rem(12);
-  color: rgba($c-black, .6);
-  line-height: rem(24);
-  margin: rem(8) 0 rem(34);
-}
-
 
 // Modifiers
 // ----------------------------------------------------------------------------
