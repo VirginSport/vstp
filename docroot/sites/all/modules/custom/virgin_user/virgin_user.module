@@ -362,6 +362,10 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
   $form['field_address_postcode']['#access'] = FALSE;
   $form['field_contact_number']['#access'] = FALSE;
 
+  // Marketing optin asked to be removed
+  $form['field_marketing_optin']['#access'] = FALSE;
+
+
   // Ensure the email fields ordering
   $form['account']['mail']['#weight'] = -2;
   $form['account']['mail_confirm']['#weight'] = -1;
@@ -404,25 +408,21 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   $form['field_gender']['#access'] = FALSE;
   $form['field_birth_date']['#access'] = FALSE;
 
-  // The other medical conditions field is only visible when
-  // the user has picked the 'Other' option in the medical
-  // conditions field.
-  $form['field_medical_conditions_other']['#states'] = array(
-    'visible' => array(
-      ':input[name="field_medical_conditions[und]"]' => array('value' => 'Other')
-    )
-  );
+  // Fields asked to be removed
+  $form['field_marketing_optin']['#access'] = FALSE;
+  $form['field_medical_conditions']['#access'] = FALSE;
+  $form['field_medical_conditions_other']['#access'] = FALSE;
+  $form['field_medications']['#access'] = FALSE;
+  $form['field_allergies']['#access'] = FALSE;
+  $form['field_agree_share_medical_info']['#access'] = FALSE;
+  $form['field_address_line_1']['#access'] = FALSE;
+  $form['field_address_line_2']['#access'] = FALSE;
+  $form['field_address_city']['#access'] = FALSE;
+  $form['field_address_state']['#access'] = FALSE;
+  $form['field_address_postcode']['#access'] = FALSE;
+  $form['field_address_country']['#access'] = FALSE;
 
-  // If any medical information has been submitted, then
-  // the user must agree to share his medical info.
-  $form['field_agree_share_medical_info']['#states'] = array(
-    'required' => array(
-      ':input[name="field_medical_conditions[und]"]' => array('!value' => "_none"),
-      ':input[name="field_medical_conditions_other[und]"]' => array('filled' => TRUE),
-      ':input[name="field_medications[und]"]' => array('filled' => TRUE),
-      ':input[name="field_allergies[und]"]' => array('filled' => TRUE),
-    )
-  );
+
 
   // Ensure the password follows certain criteria
   $form['account']['current_pass']['#element_validate'][] = 'virgin_user_password_validate';
