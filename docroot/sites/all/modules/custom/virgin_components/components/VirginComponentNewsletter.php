@@ -28,14 +28,14 @@ class VirginComponentNewsletter implements VirginComponentsInterface {
    * {@inheritdoc}
    */
   public function preProcess(&$variables) {
+    global $user;
+
     if (empty($variables['elements']['#fieldable_panels_pane'])) {
       return;
     }
 
     $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
     $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
-
-    global $user;
 
     // If the user is logged in the default value should be his email
     $variables['default_email'] = !user_is_anonymous() > 0 ? $user->mail : FALSE;
