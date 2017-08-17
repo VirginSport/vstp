@@ -471,6 +471,20 @@ function virgin_user_hybridauth_profile_alter(&$profile) {
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter() for the hybridauth additional info
+ * form
+ *
+ * If the gender is asked than print it as a select list instead of radios
+ * because it is easier to manipulate in the template.
+ *
+ */
+function virgin_user_form_hybridauth_additional_info_form_alter(&$form, &$form_state) {
+  if (isset($form['fset']['gender'])) {
+    $form['fset']['gender']['#type'] = 'select';
+  }
+}
+
+/**
  * Implements hook_hybridauth_userinfo_alter().
  *
  * Maps the user profile information from the social network at registration
