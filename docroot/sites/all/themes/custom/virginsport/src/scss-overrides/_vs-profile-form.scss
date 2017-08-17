@@ -51,9 +51,13 @@
 
 .vs-user-login__label {
   text-align: center;
-  font-size: .9375rem;
+  font-size: .75rem;
   color: $c-black;
   padding-bottom: 1.25rem;
+
+  @include media-breakpoint-up(md) {
+    font-size: .9375rem;
+  }
 }
 
 .vs-user-profile-form--head {

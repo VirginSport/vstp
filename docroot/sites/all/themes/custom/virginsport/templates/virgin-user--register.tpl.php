@@ -160,7 +160,6 @@ $query = drupal_get_query_parameters();
                           </validator>
 
                           <div class="field-gender vs-form-group vs-form-group--radio-buttons vs-form-group--radio-buttons--inline" :class="{ 'vs-has-error': ($vs_user_register_validator.field_gender.dirty || submitted) && !$vs_user_register_validator.field_gender.valid }">
-                            <label class="vs-label" for="field_gender"><?php print t('Gender'); ?>*</label>
                             <div class="vs-form-radio">
                               <input class="vs-form-input vs-form-input--radio" v-model="profile.field_gender" id="gender_female" name="field_gender" tabindex="1" type="radio" value="female" v-validate:field_gender="['required']">
                               <label class="vs-form-label vs-form-label--radio" for="gender_female"><?php print t('Female'); ?></label>

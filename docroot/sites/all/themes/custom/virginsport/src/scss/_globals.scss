@@ -8,6 +8,18 @@ body {
   overflow-x: hidden;
 }
 
+.vs-content-wrapper {
+  border-radius: .625rem;
+  margin-left: -.625rem;
+  margin-right: -.625rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.vs-content-wrapper--white {
+  background-color: $c-white;
+}
+
 .page-wrapper {
   position: relative;
   min-height: 100%;
