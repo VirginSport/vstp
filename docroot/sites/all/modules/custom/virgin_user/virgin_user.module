@@ -536,6 +536,34 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
 }
 
 /**
+ * Implements hook_hybridauth_identity_added().
+ *
+ * If an identify is added notify the observer to write it to sugar
+ *
+ */
+function virgin_user_hybridauth_identity_added($account, $data) {
+  // Since the identifier isn't in the account object yet we inject it
+  if ($data['provider'] == 'Facebook') {
+    $account->data['hybridauth']['identifier'] = $data['identifier'];
+    virgin_user_observer_notify($account);
+  }
+}
+
+/**
+ * Implements hook_hybridauth_identity_deleted().
+ *
+ * If an identify is removed notify the observer to write it to sugar
+ *
+ */
+function virgin_user_hybridauth_identity_deleted($account, $data) {
+  // Since the identifier is still in the account object we remove it
+  if ($data['provider'] == 'Facebook' && isset($account->data['hybdridauth'])) {
+    unset($account->data['hybridauth']);
+    virgin_user_observer_notify($account);
+  }
+}
+
+/**
  * Validation callback for password field
  */
 function virgin_user_password_validate($element, $form_state) {
