@@ -46,7 +46,7 @@
                     <div class="vs-form-group">
                       <input class="form-control" type="email" v-model="profile.field_mail" name="field_mail" id="field_mail" v-validate:field_email="['required','email']">
                       <label class="vs-focus-label" for="field_mail"><?php print t('Email Address'); ?>*</label>
-                      <div class="vs-error-label" v-if="$vs_user_hybridauth_validator.field_email.required"><?php print t('Email is required'); ?></div>
+                      <div class="vs-error-label" v-if="($vs_user_hybridauth_validator.dirty || submitted) && $vs_user_hybridauth_validator.field_email.required""><?php print t('Email is required'); ?></div>
                       <div class="vs-error-label" v-if="!$vs_user_hybridauth_validator.field_email.required && $vs_user_hybridauth_validator.field_email.email"><?php print t('Email is not valid'); ?></div>
                     </div>
                     <?php endif; ?>
