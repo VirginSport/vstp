@@ -38,7 +38,7 @@ class VirginComponentNewsletter implements VirginComponentsInterface {
     $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
 
     // If the user is logged in the default value should be his email
-    $variables['default_email'] = $user->uid > 0 ? $user->mail : FALSE;
+    $variables['default_email'] = !user_is_anonymous() ? $user->mail : FALSE;
     $variables['title'] = $virgin->property("title");
     $variables['description'] = $virgin->fieldGetOne('field_description');
     $variables['list'] = $virgin->fieldGetOne('field_sugar_newsletter_list');
