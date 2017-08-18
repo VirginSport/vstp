@@ -72,9 +72,9 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   // Since before the rule was 14 days before, in old events where the field is
   // not defined respect the old rule
   $days_for_event = ($event_start_date - $now) / (60 * 60 * 24);
-  $edit_ticket_end_date = $event_grapher->fieldGetOne('	field_hide_ticket_link');
+  $edit_ticket_end_date = $event_grapher->fieldGetOne('field_hide_ticket_link', FALSE);
 
-  $vars['ticket_is_editable'] = ($edit_ticket_end_date == NULL && $days_for_event > 14) || $edit_ticket_end_date < $now;
+  $vars['ticket_is_editable'] = ($edit_ticket_end_date && $edit_ticket_end_date > $now) || (!$edit_ticket_end_date && $days_for_event > 14);
 }
 
 /**
