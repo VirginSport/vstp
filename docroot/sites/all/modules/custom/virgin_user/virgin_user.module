@@ -540,10 +540,15 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
  *
  * If an identify is added notify the observer to write it to sugar
  *
+ * This step is needed because the hybridauth module doens't save the user
+ * entity on facebook identity add.
+ *
  */
 function virgin_user_hybridauth_identity_added($account, $data) {
-  // Since the identifier isn't in the account object yet we inject it
-  if ($data['provider'] == 'Facebook') {
+  // If the identifier is not in account, inject it
+  // In account creation the hybridauth data comes already in the account obj
+  // so we avoid double notification
+  if ($data['provider'] == 'Facebook' && !isset($account->data['hybridauth'])) {
     $account->data['hybridauth']['identifier'] = $data['identifier'];
     virgin_user_observer_notify($account);
   }
