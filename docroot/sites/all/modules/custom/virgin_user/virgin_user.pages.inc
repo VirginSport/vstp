@@ -455,7 +455,7 @@ function virgin_user_page_ajax_newsletter_form_post() {
 
   $params = array(
     'target_list' => $data['list'],
-	  'email' => $data['newsletter_email'],
+    'email' => $data['newsletter_email'],
   );
 
   try {
