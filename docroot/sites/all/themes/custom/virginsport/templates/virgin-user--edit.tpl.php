@@ -4,7 +4,6 @@
  * User profile edit template.
  */
 
-$is_hybridauth = isset($user->data['hybridauth']);
 ?>
 
 <div class="vs-head-region">
