@@ -56,12 +56,9 @@ $query = drupal_get_query_parameters();
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="vs-user-login--form">
                   <div class="vs-user-form__wrapper">
-                    <?php
-                      $element['#type'] = 'hybridauth_widget';
-                      print drupal_render($element);
-                    ?>
+                    <?php print drupal_render($hybridauth_widget); ?>
                     <div class="vs-user-login__separator"></div>
-                    <p class="vs-user-login__label">Or with an email address</p>
+                    <p class="vs-user-login__label"><?php print t('Or with an email address'); ?></p>
                   </div>
                   
                   <div class="vs-user-login--form" v-on:keyup.enter="submit">
