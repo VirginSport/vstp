@@ -481,6 +481,7 @@ function virgin_region_footer_links() {
       $items[] = [
         'url' => $link['url'],
         'title' => $link['title'],
+        'visible' => $link['attributes']['virgin_show']
       ];
     }
 
