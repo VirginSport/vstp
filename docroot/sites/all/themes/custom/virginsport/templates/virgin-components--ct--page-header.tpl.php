@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-xs-12">
           <?php if (!empty($title)): ?>
-            <h2 class="vs-hero-banner__title"><?php print $title; ?></h2>
+            <h1 class="vs-hero-banner__title"><?php print $title; ?></h1>
           <?php endif; ?>
 
           <?php if (!empty($body)): ?>

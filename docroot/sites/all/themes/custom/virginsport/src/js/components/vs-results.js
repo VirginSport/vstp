@@ -124,14 +124,20 @@ function initVueComponent($el) {
           if (result.data) {
             this.event = result.data;
 
-            let firstRace = this.event.races.length ? this.event.races[0] : {};
+            let firstRace = this.event.races.length ? this.event.races[0] : null;
             let race = null;
 
+            // Get correspondent race if event id is avaliable
             if (this.eventId) {
               race = this.getRace(this.eventId);
             }
 
-            this.filter.race = race ? race : firstRace;
+            // Fallback filter to first race if filters are available and race is not yet defined
+            if (this.hasFilter && !race) {
+              race = firstRace;
+            }
+
+            this.filter.race = race;
 
             if (!this.ticketId) {
               this.findRaceResults();
@@ -207,13 +213,16 @@ function initVueComponent($el) {
         let params = { params: filter };
         params.params.gender = 'male';
 
+        // Check if race is available
+        let raceId = this.filter.race ? this.filter.race.id : null;
+
         // Get male results
-        getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
+        getRacedayRace(raceDayUrl, this.festivalId, raceId, params).then((result) => {
           this.genderRanks.male = result.data;
           params.params.gender = 'female';
 
           // Get female results
-          getRacedayRace(raceDayUrl, this.festivalId, this.filter.race.id, params).then((result) => {
+          getRacedayRace(raceDayUrl, this.festivalId, raceId, params).then((result) => {
             this.genderRanks.female = result.data;
 
             this.loading[loadingProperty] = true;

@@ -314,7 +314,14 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
             '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
           ),
         ),
-      )
+      ),
+      'required' => array(
+        array(
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+          )
+        )
+      ),
     )
   );
 
@@ -328,10 +335,6 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
       'visible' => array(
         array(
           '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
-        ),
-        'or',
-        array(
-          '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
         ),
       )
     )

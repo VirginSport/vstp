@@ -41,6 +41,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
       'image_style' => '',
       'classes' => '',
       'atom_id' => array(),
+      'use_h1' => FALSE,
     )
   ) + $default;
 
@@ -73,6 +74,15 @@ function virginsport_theme($existing, $type, $theme, $path) {
       'classes' => '',
       'label' => '',
       'url' => '',
+    )
+  ) + $default;
+
+  $themes['virginsport_checkout_bar'] = array(
+    'template' => 'virginsport-checkout-bar',
+    'variables' => array(
+      'node' => '',
+      'basket_url' => '',
+      'brand_color' => '',
     )
   ) + $default;
 
@@ -110,6 +120,10 @@ function virginsport_preprocess_html(&$vars) {
 
   // Add collected google tag manager data layer events
   $vars['data_layer_events'] = virgin_gtm()->get();
+
+  // Add the Google Libraries defined
+  $vars['ua_code'] = variable_get('ua_code', '');
+  $vars['gtm_code'] = variable_get('gtm_code', '');
 }
 
 /**
@@ -147,7 +161,7 @@ function virginsport_preprocess_page(&$vars) {
 
   // Setup the menus
   $vars['main_menu'] = virginsport_menu_items('main-menu');
-  $vars['footer_menu'] = virginsport_menu_items('menu-footer-menu');
+  $vars['footer_menu'] = virgin_region_footer_links();
 
   // Setup attendly basket link counter
   $attendly_url = variable_get(VIRGIN_VAR_ATTENDLY_URL);
@@ -155,6 +169,8 @@ function virginsport_preprocess_page(&$vars) {
 
   $vars['basket_url'] = sprintf('%s/e/checkout', $attendly_url);
   $vars['basket_cookie'] = empty($attendly_env) ? VIRGIN_USER_ATTENDLY_ITEMS_COOKIE : VIRGIN_USER_ATTENDLY_ITEMS_COOKIE . '-' . $attendly_env;
+
+  $vars['show_checkout_bar'] = drupal_static(VIRGIN_ATTENDLY_IFRAME_RENDERED);
 
   // Setup the social networks
   $vars['social_networks'] = array();

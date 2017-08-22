@@ -60,10 +60,10 @@
         <div class="col-xs-12">
           <?php if(!empty($logo)): ?>
             <div class="vs-hero-banner__logo">
-              <?php print theme('virginsport_picture', array('placeholder' => FALSE, 'atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo')); ?>
+              <?php print theme('virginsport_picture', array('placeholder' => FALSE, 'atom_id' => $logo->property('sid'), 'image_style' => 'virgin_original', 'image_classes' => 'img-fluid vs-hero-banner__logo', 'use_h1' => TRUE)); ?>
             </div>
           <?php else: ?>
-            <h2 class="vs-hero-banner__title"><?php print check_plain($title); ?></h2>
+            <h1 class="vs-hero-banner__title"><?php print check_plain($title); ?></h1>
           <?php endif; ?>
           <div class="vs-hero-banner__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone); ?></div>
 
