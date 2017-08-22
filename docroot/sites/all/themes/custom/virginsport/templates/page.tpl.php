@@ -288,10 +288,12 @@
         <div class="col-xs-12 col-md-10 col-lg-6 col-xl-6">
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
-              <?php if ($item['visible']): ?>
-                <li class="vs-footer__menu-item">
-                  <?php print l($item['title'], $item['url'], array('attributes' => array('class' => array('vs-footer__menu-item__link')))); ?>
-                </li>
+              <?php if (!empty($item['visible'])): ?>
+                <?php if ($item['visible']): ?>
+                  <li class="vs-footer__menu-item">
+                    <?php print l($item['title'], $item['url'], array('attributes' => array('class' => array('vs-footer__menu-item__link')))); ?>
+                  </li>
+                <?php endif; ?>
               <?php endif; ?>
             <?php endforeach; ?>
           </ul>
