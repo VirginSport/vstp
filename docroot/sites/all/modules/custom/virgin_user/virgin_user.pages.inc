@@ -506,14 +506,20 @@ function virgin_user_page_ajax_form_post() {
     'type' => $data['type'],
     'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
-    'first_name' => $data['first_name'],
-    'last_name' => $data['last_name'],
-    'contact_number' => $data['contact_number'],
-    'message' => $data['message'],
     'festival' => '',
-    'events' => array()
   );
 
+  if ($data['type'] != 'interested_in') {
+    $params += array(
+      'email' => $data['email'],
+      'first_name' => $data['first_name'],
+      'last_name' => $data['last_name'],
+      'contact_number' => $data['contact_number'],
+      'message' => $data['message'],
+      'events' => array(),
+    );
+  }
+  
   if (!empty($data['festival_id'])) {
     $festival = node_load((int) $data['festival_id']);
 

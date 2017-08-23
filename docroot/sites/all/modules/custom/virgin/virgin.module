@@ -72,6 +72,15 @@ function virgin_menu() {
     'file' => 'virgin.admin.inc',
   );
 
+  $items['admin/config/virgin/google-libraries'] = array(
+    'title' => 'Google Libraries',
+    'description' => 'Google Libraries configuration for the Virgin Sport website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('virgin_admin_google_libraries'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'virgin.admin.inc',
+  );
+
   return $items;
 }
 
@@ -169,6 +178,17 @@ function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) 
 
   if ($page_callback_result == MENU_ACCESS_DENIED) {
     virgin_gtm()->addError(sprintf('You are not authorized to access the page "%s".', $path));
+  }
+}
+
+/**
+ * Implements hook_filter_default_formats_alter().
+ */
+function virgin_filter_default_formats_alter( &$formats ) {
+  foreach ($formats as $key => $format) {
+    if (empty($format['filters']['filter_html']['settings']['allowed_html'])) continue;
+  
+    $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <br>';
   }
 }
 

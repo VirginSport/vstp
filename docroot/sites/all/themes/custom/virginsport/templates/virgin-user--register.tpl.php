@@ -170,13 +170,6 @@ $query = drupal_get_query_parameters();
                             </div>
                             <div class="vs-error-label d-block" v-if="($vs_user_register_validator.field_gender.dirty || submitted) && $vs_user_register_validator.field_gender.required"><?php print t('Gender is required'); ?></div>
                           </div>
-
-                          <div class="field-marketing vs-form-group vs-form-group--checkboxes">
-                            <div class="vs-form-check">
-                              <input class="vs-form-input vs-form-input--check" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin">
-                              <label class="vs-form-label vs-form-label--check" for="field_marketing_optin"><?php print t("Tick this lovely little box if you are game to receive updates on Virgin Sport events, products and partners. If our emails aren't your cup of tea, you can always opt out later."); ?></label>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>

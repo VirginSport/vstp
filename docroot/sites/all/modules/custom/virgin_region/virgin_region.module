@@ -445,3 +445,49 @@ function virgin_region_user_hostname() {
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
 }
+
+
+/**
+ * Get the current active region footer visible links
+ *
+ * @return array|null
+ *  NULL if no region matches the current URL or a structured array with the
+ *  following keys if does:
+ *  - url: The url of the link
+ *  - title: The escaped title of the link
+ *  - active: A boolean indicating if the link is active
+ */
+function virgin_region_footer_links() {
+  $current_region = virgin_region_current();
+
+  if (!$current_region) {
+    return array();
+  }
+
+  $menu_items = &drupal_static(__FUNCTION__, array());
+
+  if (!isset($menu_items[$current_region['nid']])) {
+    $region = node_load($current_region['nid']);
+    $g = new VirginEntityGrapher('node', $region);
+    $items = array();
+
+    foreach($g->fieldGetAll('field_links') as $link) {
+      if (isset($link['attributes']['virgin_show']) && !$link['attributes']['virgin_show']) {
+        continue;
+      }
+
+      // As the URL is printed in the template using the l() function the
+      // title is passed trough check_plain() in there so here we pass it raw
+      $items[] = [
+        'url' => $link['url'],
+        'title' => $link['title'],
+        'visible' => !empty($link['attributes']['virgin_show'])
+      ];
+    }
+
+    $menu_items[$current_region['nid']] = $items;
+  }
+
+  return $menu_items[$current_region['nid']];
+}
+
