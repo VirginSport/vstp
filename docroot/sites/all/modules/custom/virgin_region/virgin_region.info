@@ -17,6 +17,7 @@ features[field_instance][] = node-region-field_flag_image
 features[field_instance][] = node-region-field_hostname
 features[field_instance][] = node-region-field_icon_image
 features[field_instance][] = node-region-field_links
+features[field_instance][] = node-region-field_sugar_newsletter_list
 features[field_instance][] = node-region-title_field
 features[node][] = region
 features[panelizer_defaults][] = node:region:default
