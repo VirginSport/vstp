@@ -68,6 +68,13 @@ function virgin_components_update_7007() {
 }
 
 /**
++ * Allow to insert Newsletter fpp
++ */
+function virgin_components_update_7008() {
+  virgin_components_allow_type('fieldable_panels_pane-vs_newsletter');
+}
+
+/**
  * Allow component to be added in frontend
  *
  * @param $type
