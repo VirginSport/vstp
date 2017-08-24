@@ -113,7 +113,7 @@ $replay_url = $grapher->fieldGetOne('field_replay_url', '', 'url');
           <div class="col-xs-12 col-md-7 col-lg-8 vs-card-past__content">
             <h4 class="vs-card-past__title"><?php print check_plain($title); ?></h4>
             <div class="vs-card-past__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone); ?></div>
-            <p class="vs-card-past__text"><?php print strip_tags($past_description); ?></p>
+            <p class="vs-card-past__text"><?php print strip_tags($past_description,'<br>'); ?></p>
           </div>
 
           <div class="col-xs-12 col-md-5 col-lg-4 vs-card-past__ctas-content">
