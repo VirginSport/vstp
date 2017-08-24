@@ -118,7 +118,7 @@ if (!empty($view) && isset($view->row_index)) {
 
           <?php if (!empty($grapher->fieldRendered('field_description'))): ?>
             <p class="vs-card-upcoming__text">
-                <?php print strip_tags($grapher->fieldRendered('field_description')); ?>
+                <?php print strip_tags($grapher->fieldRendered('field_description'),'<br>'); ?>
             </p>
           <?php endif; ?>
 
