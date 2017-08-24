@@ -67,7 +67,6 @@ vs-newsletter,
     left: 0;
     width: 1.25rem;
     height: 0.125rem;
-    background-color: $c-orange-bright;
   }
 
   @include media-breakpoint-up(lg) {
@@ -93,7 +92,6 @@ vs-newsletter,
   line-height: rem(18);
   display: inline-block;
   padding-bottom: rem(35);
-  opacity: .6;
   max-width: rem(285);
 
   @include media-breakpoint-up(lg) {
@@ -119,7 +117,6 @@ vs-newsletter,
 
 .vs-newsletter__input {
   @include transition(background-color .5s ease-in-out);
-  background-color: transparent;
   color: rgba($c-black, .6);
 
   &:focus {
@@ -128,7 +125,6 @@ vs-newsletter,
 }
 
 .vs-newsletter__button-wrapper {
-  //margin-top: rem(30);
   margin-bottom: rem(43);
 
   @include media-breakpoint-up(md) {
@@ -171,22 +167,20 @@ vs-newsletter,
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
-  .vs-newsletter--color-#{$color} {
-    .vs-newslettter__title:after {
-      background-color: map_get($map, 'solid-color');
-    }
-
-    .vs-newslettter__title,
-    .vs-newslettter__text {
-      color: map_get($map, 'text-color');
-    }
-  }
-
   .vs-region--gradient-#{$color} vs-newsletter,
   .vs-region--gradient-#{$color} .vs-newsletter {
     .vs-newslettter__title,
     .vs-newslettter__text {
       color: map_get($map, 'text-color');
+    }
+
+    .vs-newslettter__title:after {
+      background-color: map_get($map, 'solid-color');
+    }
+
+    .vs-newsletter__input {
+      background-color: map_get($map, 'input-color');
+      border-color: map_get($map, 'input-border-color');
     }
   }
 }
