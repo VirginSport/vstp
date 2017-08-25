@@ -284,7 +284,7 @@ function virgin_region_current() {
     }
   }
 
-  return null;
+  return array();
 }
 
 /**
@@ -514,12 +514,13 @@ function virgin_region_form_region_node_form_alter(&$form, $form_state) {
  *  The current region footer newsletter list
  */
 function virgin_region_get_current_region_newsletter_list() {
-  $newsletter_list = &drupal_static(__FUNCTION__);
+  $newsletter_list = &drupal_static(__FUNCTION__, array());
 
   if (!$newsletter_list) {
     $region = virgin_region_current();
-
     $region_node = node_load($region['nid']);
+
+    if (empty($region_node)) return $newsletter_list;
 
     $grapher = new VirginEntityGrapher('node', $region_node);
 
