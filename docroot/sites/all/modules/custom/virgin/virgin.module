@@ -595,7 +595,11 @@ function virgin_date($timestamp, $tz_to = 'UTC', $tz_from = 'UTC') {
 
   $date = new \DateTime('now', $tz_from);
 
-  return $date->setTimestamp($timestamp)->setTimezone($tz_to);
+  if (!empty($timestamp)) {
+    $date->setTimestamp($timestamp);
+  }
+
+  return $date->setTimezone($tz_to);
 }
 
 /**
