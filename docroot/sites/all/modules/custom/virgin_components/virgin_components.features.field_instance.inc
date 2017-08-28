@@ -5514,6 +5514,51 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'paragraphs_item-vs_ticket_card-field_cta_copy'.
+  $field_instances['paragraphs_item-vs_ticket_card-field_cta_copy'] = array(
+    'bundle' => 'vs_ticket_card',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_cta_copy',
+    'label' => 'CTA Copy',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance:
   // 'paragraphs_item-vs_ticket_card-field_ticket_reference'.
   $field_instances['paragraphs_item-vs_ticket_card-field_ticket_reference'] = array(
@@ -6037,6 +6082,7 @@ function virgin_components_field_default_field_instances() {
   t('Banners');
   t('Brand Color');
   t('CTA Blocks');
+  t('CTA Copy');
   t('CTA Description');
   t('CTA Type');
   t('Call to action button');
