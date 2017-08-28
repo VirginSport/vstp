@@ -155,7 +155,7 @@
         <ul class="vs-header__nav">
           <?php foreach ($main_menu as $item): ?>
             <li class="vs-header__nav-item">
-              <a class="vs-header__nav-link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
+              <a class="vs-header__nav-link <?php print $item['classes']; ?>" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
             </li>
           <?php endforeach; ?>
         </ul>

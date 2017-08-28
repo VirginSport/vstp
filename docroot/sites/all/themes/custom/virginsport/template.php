@@ -265,10 +265,13 @@ function virginsport_menu_items($menu_name) {
     foreach ($tree as $key => $branch) {
       if (!is_numeric($key)) continue; // Skip render array properties
 
+      $classes = virginsport_is_register_link($branch['#href']) ? 'register' : '';
+
       $items[] = array(
         'url' => url($branch['#href']),
         'title' => check_plain($branch['#title']),
-        'active' => (bool) $branch['#original_link']['in_active_trail']
+        'active' => (bool) $branch['#original_link']['in_active_trail'],
+        'classes' => $classes,
       );
     }
 
@@ -276,6 +279,21 @@ function virginsport_menu_items($menu_name) {
   }
 
   return $menu_items[$menu_name];
+}
+
+
+/**
+ * Checks if the given url is the register link
+ *
+ * @param $link
+ *  The link to be checked
+ *
+ * @return bool
+ *  - TRUE - if the register URL is the given
+ *  - FALSE - otherwise
+ */
+function virginsport_is_register_link($link) {
+  return $link == 'user/register';
 }
 
 /**
