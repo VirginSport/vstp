@@ -10,14 +10,19 @@ vs-notification,
 // Elements
 // ----------------------------------------------------------------------------
 .vs-notification__wrapper {
-  background-color: #d7d7d7;
+  background: rgba($c-black, .8) url('../img/festival-alert-icon.svg') no-repeat .9375rem 1.125rem;
   display: none;
-  color: rgba($c-black, .8);
+  color: rgba($c-white, .8);
   font-size: .75rem;
   padding: 1.375rem 1.5625rem;
   text-align: center;
   position: relative;
   width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    background-size: 1.25rem;
+    background-position: .9375rem .625rem;
+  }
 }
 
 .vs-notification__close {
@@ -26,10 +31,6 @@ vs-notification,
   top: .625rem;
   right: .625rem;
 
-  .vs-notification--sticky & .vs-notification__close-icon {
-    fill: $c-white;
-  }
-
   &:hover {
     opacity: .7;
   }
@@ -37,6 +38,10 @@ vs-notification,
 
 .vs-notification__message {
   font-weight: 500;
+}
+
+.vs-notification__close-icon {
+  fill: $c-white;
 }
 
 
@@ -70,6 +75,7 @@ vs-notification,
 }
 
 .vs-notification__wrapper--close {
+  padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
 
@@ -89,6 +95,7 @@ vs-notification,
   }
 
   .vs-notification__wrapper--close {
+    padding-left: 3.5rem;
     padding-right: 3.5rem;
   }
 }
