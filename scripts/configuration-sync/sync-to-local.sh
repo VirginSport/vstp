@@ -43,7 +43,7 @@ then
   # Local development configuration
   echo 'Disabling modules for local development'
   echo #
-  drush $LOCAL_ALIAS en $DRUPAL_DISABLE_MODULES --y
+  drush $LOCAL_ALIAS dis $DRUPAL_DISABLE_MODULES --y
 fi
 
 source shared-drush-conf.sh

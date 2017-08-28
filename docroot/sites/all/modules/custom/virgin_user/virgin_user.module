@@ -258,6 +258,14 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['ajax/newsletter-form/post'] = array(
+    'title' => 'Form',
+    'page callback' => 'virgin_user_page_ajax_newsletter_form_post',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 
@@ -683,11 +691,13 @@ function virgin_user_user_login(&$edit, $account) {
       $current_region = virgin_region_current();
       $prefered_hostname = virgin_region_user_hostname();
 
+      $hostname = empty($current_region['hostname']) ? NULL : $current_region['hostname'];
+
       // Ensure the basket hostname cookie is set to the current region
-      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $current_region['hostname']);
+      virgin_cookie_set(VIRGIN_USER_BASKET_COOKIE, $hostname);
 
       // Add the required query parameter to open the regional switch modal
-      if ($current_region['hostname'] != $prefered_hostname) {
+      if ($hostname != $prefered_hostname) {
         $destination = empty($_GET['destination']) ? $edit['redirect'] : $_GET['destination'];
         $params = parse_url($destination, PHP_URL_QUERY);
 

@@ -59,7 +59,9 @@ $color-schemes: (
     outline-from: #F0F0F0,
     outline-to: #F0F0F0,
     outline-rotate: 0%,
-    is-solid: true
+    is-solid: true,
+    input-color: transparent,
+    input-border-color: rgba($c-black, .2)
   ),
   black: (
     solid-color: $c-black,
@@ -71,7 +73,9 @@ $color-schemes: (
     outline-from: $c-black,
     outline-to: $c-black,
     outline-rotate: 0%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   gray: (
     solid-color: #F0F0F0,
@@ -83,7 +87,9 @@ $color-schemes: (
     outline-from: #F0F0F0,
     outline-to: #F0F0F0,
     outline-rotate: 0%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: rgba($c-black, .2)
   ),
   gray-dark: (
     solid-color: #E0E0E0,
@@ -95,7 +101,9 @@ $color-schemes: (
     outline-from: #E0E0E0,
     outline-to: #E0E0E0,
     outline-rotate: 0%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   white: (
     solid-color: $c-white,
@@ -108,7 +116,9 @@ $color-schemes: (
     outline-from: $c-white,
     outline-to: $c-white,
     outline-rotate: 0%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: rgba($c-black, .2)
   ),
   blue: (
     solid-color: $c-blue,
@@ -120,7 +130,9 @@ $color-schemes: (
     outline-from: #1F85FF,
     outline-to: #4231CB,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   blue-solid: (
     solid-color: $c-blue,
@@ -132,7 +144,9 @@ $color-schemes: (
     outline-from: $c-blue,
     outline-to: $c-blue,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   teal: (
     solid-color: $c-teal,
@@ -144,7 +158,9 @@ $color-schemes: (
     outline-from: #01B9C0,
     outline-to: #001642,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   teal-solid: (
     solid-color: $c-teal,
@@ -156,7 +172,9 @@ $color-schemes: (
     outline-from: $c-teal,
     outline-to: $c-teal,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   orange: (
     solid-color: $c-orange,
@@ -168,7 +186,9 @@ $color-schemes: (
     outline-from: #FE386,
     outline-to: #FF5858,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   orange-solid: (
     solid-color: $c-orange,
@@ -180,7 +200,9 @@ $color-schemes: (
     outline-from: $c-orange,
     outline-to: $c-orange,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   purple: (
     solid-color: $c-purple,
@@ -192,7 +214,9 @@ $color-schemes: (
     outline-from: #9D50BB,
     outline-to: #3A2899,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   purple-solid: (
     solid-color: $c-purple,
@@ -204,7 +228,9 @@ $color-schemes: (
     outline-from: $c-purple,
     outline-to: $c-purple,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   brown: (
     solid-color: $c-brown,
@@ -216,7 +242,9 @@ $color-schemes: (
     outline-from: #840324,
     outline-to: #061161,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   brown-solid: (
     solid-color: $c-brown,
@@ -228,7 +256,9 @@ $color-schemes: (
     outline-from: $c-brown,
     outline-to: $c-brown,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   rose: (
     solid-color: $c-rose,
@@ -240,7 +270,9 @@ $color-schemes: (
     outline-from: #F857A6,
     outline-to: #FF5858,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   rose-solid: (
     solid-color: $c-rose,
@@ -252,7 +284,9 @@ $color-schemes: (
     outline-from: $c-rose,
     outline-to: $c-rose,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   violet: (
     solid-color: $c-violet,
@@ -264,7 +298,9 @@ $color-schemes: (
     outline-from: #FB8B5F,
     outline-to: #504EA1,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   violet-solid: (
     solid-color: $c-violet,
@@ -276,7 +312,9 @@ $color-schemes: (
     outline-from: $c-violet,
     outline-to: $c-violet,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   red: (
     solid-color: #FF0040,
@@ -288,7 +326,9 @@ $color-schemes: (
     outline-from: #FF0040,
     outline-to: #830A2A,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   red-yellow: (
     solid-color: $c-red,
@@ -300,7 +340,9 @@ $color-schemes: (
     outline-from: $c-red,
     outline-to: $c-yellow,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   red-pinky-red: (
     solid-color: $c-red,
@@ -312,7 +354,9 @@ $color-schemes: (
     outline-from: $c-red,
     outline-to: $c-pinky-red,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   red-dark-red-darker: (
     solid-color: $c-red-dark,
@@ -324,7 +368,9 @@ $color-schemes: (
     outline-from: $c-red-dark,
     outline-to: $c-red-darker,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   festival-hackney: (
     solid-color: #EA2322,
@@ -336,7 +382,9 @@ $color-schemes: (
     outline-from: #EA2322,
     outline-to: #232073,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   festival-british: (
     solid-color: #D60000,
@@ -348,7 +396,9 @@ $color-schemes: (
     outline-from: #D60000,
     outline-to: #FFE200,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   festival-sanfran: (
     solid-color: #01B9C0,
@@ -360,7 +410,9 @@ $color-schemes: (
     outline-from: #01B9C0,
     outline-to: #00264F,
     outline-rotate: -45%,
-    is-solid: false
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   pinky-red-solid: (
     solid-color: $c-pinky-red,
@@ -372,7 +424,9 @@ $color-schemes: (
     outline-from: $c-pinky-red,
     outline-to: $c-pinky-red,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   ),
   yellow-solid: (
     solid-color: $c-yellow,
@@ -384,7 +438,9 @@ $color-schemes: (
     outline-from: $c-yellow,
     outline-to: $c-yellow,
     outline-rotate: -45%,
-    is-solid: true
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
   )
 );
 

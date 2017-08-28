@@ -14,6 +14,11 @@ define('VIRGIN_BASE_CONTACT_FORM', 'contact_form');
 define('VIRGIN_BASE_REGISTER_INTEREST_FORM', 'register_interest_form');
 
 /**
+ * The cache id that is used to store the newsletters lists from sugar
+ */
+define('VIRGIN_BASE_NEWSLETTER_LIST_CID', 'sugar_newsletter_lists');
+
+/**
  * Implements hook_menu().
  */
 function virgin_base_menu() {
@@ -314,7 +319,14 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
             '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
           ),
         ),
-      )
+      ),
+      'required' => array(
+        array(
+          array(
+            '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
+          )
+        )
+      ),
     )
   );
 
@@ -328,10 +340,6 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
       'visible' => array(
         array(
           '#' . $id => array('value' => VIRGIN_BASE_CONTACT_FORM),
-        ),
-        'or',
-        array(
-          '#' . $id => array('value' => VIRGIN_BASE_REGISTER_INTEREST_FORM),
         ),
       )
     )
@@ -485,4 +493,40 @@ function virgin_base_event_festival($event_nid) {
   }
 
   return new VirginEntityGrapher('node', node_load($nid));
+}
+
+/**
+ * Return the Sugar newsletter lists
+ *
+ * @return array with
+ */
+function virgin_base_get_newsletter_lists() {
+  if ($lists = cache_get(VIRGIN_BASE_NEWSLETTER_LIST_CID)) {
+    return $lists->data;
+  }
+
+  try {
+    $remote_lists = sugarcrm_client()->systemGet('Virgin/target-lists');
+
+    $lists = array();
+
+    foreach($remote_lists as $key => $value) {
+      $lists[$value['id']] = $value['name'];
+    }
+
+    cache_set(VIRGIN_BASE_NEWSLETTER_LIST_CID, $lists, 'cache', CACHE_TEMPORARY);
+
+    return $lists;
+  } catch(Exception $e) {
+
+    watchdog(
+      'virgin_components',
+      'Failed to fetch newsletter lists from SugarCRM: @err',
+      array(
+        '@err' => $e->getMessage()
+      )
+    );
+
+    return array();
+  }
 }

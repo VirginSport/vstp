@@ -134,6 +134,11 @@ function virgin_components_form_fieldable_panels_panes_fieldable_panels_pane_con
     $form['notice'] = array(
       '#markup' => t('<p>If an event is selected, the MyLaps ID stored in the selected event will take precedence over the MyLaps ID entered in the component.</p>')
     );
+  } else if($form['#bundle'] == 'vs_newsletter') {
+    $grapher = new VirginEntityGrapher('fieldable_panels_pane',$form['#entity']);
+
+    $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_base_get_newsletter_lists();
+    $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#default_value'] = $grapher->fieldGetOne('field_sugar_newsletter_list');
   }
 }
 
@@ -170,6 +175,7 @@ function virgin_components_list() {
       new VirginComponentMyLapsTrackMyRunner(),
       new VirginComponentResultsIntroduction(),
       new VirginComponentResultsOverview(),
+      new VirginComponentNewsletter(),
 
       // Paragraphs Handlers
       new VirginComponentEventFestivalBannerItem(),
@@ -206,3 +212,5 @@ function _virgin_components_fieldable_panels_pane_admin_title($subtype, $conf) {
 
   return sprintf('%s %s', $title, $suffix);
 }
+
+
