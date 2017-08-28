@@ -149,7 +149,13 @@ function virgin_user_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'vars' => array(),
       )
-    ) + $default
+    ) + $default,
+    'virgin_user__hybridauth_details' => array(
+        'template' => 'virgin-user--hybridauth-details',
+        'variables' => array(
+          'vars' => array(),
+        )
+      ) + $default
   );
 }
 
@@ -309,6 +315,11 @@ function virgin_user_menu_alter(&$items) {
     $items[$route]['access callback'] = 'user_access';
     $items[$route]['access arguments'] = array('administer site configuration');
   }
+
+  // Override the Hybridauth aditional info page
+  $items['hybridauth/window/%hybridauth_provider']['page callback'] = 'virgin_user_page_hybridauth_extra';
+  $items['hybridauth/window/%hybridauth_provider']['file'] = $file;
+  $items['hybridauth/window/%hybridauth_provider']['file path'] = $file_path;
 }
 
 /**
@@ -456,6 +467,32 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
 }
 
 /**
+ * Implements hook_hybridauth_profile_alter().
+ *
+ * If the gender is different that what is expected than we put it empty and
+ * HybridAuth asks the user for it
+ */
+function virgin_user_hybridauth_profile_alter(&$profile) {
+  if ($profile['gender'] != 'male' && $profile['gender'] != 'female') {
+    $profile['gender'] = '';
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for the hybridauth additional info
+ * form
+ *
+ * If the gender is asked than print it as a select list instead of radios
+ * because it is easier to manipulate in the template.
+ *
+ */
+function virgin_user_form_hybridauth_additional_info_form_alter(&$form, &$form_state) {
+  if (isset($form['fset']['gender'])) {
+    $form['fset']['gender']['#type'] = 'select';
+  }
+}
+
+/**
  * Implements hook_hybridauth_userinfo_alter().
  *
  * Maps the user profile information from the social network at registration
@@ -504,6 +541,39 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
+}
+
+/**
+ * Implements hook_hybridauth_identity_added().
+ *
+ * If an identify is added notify the observer to write it to sugar
+ *
+ * This step is needed because the hybridauth module doens't save the user
+ * entity on facebook identity add.
+ *
+ */
+function virgin_user_hybridauth_identity_added($account, $data) {
+  // If the identifier is not in account, inject it
+  // In account creation the hybridauth data comes already in the account obj
+  // so we avoid double notification
+  if ($data['provider'] == 'Facebook' && !isset($account->data['hybridauth'])) {
+    $account->data['hybridauth']['identifier'] = $data['identifier'];
+    virgin_user_observer_notify($account);
+  }
+}
+
+/**
+ * Implements hook_hybridauth_identity_deleted().
+ *
+ * If an identify is removed notify the observer to write it to sugar
+ *
+ */
+function virgin_user_hybridauth_identity_deleted($account, $data) {
+  // Since the identifier is still in the account object we remove it
+  if ($data['provider'] == 'Facebook' && isset($account->data['hybdridauth'])) {
+    unset($account->data['hybridauth']);
+    virgin_user_observer_notify($account);
+  }
 }
 
 /**
