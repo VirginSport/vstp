@@ -245,6 +245,7 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
+        'sugar_newsletter' => $node_wrapper->field_sugar_newsletter_list->value(),
         'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
@@ -518,13 +519,10 @@ function virgin_region_get_current_region_newsletter_list() {
 
   if (!$newsletter_list) {
     $region = virgin_region_current();
-    $region_node = node_load($region['nid']);
 
-    if (empty($region_node)) return $newsletter_list;
+    if (!isset($region['sugar_newsletter'])) return $newsletter_list;
 
-    $grapher = new VirginEntityGrapher('node', $region_node);
-
-    $newsletter_list = $grapher->fieldGetOne('field_sugar_newsletter_list');
+    $newsletter_list = $region['sugar_newsletter'];
   }
 
   return $newsletter_list;
