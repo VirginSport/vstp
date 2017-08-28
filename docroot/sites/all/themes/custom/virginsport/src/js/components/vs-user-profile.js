@@ -10,6 +10,7 @@ let fieldMap = {
   'input#edit-pass-pass1': 'pass1',
   'input#edit-pass-pass2': 'pass2',
   'input#edit-mail': 'field_mail',
+  '#edit-field-contact-number input': 'field_contact_number',
   '#edit-field-uk-athletics-number input': 'field_uk_athletics_number',
   '#edit-field-region select': 'field_region'
 };
@@ -176,6 +177,7 @@ export default () => {
         pass1: '',
         pass2: '',
         field_mail: '',
+        field_contact_number: '',
         field_uk_athletics_number: '',
         field_region: []
       }
