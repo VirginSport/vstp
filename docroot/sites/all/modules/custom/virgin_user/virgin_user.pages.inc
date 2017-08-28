@@ -607,3 +607,20 @@ function virgin_user_page_results($ticket_sugar_id) {
 
   return theme('virgin_components__ct__results_table', $vars);
 }
+
+function virgin_user_page_hybridauth_extra($provider_id) {
+  module_load_include('inc', 'hybridauth', 'hybridauth.pages');
+
+  if (!function_exists('hybridauth_window_start')) {
+    drupal_not_found();
+
+    exit;
+  }
+
+  $vars = array(
+    'form' => hybridauth_window_start($provider_id),
+  );
+
+  return theme('virgin_user__hybridauth_details', array('vars' => $vars));
+
+}
