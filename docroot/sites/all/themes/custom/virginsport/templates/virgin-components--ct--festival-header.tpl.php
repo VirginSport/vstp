@@ -73,20 +73,25 @@
           </div>
 
           <div class="vs-hero-banner__button-wrapper">
-            <?php if (in_array($status, array('announced'))): ?>
+            <?php if (!empty($cta_links)): ?>
+              <?php print
+                theme('virginsport_cta_links',
+                  array(
+                    'links' => $cta_links,
+                    'classes' => 'btn vs-btn vs-btn--min-sm'
+                  )
+                );
+              ?>
+            <?php elseif (in_array($status, array('announced'))): ?>
               <a
                 virgin-type="<?php print VIRGIN_BASE_REGISTER_INTEREST_FORM; ?>"
                 href="?festival_id=<?php print $festival_nid; ?><?php print empty($event_nid) ? '' : '&event_id=' . $event_nid; ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button">
                 <?php print t('Register interest'); ?>
               </a>
-            <?php endif; ?>
-
-            <?php if (in_array($status, array('over'))): ?>
+            <?php elseif (in_array($status, array('over'))): ?>
               <?php print theme('virginsport_cta_links', array('links' => $cta_links, 'classes' => 'btn vs-btn vs-btn--min-sm vs-hero-banner__button')); ?>
-            <?php endif; ?>
-
-            <?php if (in_array($status, array('open')) && !$is_tickets_page): ?>
+            <?php elseif (in_array($status, array('open')) && !$is_tickets_page): ?>
               <a
                 href="<?php print url('node/' . $festival_nid . '/tickets'); ?>"
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button <?php print (empty($color) ? '' : 'vs-btn--gradient-' . $color); ?>"
