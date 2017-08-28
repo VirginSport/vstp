@@ -26,11 +26,12 @@
             <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
           </div>
           <?php if ($inline_button): ?>
-          <button v-if="!form.submitted" :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter__btn-inline"><?php print t('Submit'); ?></button>
+          <button v-if="!form.submitted" :disabled="!$vs_newsletter_form_validator.valid || waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter__btn-inline"><?php print t('Submit'); ?></button>
           <button v-else class="btn vs-btn vs-newsletter-footer__btn" disabled><?php print t('Sent'); ?></button>
           <?php else: ?>
           <div class="vs-newsletter__button-wrapper text-xs-center text-md-left">
-            <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm vs-newsletter__button"><?php print t('Submit'); ?></button>
+            <button v-if="!form.submitted" :disabled="!$vs_newsletter_form_validator.valid || waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm vs-newsletter__button"><?php print t('Submit'); ?></button>
+            <button v-else class="btn vs-btn vs-btn--min-sm vs-newsletter__button" disabled><?php print t('Sent'); ?></button>
           </div>
           <?php endif; ?>
         </div>
