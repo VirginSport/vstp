@@ -55,12 +55,9 @@ function initVue(selector, inModal = false) {
         this.form.error = false;
 
         if(!this.$vs_newsletter_form_validator.valid) {
-          this.invalid_email = true;
           self.waitingSubmit = false;
           return ;
         }
-
-        this.invalid_email = false;
 
         this.$http.post(path() + 'ajax/newsletter-form/post', this.form).then((response) => {
           // success callback
@@ -80,12 +77,20 @@ function initVue(selector, inModal = false) {
       waitingSubmit: false,
       submitted: false,
       loading: false,
-      invalid_email: false,
       form: {
         submitted: false,
         error: false,
         newsletter_email: '',
         list: '',
+      }
+    },
+    watch: {
+      'form.newsletter_email': function(val, oldVal) {
+        // Change the submitted status so the user can submit the form again
+        // if the email is changed
+        if (this.form.submitted) {
+          this.form.submitted = false;
+        }
       }
     }
   });
