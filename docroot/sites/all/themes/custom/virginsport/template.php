@@ -265,12 +265,17 @@ function virginsport_menu_items($menu_name) {
     foreach ($tree as $key => $branch) {
       if (!is_numeric($key)) continue; // Skip render array properties
 
-      $classes = virginsport_is_register_link($branch['#href']) ? 'register' : '';
+      $classes = virginsport_is_register_link($branch['#href']) ? 'register ' : '';
+      $active = (bool) $branch['#original_link']['in_active_trail'];
+
+      if ($active) {
+        $classes .= 'active';
+      }
 
       $items[] = array(
         'url' => url($branch['#href']),
         'title' => check_plain($branch['#title']),
-        'active' => (bool) $branch['#original_link']['in_active_trail'],
+        'active' => $active,
         'classes' => $classes,
       );
     }
