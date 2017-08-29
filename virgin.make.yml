@@ -168,3 +168,10 @@ projects:
 
   xmlsitemap:
     version: "2.3"
+
+libraries:
+  hybridauth:
+    download:
+      type: "file"
+      url: "https://github.com/hybridauth/hybridauth/archive/v2.9.6.zip"
+      destination: "libraries/hybridauth"

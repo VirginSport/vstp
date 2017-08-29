@@ -68,9 +68,13 @@ function virgin_user_preprocess_virgin_user__ticket(&$vars) {
   $vars['event_date'] = $start_date->format('l, d M Y');
   $vars['event_past'] = $event_end_date < time();
 
-  // Just allow to edit tickets 14 days before the event start date
+  // Just allow to edit tickets when the defined edit date is not meted
+  // Since before the rule was 14 days before, in old events where the field is
+  // not defined respect the old rule
   $days_for_event = ($event_start_date - $now) / (60 * 60 * 24);
-  $vars['ticket_is_editable'] = $days_for_event > 14;
+  $edit_ticket_end_date = $event_grapher->fieldGetOne('field_hide_ticket_link', FALSE);
+
+  $vars['ticket_is_editable'] = ($edit_ticket_end_date && $edit_ticket_end_date > $now) || (!$edit_ticket_end_date && $days_for_event > 14);
 }
 
 /**
@@ -91,6 +95,10 @@ function virgin_user_preprocess_virgin_user__edit(&$vars) {
   $gender_key = $user_grapher->fieldGetOne('field_gender');
   $field = field_info_field('field_gender');
   $vars['user_gender'] = empty($field['settings']['allowed_values'][$gender_key]) ? '' : $field['settings']['allowed_values'][$gender_key];
+
+  $params = drupal_get_query_parameters();
+  $vars['can_edit_password'] = (!isset($user->data['hybridauth']) || !empty($params['pass-reset-token'])) ;
+
 
   // Generate the purchase history path
   try {

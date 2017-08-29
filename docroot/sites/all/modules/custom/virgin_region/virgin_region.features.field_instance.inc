@@ -252,6 +252,116 @@ function virgin_region_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-region-field_links'.
+  $field_instances['node-region-field_links'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_links',
+    'label' => 'Footer menu',
+    'required' => 1,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'required',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-region-field_sugar_newsletter_list'.
+  $field_instances['node-region-field_sugar_newsletter_list'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sugar_newsletter_list',
+    'label' => 'Sugar Newsletter List',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-region-title_field'.
   $field_instances['node-region-title_field'] = array(
     'bundle' => 'region',
@@ -322,10 +432,12 @@ function virgin_region_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Country Letter Code');
   t('Flag Image');
+  t('Footer menu');
   t('Hostname');
   t('Icon Image');
   t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
   t('Name');
+  t('Sugar Newsletter List');
 
   return $field_instances;
 }

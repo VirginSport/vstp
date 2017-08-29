@@ -253,6 +253,10 @@
     <?php print theme('virginsport_bar', array('use_path' => TRUE, 'url' => url('user'), 'label' => t('My Profile'))); ?>
   <?php endif; ?>
 
+  <?php if ($show_checkout_bar): ?>
+    <?php print theme('virginsport_checkout_bar', array('basket_url' => $basket_url)); ?>
+  <?php endif; ?>
+
   <div class="vs-footer">
     <div class="container">
       <div class="row">
@@ -284,14 +288,17 @@
         <div class="col-xs-12 col-md-10 col-lg-6 col-xl-6">
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
-            <li class="vs-footer__menu-item">
-              <a class="vs-footer__menu-item__link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
-            </li>
+              <?php if (!empty($item['visible'])): ?>
+                <li class="vs-footer__menu-item">
+                  <?php print l($item['title'], $item['url'], array('attributes' => array('class' => array('vs-footer__menu-item__link')))); ?>
+                </li>
+              <?php endif; ?>
             <?php endforeach; ?>
           </ul>
         </div>
 
         <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
+          <?php print theme('virginsport_newsletter_form', array('title' => t('Keep up with Virgin Sport'), 'target_list' => $newsletter_list, 'default_email' => $default_email, 'inline_button' => TRUE, 'wrapper_classes' => 'vs-newsletter-footer')); ?>
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">

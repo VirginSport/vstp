@@ -37,6 +37,7 @@ function virgin_event_field_group_info() {
       11 => 'field_show_in_festival_menu',
       12 => 'title_field',
       13 => 'field_logo',
+      14 => 'field_hide_ticket_link',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

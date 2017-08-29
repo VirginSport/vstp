@@ -32,6 +32,8 @@ import vsDetectMobile from './components/vs-detect-mobile';
 import vsResults from './components/vs-results';
 import vsUserTicket from './components/vs-user-ticket';
 import vsCtaLinks from './components/vs-cta-links';
+import vsUserHybridAuth from './components/vs-user-hybridauth';
+import vsNewsletter from './components/vs-newsletter';
 
 vsBasket();
 vsContactForm();
@@ -65,6 +67,8 @@ vsDetectMobile();
 vsResults();
 vsUserTicket();
 vsCtaLinks();
+vsNewsletter();
+vsUserHybridAuth();
 
 // Libs
 import bootstrap from './lib/bootstrap';

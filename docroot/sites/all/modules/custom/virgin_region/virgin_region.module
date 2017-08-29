@@ -245,6 +245,7 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
+        'sugar_newsletter' => $node_wrapper->field_sugar_newsletter_list->value(),
         'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
@@ -284,7 +285,7 @@ function virgin_region_current() {
     }
   }
 
-  return null;
+  return array();
 }
 
 /**
@@ -444,4 +445,85 @@ function virgin_region_user_hostname() {
   }
 
   return virgin_region_valid_hostname($hostname) ? $hostname : '';
+}
+
+
+/**
+ * Get the current active region footer visible links
+ *
+ * @return array|null
+ *  NULL if no region matches the current URL or a structured array with the
+ *  following keys if does:
+ *  - url: The url of the link
+ *  - title: The escaped title of the link
+ *  - active: A boolean indicating if the link is active
+ */
+function virgin_region_footer_links() {
+  $current_region = virgin_region_current();
+
+  if (!$current_region) {
+    return array();
+  }
+
+  $menu_items = &drupal_static(__FUNCTION__, array());
+
+  if (!isset($menu_items[$current_region['nid']])) {
+    $region = node_load($current_region['nid']);
+    $g = new VirginEntityGrapher('node', $region);
+    $items = array();
+
+    foreach($g->fieldGetAll('field_links') as $link) {
+      if (isset($link['attributes']['virgin_show']) && !$link['attributes']['virgin_show']) {
+        continue;
+      }
+
+      // As the URL is printed in the template using the l() function the
+      // title is passed trough check_plain() in there so here we pass it raw
+      $items[] = [
+        'url' => $link['url'],
+        'title' => $link['title'],
+        'visible' => !empty($link['attributes']['virgin_show'])
+      ];
+    }
+
+    $menu_items[$current_region['nid']] = $items;
+  }
+
+  return $menu_items[$current_region['nid']];
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() for region_node_form.
+ *
+ * Injects the sugar remote newsletter target lists into the form and
+ * sets the stored value as default.
+ */
+function virgin_region_form_region_node_form_alter(&$form, $form_state) {
+  $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_base_get_newsletter_lists();
+
+  if (!empty($form['#node_edit_form'])) {
+    $grapher = new VirginEntityGrapher('node', $form['#entity']);
+    $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#default_value'] = $grapher->fieldGetOne('field_sugar_newsletter_list');
+  }
+}
+
+/*
+ * Get the current region footer newsletter target list
+ *
+ * @return string
+ *  The current region footer newsletter list
+ */
+function virgin_region_get_current_region_newsletter_list() {
+  $newsletter_list = &drupal_static(__FUNCTION__, array());
+
+  if (!$newsletter_list) {
+    $region = virgin_region_current();
+
+    if (!isset($region['sugar_newsletter'])) return $newsletter_list;
+
+    $newsletter_list = $region['sugar_newsletter'];
+  }
+
+  return $newsletter_list;
 }

@@ -443,6 +443,33 @@ function virgin_user_page_ajax_form() {
 }
 
 /**
+ * Page callback for the user newsletter form submission
+ */
+function virgin_user_page_ajax_newsletter_form_post() {
+  if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    drupal_access_denied();
+  }
+
+  $raw = file_get_contents('php://input');
+  $data = drupal_json_decode($raw);
+
+  $params = array(
+    'target_list' => $data['list'],
+    'email' => $data['newsletter_email'],
+  );
+
+  try {
+    $result['result'] = sugarcrm_client()->systemPost('Virgin/subscribe-newsletter', $params);
+  } catch (\Exception $e) {
+    $result['result'] = FALSE;
+  }
+
+  print drupal_json_encode($result);
+
+  drupal_exit();
+}
+
+/**
  * Page callback for the user contact form submission
  */
 function virgin_user_page_ajax_form_post() {
@@ -478,14 +505,20 @@ function virgin_user_page_ajax_form_post() {
     'type' => $data['type'],
     'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
     'email' => $data['email'],
-    'first_name' => $data['first_name'],
-    'last_name' => $data['last_name'],
-    'contact_number' => $data['contact_number'],
-    'message' => $data['message'],
     'festival' => '',
-    'events' => array()
   );
 
+  if ($data['type'] != 'interested_in') {
+    $params += array(
+      'email' => $data['email'],
+      'first_name' => $data['first_name'],
+      'last_name' => $data['last_name'],
+      'contact_number' => $data['contact_number'],
+      'message' => $data['message'],
+      'events' => array(),
+    );
+  }
+  
   if (!empty($data['festival_id'])) {
     $festival = node_load((int) $data['festival_id']);
 
@@ -573,4 +606,21 @@ function virgin_user_page_results($ticket_sugar_id) {
   );
 
   return theme('virgin_components__ct__results_table', $vars);
+}
+
+function virgin_user_page_hybridauth_extra($provider_id) {
+  module_load_include('inc', 'hybridauth', 'hybridauth.pages');
+
+  if (!function_exists('hybridauth_window_start')) {
+    drupal_not_found();
+
+    exit;
+  }
+
+  $vars = array(
+    'form' => hybridauth_window_start($provider_id),
+  );
+
+  return theme('virgin_user__hybridauth_details', array('vars' => $vars));
+
 }

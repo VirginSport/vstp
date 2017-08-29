@@ -27,9 +27,9 @@
         </div>
         <div class="col-xs-12 vs-promo-banner__content-wrapper">
           <?php if (!empty($card_title)): ?>
-            <h1 class="vs-promo-banner__title vs-outline">
+            <h2 class="vs-promo-banner__title vs-outline">
               <?php print check_plain($card_title); ?>
-            </h1>
+            </h2>
           <?php endif; ?>
 
           <?php if (!empty($card_title) || !empty($hashtag)): ?>
