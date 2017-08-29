@@ -178,7 +178,7 @@
                 </div>
                 </validator>
 
-                <?php if (!$is_hybridauth): ?>
+                <?php if ($can_edit_password): ?>
                 <!-- Password Block -->
                 <validator name="vs_user_password_validator">
                 <div class="row">

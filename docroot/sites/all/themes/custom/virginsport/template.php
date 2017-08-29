@@ -210,7 +210,8 @@ function virginsport_preprocess_page(&$vars) {
   $vars['alerts'] = virginsport_alerts();
 
   // Setup which Sugar target-list the user enrolls in footer
-  $vars['newsletter_list'] = virgin_region_get_current_region_newsletter_list();
+  $newsletter_list = virgin_region_get_current_region_newsletter_list();
+  $vars['newsletter_list'] = !empty($newsletter_list) ? $newsletter_list : '';
   $vars['default_email'] = $user->uid > 0 ? $user->mail : '';
 
   // Make cookie template available in javascript
