@@ -38,6 +38,7 @@ function virgin_event_field_group_info() {
       12 => 'title_field',
       13 => 'field_logo',
       14 => 'field_hide_ticket_link',
+      15 => 'field_show_start_date',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
