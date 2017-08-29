@@ -186,11 +186,11 @@ function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) 
  */
 function virgin_filter_default_formats_alter( &$formats ) {
   foreach ($formats as $key => $format) {
-    if (empty($format['filters']['filter_html']['settings']['allowed_html'])) continue;
+    if (!empty($format['filters']['filter_html']['settings']['allowed_html'])) {
+      $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <hr> <br>';
+    }
 
-    $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <hr> <br>';
-
-    if($key != 'filtered_html') continue ;
+    if ($key != 'filtered_html') continue ;
     
     $editor_settings = unserialize($format['editor_settings']);
     
