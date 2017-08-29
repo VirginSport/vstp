@@ -395,7 +395,7 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
 function virgin_base_festivals($exclude_status = array(), $contact_form_flagged = FALSE, $with_year = FALSE) {
   $query =
     db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
+    ->fields('n', array('nid'))
     ->condition('n.type', 'festival', '=')
     ->condition('n.status', NODE_PUBLISHED, '=')
   ;
@@ -410,23 +410,36 @@ function virgin_base_festivals($exclude_status = array(), $contact_form_flagged 
     $query->condition('scf.field_show_contact_form_value', TRUE, '=');
   }
 
+  $years = array();
   if ($with_year) {
     $query->join('field_data_field_festival_state', 'fs', 'n.nid = fs.entity_id');
     $query->join('node', 'nfs', 'fs.field_festival_state_target_id = nfs.nid');
     $query->join('field_data_field_start_date', 'sd', 'nfs.nid = sd.entity_id');
     $query->fields('sd', array('field_start_date_value'));
-  }
+    $festivals =  $query->execute()->fetchAll();
 
-  $festivals =  $query->execute()->fetchAll();
-
-  $list = array();
-  foreach($festivals as $festival) {
-    $list[$festival->nid] = $festival->title;
-    if ($with_year) {
-      $year = date('Y', $festival->field_start_date_value);
-      $list[$festival->nid] .= sprintf(' (%s)', $year);
+    $ids = array();
+    $years = array();
+    foreach ($festivals as $festival) {
+      $ids[] = $festival->nid;
+      $years[$festival->nid] = date('Y', $festival->field_start_date_value);
     }
+
+  } else {
+    $ids =  $query->execute()->fetchCol();
   }
+
+  $nodes = node_load_multiple($ids);
+
+  $list = array_map(function ($node) use ($with_year, $years) {
+    if ($with_year && !empty($years[$node->nid])) {
+      $title = sprintf('%s (%s)', $node->title, $years[$node->nid]);
+    } else {
+      $title = $node->title;
+    }
+
+    return $title;
+  }, $nodes);
 
   asort($list);
 
