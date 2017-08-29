@@ -91,6 +91,30 @@ function virgin_base_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for menu_edit_item.
+ *
+ * Modifies the menu item form to be able to choose if the item is a
+ * register button
+ */
+function virgin_base_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  $form['register_button'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Is register button'),
+    '#default_value' => !empty($form['options']['#value']['attributes']['register_button']),
+  );
+
+  array_unshift($form['#submit'], 'virgin_base_form_menu_edit_item_submit');
+}
+
+/**
+ * Changes de form_state to save the item with the flag if it is a register
+ * button or not
+ */
+function virgin_base_form_menu_edit_item_submit($form, &$form_state) {
+  $form_state['values']['options']['attributes']['register_button'] = $form_state['values']['register_button'];
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
  *
  * Modifies the fieldable panel panes edit form for improved editing interface.
