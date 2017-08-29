@@ -187,8 +187,30 @@ function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) 
 function virgin_filter_default_formats_alter( &$formats ) {
   foreach ($formats as $key => $format) {
     if (empty($format['filters']['filter_html']['settings']['allowed_html'])) continue;
+    
+    $editor_settings = unserialize($format['editor_settings']);
+    
+    $plugin_list = $editor_settings['plugins']['style']['style_list'];
+    
+    $plugin_list[] = array(
+      'name' => 'Page Title',
+      'element' => 'h2',
+      'attributes' => array('class' => 'vs-bcb__title'),
+    );
+    
+    
+    foreach($editor_settings['toolbar'][0] as $key => $item) {
+      if($item['name'] == 'Format' && !in_array('Styles', $item['items'])) {
+        $editor_settings['toolbar'][0][$key]['items'][] = 'Styles';
+      } else if($item['name'] == 'Media' && !in_array('HorizontalRule', $item['items'])) {
+        $editor_settings['toolbar'][0][$key]['items'][] = 'HorizontalRule';
+      }
+    }
   
-    $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <br>';
+    $formats[$key]['editor_settings'] = serialize($plugin_list);
+    
+    
+    $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <hr> <br>';
   }
 }
 
