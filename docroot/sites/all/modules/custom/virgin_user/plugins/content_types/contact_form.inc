@@ -24,13 +24,10 @@ $plugin = array(
  */
 function virgin_user_contact_form_content_type_render($subtype, $conf, $panel_args, $context) {
   $festival_id = empty($conf['festival_id']) ? '' : $conf['festival_id'];
-  $events = array(t('All events at this festival')) + virgin_base_events($festival_id);
-  $event_id = empty($conf['event_id']) ? '' : $conf['event_id'];
 
   $vars = array(
     'festival_id' => $festival_id,
     'festivals' => virgin_base_festivals(),
-    'events_list' => drupal_json_encode(array('events' => $events, 'event_id' => $event_id)),
     'pre_form' => empty($conf['pre_form']) ? array() : $conf['pre_form'],
     'post_form' => empty($conf['post_form']) ? array() : $conf['post_form'],
   );
@@ -54,12 +51,6 @@ function virgin_user_contact_form_content_type_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Festival Id'),
     '#default_value' => empty($conf['festival_id']) ? '' : $conf['festival_id'],
-  );
-
-  $form['event_id'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Event Id'),
-    '#default_value' => empty($conf['event_id']) ? '' : $conf['event_id'],
   );
 
   $form['pre_form'] = array(
