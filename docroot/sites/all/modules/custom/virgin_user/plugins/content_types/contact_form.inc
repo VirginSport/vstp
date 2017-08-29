@@ -27,7 +27,7 @@ function virgin_user_contact_form_content_type_render($subtype, $conf, $panel_ar
 
   $vars = array(
     'festival_id' => $festival_id,
-    'festivals' => virgin_base_festivals(),
+    'festivals' => virgin_base_festivals(array(), TRUE, TRUE),
     'pre_form' => empty($conf['pre_form']) ? array() : $conf['pre_form'],
     'post_form' => empty($conf['post_form']) ? array() : $conf['post_form'],
   );
