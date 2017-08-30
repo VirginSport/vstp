@@ -96,13 +96,7 @@ $mkt_id = 'mkt-' . uniqid();
                 </validator>
                 <div v-if="form.submitted" class="form-completion">
                   <h4 class="vs-form-header">
-                    <span v-if="form.type === 'charities'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'racepack'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'registration'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'potential-partnership'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'press-inquiry'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'results'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
-                    <span v-if="form.type === 'other'"><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
                   </h4>
 
                   <button v-if="inModal" v-on:click="closeModal" class="btn vs-btn vs-btn--min-sm"><?php print t('Ok'); ?></button>
