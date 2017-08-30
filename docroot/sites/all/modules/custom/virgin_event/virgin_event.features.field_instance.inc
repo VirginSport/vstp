@@ -478,7 +478,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_cta_link_over',
-    'label' => 'CTA Over',
+    'label' => 'CTA End',
     'required' => 1,
     'settings' => array(
       'absolute_url' => 1,
@@ -2537,7 +2537,7 @@ function virgin_event_field_default_field_instances() {
   t('CTA Announced');
   t('CTA In Progress');
   t('CTA Open');
-  t('CTA Over');
+  t('CTA End');
   t('Card Caption');
   t('Card Image');
   t('Description');
