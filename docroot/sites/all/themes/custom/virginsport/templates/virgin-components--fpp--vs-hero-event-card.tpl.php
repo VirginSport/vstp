@@ -54,6 +54,10 @@
             ?>
           </div>
         <?php endif; ?>
+
+        <?php if(!empty($outline_title)): ?>
+          <span class="vs-teaser__title vs-outline hidden-md-up"><?php print $outline_title; ?></span>
+        <?php endif; ?>
         <div class="vs-color vs-color--color-<?php print $brand_color; ?> vs-color--pattern-<?php print $brand_pattern;?>">
           <div class="vs-color__layer-1"></div>
           <div class="vs-color__layer-2"></div>
