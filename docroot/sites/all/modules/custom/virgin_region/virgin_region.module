@@ -542,7 +542,7 @@ function virgin_region_get_current_region_newsletter_list() {
  *  FALSE - Otherwise
  */
 function virgin_region_current_region_show_cookie() {
-  $show_cookie = &drupal_static(__FUNCTION__);
+  $show_cookie = &drupal_static(__FUNCTION__, FALSE);
 
   if (!$show_cookie) {
     $region = virgin_region_current();
