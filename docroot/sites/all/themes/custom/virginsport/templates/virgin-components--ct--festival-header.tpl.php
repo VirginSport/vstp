@@ -52,7 +52,7 @@
     </div>
 
     <?php if ($variables['show_sharer']==1):?>
-      <div class="vs-hero-banner__social-wrapper">
+      <div class="vs-hero-banner__social-wrapper <?php print (empty($color) ? '' : 'vs-share-button--gradient-' . $color); ?>">
         <?php print theme('virginsport_share_buttons', array('location' => 'Festival Header', 'subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
       </div>
     <?php endif; ?>
