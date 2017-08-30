@@ -31,11 +31,27 @@ vs-hero-event-card,
 }
 
 .vs-hero-event-card__outline-title {
-  font-size: 100px;
-  right: 0;
-  display: none;
+  font-family: $font-family-serif;
+  font-size: 3.4375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 3.125rem;
+  position: absolute;
   text-align: right;
-  width: 120%;
+  bottom: 1.75rem;
+  right: 6.25rem;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 4.625rem;
+    line-height: 4.3125rem;
+    bottom: 3.75rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 6.75rem;
+    line-height: 8.4375rem;
+  }
 }
 
 .vs-hero-event-card__title {
@@ -173,11 +189,6 @@ vs-hero-event-card,
 }
 
 @media screen and (min-width: 1360px) {
-
-  .vs-hero-event-card__outline-title {
-    display: block;
-  }
-
   .vs-hero-event-card__image {
     border-radius: .625rem;
     min-height: 26.875rem;
