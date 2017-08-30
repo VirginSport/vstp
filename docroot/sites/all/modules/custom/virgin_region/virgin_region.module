@@ -217,6 +217,11 @@ function virgin_region_region_load($nid) {
  */
 function virgin_region_regions() {
 
+  // To avoid errors in drush do not run this function in cli mode
+  if (drupal_is_cli()) {
+    return array();
+  }
+
   // Return the list of regions from cache
   $cache = cache_get(VIRGIN_REGION_CACHE);
 
