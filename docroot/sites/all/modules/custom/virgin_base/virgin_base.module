@@ -222,7 +222,8 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
   // The supported link fields to override class textfield with a select list
   $supported = array(
     'field_cta_links',
-    'field_cta_link'
+    'field_cta_link',
+    'field_festival_list_cta',
   );
 
   // If current element is not on supported list do not make changes
