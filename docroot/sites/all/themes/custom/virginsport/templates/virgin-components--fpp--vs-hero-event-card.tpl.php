@@ -41,6 +41,10 @@
             <?php print $event_description; ?>
           </div>
         <?php endif; ?>
+  
+        <?php if(!empty($outline_title)): ?>
+          <span class="vs-hero-event-card__outline-title vs-outline hidden-md-down"><?php print $outline_title; ?></span>
+        <?php endif; ?>
 
         <?php if (!empty($cta_links)): ?>
           <div class="vs-hero-event-card__buttons">
@@ -63,8 +67,4 @@
       </div>
     </div>
   </div>
-  
-  <?php if(!empty($outline_title)): ?>
-    <span class="vs-hero-event-card__outline-title vs-outline hidden-md-down"><?php print $outline_title; ?></span>
-  <?php endif; ?>
 </div>

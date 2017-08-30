@@ -13,10 +13,20 @@ vs-hero-event-card,
 // ----------------------------------------------------------------------------
 
 .vs-hero-event-card__content {
+  border-radius: 0 0 .625rem .625rem;
   background-color: $c-white;
   padding: 1.25rem;
   position: relative;
-  overflow: hidden;
+
+
+  .vs-color__layer-1,
+  .vs-color__layer-3 {
+    border-radius: 0 0 .625rem .625rem;
+
+    @include media-breakpoint-up(lg) {
+      border-radius: .625rem;
+    }
+  }
 }
 
 .vs-hero-event-card__image {
@@ -26,10 +36,6 @@ vs-hero-event-card,
   border-radius: .625rem .625rem 0 0;
 }
 
-.vs-hero-event-card__content {
-  border-radius: 0 0 .625rem .625rem;
-}
-
 .vs-hero-event-card__outline-title {
   font-family: $font-family-serif;
   font-size: 3.4375rem;
@@ -37,20 +43,21 @@ vs-hero-event-card,
   text-transform: uppercase;
   margin-bottom: 0;
   line-height: 3.125rem;
-  position: absolute;
+  position: relative;
   text-align: right;
-  bottom: 1.75rem;
-  right: 6.25rem;
+  right: -7.5rem;
+  z-index: 1;
 
   @include media-breakpoint-up(lg) {
     font-size: 4.625rem;
     line-height: 4.3125rem;
-    bottom: 3.75rem;
+    right: -7.625rem;
   }
 
   @include media-breakpoint-up(xl) {
     font-size: 6.75rem;
-    line-height: 8.4375rem;
+    line-height: 6.4375rem;
+    right: -10.625rem;
   }
 }
 
@@ -86,6 +93,10 @@ vs-hero-event-card,
     @include media-breakpoint-up(md) {
       margin-top: 0;
     }
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 3.65625rem;
   }
 }
 
@@ -132,7 +143,6 @@ vs-hero-event-card,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-up(md) {
-
   .vs-hero-event-card__content {
     padding: 1.75rem 2.375rem;
   }
@@ -147,7 +157,7 @@ vs-hero-event-card,
   }
 
   .vs-hero-event-card__text {
-    margin-bottom: 3.65625rem;
+    //margin-bottom: 3.65625rem;
   }
 
   .vs-hero-event-card__button {
@@ -162,7 +172,6 @@ vs-hero-event-card,
 }
 
 @include media-breakpoint-up(lg) {
-
   .vs-hero-event-card__image {
     border-radius: .625rem;
     min-height: 20.15625rem;
@@ -178,9 +187,8 @@ vs-hero-event-card,
 }
 
 @include media-breakpoint-up(xl) {
-
   .vs-hero-event-card__text {
-    margin-bottom: 7.3125rem;
+    //margin-bottom: 7.3125rem;
   }
 
   .vs-hero-event-card__content {
