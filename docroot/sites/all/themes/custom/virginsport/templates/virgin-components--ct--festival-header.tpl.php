@@ -72,6 +72,13 @@
             <span class="vs-hero-banner__days-label"></span>
           </div>
 
+          <?php
+          /**
+           * We're keeping the old logic in the CTA print for the old
+           * Events/Festivals, that not contain the new fields filled, follow
+           * the old behaviour
+           */
+          ?>
           <div class="vs-hero-banner__button-wrapper">
             <?php if (!empty($cta_links)): ?>
               <?php print
