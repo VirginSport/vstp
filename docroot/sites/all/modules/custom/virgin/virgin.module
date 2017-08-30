@@ -187,7 +187,7 @@ function virgin_page_delivery_callback_alter(&$callback, $page_callback_result) 
 function virgin_filter_default_formats_alter( &$formats ) {
   foreach ($formats as $key => $format) {
     if (!empty($format['filters']['filter_html']['settings']['allowed_html'])) {
-      $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <hr> <br>';
+      $formats[$key]['filters']['filter_html']['settings']['allowed_html'] .= ' <hr> <br> <h2>';
     }
 
     if ($key != 'filtered_html') continue ;
@@ -196,17 +196,65 @@ function virgin_filter_default_formats_alter( &$formats ) {
     
     $plugin_list = &$editor_settings['plugins']['style']['style_list'];
     
-    $plugin_list[] = array(
+    $plugin_list[] = array (
       'name' => 'Page Title',
       'element' => 'h2',
       'attributes' => array('class' => 'vs-bcb__title'),
     );
+  
+    $plugin_list[] = array (
+      'name' => 'Subtitle',
+      'element' => 'p',
+      'attributes' => array('class' => 'vs-bcb__subtitle'),
+    );
     
-    
-    foreach($editor_settings['toolbar'][0] as $tkey => $item) {
-      if($item['name'] == 'Format' && !in_array('Styles', $item['items'])) {
+    $plugin_list[] = array (
+      'name' => 'Lead Paragraph',
+      'element' => 'p',
+      'attributes' => array('class' => 'vs-bcb__lead'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Button',
+      'element' => 'a',
+      'attributes' => array('class' => 'btn vs-btn vs-btn--min-sm vs-btn--lg vs-bcb__btn'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Column Text',
+      'element' => 'ul',
+      'attributes' => array('class' => 'vs-bcb__column-text'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Column Text Title',
+      'element' => 'ul',
+      'attributes' => array('class' => 'vs-bcb__column-text-title'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Title with Line',
+      'element' => 'p',
+      'attributes' => array('class' => 'vs-bcb__title-line'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Question / Answer',
+      'element' => 'ul',
+      'attributes' => array('class' => 'vs-bcb__faq'),
+    );
+  
+    $plugin_list[] = array (
+      'name' => 'Small List',
+      'element' => 'ul',
+      'attributes' => array('class' => 'vs-bcb__small-list'),
+    );
+  
+  
+    foreach ($editor_settings['toolbar'][0] as $tkey => $item) {
+      if ($item['name'] == 'Format' && !in_array('Styles', $item['items'])) {
         $editor_settings['toolbar'][0][$tkey]['items'][] = 'Styles';
-      } else if($item['name'] == 'Media' && !in_array('HorizontalRule', $item['items'])) {
+      } else if ($item['name'] == 'Media' && !in_array('HorizontalRule', $item['items'])) {
         $editor_settings['toolbar'][0][$tkey]['items'][] = 'HorizontalRule';
       }
     }
