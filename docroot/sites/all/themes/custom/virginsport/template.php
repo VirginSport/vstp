@@ -266,7 +266,7 @@ function virginsport_menu_items($menu_name) {
     foreach ($tree as $key => $branch) {
       if (!is_numeric($key)) continue; // Skip render array properties
 
-      $classes = !empty($branch['#original_link']['options']['attributes']['register_button']) ? 'register ' : '';
+      $classes = !empty($branch['#original_link']['options']['attributes']['highlight_button']) ? 'highlight ' : '';
       $active = (bool) $branch['#original_link']['in_active_trail'];
 
       if ($active) {

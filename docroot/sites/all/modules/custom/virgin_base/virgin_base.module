@@ -97,10 +97,10 @@ function virgin_base_form_alter(&$form, &$form_state, $form_id) {
  * register button
  */
 function virgin_base_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
-  $form['register_button'] = array(
+  $form['highlight_button'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Is register button'),
-    '#default_value' => !empty($form['options']['#value']['attributes']['register_button']),
+    '#title' => t('Highlight button'),
+    '#default_value' => !empty($form['options']['#value']['attributes']['highlight_button']),
   );
 
   array_unshift($form['#submit'], 'virgin_base_form_menu_edit_item_submit');
@@ -111,7 +111,7 @@ function virgin_base_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
  * button or not
  */
 function virgin_base_form_menu_edit_item_submit($form, &$form_state) {
-  $form_state['values']['options']['attributes']['register_button'] = $form_state['values']['register_button'];
+  $form_state['values']['options']['attributes']['highlight_button'] = $form_state['values']['highlight_button'];
 }
 
 /**
