@@ -195,7 +195,8 @@ function virgin_filter_default_formats_alter( &$formats ) {
     $editor_settings = unserialize($format['editor_settings']);
     
     $plugin_list = &$editor_settings['plugins']['style']['style_list'];
-    
+
+    // Add all the plugins to appear in the styles select list
     $plugin_list[] = array (
       'name' => 'Page Title',
       'element' => 'h2',
@@ -250,7 +251,8 @@ function virgin_filter_default_formats_alter( &$formats ) {
       'attributes' => array('class' => 'vs-bcb__small-list'),
     );
   
-  
+    // Add the plugins Styles and HorizontalRule to the toolbar in their
+    // respective groups
     foreach ($editor_settings['toolbar'][0] as $tkey => $item) {
       if ($item['name'] == 'Format' && !in_array('Styles', $item['items'])) {
         $editor_settings['toolbar'][0][$tkey]['items'][] = 'Styles';
