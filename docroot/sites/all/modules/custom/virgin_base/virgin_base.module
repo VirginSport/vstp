@@ -97,6 +97,11 @@ function virgin_base_form_alter(&$form, &$form_state, $form_id) {
  * register button
  */
 function virgin_base_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  // Only add this property in the main menu items
+  if (empty($form['original_item']['#value']['menu_name']) || $form['original_item']['#value']['menu_name'] != 'main-menu') {
+    return ;
+  }
+
   $form['highlight_button'] = array(
     '#type' => 'checkbox',
     '#title' => t('Highlight button'),
