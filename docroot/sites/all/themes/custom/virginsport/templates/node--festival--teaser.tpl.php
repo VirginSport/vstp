@@ -129,6 +129,17 @@ if (!empty($view) && isset($view->row_index)) {
             <?php print t('Details'); ?>
           </a>
 
+          <?php if(!empty($grapher->fieldGetAll('field_festival_list_cta'))): ?>
+            <?php print
+              theme('virginsport_cta_links',
+                array(
+                  'links' => $grapher->fieldGetAll('field_festival_list_cta'),
+                  'classes' => 'vs-btn--sm'
+                )
+              );
+            ?>
+          <?php endif; ?>
+
           <a
             class="hidden-md-up btn vs-btn vs-btn--min-sm vs-btn--transparent vs-card-upcoming__button"
             href="<?php print url('node/' . $grapher->property('nid')); ?>"
