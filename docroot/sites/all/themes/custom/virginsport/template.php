@@ -470,18 +470,9 @@ function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_f
     if ($start_date_parts['month'] == $end_date_parts['month']) {
       $start_date_format = 'd';
     }
-
-    if ($show_time) {
-      $start_date_format .= $time_format;
-    }
   }
 
-  $end_date_format = 'd M Y';
-  if ($show_time) {
-    $end_date_format .= $time_format;
-  }
-
-  return $start->format($start_date_format) . ' - ' . $end->format($end_date_format);
+  return $start->format($start_date_format) . ' - ' . $end->format('d M Y');
 }
 
 /**
