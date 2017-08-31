@@ -14,3 +14,11 @@ function virgin_region_update_7001() {
   field_base_features_rebuild('virgin_base');
   field_instance_features_rebuild('virgin_region');
 }
+
+/**
+ * Enable the GeoIP module and set the path to the country database
+ */
+function virgin_region_update_7002() {
+  module_enable(array('geoip'));
+  variable_set('geoip_data_file', 'sites/all/libraries/geoip/GeoLite2-Country.mmdb');
+}
