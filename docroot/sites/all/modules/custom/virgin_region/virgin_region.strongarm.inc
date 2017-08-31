@@ -36,6 +36,20 @@ function virgin_region_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'geoip_country_file';
+  $strongarm->value = 'GeoLite2-Country.mmdb';
+  $export['geoip_country_file'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'geoip_country_url';
+  $strongarm->value = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz';
+  $export['geoip_country_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_region';
   $strongarm->value = '0';
   $export['language_content_type_region'] = $strongarm;

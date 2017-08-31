@@ -44,11 +44,13 @@ function drush_geoip_update_db() {
 
   switch ($db_type) {
     case 'city':
-      $data_filename = 'GeoLite2-City';
+      $data_filename = variable_get('geoip_city_file','GeoLite2-City.mmdb');
+      $db_url = variable_get('geoip_country_url','http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz');
       break;
 
     case 'country':
-      $data_filename = 'GeoLite2-Country';
+      $data_filename = variable_get('geoip_country_file','GeoLite2-Country.mmdb');
+      $db_url = variable_get('geoip_country_url','http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz');
       break;
 
     default:
@@ -56,16 +58,10 @@ function drush_geoip_update_db() {
       return false;
   }
 
-  /* We need libraries_get_path, else we don't know where to install the database */
-  if (!function_exists('libraries_get_path')) {
-    drush_log('Function libraries_get_path does not exist', error);
-    return false;
-  }
-  else {
-    $destination_path = libraries_get_path('geoip');
-    $destination_dir = drush_locate_root() . '/' . $destination_path;
-    drush_log(t('destination directory : @destination_dir', array('@destination_dir' => $destination_dir)), 'ok');
-  }
+  /* Write the dir in files */
+  $destination_path = 'sites/default/files/geoip';
+  $destination_dir = drush_locate_root() . '/' . $destination_path;
+  drush_log(t('destination directory : @destination_dir', array('@destination_dir' => $destination_dir)), 'ok');
 
   if (!is_file($destination_dir)) {
     mkdir($destination_dir);
@@ -77,8 +73,7 @@ function drush_geoip_update_db() {
   }
 
   /* Attempt to download the latest database to a tmp file */
-  $db_url = 'http://geolite.maxmind.com/download/geoip/database/' . $data_filename . '.tar.gz';
-  $tmp_filename = sys_get_temp_dir() . '/' . $data_filename . '.tar.gz';
+  $tmp_filename = sys_get_temp_dir() . '/temp.tar.gz';
 
   drush_log(t('Downloading @db_url to @tmp_filename', array('@db_url' => $db_url, '@tmp_filename' => $tmp_filename)), 'ok');
   if (file_put_contents($tmp_filename, file_get_contents($db_url)) === FALSE) {
@@ -91,12 +86,9 @@ function drush_geoip_update_db() {
     return FALSE;
   }
 
-  //Update the data file name to match the file extension
-  $data_filename .= '.mmdb';
-
   /* Attempt to decompress the gzipped database to the destination direction */
   drush_log('Decompressing database', 'ok');
-  if (!drush_shell_cd_and_exec($destination_dir, 'gunzip -c ' . $tmp_filename . ' > ' . $destination_dir . '/' . $data_filename)) {
+  if (!drush_shell_cd_and_exec($destination_dir, 'tar -xzf ' . $tmp_filename . ' -C ' . $destination_dir . ' --strip-components=1')) {
     drush_log(t('Could not gunzip file @tmp_filename', array('@tmp_filename' => $tmp_filename)), 'error');
     return FALSE;
   }
