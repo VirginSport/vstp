@@ -4,14 +4,8 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0d60b4e9ae22e7ce8e96d068ef03bdae
+class ComposerStaticInit9ac03331ac02f1e2f6b1fc921b492855
 {
-    public static $files = array (
-        'a7cee959d5f14eb7484e7f8e7182e03d' => __DIR__ . '/..' . '/geoip/geoip/src/geoip.inc',
-        '8cf74b4cf02ad0591c257dcfb7edbc8d' => __DIR__ . '/..' . '/geoip/geoip/src/geoipcity.inc',
-        'd114bd5194e69687495c9150ff6be780' => __DIR__ . '/..' . '/geoip/geoip/src/timezone.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
@@ -55,8 +49,8 @@ class ComposerStaticInit0d60b4e9ae22e7ce8e96d068ef03bdae
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0d60b4e9ae22e7ce8e96d068ef03bdae::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0d60b4e9ae22e7ce8e96d068ef03bdae::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9ac03331ac02f1e2f6b1fc921b492855::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9ac03331ac02f1e2f6b1fc921b492855::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
