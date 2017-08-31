@@ -19,7 +19,7 @@ then
   drush $TARGET_ALIAS upwd $DRUPAL_ADMIN_USER --password=$DRUPAL_ADMIN_PASS
   drush $TARGET_ALIAS vset virgin_get_in_touch_url $DRUPAL_GET_IN_TOUCH_URL
   drush $TARGET_ALIAS vset hybridauth_provider_Facebook_keys_id $DRUPAL_FACEBOOK_KEYS_ID
-  drush $TARGET_ALIAS vset vset hybridauth_provider_Facebook_keys_secret $DRUPAL_FACEBOOK_KEYS_SECRET
+  drush $TARGET_ALIAS vset hybridauth_provider_Facebook_keys_secret $DRUPAL_FACEBOOK_KEYS_SECRET
   drush $TARGET_ALIAS vset site_mail $DRUPAL_SITE_EMAIL
   drush $TARGET_ALIAS vset update_notify_emails $DRUPAL_NOTIFY_EMAILS
   drush $TARGET_ALIAS vset update_notification_threshold $DRUPAL_NOTIFY_THRESHOLD

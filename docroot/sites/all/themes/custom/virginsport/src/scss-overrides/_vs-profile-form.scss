@@ -26,12 +26,38 @@
 
 .hybridauth-widget-wrapper {
   padding-top: 15px;
+
+  ul.hybridauth-widget li {
+    width: 100%;
+  }
 }
 
 .hybridauth-facebook-hybridauth-32 {
   background-image: none;
   background-color: #3B5998;
   opacity: 1;
+}
+
+.vs-user-login__separator {
+  margin: .9375rem 0;
+  height: 1px;
+  background-color: rgba(#666666, .3);
+}
+
+.hybridauth-widget + div {
+  text-align: center;
+  font-size: 12px;
+}
+
+.vs-user-login__label {
+  text-align: center;
+  font-size: .75rem;
+  color: $c-black;
+  padding-bottom: 1.25rem;
+
+  @include media-breakpoint-up(md) {
+    font-size: .9375rem;
+  }
 }
 
 .vs-user-profile-form--head {

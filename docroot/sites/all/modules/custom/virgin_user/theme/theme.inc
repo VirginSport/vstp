@@ -96,6 +96,10 @@ function virgin_user_preprocess_virgin_user__edit(&$vars) {
   $field = field_info_field('field_gender');
   $vars['user_gender'] = empty($field['settings']['allowed_values'][$gender_key]) ? '' : $field['settings']['allowed_values'][$gender_key];
 
+  $params = drupal_get_query_parameters();
+  $vars['can_edit_password'] = (!isset($user->data['hybridauth']) || !empty($params['pass-reset-token'])) ;
+
+
   // Generate the purchase history path
   try {
     $sugar_id = $user_grapher->fieldGetOne('field_sugar_id');
