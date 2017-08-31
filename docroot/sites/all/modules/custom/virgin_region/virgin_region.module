@@ -527,3 +527,79 @@ function virgin_region_get_current_region_newsletter_list() {
 
   return $newsletter_list;
 }
+
+/**
+ * Implements hook_boot()
+ *
+ * Redirects the user for his region in case he is in a defined region
+ */
+function virgin_region_boot() {
+  global $user;
+
+  // If in cli mode ignore this function
+  if (drupal_is_cli()) {
+    return ;
+  }
+
+  // We check uid instead of user_is_anonymous because the function isn't
+  // available yet. If the user is logged in he already has a preference and the
+  // system knows how to handle it
+  if ($user->uid > 0) {
+    return ;
+  }
+
+  // Get all the regions with country code and hostname
+  $regions = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->fields('clc', array('field_country_letter_code_value'))
+    ->fields('hn', array('field_hostname_value'))
+    ->condition('n.type', 'region');
+
+  $regions->join('field_data_field_country_letter_code', 'clc', 'n.nid = clc.entity_id');
+  $regions->join('field_data_field_hostname', 'hn', 'n.nid = hn.entity_id');
+
+  $regions = $regions->execute()->fetchAll();
+
+  // Fetch hostname cookie so the user is redirected to his prefered
+  $favorite_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
+  $host = $_SERVER['HTTP_HOST'];
+
+  // Check if the hostname in the cookie is a valid one
+  // or if the URL is valid (deeplink)
+  foreach ($regions as $region) {
+    if ($region->field_hostname_value == $favorite_hostname || $region->field_hostname_value == $host) {
+      return ;
+    }
+  }
+
+  drupal_load('module', 'libraries');
+  drupal_load('module', 'geoip');
+  require_once DRUPAL_ROOT . '/includes/common.inc';
+  require_once DRUPAL_ROOT . '/includes/path.inc';
+  require_once DRUPAL_ROOT . '/includes/language.inc';
+
+  // Geoip uses de drupal ip_address() function
+  $country_code = geoip_country_code('213.58.220.123');
+  if (empty($country_code)) {
+    // splash page
+    return ;
+  }
+
+  // If the user is in a defined region redirect him to his region version of
+  // the page to the preferred language
+  foreach ($regions as $region) {
+    if ($region->field_country_letter_code_value == $country_code) {
+      $current_language = language_initialize('language');
+      $protocol = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? "https" : "http";
+      $path = current_path();
+      if(!empty($current_language->prefix)) {
+        $path = sprintf('%s/%s',$current_language->prefix, $path);
+      }
+
+      $url = sprintf("%s://%s/%s", $protocol, $region->field_hostname_value, $path);
+      drupal_goto($url, array('external' => TRUE), 301);
+    }
+  }
+
+
+}
