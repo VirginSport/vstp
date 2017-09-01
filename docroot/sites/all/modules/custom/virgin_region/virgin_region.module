@@ -585,8 +585,8 @@ function virgin_region_boot() {
   }
   // If the user is in a defined region redirect him to his region version of
   // the page to the preferred language
-  foreach ($regions as $region) {
-    if ($region->field_country_letter_code_value == $country_code) {
+  foreach ($regions as $hostname => $value_country_code) {
+    if ($value_country_code == $country_code) {
       $current_language = language_initialize('language');
 
       $path = !drupal_is_front_page() ? current_path() : '';
@@ -594,7 +594,7 @@ function virgin_region_boot() {
       // We can't apply the hostname before the url function because it would
       // threat the url as external, and it that case the language is not
       // applicable
-      $url = $region->field_hostname_value . url($path, array('language' => $current_language));
+      $url = $hostname . url($path, array('language' => $current_language));
 
       $url = virgin_region_add_hostname_protocol($url);
 
