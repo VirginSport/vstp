@@ -558,7 +558,7 @@ function virgin_region_boot() {
   $regions->join('field_data_field_country_letter_code', 'clc', 'n.nid = clc.entity_id');
   $regions->join('field_data_field_hostname', 'hn', 'n.nid = hn.entity_id');
 
-  $regions = $regions->execute()->fetchAll();
+  $regions = $regions->execute()->fetchAllKeyed('2');
 
   // Fetch hostname cookie so the user is redirected to his prefered
   $favorite_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
@@ -566,12 +566,12 @@ function virgin_region_boot() {
 
   // Check if the hostname in the cookie is a valid one
   // or if the URL is valid (deeplink)
-  foreach ($regions as $region) {
-    if ($region->field_hostname_value == $favorite_hostname || $region->field_hostname_value == $host) {
-      return ;
-    }
+  if (isset($regions[$favorite_hostname]) || isset($regions[$host])) {
+    //splash page
+    return ;
   }
 
+  // Include modules/files that are not available before full bootstrap
   drupal_load('module', 'libraries');
   drupal_load('module', 'geoip');
   require_once DRUPAL_ROOT . '/includes/common.inc';
@@ -579,27 +579,33 @@ function virgin_region_boot() {
   require_once DRUPAL_ROOT . '/includes/language.inc';
 
   // Geoip uses de drupal ip_address() function
-  $country_code = geoip_country_code('213.58.220.123');
+  $country_code = geoip_country_code();
   if (empty($country_code)) {
     // splash page
     return ;
   }
-
   // If the user is in a defined region redirect him to his region version of
   // the page to the preferred language
   foreach ($regions as $region) {
     if ($region->field_country_letter_code_value == $country_code) {
       $current_language = language_initialize('language');
-      $protocol = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? "https" : "http";
-      $path = current_path();
-      if(!empty($current_language->prefix)) {
-        $path = sprintf('%s/%s',$current_language->prefix, $path);
+
+      if (drupal_is_front_page()) {
+        $path = '';
+      } else {
+        $path = current_path();
       }
 
-      $url = sprintf("%s://%s/%s", $protocol, $region->field_hostname_value, $path);
+      // We can't apply the hostname before the url function because it would
+      // threat the url as external, and it that case the language is not
+      // applicable
+      $url = $region->field_hostname_value . url($path, array('language' => $current_language));
+
+      $url = virgin_region_add_hostname_protocol($url);
+
       drupal_goto($url, array('external' => TRUE), 301);
     }
   }
 
-
+  //doesn't match any valid website country so show splash page
 }
