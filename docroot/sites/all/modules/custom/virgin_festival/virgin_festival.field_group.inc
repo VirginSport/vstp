@@ -91,6 +91,7 @@ function virgin_festival_field_group_info() {
       7 => 'title_field',
       8 => 'field_logo',
       9 => 'field_alert',
+      10 => 'field_show_contact_form',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -143,7 +144,7 @@ function virgin_festival_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Menu',
-    'weight' => '14',
+    'weight' => '13',
     'children' => array(
       0 => 'field_links',
     ),

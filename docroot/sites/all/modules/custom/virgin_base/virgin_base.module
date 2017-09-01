@@ -387,10 +387,16 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
  *
  * @param array $exclude_status
  *  The status festivals we don't want
+ * @param bool $contact_form_flagged
+ *  TRUE if you want to get only the festivals that are flagged to appear in
+ *  the contact form
+ * @param bool $with_year
+ *  TRUE if you want to get the festivals with the year in the title
+ *  Example: Festival (2018)
  * @return array
  *  An array of festivals
  */
-function virgin_base_festivals($exclude_status = array()) {
+function virgin_base_festivals($exclude_status = array(), $contact_form_flagged = FALSE, $with_year = FALSE) {
   $query =
     db_select('node', 'n')
     ->fields('n', array('nid'))
@@ -403,11 +409,40 @@ function virgin_base_festivals($exclude_status = array()) {
     $query->condition('st.field_status_value', $exclude_status, 'NOT IN');
   }
 
-  $ids =  $query->execute()->fetchCol();
+  if ($contact_form_flagged) {
+    $query->join('field_data_field_show_contact_form', 'scf', 'n.nid = scf.entity_id');
+    $query->condition('scf.field_show_contact_form_value', TRUE, '=');
+  }
+
+  $years = array();
+  if ($with_year) {
+    $query->join('field_data_field_festival_state', 'fs', 'n.nid = fs.entity_id');
+    $query->join('node', 'nfs', 'fs.field_festival_state_target_id = nfs.nid');
+    $query->join('field_data_field_start_date', 'sd', 'nfs.nid = sd.entity_id');
+    $query->fields('sd', array('field_start_date_value'));
+    $festivals =  $query->execute()->fetchAll();
+
+    $ids = array();
+    $years = array();
+    foreach ($festivals as $festival) {
+      $ids[] = $festival->nid;
+      $years[$festival->nid] = date('Y', $festival->field_start_date_value);
+    }
+
+  } else {
+    $ids =  $query->execute()->fetchCol();
+  }
+
   $nodes = node_load_multiple($ids);
 
-  $list = array_map(function ($node) {
-    return $node->title;
+  $list = array_map(function ($node) use ($with_year, $years) {
+    if ($with_year && !empty($years[$node->nid])) {
+      $title = sprintf('%s (%s)', $node->title, $years[$node->nid]);
+    } else {
+      $title = $node->title;
+    }
+
+    return $title;
   }, $nodes);
 
   asort($list);
