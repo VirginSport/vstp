@@ -83,7 +83,7 @@ projects:
     version: "2.0"
     patch:
       # Drush command to update the GeoIP Database
-      - "./patches/geoip/geoip-update-with-drush-941594-10.patch"
+      - "./patches/geoip/geoip-update_geoip_database_with_drush.patch"
 
   hybridauth:
     version: "2.15"
