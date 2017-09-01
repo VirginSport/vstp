@@ -45,7 +45,7 @@ function drush_geoip_update_db() {
   switch ($db_type) {
     case 'city':
       $data_filename = variable_get('geoip_city_file','GeoLite2-City.mmdb');
-      $db_url = variable_get('geoip_country_url','http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz');
+      $db_url = variable_get('geoip_city_url','http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz');
       break;
 
     case 'country':
