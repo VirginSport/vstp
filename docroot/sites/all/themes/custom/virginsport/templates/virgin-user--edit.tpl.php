@@ -107,7 +107,7 @@
 
                 <!-- Profile Block -->
                 <validator name="vs_user_profile_validator">
-                <div class="row <?php print $is_hybridauth ? 'no-border' : ''?>">
+                <div class="row <?php print !$can_edit_password ? 'no-border' : ''?>">
                   <div class="col-xs-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <div class="row">
                       <div class="col-xs-12 col-md-6">
