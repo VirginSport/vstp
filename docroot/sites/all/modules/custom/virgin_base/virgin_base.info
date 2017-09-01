@@ -57,6 +57,7 @@ features[field_base][] = field_content_subheading
 features[field_base][] = field_country_letter_code
 features[field_base][] = field_cta_blocks
 features[field_base][] = field_cta_card_image
+features[field_base][] = field_cta_copy
 features[field_base][] = field_cta_link
 features[field_base][] = field_cta_links
 features[field_base][] = field_cta_type
