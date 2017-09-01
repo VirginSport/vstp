@@ -91,6 +91,31 @@ vs-notification,
   }
 }
 
+.vs-notification--cookie {
+  background-color: rgba($c-black, .8);
+  color: rgba($c-white, .8);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  .vs-notification__close-icon {
+    fill: $c-white;
+  }
+
+  .vs-notification__message {
+    font-weight: 400;
+  }
+
+  .vs-notification__close svg {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: rem(40);
+  }
+}
+
 
 // Responsive
 // ----------------------------------------------------------------------------
