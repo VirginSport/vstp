@@ -20,5 +20,4 @@ function virgin_region_update_7001() {
  */
 function virgin_region_update_7002() {
   module_enable(array('geoip'));
-  variable_set('geoip_data_file', 'sites/all/libraries/geoip/GeoLite2-Country.mmdb');
 }
