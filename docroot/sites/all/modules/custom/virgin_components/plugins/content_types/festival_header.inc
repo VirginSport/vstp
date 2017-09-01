@@ -130,6 +130,25 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
   // Get current menu path
   $menu_item = menu_get_item();
 
+  $status = ($g->property('type') == 'festival') ? $g->fieldGetOne('field_status') : $g->fieldGetOne('field_event_status');
+  $cta_links = '';
+
+  // Get CTA Field related to the current status
+  if (in_array($status, array('announced'))) {
+    $cta_links = $g->fieldGetAll('field_cta_link_announced');
+  } else if (in_array($status, array('open'))) {
+    $cta_links = $g->fieldGetAll('field_cta_link_open');
+  } else if (in_array($status, array('in-progress'))) {
+    $cta_links = $g->fieldGetAll('field_cta_link_in_progress');
+  } else if (in_array($status, array('closed')) || in_array($status, array('over'))) {
+    $cta_links = $g->fieldGetAll('field_cta_link_over');
+  }
+
+  // For old Festivals with CTA Links for the state Over
+  if (empty($cta_links)) {
+    $cta_links = $g->fieldGetAll('field_cta_link');
+  }
+
   // Build the template variables
   $vars = array(
     'title' => $g->fieldGetOne('title_field'),
@@ -137,7 +156,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'start_date_formatted' => !empty($start_date) ? format_date($start_date, 'custom', 'c', 'UTC') : '',
     'end_date' => $end_date,
     'timezone' => check_plain($timezone),
-    'status' => ($g->property('type') == 'festival') ? $g->fieldGetOne('field_status') : $g->fieldGetOne('field_event_status'),
+    'status' => $status,
     'atom' => $atom->getEntityType() != 'scald_atom' ? NULL : $atom,
     'logo' => $logo->getEntityType() != 'scald_atom' ? NULL : $logo,
     'color' => $g->fieldGetOne('field_brand_color', ''),
@@ -148,7 +167,7 @@ function virgin_components_festival_header_content_type_render($subtype, $conf, 
     'festival_hostname' => $hostname,
     'link' => '', // Small link at the bottom, not used atm
     'link_label' => '', // Small link at the bottom, not used tm
-    'cta_links' => $g->fieldGetAll('field_cta_link'),
+    'cta_links' => $cta_links,
     'is_tickets_page' => !empty($menu_item['path']) && $menu_item['path'] == 'node/%/tickets'
   );
 
