@@ -567,7 +567,6 @@ function virgin_region_boot() {
   // Check if the hostname in the cookie is a valid one
   // or if the URL is valid (deeplink)
   if (isset($regions[$favorite_hostname]) || isset($regions[$host])) {
-    //splash page
     return ;
   }
 
@@ -590,11 +589,7 @@ function virgin_region_boot() {
     if ($region->field_country_letter_code_value == $country_code) {
       $current_language = language_initialize('language');
 
-      if (drupal_is_front_page()) {
-        $path = '';
-      } else {
-        $path = current_path();
-      }
+      $path = !drupal_is_front_page() ? current_path() : '';
 
       // We can't apply the hostname before the url function because it would
       // threat the url as external, and it that case the language is not
