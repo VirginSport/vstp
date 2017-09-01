@@ -41,6 +41,36 @@ function virgin_festival_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_cta|node|festival|form';
+  $field_group->group_name = 'group_cta';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'festival';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'CTA',
+    'weight' => '15',
+    'children' => array(
+      0 => 'field_cta_link_announced',
+      1 => 'field_cta_link_in_progress',
+      2 => 'field_cta_link_open',
+      3 => 'field_cta_link_over',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-cta field-group-htab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_cta|node|festival|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_global|node|festival|form';
   $field_group->group_name = 'group_global';
   $field_group->entity_type = 'node';
@@ -113,7 +143,7 @@ function virgin_festival_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Menu',
-    'weight' => '13',
+    'weight' => '14',
     'children' => array(
       0 => 'field_links',
     ),
@@ -140,7 +170,7 @@ function virgin_festival_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Past State',
-    'weight' => '14',
+    'weight' => '16',
     'children' => array(
       0 => 'field_card_image_past',
       1 => 'field_description_short_past',
@@ -172,7 +202,7 @@ function virgin_festival_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Results',
-    'weight' => '15',
+    'weight' => '17',
     'children' => array(
       0 => 'field_caption',
       1 => 'field_card_image_results',
@@ -209,6 +239,7 @@ function virgin_festival_field_group_info() {
       2 => 'group_past_state',
       3 => 'group_results',
       4 => 'group_upcoming_state',
+      5 => 'group_cta',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -251,6 +282,7 @@ function virgin_festival_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('CTA');
   t('Call To action');
   t('Global');
   t('Menu');
