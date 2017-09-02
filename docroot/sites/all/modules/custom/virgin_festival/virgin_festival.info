@@ -43,6 +43,7 @@ features[field_instance][] = node-festival-field_description
 features[field_instance][] = node-festival-field_description_results
 features[field_instance][] = node-festival-field_description_short
 features[field_instance][] = node-festival-field_description_short_past
+features[field_instance][] = node-festival-field_festival_list_cta
 features[field_instance][] = node-festival-field_festival_state
 features[field_instance][] = node-festival-field_hashtag
 features[field_instance][] = node-festival-field_header_image

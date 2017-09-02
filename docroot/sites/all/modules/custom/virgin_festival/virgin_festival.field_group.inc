@@ -92,6 +92,7 @@ function virgin_festival_field_group_info() {
       8 => 'field_logo',
       9 => 'field_alert',
       10 => 'field_show_contact_form',
+      10 => 'field_festival_list_cta',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

@@ -252,6 +252,8 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
   $supported = array(
     'field_cta_links',
     'field_cta_link',
+    'field_festival_list_cta',
+    'field_cta_link',
     'field_cta_link_announced',
     'field_cta_link_open',
     'field_cta_link_in_progress',
