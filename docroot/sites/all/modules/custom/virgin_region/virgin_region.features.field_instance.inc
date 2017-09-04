@@ -316,6 +316,56 @@ function virgin_region_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-region-field_show_cookies_alert'.
+  $field_instances['node-region-field_show_cookies_alert'] = array(
+    'bundle' => 'region',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_show_cookies_alert',
+    'label' => 'Show cookies alert',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-region-field_sugar_newsletter_list'.
   $field_instances['node-region-field_sugar_newsletter_list'] = array(
     'bundle' => 'region',
@@ -437,6 +487,7 @@ function virgin_region_field_default_field_instances() {
   t('Icon Image');
   t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
   t('Name');
+  t('Show cookies alert');
   t('Sugar Newsletter List');
 
   return $field_instances;

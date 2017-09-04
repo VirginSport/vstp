@@ -121,20 +121,33 @@ if (!empty($view) && isset($view->row_index)) {
                 <?php print strip_tags($grapher->fieldRendered('field_description'),'<br>'); ?>
             </p>
           <?php endif; ?>
-
-          <a
-            class="hidden-sm-down btn vs-btn vs-btn--sm vs-btn--transparent vs-card-upcoming__button"
-            href="<?php print url('node/' . $grapher->property('nid')); ?>"
-          >
-            <?php print t('Details'); ?>
-          </a>
-
-          <a
-            class="hidden-md-up btn vs-btn vs-btn--min-sm vs-btn--transparent vs-card-upcoming__button"
-            href="<?php print url('node/' . $grapher->property('nid')); ?>"
-          >
-            <?php print t('View details'); ?>
-          </a>
+          
+          <div class="vs-card-upcoming__button-wrapper">
+            <a
+              class="hidden-md-up btn vs-btn vs-btn-sm vs-btn--transparent vs-card-upcoming__button"
+              href="<?php print url('node/' . $grapher->property('nid')); ?>"
+            >
+              <?php print t('View details'); ?>
+            </a>
+  
+            <a
+              class="hidden-sm-down btn vs-btn vs-btn-sm vs-btn--transparent vs-card-upcoming__button"
+              href="<?php print url('node/' . $grapher->property('nid')); ?>"
+            >
+              <?php print t('Details'); ?>
+            </a>
+  
+            <?php if(!empty($grapher->fieldGetAll('field_festival_list_cta'))): ?>
+              <?php print
+                theme('virginsport_cta_links',
+                  array(
+                    'links' => $grapher->fieldGetAll('field_festival_list_cta'),
+                    'classes' => 'btn vs-btn vs-btn-sm vs-btn--transparent vs-card-upcoming__button vs-card-upcoming__button--cta'
+                  )
+                );
+              ?>
+            <?php endif; ?>
+          </div>
         </div>
       </div>
     </div>
