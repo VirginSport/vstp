@@ -43,5 +43,6 @@ class VirginComponentNewsletter implements VirginComponentsInterface {
     $variables['description'] = $virgin->fieldGetOne('field_description');
     $variables['list'] = $virgin->fieldGetOne('field_sugar_newsletter_list');
     $variables['image_caption'] = $virgin->fieldGetOne('field_image_caption');
+    $variables['show_email_input'] = user_is_anonymous();
   }
 }
