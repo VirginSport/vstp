@@ -217,6 +217,11 @@ function virgin_region_region_load($nid) {
  */
 function virgin_region_regions() {
 
+  // To avoid errors in drush do not run this function in cli mode
+  if (drupal_is_cli()) {
+    return array();
+  }
+
   // Return the list of regions from cache
   $cache = cache_get(VIRGIN_REGION_CACHE);
 
@@ -250,7 +255,8 @@ function virgin_region_regions() {
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
         'is_default' => (variable_get(VIRGIN_REGION_VAR_DEFAULT_REGION) == $hostname),
-        'hostname' => $hostname
+        'hostname' => $hostname,
+        'show_cookies_alert' => $node_wrapper->field_show_cookies_alert->value(),
       );
     }
 
@@ -603,4 +609,25 @@ function virgin_region_boot() {
   }
 
   //doesn't match any valid website country so show splash page
+}
+
+/*
+ * Get the current region setting if the cookie alert should be visible or not
+ *
+ * @return bool
+ *  TRUE - If the cookie alert should be visible
+ *  FALSE - Otherwise
+ */
+function virgin_region_current_region_show_cookie() {
+  $show_cookie = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$show_cookie) {
+    $region = virgin_region_current();
+
+    if(!isset($region['show_cookies_alert'])) return $show_cookie;
+
+    $show_cookie = $region['show_cookies_alert'];
+  }
+
+  return $show_cookie;
 }

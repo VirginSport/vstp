@@ -91,6 +91,35 @@ function virgin_base_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for menu_edit_item.
+ *
+ * Modifies the menu item form to be able to choose if the item is a
+ * register button
+ */
+function virgin_base_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  // Only add this property in the main menu items
+  if (empty($form['original_item']['#value']['menu_name']) || $form['original_item']['#value']['menu_name'] != 'main-menu') {
+    return ;
+  }
+
+  $form['highlight_button'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Highlight button'),
+    '#default_value' => !empty($form['options']['#value']['attributes']['highlight_button']),
+  );
+
+  array_unshift($form['#submit'], 'virgin_base_form_menu_edit_item_submit');
+}
+
+/**
+ * Changes de form_state to save the item with the flag if it is a register
+ * button or not
+ */
+function virgin_base_form_menu_edit_item_submit($form, &$form_state) {
+  $form_state['values']['options']['attributes']['highlight_button'] = $form_state['values']['highlight_button'];
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form.
  *
  * Modifies the fieldable panel panes edit form for improved editing interface.
@@ -222,7 +251,13 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
   // The supported link fields to override class textfield with a select list
   $supported = array(
     'field_cta_links',
-    'field_cta_link'
+    'field_cta_link',
+    'field_festival_list_cta',
+    'field_cta_link',
+    'field_cta_link_announced',
+    'field_cta_link_open',
+    'field_cta_link_in_progress',
+    'field_cta_link_over',
   );
 
   // If current element is not on supported list do not make changes
@@ -383,10 +418,16 @@ function virgin_base_link_field_process($element, $form_state, $complete_form) {
  *
  * @param array $exclude_status
  *  The status festivals we don't want
+ * @param bool $contact_form_flagged
+ *  TRUE if you want to get only the festivals that are flagged to appear in
+ *  the contact form
+ * @param bool $with_year
+ *  TRUE if you want to get the festivals with the year in the title
+ *  Example: Festival (2018)
  * @return array
  *  An array of festivals
  */
-function virgin_base_festivals($exclude_status = array()) {
+function virgin_base_festivals($exclude_status = array(), $contact_form_flagged = FALSE, $with_year = FALSE) {
   $query =
     db_select('node', 'n')
     ->fields('n', array('nid'))
@@ -399,11 +440,40 @@ function virgin_base_festivals($exclude_status = array()) {
     $query->condition('st.field_status_value', $exclude_status, 'NOT IN');
   }
 
-  $ids =  $query->execute()->fetchCol();
+  if ($contact_form_flagged) {
+    $query->join('field_data_field_show_contact_form', 'scf', 'n.nid = scf.entity_id');
+    $query->condition('scf.field_show_contact_form_value', TRUE, '=');
+  }
+
+  $years = array();
+  if ($with_year) {
+    $query->join('field_data_field_festival_state', 'fs', 'n.nid = fs.entity_id');
+    $query->join('node', 'nfs', 'fs.field_festival_state_target_id = nfs.nid');
+    $query->join('field_data_field_start_date', 'sd', 'nfs.nid = sd.entity_id');
+    $query->fields('sd', array('field_start_date_value'));
+    $festivals =  $query->execute()->fetchAll();
+
+    $ids = array();
+    $years = array();
+    foreach ($festivals as $festival) {
+      $ids[] = $festival->nid;
+      $years[$festival->nid] = date('Y', $festival->field_start_date_value);
+    }
+
+  } else {
+    $ids =  $query->execute()->fetchCol();
+  }
+
   $nodes = node_load_multiple($ids);
 
-  $list = array_map(function ($node) {
-    return $node->title;
+  $list = array_map(function ($node) use ($with_year, $years) {
+    if ($with_year && !empty($years[$node->nid])) {
+      $title = sprintf('%s (%s)', $node->title, $years[$node->nid]);
+    } else {
+      $title = $node->title;
+    }
+
+    return $title;
   }, $nodes);
 
   asort($list);
@@ -529,4 +599,14 @@ function virgin_base_get_newsletter_lists() {
 
     return array();
   }
+}
+
+
+/**
+ * Implement hook_editor_ckeditor_css_alter
+ *
+ * Load ckeditor styles
+ */
+function virgin_base_editor_ckeditor_css_alter(array &$css, $format) {
+  $css[] = drupal_get_path('theme', 'virginsport') . '/build/ckeditor.css';
 }
