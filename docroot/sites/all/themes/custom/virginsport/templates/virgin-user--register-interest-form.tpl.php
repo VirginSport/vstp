@@ -16,7 +16,11 @@ $mkt_id = 'mkt-' . uniqid();
             <div class="row">
               <div :class="{ 'col-md-8 offset-md-2': !inModal, 'col-md-6 offset-md-3': inModal }">
                 <validator name="vs_contact_form_validator" v-if="!form.submitted">
-                  <form @submit.prevent novalidate class="vs-contact-form__form">
+                  <form
+                    @submit.prevent
+                    novalidate class="vs-contact-form__form"
+                    v-init="{autoSubmit: <?php !user_is_anonymous() ? print "true" : print "false"; ?>}"
+                  >
                     <h4 class="vs-form-header">
                       <?php print t('Be the first to know'); ?>
                     </h4>

@@ -60,8 +60,6 @@ function bind($el) {
   });
 
   ajax.commands.vsContactForm = function (ajax, response, status) {
-    // Open modal with forms template
-    modal.open();
     modal.content(response.data);
 
     // Apply vue to template
@@ -122,6 +120,11 @@ function initVue(selector, inModal = false) {
       this.bindLists();
     },
     ready() {
+      if (this.autoSubmit) {
+        this.submit();
+      } else {
+        modal.open();
+      }
       this.$el.classList.add('v-element--ready');
     },
     methods: {
@@ -132,6 +135,11 @@ function initVue(selector, inModal = false) {
         // If data is undefined bail out
         if (!data) {
           return;
+        }
+
+        //autosubmit the form and only after show the modal
+        if(data.autoSubmit) {
+          this._data.autoSubmit = true;
         }
 
         // Init comes from a custom directive because vue core doesn't have it
@@ -234,6 +242,7 @@ function initVue(selector, inModal = false) {
             self.form.error = true;
           }
 
+          self.finished = true;
           self.waitingSubmit = false;
         });
       }
@@ -243,6 +252,8 @@ function initVue(selector, inModal = false) {
       submitted: false,
       inModal: inModal,
       loading: false,
+      autoSubmit: false,
+      finished: false,
       form: {
         submitted: false,
         error: false,
@@ -253,6 +264,15 @@ function initVue(selector, inModal = false) {
         over_12: '',
         events: {},
         event_ids: []
+      }
+    },
+    watch: {
+      'finished': function(val, oldVal) {
+        //on finish open modal
+        if (this.autoSubmit) {
+          modal.open();
+        }
+
       }
     }
   });
