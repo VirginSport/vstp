@@ -9,20 +9,16 @@
         <input type="hidden" v-model="form.list" name="list" value="<?php print $target_list; ?>">
 
         <div class="vs-form-group">
-          <?php if (!$show_email_input && !empty($default_email)): ?>
-            <input type="hidden" v-model="form.newsletter_email" name="newsletter_email" value="<?php print $default_email; ?>">
-          <?php else: ?>
-            <input
-              class="form-control vs-newsletter__input"
-              id="newsletter-email"
-              type="text"
-              name="newsletter-email"
-              v-model="form.newsletter_email"
-              value="<?php print $default_email; ?>"
-              v-validate:newsletter_email="['required', 'email']"
-            >
-            <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
-          <?php endif; ?>
+          <input
+            class="form-control vs-newsletter__input"
+            id="newsletter-email"
+            type="text"
+            name="newsletter-email"
+            v-model="form.newsletter_email"
+            value="<?php print $default_email; ?>"
+            v-validate:newsletter_email="['required', 'email']"
+          >
+          <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
           <div class="vs-newsletter__message-wrapper">
             <p v-if="($vs_newsletter_form_validator.newsletter_email.dirty || submitted) && $vs_newsletter_form_validator.newsletter_email.required" class="vs-newsletter__error-label"><?php print t('Email is required'); ?></p>
             <p v-if="!$vs_newsletter_form_validator.newsletter_email.required && $vs_newsletter_form_validator.newsletter_email.email" class="vs-newsletter__error-label"><?php print t('Invalid email.')?></p>
@@ -30,11 +26,11 @@
             <p v-if="form.error" class="vs-newsletter__error-label"><?php print t('There was an error submitting your request.')?></p>
           </div>
           <?php if ($inline_button): ?>
-          <button v-if="!form.submitted" :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter__btn-inline"><?php print t('Submit'); ?></button>
+          <button v-if="!form.submitted" :disabled="!$vs_newsletter_form_validator.valid || waitingSubmit" v-on:click="submit" class="btn vs-btn vs-newsletter__btn-inline"><?php print t('Submit'); ?></button>
           <button v-else class="btn vs-btn vs-newsletter__btn-inline" disabled><?php print t('Sent'); ?></button>
           <?php else: ?>
           <div class="vs-newsletter__button-wrapper text-xs-center text-md-left">
-            <button v-if="!form.submitted" :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm vs-newsletter__button"><?php print t('Submit'); ?></button>
+            <button v-if="!form.submitted" :disabled="!$vs_newsletter_form_validator.valid || waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm vs-newsletter__button"><?php print t('Submit'); ?></button>
             <button v-else class="btn vs-btn vs-btn--min-sm vs-newsletter__button" disabled><?php print t('Sent'); ?></button>
           </div>
           <?php endif; ?>

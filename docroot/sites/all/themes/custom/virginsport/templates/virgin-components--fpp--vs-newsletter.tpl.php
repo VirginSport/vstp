@@ -13,7 +13,7 @@
       </div>
       
       <div class="col-xs-12 col-md-6">
-        <?php print theme('virginsport_newsletter_form', array('title' => $title, 'description' => $description, 'target_list' => $list, 'default_email' => $default_email , 'wrapper_classes' => 'vs-newsletter__content', 'show_email_input' => $show_email_input)); ?>
+        <?php print theme('virginsport_newsletter_form', array('title' => $title, 'description' => $description, 'target_list' => $list, 'default_email' => $default_email , 'wrapper_classes' => 'vs-newsletter__content')); ?>
       </div>
   
       <div class="col-xs-12 col-md-6 hidden-md-up">
