@@ -86,6 +86,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
         'inline_button' => FALSE,
         'title' => '',
         'description' => '',
+        'show_email_input' => TRUE,
         'wrapper_classes' => '',
       )
     ) + $default;
