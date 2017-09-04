@@ -156,10 +156,6 @@ vs-hero-event-card,
     font-size: 1.25rem;
   }
 
-  .vs-hero-event-card__text {
-    //margin-bottom: 3.65625rem;
-  }
-
   .vs-hero-event-card__button {
     display: inline-block;
     width: auto;
@@ -187,10 +183,6 @@ vs-hero-event-card,
 }
 
 @include media-breakpoint-up(xl) {
-  .vs-hero-event-card__text {
-    //margin-bottom: 7.3125rem;
-  }
-
   .vs-hero-event-card__content {
     width: calc(100% - 9.375rem);
   }
