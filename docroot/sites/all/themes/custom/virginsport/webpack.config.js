@@ -6,10 +6,13 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 var token = Math.round(Math.random() * 1000000);
 
 module.exports = {
-  entry: './webpack.entry.js',
+  entry: {
+    app: './webpack.entry.js',
+    ckeditor: './webpack.ckeditor.js',
+  },
   output: {
     path: './build',
-    filename: 'app.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
@@ -40,7 +43,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|gif)$/,
         loader: `file?name=public/img/[name].[ext]?${token}`
       },
-  
+
       // Add support for JSON files
       {
         include: /\.json$/,
@@ -50,7 +53,7 @@ module.exports = {
   },
   plugins: [
     // Extract CSS from the JS build into a dedicated file
-    new ExtractTextPlugin("app.css", {
+    new ExtractTextPlugin("[name].css", {
       allChunks: true
     }),
 

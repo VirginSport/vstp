@@ -600,3 +600,13 @@ function virgin_base_get_newsletter_lists() {
     return array();
   }
 }
+
+
+/**
+ * Implement hook_editor_ckeditor_css_alter
+ *
+ * Load ckeditor styles
+ */
+function virgin_base_editor_ckeditor_css_alter(array &$css, $format) {
+  $css[] = drupal_get_path('theme', 'virginsport') . '/build/ckeditor.css';
+}
