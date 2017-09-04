@@ -2915,13 +2915,13 @@ function virgin_base_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_show_start_date'.
-  $field_bases['field_show_start_date'] = array(
+  // Exported field_base: 'field_show_time'.
+  $field_bases['field_show_time'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_show_start_date',
+    'field_name' => 'field_show_time',
     'indexes' => array(
       'value' => array(
         0 => 'value',

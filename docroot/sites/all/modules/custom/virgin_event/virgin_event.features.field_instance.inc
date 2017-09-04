@@ -1318,8 +1318,8 @@ function virgin_event_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_show_start_date'.
-  $field_instances['node-event-field_show_start_date'] = array(
+  // Exported field_instance: 'node-event-field_show_time'.
+  $field_instances['node-event-field_show_time'] = array(
     'bundle' => 'event',
     'default_value' => array(
       0 => array(
@@ -1350,7 +1350,7 @@ function virgin_event_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_show_start_date',
+    'field_name' => 'field_show_time',
     'label' => 'Show start date',
     'required' => 0,
     'settings' => array(
