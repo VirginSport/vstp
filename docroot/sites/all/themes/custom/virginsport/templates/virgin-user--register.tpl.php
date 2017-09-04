@@ -64,17 +64,14 @@ $query = drupal_get_query_parameters();
 
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
-
-                <?php /* FIXME Facebook auth login link code placeholder
-                <div class="vs-user-form__email-text"><?php print t('Or with an email address'); ?></div>
-                */ ?><div style="clear: both; height: 40px;"></div>
-
                 <form @submit.prevent class="vs-user-register--form" novalidate>
                   <!-- Profile Block -->
                   <validator name="vs_user_register_validator">
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="vs-user-form__wrapper">
+                          <?php print drupal_render($hybridauth_widget); ?>
+                          <div class="vs-user-login__separator vs-user-login__separator--large"></div>
                           <div class="field-first-name">
                             <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_first_name.dirty || submitted) && !$vs_user_register_validator.field_first_name.valid }">
                               <input class="form-control" required type="text" v-model="profile.field_first_name" name="field_first_name" id="field_first_name" v-validate:field_first_name="['required']">
