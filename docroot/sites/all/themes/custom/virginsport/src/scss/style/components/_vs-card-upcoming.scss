@@ -64,6 +64,10 @@ vs-card-upcoming,
   position: relative;
 }
 
+.vs-card-upcoming__button--cta {
+  margin: rem(20) 0 0;
+}
+
 .vs-card-upcoming__text {
   position: relative;
   color: $c-white;
@@ -128,9 +132,10 @@ vs-card-upcoming,
   .vs-card-upcoming__button {
     width: auto;
   }
-}
 
-@include media-breakpoint-up(md) {
+  .vs-card-upcoming__button--cta {
+    margin: 0 0 0 rem(20);
+  }
 
   .vs-card-upcoming__title {
     font-size: 1.875rem;
@@ -142,9 +147,7 @@ vs-card-upcoming,
     font-size: 1.25rem;
     line-height: 1.5rem;
   }
-
 }
-
 
 @include media-breakpoint-up(lg) {
   .vs-card-upcoming__content-wrapper {
@@ -174,6 +177,10 @@ vs-card-upcoming,
   .vs-card-upcoming__date {
     font-size: 1.25rem;
     line-height: 1.5rem;
+  }
+
+  .vs-card-upcoming__button--cta {
+    margin: 0 0 0 rem(30);
   }
 }
 
@@ -209,7 +216,7 @@ vs-card-upcoming,
     }
   }
 
-  .vs-card-upcoming__button {
+  .vs-card-upcoming__button-wrapper {
     position: absolute;
     bottom: 1.563rem;
   }

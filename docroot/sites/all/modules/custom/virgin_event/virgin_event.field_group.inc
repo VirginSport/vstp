@@ -13,6 +13,36 @@ function virgin_event_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_cta|node|event|form';
+  $field_group->group_name = 'group_cta';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'CTA',
+    'weight' => '21',
+    'children' => array(
+      0 => 'field_cta_link_announced',
+      1 => 'field_cta_link_open',
+      2 => 'field_cta_link_in_progress',
+      3 => 'field_cta_link_over',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-cta field-group-htab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_cta|node|event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_global|node|event|form';
   $field_group->group_name = 'group_global';
   $field_group->entity_type = 'node';
@@ -62,7 +92,7 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Results',
-    'weight' => '21',
+    'weight' => '22',
     'children' => array(
       0 => 'field_description_results',
       1 => 'field_gameface_url',
@@ -99,6 +129,7 @@ function virgin_event_field_group_info() {
     'children' => array(
       0 => 'group_global',
       1 => 'group_results',
+      2 => 'group_cta',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -113,6 +144,7 @@ function virgin_event_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('CTA');
   t('Global');
   t('Results');
   t('Tabs');
