@@ -43,6 +43,7 @@ class VirginComponentTicketCardItem implements VirginComponentsInterface {
     $variables['price'] = $ticket_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['currency'] = $ticket_grapher->fieldGetOne('field_price', '', 'currency');
     $variables['nid'] = $ticket_grapher->property('nid');
+    $variables['cta_copy'] = $virgin->fieldGetOne('field_cta_copy', t('Get Passes'));
 
     $ticket_type_state_grapher = $ticket_grapher->relation('field_ticket_type_state');
     $ticket_level = $ticket_type_state_grapher->fieldGetOne('field_ticket_level');

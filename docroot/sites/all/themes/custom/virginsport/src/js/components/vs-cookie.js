@@ -22,7 +22,7 @@ export default () => {
         let $el = $(cookie_template).addClass(cookie_class);
 
         // Append cookie to notifications wrapper.
-        $el.appendTo('.vs-notification--not-sticky');
+        $el.appendTo('body');
 
         // Save cookie if user dismiss the notification and hide it.
         $el.find('.vs-notification__close').click(() => {
