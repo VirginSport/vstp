@@ -851,16 +851,6 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
-  // Exported permission: 'create fieldable vs_newsletter'.
-  $permissions['create fieldable vs_newsletter'] = array(
-    'name' => 'create fieldable vs_newsletter',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
   // Exported permission: 'create fieldable vs_package_cards'.
   $permissions['create fieldable vs_package_cards'] = array(
     'name' => 'create fieldable vs_package_cards',
@@ -1205,16 +1195,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete fieldable vs_mylaps_track_my_runner'.
   $permissions['delete fieldable vs_mylaps_track_my_runner'] = array(
     'name' => 'delete fieldable vs_mylaps_track_my_runner',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
-  // Exported permission: 'delete fieldable vs_newsletter'.
-  $permissions['delete fieldable vs_newsletter'] = array(
-    'name' => 'delete fieldable vs_newsletter',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
@@ -1632,16 +1612,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'edit fieldable vs_mylaps_track_my_runner'.
   $permissions['edit fieldable vs_mylaps_track_my_runner'] = array(
     'name' => 'edit fieldable vs_mylaps_track_my_runner',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
-  // Exported permission: 'edit fieldable vs_newsletter'.
-  $permissions['edit fieldable vs_newsletter'] = array(
-    'name' => 'edit fieldable vs_newsletter',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
