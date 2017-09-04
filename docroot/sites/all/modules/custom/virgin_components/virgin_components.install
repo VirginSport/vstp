@@ -75,13 +75,6 @@ function virgin_components_update_7008() {
 }
 
 /**
-+ * Rebuild Allow to insert Newsletter fpp
-+ */
-function virgin_components_update_7009() {
-  virgin_components_allow_type('fieldable_panels_pane-vs_newsletter');
-}
-
-/**
  * Allow component to be added in frontend
  *
  * @param $type
@@ -101,10 +94,4 @@ function virgin_components_allow_type($type) {
       ->execute()
     ;
   }
-
-  // The allowed setting is stored in a variable as well
-  $variable = 'panels_page_allowed_types';
-  $allowed_content_types = variable_get($variable, array());
-  $allowed_content_types[$type] = TRUE;
-  variable_set($variable, $allowed_content_types);
 }
