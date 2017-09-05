@@ -156,7 +156,8 @@ vs-newsletter,
   }
 }
 
-.vs-newsletter__button {
+.vs-newsletter__button,
+.vs-newsletter__btn-inline {
   display: block;
 
   @include media-breakpoint-down(sm) {
@@ -212,5 +213,9 @@ vs-newsletter,
       background-color: map_get($map, 'input-color');
       border-color: map_get($map, 'input-border-color');
     }
+  }
+
+  .vs-region--gradient-default .vs-newsletter .vs-newslettter__title:after {
+    background-color: $c-orange-bright;
   }
 }
