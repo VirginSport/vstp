@@ -122,7 +122,7 @@ function initVue(selector, inModal = false) {
     ready() {
       if (this.autoSubmit) {
         this.submit();
-      } else {
+      } else if (inModal) {
         modal.open();
       }
       this.$el.classList.add('v-element--ready');
@@ -243,7 +243,7 @@ function initVue(selector, inModal = false) {
     watch: {
       'finished': function(val, oldVal) {
         //on finish open modal
-        if (this.autoSubmit) {
+        if (this.autoSubmit) { 
           modal.open();
         }
 
