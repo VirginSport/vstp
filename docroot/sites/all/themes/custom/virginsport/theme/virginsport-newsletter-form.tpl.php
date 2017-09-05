@@ -21,7 +21,7 @@
               value="<?php print $default_email; ?>"
               v-validate:newsletter_email="['required', 'email']"
             >
-            <label class="vs-focus-label" for="newsletter"><?php print t('Email Address'); ?></label>
+            <label class="vs-focus-label" for="newsletter-email"><?php print t('Email Address'); ?></label>
           <?php endif; ?>
           <div class="vs-newsletter__message-wrapper">
             <p v-if="($vs_newsletter_form_validator.newsletter_email.dirty || submitted) && $vs_newsletter_form_validator.newsletter_email.required" class="vs-newsletter__error-label"><?php print t('Email is required'); ?></p>
