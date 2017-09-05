@@ -2353,7 +2353,7 @@ function virgin_event_field_default_field_instances() {
   t('Overview Image');
   t('Replay URL');
   t('Show in festival menu');
-  t('Show start date');
+  t('Show time');
   t('Start Date');
   t('Status');
   t('SugarCRM ID');
