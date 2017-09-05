@@ -101,63 +101,6 @@ p.vs-bcb__lead {
   }
 }
 
-// Text in columns
-/*ul.vs-bcb__column-text {
-  padding: 0;
-  margin: 0;
-  clear: both;
-
-  li {
-    list-style-type: none;
-    font-size: 13px;
-    color: $c-black;
-    line-height: 24px;
-    margin: 0 0 30px;
-
-    @include media-breakpoint-up(md) {
-      float: left;
-      width: 50%;
-      padding-right: $grid-gutter-width*2;
-    }
-  }
-}
-
-// Text in columns with title
-ul.vs-bcb__column-text-title {
-  padding: 0;
-  margin: 0 0 30px;
-
-  @include media-breakpoint-up(md) {
-    float: left;
-    width: 50%;
-    padding-right: $grid-gutter-width*2;
-  }
-
-  li {
-    list-style-type: none;
-    font-size: 13px;
-    color: $c-black;
-    line-height: 23px;
-
-    @include media-breakpoint-up(md) {
-      font-size: 15px;
-      color: $c-black;
-      line-height: 24px;
-    }
-
-    &:first-child {
-      font-size: 16px;
-      color: $c-black;
-      margin-bottom: 12px;
-
-      @include media-breakpoint-up(md) {
-        font-size: 18px;
-        color: $c-black;
-      }
-    }
-  }
-}*/
-
 // Title with bottom line
 p.vs-bcb__title-line {
   display: block;
