@@ -162,6 +162,7 @@ vs-basic-content-block,
 // Color variations
 // ----------------------------------------------------------------------------
 
+// Apply page background colors mappigng
 @each $color in map-keys($color-schemes) {
   $map: map_get($color-schemes, $color);
 
@@ -189,37 +190,63 @@ vs-basic-content-block,
 
     a.vs-bcb__btn {
       @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-      color: map_get($map, 'text-color');
       border: 0;
+      color: map_get($map, 'text-color');
 
       &:active {
         @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
       }
     }
+  }
+}
 
+// Apply component background colors mappigng
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-basic-content-block--gradient-#{$color} {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+
+    p,
+    h2.vs-bcb__title,
+    .vs-bcb__subtitle,
+    .vs-bcb__lead,
+    ul.vs-bcb__column-text-title li,
+    ul.vs-bcb__faq li:nth-child(even),
+    ul.vs-bcb__small-list li {
+      color: map_get($map, 'text-color');
+    }
+
+    ul.vs-bcb__faq li:nth-child(odd) {
+      color: rgba(map_get($map, 'text-color'), .7);
+    }
+
+    p.vs-bcb__title-line:after,
+    hr {
+      background-color: rgba(map_get($map, 'text-color'), .7);
+    }
+
+    a.vs-bcb__btn {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      border: 0;
+      color: map_get($map, 'text-color');
+
+      &:active {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      }
+    }
+  }
+}
+
+// Make sure title inherits color from page background when in light background colors
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
     .vs-basic-content-block--gradient-default,
     .vs-basic-content-block--gradient-white {
       h2.vs-bcb__title {
         color: map_get($map, 'solid-color');
-      }
-
-      p,
-      h2.vs-bcb__title,
-      .vs-bcb__subtitle,
-      .vs-bcb__lead,
-      ul.vs-bcb__column-text-title li,
-      ul.vs-bcb__faq li:nth-child(even),
-      ul.vs-bcb__small-list li {
-        color: $c-black;
-      }
-
-      ul.vs-bcb__faq li:nth-child(odd) {
-        color: rgba($c-black, .7);
-      }
-
-      p.vs-bcb__title-line:after,
-      hr {
-        background-color: rgba($c-black, .7);
       }
 
       a.vs-bcb__btn {
@@ -230,6 +257,7 @@ vs-basic-content-block,
   }
 }
 
+// Ensure buttons are red when in light backgrounds
 .vs-region--gradient-default,
 .vs-region--gradient-transparent,
 .vs-region--gradient-white {
