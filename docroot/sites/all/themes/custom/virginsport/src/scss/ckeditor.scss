@@ -239,26 +239,4 @@ a.vs-bcb__btn {
   @include media-breakpoint-down(sm) {
     display: block;
   }
-
-  @each $color in map-keys($color-schemes) {
-    $map: map_get($color-schemes, $color);
-
-    .vs-region--gradient-#{$color} & {
-      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-      border: 0;
-
-      &:active {
-        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-      }
-
-      @if (map-has-key($map, 'text-color-focus')) {
-        &:hover,
-        &:focus {
-          color: map_get($map, 'text-color-focus');
-        }
-      }
-
-      color: map_get($map, 'text-color');
-    }
-  }
 }

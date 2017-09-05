@@ -16,7 +16,11 @@ vs-basic-content-block,
 
 .vs-basic-content-block-wrapper {
   border-radius: .625rem;
-  //background-color: $c-white;
+  background-color: $c-white;
+
+  &.vs-basic-content-block--gradient-transparent {
+    background-color: transparent;
+  }
 }
 
 .vs-basic-content-block__hero-image {
@@ -182,7 +186,29 @@ vs-basic-content-block,
     hr {
       background-color: rgba(map_get($map, 'text-color'), .7);
     }
+
+    a.vs-bcb__btn {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      border: 0;
+
+      &:active {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      }
+
+      @if (map-has-key($map, 'text-color-focus')) {
+        &:hover,
+        &:focus {
+          color: map_get($map, 'text-color-focus');
+        }
+      }
+
+      color: map_get($map, 'text-color');
+    }
   }
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
 
   .vs-basic-content-block--gradient-#{$color} {
     @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
@@ -205,13 +231,58 @@ vs-basic-content-block,
     hr {
       background-color: rgba(map_get($map, 'text-color'), .7);
     }
+
+    a.vs-bcb__btn {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      border: 0;
+
+      &:active {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      }
+
+      @if (map-has-key($map, 'text-color-focus')) {
+        &:hover,
+        &:focus {
+          color: map_get($map, 'text-color-focus');
+        }
+      }
+
+      color: map_get($map, 'text-color');
+    }
+  }
+}
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+    .vs-basic-content-block--gradient-default,
+    .vs-basic-content-block--gradient-white {
+      h2.vs-bcb__title {
+        color: map_get($map, 'solid-color');
+      }
+
+      a.vs-bcb__btn {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+        color: $c-white;
+      }
+    }
   }
 }
 
 .vs-region--gradient-default,
+.vs-region--gradient-transparent,
 .vs-region--gradient-white {
-  a.vs-bcb__btn {
-    @include gradient-directional(#FF0040, #830A2A, 90deg);
-    color: $c-white;
+  .vs-basic-content-block--gradient-default,
+  .vs-basic-content-block--gradient-transparent,
+  .vs-basic-content-block--gradient-white {
+    a.vs-bcb__btn {
+      @include gradient-directional(#FF0040, #830A2A, 90deg);
+      color: $c-white;
+    }
+
+    h2.vs-bcb__title {
+      color: $c-orange-bright;
+    }
   }
 }
