@@ -154,7 +154,7 @@
       <div class="vs-header__nav-wrapper">
         <ul class="vs-header__nav">
           <?php foreach ($main_menu as $item): ?>
-            <li class="vs-header__nav-item">
+            <li class="vs-header__nav-item <?php print $item['classes']; ?>">
               <a class="vs-header__nav-link" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
             </li>
           <?php endforeach; ?>
@@ -298,7 +298,9 @@
         </div>
 
         <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
-          <?php print theme('virginsport_newsletter_form', array('title' => t('Keep up with Virgin Sport'), 'target_list' => $newsletter_list, 'default_email' => $default_email, 'inline_button' => TRUE, 'wrapper_classes' => 'vs-newsletter-footer')); ?>
+          <?php if (user_is_anonymous()): ?>
+            <?php print theme('virginsport_newsletter_form', array('title' => t('Keep up with Virgin Sport'), 'target_list' => $newsletter_list, 'default_email' => $default_email, 'inline_button' => TRUE, 'wrapper_classes' => 'vs-newsletter-footer')); ?>
+          <?php endif; ?>
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">

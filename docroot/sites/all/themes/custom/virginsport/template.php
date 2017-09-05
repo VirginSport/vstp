@@ -86,6 +86,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
         'inline_button' => FALSE,
         'title' => '',
         'description' => '',
+        'show_email_input' => TRUE,
         'wrapper_classes' => '',
       )
     ) + $default;
@@ -215,9 +216,11 @@ function virginsport_preprocess_page(&$vars) {
   $vars['default_email'] = $user->uid > 0 ? $user->mail : '';
 
   // Make cookie template available in javascript
-  $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
-  $cookie_template = theme('virginsport_notification', array('message' => $message));
-  drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
+  if (virgin_region_current_region_show_cookie()) {
+    $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
+    $cookie_template = theme('virginsport_notification', array('message' => $message));
+    drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
+  }
 }
 
 /**
@@ -266,10 +269,18 @@ function virginsport_menu_items($menu_name) {
     foreach ($tree as $key => $branch) {
       if (!is_numeric($key)) continue; // Skip render array properties
 
+      $classes = !empty($branch['#original_link']['options']['attributes']['highlight_button']) ? 'highlight ' : '';
+      $active = (bool) $branch['#original_link']['in_active_trail'];
+
+      if ($active) {
+        $classes .= 'active';
+      }
+
       $items[] = array(
         'url' => url($branch['#href']),
         'title' => check_plain($branch['#title']),
-        'active' => (bool) $branch['#original_link']['in_active_trail']
+        'active' => $active,
+        'classes' => $classes,
       );
     }
 

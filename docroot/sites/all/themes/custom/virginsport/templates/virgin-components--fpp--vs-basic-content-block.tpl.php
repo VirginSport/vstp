@@ -20,7 +20,7 @@
 
 <div class="vs-basic-content-block">
   <div class="container">
-    <div class="vs-basic-content-block-wrapper">
+    <div class="vs-basic-content-block-wrapper vs-basic-content-block--gradient-<?php print $brand_color; ?>">
       <?php if(!empty($hero_image_grapher->property('sid'))): ?>
       <div class="row">
         <div class="col-xs-12">
