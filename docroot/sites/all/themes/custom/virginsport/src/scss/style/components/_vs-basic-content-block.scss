@@ -16,7 +16,7 @@ vs-basic-content-block,
 
 .vs-basic-content-block-wrapper {
   border-radius: .625rem;
-  background-color: $c-white;
+  //background-color: $c-white;
 }
 
 .vs-basic-content-block__hero-image {
@@ -151,5 +151,36 @@ vs-basic-content-block,
   .vs-basic-content-block__image {
     height: 184px;
     min-width: 740px;
+  }
+}
+
+
+// Color variations
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+
+    p,
+    h2.vs-bcb__title,
+    .vs-bcb__subtitle,
+    .vs-bcb__lead,
+    ul.vs-bcb__column-text-title li,
+    ul.vs-bcb__faq li:nth-child(even),
+    ul.vs-bcb__small-list li {
+      color: map_get($map, 'text-color');
+    }
+
+    ul.vs-bcb__faq li:nth-child(odd) {
+      color: rgba(map_get($map, 'text-color'), .7);
+    }
+
+    p.vs-bcb__title-line:after,
+    hr {
+      background-color: rgba(map_get($map, 'text-color'), .7);
+    }
   }
 }
