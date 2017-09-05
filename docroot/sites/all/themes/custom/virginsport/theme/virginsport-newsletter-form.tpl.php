@@ -1,3 +1,7 @@
+<?php
+  // Form-id in case multiple newsletter forms are available in one page
+  $form_id = uniqid();
+?>
 <div class="v-element <?php print empty($wrapper_classes) ? '' : $wrapper_classes; ?>">
   <h3 class="vs-newslettter__title"><?php print $title; ?></h3>
   <?php if ($description != ''): ?>
@@ -14,14 +18,14 @@
           <?php else: ?>
             <input
               class="form-control vs-newsletter__input"
-              id="newsletter-email"
+              id="newsletter-email-<?php print $form_id; ?>"
               type="text"
               name="newsletter-email"
               v-model="form.newsletter_email"
               value="<?php print $default_email; ?>"
               v-validate:newsletter_email="['required', 'email']"
             >
-            <label class="vs-focus-label" for="newsletter-email"><?php print t('Email Address'); ?></label>
+            <label class="vs-focus-label" for="newsletter-email-<?php print $form_id; ?>"><?php print t('Email Address'); ?></label>
           <?php endif; ?>
           <div class="vs-newsletter__message-wrapper">
             <p v-if="($vs_newsletter_form_validator.newsletter_email.dirty || submitted) && $vs_newsletter_form_validator.newsletter_email.required" class="vs-newsletter__error-label"><?php print t('Email is required'); ?></p>
