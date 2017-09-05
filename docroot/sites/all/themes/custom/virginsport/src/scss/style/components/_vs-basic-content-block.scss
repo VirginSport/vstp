@@ -183,4 +183,35 @@ vs-basic-content-block,
       background-color: rgba(map_get($map, 'text-color'), .7);
     }
   }
+
+  .vs-basic-content-block--gradient-#{$color} {
+    @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+
+    p,
+    h2.vs-bcb__title,
+    .vs-bcb__subtitle,
+    .vs-bcb__lead,
+    ul.vs-bcb__column-text-title li,
+    ul.vs-bcb__faq li:nth-child(even),
+    ul.vs-bcb__small-list li {
+      color: map_get($map, 'text-color');
+    }
+
+    ul.vs-bcb__faq li:nth-child(odd) {
+      color: rgba(map_get($map, 'text-color'), .7);
+    }
+
+    p.vs-bcb__title-line:after,
+    hr {
+      background-color: rgba(map_get($map, 'text-color'), .7);
+    }
+  }
+}
+
+.vs-region--gradient-default,
+.vs-region--gradient-white {
+  a.vs-bcb__btn {
+    @include gradient-directional(#FF0040, #830A2A, 90deg);
+    color: $c-white;
+  }
 }
