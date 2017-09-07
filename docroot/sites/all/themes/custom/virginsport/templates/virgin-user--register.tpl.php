@@ -70,8 +70,12 @@ $query = drupal_get_query_parameters();
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="vs-user-form__wrapper">
-                          <?php print drupal_render($hybridauth_widget); ?>
-                          <div class="vs-user-login__separator vs-user-login__separator--large"></div>
+                          <div class="hybridauth-widget-wrapper"></div>
+                          <?php
+                          // TODO: UNCOMMENT THIS
+                          // print drupal_render($hybridauth_widget);
+                          // <div class="vs-user-login__separator vs-user-login__separator--large"></div>
+                          ?>
                           <div class="field-first-name">
                             <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_user_register_validator.field_first_name.dirty || submitted) && !$vs_user_register_validator.field_first_name.valid }">
                               <input class="form-control" required type="text" v-model="profile.field_first_name" name="field_first_name" id="field_first_name" v-validate:field_first_name="['required']">
