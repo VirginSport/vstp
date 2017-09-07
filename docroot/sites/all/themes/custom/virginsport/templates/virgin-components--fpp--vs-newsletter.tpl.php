@@ -1,5 +1,5 @@
 
-<div class="vs-newsletter">
+<div class="vs-newsletter <?php !empty($brand_color) ? print sprintf("brand-color-%s", $brand_color) : print ''; ?>">
   <div class="container">
     <div class="row grid-align-middle--md-up">
       
