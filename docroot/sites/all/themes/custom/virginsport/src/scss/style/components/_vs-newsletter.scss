@@ -190,6 +190,10 @@ vs-newsletter,
   color: $state-danger;
 }
 
+.vs-newsletter .vs-newslettter__title:after {
+  background-color: $c-orange-bright;
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------
@@ -205,17 +209,20 @@ vs-newsletter,
       color: map_get($map, 'text-color');
     }
 
-    .vs-newslettter__title:after {
-      background-color: map_get($map, 'solid-color');
-    }
-
     .vs-newsletter__input {
       background-color: map_get($map, 'input-color');
       border-color: map_get($map, 'input-border-color');
     }
   }
 
-  .vs-region--gradient-default .vs-newsletter .vs-newslettter__title:after {
-    background-color: $c-orange-bright;
+  .vs-newsletter--gradient-#{$color} {
+    .vs-newslettter__title:after {
+      background-color: map_get($map, 'solid-color');
+    }
+
+    .vs-newsletter__button {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      border: 0;
+    }
   }
 }
