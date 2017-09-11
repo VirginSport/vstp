@@ -160,6 +160,13 @@ vs-newsletter,
 .vs-newsletter__btn-inline {
   display: block;
 
+  &:disabled {
+    opacity: .33;
+    cursor: default;
+  }
+}
+
+.vs-newsletter__button {
   @include media-breakpoint-down(sm) {
     width: 100%;
   }
