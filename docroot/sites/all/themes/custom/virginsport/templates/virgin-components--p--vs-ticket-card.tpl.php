@@ -51,7 +51,7 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
             vs-ticket-event="SelectTicketsCTA"
             vs-ticket-level="<?php print $ticket_level; ?>"
           >
-            <?php print t('Get Passes');?>
+            <?php print $cta_copy;?>
           </a>
           <?php if(!empty($ticket_properties)): ?>
           <div class="vs-ticket-type__<?php print $ticket_class; ?>">

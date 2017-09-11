@@ -46,5 +46,6 @@ class VirginComponentBasicContentBlock implements VirginComponentsInterface {
     $variables['content_sub_heading'] = $virgin->fieldGetOne('field_content_subheading');
     $variables['page_body'] = $virgin->fieldGetOne('field_page_body');
     $variables['cta_links'] = $virgin->fieldGetAll('field_cta_links');
+    $variables['brand_color'] = !empty($virgin->fieldGetOne('field_brand_color')) ? $virgin->fieldGetOne('field_brand_color') : 'transparent';
   }
 }

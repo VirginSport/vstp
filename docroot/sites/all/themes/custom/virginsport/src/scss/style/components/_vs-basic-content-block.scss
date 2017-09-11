@@ -51,6 +51,11 @@ vs-basic-content-block,
 
 .vs-basic-content-block__text-wrapper {
   padding: 1.25rem;
+
+  hr {
+    clear: both;
+    margin: 30px 0;
+  }
 }
 
 .vs-basic-content-block__static-title {
@@ -144,7 +149,7 @@ vs-basic-content-block,
   }
 
   .vs-basic-content-block__image {
-      height: 184px;
-      min-width: 740px;
+    height: 184px;
+    min-width: 740px;
   }
 }

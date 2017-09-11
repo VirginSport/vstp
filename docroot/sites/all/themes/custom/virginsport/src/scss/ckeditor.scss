@@ -1,0 +1,264 @@
+
+// Imports
+// ----------------------------------------------------------------------------
+@import "variables";
+
+
+// Mixins
+@import "mixins/family";
+
+
+// Bootstrap
+@import "bootstrap";
+
+
+// Components
+@import "style/components/vs-button";
+
+
+// Functions
+@import "functions";
+
+
+// CKEditor css
+// ----------------------------------------------------------------------------
+
+body.cke_editable {
+  max-width: 1140px;
+  padding: 34px;
+}
+
+.cke_panel_list {
+  h2.vs-bcb__title,
+  p.vs-bcb__subtitle,
+  p.vs-bcb__lead,
+  p.vs-bcb__title-line {
+    margin: 0;
+    padding: 0;
+    color: $c-black;
+    text-transform: none;
+    line-height: normal;
+    font-size: 14px;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+
+// Component improved text editing
+// ----------------------------------------------------------------------------
+
+// Title
+h2.vs-bcb__title {
+  font-size: 21px;
+  color: $c-orange-bright;
+  line-height: 30px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  font-weight: 400;
+
+  @include media-breakpoint-up(md) {
+    font-size: 28px;
+  }
+
+  @each $color in map-keys($color-schemes) {
+    $map: map_get($color-schemes, $color);
+
+    .vs-region--gradient-#{$color} & {
+      color: map_get($map, 'solid-color');
+    }
+  }
+}
+
+// Subtitle
+p.vs-bcb__subtitle {
+  font-size: 16px;
+  color: $c-black;
+  line-height: 23px;
+  margin-bottom: 52px;
+
+  @include media-breakpoint-up(md) {
+    font-size: 21px;
+    line-height: 26px;
+    margin-bottom: 22px;
+  }
+}
+
+// Lead paragraph
+p.vs-bcb__lead {
+  font-size: 14px;
+  color: $c-black;
+  line-height: 23px;
+  margin-bottom: 34px;
+
+  @include media-breakpoint-up(md) {
+    font-size: 18px;
+    line-height: 26px;
+    width: 80%;
+  }
+}
+
+// Text in columns
+ul.vs-bcb__column-text {
+  padding: 0;
+  margin: 0;
+  clear: both;
+
+  li {
+    list-style-type: none;
+    font-size: 13px;
+    color: $c-black;
+    line-height: 24px;
+    margin: 0 0 30px;
+
+    @include media-breakpoint-up(md) {
+      float: left;
+      width: 50%;
+      padding-right: $grid-gutter-width*2;
+    }
+  }
+}
+
+// Text in columns with title
+ul.vs-bcb__column-text-title {
+  padding: 0;
+  margin: 0 0 30px;
+
+  @include media-breakpoint-up(md) {
+    float: left;
+    width: 50%;
+    padding-right: $grid-gutter-width*2;
+  }
+
+  li {
+    list-style-type: none;
+    font-size: 13px;
+    color: $c-black;
+    line-height: 23px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+      color: $c-black;
+      line-height: 24px;
+    }
+
+    &:first-child {
+      font-size: 16px;
+      color: $c-black;
+      margin-bottom: 12px;
+
+      @include media-breakpoint-up(md) {
+        font-size: 18px;
+        color: $c-black;
+      }
+    }
+  }
+}
+
+// Title with bottom line
+p.vs-bcb__title-line {
+  display: block;
+  font-size: 16px;
+  color: $c-black;
+  line-height: 26px;
+  position: relative;
+  padding-bottom: 16px;
+  margin-bottom: 46px;
+
+  &:after {
+    content: '';
+    background-color: #979797;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: 22px;
+  }
+}
+
+// Questions and answers
+ul.vs-bcb__faq {
+  clear: both;
+  padding: 0;
+  margin: 0;
+
+  li {
+    list-style-type: none;
+    line-height: 24px;
+
+    @include odd() {
+      font-size: 16px;
+      color: #7D7D7D;
+      margin-bottom: 6px;
+
+      @include media-breakpoint-up(md) {
+        font-size: 15px;
+      }
+    }
+
+    @include even() {
+      color: $c-black;
+      font-size: 13px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 16px;
+      }
+
+      @include media-breakpoint-up(md) {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+// Small list
+ul.vs-bcb__small-list {
+  padding: 0 0 0 24px;
+  margin: 0;
+
+  li {
+    font-size: 13px;
+    color: #393939;
+    line-height: 26px;
+    padding-bottom: 6px;
+  }
+}
+
+a.vs-bcb__btn {
+  box-shadow: 0 5px 10px 0 rgba($c-black, .10);
+  margin-bottom: 22px;
+
+  @include media-breakpoint-down(sm) {
+    display: block;
+  }
+
+  @each $color in map-keys($color-schemes) {
+    $map: map_get($color-schemes, $color);
+
+    .vs-region--gradient-#{$color} & {
+      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      border: 0;
+
+      &:active {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+      }
+
+      @if (map-has-key($map, 'text-color-focus')) {
+        &:hover,
+        &:focus {
+          color: map_get($map, 'text-color-focus');
+        }
+      }
+
+      color: map_get($map, 'text-color');
+    }
+  }
+}
