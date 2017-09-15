@@ -46,7 +46,7 @@
       $attributes['virgin-region-modal'] = $link['attributes']['virgin_show_region_modal'];
     }
 
-    print sprintf('<a %s>%s</a>', drupal_attributes($attributes), $link['title']); ?>
+    print sprintf('<a %s>%s</a>', drupal_attributes($attributes), check_plain($link['title'])); ?>
 
   <?php endforeach; ?>
 <?php endif; ?>
