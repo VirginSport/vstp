@@ -438,17 +438,25 @@ function virginsport_days_left($date) {
  *  The timezone the date interval should be converted to
  * @param string $tz_from
  *  The timezone the timestamps are relative to
+ * @param bool $show_time
+ *  TRUE If the date should be printed with the time, FALSE otherwise
  * @return string
  * The formatted date interval
  */
-function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_from = 'UTC') {
+function virginsport_date_interval($start_date, $end_date, $tz_to = 'UTC', $tz_from = 'UTC', $show_time = FALSE) {
   $start = virgin_date($start_date, $tz_to, $tz_from);
   $end = virgin_date($end_date, $tz_to, $tz_from);
+
+  $time_format = ' - h:ia';
 
   // If the end date and start date are the same, simply return
   // the fully formatted start date.
   if ($start->format('d M Y') == $end->format('d M Y')) {
-    return $start->format('d M Y');
+    $format = 'd M Y';
+    if($show_time) {
+      $format .= $time_format;
+    }
+    return $start->format($format);
   }
 
   // Otherwise, build the start/end date string

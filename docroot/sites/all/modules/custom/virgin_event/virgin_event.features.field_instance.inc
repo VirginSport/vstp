@@ -978,7 +978,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1108,7 +1108,7 @@ function virgin_event_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -1164,7 +1164,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 17,
+      'weight' => 14,
     ),
   );
 
@@ -1571,6 +1571,56 @@ function virgin_event_field_default_field_instances() {
       ),
       'type' => 'options_onoff',
       'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_show_time'.
+  $field_instances['node-event-field_show_time'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 26,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_show_time',
+    'label' => 'Show start date',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 15,
     ),
   );
 
@@ -2563,6 +2613,7 @@ function virgin_event_field_default_field_instances() {
   t('Overview Image');
   t('Replay URL');
   t('Show in festival menu');
+  t('Show time');
   t('Start Date');
   t('Status');
   t('SugarCRM ID');
