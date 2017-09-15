@@ -88,6 +88,7 @@ function virginsport_theme($existing, $type, $theme, $path) {
         'description' => '',
         'show_email_input' => TRUE,
         'wrapper_classes' => '',
+        'cta_copy' => '',
       )
     ) + $default;
 
