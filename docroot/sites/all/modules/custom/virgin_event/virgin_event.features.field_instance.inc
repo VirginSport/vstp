@@ -1607,7 +1607,7 @@ function virgin_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_show_time',
-    'label' => 'Show start date',
+    'label' => 'Show start time',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
