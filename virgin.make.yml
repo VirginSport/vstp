@@ -79,12 +79,6 @@ projects:
   fieldable_panels_panes:
     version: "1.11"
 
-  geoip:
-    version: "2.0"
-    patch:
-      # Drush command to update the GeoIP Database
-      - "./patches/geoip/geoip-update_geoip_database_with_drush.patch"
-
   hybridauth:
     version: "2.15"
 
