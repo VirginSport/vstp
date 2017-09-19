@@ -30,6 +30,16 @@ define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 define('VIRGIN_REGION_VAR_DEFAULT_REGION', 'vs_region_default_hostname');
 
 /**
+ * The region cache key for geo
+ */
+define('VIRGIN_REGION_CACHE_GEO_MAPPING', 'virgin_region_geo_mapping:cache');
+
+/**
+ * The region variable key for geo
+ */
+define('VIRGIN_REGION_VARIABLE_GEO_MAPPING', 'virgin_region_geo_mapping_variable');
+
+/**
  * Implements hook_views_api().
  */
 function virgin_region_views_api() {
@@ -532,6 +542,38 @@ function virgin_region_get_current_region_newsletter_list() {
   }
 
   return $newsletter_list;
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * The hook is used to seed the VIRGIN_REGION_VARIABLE_GEO variable
+ */
+function virgin_region_entity_presave($entity, $type) {
+  if ($type == 'node' && $entity->type == 'region') {
+    $variable = variable_get(VIRGIN_REGION_VARIABLE_GEO_MAPPING, array());
+
+    $original_letter_code = '';
+    if (!empty($entity->original->field_country_letter_code[LANGUAGE_NONE])) {
+      $original_letter_code = $entity->original->field_country_letter_code[LANGUAGE_NONE][0]['value'];
+    }
+
+    // Unset the old value to substitute for the new
+    if (isset($variable[$original_letter_code])) {
+      unset($variable[$original_letter_code]);
+    }
+
+    $region = new VirginEntityGrapher('node', $entity);
+    $hostname = $region->fieldGetOne('field_hostname');
+    $letter_code = $region->fieldGetOne('field_country_letter_code');
+
+    $variable[$letter_code] = $hostname;
+    variable_set(VIRGIN_REGION_VARIABLE_GEO_MAPPING, $variable);
+
+    // Invalidate the cache to load the regions again: Should we seed it here?
+    cache_clear_all(VIRGIN_REGION_CACHE_GEO_MAPPING, 'cache');
+
+  }
 }
 
 /**

@@ -16,8 +16,25 @@ function virgin_region_update_7001() {
 }
 
 /**
- * Enable the GeoIP module and set the path to the country database
+ * Seed the VIRGIN_REGION_VARIABLE_GEO variable
  */
 function virgin_region_update_7002() {
-  module_enable(array('geoip'));
+  $regions = array();
+
+  $q = new EntityFieldQuery();
+
+  $results = $q
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'region')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->execute()
+  ;
+
+  if (!empty($results['node'])) {
+    foreach ($results['node'] as $node) {
+      $node_wrapper = entity_metadata_wrapper('node', $node->nid);
+      $regions[$node_wrapper->field_country_letter_code->value()] = $node_wrapper->field_hostname->value();
+    }
+  }
+  variable_set(VIRGIN_REGION_VARIABLE_GEO_MAPPING, $regions);
 }
