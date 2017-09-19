@@ -1,0 +1,10 @@
+name = Acquia GeoIP Country Variation
+description = "Adds the X-Geo-Country header to Drupal's Vary response header so that your site gets varied by content."
+package = Acquia Network Connector
+core = 7.x
+; Information added by Drupal.org packaging script on 2017-03-14
+version = "7.x-1.0"
+core = "7.x"
+project = "acquia_geoip_vary_by_country"
+datestamp = "1489503487"
+
