@@ -572,7 +572,6 @@ function virgin_region_entity_presave($entity, $type) {
 
     // Invalidate the cache to load the regions again: Should we seed it here?
     cache_clear_all(VIRGIN_REGION_CACHE_GEO_MAPPING, 'cache');
-
   }
 }
 
@@ -582,7 +581,7 @@ function virgin_region_entity_presave($entity, $type) {
  * Redirects the user for his region in case he is in a defined region
  */
 function virgin_region_boot() {
-  global $user;
+  global $user, $base_url;
 
   // If in cli mode ignore this function
   if (drupal_is_cli()) {
@@ -596,62 +595,107 @@ function virgin_region_boot() {
     return ;
   }
 
-  // Get all the regions with country code and hostname
-  $regions = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->fields('clc', array('field_country_letter_code_value'))
-    ->fields('hn', array('field_hostname_value'))
-    ->condition('n.type', 'region');
+  require_once DRUPAL_ROOT . '/includes/path.inc';
+  $path = !drupal_is_front_page() ? current_path() : '';
 
-  $regions->join('field_data_field_country_letter_code', 'clc', 'n.nid = clc.entity_id');
-  $regions->join('field_data_field_hostname', 'hn', 'n.nid = hn.entity_id');
+  // If not front page or register bail out
+  if (!empty($path) && $path != 'user/register') {
+    return ;
+  }
 
-  $regions = $regions->execute()->fetchAllKeyed('2');
+  $regions = virgin_region_get_geo_mapping();
+
+  // Flip the array to hostname be the key
+  $flipped_regions = array_flip($regions);
 
   // Fetch hostname cookie so the user is redirected to his prefered
   $favorite_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
-  $host = $_SERVER['HTTP_HOST'];
+  $host = parse_url($base_url, PHP_URL_HOST);
 
   // Check if the hostname in the cookie is a valid one
   // or if the URL is valid (deeplink)
-  if (isset($regions[$favorite_hostname]) || isset($regions[$host])) {
+  if (isset($flipped_regions[$favorite_hostname]) || isset($flipped_regions[$host])) {
     return ;
   }
 
-  // Include modules/files that are not available before full bootstrap
-  drupal_load('module', 'libraries');
-  drupal_load('module', 'geoip');
+  $hostname = virgin_get_hostname_by_ip($regions);
+  if (empty($hostname)) {
+    return ;
+  }
+
   require_once DRUPAL_ROOT . '/includes/common.inc';
-  require_once DRUPAL_ROOT . '/includes/path.inc';
-  require_once DRUPAL_ROOT . '/includes/language.inc';
-
-  // Geoip uses de drupal ip_address() function
-  $country_code = geoip_country_code();
-  if (empty($country_code)) {
-    // splash page
-    return ;
-  }
-  // If the user is in a defined region redirect him to his region version of
-  // the page to the preferred language
-  foreach ($regions as $hostname => $value_country_code) {
-    if ($value_country_code == $country_code) {
-      $current_language = language_initialize('language');
-
-      $path = !drupal_is_front_page() ? current_path() : '';
-
-      // We can't apply the hostname before the url function because it would
-      // threat the url as external, and it that case the language is not
-      // applicable
-      $url = $hostname . url($path, array('language' => $current_language));
-
-      $url = virgin_region_add_hostname_protocol($url);
-
-      drupal_goto($url, array('external' => TRUE), 301);
-    }
-  }
-
-  //doesn't match any valid website country so show splash page
+  virgin_region_redirect_to_hostname($hostname, $path, drupal_get_query_parameters());
 }
+
+/**
+ * Returns the
+ *
+ * @return array with the regions mapped to be used in geoip logic
+ */
+function virgin_region_get_geo_mapping() {
+  // If the regions are not in cache set it
+  $regions = cache_get(VIRGIN_REGION_CACHE_GEO_MAPPING, 'cache');
+  if (empty($regions)) {
+    $regions = variable_get(VIRGIN_REGION_VARIABLE_GEO_MAPPING, array());
+    cache_set(VIRGIN_REGION_CACHE_GEO_MAPPING, $regions);
+  } else {
+    $regions = $regions->data;
+  }
+
+  return $regions;
+}
+
+/**
+ * Fetches the hostname the user should see based on the visitor's location
+ * checked by IP
+ *
+ * @param array $regions
+ *  Optional parameter to be used in case you already loaded the region in the
+ *  request (Geo mapped)
+ *
+ * @return string
+ *  Return the string with the hostname if the visitor location is valid,
+ *  FALSE otherwise
+ */
+function virgin_get_hostname_by_ip($regions = array()) {
+  if (empty($regions)) {
+    $regions = virgin_region_get_geo_mapping();
+  }
+
+  $country_code = drupal_get_http_header('X-Geo-Country');
+  // If the header is not filled, the default is given (AA)
+  // or the region is not valid bailout
+  if (empty($country_code) || $country_code == 'AA' || !isset($regions[$country_code])) {
+    return FALSE;
+  }
+
+  return $regions[$country_code];
+}
+
+/**
+ * Redirects user to the given path in the given hostname with the provided
+ * params to query_string
+ *
+ * @param $hostname
+ *  string hostname to redirect
+ * @param $path
+ *  string internal path
+ * @param $params
+ *  parameters to insert in query string
+ */
+function virgin_region_redirect_to_hostname($hostname, $path, $params = array()) {
+  // This function might be called in hook_boot
+  require_once DRUPAL_ROOT . '/includes/language.inc';
+  require_once DRUPAL_ROOT . '/includes/common.inc';
+
+  $current_language = language_initialize('language');
+
+  $url = $hostname . url($path, array('language' => $current_language, 'query' => $params));
+  $url = virgin_region_add_hostname_protocol($url);
+
+  drupal_goto($url, array('external' => TRUE), 301);
+}
+
 
 /*
  * Get the current region setting if the cookie alert should be visible or not
