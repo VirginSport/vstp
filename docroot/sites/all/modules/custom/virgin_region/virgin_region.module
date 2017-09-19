@@ -30,12 +30,12 @@ define('VIRGIN_REGION_COOKIE', 'vs_region_hostname');
 define('VIRGIN_REGION_VAR_DEFAULT_REGION', 'vs_region_default_hostname');
 
 /**
- * The region cache key for geo
+ * The region array mapped for geo location proposes cache key
  */
 define('VIRGIN_REGION_CACHE_GEO_MAPPING', 'virgin_region_geo_mapping:cache');
 
 /**
- * The region variable key for geo
+ * The region array mapped for geo location proposes variable key
  */
 define('VIRGIN_REGION_VARIABLE_GEO_MAPPING', 'virgin_region_geo_mapping_variable');
 
