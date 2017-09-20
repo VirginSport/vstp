@@ -553,13 +553,10 @@ function virgin_region_entity_presave($entity, $type) {
   if ($type == 'node' && $entity->type == 'region') {
     $variable = variable_get(VIRGIN_REGION_VARIABLE_GEO_MAPPING, array());
 
+    // Unset the old value to substitute for the new
     $original_letter_code = '';
     if (!empty($entity->original->field_country_letter_code[LANGUAGE_NONE])) {
       $original_letter_code = $entity->original->field_country_letter_code[LANGUAGE_NONE][0]['value'];
-    }
-
-    // Unset the old value to substitute for the new
-    if (isset($variable[$original_letter_code])) {
       unset($variable[$original_letter_code]);
     }
 
@@ -585,22 +582,27 @@ function virgin_region_boot() {
 
   // If in cli mode ignore this function
   if (drupal_is_cli()) {
-    return ;
+    return;
   }
 
   // We check uid instead of user_is_anonymous because the function isn't
   // available yet. If the user is logged in he already has a preference and the
   // system knows how to handle it
   if ($user->uid > 0) {
-    return ;
+    return;
   }
 
   require_once DRUPAL_ROOT . '/includes/path.inc';
-  $path = !drupal_is_front_page() ? current_path() : '';
+  $path = !drupal_is_front_page() ? current_path() : '<front>';
+
+  $paths = array(
+    '<front>',
+    'user/register'
+  );
 
   // If not front page or register bail out
-  if (!empty($path) && $path != 'user/register') {
-    return ;
+  if (!in_array($path, $paths)) {
+    return;
   }
 
   $regions = virgin_region_get_geo_mapping();
@@ -608,19 +610,26 @@ function virgin_region_boot() {
   // Flip the array to hostname be the key
   $flipped_regions = array_flip($regions);
 
-  // Fetch hostname cookie so the user is redirected to his prefered
-  $favorite_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
   $host = parse_url($base_url, PHP_URL_HOST);
 
-  // Check if the hostname in the cookie is a valid one
-  // or if the URL is valid (deeplink)
-  if (isset($flipped_regions[$favorite_hostname]) || isset($flipped_regions[$host])) {
-    return ;
+  // If the host is already valid bailout
+  if (isset($flipped_regions[$host])) {
+    return;
   }
 
-  $hostname = virgin_get_hostname_by_ip($regions);
+  // Fetch hostname cookie so the user is redirected to his preferred
+  $cookie_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
+
+  // If the host is not valid but user has a preference then use it, else check
+  // he's location based on IP
+  if (isset($flipped_regions[$cookie_hostname])) {
+    $hostname = $cookie_hostname;
+  } else {
+    $hostname = virgin_get_hostname_by_ip($regions);
+  }
+
   if (empty($hostname)) {
-    return ;
+    return;
   }
 
   require_once DRUPAL_ROOT . '/includes/common.inc';
