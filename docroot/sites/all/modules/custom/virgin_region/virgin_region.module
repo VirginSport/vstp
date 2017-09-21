@@ -630,9 +630,10 @@ function virgin_region_boot() {
 
     $hostname = $field->execute()->fetchField();
   }
-
-  // If the hostname could not be fetched by the user preferences then check
-  // the region by location
+  
+  // If the hostname could not be fetched in cookie and the is logged but has
+  // registered without a valid hostname we need to check the hostname
+  // by location
   if (empty($hostname)) {
     $hostname = virgin_get_hostname_by_ip($regions);
   }
