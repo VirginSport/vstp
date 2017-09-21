@@ -630,7 +630,7 @@ function virgin_region_boot() {
 
     $hostname = $field->execute()->fetchField();
   }
-  
+
   // If the hostname could not be fetched in cookie and the is logged but has
   // registered without a valid hostname we need to check the hostname
   // by location
@@ -681,7 +681,7 @@ function virgin_get_hostname_by_ip($regions = array()) {
     $regions = virgin_region_get_geo_mapping();
   }
 
-  $country_code = drupal_get_http_header('X-Geo-Country');
+  $country_code = $_SERVER['HTTP_X_GEO_COUNTRY'];
   // If the header is not filled, the default is given (AA)
   // or the region is not valid bailout
   if (empty($country_code) || $country_code == 'AA' || !isset($regions[$country_code])) {
