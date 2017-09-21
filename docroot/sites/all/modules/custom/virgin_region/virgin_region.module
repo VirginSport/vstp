@@ -595,7 +595,10 @@ function virgin_region_boot() {
   require_once DRUPAL_ROOT . '/includes/path.inc';
   $path = !drupal_is_front_page() ? current_path() : '<front>';
 
+  // In $paths array we include the empty path because in some cases the
+  // drupal_is_front_page() doesn't detect the front page
   $paths = array(
+    '',
     '<front>',
     'user/register'
   );
