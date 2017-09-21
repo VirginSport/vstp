@@ -585,13 +585,6 @@ function virgin_region_boot() {
     return;
   }
 
-  // We check uid instead of user_is_anonymous because the function isn't
-  // available yet. If the user is logged in he already has a preference and the
-  // system knows how to handle it
-  if ($user->uid > 0) {
-    return;
-  }
-
   require_once DRUPAL_ROOT . '/includes/path.inc';
   $path = !drupal_is_front_page() ? current_path() : '<front>';
 
@@ -623,11 +616,24 @@ function virgin_region_boot() {
   // Fetch hostname cookie so the user is redirected to his preferred
   $cookie_hostname = virgin_cookie_get(VIRGIN_REGION_COOKIE, '');
 
-  // If the host is not valid but user has a preference then use it, else check
-  // he's location based on IP
+  // If the host is not valid but user has a preference then use (cookie or
+  // preferences)
   if (isset($flipped_regions[$cookie_hostname])) {
     $hostname = $cookie_hostname;
-  } else {
+  } else if($user->uid > 0) {
+    // Get the user preferred region
+    $field = db_select('field_data_field_region', 'user_region')
+      ->fields('hostname', array('field_hostname_value'))
+      ->condition('user_region.entity_id', $user->uid)
+      ->condition('user_region.entity_type', 'user');
+    $field->join('field_data_field_hostname', 'hostname', 'user_region.field_region_target_id = hostname.entity_id');
+
+    $hostname = $field->execute()->fetchField();
+  }
+
+  // If the hostname could not be fetched by the user preferences then check
+  // the region by location
+  if (empty($hostname)) {
     $hostname = virgin_get_hostname_by_ip($regions);
   }
 
