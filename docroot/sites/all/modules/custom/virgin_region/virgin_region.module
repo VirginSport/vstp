@@ -635,7 +635,7 @@ function virgin_region_boot() {
   // registered without a valid hostname we need to check the hostname
   // by location
   if (empty($hostname)) {
-    $hostname = virgin_get_hostname_by_ip($regions);
+    $hostname = virgin_get_hostname_by_geo_country($regions);
   }
 
   if (empty($hostname)) {
@@ -676,7 +676,7 @@ function virgin_region_get_geo_mapping() {
  *  Return the string with the hostname if the visitor location is valid,
  *  FALSE otherwise
  */
-function virgin_get_hostname_by_ip($regions = array()) {
+function virgin_get_hostname_by_geo_country($regions = array()) {
   if (empty($regions)) {
     $regions = virgin_region_get_geo_mapping();
   }
