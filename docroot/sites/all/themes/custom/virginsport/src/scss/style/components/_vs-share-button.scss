@@ -297,7 +297,7 @@ vs-share-button,
 	}
 
 	.vs-share-button__social-links {
-		display: inline-flex;
+		@include inline-flex();
 		margin: auto;
 		padding: 0;
 	}
