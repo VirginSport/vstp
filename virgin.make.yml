@@ -37,6 +37,9 @@ projects:
   acquia_connector:
     version: "3.1"
 
+  acquia_geoip_vary_by_country:
+    version: "1.0"
+
   acquia_purge:
     version: "1.3"
 

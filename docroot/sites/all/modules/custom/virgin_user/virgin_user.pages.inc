@@ -118,10 +118,18 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   // user to, send the user to the current website splash page in order
   // for him pick his region before redirecting him to the right path.
   if (user_is_anonymous() || empty($user_hostname)) {
-    $goto('', '/splash', array(
-      'destination' => $path,
-      'destination-params' => drupal_base64_encode(json_encode($params))
-    ));
+    $hostname = virgin_get_hostname_by_geo_country();
+
+    // If we don't have a valid hostname send to splash page
+    if (empty($hostname)) {
+      $goto('', '/splash', array(
+        'destination' => $path,
+        'destination-params' => drupal_base64_encode(json_encode($params))
+      ));
+    } else {
+      virgin_region_redirect_to_hostname($hostname, $path, $params);
+    }
+
     return;
   }
 
