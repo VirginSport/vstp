@@ -14,3 +14,27 @@ function virgin_region_update_7001() {
   field_base_features_rebuild('virgin_base');
   field_instance_features_rebuild('virgin_region');
 }
+
+/**
+ * Seed the VIRGIN_REGION_VARIABLE_GEO variable
+ */
+function virgin_region_update_7002() {
+  $regions = array();
+
+  $q = new EntityFieldQuery();
+
+  $results = $q
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'region')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->execute()
+  ;
+
+  if (!empty($results['node'])) {
+    foreach ($results['node'] as $node) {
+      $node_wrapper = entity_metadata_wrapper('node', $node->nid);
+      $regions[$node_wrapper->field_country_letter_code->value()] = $node_wrapper->field_hostname->value();
+    }
+  }
+  variable_set(VIRGIN_REGION_VARIABLE_GEO_MAPPING, $regions);
+}
