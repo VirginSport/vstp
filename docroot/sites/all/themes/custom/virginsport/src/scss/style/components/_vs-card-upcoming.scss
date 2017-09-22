@@ -66,6 +66,11 @@ vs-card-upcoming,
 
 .vs-card-upcoming__button--cta {
   margin: rem(20) 0 0;
+  padding-left: 1.5625rem;
+  padding-right: 1.5625rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .vs-card-upcoming__text {
@@ -135,6 +140,7 @@ vs-card-upcoming,
 
   .vs-card-upcoming__button--cta {
     margin: 0 0 0 rem(20);
+    max-width: 166px;
   }
 
   .vs-card-upcoming__title {
@@ -180,7 +186,8 @@ vs-card-upcoming,
   }
 
   .vs-card-upcoming__button--cta {
-    margin: 0 0 0 rem(30);
+    margin: 0 0 0 rem(26);
+    max-width: 270px;
   }
 }
 
@@ -223,5 +230,9 @@ vs-card-upcoming,
 
   .vs-card-upcoming__text {
     padding-bottom: 1.875rem;
+  }
+
+  .vs-card-upcoming__button--cta {
+    max-width: 350px;
   }
 }
