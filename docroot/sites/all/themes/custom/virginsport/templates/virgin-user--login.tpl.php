@@ -55,14 +55,12 @@ $query = drupal_get_query_parameters();
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="vs-user-login--form">
-                  <div class="hybridauth-widget-wrapper"></div>
-                  <?php /* TODO: UNCOMMENT THIS
                   <div class="vs-user-form__wrapper">
                     <?php print drupal_render($hybridauth_widget); ?>
                     <div class="vs-user-login__separator"></div>
                     <p class="vs-user-login__label"><?php print t('Or with an email address'); ?></p>
                   </div>
-                  */ ?>
+                  
                   <div class="vs-user-login--form" v-on:keyup.enter="submit">
                     <validator name="vs_user_login_validator">
                       <div class="row">
