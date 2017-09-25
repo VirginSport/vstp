@@ -297,7 +297,7 @@ vs-share-button,
 	}
 
 	.vs-share-button__social-links {
-		display: inline-flex;
+		@include inline-flex();
 		margin: auto;
 		padding: 0;
 	}
@@ -326,31 +326,31 @@ vs-share-button,
 
 	.vs-share-button__social-links a:first-child {
 		@include transition(visibility 0s, all .2s ease .05s);
-		opacity: 0;
-		left: 100%;
+    @include transform(translateX(209px));
+    opacity: 0;
 		visibility: hidden;
 		margin-left: 0;
 	}
 
 	.vs-share-button__social-links a:nth-child(2) {
 		@include transition(visibility 0s, all .2s ease .08s);
-		opacity: 0;
-		left: calc(100% - 4.563rem);
+    @include transform(translateX(139px));
+    opacity: 0;
 		visibility: hidden;
 	}
 
 	.vs-share-button__social-links a:last-child {
 		@include transition(visibility 0s, all .2s ease .1s);
-		opacity: 0;
-		left: calc(100% - 8.875rem);
+    @include transform(translateX(69px));
+    opacity: 0;
 		visibility: hidden;
 	}
 
 	.vs-share-button__social-links--active a:first-child,
 	.vs-share-button__social-links--active a:nth-child(2),
 	.vs-share-button__social-links--active a:last-child {
-		visibility: visible;
-		left: 0;
+    @include transform(translateX(0));
+    visibility: visible;
 		opacity: 1;
 	}
 }
