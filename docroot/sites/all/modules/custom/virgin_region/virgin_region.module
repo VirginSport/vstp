@@ -551,18 +551,18 @@ function virgin_region_get_current_region_newsletter_list() {
  */
 function virgin_region_entity_presave($entity, $type) {
   if ($type == 'node' && $entity->type == 'region') {
+    $geo_field = 'field_geo_country_code';
     $variable = variable_get(VIRGIN_REGION_VARIABLE_GEO_MAPPING, array());
 
     // Unset the old value to substitute for the new
-    $original_letter_code = '';
-    if (!empty($entity->original->field_country_letter_code[LANGUAGE_NONE])) {
-      $original_letter_code = $entity->original->field_country_letter_code[LANGUAGE_NONE][0]['value'];
+    if (!empty($entity->original->{$geo_field}[LANGUAGE_NONE])) {
+      $original_letter_code = $entity->original->{$geo_field}[LANGUAGE_NONE][0]['value'];
       unset($variable[$original_letter_code]);
     }
 
     $region = new VirginEntityGrapher('node', $entity);
     $hostname = $region->fieldGetOne('field_hostname');
-    $letter_code = $region->fieldGetOne('field_country_letter_code');
+    $letter_code = $region->fieldGetOne($geo_field);
 
     $variable[$letter_code] = $hostname;
     variable_set(VIRGIN_REGION_VARIABLE_GEO_MAPPING, $variable);
