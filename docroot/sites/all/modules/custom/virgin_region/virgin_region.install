@@ -46,3 +46,11 @@ function virgin_region_update_7003() {
   module_enable(array('acquia_geoip_vary_by_country'));
 }
 
+/**
+ * Clean the variable as we now are using the field_geo_country_code to map
+ * the region code
+ */
+function virgin_region_update_7004() {
+  variable_set(VIRGIN_REGION_VARIABLE_GEO_MAPPING, array());
+}
+
