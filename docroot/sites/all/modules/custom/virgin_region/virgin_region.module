@@ -677,6 +677,11 @@ function virgin_region_get_geo_mapping() {
  *  FALSE otherwise
  */
 function virgin_get_hostname_by_geo_country($regions = array()) {
+  // If the $_SERVER property is not set avoid notices
+  if (!isset($_SERVER['HTTP_X_GEO_COUNTRY'])) {
+    return FALSE;
+  }
+
   if (empty($regions)) {
     $regions = virgin_region_get_geo_mapping();
   }
