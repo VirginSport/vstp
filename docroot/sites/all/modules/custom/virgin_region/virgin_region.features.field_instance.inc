@@ -125,7 +125,53 @@ function virgin_region_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 3,
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-region-field_geo_country_code'.
+  $field_instances['node-region-field_geo_country_code'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_geo_country_code',
+    'label' => 'Geo country code',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 2,
     ),
   );
 
@@ -192,7 +238,7 @@ function virgin_region_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -248,7 +294,7 @@ function virgin_region_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -312,7 +358,7 @@ function virgin_region_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -483,6 +529,7 @@ function virgin_region_field_default_field_instances() {
   t('Country Letter Code');
   t('Flag Image');
   t('Footer menu');
+  t('Geo country code');
   t('Hostname');
   t('Icon Image');
   t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
