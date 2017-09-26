@@ -15,6 +15,7 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_instance][] = node-region-field_country_letter_code
 features[field_instance][] = node-region-field_flag_image
+features[field_instance][] = node-region-field_geo_country_code
 features[field_instance][] = node-region-field_hostname
 features[field_instance][] = node-region-field_icon_image
 features[field_instance][] = node-region-field_links
