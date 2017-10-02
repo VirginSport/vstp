@@ -1,5 +1,5 @@
 
-<div class="vs-newsletter">
+<div class="vs-newsletter <?php !empty($brand_color) ? print sprintf("vs-newsletter--gradient-%s", $brand_color) : print ''; ?>">
   <div class="container">
     <div class="row grid-align-middle--md-up">
       
@@ -13,7 +13,7 @@
       </div>
       
       <div class="col-xs-12 col-md-6">
-        <?php print theme('virginsport_newsletter_form', array('title' => $title, 'description' => $description, 'target_list' => $list, 'default_email' => $default_email , 'wrapper_classes' => 'vs-newsletter__content', 'show_email_input' => $show_email_input)); ?>
+        <?php print theme('virginsport_newsletter_form', array('title' => $title, 'description' => $description, 'target_list' => $list, 'default_email' => $default_email , 'wrapper_classes' => 'vs-newsletter__content', 'show_email_input' => $show_email_input, 'cta_copy' => $cta_copy)); ?>
       </div>
   
       <div class="col-xs-12 col-md-6 hidden-md-up">

@@ -46,7 +46,11 @@ function virgin_components_results_table_content_type_render($subtype, $conf, $a
   $festival = virgin_base_event_festival($event->property('nid'));
   $festival_state = $festival->relation('field_festival_state');
 
-  $current_region = virgin_region_current() + array('country_letter_code');
+  $current_region = virgin_region_current();
+  // make sure the key exists to avoid notices
+  if (!array_key_exists('country_letter_code', $current_region)) {
+    $current_region['country_letter_code'] = '';
+  }
 
   $vars = array(
     'is_summary' => !empty($conf['is_summary']),

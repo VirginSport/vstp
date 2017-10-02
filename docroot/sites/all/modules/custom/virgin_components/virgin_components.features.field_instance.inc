@@ -368,7 +368,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -412,7 +412,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -469,7 +469,7 @@ function virgin_components_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -647,7 +647,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -692,7 +692,7 @@ function virgin_components_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -2196,6 +2196,81 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_brand_color'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_brand_color'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_brand_color',
+    'label' => 'Brand Color',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'fieldable_panels_pane-vs_newsletter-field_cta_copy'.
+  $field_instances['fieldable_panels_pane-vs_newsletter-field_cta_copy'] = array(
+    'bundle' => 'vs_newsletter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_cta_copy',
+    'label' => 'CTA Copy',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
   // 'fieldable_panels_pane-vs_newsletter-field_description'.
   $field_instances['fieldable_panels_pane-vs_newsletter-field_description'] = array(
     'bundle' => 'vs_newsletter',
@@ -2233,7 +2308,7 @@ function virgin_components_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -2,
+      'weight' => 2,
     ),
   );
 
@@ -2273,7 +2348,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 6,
     ),
   );
 
@@ -2315,7 +2390,7 @@ function virgin_components_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => -1,
+      'weight' => 5,
     ),
   );
 
@@ -2350,7 +2425,7 @@ function virgin_components_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => -4,
+      'weight' => 1,
     ),
   );
 
@@ -2391,7 +2466,7 @@ function virgin_components_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -10,
+      'weight' => 0,
     ),
   );
 

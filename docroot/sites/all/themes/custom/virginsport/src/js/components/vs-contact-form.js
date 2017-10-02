@@ -248,6 +248,15 @@ function initVue(selector, inModal = false) {
         }
 
       }
+    },
+    watch: {
+      'finished': function(val, oldVal) {
+        //on finish open modal
+        if (this.autoSubmit) { 
+          modal.open();
+        }
+
+      }
     }
   });
 }

@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Acquia GeoIP Country Variation
+ */
+
+/**
+ * Implements hook_boot().
+ */
+function acquia_geoip_vary_by_country_boot() {
+  drupal_add_http_header("Vary", "X-Geo-Country", TRUE);
+}

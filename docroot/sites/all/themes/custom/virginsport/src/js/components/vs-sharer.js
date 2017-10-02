@@ -64,6 +64,12 @@ function share() {
   });
 
   $(document).bind('click touchend', function () {
+    // Only make this feature enabled for widths greater than defined in sm
+    // sass variable that is by default 544, if this change, change here too
+    if ($(window).width() >= '544') {
+      return;
+    }
+
     $('.vs-share-button .vs-share-button__icon-share').removeClass('vs-share-button__icon-share--active');
     $('.vs-share-button .vs-share-button__social-links').removeClass('vs-share-button__social-links--active');
     $('.vs-share-button').removeClass('vs-share-button__content--active');

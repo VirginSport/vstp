@@ -9,8 +9,8 @@
 
 vs-share-button,
 .vs-share-button {
-    @include clearfix();
-    display: inline-block;
+  @include clearfix();
+  display: inline-block;
 }
 
 
@@ -21,7 +21,7 @@ vs-share-button,
 	display: inline-flex;
 	overflow: hidden;
 	padding: .063rem;
-    text-align: center;
+  text-align: center;
 }
 
 .vs-share-button__icon-button {
@@ -40,27 +40,34 @@ vs-share-button,
 }
 
 .vs-share-button__icon-button {
-
 	&.vs-share-button__icon-share {
 		background-color: transparent;
 	}
 
-    &.vs-share-button__icon-share:after {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		background-color: $c-white;
-		opacity: 0.2;
-		border-radius: 50%;
+  &.vs-share-button__icon-share:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $c-white;
+    opacity: 0.2;
+    border-radius: 50%;
+
+    @each $color in map-keys($color-schemes) {
+      $map: map_get($color-schemes, $color);
+
+      .vs-share-button--gradient-#{$color} & {
+        @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+        opacity: 1;
+      }
+    }
 	}
 }
 
 .vs-share-button__icon-button {
-
-    &.vs-share-button__icon-share {
+  &.vs-share-button__icon-share {
 		font-size: 1rem;
 		margin-left: .313rem;
 		height: 1.875rem;
@@ -79,7 +86,7 @@ vs-share-button,
 			height: 2rem;
 			margin: -1rem;
 		}
-    }
+  }
 }
 
 .vs-share-button__icon-button span {
@@ -93,6 +100,7 @@ vs-share-button,
 	top: 50%;
 	width: 0;
 }
+
 .vs-share-button__icon-button:hover span {
 	@include transition(background-color .3s ease-in-out);
 	width: 3.25rem;
@@ -100,18 +108,17 @@ vs-share-button,
 	border-radius: 50%;
 	margin: -1.625rem;
 }
+
 .vs-share-button__icon-twitter:hover span {
 	background-color: #4099ff;
 }
+
 .vs-share-button__icon-facebook:hover span {
 	background-color: #3B5998;
 }
+
 .vs-share-button__icon-email:hover span {
 	background-color: #919191;
-}
-.vs-share-button__icon-share:hover span {
-    opacity: .7;
-	background-color: $c-white;
 }
 
 .vs-share-button__icon-button i {
@@ -125,31 +132,34 @@ vs-share-button,
 	width: 3.125rem;
 	z-index: 10;
 }
+
 .vs-share-button__icon-button .icon-twitter,
 .vs-share-button__icon-button .icon-facebook,
 .vs-share-button__icon-button [class*='icon-email'] {
 	color: #919191;
 }
+
 .vs-share-button__icon-button .icon-share {
-    color: $c-white;
+  @include transition(all .3s ease-in-out);
+  color: $c-white;
 }
+
 .vs-share-button__icon-button:hover .icon-twitter,
 .vs-share-button__icon-button:hover .icon-facebook,
 .vs-share-button__icon-button:hover [class*='icon-email'] {
 	@include transition(color .3s ease-in-out);
 	color: $c-white;
 }
+
 .vs-share-button__icon-button:hover .icon-share {
-	@include transition(color .3s ease-in-out);
-    color: #919191;
+  opacity: .8;
 }
 
 .vs-share-button__social-links {
 	visibility: hidden;
 }
 
-.vs-share-button__social-links
-{
+.vs-share-button__social-links {
 	.vs-mobile-sharer-open & {
 		visibility: visible;
 	}
@@ -160,9 +170,7 @@ vs-share-button,
 // ----------------------------------------------------------------------------
 
 @include media-breakpoint-only(xs) {
-
 	.vs-share-button__icon-button {
-
 		&.vs-share-button__icon-share {
 			margin: 0;
 		}
@@ -218,8 +226,7 @@ vs-share-button,
 		display: none;
 	}
 
-	.vs-share-button__social-links a:first-child
-	{
+	.vs-share-button__social-links a:first-child {
 		@include transition(visibility 0s, all .3s ease);
 		@include transform(rotate(90deg));
 		position: absolute;
@@ -228,8 +235,7 @@ vs-share-button,
 		visibility: hidden;
 	}
 
-	.vs-share-button__social-links a:nth-child(2)
-	{
+	.vs-share-button__social-links a:nth-child(2) {
 		@include transition(visibility 0s, all .3s ease);
 		@include transform(rotate(-90deg));
 		position: absolute;
@@ -238,8 +244,7 @@ vs-share-button,
 		visibility: hidden;
 	}
 
-	.vs-share-button__social-links a:last-child
-	{
+	.vs-share-button__social-links a:last-child {
 		@include transition(visibility 0s, all .3s ease);
 		@include transform(rotate(-90deg));
 		position: absolute;
@@ -248,10 +253,8 @@ vs-share-button,
 		visibility: hidden;
 	}
 
-	.vs-share-button__social-links a:first-child
-	{
+	.vs-share-button__social-links a:first-child {
 		.vs-mobile-sharer-open & {
-
 			@include transform(rotate(0deg));
 			left: calc(50% - 6.563rem);
 			position: absolute;
@@ -260,10 +263,8 @@ vs-share-button,
 		}
 	}
 
-	.vs-share-button__social-links a:nth-child(2)
-	{
+	.vs-share-button__social-links a:nth-child(2) {
 		.vs-mobile-sharer-open & {
-
 			@include transform(rotate(0deg));
 			left: calc(50% - 2.188rem);
 			position: absolute;
@@ -272,10 +273,8 @@ vs-share-button,
 		}
 	}
 
-	.vs-share-button__social-links a:last-child
-	{
+	.vs-share-button__social-links a:last-child {
 		.vs-mobile-sharer-open & {
-
 			@include transform(rotate(0deg));
 			left: calc(50% + 2.188rem);
 			position: absolute;
@@ -283,11 +282,9 @@ vs-share-button,
 			visibility: visible;
 		}
 	}
-
 }
 
 @include media-breakpoint-up(sm) {
-
 	.vs-mobile-sharer {
 		display: none;
 	}
@@ -300,7 +297,7 @@ vs-share-button,
 	}
 
 	.vs-share-button__social-links {
-		display: inline-flex;
+		@include inline-flex();
 		margin: auto;
 		padding: 0;
 	}
@@ -327,40 +324,35 @@ vs-share-button,
 		}
 	}
 
-	.vs-share-button__social-links a:first-child
-	{
+	.vs-share-button__social-links a:first-child {
 		@include transition(visibility 0s, all .2s ease .05s);
-		opacity: 0;
-		left: 100%;
+    @include transform(translateX(209px));
+    opacity: 0;
 		visibility: hidden;
 		margin-left: 0;
 	}
 
-	.vs-share-button__social-links a:nth-child(2)
-	{
+	.vs-share-button__social-links a:nth-child(2) {
 		@include transition(visibility 0s, all .2s ease .08s);
-		opacity: 0;
-		left: calc(100% - 4.563rem);
+    @include transform(translateX(139px));
+    opacity: 0;
 		visibility: hidden;
 	}
 
-	.vs-share-button__social-links a:last-child
-	{
+	.vs-share-button__social-links a:last-child {
 		@include transition(visibility 0s, all .2s ease .1s);
-		opacity: 0;
-		left: calc(100% - 8.875rem);
+    @include transform(translateX(69px));
+    opacity: 0;
 		visibility: hidden;
 	}
 
 	.vs-share-button__social-links--active a:first-child,
 	.vs-share-button__social-links--active a:nth-child(2),
-	.vs-share-button__social-links--active a:last-child
-	{
-		visibility: visible;
-		left: 0;
+	.vs-share-button__social-links--active a:last-child {
+    @include transform(translateX(0));
+    visibility: visible;
 		opacity: 1;
 	}
-
 }
 
 
@@ -368,8 +360,6 @@ vs-share-button,
 // ----------------------------------------------------------------------------
 
 .vs-share-button--results {
-  .vs-share-button__social-links {}
-
   .vs-share-button__icon-button {
     background-color: #cfcfcf;
     height: rem(34);
