@@ -82,7 +82,8 @@ function virginsport_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'default_email' => '',
         'classes' => '',
-        'target_list' => '',
+        'id' => '',
+        'type' => '',
         'inline_button' => FALSE,
         'title' => '',
         'description' => '',
@@ -211,9 +212,9 @@ function virginsport_preprocess_page(&$vars) {
   // Setup the alerts
   $vars['alerts'] = virginsport_alerts();
 
-  // Setup which Sugar target-list the user enrolls in footer
-  $newsletter_list = virgin_region_get_current_region_newsletter_list();
-  $vars['newsletter_list'] = !empty($newsletter_list) ? $newsletter_list : '';
+  // Setup which Region id for the user enrolls in footer
+  $region = virgin_region_current();
+  $vars['region_id'] = isset($region['nid']) ? $region['nid'] : '';
   $vars['default_email'] = $user->uid > 0 ? $user->mail : '';
 
   // Make cookie template available in javascript

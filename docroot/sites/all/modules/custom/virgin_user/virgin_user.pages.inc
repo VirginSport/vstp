@@ -461,8 +461,36 @@ function virgin_user_page_ajax_newsletter_form_post() {
   $raw = file_get_contents('php://input');
   $data = drupal_json_decode($raw);
 
+  // If one of the required parameters is empty return error state
+  if (empty($data['id']) || empty($data['type'])) {
+    $result['result'] = FALSE;
+    print drupal_json_encode($result);
+    drupal_exit();
+  }
+
+  if ($data['type'] == 'component') {
+    // Load the panel and get the list
+    $fpp = fieldable_panels_panes_load($data['id']);
+    if ($fpp->bundle == 'vs_newsletter' && !empty($fpp->field_sugar_newsletter_list[LANGUAGE_NONE])) {
+      $list = $fpp->field_sugar_newsletter_list[LANGUAGE_NONE][0]['value'];
+    }
+  }  else if ($data['type'] == 'footer') {
+    // Load the region and get the list
+    $region = node_load($data['id']);
+    if ($region->type == 'region' && !empty($region->field_sugar_newsletter_list[LANGUAGE_NONE])) {
+      $list = $region->field_sugar_newsletter_list[LANGUAGE_NONE][0]['value'];
+    }
+  }
+
+  // In case we can't load the list throw an error
+  if (!isset($list)) {
+    $result['result'] = FALSE;
+    print drupal_json_encode($result);
+    drupal_exit();
+  }
+
   $params = array(
-    'target_list' => $data['list'],
+    'target_list' => $list,
     'email' => $data['newsletter_email'],
   );
 
