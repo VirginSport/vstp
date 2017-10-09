@@ -169,32 +169,34 @@ vs-basic-content-block,
   .vs-region--gradient-#{$color} {
     @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
 
-    p,
-    h2.vs-bcb__title,
-    .vs-bcb__subtitle,
-    .vs-bcb__lead,
-    ul.vs-bcb__column-text-title li,
-    ul.vs-bcb__faq li:nth-child(even),
-    ul.vs-bcb__small-list li {
-      color: map_get($map, 'text-color');
-    }
+    .vs-basic-content-block__text-wrapper {
+      p,
+      h2.vs-bcb__title,
+      .vs-bcb__subtitle,
+      .vs-bcb__lead,
+      ul.vs-bcb__column-text-title li,
+      ul.vs-bcb__faq li:nth-child(even),
+      ul.vs-bcb__small-list li {
+        color: map_get($map, 'text-color');
+      }
 
-    ul.vs-bcb__faq li:nth-child(odd) {
-      color: rgba(map_get($map, 'text-color'), .7);
-    }
+      ul.vs-bcb__faq li:nth-child(odd) {
+        color: rgba(map_get($map, 'text-color'), .7);
+      }
 
-    p.vs-bcb__title-line:after,
-    hr {
-      background-color: rgba(map_get($map, 'text-color'), .7);
-    }
+      p.vs-bcb__title-line:after,
+      hr {
+        background-color: rgba(map_get($map, 'text-color'), .7);
+      }
 
-    a.vs-bcb__btn {
-      @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
-      border: 0;
-      color: map_get($map, 'text-color');
-
-      &:active {
+      a.vs-bcb__btn {
         @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+        border: 0;
+        color: map_get($map, 'text-color');
+
+        &:active {
+          @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), 90deg);
+        }
       }
     }
   }
