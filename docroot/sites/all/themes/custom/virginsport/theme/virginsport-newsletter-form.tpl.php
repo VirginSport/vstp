@@ -10,7 +10,8 @@
   <div class="vs-newslettter__form">
     <validator name="vs_newsletter_form_validator">
       <form @submit.prevent novalidate class="vs-newsletter-form__form">
-        <input type="hidden" v-model="form.list" name="list" value="<?php print $target_list; ?>">
+        <input type="hidden" v-model="form.id" name="id" value="<?php print $id; ?>">
+        <input type="hidden" v-model="form.type" name="type" value="<?php print $type; ?>">
 
         <div class="vs-form-group">
           <?php if (!$show_email_input && !empty($default_email)): ?>

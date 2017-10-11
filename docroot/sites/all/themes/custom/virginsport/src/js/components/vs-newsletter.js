@@ -81,7 +81,8 @@ function initVue(selector, inModal = false) {
         submitted: false,
         error: false,
         newsletter_email: '',
-        list: '',
+        id: '',
+        type: '',
       }
     },
     watch: {
