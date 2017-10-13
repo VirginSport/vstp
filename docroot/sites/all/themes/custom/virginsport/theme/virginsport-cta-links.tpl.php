@@ -9,16 +9,24 @@
     <?php
 
     $query = array();
-    $url = empty($link['url']) ? current_path() : $link['url'];
 
-    // Add festival query param if available
-    if (!empty($link['attributes']['virgin_festival'])) {
-      $query['festival_id'] = $link['attributes']['virgin_festival'];
-    }
+    // The query parameters should only be added if the virgin_type is not a
+    // link and the link url should be populated with a link only otherwise.
+    // This verification is need in case the user as all the fields populated.
+    if ($link['attributes']['virgin_type'] == 'link') {
+      $url = empty($link['url']) ? current_path() : $link['url'];
+    } else {
+      $url = current_path();
+      if (!empty($link['attributes']['virgin_festival'])) {
+        $query['festival_id'] = $link['attributes']['virgin_festival'];
+      }
 
-    // Add event query param if available
-    if (!empty($link['attributes']['virgin_event'])) {
-      $query['event_id'] = $link['attributes']['virgin_event'];
+      // Only contact form uses the virgin_event field
+      if ($link['attributes']['virgin_type'] == 'contact_form' &&
+        !empty($link['attributes']['virgin_event'])) {
+        $query['event_id'] = $link['attributes']['virgin_event'];
+      }
+
     }
 
     $attributes = array(
