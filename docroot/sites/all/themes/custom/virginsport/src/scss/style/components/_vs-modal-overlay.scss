@@ -154,8 +154,8 @@ vs-modal-overlay,
 @include media-breakpoint-up(md) {
   .modal-dialog {
     position: relative;
-    margin-left: 16%;
-    margin-right: 16%;
+    margin-left: auto;
+    margin-right: auto;
     overflow-y: auto;
 
     .has-touch & {
