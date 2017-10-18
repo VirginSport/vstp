@@ -217,7 +217,7 @@ class Region {
   
     // Apply the background rotation
     let style = window.getComputedStyle(this.svg);
-    let bgRotation = parseInt(style['backgroundSize'], 10);
+    let bgRotation = parseInt(style['wordSpacing'], 10);
     
     // If for some reason rotation could not be parsed, fallback to 0
     bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
