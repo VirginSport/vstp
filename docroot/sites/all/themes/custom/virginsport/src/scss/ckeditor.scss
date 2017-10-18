@@ -51,6 +51,18 @@ body.cke_editable {
 // Component improved text editing
 // ----------------------------------------------------------------------------
 
+.ck3_editable {
+  h2,
+  h4,
+  h5 {
+    font-family: $font-family-serif;
+  }
+
+  h5 {
+    font-weight: 600;
+  }
+}
+
 // Title
 h2.vs-bcb__title {
   font-size: 21px;
