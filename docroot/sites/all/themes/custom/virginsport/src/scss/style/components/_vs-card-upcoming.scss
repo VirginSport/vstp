@@ -62,6 +62,7 @@ vs-card-upcoming,
 .vs-card-upcoming__button {
   width: 100%;
   position: relative;
+  min-width: rem(120);
 }
 
 .vs-card-upcoming__button--cta {
