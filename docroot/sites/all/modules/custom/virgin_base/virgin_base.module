@@ -502,7 +502,7 @@ function virgin_base_festivals($exclude_status = array(), $contact_form_flagged 
  * @return array
  * An array with the festival events or all if festival_id does not exist
  */
-function virgin_base_events($festival_id) {
+function virgin_base_events($festival_id = NULL) {
   // Get events related to given festival
   $query = db_select('node', 'n');
 
@@ -518,15 +518,18 @@ function virgin_base_events($festival_id) {
     ->groupBy('ev.nid')
   ;
 
-  $festival = node_load($festival_id);
+  if (!empty($festival_id)) {
+    $festival = node_load($festival_id);
 
-  // If festival exists add filter
-  if (!empty($festival->nid)) {
-    $festival_grapher = new VirginEntityGrapher('node', $festival);
-    $festival_state_grapher = $festival_grapher->relation('field_festival_state');
+    // If festival exists add filter
+    if (!empty($festival->nid)) {
+      $festival_grapher = new VirginEntityGrapher('node', $festival);
+      $festival_state_grapher = $festival_grapher->relation('field_festival_state');
 
-    $query->condition('n.nid', $festival_state_grapher->property('nid'), '=');
+      $query->condition('n.nid', $festival_state_grapher->property('nid'), '=');
+    }
   }
+
 
   $ids = $query->execute()->fetchCol();
 
