@@ -272,6 +272,14 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['ajax/request-bundle-form/post'] = array(
+    'title' => 'Form',
+    'page callback' => 'virgin_user_page_ajax_request_bundle_form_post',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 
