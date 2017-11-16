@@ -28,13 +28,13 @@ $mkt_id = 'mkt-' . uniqid();
                 <validator name="vs_request_bundle_form_validator" v-if="!form.submitted">
                   <form @submit.prevent novalidate class="vs-contact-form__form">
                     <h4 class="vs-form-header">
-                      <?php print t("Request a bundle"); ?>
+                      <?php print t("Group Ticket Application Form"); ?>
                     </h4>
 
-                    <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.organization_name.dirty || submitted) && !$vs_request_bundle_form_validator.organization_name.valid }">
-                      <input class="form-control" id="organization_name" type="text" v-model="form.organization_name" name="organization_name" v-validate:organization_name="['required']">
-                      <label class="vs-focus-label" for="organization_name"><?php print t('Organization Name'); ?>*</label>
-                      <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.organization_name.dirty || submitted) && $vs_request_bundle_form_validator.organization_name.required"><?php print t('@ is required', array('@' => t('Organization Name'))); ?></div>
+                    <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.organization.dirty || submitted) && !$vs_request_bundle_form_validator.organization.valid }">
+                      <input class="form-control" id="organization_name" type="text" v-model="form.organization" name="organization" v-validate:organization="['required']">
+                      <label class="vs-focus-label" for="organization"><?php print t('Organization'); ?>*</label>
+                      <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.organization.dirty || submitted) && $vs_request_bundle_form_validator.organization.required"><?php print t('@ is required', array('@' => t('Organization'))); ?></div>
                     </div>
 
                     <div class="field-event vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.event_id.dirty || submitted) && !$vs_request_bundle_form_validator.event_id.valid }">
@@ -61,7 +61,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.tickets.dirty || submitted) && $vs_request_bundle_form_validator.tickets.required"><?php print t('@ is required', array('@' => t('Number of tickets'))); ?></div>
                     </div>
                     <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.payment_type.dirty || submitted) && !$vs_request_bundle_form_validator.payment_type.valid }">
-                      <label for="payment_type" class="vs-focus-label"><?php print t("Payment preference"); ?>*</label>
+                      <label for="payment_type" class="vs-focus-label"><?php print t("Preferred Payment Method"); ?>*</label>
                       <select class="form-control" v-model="form.payment_type" id="payment_type" name="payment_type" v-validate:payment_type="['required']">
                         <option value="invoice"><?php print t('Invoice'); ?></option>
                         <option value="credit"><?php print t('Credit Card'); ?></option>
@@ -86,7 +86,7 @@ $mkt_id = 'mkt-' . uniqid();
                 </validator>
                 <div v-if="form.submitted" class="form-completion">
                   <h4 class="vs-form-header">
-                    <span><?php print t("Thanks for your enquiry.<br> We'll get back to you in a jiffy!"); ?></span>
+                    <span><?php print t("Thanks for your request!<br> We'll be in touch shortly with next steps."); ?></span>
                   </h4>
                 </div>
               </div>

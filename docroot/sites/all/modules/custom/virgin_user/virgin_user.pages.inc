@@ -530,7 +530,7 @@ function virgin_user_page_ajax_request_bundle_form_post() {
   $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
 
   $params = array(
-    'organization_name' => $data['organization_name'],
+    'organization' => $data['organization'],
     'event_id' => $data['event_id'],
     'tickets' => $data['tickets'],
     'payment_type' => $data['payment_type'],
