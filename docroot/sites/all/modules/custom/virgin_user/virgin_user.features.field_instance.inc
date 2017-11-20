@@ -510,6 +510,9 @@ function virgin_user_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 4,
+    ),
+  );
+  
   // Exported field_instance: 'user-user-field_group_sales_access'.
   $field_instances['user-user-field_group_sales_access'] = array(
     'bundle' => 'user',
