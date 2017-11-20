@@ -519,7 +519,7 @@ function virgin_user_page_ajax_request_bundle_form_post() {
   $data = drupal_json_decode($raw);
 
   // If one of the required parameters is empty return error state
-  if (empty($data['organization_name']) || empty($data['event_id'])
+  if (empty($data['organization']) || empty($data['event'])
     || empty($data['tickets']) || empty($data['payment_type'])) {
     $result['result'] = FALSE;
     print drupal_json_encode($result);
@@ -531,7 +531,7 @@ function virgin_user_page_ajax_request_bundle_form_post() {
 
   $params = array(
     'organization' => $data['organization'],
-    'event_id' => $data['event_id'],
+    'event' => $data['event'],
     'tickets' => $data['tickets'],
     'payment_type' => $data['payment_type'],
     'additional_notes' => $data['additional_notes'],
@@ -539,6 +539,7 @@ function virgin_user_page_ajax_request_bundle_form_post() {
   );
 
   try {
+    //TODO: Put the actual CRM endpoint
     $result['result'] = sugarcrm_client()->systemPost('Virgin/request-bundle', $params);
   } catch (\Exception $e) {
     $result['result'] = FALSE;
@@ -547,6 +548,17 @@ function virgin_user_page_ajax_request_bundle_form_post() {
   print drupal_json_encode($result);
 
   drupal_exit();
+}
+
+/**
+ * Page callback for the group sales page
+ */
+function virgin_user_page_group_sales() {
+  if (user_is_anonymous()) {
+    drupal_goto('user/login', array('query' => array('destination' => current_path())));
+  }
+
+  return theme('virgin_user__request_bundle_form', array());
 }
 
 /**

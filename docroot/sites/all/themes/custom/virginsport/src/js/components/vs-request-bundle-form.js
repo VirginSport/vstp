@@ -90,8 +90,8 @@ function initVue(selector, inModal = false) {
       form: {
         submitted: false,
         error: false,
-        organization_name: '',
-        event_id: '',
+        organization: '',
+        event: '',
         tickets: '',
         payment_type: '',
         additional_info: '',
