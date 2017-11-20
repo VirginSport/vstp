@@ -330,7 +330,10 @@ function virgin_user_page_user_edit($form, $account) {
   // And after the profile is synced render the user profile form
   module_load_include('inc', 'user', 'user.pages');
 
-  return theme('virgin_user__edit', array('profile_form' => drupal_get_form($form, $account)));
+  return theme('virgin_user__edit', array(
+    'profile_form' => drupal_get_form($form, $account),
+    'group_sales_url' => _virgin_user_get_group_sales_url(),
+  ));
 }
 
 /**

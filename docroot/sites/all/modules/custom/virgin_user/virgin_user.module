@@ -736,6 +736,8 @@ function virgin_user_preprocess_user_profile(&$vars) {
   $user_context = ctools_context_create('user', $vars['user']);
   $context = array('user_context' => $user_context);
 
+  $vars['group_sales_url'] = _virgin_user_get_group_sales_url();
+
   // Get user tickets
   $vars['upcoming_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array('upcoming' => 1), array(), array(), $context);
   $vars['past_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
@@ -1025,4 +1027,20 @@ function virgin_user_ticket_event($ticket_rego) {
   $node = empty($event_id) ? NULL : node_load($event_id);
 
   return empty($node) ? NULL : new VirginEntityGrapher('node', $node);
+}
+
+function _virgin_user_get_group_sales_url() {
+  global $user;
+
+  if (user_is_anonymous()) {
+    return FALSE;
+  }
+
+  $user = user_load($user->uid);
+
+  if (!empty($user->field_group_sales_access[LANGUAGE_NONE][0]['value'])) {
+    return 'attendly/url';
+  }
+
+  return FALSE;
 }
