@@ -72,7 +72,7 @@ $mkt_id = 'mkt-' . uniqid();
 
                       <div class="vs-form-description text-xs-center">*<?php print t('mandatory fields'); ?></div>
 
-                      <div v-if="form.error" class="vs-error-label"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></div>
+                      <p v-if="form.error" class="vs-error-label text-xs-center text-md-left"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></p>
 
                       <div class="vs-contact-form__submit text-xs-center">
                         <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Request bundle'); ?></button>
