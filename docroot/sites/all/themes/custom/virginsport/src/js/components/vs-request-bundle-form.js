@@ -94,7 +94,7 @@ function initVue(selector, inModal = false) {
         event: '',
         tickets: '',
         payment_type: '',
-        additional_info: '',
+        additional_notes: '',
       }
     },
   });

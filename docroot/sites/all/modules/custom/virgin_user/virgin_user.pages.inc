@@ -539,7 +539,6 @@ function virgin_user_page_ajax_request_bundle_form_post() {
   );
 
   try {
-    //TODO: Put the actual CRM endpoint
     $result['result'] = sugarcrm_client()->systemPost('Virgin/request-bundle', $params);
   } catch (\Exception $e) {
     $result['result'] = FALSE;

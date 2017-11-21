@@ -66,8 +66,8 @@ $mkt_id = 'mkt-' . uniqid();
                       </div>
 
                       <div class="vs-form-group vs-form-group--textarea">
-                        <textarea name="message" v-model="form.additional_info" class="form-control vs-textarea" id="additional_info" rows="5"></textarea>
-                        <label class="vs-focus-label" for="message"><?php print t('Additional Info'); ?></label>
+                        <textarea name="message" v-model="form.additional_notes" class="form-control vs-textarea" id="additional_notes" rows="5"></textarea>
+                        <label class="vs-focus-label" for="additional_notes"><?php print t('Additional Info'); ?></label>
                       </div>
 
                       <div class="vs-form-description text-xs-center">*<?php print t('mandatory fields'); ?></div>
