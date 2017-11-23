@@ -2,7 +2,7 @@ key,desktop title,mobile title,color
 vs:level:standard,Standard,Standard,tint
 vs:level:vip,VIP Pass,VIP,gold
 vs:level:hero,Hero Pass,Hero,festival
-vs:level:charity,Charity,tint
-vs:level:group,Group,tint
-vs:level:corporate,Corporate Team,tint
-vs:level:perks,Perks,tint
+vs:level:charity,Charity,Charity,tint
+vs:level:group,Group,Group,tint
+vs:level:corporate,Corporate Team,Corporate Team,tint
+vs:level:perks,Perks,Perks,tint
