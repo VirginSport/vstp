@@ -506,6 +506,61 @@ function virgin_user_page_ajax_newsletter_form_post() {
 }
 
 /**
+ * Page callback for the request bundle form submission
+ */
+function virgin_user_page_ajax_request_bundle_form_post() {
+  global $user;
+
+  if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    drupal_access_denied();
+  }
+
+  $raw = file_get_contents('php://input');
+  $data = drupal_json_decode($raw);
+
+  // If one of the required parameters is empty return error state
+  if (empty($data['organization']) || empty($data['event'])
+    || empty($data['tickets']) || empty($data['payment_type'])) {
+    $result['result'] = FALSE;
+    print drupal_json_encode($result);
+    drupal_exit();
+  }
+
+  $user_anonymous = user_is_anonymous();
+  $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
+
+  $params = array(
+    'organization' => $data['organization'],
+    'event' => $data['event'],
+    'tickets' => $data['tickets'],
+    'payment_type' => $data['payment_type'],
+    'additional_notes' => $data['additional_notes'],
+    'contact_id' => $user_anonymous ? '' : $user_grapher->fieldGetOne('field_sugar_id', NULL),
+  );
+
+  try {
+    $result['result'] = sugarcrm_client()->systemPost('Virgin/request-bundle', $params);
+  } catch (\Exception $e) {
+    $result['result'] = FALSE;
+  }
+
+  print drupal_json_encode($result);
+
+  drupal_exit();
+}
+
+/**
+ * Page callback for the group sales page
+ */
+function virgin_user_page_group_sales() {
+  if (user_is_anonymous()) {
+    drupal_goto('user/login', array('query' => array('destination' => current_path())));
+  }
+
+  return theme('virgin_user__request_bundle_form', array());
+}
+
+/**
  * Page callback for the user contact form submission
  */
 function virgin_user_page_ajax_form_post() {
