@@ -663,3 +663,16 @@ function virgin_user_page_hybridauth_extra($provider_id) {
   return theme('virgin_user__hybridauth_details', array('vars' => $vars));
 
 }
+
+/**
+ * Redirects the user to group sales in Attendly
+ */
+function virgin_user_page_group_sales() {
+  $url = _virgin_user_get_group_sales_url();
+
+  if (!empty($url)) {
+    drupal_goto($url);
+  }
+
+  drupal_access_denied();
+}
