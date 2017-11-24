@@ -513,7 +513,7 @@ function menu_execute_active_handler($path = NULL, $deliver = TRUE) {
 
   // Allow other modules to change the site status but not the path because that
   // would not change the global variable. hook_url_inbound_alter() can be used
-  // to change the path. Code later will not use the $read_only_path variable.
+  // to change the path. Code later will not use the $read_only_path var§iable.
   $read_only_path = !empty($path) ? $path : $_GET['q'];
   drupal_alter('menu_site_status', $page_callback_result, $read_only_path);
 
