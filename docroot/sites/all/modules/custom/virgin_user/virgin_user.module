@@ -290,7 +290,7 @@ function virgin_user_menu() {
 
   $items['access/group-sales'] = array(
     'title' => 'Access Group Sales',
-    'page callback' => 'virgin_user_page_group_sales',
+    'page callback' => 'virgin_user_page_group_sales_redirect',
     'access callback' => 'user_is_logged_in',
     'type' => MENU_CALLBACK,
     'file' => 'virgin_user.pages.inc',

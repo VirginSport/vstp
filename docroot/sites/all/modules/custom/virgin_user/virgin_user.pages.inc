@@ -722,7 +722,7 @@ function virgin_user_page_hybridauth_extra($provider_id) {
 /**
  * Redirects the user to group sales in Attendly
  */
-function virgin_user_page_group_sales() {
+function virgin_user_page_group_sales_redirect() {
   $url = _virgin_user_get_group_sales_url();
 
   if (!empty($url)) {
