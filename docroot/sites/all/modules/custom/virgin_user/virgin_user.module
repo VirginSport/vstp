@@ -288,6 +288,14 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
+  $items['access/group-sales'] = array(
+    'title' => 'Access Group Sales',
+    'page callback' => 'virgin_user_page_group_sales_redirect',
+    'access callback' => 'user_is_logged_in',
+    'type' => MENU_CALLBACK,
+    'file' => 'virgin_user.pages.inc',
+  );
+
   return $items;
 }
 
@@ -758,6 +766,10 @@ function virgin_user_preprocess_user_profile(&$vars) {
   $user_context = ctools_context_create('user', $vars['user']);
   $context = array('user_context' => $user_context);
 
+  // Check if user as access to group sales
+  $account_wrapper = entity_metadata_wrapper('user', $vars['user']);
+  $vars['group_sales_url'] = empty($account_wrapper->field_group_sales_access->value()) ? FALSE : url('access/group-sales');
+
   // Get user tickets
   $vars['upcoming_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array('upcoming' => 1), array(), array(), $context);
   $vars['past_festivals'] = ctools_content_render('user_tickets', 'user_tickets', array(), array(), array(), $context);
@@ -1047,4 +1059,44 @@ function virgin_user_ticket_event($ticket_rego) {
   $node = empty($event_id) ? NULL : node_load($event_id);
 
   return empty($node) ? NULL : new VirginEntityGrapher('node', $node);
+}
+
+/**
+ * Fetches the attendly groups sales url if the user as access to group
+ * sales interface
+ *
+ * @return bool|string
+ *  The Attendly group sales url or FALSE if the url cannot be fetched or the
+ *  user hasn't access to group sales
+ */
+function _virgin_user_get_group_sales_url() {
+  global $user;
+
+  if (user_is_anonymous()) {
+    return FALSE;
+  }
+
+  $account = user_load($user->uid);
+  $user_wrapper = entity_metadata_wrapper('user', $account);
+  // Check if user has access to group sales
+  if (!empty($user_wrapper->field_group_sales_access->value())) {
+    try {
+      $token = virgin_attendly_client()->getGroupSalesToken($user_wrapper->field_sugar_id->value());
+
+      if (empty($token)) {
+        return FALSE;
+      }
+
+      return sprintf('%s/manage-bundles/%s', variable_get(VIRGIN_VAR_ATTENDLY_URL), $token);
+    } catch (\Exception $e) {
+      watchdog(
+        'virgin_user',
+        'Could not get the group sales bundle with user id @user_id',
+        ['@user_id' => $account->field_sugar_id->value()]
+      );
+      return FALSE;
+    }
+  }
+
+  return FALSE;
 }
