@@ -233,11 +233,8 @@ class VirginAttendlyClient {
    *  If it was not possible to fetch an group sales token
    */
   public function getGroupSalesToken($virgin_sport_id) {
-    $data = array(
-      'ExternalID' => $virgin_sport_id,
-    );
-
-    $request = $this->client->post('/v2/virgin/requestgroupsalestoken', null, json_encode($data));
+    $url = sprintf('/v2/virgin/requestgroupsalestokenwithid/%s', $virgin_sport_id);
+    $request = $this->client->post($url);
     $request->setAuth($this->username, $this->password);
     $response_data = $request->send()->json();
 

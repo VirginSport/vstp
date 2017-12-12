@@ -1087,7 +1087,7 @@ function _virgin_user_get_group_sales_url() {
         return FALSE;
       }
 
-      return sprintf('%s/post/personal/manage-bundles/%s', variable_get(VIRGIN_VAR_ATTENDLY_URL), $token);
+      return sprintf('%s/manage-bundles/%s', variable_get(VIRGIN_VAR_ATTENDLY_URL), $token);
     } catch (\Exception $e) {
       watchdog(
         'virgin_user',
