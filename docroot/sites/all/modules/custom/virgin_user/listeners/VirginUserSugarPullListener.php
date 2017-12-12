@@ -354,8 +354,6 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
       return FALSE;
     }
 
-    //TODO: Check the sugar_id for field_group_sales_access
-
     // With the exception of the e-mail, all other fields that come from
     // the digest are updated here. E-mail is not updated in here because that
     // goes through an entirely separate process.
