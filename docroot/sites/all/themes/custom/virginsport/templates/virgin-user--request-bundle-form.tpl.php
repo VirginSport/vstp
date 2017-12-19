@@ -52,9 +52,11 @@ $mkt_id = 'mkt-' . uniqid();
                       </div>
 
                       <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.tickets.dirty || submitted) && !$vs_request_bundle_form_validator.tickets.valid }">
-                        <input class="form-control" id="tickets" type="number" v-model="form.tickets" name="tickets" v-validate:tickets="['required']">
+                        <input class="form-control" id="tickets" type="number" v-model="form.tickets" min="1" name="tickets" v-validate:tickets="{ required: { rule: true }, min: 1, maxlength: 10 }">
                         <label class="vs-focus-label" for="tickets"><?php print t('Number of tickets'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.tickets.dirty || submitted) && $vs_request_bundle_form_validator.tickets.required"><?php print t('@ is required', array('@' => t('Number of tickets'))); ?></div>
+                        <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.tickets.dirty || submitted) && $vs_request_bundle_form_validator.tickets.min"><?php print t('@ should be greater than 1', array('@' => t('Number of tickets'))); ?></div>
+                        <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.tickets.dirty || submitted) && $vs_request_bundle_form_validator.tickets.maxlength"><?php print t('@ should be less than 11 digits', array('@' => t('Number of tickets'))); ?></div>
                       </div>
                       <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.payment_type.dirty || submitted) && !$vs_request_bundle_form_validator.payment_type.valid }">
                         <label for="payment_type" class="vs-focus-label"><?php print t("Preferred Payment Method"); ?>*</label>
