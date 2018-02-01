@@ -14,7 +14,7 @@ $mkt_id = 'mkt-' . uniqid();
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="vs-hero-banner__title"><?php print t('Group Ticket Application Form'); ?></h2>
+              <h2 class="vs-hero-banner__title"><?php print t('Group Sales Application'); ?></h2>
               <div class="vs-hero-banner-block__subtitle"></div>
             </div>
           </div>
@@ -36,12 +36,12 @@ $mkt_id = 'mkt-' . uniqid();
                   <validator name="vs_request_bundle_form_validator" v-if="!form.submitted">
                     <form @submit.prevent novalidate class="vs-contact-form__form">
                       <h4 class="vs-form-header">
-                        <?php print t("Group Ticket Application Form"); ?>
+                        <?php print t("Tell us about yourself"); ?>
                       </h4>
 
                       <div class="vs-form-group" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.organization.dirty || submitted) && !$vs_request_bundle_form_validator.organization.valid }">
                         <input class="form-control" id="organization_name" type="text" v-model="form.organization" name="organization" v-validate:organization="['required']">
-                        <label class="vs-focus-label" for="organization"><?php print t('Organization'); ?>*</label>
+                        <label class="vs-focus-label" for="organization"><?php print t('Organisation'); ?>*</label>
                         <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.organization.dirty || submitted) && $vs_request_bundle_form_validator.organization.required"><?php print t('@ is required', array('@' => t('Organization'))); ?></div>
                       </div>
 
@@ -77,7 +77,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <p v-if="form.error" class="vs-error-label text-xs-center text-md-left"><?php print t("It's not you, it's us. We're down for the moment but want to hear from you, so please try again in a little bit."); ?></p>
 
                       <div class="vs-contact-form__submit text-xs-center">
-                        <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Request bundle'); ?></button>
+                        <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t('Submit'); ?></button>
                       </div>
 
                     </form>
