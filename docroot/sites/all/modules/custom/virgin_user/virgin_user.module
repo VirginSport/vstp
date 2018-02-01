@@ -1092,7 +1092,7 @@ function _virgin_user_get_group_sales_url() {
       watchdog(
         'virgin_user',
         'Could not get the group sales bundle with user id @user_id',
-        ['@user_id' => $account->field_sugar_id->value()]
+        ['@user_id' => $user_wrapper->field_sugar_id->value()]
       );
       return FALSE;
     }
