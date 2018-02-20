@@ -44,6 +44,13 @@
           <?php print t('Account Details'); ?>
         </a>
       </li>
+      <?php if (!empty($group_sales_url)): ?>
+        <li class="vs-subnav__item">
+          <a class="vs-subnav__link" href="<?php print $group_sales_url ?>">
+            <?php print t('Group Dashboard'); ?>
+          </a>
+        </li>
+      <? endif; ?>
     </ul>
   </div>
 </div>
