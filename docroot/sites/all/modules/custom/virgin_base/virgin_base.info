@@ -86,6 +86,7 @@ features[field_base][] = field_gameface_id
 features[field_base][] = field_gameface_url
 features[field_base][] = field_gender
 features[field_base][] = field_geo_country_code
+features[field_base][] = field_group_sales_access
 features[field_base][] = field_has_fans
 features[field_base][] = field_has_marketing_questions
 features[field_base][] = field_has_merchandise

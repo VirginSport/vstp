@@ -219,4 +219,30 @@ class VirginAttendlyClient {
 
     return $token;
   }
+
+  /**
+   * Returns the groups sales token to access the group sales feature in
+   * attendly
+   *
+   * @param $virgin_sport_id
+   *  The virgin sport ID of the user that's accessing group sales
+   *
+   * @return string
+   *  The group sales token
+   * @throws \Exception
+   *  If it was not possible to fetch an group sales token
+   */
+  public function getGroupSalesToken($virgin_sport_id) {
+    $url = sprintf('/v2/virgin/requestgroupsalestokenwithid/%s', $virgin_sport_id);
+    $request = $this->client->post($url);
+    $request->setAuth($this->username, $this->password);
+    $response_data = $request->send()->json();
+
+    $token = '';
+    if (!empty($response_data['Result']['Token'])) {
+      $token = $response_data['Result']['Token'];
+    }
+
+    return $token;
+  }
 }
