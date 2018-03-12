@@ -61,8 +61,8 @@ $mkt_id = 'mkt-' . uniqid();
                       <div class="vs-form-group vs-form-group--chosen" :class="{ 'vs-has-error': ($vs_request_bundle_form_validator.payment_type.dirty || submitted) && !$vs_request_bundle_form_validator.payment_type.valid }">
                         <label for="payment_type" class="vs-focus-label"><?php print t("Preferred Payment Method"); ?>*</label>
                         <select class="form-control" v-model="form.payment_type" id="payment_type" name="payment_type" v-validate:payment_type="['required']">
-                          <option value="invoice"><?php print t('Invoice'); ?></option>
-                          <option value="creditcard"><?php print t('Credit Card'); ?></option>
+                          <option value="invoice"><?php print t('BACS / Cheque'); ?></option>
+                          <option value="creditcard"><?php print t('Credit / Debit Card'); ?></option>
                         </select>
                         <div class="vs-error-label" v-if="($vs_request_bundle_form_validator.payment_type.dirty || submitted) && $vs_request_bundle_form_validator.payment_type.required"><?php print t('@ is required', array('@' => t('Payment preference'))); ?></div>
                       </div>
