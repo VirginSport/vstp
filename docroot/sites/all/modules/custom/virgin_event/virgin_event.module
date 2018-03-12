@@ -54,8 +54,8 @@ function virgin_event_menu() {
  * Implements hook_form_FORM_ID_alter().
  */
 function virgin_event_form_event_node_form_alter(&$form, &$form_state) {
-  // As this field will be handled by the system remove it from ui form
-  $form['field_event_state']['#access'] = FALSE;
+  // As this field will be handled by the system prevent it from being modified
+  $form['field_event_state']['#disabled'] = TRUE;
 }
 
 /**
