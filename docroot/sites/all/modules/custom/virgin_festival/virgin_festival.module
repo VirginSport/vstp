@@ -45,8 +45,8 @@ function virgin_festival_theme($existing, $type, $theme, $path) {
  * Implements hook_form_FORM_ID_alter().
  */
 function virgin_festival_form_festival_node_form_alter(&$form, &$form_state) {
-  // As this field will be handled by the system remove it from ui form
-  $form['field_festival_state']['#access'] = FALSE;
+  // As this field will be handled by the system prevent it from being modified
+  $form['field_festival_state']['#disabled'] = TRUE;
 }
 
 /**
