@@ -43,6 +43,11 @@
             <button v-else class="btn vs-btn vs-btn--min-sm vs-newsletter__button" disabled><?php print t('Sent'); ?></button>
           </div>
           <?php endif; ?>
+          <div class="vs-newsletter__message-wrapper">
+            <p class="vs-newsletter__message-label">
+              <?php print virgin_region_get_newsletter_disclaimer(); ?>
+            </p>
+          </div>
         </div>
       </form>
     </validator>

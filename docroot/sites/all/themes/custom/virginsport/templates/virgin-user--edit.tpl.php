@@ -171,6 +171,12 @@
                               {{ getListText('field_region', profile.field_region) }}
                             </div>
                           </div>
+                          <div class="field-marketing vs-form-group vs-form-group--checkboxes">
+                            <div class="vs-form-check">
+                              <input :disabled="!edit_mode" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin" class="vs-form-input vs-form-input--check">
+                              <label for="field_marketing_optin" class="vs-form-label vs-form-label--check vs-form-label--large"><?php print virgin_region_get_marketing_optin_disclaimer(); ?></label>
+                            </div>
+                          </div>
                         </div>
                   </div>
                       <div class="col-xs-12 text-md-right">
