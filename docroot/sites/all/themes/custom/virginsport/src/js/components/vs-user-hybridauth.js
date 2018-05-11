@@ -7,6 +7,7 @@ blur();
 let fieldMap = {
   'input#edit-email': 'field_mail',
   'select#edit-gender': 'field_gender',
+  'input#edit-field-marketing-optin': 'field_marketing_optin'
 };
 
 export default () => {
@@ -61,6 +62,7 @@ export default () => {
       profile: {
         field_mail: '',
         field_gender: '',
+        field_marketing_optin: 0,
       }
     }
   });
