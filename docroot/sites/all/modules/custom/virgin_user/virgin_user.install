@@ -207,3 +207,11 @@ function virgin_user_update_7003() {
   $column = $schema['virgin_user_tickets']['fields']['spectators'];
   db_add_field('virgin_user_tickets', 'spectators', $column);
 }
+
+/**
+ * Resets all the field_marketing_optin values to be treated as new field type
+ */
+function virgin_user_update_7004() {
+  db_truncate('field_data_field_marketing_optin');
+  db_truncate('field_revision_field_marketing_optin');
+}
