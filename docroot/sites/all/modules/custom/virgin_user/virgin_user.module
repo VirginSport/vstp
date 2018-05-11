@@ -601,7 +601,7 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
-  $userinfo['field_marketing_optin'][LANGUAGE_NONE][0]['value'] = !empty($data['field_marketing_optin']);
+  $userinfo['field_marketing_optin'][LANGUAGE_NONE][0]['value'] = !empty($data['field_marketing_optin']) ? 1 : 0;
 }
 
 /**
