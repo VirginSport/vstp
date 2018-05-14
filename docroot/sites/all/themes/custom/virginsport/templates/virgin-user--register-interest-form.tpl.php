@@ -44,7 +44,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t("Count me in"); ?></button>
                     </div>
 
-                    <div class="vs-form-description"><?php print virgin_region_get_newsletter_disclaimer(); ?></div>
+                    <div class="vs-form-description vs-form-gdpr-description"><?php print virgin_region_get_newsletter_disclaimer(); ?></div>
                   </form>
                 </validator>
                 <div v-if="form.submitted" class="form-completion">
