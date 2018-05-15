@@ -56,6 +56,12 @@
 
     print sprintf('<a %s>%s</a>', drupal_attributes($attributes), check_plain($link['title'])); ?>
 
+  <?php if ($link['attributes']['virgin_type'] == VIRGIN_BASE_REGISTER_INTEREST_FORM && user_is_logged_in()): ?>
+      <p class="vs-register-interest__gdpr-label">
+        <?php print virgin_region_get_newsletter_disclaimer(); ?>
+      </p>
+  <?php endif; ?>
+
   <?php endforeach; ?>
 <?php endif; ?>
 
