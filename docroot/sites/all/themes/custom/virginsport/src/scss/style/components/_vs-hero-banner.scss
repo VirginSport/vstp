@@ -110,6 +110,25 @@ vs-hero-banner,
   }
 }
 
+.vs-register-interest__gdpr-label {
+  margin: 0 auto;
+  max-width: 90%;
+  padding-top: rem(20);
+
+  a {
+    color: $c-white;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: 70%;
+  }
+}
+
 .vs-hero-banner__date + .vs-hero-banner__button-wrapper {
   padding-top: .125rem;
 }
