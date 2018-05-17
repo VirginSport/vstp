@@ -4,8 +4,9 @@ import bootstrap from 'bootstrap.native/dist/bootstrap-native';
 const xs_max = 544;
 
 export default () => {
-  if ($('video.vs-video-block__video').length) {
-    $('video.vs-video-block__video').play();
+  let $videoBlock = $('video.vs-video-block__video');
+  if ($videoBlock.length) {
+    $videoBlock.play();
   }
 
   // When user click on play button start modal video and pause background video
@@ -14,7 +15,7 @@ export default () => {
 
     $body.toggleClass('vs-video-modal--opened');
 
-    // Pause background video
+video
     $('.vs-video__video').trigger('pause');
 
     // Start overlay video
