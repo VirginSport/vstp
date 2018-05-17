@@ -197,6 +197,7 @@ class VirginUserSugarPullListener implements ObserverObserverInterface {
     $account = user_load($account->uid);
     $sugar_id = $this->getUserSugarID($account);
     $modified_since = $this->getUserLastSuccessfulSync($account);
+    $modified_since = 0;
 
     // If for some reason the user does not have a SugarID, then bailout as
     // there's nothing to fetch from SugarCRM.
