@@ -15,7 +15,7 @@ export default () => {
 
     $body.toggleClass('vs-video-modal--opened');
 
-video
+    // Pause background video
     $('.vs-video__video').trigger('pause');
 
     // Start overlay video
