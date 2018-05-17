@@ -4,6 +4,11 @@ import bootstrap from 'bootstrap.native/dist/bootstrap-native';
 const xs_max = 544;
 
 export default () => {
+  let $videoBlock = $('video.vs-video-block__video');
+  if ($videoBlock.length) {
+    $videoBlock.play();
+  }
+
   // When user click on play button start modal video and pause background video
   $('.vs-video__play-button').click(function() {
     const $body = $('body');
