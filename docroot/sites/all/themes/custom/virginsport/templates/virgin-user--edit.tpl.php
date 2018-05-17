@@ -44,6 +44,13 @@
           <?php print t('Account Details'); ?>
         </a>
       </li>
+      <?php if (!empty($group_sales_url)): ?>
+        <li class="vs-subnav__item">
+          <a class="vs-subnav__link" href="<?php print $group_sales_url ?>">
+            <?php print t('Group Dashboard'); ?>
+          </a>
+        </li>
+      <? endif; ?>
     </ul>
   </div>
 </div>
@@ -162,6 +169,12 @@
                             <div v-show="!edit_mode">
                               <label class="vs-focus-label vs-focus-label--static"><?php print t('Region'); ?></label>
                               {{ getListText('field_region', profile.field_region) }}
+                            </div>
+                          </div>
+                          <div class="field-marketing vs-form-group vs-form-group--checkboxes">
+                            <div class="vs-form-check">
+                              <input :disabled="!edit_mode" type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin" class="vs-form-input vs-form-input--check">
+                              <label for="field_marketing_optin" class="vs-form-label vs-form-label--check vs-form-label--large"><?php print virgin_region_get_marketing_optin_disclaimer(); ?></label>
                             </div>
                           </div>
                         </div>

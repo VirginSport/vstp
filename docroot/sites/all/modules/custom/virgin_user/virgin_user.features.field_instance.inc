@@ -512,6 +512,44 @@ function virgin_user_field_default_field_instances() {
       'weight' => 4,
     ),
   );
+  
+  // Exported field_instance: 'user-user-field_group_sales_access'.
+  $field_instances['user-user-field_group_sales_access'] = array(
+    'bundle' => 'user',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 21,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_group_sales_access',
+    'label' => 'Group Sales Access',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 22,
+    ),
+  );
 
   // Exported field_instance: 'user-user-field_last_name'.
   $field_instances['user-user-field_last_name'] = array(
@@ -584,7 +622,7 @@ function virgin_user_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'user_register_form' => 0,
+      'user_register_form' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -858,6 +896,7 @@ function virgin_user_field_default_field_instances() {
   t('Date of Birth');
   t('First Name');
   t('Gender');
+  t('Group Sales Access');
   t('Last Name');
   t('Marketing Opt-in');
   t('Other medical conditions');

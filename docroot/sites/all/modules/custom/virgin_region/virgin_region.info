@@ -19,6 +19,7 @@ features[field_instance][] = node-region-field_geo_country_code
 features[field_instance][] = node-region-field_hostname
 features[field_instance][] = node-region-field_icon_image
 features[field_instance][] = node-region-field_links
+features[field_instance][] = node-region-field_privacy_policy
 features[field_instance][] = node-region-field_show_cookies_alert
 features[field_instance][] = node-region-field_sugar_newsletter_list
 features[field_instance][] = node-region-title_field

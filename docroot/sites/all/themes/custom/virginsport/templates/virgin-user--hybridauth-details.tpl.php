@@ -68,6 +68,17 @@
                     </div>
                     <?php endif; ?>
 
+                    <?php if (isset($vars['form']['fset']['field_marketing_optin'])): ?>
+                      <div class="field-marketing vs-form-group vs-form-group--checkboxes">
+                        <div class="vs-form-check">
+                          <input type="checkbox" v-model="profile.field_marketing_optin" name="field_marketing_optin" id="field_marketing_optin" class="vs-form-input vs-form-input--check">
+                          <label for="field_marketing_optin" class="vs-form-label vs-form-label--check vs-form-label--large">
+                            <?php print t("I'd like to receive emails about Virgin Sport events, any special offers and competitions and its partners and their products. I understand that I can unsubscribe at any time and my email address will only be used in accordance with Virgin Sport’s privacy policy."); ?>
+                          </label>
+                        </div>
+                      </div>
+                    <?php endif; ?>
+
                     <div class="vs-form-submit">
                       <button class="btn vs-btn vs-btn--lg vs-btn--min-lg" v-on:click="submit"><?php print ('Submit'); ?></button>
                     </div>

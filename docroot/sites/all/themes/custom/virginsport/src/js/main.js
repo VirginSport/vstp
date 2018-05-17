@@ -34,6 +34,7 @@ import vsUserTicket from './components/vs-user-ticket';
 import vsCtaLinks from './components/vs-cta-links';
 import vsUserHybridAuth from './components/vs-user-hybridauth';
 import vsNewsletter from './components/vs-newsletter';
+import vsRequestBundleForm from './components/vs-request-bundle-form';
 
 vsBasket();
 vsContactForm();
@@ -69,6 +70,7 @@ vsUserTicket();
 vsCtaLinks();
 vsNewsletter();
 vsUserHybridAuth();
+vsRequestBundleForm();
 
 // Libs
 import bootstrap from './lib/bootstrap';
