@@ -124,6 +124,19 @@ label {
   font-weight: 400;
 }
 
+.vs-form-gdpr-description {
+  margin-top: 1.25rem;
+  margin-bottom: 1.875rem;
+  font-size: rem(12);
+  max-width: 21.75rem;
+  color: rgba(#767676, .7);
+  font-weight: 400;
+
+  a {
+    color: $c-red;
+  }
+}
+
 
 // Select group
 // ----------------------------------------------------------------------------

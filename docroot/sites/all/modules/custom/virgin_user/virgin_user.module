@@ -411,10 +411,6 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
   $form['field_address_postcode']['#access'] = FALSE;
   $form['field_contact_number']['#access'] = FALSE;
 
-  // Marketing optin asked to be removed
-  $form['field_marketing_optin']['#access'] = FALSE;
-
-
   // Ensure the email fields ordering
   $form['account']['mail']['#weight'] = -2;
   $form['account']['mail_confirm']['#weight'] = -1;
@@ -458,7 +454,6 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   $form['field_birth_date']['#access'] = FALSE;
 
   // Fields asked to be removed
-  $form['field_marketing_optin']['#access'] = FALSE;
   $form['field_medical_conditions']['#access'] = FALSE;
   $form['field_medical_conditions_other']['#access'] = FALSE;
   $form['field_medications']['#access'] = FALSE;
