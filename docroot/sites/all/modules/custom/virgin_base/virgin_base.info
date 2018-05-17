@@ -124,6 +124,7 @@ features[field_base][] = field_package_reference
 features[field_base][] = field_package_state
 features[field_base][] = field_page_body
 features[field_base][] = field_price
+features[field_base][] = field_privacy_policy
 features[field_base][] = field_promo_banners
 features[field_base][] = field_region
 features[field_base][] = field_replay_url
