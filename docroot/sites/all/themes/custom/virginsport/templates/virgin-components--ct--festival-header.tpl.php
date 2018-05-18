@@ -98,11 +98,6 @@
                 class="btn vs-btn vs-btn--min-sm vs-hero-banner__button">
                 <?php print t('Register interest'); ?>
               </a>
-              <?php if (user_is_logged_in()): ?>
-                <p class="vs-register-interest__gdpr-label">
-                  <?php print virgin_region_get_newsletter_disclaimer(); ?>
-                </p>
-              <?php endif; ?>
             <?php elseif (in_array($status, array('over'))): ?>
               <?php print theme('virginsport_cta_links', array('links' => $cta_links, 'classes' => 'btn vs-btn vs-btn--min-sm vs-hero-banner__button')); ?>
             <?php elseif (in_array($status, array('open')) && !$is_tickets_page): ?>
