@@ -209,8 +209,10 @@ vs-newsletter,
     margin-bottom: rem(40);
 
     @include media-breakpoint-up(md) {
-      margin-bottom: 0;
-      margin-top: rem(40);
+      .vs-newsletter & {
+        margin-bottom: 0;
+        margin-top: rem(40);
+      }
     }
   }
 
