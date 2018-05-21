@@ -17,6 +17,7 @@ let fieldMap = {
   '.date-day select': 'field_date_day',
   '.date-month select': 'field_date_month',
   '.date-year select': 'field_date_year',
+  '#edit-field-marketing-optin input': 'field_marketing_optin',
 };
 
 export default () => {
@@ -199,6 +200,7 @@ export default () => {
         field_date_year: '',
         field_gender: '',
         field_contact_number: '',
+        field_marketing_optin: '',
       }
     }
   });
