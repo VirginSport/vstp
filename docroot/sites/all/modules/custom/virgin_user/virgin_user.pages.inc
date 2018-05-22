@@ -611,6 +611,11 @@ function virgin_user_page_ajax_form_post() {
       'contact_number' => $data['contact_number'],
       'message' => $data['message'],
       'events' => array(),
+    );
+  }
+
+  if ($data['type'] == 'interested_in') {
+    $params += array(
       'marketing_email_opt_ins' => TRUE,
     );
   }
