@@ -8,7 +8,7 @@
 /**
  * Class VirginComponentGrid
  */
-class VIrginComponentGridBlock implements VirginComponentsInterface {
+class VirginComponentGridBlock implements VirginComponentsInterface {
   
   public function supports($entity_type, $bundle) {
     return $entity_type == 'fieldable_panels_pane' && $bundle == 'vs_grid';
