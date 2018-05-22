@@ -32,6 +32,5 @@ class VirginComponentGridBlockItem implements VirginComponentsInterface {
     $variables['member_description'] = $virgin->fieldGetOne('field_image_caption');
     $variables['member_link'] = $virgin->fieldGetAll('field_cta_link');
     $variables['image_link'] = $virgin->fieldGetAll('field_image_link');
-    $x='';
   }
 }
