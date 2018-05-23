@@ -11,12 +11,13 @@
 <div class="vs-video">
   <div class="vs-video__wrapper">
     <div class="vs-video__video-wrapper hidden-xs-down">
-      <video loop
-         class="vs-video__video"
-         preload="none"
-         src="<?php print $video_url; ?>"
-         poster="<?php print virginsport_atom_url($poster->getEntity()); ?>"
+      <video
+        loop
+        class="vs-video__video vs-video-block__video"
+        autoplay
+        poster="<?php print virginsport_atom_url($poster->getEntity()); ?>"
       >
+        <source src="<?php print $video_url; ?>" type="video/mp4">
       </video>
     </div>
 

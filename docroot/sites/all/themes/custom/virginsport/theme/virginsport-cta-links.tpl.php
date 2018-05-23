@@ -56,6 +56,7 @@
 
     print sprintf('<a %s>%s</a>', drupal_attributes($attributes), check_plain($link['title'])); ?>
 
+
   <?php endforeach; ?>
 <?php endif; ?>
 

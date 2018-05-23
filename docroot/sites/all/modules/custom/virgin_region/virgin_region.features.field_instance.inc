@@ -362,6 +362,56 @@ function virgin_region_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-region-field_privacy_policy'.
+  $field_instances['node-region-field_privacy_policy'] = array(
+    'bundle' => 'region',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_privacy_policy',
+    'label' => 'Privacy policy',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-region-field_show_cookies_alert'.
   $field_instances['node-region-field_show_cookies_alert'] = array(
     'bundle' => 'region',
@@ -534,6 +584,7 @@ function virgin_region_field_default_field_instances() {
   t('Icon Image');
   t('Just insert the hostname without http:// or an ending slash, ex: "uk.virginsport.com"');
   t('Name');
+  t('Privacy policy');
   t('Show cookies alert');
   t('Sugar Newsletter List');
 

@@ -98,7 +98,7 @@ function virgin_region_init() {
 
   // Add Javascript files to handle region cookie and redirection to correct region
   drupal_add_js(array('virgin_region' => array('cookie_domain' => $cookie_domain)), array('type' => 'setting'));
-  
+
   // Build the front-page URL from the current region node it exists or fallback
   // to the splash page path if no region host matches the current hostname.
   if ($region) {
@@ -267,6 +267,7 @@ function virgin_region_regions() {
         'is_default' => (variable_get(VIRGIN_REGION_VAR_DEFAULT_REGION) == $hostname),
         'hostname' => $hostname,
         'show_cookies_alert' => $node_wrapper->field_show_cookies_alert->value(),
+        'privacy_policy_node' => $node_wrapper->field_privacy_policy->value(),
       );
     }
 
@@ -334,7 +335,7 @@ function virgin_region_form_user_profile_form_submit(&$form, &$form_state) {
 
   $region = virgin_region_region_load($region_id);
 
-  if (!empty($region)) {  
+  if (!empty($region)) {
     // Set user region cookie on registration
     virgin_region_region_cookie_set($region);
   }
@@ -740,4 +741,34 @@ function virgin_region_current_region_show_cookie() {
   }
 
   return $show_cookie;
+}
+
+/**
+ * Return the privacy policy text or the full link to the privacy link defined
+ * in the region node
+ */
+function virgin_region_get_privacy_policy_text($label) {
+  $current_region = virgin_region_current();
+
+  $privacy_policy = $label;
+  if (!empty($current_region['privacy_policy_node'])) {
+    $privacy_policy = l($privacy_policy, sprintf('node/%s', $current_region['privacy_policy_node']->nid), ['html' => TRUE, 'attributes' => ['target' => '_blank']]);
+  }
+
+  return $privacy_policy;
+}
+
+/**
+ * Return newsletter privacy policy disclaimer
+ */
+function virgin_region_get_newsletter_disclaimer() {
+  $prefix = user_is_logged_in() ? t('Click the button') : t('Enter your email address');
+  return t("@prefix to receive emails about Virgin Sport and our events, special offers, partners and partner’s products. You can unsubscribe at any time. A copy of our Privacy Policy is !policy.", ['@prefix' => $prefix, '!policy' => virgin_region_get_privacy_policy_text(t('here'))]);
+}
+
+/**
+ * Return marketing optin privacy policy disclaimer
+ */
+function virgin_region_get_marketing_optin_disclaimer() {
+  return t("I'd like to receive emails about Virgin Sport events, any special offers and competitions and its partners and their products. I understand that I can unsubscribe at any time and my email address will only be used in accordance with Virgin Sport's !policy.", ['!policy' => virgin_region_get_privacy_policy_text(t('Privacy Policy'))]);
 }
