@@ -77,12 +77,8 @@ vs-grid,
 }
 
 .vs-grid__element-wrapper {
-  margin-bottom: rem(30);
+  margin-bottom: rem(60);
   text-align: center;
-
-  @include media-breakpoint-up(md) {
-    margin-bottom: rem(50);
-  }
 }
 
 .vs-grid__element-image {
