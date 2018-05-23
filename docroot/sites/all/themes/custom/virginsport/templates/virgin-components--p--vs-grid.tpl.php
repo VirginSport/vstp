@@ -17,14 +17,7 @@
   <div class="vs-grid__element-wrapper">
     <?php if (!empty($member_image)): ?>
       <?php if (!empty($image_link)): ?>
-        <?php print
-          theme('virginsport_cta_links',
-            [
-              'links' => $image_link,
-              'classes' => 'vs-grid__element-link'
-            ]
-          );
-        ?>
+        <?php print $image_link ?>
       <?php endif; ?>
       <div class="vs-grid__element-image" style="<?php print virginsport_atom_background($member_image->getEntity()); ?>"></div>
     <?php endif; ?>
