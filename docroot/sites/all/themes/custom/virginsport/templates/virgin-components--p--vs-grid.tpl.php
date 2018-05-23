@@ -20,7 +20,8 @@
         <?php print
           theme('virginsport_cta_links',
             [
-              'links' => $image_link
+              'links' => $image_link,
+              'classes' => 'vs-grid__element-link'
             ]
           );
         ?>

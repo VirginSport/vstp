@@ -230,7 +230,8 @@ vs-newsletter,
   .vs-region--gradient-#{$color} .vs-newsletter {
     .vs-newslettter__title,
     .vs-newslettter__text,
-    .vs-newsletter__message-label {
+    .vs-newsletter__message-label,
+    .vs-newsletter__gdpr-label {
       color: map_get($map, 'text-color');
     }
 

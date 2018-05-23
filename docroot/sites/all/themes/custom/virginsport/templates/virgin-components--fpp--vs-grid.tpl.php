@@ -16,7 +16,7 @@
         </div>
         <div class="col-xs-12 col-md-8">
           <?php if (!empty($heading_description)): ?>
-            <p class="vs-grid__text"><?php print($heading_description) ?></p>
+            <div class="vs-grid__text"><?php print $heading_description ?></div>
           <?php endif ?>
         </div>
       </div>

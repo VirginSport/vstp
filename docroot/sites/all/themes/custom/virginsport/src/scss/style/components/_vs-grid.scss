@@ -68,8 +68,12 @@ vs-grid,
   }
 }
 
-.vs-grid__text:last-child {
+.vs-grid__text {
   margin-bottom: rem(40);
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: rem(80);
+  }
 }
 
 .vs-grid__element-wrapper {
@@ -82,8 +86,9 @@ vs-grid,
 }
 
 .vs-grid__element-image {
+  background-size: cover;
   border-radius: rem(180);
-  height: auto;
+  height: rem(180);
   margin: 0 auto rem(30);
   width: rem(180);
 }
