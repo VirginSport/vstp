@@ -111,12 +111,13 @@ vs-grid,
 .vs-grid__element-button {}
 
 .vs-grid__element-link {
-  @include transition(all .5s ease);
-  color: $body-color;
-
-  &:hover {
-    color: $c-black;
-  }
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
 }
 
 

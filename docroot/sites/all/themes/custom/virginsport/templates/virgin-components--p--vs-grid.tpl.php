@@ -17,7 +17,7 @@
   <div class="vs-grid__element-wrapper">
     <?php if (!empty($member_image)): ?>
       <?php if (!empty($image_link)): ?>
-        <?php print $image_link ?>
+        <a href="<?php print $image_link ?>" class="vs-grid__element-link"></a>
       <?php endif; ?>
       <div class="vs-grid__element-image" style="<?php print virginsport_atom_background($member_image->getEntity()); ?>"></div>
     <?php endif; ?>
