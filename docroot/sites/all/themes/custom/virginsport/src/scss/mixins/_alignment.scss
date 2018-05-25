@@ -55,3 +55,25 @@
 @include media-breakpoint-up(md) { .grid-align-bottom--md-up { @include grid-align(bottom); } }
 @include media-breakpoint-up(lg) { .grid-align-bottom--lg-up { @include grid-align(bottom); } }
 @include media-breakpoint-up(xl) { .grid-align-bottom--xl-up { @include grid-align(bottom); } }
+
+
+// Vertical alignment (top, center or bottom)
+// ----------------------------------------------------------------------------
+
+@mixin center-elements {
+  text-align: center;
+
+  > [class*="col-"] {
+    display: inline-block;
+    float: none;
+    margin-right: -4px;
+    text-align: left;
+    vertical-align: top;
+  }
+}
+
+.center-elements { @include center-elements(); }
+@include media-breakpoint-up(sm) { .center-elements--sm-up { @include center-elements(); } }
+@include media-breakpoint-up(md) { .center-elements--md-up { @include center-elements(); } }
+@include media-breakpoint-up(lg) { .center-elements--lg-up { @include center-elements(); } }
+@include media-breakpoint-up(xl) { .center-elements--xl-up { @include center-elements(); } }
