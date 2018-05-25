@@ -23,6 +23,7 @@ $modal_id = uniqid();
     <?php if (!empty($video_url)): ?>
       <div class="vs-video__video-wrapper vs-video__video-wrapper__inline">
         <video
+          muted
           loop
           class="vs-video__video"
           preload="none"

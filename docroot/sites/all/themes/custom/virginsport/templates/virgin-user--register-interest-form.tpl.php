@@ -21,7 +21,7 @@ $mkt_id = 'mkt-' . uniqid();
                     novalidate class="vs-contact-form__form"
                     v-init="{autoSubmit: false}"
                   >
-                    <h4 class="vs-form-header">
+                    <h4 class="vs-form-header vs-form-header--centered">
                       <?php print t('Be the first to know'); ?>
                     </h4>
 
