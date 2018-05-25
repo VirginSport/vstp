@@ -12,6 +12,7 @@
   <div class="vs-video__wrapper">
     <div class="vs-video__video-wrapper hidden-xs-down">
       <video
+        muted
         loop
         class="vs-video__video vs-video-block__video"
         autoplay
