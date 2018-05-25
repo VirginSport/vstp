@@ -197,6 +197,7 @@ function virgin_page_strongarm() {
     'fieldable_panels_pane-vs_hootsuite_feed' => TRUE,
     'fieldable_panels_pane-vs_mylaps_track_my_runner' => TRUE,
     'fieldable_panels_pane-vs_newsletter' => TRUE,
+    'fieldable_panels_pane-vs_grid' => TRUE,
     'fieldable_panels_pane-vs_package_cards' => TRUE,
     'fieldable_panels_pane-vs_photo_gallery' => TRUE,
     'fieldable_panels_pane-vs_promo_banner' => TRUE,

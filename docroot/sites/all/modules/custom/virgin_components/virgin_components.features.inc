@@ -48,6 +48,11 @@ function virgin_components_paragraphs_info() {
       'bundle' => 'vs_slide',
       'locked' => '1',
     ),
+    'vs_team_members' => array(
+      'name' => 'Team Members',
+      'bundle' => 'vs_team_members',
+      'locked' => '1',
+    ),
     'vs_teaser' => array(
       'name' => 'Teaser',
       'bundle' => 'vs_teaser',
