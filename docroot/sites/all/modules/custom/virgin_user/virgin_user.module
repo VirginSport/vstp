@@ -411,10 +411,6 @@ function virgin_user_form_user_register_form_alter(&$form, &$form_state, $form_i
   $form['field_address_postcode']['#access'] = FALSE;
   $form['field_contact_number']['#access'] = FALSE;
 
-  // Marketing optin asked to be removed
-  $form['field_marketing_optin']['#access'] = FALSE;
-
-
   // Ensure the email fields ordering
   $form['account']['mail']['#weight'] = -2;
   $form['account']['mail_confirm']['#weight'] = -1;
@@ -458,7 +454,6 @@ function virgin_user_form_user_profile_form_alter(&$form, &$form_state, $form_id
   $form['field_birth_date']['#access'] = FALSE;
 
   // Fields asked to be removed
-  $form['field_marketing_optin']['#access'] = FALSE;
   $form['field_medical_conditions']['#access'] = FALSE;
   $form['field_medical_conditions_other']['#access'] = FALSE;
   $form['field_medications']['#access'] = FALSE;
@@ -515,11 +510,40 @@ function virgin_user_hybridauth_profile_alter(&$profile) {
  * If the gender is asked than print it as a select list instead of radios
  * because it is easier to manipulate in the template.
  *
+ * Always as the user for the marketing optin
+ *
  */
 function virgin_user_form_hybridauth_additional_info_form_alter(&$form, &$form_state) {
   if (isset($form['fset']['gender'])) {
     $form['fset']['gender']['#type'] = 'select';
   }
+
+  $form['fset']['field_marketing_optin'] = [
+    '#type' => 'checkbox',
+    '#default_value' => 0,
+    '#title' => t('Marketing optin'),
+  ];
+
+  array_unshift($form['#submit'], 'virgin_user_form_hybridauth_additional_info_form_submit');
+}
+
+/**
+ * Maps the marketing optin field to the data array
+ */
+function virgin_user_form_hybridauth_additional_info_form_submit($form, &$form_state) {
+  if (isset($form_state['values']['field_marketing_optin'])) {
+    $form_state['values']['data']['field_marketing_optin'] = $form_state['values']['field_marketing_optin'];
+  }
+}
+
+/**
+ * Implements hook_hybridauth_registration_form().
+ *
+ * Checks if the hydridauth extra form should be shown or not, if the user
+ * already choose the marketing optin bailout
+ */
+function virgin_user_hybridauth_registration_form($data) {
+  return !isset($data['field_marketing_optin']);
 }
 
 /**
@@ -548,6 +572,7 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
     'address' => null,
     'region' => null,
     'zip' => null,
+    'field_marketing_optin' => 0,
   );
 
   $data = $data + $defaults;
@@ -571,6 +596,7 @@ function virgin_user_hybridauth_userinfo_alter(&$userinfo, $data) {
   $userinfo['field_last_name'][LANGUAGE_NONE][0]['value'] = $data['lastName'];
   $userinfo['field_gender'][LANGUAGE_NONE][0]['value'] = $data['gender'];
   $userinfo['field_birth_date'][LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $birth_date);
+  $userinfo['field_marketing_optin'][LANGUAGE_NONE][0]['value'] = !empty($data['field_marketing_optin']) ? 1 : 0;
 }
 
 /**

@@ -19,7 +19,7 @@ $mkt_id = 'mkt-' . uniqid();
                   <form
                     @submit.prevent
                     novalidate class="vs-contact-form__form"
-                    v-init="{autoSubmit: <?php !user_is_anonymous() ? print "true" : print "false"; ?>}"
+                    v-init="{autoSubmit: false}"
                   >
                     <h4 class="vs-form-header">
                       <?php print t('Be the first to know'); ?>
@@ -44,7 +44,7 @@ $mkt_id = 'mkt-' . uniqid();
                       <button :disabled="waitingSubmit" v-on:click="submit" class="btn vs-btn vs-btn--min-sm"><?php print t("Count me in"); ?></button>
                     </div>
 
-                    <div class="vs-form-description"><?php print t('By registering your interest, you are agreeing to receive information about Virgin Sport events and partners. Game on!'); ?></div>
+                    <div class="vs-form-description vs-form-gdpr-description"><?php print virgin_region_get_newsletter_disclaimer(); ?></div>
                   </form>
                 </validator>
                 <div v-if="form.submitted" class="form-completion">

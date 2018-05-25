@@ -201,6 +201,26 @@ vs-newsletter,
   background-color: $c-orange-bright;
 }
 
+.vs-newsletter__gdpr-label {
+  font-size: rem(12);
+  line-height: rem(16);
+
+  &:last-child {
+    margin-bottom: rem(40);
+
+    @include media-breakpoint-up(md) {
+      .vs-newsletter & {
+        margin-bottom: 0;
+        margin-top: rem(40);
+      }
+    }
+  }
+
+  a {
+    color: $c-red;
+  }
+}
+
 
 // Modifiers
 // ----------------------------------------------------------------------------

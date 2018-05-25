@@ -495,6 +495,7 @@ function virgin_user_page_ajax_newsletter_form_post() {
   $params = array(
     'target_list' => $list,
     'email' => $data['newsletter_email'],
+    'marketing_email_opt_ins' => TRUE,
   );
 
   try {
@@ -612,7 +613,13 @@ function virgin_user_page_ajax_form_post() {
       'events' => array(),
     );
   }
-  
+
+  if ($data['type'] == 'interested_in') {
+    $params += array(
+      'marketing_email_opt_ins' => TRUE,
+    );
+  }
+
   if (!empty($data['festival_id'])) {
     $festival = node_load((int) $data['festival_id']);
 
