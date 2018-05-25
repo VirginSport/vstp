@@ -200,6 +200,8 @@ function virgin_page_strongarm() {
     'fieldable_panels_pane-vs_package_cards' => TRUE,
     'fieldable_panels_pane-vs_photo_gallery' => TRUE,
     'fieldable_panels_pane-vs_promo_banner' => TRUE,
+    'fieldable_panels_pane-vs_results_introduction' => TRUE,
+    'fieldable_panels_pane-vs_results_overview' => TRUE,
     'fieldable_panels_pane-vs_teaser_block' => TRUE,
     'fieldable_panels_pane-vs_ticket_cards' => TRUE,
     'fieldable_panels_pane-vs_untimed_event_cards' => TRUE,
