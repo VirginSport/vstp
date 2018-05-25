@@ -49,7 +49,7 @@ function virgin_components_paragraphs_info() {
       'locked' => '1',
     ),
     'vs_team_members' => array(
-      'name' => 'Team Members',
+      'name' => 'Grid Element',
       'bundle' => 'vs_team_members',
       'locked' => '1',
     ),

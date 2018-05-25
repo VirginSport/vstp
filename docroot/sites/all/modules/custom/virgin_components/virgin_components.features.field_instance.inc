@@ -1439,7 +1439,7 @@ function virgin_components_field_default_field_instances() {
     ),
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_team',
-    'label' => 'Team',
+    'label' => 'Grid Element',
     'required' => 0,
     'settings' => array(
       'add_mode' => 'select',
@@ -6612,6 +6612,7 @@ function virgin_components_field_default_field_instances() {
   t('Event');
   t('Festival');
   t('Gameface ID');
+  t('Grid Element');
   t('Header Image');
   t('Heading');
   t('Hero Banner Image');
@@ -6644,7 +6645,6 @@ function virgin_components_field_default_field_instances() {
   t('Smaller height');
   t('Subheading');
   t('Sugar Newsletter List');
-  t('Team');
   t('Thumbnails');
   t('Tickets');
   t('Title');
