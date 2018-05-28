@@ -33,7 +33,7 @@
         theme('virginsport_cta_links',
           [
             'links' => $member_link,
-            'classes' => 'vs-btn--outline-black vs-grid__element-button',
+            'classes' => 'vs-grid__element-button',
           ]
         );
       ?>
