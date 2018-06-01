@@ -209,8 +209,10 @@ vs-newsletter,
     margin-bottom: rem(40);
 
     @include media-breakpoint-up(md) {
-      margin-bottom: 0;
-      margin-top: rem(40);
+      .vs-newsletter & {
+        margin-bottom: 0;
+        margin-top: rem(40);
+      }
     }
   }
 
@@ -230,7 +232,8 @@ vs-newsletter,
   .vs-region--gradient-#{$color} .vs-newsletter {
     .vs-newslettter__title,
     .vs-newslettter__text,
-    .vs-newsletter__message-label {
+    .vs-newsletter__message-label,
+    .vs-newsletter__gdpr-label {
       color: map_get($map, 'text-color');
     }
 

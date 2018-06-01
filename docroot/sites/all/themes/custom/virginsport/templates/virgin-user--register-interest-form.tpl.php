@@ -19,9 +19,9 @@ $mkt_id = 'mkt-' . uniqid();
                   <form
                     @submit.prevent
                     novalidate class="vs-contact-form__form"
-                    v-init="{autoSubmit: <?php !user_is_anonymous() ? print "true" : print "false"; ?>}"
+                    v-init="{autoSubmit: false}"
                   >
-                    <h4 class="vs-form-header">
+                    <h4 class="vs-form-header vs-form-header--centered">
                       <?php print t('Be the first to know'); ?>
                     </h4>
 
