@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
     <?php if (!empty($row_title)): ?>
-      <div class="vs-grid__title"><?php print($row_title) ?></div>
+      <div class="vs-grid__row-title text-align-center"><?php print($row_title) ?></div>
     <?php endif ?>
   </div>
-  <div class="col-xs-12 col-md-8">
+  <div class="col-xs-12 col-md-8 offset-md-2">
     <?php if (!empty($row_description)): ?>
-      <div class="vs-grid__text"><?php print $row_description ?></div>
+      <div class="vs-grid__row-text text-align-center"><?php print $row_description ?></div>
     <?php endif ?>
   </div>
 </div>
