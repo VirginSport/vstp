@@ -46,6 +46,20 @@ vs-grid,
   }
 }
 
+.vs-grid__row-title {
+  color: $c-black;
+  font-family: $font-family-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+
+.vs-grid__row-text {
+  margin-bottom: rem(40);
+}
+
 @include media-breakpoint-up(lg) {
   .vs-grid__title {
     font-size: 1.75rem;
