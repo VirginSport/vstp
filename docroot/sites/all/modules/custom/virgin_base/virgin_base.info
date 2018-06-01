@@ -134,6 +134,7 @@ features[field_base][] = field_results_overview_image
 features[field_base][] = field_results_summary
 features[field_base][] = field_results_url
 features[field_base][] = field_review_url
+features[field_base][] = field_row
 features[field_base][] = field_scrollable_image
 features[field_base][] = field_short_description
 features[field_base][] = field_show_contact_form

@@ -38,6 +38,11 @@ function virgin_components_paragraphs_info() {
       'bundle' => 'vs_event_festival_banner',
       'locked' => '1',
     ),
+    'vs_grid_row' => array(
+      'name' => 'Grid Row',
+      'bundle' => 'vs_grid_row',
+      'locked' => '1',
+    ),
     'vs_package_card' => array(
       'name' => 'Package Card',
       'bundle' => 'vs_package_card',

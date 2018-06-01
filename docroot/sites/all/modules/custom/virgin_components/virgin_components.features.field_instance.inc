@@ -1357,7 +1357,7 @@ function virgin_components_field_default_field_instances() {
     ),
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_component_heading',
-    'label' => 'Component Heading',
+    'label' => 'Subtitle',
     'required' => 0,
     'settings' => array(
       'context' => 'title',
@@ -1379,49 +1379,8 @@ function virgin_components_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-vs_grid-field_page_body'.
-  $field_instances['fieldable_panels_pane-vs_grid-field_page_body'] = array(
-    'bundle' => 'vs_grid',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_page_body',
-    'label' => 'Content',
-    'required' => 0,
-    'settings' => array(
-      'context' => 'title',
-      'context_default' => 'sdl_editor_representation',
-      'display_summary' => 0,
-      'dnd_enabled' => 0,
-      'entity_translation_sync' => FALSE,
-      'mee_enabled' => 0,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'fieldable_panels_pane-vs_grid-field_team'.
-  $field_instances['fieldable_panels_pane-vs_grid-field_team'] = array(
+  // Exported field_instance: 'fieldable_panels_pane-vs_grid-field_row'.
+  $field_instances['fieldable_panels_pane-vs_grid-field_row'] = array(
     'bundle' => 'vs_grid',
     'default_value' => NULL,
     'deleted' => 0,
@@ -1434,23 +1393,24 @@ function virgin_components_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'paragraphs_view',
-        'weight' => 2,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_team',
-    'label' => 'Grid Element',
+    'field_name' => 'field_row',
+    'label' => 'Row',
     'required' => 0,
     'settings' => array(
-      'add_mode' => 'select',
+      'add_mode' => 'button',
       'allowed_bundles' => array(
         'vs_accordion_item' => -1,
         'vs_cta_block' => -1,
         'vs_custom_banner' => -1,
         'vs_event_festival_banner' => -1,
+        'vs_grid_row' => 'vs_grid_row',
         'vs_package_card' => -1,
         'vs_slide' => -1,
-        'vs_team_members' => 'vs_team_members',
+        'vs_team_members' => -1,
         'vs_teaser' => -1,
         'vs_ticket_card' => -1,
         'vs_untimed_event_card' => -1,
@@ -1460,17 +1420,18 @@ function virgin_components_field_default_field_instances() {
         'vs_cta_block' => 3,
         'vs_custom_banner' => 4,
         'vs_event_festival_banner' => 5,
-        'vs_package_card' => 6,
-        'vs_slide' => 7,
-        'vs_team_members' => 8,
-        'vs_teaser' => 9,
-        'vs_ticket_card' => 10,
-        'vs_untimed_event_card' => 11,
+        'vs_grid_row' => 6,
+        'vs_package_card' => 7,
+        'vs_slide' => 8,
+        'vs_team_members' => 9,
+        'vs_teaser' => 10,
+        'vs_ticket_card' => 11,
+        'vs_untimed_event_card' => 12,
       ),
       'default_edit_mode' => 'open',
       'entity_translation_sync' => FALSE,
-      'title' => 'Paragraph',
-      'title_multiple' => 'Paragraphs',
+      'title' => 'Row',
+      'title_multiple' => 'Rows',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1478,7 +1439,48 @@ function virgin_components_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 3,
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'fieldable_panels_pane-vs_grid-title_field'.
+  $field_instances['fieldable_panels_pane-vs_grid-title_field'] = array(
+    'bundle' => 'vs_grid',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'A field replacing fieldable panel pane title.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -10,
     ),
   );
 
@@ -5113,6 +5115,167 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-vs_grid_row-field_component_heading'.
+  $field_instances['paragraphs_item-vs_grid_row-field_component_heading'] = array(
+    'bundle' => 'vs_grid_row',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-vs_grid_row-field_team'.
+  $field_instances['paragraphs_item-vs_grid_row-field_team'] = array(
+    'bundle' => 'vs_grid_row',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'paragraphs',
+        'settings' => array(
+          'view_mode' => 'full',
+        ),
+        'type' => 'paragraphs_view',
+        'weight' => 2,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_team',
+    'label' => 'Grid Element',
+    'required' => 0,
+    'settings' => array(
+      'add_mode' => 'select',
+      'allowed_bundles' => array(
+        'vs_accordion_item' => -1,
+        'vs_cta_block' => -1,
+        'vs_custom_banner' => -1,
+        'vs_event_festival_banner' => -1,
+        'vs_grid_row' => -1,
+        'vs_package_card' => -1,
+        'vs_slide' => -1,
+        'vs_team_members' => 'vs_team_members',
+        'vs_teaser' => -1,
+        'vs_ticket_card' => -1,
+        'vs_untimed_event_card' => -1,
+      ),
+      'bundle_weights' => array(
+        'vs_accordion_item' => 2,
+        'vs_cta_block' => 3,
+        'vs_custom_banner' => 4,
+        'vs_event_festival_banner' => 5,
+        'vs_grid_row' => 6,
+        'vs_package_card' => 7,
+        'vs_slide' => 8,
+        'vs_team_members' => 9,
+        'vs_teaser' => 10,
+        'vs_ticket_card' => 11,
+        'vs_untimed_event_card' => 12,
+      ),
+      'default_edit_mode' => 'open',
+      'entity_translation_sync' => FALSE,
+      'title' => 'Element',
+      'title_multiple' => 'Elements',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'paragraphs',
+      'settings' => array(),
+      'type' => 'paragraphs_embed',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-vs_grid_row-title_field'.
+  $field_instances['paragraphs_item-vs_grid_row-title_field'] = array(
+    'bundle' => 'vs_grid_row',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-vs_package_card-field_description'.
   $field_instances['paragraphs_item-vs_package_card-field_description'] = array(
     'bundle' => 'vs_package_card',
@@ -6638,12 +6801,14 @@ function virgin_components_field_default_field_instances() {
   t('Photo');
   t('Photo Description');
   t('Price');
+  t('Row');
   t('Short Description');
   t('Show share buttons');
   t('Slide');
   t('Slider Images');
   t('Smaller height');
   t('Subheading');
+  t('Subtitle');
   t('Sugar Newsletter List');
   t('Thumbnails');
   t('Tickets');

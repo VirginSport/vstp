@@ -27,8 +27,8 @@ class VirginComponentGridBlock implements VirginComponentsInterface {
     $variables['fpp'] = $variables['elements']['#fieldable_panels_pane'];
     $virgin = new VirginEntityGrapher('fieldable_panels_pane', $variables['fpp']);
 
-    $variables['heading_title'] = $virgin->fieldGetOne('field_component_heading');
-    $variables['heading_description'] = $virgin->fieldGetOne('field_page_body');
-    $variables['paragraphs'] = $virgin->fieldRendered('field_team');
+    $variables['heading_title'] = $virgin->fieldGetOne('title_field');
+    $variables['heading_description'] = $virgin->fieldGetOne('field_component_heading');
+    $variables['paragraphs'] = $virgin->fieldRendered('field_row');
   }
 }

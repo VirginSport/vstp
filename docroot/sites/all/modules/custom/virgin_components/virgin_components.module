@@ -183,6 +183,7 @@ function virgin_components_list() {
       new VirginComponentTeaserItem(),
       new VirginComponentCTABlockItem(),
       new VirginComponentGridBlockItem(),
+      new VirginComponentGridBlockRow(),
       new VirginComponentTicketCardItem(),
       new VirginComponentPackageCardItem(),
       new VirginComponentCustomBannerItem(),
