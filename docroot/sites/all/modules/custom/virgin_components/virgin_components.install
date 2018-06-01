@@ -75,6 +75,13 @@ function virgin_components_update_7008() {
 }
 
 /**
+ * Allow to insert Grid fpp
+ */
+function virgin_components_update_7009() {
+  virgin_components_allow_type('fieldable_panels_pane-vs_grid');
+}
+
+/**
  * Allow component to be added in frontend
  *
  * @param $type
