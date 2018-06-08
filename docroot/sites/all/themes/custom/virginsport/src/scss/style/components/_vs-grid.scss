@@ -96,7 +96,8 @@ vs-grid,
 }
 
 .vs-grid__element-image {
-  background-size: cover;
+  background: no-repeat center;
+  background-size: contain;
   height: rem(180);
   margin: 0 auto rem(30);
   width: rem(165);
