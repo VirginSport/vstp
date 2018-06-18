@@ -1,0 +1,163 @@
+
+// Blocks
+// ----------------------------------------------------------------------------
+
+vs-grid,
+.vs-grid {
+  @include clearfix();
+  display: block;
+  position: relative;
+  z-index: 3;
+}
+
+
+// Elements
+// ----------------------------------------------------------------------------
+
+.vs-grid__wrapper {
+  background-color: $c-white;
+  border-radius: rem(12);
+  padding: rem(30) rem(30) rem(30);
+  margin-bottom: rem(50);
+
+  @include media-breakpoint-up(md) {
+    padding-left: rem(80);
+    padding-right: rem(80);
+  }
+}
+
+.vs-grid__title {
+  color: $c-black;
+  font-family: $font-family-serif;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.6875rem;
+  position: relative;
+
+  &:after {
+    content: '';
+    background-color: $c-orange;
+    height: .125rem;
+    width: 1.25rem;
+    position: absolute;
+    left: 0;
+    bottom: -.5625rem;
+  }
+}
+
+.vs-grid__row-title {
+  color: $c-black;
+  font-family: $font-family-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+
+.vs-grid__row-text {
+  margin-bottom: rem(40);
+}
+
+@include media-breakpoint-up(lg) {
+  .vs-grid__title {
+    font-size: 1.75rem;
+    margin-bottom: 2.875rem;
+    line-height: 2rem;
+
+    &:after {
+      height: .25rem;
+      width: 2.5rem;
+      bottom: -1.5rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .vs-grid__title {
+    font-size: rem(30);
+    line-height: 3rem;
+    font-weight: 500;
+  }
+}
+
+.vs-grid__text {
+  margin-bottom: rem(40);
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: rem(80);
+  }
+}
+
+.vs-grid__element-wrapper {
+  margin-bottom: rem(60);
+  text-align: center;
+}
+
+.vs-grid__element-image {
+  background: no-repeat center;
+  background-size: contain;
+  height: rem(180);
+  margin: 0 auto rem(30);
+  width: rem(165);
+
+  @include media-breakpoint-up(xl) {
+    height: rem(180);
+    width: rem(180);
+  }
+}
+
+.vs-grid__element-title {
+  color: $c-black;
+  font-family: $font-family-serif;
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.6875rem;
+
+  @include media-breakpoint-up(md) {
+    font-size: rem(20);
+  }
+}
+
+.vs-grid__element-description {
+  text-align: center;
+
+  + .vs-grid__element-button {
+    margin-top: rem(30);
+  }
+}
+
+.vs-grid__element-button {
+  width: 10.3125rem;
+
+  @include media-breakpoint-up(lg) {
+    width: 11.25rem;
+  }
+}
+
+.vs-grid__element-link {
+  display: block;
+}
+
+
+// Modifiers
+// ----------------------------------------------------------------------------
+
+@each $color in map-keys($color-schemes) {
+  $map: map_get($color-schemes, $color);
+
+  .vs-region--gradient-#{$color} {
+    .vs-grid__title:after {
+      background-color: map_get($map, 'solid-color');
+    }
+  }
+
+  .vs-region--gradient-default {
+    .vs-grid__title:after {
+      background-color: $c-red;
+    }
+  }
+}
