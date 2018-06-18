@@ -763,7 +763,7 @@ function virgin_region_get_privacy_policy_text($label) {
  */
 function virgin_region_get_newsletter_disclaimer() {
   $prefix = user_is_logged_in() ? t('Click the button') : t('Enter your email address');
-  return t("@prefix to receive emails about Virgin Sport and our events, special offers, partners and partner’s products. You can unsubscribe at any time. A copy of our Privacy Policy is !policy.", ['@prefix' => $prefix, '!policy' => virgin_region_get_privacy_policy_text(t('here'))]);
+  return t("@prefix to receive emails about Virgin Sport and our events, special offers, partners and partner’s products. You can unsubscribe at any time and your email address will only be used in accordance with our !policy.", ['@prefix' => $prefix, '!policy' => virgin_region_get_privacy_policy_text(t('privacy policy'))]);
 }
 
 /**

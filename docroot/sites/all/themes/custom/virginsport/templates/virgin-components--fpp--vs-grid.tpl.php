@@ -20,9 +20,7 @@
           <?php endif ?>
         </div>
       </div>
-      <div class="row center-elements">
-        <?php print $paragraphs; ?>
-      </div>
+      <?php print $paragraphs; ?>
     </div>
   </div>
 </div>

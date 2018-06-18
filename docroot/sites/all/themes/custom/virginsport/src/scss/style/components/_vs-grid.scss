@@ -46,6 +46,20 @@ vs-grid,
   }
 }
 
+.vs-grid__row-title {
+  color: $c-black;
+  font-family: $font-family-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+
+.vs-grid__row-text {
+  margin-bottom: rem(40);
+}
+
 @include media-breakpoint-up(lg) {
   .vs-grid__title {
     font-size: 1.75rem;
@@ -82,11 +96,16 @@ vs-grid,
 }
 
 .vs-grid__element-image {
-  background-size: cover;
-  border-radius: rem(180);
+  background: no-repeat center;
+  background-size: contain;
   height: rem(180);
   margin: 0 auto rem(30);
-  width: rem(180);
+  width: rem(165);
+
+  @include media-breakpoint-up(xl) {
+    height: rem(180);
+    width: rem(180);
+  }
 }
 
 .vs-grid__element-title {
@@ -104,11 +123,20 @@ vs-grid,
 }
 
 .vs-grid__element-description {
-  margin-bottom: rem(30);
   text-align: center;
+
+  + .vs-grid__element-button {
+    margin-top: rem(30);
+  }
 }
 
-.vs-grid__element-button {}
+.vs-grid__element-button {
+  width: 10.3125rem;
+
+  @include media-breakpoint-up(lg) {
+    width: 11.25rem;
+  }
+}
 
 .vs-grid__element-link {
   display: block;
