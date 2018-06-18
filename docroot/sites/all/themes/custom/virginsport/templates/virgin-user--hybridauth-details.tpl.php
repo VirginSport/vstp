@@ -80,7 +80,7 @@
                     <?php endif; ?>
 
                     <div class="vs-form-submit">
-                      <button class="btn vs-btn vs-btn--lg vs-btn--min-lg" v-on:click="submit"><?php print ('Submit'); ?></button>
+                      <button :disabled="valid_submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg" v-on:click="submit"><?php print ('Submit'); ?></button>
                     </div>
                   </validator>
                 </form>
