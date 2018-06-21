@@ -94,6 +94,9 @@ projects:
   i18n:
     version: "1.15"
 
+  link:
+    version: "1.5"
+
   mailsystem:
     version: "2.34"
 
