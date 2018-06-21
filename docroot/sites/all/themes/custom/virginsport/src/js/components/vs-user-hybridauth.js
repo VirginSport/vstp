@@ -50,6 +50,8 @@ export default () => {
           return;
         }
 
+        this.valid_submit = true;
+
         this.applyValues();
 
         let form = $('.vs-user-hybridauth-form-drupal form').submit();
@@ -59,6 +61,7 @@ export default () => {
     },
     data: {
       submitted: false,
+      valid_submit: false,
       profile: {
         field_mail: '',
         field_gender: '',
