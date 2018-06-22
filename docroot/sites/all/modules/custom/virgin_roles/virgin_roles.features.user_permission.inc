@@ -811,16 +811,6 @@ function virgin_roles_user_default_permissions() {
     'module' => 'fieldable_panels_panes',
   );
 
-  // Exported permission: 'create fieldable vs_grid'.
-  $permissions['create fieldable vs_grid'] = array(
-    'name' => 'create fieldable vs_grid',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
   // Exported permission: 'create fieldable vs_hero_banner_block'.
   $permissions['create fieldable vs_hero_banner_block'] = array(
     'name' => 'create fieldable vs_hero_banner_block',
@@ -1175,16 +1165,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'delete fieldable vs_gameface_gallery'.
   $permissions['delete fieldable vs_gameface_gallery'] = array(
     'name' => 'delete fieldable vs_gameface_gallery',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
-  // Exported permission: 'delete fieldable vs_grid'.
-  $permissions['delete fieldable vs_grid'] = array(
-    'name' => 'delete fieldable vs_grid',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
@@ -1612,16 +1592,6 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'edit fieldable vs_gameface_gallery'.
   $permissions['edit fieldable vs_gameface_gallery'] = array(
     'name' => 'edit fieldable vs_gameface_gallery',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-    ),
-    'module' => 'fieldable_panels_panes',
-  );
-
-  // Exported permission: 'edit fieldable vs_grid'.
-  $permissions['edit fieldable vs_grid'] = array(
-    'name' => 'edit fieldable vs_grid',
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
