@@ -404,7 +404,7 @@ $results_table_id = uniqid();
 
                 <div class="vs-result__time-stage">
                   <span class="vs-result__time-stage-name">{{ p.stage.name }}</span>
-                  <span class="vs-result__time-stage-time">{{ this.formatTime("mm:ss", p.passingTime) }}</span>
+                  <span class="vs-result__time-stage-time">{{ this.formatTime("HH:mm:ss", (p.passingTime-3600000)) }}</span>
                 </div>
               </div>
             </div>
