@@ -149,6 +149,19 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
  *  The attendly ticket rego ID
  */
 function virgin_user_page_basket_claim($rego) {
+
+  // Check if rego is in the blacklist to redirect to not found page.
+  if (variable_get('virgin_user_blacklist_regos', FALSE)) {
+    $path = drupal_get_path('module', 'virgin_user');
+    $file = file_get_contents($path. '/black_regos.csv');
+    $regos = explode("\n", $file);
+
+    if (in_array($rego, $regos)) {
+      drupal_not_found();
+      return;
+    }
+  }
+
   // An anonymous, has to login or register to claim a ticket.
   if (user_is_anonymous()) {
     _virgin_user_page_basket_redirect('/user/register', array(
