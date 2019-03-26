@@ -153,14 +153,14 @@ function virgin_user_page_basket_claim($rego) {
   // Check if rego is in the blacklist to redirect to not found page.
   $blacklist_enabled = variable_get('virgin_user_blacklist_regos', FALSE);
   if ($blacklist_enabled) {
-    $path = drupal_get_path('module', 'virgin_user');
+    $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
     $file = file_get_contents($path. '/black_regos.csv');
     $regos = explode("\n", $file);
     unset($file);
 
     if (in_array($rego, $regos)) {
       drupal_not_found();
-      return;
+      die;
     }
   }
 
