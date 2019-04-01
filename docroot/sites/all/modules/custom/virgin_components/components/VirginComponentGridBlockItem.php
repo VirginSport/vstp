@@ -24,9 +24,18 @@ class VirginComponentGridBlockItem implements VirginComponentsInterface {
       return;
     }
 
-    $variables['p'] = $variables['elements']['#entity'];
-    $virgin = new VirginEntityGrapher('paragraphs_item', $variables['p']);
 
+    $p = $variables['elements']['#entity'];
+    $virgin = new VirginEntityGrapher('paragraphs_item', $p);
+    $variables['p'] = $p;
+
+    $host = $p->hostEntity();
+
+    if ($host) {
+      $variables['parent_bundle'] = $host->bundle();
+    }
+
+    $variables['p'] = $p;
     $variables['member_image'] = $virgin->relation('field_card_image');
     $variables['member_name'] = $virgin->fieldGetOne('title_field');
     $variables['member_description'] = $virgin->fieldGetOne('field_image_caption');
