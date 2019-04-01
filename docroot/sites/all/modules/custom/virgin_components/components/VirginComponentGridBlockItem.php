@@ -27,7 +27,6 @@ class VirginComponentGridBlockItem implements VirginComponentsInterface {
 
     $p = $variables['elements']['#entity'];
     $virgin = new VirginEntityGrapher('paragraphs_item', $p);
-    $variables['p'] = $p;
 
     $host = $p->hostEntity();
 
