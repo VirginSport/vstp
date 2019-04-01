@@ -43,6 +43,11 @@ function virgin_components_paragraphs_info() {
       'bundle' => 'vs_grid_row',
       'locked' => '1',
     ),
+    'vs_grid_row_6' => array(
+      'name' => 'Grid Row 6',
+      'bundle' => 'vs_grid_row_6',
+      'locked' => '1',
+    ),
     'vs_package_card' => array(
       'name' => 'Package Card',
       'bundle' => 'vs_package_card',

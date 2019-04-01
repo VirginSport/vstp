@@ -1224,6 +1224,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -1408,6 +1409,7 @@ function virgin_components_field_default_field_instances() {
         'vs_custom_banner' => -1,
         'vs_event_festival_banner' => -1,
         'vs_grid_row' => 'vs_grid_row',
+        'vs_grid_row_6' => 'vs_grid_row_6',
         'vs_package_card' => -1,
         'vs_slide' => -1,
         'vs_team_members' => -1,
@@ -1416,17 +1418,18 @@ function virgin_components_field_default_field_instances() {
         'vs_untimed_event_card' => -1,
       ),
       'bundle_weights' => array(
-        'vs_accordion_item' => 2,
-        'vs_cta_block' => 3,
-        'vs_custom_banner' => 4,
-        'vs_event_festival_banner' => 5,
-        'vs_grid_row' => 6,
-        'vs_package_card' => 7,
-        'vs_slide' => 8,
-        'vs_team_members' => 9,
-        'vs_teaser' => 10,
-        'vs_ticket_card' => 11,
-        'vs_untimed_event_card' => 12,
+        'vs_accordion_item' => -24,
+        'vs_cta_block' => -23,
+        'vs_custom_banner' => -22,
+        'vs_event_festival_banner' => -21,
+        'vs_grid_row' => -20,
+        'vs_grid_row_6' => -19,
+        'vs_package_card' => -18,
+        'vs_slide' => -17,
+        'vs_team_members' => -16,
+        'vs_teaser' => -15,
+        'vs_ticket_card' => -14,
+        'vs_untimed_event_card' => -13,
       ),
       'default_edit_mode' => 'open',
       'entity_translation_sync' => FALSE,
@@ -1953,6 +1956,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -2225,6 +2229,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -3228,6 +3233,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -3321,6 +3327,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -5072,6 +5079,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -5276,6 +5284,169 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-vs_grid_row_6-field_component_heading'.
+  $field_instances['paragraphs_item-vs_grid_row_6-field_component_heading'] = array(
+    'bundle' => 'vs_grid_row_6',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_component_heading',
+    'label' => 'Component Heading',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-vs_grid_row_6-field_team'.
+  $field_instances['paragraphs_item-vs_grid_row_6-field_team'] = array(
+    'bundle' => 'vs_grid_row_6',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'paragraphs',
+        'settings' => array(
+          'view_mode' => 'paragraphs_editor_preview',
+        ),
+        'type' => 'paragraphs_view',
+        'weight' => 2,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_team',
+    'label' => 'Grid Element',
+    'required' => 0,
+    'settings' => array(
+      'add_mode' => 'select',
+      'allowed_bundles' => array(
+        'vs_accordion_item' => -1,
+        'vs_cta_block' => -1,
+        'vs_custom_banner' => -1,
+        'vs_event_festival_banner' => -1,
+        'vs_grid_row' => -1,
+        'vs_grid_row_6' => -1,
+        'vs_package_card' => -1,
+        'vs_slide' => -1,
+        'vs_team_members' => 'vs_team_members',
+        'vs_teaser' => -1,
+        'vs_ticket_card' => -1,
+        'vs_untimed_event_card' => -1,
+      ),
+      'bundle_weights' => array(
+        'vs_accordion_item' => 2,
+        'vs_cta_block' => 3,
+        'vs_custom_banner' => 4,
+        'vs_event_festival_banner' => 5,
+        'vs_grid_row' => 6,
+        'vs_grid_row_6' => 7,
+        'vs_package_card' => 8,
+        'vs_slide' => 9,
+        'vs_team_members' => 10,
+        'vs_teaser' => 11,
+        'vs_ticket_card' => 12,
+        'vs_untimed_event_card' => 13,
+      ),
+      'default_edit_mode' => 'open',
+      'entity_translation_sync' => FALSE,
+      'title' => 'Element',
+      'title_multiple' => 'Elements',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'paragraphs',
+      'settings' => array(),
+      'type' => 'paragraphs_embed',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-vs_grid_row_6-title_field'.
+  $field_instances['paragraphs_item-vs_grid_row_6-title_field'] = array(
+    'bundle' => 'vs_grid_row_6',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => 0,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'sdl_editor_representation',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-vs_package_card-field_description'.
   $field_instances['paragraphs_item-vs_package_card-field_description'] = array(
     'bundle' => 'vs_package_card',
@@ -5340,6 +5511,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -6244,6 +6416,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -6699,6 +6872,7 @@ function virgin_components_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
