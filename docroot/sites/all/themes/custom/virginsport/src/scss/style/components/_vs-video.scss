@@ -8,6 +8,12 @@ vs-video,
   display: block;
 }
 
+.vs-video--block video {
+  width: auto;
+  max-height: 45.3125rem;
+  border-radius: 0.625rem;
+  margin: 0 auto;
+}
 
 // Elements
 // ----------------------------------------------------------------------------
