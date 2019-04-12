@@ -11,7 +11,8 @@
 class VirginComponentGridBlockRow implements VirginComponentsInterface {
   
   public function supports($entity_type, $bundle) {
-    return $entity_type == 'paragraphs_item' && $bundle == 'vs_grid_row';
+    $supported = array('vs_grid_row', 'vs_grid_row_6');
+    return $entity_type == 'paragraphs_item' && in_array($bundle, $supported);
   }
   
   public function themeSuggestion() {

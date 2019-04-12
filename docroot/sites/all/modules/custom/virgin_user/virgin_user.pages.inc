@@ -142,13 +142,28 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   $goto($user_hostname, $path, $params);
 }
 
-/**
+/**s
  * Page callback for the basket claim route
  *
  * @param string $rego
  *  The attendly ticket rego ID
  */
 function virgin_user_page_basket_claim($rego) {
+
+  // Check if rego is in the blacklist to redirect to not found page.
+  $blacklist_enabled = variable_get('virgin_user_blacklist_regos', FALSE);
+  if ($blacklist_enabled) {
+    $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
+    $file = file_get_contents($path. '/black_regos.csv');
+    $regos = explode("\n", $file);
+    unset($file);
+
+    if (in_array($rego, $regos)) {
+      drupal_not_found();
+      die;
+    }
+  }
+
   // An anonymous, has to login or register to claim a ticket.
   if (user_is_anonymous()) {
     _virgin_user_page_basket_redirect('/user/register', array(
@@ -169,6 +184,31 @@ function virgin_user_page_basket_claim($rego) {
  */
 function virgin_user_page_basket_confirm_claim($rego) {
   global $user;
+
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
+
+  // Map uuid in the csv file to the blacklisted regos so VS dont need to generate new tickets
+  $new_rego = NULL;
+  $rego_mapping = variable_get('virgin_user_rego_mapping', FALSE);
+  if ($rego_mapping) {
+    $file = file_get_contents($path. '/rego_mapping.csv');
+    $rows = explode("\r", $file) ;
+
+    foreach ($rows as $row) {
+      $parts = explode(";", $row) ;
+
+      // The new uuid is in the second column check if it exists,
+      // if yes update new rego for future use
+      if (!empty($parts[2]) && $parts[2] == $rego) {
+        $new_rego = $parts[0];
+      }
+    }
+
+    // If new_rego is defined override old rego
+    if ($new_rego) {
+      $rego = $new_rego;
+    }
+  }
 
   $ticket = _virgin_user_get_ticket($rego);
 
