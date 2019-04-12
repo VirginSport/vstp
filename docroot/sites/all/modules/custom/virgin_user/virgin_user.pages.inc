@@ -185,6 +185,31 @@ function virgin_user_page_basket_claim($rego) {
 function virgin_user_page_basket_confirm_claim($rego) {
   global $user;
 
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
+
+  // Map uuid in the csv file to the blacklisted regos so VS dont need to generate new tickets
+  $new_rego = NULL;
+  $rego_mapping = variable_get('virgin_user_rego_mapping', FALSE);
+  if ($rego_mapping) {
+    $file = file_get_contents($path. '/rego_mapping.csv');
+    $rows = explode("\r", $file) ;
+
+    foreach ($rows as $row) {
+      $parts = explode(";", $row) ;
+
+      // The new uuid is in the second column check if it exists,
+      // if yes update new rego for future use
+      if (!empty($parts[2]) && $parts[2] == $rego) {
+        $new_rego = $parts[0];
+      }
+    }
+
+    // If new_rego is defined override old rego
+    if ($new_rego) {
+      $rego = $new_rego;
+    }
+  }
+
   $ticket = _virgin_user_get_ticket($rego);
 
   // Depending on the HTTP method, we either show the claim info, for
