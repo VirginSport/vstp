@@ -9,6 +9,7 @@ vs-video,
 }
 
 .vs-video--block video {
+  max-width: 100%;
   width: auto;
   max-height: 45.3125rem;
   border-radius: 0.625rem;
