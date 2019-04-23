@@ -8,6 +8,16 @@ vs-video,
   display: block;
 }
 
+.vs-video--block video {
+  max-width: 100%;
+  width: auto;
+  max-height: 45.3125rem;
+  margin: 0 auto;
+
+  @include media-breakpoint-up(xl) {
+    border-radius: 0.625rem;
+  }
+}
 
 // Elements
 // ----------------------------------------------------------------------------
@@ -15,6 +25,8 @@ vs-video,
 .vs-video__wrapper {
   min-height: 18.375rem;
   overflow: hidden;
+  background-position: center;
+  background-size: cover;
 }
 
 .vs-video__content-wrapper {
@@ -140,6 +152,7 @@ vs-video,
     //@include justify-content(center);
     display: table;
     width: 100%;
+    background-image: none !important;
   }
 
   .vs-video__video-wrapper,

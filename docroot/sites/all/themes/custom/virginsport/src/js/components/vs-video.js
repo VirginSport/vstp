@@ -5,9 +5,10 @@ const xs_max = 544;
 
 export default () => {
   let $videoBlock = $('video.vs-video-block__video');
-  if ($videoBlock.length) {
-    $videoBlock.play();
-  }
+
+  $videoBlock.each(function(idx, el) {
+    el.play();
+  });
 
   // When user click on play button start modal video and pause background video
   $('.vs-video__play-button').click(function() {

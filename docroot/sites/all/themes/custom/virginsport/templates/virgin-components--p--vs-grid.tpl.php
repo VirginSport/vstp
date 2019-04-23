@@ -13,11 +13,15 @@
 
 ?>
 
+<?php if ($parent_bundle == 'vs_grid_row_6'): ?>
+<div class="col-xs-12 col-sm-4 col-lg-2 vs-grid__row_6">
+<?php else: ?>
 <div class="col-xs-12 col-sm-6 col-lg-3">
+<?php endif; ?>
   <div class="vs-grid__element-wrapper">
     <?php if (!empty($member_image)): ?>
       <?php if (!empty($image_link)): ?>
-        <a href="<?php print $image_link ?>" class="vs-grid__element-link"><div class="vs-grid__element-image" style="<?php print virginsport_atom_background($member_image->getEntity()); ?>"></div></a>
+        <a href="<?php print $image_link ?>" target="<?php print $image_link__target ?>" class="vs-grid__element-link"><div class="vs-grid__element-image" style="<?php print virginsport_atom_background($member_image->getEntity()); ?>"></div></a>
       <?php else: ?>
         <div class="vs-grid__element-image" style="<?php print virginsport_atom_background($member_image->getEntity()); ?>"></div>
     <?php endif; ?>

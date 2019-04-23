@@ -8,8 +8,8 @@
  */
 ?>
 
-<div class="vs-video">
-  <div class="vs-video__wrapper">
+<div class="vs-video vs-video--block">
+  <div class="vs-video__wrapper" style="<?php print virginsport_atom_background($poster->getEntity()); ?>">
     <div class="vs-video__video-wrapper hidden-xs-down">
       <video
         muted

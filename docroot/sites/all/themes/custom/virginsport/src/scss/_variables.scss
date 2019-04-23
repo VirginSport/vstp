@@ -540,6 +540,48 @@ $color-schemes: (
     input-color: $c-white,
     input-border-color: $c-white
   ),
+  nike-red: (
+    solid-color: #ff0400,
+    text-color: $c-white,
+    from: #ff0400,
+    to: #ff0400,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #ff0400,
+    outline-to: #ff0400,
+    outline-rotate: -45%,
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
+  nike-blue: (
+    solid-color: #1700FF,
+    text-color: $c-white,
+    from: #1700FF,
+    to: #1700FF,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #1700FF,
+    outline-to: #1700FF,
+    outline-rotate: -45%,
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
+  nike-green: (
+    solid-color: #BEFE04,
+    text-color: $c-white,
+    from: #BEFE04,
+    to: #BEFE04,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: #BEFE04,
+    outline-to: #BEFE04,
+    outline-rotate: -45%,
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
 );
 
 // Pattern/Color schemes

@@ -106,6 +106,12 @@ vs-grid,
     height: rem(180);
     width: rem(180);
   }
+
+  .vs-grid__row_6 & {
+    height: rem(132);
+    width: rem(132);
+    max-width: 100%;
+  }
 }
 
 .vs-grid__element-title {
@@ -135,6 +141,14 @@ vs-grid,
 
   @include media-breakpoint-up(lg) {
     width: 11.25rem;
+  }
+
+  .vs-grid__row_6 & {
+    max-width: 100%;
+
+    @include media-breakpoint-between(lg, lg){
+      font-size: rem(10);
+    }
   }
 }
 
