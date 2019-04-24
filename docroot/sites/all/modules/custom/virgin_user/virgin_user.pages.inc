@@ -120,6 +120,13 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   if (user_is_anonymous() || empty($user_hostname)) {
     $hostname = virgin_get_hostname_by_geo_country();
 
+    $current_region = virgin_region_current();
+
+    // If no region provided check for current region
+    if (empty($hostname) && !empty($current_region)) {
+      $hostname = $current_region['hostname'];
+    }
+
     // If we don't have a valid hostname send to splash page
     if (empty($hostname)) {
       $goto('', '/splash', array(
@@ -166,7 +173,7 @@ function virgin_user_page_basket_claim($rego) {
 
   // An anonymous, has to login or register to claim a ticket.
   if (user_is_anonymous()) {
-    _virgin_user_page_basket_redirect('/user/register', array(
+    _virgin_user_page_basket_redirect('/user/login', array(
       'basket-action' => 'claim',
       'rego' => $rego
     ));
