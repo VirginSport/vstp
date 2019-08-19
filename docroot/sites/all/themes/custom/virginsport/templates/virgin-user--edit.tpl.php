@@ -50,7 +50,7 @@
             <?php print t('Group Dashboard'); ?>
           </a>
         </li>
-      <? endif; ?>
+      <?php endif; ?>
     </ul>
   </div>
 </div>
@@ -232,7 +232,7 @@
                   </div>
                 </div>
                 </validator>
-                <?php endif ;?>
+                <?php endif; ?>
                 </form>
             </validator>
           </div>
