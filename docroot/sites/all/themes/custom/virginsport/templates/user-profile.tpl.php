@@ -82,7 +82,7 @@ $user_grapher = new VirginEntityGrapher('user', user_load($user->uid));
             <?php print t('Group Dashboard'); ?>
           </a>
         </li>
-      <? endif; ?>
+      <?php endif; ?>
     </ul>
   </div>
 </div>
