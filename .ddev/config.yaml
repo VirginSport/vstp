@@ -2,7 +2,7 @@ APIVersion: v1.9.0
 name: vstp
 type: drupal7
 docroot: docroot
-php_version: "7.2"
+php_version: "7.1"
 webserver_type: nginx-fpm
 router_http_port: "8081"
 router_https_port: "443"
