@@ -511,3 +511,9 @@ if ($is_ah_env && file_exists('/var/www/site-php')) {
 if ($is_local_env && file_exists(DRUPAL_ROOT . '/sites/default/settings/local.settings.php')) {
   require DRUPAL_ROOT . '/sites/default/settings/local.settings.php';
 }
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
+if (is_readable($ddev_settings)) {
+  require $ddev_settings;
+}
