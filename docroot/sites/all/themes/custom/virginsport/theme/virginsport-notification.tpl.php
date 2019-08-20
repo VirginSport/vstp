@@ -12,7 +12,7 @@
 $classes .= empty($sticky) ? '' : 'vs-notification__wrapper--sticky';
 ?>
 
-<div class="vs-notification__wrapper vs-notification__wrapper--close vs-notification--show <?php print $classes; ?>">
+<div class="vs-notification vs-notification__wrapper vs-notification__wrapper--close vs-notification--show <?php print $classes; ?>">
   <?php if (!empty($close_button)): ?>
     <a class="vs-notification__close" href="#">
       <svg height="21" viewBox="290 9 20 21" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@ $classes .= empty($sticky) ? '' : 'vs-notification__wrapper--sticky';
     </a>
   <?php endif; ?>
 
-  <p class="vs-notification__message">
+  <div class="vs-notification__message">
     <?php print $message; ?>
-  </p>
+  </div>
 </div>

@@ -8,6 +8,23 @@
 /**
  * Virgin social networks administrative callback.
  */
+function virgin_admin_general_settings($form, &$form_state) {
+  $form = array();
+
+  $cookie_message = variable_get('cookie_message', '');
+
+  $form['cookie_message'] = array(
+    '#title' => t('Cookie message '),
+    '#type' => 'text_format',
+    '#default_value' => empty($cookie_message['value']) ? '' : $cookie_message['value'],
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Virgin social networks administrative callback.
+ */
 function virgin_admin_social_networks_settings($form, &$form_state) {
   $form = array();
 
