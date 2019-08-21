@@ -130,6 +130,18 @@ function virgin_update_7013() {
 }
 
 /**
+ * Update lightning_features paths.
+ */
+function virgin_update_7014 () {
+  _virgin_update_path('profiles/lightning/modules/contrib/lightning_features/', 'sites/all/modules/contrib/lightning_features/');
+
+  // Remove this variables because if value = published
+  // do not allow vbo unpublish content
+  variable_delete('workbench_moderation_default_state_article');
+  variable_delete('workbench_moderation_default_state_page');
+}
+
+/**
  * Update a module/theme path
  *
  * @param $old_path

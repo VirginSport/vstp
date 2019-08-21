@@ -120,6 +120,13 @@ function _virgin_user_page_basket_redirect($path, $params = array()) {
   if (user_is_anonymous() || empty($user_hostname)) {
     $hostname = virgin_get_hostname_by_geo_country();
 
+    $current_region = virgin_region_current();
+
+    // If no region provided check for current region
+    if (empty($hostname) && !empty($current_region)) {
+      $hostname = $current_region['hostname'];
+    }
+
     // If we don't have a valid hostname send to splash page
     if (empty($hostname)) {
       $goto('', '/splash', array(
@@ -166,7 +173,7 @@ function virgin_user_page_basket_claim($rego) {
 
   // An anonymous, has to login or register to claim a ticket.
   if (user_is_anonymous()) {
-    _virgin_user_page_basket_redirect('/user/register', array(
+    _virgin_user_page_basket_redirect('/user/login', array(
       'basket-action' => 'claim',
       'rego' => $rego
     ));
@@ -185,30 +192,7 @@ function virgin_user_page_basket_claim($rego) {
 function virgin_user_page_basket_confirm_claim($rego) {
   global $user;
 
-  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
-
-  // Map uuid in the csv file to the blacklisted regos so VS dont need to generate new tickets
-  $new_rego = NULL;
-  $rego_mapping = variable_get('virgin_user_rego_mapping', FALSE);
-  if ($rego_mapping) {
-    $file = file_get_contents($path. '/rego_mapping.csv');
-    $rows = explode("\r", $file) ;
-
-    foreach ($rows as $row) {
-      $parts = explode(";", $row) ;
-
-      // The new uuid is in the second column check if it exists,
-      // if yes update new rego for future use
-      if (!empty($parts[2]) && $parts[2] == $rego) {
-        $new_rego = $parts[0];
-      }
-    }
-
-    // If new_rego is defined override old rego
-    if ($new_rego) {
-      $rego = $new_rego;
-    }
-  }
+  $rego = virgin_user_black_listed_rego($rego);
 
   $ticket = _virgin_user_get_ticket($rego);
 

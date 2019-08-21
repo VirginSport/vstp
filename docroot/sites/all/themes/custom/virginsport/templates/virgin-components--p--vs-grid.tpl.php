@@ -14,7 +14,7 @@
 ?>
 
 <?php if ($parent_bundle == 'vs_grid_row_6'): ?>
-<div class="col-xs-12 col-sm-4 col-lg-2 vs-grid__row_6">
+<div class="col-xs-4 col-lg-2 vs-grid__row_6">
 <?php else: ?>
 <div class="col-xs-12 col-sm-6 col-lg-3">
 <?php endif; ?>

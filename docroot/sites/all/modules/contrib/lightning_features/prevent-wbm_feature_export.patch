@@ -1,0 +1,13 @@
+diff --git a/lightning_moderation/lightning_moderation.info b/lightning_moderation/lightning_moderation.info
+index 802bd66e..cd3da171 100644
+--- a/lightning_moderation/lightning_moderation.info
++++ b/lightning_moderation/lightning_moderation.info
+@@ -15,8 +15,6 @@ dependencies[] = workbench_moderation
+ 
+ features[ctools][] = strongarm:strongarm:1
+ features[features_api][] = api:2
+-features[variable][] = workbench_moderation_default_state_article
+-features[variable][] = workbench_moderation_default_state_page
+ features[workbench_moderation_states][] = draft
+ features[workbench_moderation_states][] = needs_review
+ features[workbench_moderation_states][] = published

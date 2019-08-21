@@ -255,14 +255,15 @@ function virgin_user_menu() {
     'file' => 'virgin_user.pages.inc',
   );
 
-  $items['user/results/%'] = array(
-    'title' => 'Results',
-    'page callback' => 'virgin_user_page_results',
-    'page arguments' => array(2),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-    'file' => 'virgin_user.pages.inc',
-  );
+//  Deprecated route
+//  $items['user/results/%'] = array(
+//    'title' => 'Results',
+//    'page callback' => 'virgin_user_page_results',
+//    'page arguments' => array(2),
+//    'access callback' => TRUE,
+//    'type' => MENU_CALLBACK,
+//    'file' => 'virgin_user.pages.inc',
+//  );
 
   $items['ajax/newsletter-form/post'] = array(
     'title' => 'Form',
@@ -1015,6 +1016,37 @@ function virgin_user_ticket_load($sugar_id) {
 }
 
 /**
+ * Map a blacked listed rego with a new uuid or return the original one
+ */
+function virgin_user_black_listed_rego($rego) {
+  $path = DRUPAL_ROOT . '/' . dirname(drupal_get_filename('module', 'virgin_user'));
+
+  // Map uuid in the csv file to the blacklisted regos so VS dont need to generate new tickets
+  $new_rego = NULL;
+  $rego_mapping = variable_get('virgin_user_rego_mapping', FALSE);
+  if ($rego_mapping) {
+    $file = file_get_contents($path. '/rego_mapping.csv');
+    $rows = explode("\r", $file) ;
+
+    foreach ($rows as $row) {
+      $parts = explode(";", $row) ;
+
+      // The new uuid is in the second column check if it exists,
+      // if yes update new rego for future use
+      if (!empty($parts[2]) && $parts[2] == $rego) {
+        $new_rego = $parts[0];
+      }
+    }
+
+    if ($new_rego) {
+      $rego = $new_rego;
+    }
+  }
+
+  return $rego;
+}
+
+/**
  * Helper function to fetch a ticket from SugarCRM
  *
  * @param string $rego
@@ -1025,6 +1057,8 @@ function virgin_user_ticket_load($sugar_id) {
  *  If a communication error happened while calling SugarCRM
  */
 function _virgin_user_get_ticket($rego) {
+  $rego = virgin_user_black_listed_rego($rego);
+
   try {
     $path = sprintf('Virgin/Tickets/with-rego/%s', $rego);
     $ticket = sugarcrm_client()->systemGet($path);
