@@ -34,6 +34,11 @@ projects:
     type: "profile"
     version: "1.0-beta19"
 
+  lightning_features:
+    version: "1.0-beta19"
+    patch:
+      - "./patches/lightning/prevent-wbm_feature_export.patch"
+
   acquia_connector:
     version: "3.1"
 
