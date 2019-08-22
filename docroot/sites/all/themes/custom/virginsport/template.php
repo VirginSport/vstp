@@ -219,7 +219,16 @@ function virginsport_preprocess_page(&$vars) {
 
   // Make cookie template available in javascript
   if (virgin_region_current_region_show_cookie()) {
-    $message = t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.');
+    $cookie_message = variable_get('cookie_message', '');
+
+    $message =
+      empty($cookie_message['value'])
+      ?
+      t('We use cookies. We eat them too, but only after a run. By using this website, you agree to our use of cookies. Check out our privacy policy to learn more.')
+      :
+      check_markup($cookie_message['value'], $cookie_message['format'])
+    ;
+
     $cookie_template = theme('virginsport_notification', array('message' => $message));
     drupal_add_js(array('virginsport' => array('cookie_template' => $cookie_template)), array('type' => 'setting'));
   }

@@ -63,6 +63,15 @@ function virgin_menu() {
     'file path' => drupal_get_path('module', 'system'),
   );
 
+  $items['admin/config/virgin/general'] = array(
+    'title' => 'General',
+    'description' => 'General configuration for the Virgin Sport website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('virgin_admin_general_settings'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'virgin.admin.inc',
+  );
+
   $items['admin/config/virgin/social-networks'] = array(
     'title' => 'Social Networks',
     'description' => 'Social networks configuration for the Virgin Sport website.',
