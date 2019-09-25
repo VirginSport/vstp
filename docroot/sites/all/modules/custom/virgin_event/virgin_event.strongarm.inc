@@ -32,16 +32,16 @@ function virgin_event_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '4',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '15',
+          'weight' => '3',
         ),
         'language' => array(
-          'weight' => '17',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -168,7 +168,6 @@ function virgin_event_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_event';
   $strongarm->value = array(
     'status' => 1,
-    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -183,6 +182,12 @@ function virgin_event_strongarm() {
         'choice' => 0,
       ),
       'teaser' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'alternate_teaser' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,

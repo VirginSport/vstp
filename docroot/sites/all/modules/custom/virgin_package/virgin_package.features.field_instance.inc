@@ -64,7 +64,9 @@ function virgin_package_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 4,
     ),
@@ -124,7 +126,9 @@ function virgin_package_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 5,
     ),
@@ -291,6 +295,7 @@ function virgin_package_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -808,7 +813,7 @@ function virgin_package_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_attendly_id',
     'label' => 'Attendly ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -875,7 +880,7 @@ function virgin_package_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_description',
     'label' => 'Description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -922,6 +927,7 @@ function virgin_package_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -1015,7 +1021,7 @@ function virgin_package_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sugar_id',
     'label' => 'SugarCRM ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
