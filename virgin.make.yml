@@ -107,6 +107,9 @@ projects:
 
   memcache:
     version: "1.6"
+    patch:
+      # Fix undefined function error
+      - "https://www.drupal.org/files/issues/undefined-function-dmemcache_object_cluster-2856140-8.patch"
 
   mimemail:
     version: "1.0-beta4"
