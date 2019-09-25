@@ -299,6 +299,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'panelizer',
   );
@@ -351,6 +352,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'panelizer',
   );
@@ -417,6 +419,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'panelizer',
   );
@@ -462,6 +465,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'panelizer',
   );
@@ -719,6 +723,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create event content'] = array(
     'name' => 'create event content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -737,6 +743,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create festival content'] = array(
     'name' => 'create festival content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -777,6 +785,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -787,6 +796,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -797,6 +807,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -807,6 +818,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -817,6 +829,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -827,6 +840,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -837,6 +851,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -847,6 +862,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -857,6 +873,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -867,6 +884,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -877,6 +895,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -887,6 +906,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -897,6 +917,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -918,6 +939,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -928,6 +950,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -938,6 +961,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -948,6 +972,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -958,6 +983,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -966,6 +992,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create package content'] = array(
     'name' => 'create package content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1005,6 +1033,8 @@ function virgin_roles_user_default_permissions() {
   $permissions['create ticket_type content'] = array(
     'name' => 'create ticket_type content',
     'roles' => array(
+      'Content Editor' => 'Content Editor',
+      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1088,7 +1118,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
     'roles' => array(
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1098,7 +1127,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete any region content'] = array(
     'name' => 'delete any region content',
     'roles' => array(
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1148,6 +1176,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1158,6 +1187,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1168,6 +1198,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1178,6 +1209,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1188,6 +1220,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1198,6 +1231,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1208,6 +1242,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1218,6 +1253,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1228,6 +1264,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1238,6 +1275,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1248,6 +1286,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1258,6 +1297,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1268,6 +1308,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1289,6 +1330,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1299,6 +1341,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1309,6 +1352,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1319,6 +1363,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1329,6 +1374,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1402,7 +1448,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
     'roles' => array(
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1412,7 +1457,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete own region content'] = array(
     'name' => 'delete own region content',
     'roles' => array(
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'node',
@@ -1585,6 +1629,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1595,6 +1640,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1605,6 +1651,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1615,6 +1662,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1625,6 +1673,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1635,6 +1684,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1645,6 +1695,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1655,6 +1706,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1665,6 +1717,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1675,6 +1728,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1685,6 +1739,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1695,6 +1750,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1705,6 +1761,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1726,6 +1783,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1736,6 +1794,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1746,6 +1805,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1756,6 +1816,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
@@ -1766,6 +1827,7 @@ function virgin_roles_user_default_permissions() {
     'roles' => array(
       'Content Editor' => 'Content Editor',
       'Content Manager' => 'Content Manager',
+      'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
   );
