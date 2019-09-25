@@ -7,7 +7,7 @@
 /**
  * Implements hook_drush_command().
  */
-function virgin_sync_drush_command() {
+/*function virgin_sync_drush_command() {
   $items = array();
 
   $items['virgin-sync'] = array(
@@ -20,13 +20,13 @@ function virgin_sync_drush_command() {
   );
 
   return $items;
-}
+}*/
 
 /**
  * Executes drush virgin-sync command.
  */
-function drush_virgin_sync() {
+/*function drush_virgin_sync() {
   drush_print("Initiating synchronization.");
   virgin_sync_batch();
   drush_backend_batch_process();
-}
+}*/

@@ -17,7 +17,7 @@ define('VIRGIN_SYNC_VAR_LAST_SYNC', 'virgin_sync_last_sync');
 /**
  * Implements hook_menu().
  */
-function virgin_sync_menu() {
+/*function virgin_sync_menu() {
   $items = array();
 
   $items['admin/content/virgin-sync'] = array(
@@ -30,7 +30,7 @@ function virgin_sync_menu() {
   );
 
   return $items;
-}
+}*/
 
 /**
  * Implements hook_permission().
