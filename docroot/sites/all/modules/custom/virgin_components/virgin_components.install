@@ -82,7 +82,14 @@ function virgin_components_update_7009() {
 }
 
 /**
- * Allow component to be added in frontend
+ * Disable Attendly Iframe.
+ */
+function virgin_components_update_7010() {
+  virgin_components_disable_type('attendly_iframe-attendly_iframe');
+}
+
+/**
+ * Allow component to be added in frontend.
  *
  * @param $type
  * The component key type
@@ -97,6 +104,28 @@ function virgin_components_allow_type($type) {
         'module' => 'panels_page',
         'type' => $type,
         'allowed' => 1,
+      ))
+      ->execute()
+    ;
+  }
+}
+
+/**
+ * Disable component from being used in frontend.
+ *
+ * @param $type
+ * The component key type
+ */
+function virgin_components_disable_type($type) {
+  $table_name = 'panels_allowed_types';
+
+  if (db_table_exists($table_name)) {
+    db_merge('panels_allowed_types')
+      ->key(array('module' => 'panels_page', 'type' => $type))
+      ->fields(array(
+        'module' => 'panels_page',
+        'type' => $type,
+        'allowed' => 0,
       ))
       ->execute()
     ;

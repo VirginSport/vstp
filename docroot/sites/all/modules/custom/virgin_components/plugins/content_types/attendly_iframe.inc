@@ -5,7 +5,7 @@
  * Declares the Attendly iframe ctools content-type plugin.
  */
 
-$plugin = array(
+/*$plugin = array(
   'single' => TRUE,
   'title' => t('Attendly iframe'),
   'description' => '',
@@ -13,7 +13,7 @@ $plugin = array(
   'defaults' => array(
     'iframe_url' => '',
   ),
-);
+);*/
 
 /**
  * Implements hook_plugin_content_type_render().
