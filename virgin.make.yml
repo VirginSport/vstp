@@ -9,14 +9,12 @@ defaults:
 projects:
   drupal:
     type: "core"
-    version: "7.59"
+    version: "7.67"
     patch:
       # Allow install profiles to change the system requirements. http://drupal.org/node/1772316
       - "http://drupal.org/files/drupal-7.x-allow_profile_change_sys_req-1772316-21.patch"
       # Load multiple revisions at once. http://drupal.org/node/1730874
       - "http://drupal.org/files/1730874_0.patch"
-      # Registry rebuild should not parse the same file twice in the same request. http://drupal.org/node/1470656
-      - "http://drupal.org/files/drupal-1470656-14.patch"
       # user_role_grant_permissions() throws PDOException when used for a disabled. module's permission or with non-existent permissions. http://drupal.org/comment/7285420#comment-7285420
       - "http://drupal.org/files/drupal-fix_pdoexception_grant_permissions-737816-36-do-not-test.patch"
       # image_get_info always populates file_size, even if already set. http://drupal.org/node/2289493
@@ -40,7 +38,7 @@ projects:
       - "./patches/lightning/prevent-wbm_feature_export.patch"
 
   acquia_connector:
-    version: "3.1"
+    version: "3.4"
 
   acquia_geoip_vary_by_country:
     version: "1.0"
@@ -100,7 +98,7 @@ projects:
     version: "1.15"
 
   link:
-    version: "1.5"
+    version: "1.6"
 
   mailsystem:
     version: "2.34"
@@ -109,7 +107,7 @@ projects:
     version: "1.6"
 
   mimemail:
-    version: "1.0-beta4"
+    version: "1.1"
 
   mollom:
     version: "2.15"
@@ -158,7 +156,7 @@ projects:
     version: "2.3"
 
   services:
-    version: "3.20"
+    version: "3.25"
 
   shield:
     version: "1.3"
@@ -178,13 +176,13 @@ projects:
     version: "2.5"
 
   views:
-    version: "3.20"
+    version: "3.23"
 
   view_unpublished:
     version: "1.2"
 
   xmlsitemap:
-    version: "2.3"
+    version: "2.6"
 
 libraries:
   hybridauth:

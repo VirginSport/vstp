@@ -1,0 +1,12 @@
+name = Contextual Administration Workbench Moderation
+description = Contextual Administration plugins for use with Workbench Moderation.
+core = 7.x
+package = Contextual Administration
+dependencies[] = context_admin
+dependencies[] = workbench_moderation
+
+
+; Information added by drush on 2015-03-03
+version = "7.x-1.2+3-dev"
+project = "context_admin"
+datestamp = "1425400591"
