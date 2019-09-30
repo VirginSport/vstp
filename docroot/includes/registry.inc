@@ -19,7 +19,6 @@
  * Does the work for registry_update().
  */
 function _registry_update() {
-
   // The registry serves as a central autoloader for all classes, including
   // the database query builders. However, the registry rebuild process
   // requires write ability to the database, which means having access to the
@@ -60,6 +59,9 @@ function _registry_update() {
     $files["$filename"] = array('module' => '', 'weight' => 0);
   }
 
+  // Initialize an empty array for the unchanged files.
+  $unchanged_files = array();
+
   $transaction = db_transaction();
   try {
     // Allow modules to manually modify the list of files before the registry
@@ -68,16 +70,18 @@ function _registry_update() {
     // list can then be added to the list of files that the registry will parse,
     // or modify attributes of a file.
     drupal_alter('registry_files', $files, $modules);
+
     foreach (registry_get_parsed_files() as $filename => $file) {
       // Add the hash for those files we have already parsed.
       if (isset($files[$filename])) {
-        if ($check_existing_files) {
+        if ($check_existing_files === TRUE) {
           $files[$filename]['hash'] = $file['hash'];
         }
         else {
           // Ignore that file for this request, it has been parsed previously
           // and it is unlikely it has changed.
           unset($files[$filename]);
+          $unchanged_files[$filename] = $file;
         }
       }
       else {
@@ -91,7 +95,11 @@ function _registry_update() {
           ->execute();
       }
     }
+
     $parsed_files = _registry_parse_files($files);
+
+    // Add unchanged files to the files.
+    $files += $unchanged_files;
 
     $unchanged_resources = array();
     $lookup_cache = array();
@@ -101,18 +109,19 @@ function _registry_update() {
     foreach ($lookup_cache as $key => $file) {
       // If the file for this cached resource is carried over unchanged from
       // the last registry build, then we can safely re-cache it.
-      if ($file && in_array($file, array_keys($files)) && !in_array($file, $parsed_files)) {
+      if ($file && isset($files[$file]) && !in_array($file, $parsed_files, TRUE)) {
         $unchanged_resources[$key] = $file;
       }
     }
-    module_implements('', FALSE, TRUE);
-    _registry_check_code(REGISTRY_RESET_LOOKUP_CACHE);
   }
   catch (Exception $e) {
     $transaction->rollback();
     watchdog_exception('registry', $e);
     throw $e;
   }
+
+  module_implements('', FALSE, TRUE);
+  _registry_check_code(REGISTRY_RESET_LOOKUP_CACHE);
 
   // During the next run in this request, don't bother re-checking existing
   // files.

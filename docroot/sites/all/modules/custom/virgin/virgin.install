@@ -142,6 +142,13 @@ function virgin_update_7014 () {
 }
 
 /**
+ * Update ctools paths.
+ */
+function virgin_update_7015 () {
+  _virgin_update_path('profiles/lightning/modules/contrib/ctools/', 'sites/all/modules/contrib/ctools/');
+}
+
+/**
  * Update a module/theme path
  *
  * @param $old_path
