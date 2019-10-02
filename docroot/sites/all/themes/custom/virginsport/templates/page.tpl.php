@@ -115,7 +115,7 @@
   <div class="vs-notification vs-notification--sticky">
     <?php print $messages; ?>
   </div>
-  
+
   <?php if ($logged_in): ?>
     <ul class="vs-user-dropdown">
       <li class="vs-user-dropdown__item vs-user-dropdown__item--header">
@@ -160,47 +160,6 @@
           <?php endforeach; ?>
         </ul>
 
-        <?php if (!$logged_in): ?>
-        <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger vs-user-menu__trigger--not-logged" href="<?php print url('/user/register'); ?>">
-            <svg id="avatar" data-name="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.17 38.17">
-              <defs>
-                <style>
-                  .vs-user-menu__trigger__icon{stroke-linecap:round;stroke-linejoin:round;stroke-width:1.55px;}
-                </style>
-              </defs>
-              <path class="vs-user-menu__trigger__icon" d="M24.54 23.89h-10.9M32.31 31.7a7.82 7.82 0 0 0-7.82-7.82M5.82 31.7a7.82 7.82 0 0 1 7.82-7.82"/>
-              <circle class="vs-user-menu__trigger__icon" cx="19.09" cy="13.13" r="6.66"/>
-              <circle class="vs-user-menu__trigger__icon" cx="19.09" cy="19.09" r="18.31"/>
-            </svg>
-          </a>
-        </div>
-        <?php endif; ?>
-
-        <?php if ($logged_in): ?>
-        <div class="vs-user-menu">
-          <a class="vs-user-menu__trigger" href="#">
-            <?php print $account['initials']; ?>
-          </a>
-          <ul class="vs-user-dropdown">
-            <li class="vs-user-dropdown__item vs-user-dropdown__item--header">
-              <?php print $account['first_name'] . ' ' . $account['last_name']; ?>
-            </li>
-            <li class="vs-user-dropdown__item">
-              <a class="vs-user-dropdown__link btn vs-btn vs-btn--min-sm" href="<?php print url('/user'); ?>"><?php print t('View profile'); ?></a>
-            </li>
-            <li class="vs-user-dropdown__item">
-              <a class="vs-user-dropdown__link--logout btn btn-link btn-block" href="<?php print url('/user/logout'); ?>"><?php print t('Sign out'); ?></a>
-            </li>
-          </ul>
-        </div>
-        <?php endif; ?>
-
-        <div class="vs-header__basket">
-          <a class="vs-header__link" href="<?php print url($basket_url); ?>" data-basket-cookie="<?php print $basket_cookie; ?>">
-            <span class="vs-header__basket__value">&nbsp;</span>
-          </a>
-        </div>
         <button class="vs-menu-trigger">
           <span class="vs-menu-trigger__bar">
             <span class="sr-only">toggle menu</span>
