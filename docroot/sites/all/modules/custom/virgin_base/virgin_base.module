@@ -30,7 +30,6 @@ function virgin_base_menu() {
     'type' => MENU_CALLBACK,
     'file' => 'virgin_base.pages.inc',
   );
-
   return $items;
 }
 
@@ -73,8 +72,6 @@ function virgin_base_field_attach_validate($entity_type, $entity, &$errors) {
       }
     }
   }
-
-
 }
 
 /**
@@ -155,7 +152,6 @@ function virgin_base_form_fieldable_panels_panes_fieldable_panels_pane_content_t
  * Implements hook_form_FORM_ID_alter() for scald_extra_atom_add_form_options.
  */
 function virgin_base_form_scald_extra_atom_add_form_options_alter(&$form, &$form_state, $form_id) {
-
   // Hide the authors and actions fields from the scald interface
   if (!empty($form['atom0'])) {
     $form['atom0']['scald_authors']['#access'] = FALSE;
@@ -309,7 +305,6 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
     '#default_value' => isset($attributes['virgin_class']) ? $attributes['virgin_class'] : '',
   );
 
-
   // The type field options
   $types = array(
     VIRGIN_BASE_LINK => 'Link',
@@ -331,6 +326,7 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
     '#attributes' => array(
       'id' => $id,
     ),
+    '#disabled' => TRUE,
   );
 
   $element['attributes']['virgin_gtm_event'] = array(
@@ -566,7 +562,6 @@ function virgin_base_event_festival($event_nid) {
         LIMIT 1
       ";
 
-
   $result = db_query($sql, array(':id' => $event_nid));
   $nid = $result->fetchField();
 
@@ -613,7 +608,6 @@ function virgin_base_get_newsletter_lists() {
     return array();
   }
 }
-
 
 /**
  * Implement hook_editor_ckeditor_css_alter
