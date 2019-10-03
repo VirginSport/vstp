@@ -39,6 +39,10 @@ $query = drupal_get_query_parameters();
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade in active">
+            <div class="vs-login-update-notice col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
+              <h3><?php print t('NOTICE'); ?></h3>
+              <p><?php print t('All event registrations are now handled using Race Roster.<br>Please use the registration links on the individual event pages to sign up.'); ?></p>
+            </div>
             <div class="vs-user-login--form-drupal hidden-xs-up">
               <?php print drupal_render($login_form); ?>
             </div>
