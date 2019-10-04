@@ -70,10 +70,10 @@ vs-header,
   font-size: 0;
   display: none;
   vertical-align: middle;
-  width: calc(100% - 116px);
+  width: calc(100% - 8px);
 
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    width: calc(100% - 120px);
+    width: calc(100% - 12px);
   }
 }
 
@@ -81,6 +81,10 @@ vs-header,
   display: inline-block;
   padding-right: 2.5rem;
   margin-top: rem(4);
+
+  &:nth-last-child(2) {
+    padding-right: 0;
+  }
 
   &.highlight {
     float: left;

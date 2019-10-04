@@ -369,7 +369,7 @@ After that, you will be able to log in at [site:login-url] using your [user:hybr
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_admin_role';
-  $strongarm->value = '3';
+  $strongarm->value = '21';
   $export['user_admin_role'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -641,7 +641,7 @@ Your account on [site:name] has been canceled.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_register';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['user_register'] = $strongarm;
 
   $strongarm = new stdClass();

@@ -33,34 +33,23 @@ $query = drupal_get_query_parameters();
         <ul class="nav nav-tabs vs-tabs--color-blue">
           <li class="nav-item active">
             <h3 class="vs-tabs__nav-link-wrapper">
-              <a class="nav-link" href="<?php print url('user/login', array('query' => $query)); ?>">
-                <?php print t('Sign In'); ?>
-              </a>
-            </h3>
-          </li>
-          <li class="nav-item">
-            <h3 class="vs-tabs__nav-link-wrapper">
-              <a class="nav-link" href="<?php print url('user/register', array('query' => $query)); ?>">
-                <?php print t('Sign Up'); ?>
-              </a>
+              <?php print t('Sign In'); ?>
             </h3>
           </li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade in active">
+            <div class="vs-login-update-notice col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
+              <h3><?php print t('NOTICE'); ?></h3>
+              <p><?php print t('All event registrations are now handled using Race Roster.<br>Please use the registration links on the individual event pages to sign up.'); ?></p>
+            </div>
             <div class="vs-user-login--form-drupal hidden-xs-up">
               <?php print drupal_render($login_form); ?>
             </div>
-            
+
             <div class="row">
               <div class="col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
                 <div class="vs-user-login--form">
-                  <div class="vs-user-form__wrapper">
-                    <?php print drupal_render($hybridauth_widget); ?>
-                    <div class="vs-user-login__separator"></div>
-                    <p class="vs-user-login__label"><?php print t('Or with an email address'); ?></p>
-                  </div>
-                  
                   <div class="vs-user-login--form" v-on:keyup.enter="submit">
                     <validator name="vs_user_login_validator">
                       <div class="row">
@@ -83,13 +72,6 @@ $query = drupal_get_query_parameters();
                             </a>
 
                             <button v-on:click="submit" class="btn vs-btn vs-btn--lg vs-btn--min-lg vs-user-login--form-submit"><?php print t('Sign in'); ?></button>
-
-                            <div class="vs-user-form__member-text">
-                              <?php print t('Not yet a member?'); ?>
-                              <a href="<?php print url('user/register', array('query' => $query)); ?>">
-                                <?php print t('Sign up'); ?>
-                              </a>
-                            </div>
                           </div>
                         </div>
                       </div>
