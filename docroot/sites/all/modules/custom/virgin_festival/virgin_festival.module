@@ -52,11 +52,11 @@ function virgin_festival_form_festival_node_form_alter(&$form, &$form_state) {
 /**
  * Implements hook_virgin_sync_handlers().
  */
-function virgin_festival_virgin_sync_handlers() {
+/*function virgin_festival_virgin_sync_handlers() {
   return array(
     new VirginFestivalSyncHandler()
   );
-}
+}*/
 
 /**
  * Implements hook_pathauto_alias_alter().

@@ -1897,11 +1897,7 @@ function virgin_roles_user_default_permissions() {
   // Exported permission: 'execute virgin sync'.
   $permissions['execute virgin sync'] = array(
     'name' => 'execute virgin sync',
-    'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
-      'administrator' => 'administrator',
-    ),
+    'roles' => array(),
     'module' => 'virgin_sync',
   );
 
