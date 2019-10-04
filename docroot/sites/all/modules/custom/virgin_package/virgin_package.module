@@ -9,10 +9,10 @@ include_once 'virgin_package.features.inc';
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function virgin_package_form_package_node_form_alter(&$form, &$form_state) {
+/*function virgin_package_form_package_node_form_alter(&$form, &$form_state) {
   // As this field will be handled by the system prevent it from being modified
   $form['field_package_state']['#disabled'] = TRUE;
-}
+}*/
 
 /**
  * Implements hook_virgin_sync_handlers().

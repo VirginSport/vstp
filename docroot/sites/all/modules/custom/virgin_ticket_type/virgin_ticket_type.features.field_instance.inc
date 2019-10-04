@@ -64,7 +64,9 @@ function virgin_ticket_type_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 3,
     ),
@@ -124,7 +126,9 @@ function virgin_ticket_type_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 4,
     ),
@@ -581,6 +585,7 @@ function virgin_ticket_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -740,7 +745,7 @@ function virgin_ticket_type_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_attendly_id',
     'label' => 'Attendly ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -807,7 +812,7 @@ function virgin_ticket_type_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_description',
     'label' => 'Description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -854,6 +859,7 @@ function virgin_ticket_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -947,7 +953,7 @@ function virgin_ticket_type_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sugar_id',
     'label' => 'SugarCRM ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -973,7 +979,7 @@ function virgin_ticket_type_field_default_field_instances() {
     'bundle' => 'ticket_type_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Choose from \'vs:level:standard\', \'vs:level:vip\', \'vs:level:perks\'.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -1014,7 +1020,7 @@ function virgin_ticket_type_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_ticket_level',
     'label' => 'Ticket Level',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -1106,6 +1112,7 @@ function virgin_ticket_type_field_default_field_instances() {
   t('Attendly ID');
   t('Card Color');
   t('Card Pattern');
+  t('Choose from \'vs:level:standard\', \'vs:level:vip\', \'vs:level:perks\'.');
   t('Description');
   t('Event State');
   t('Name');

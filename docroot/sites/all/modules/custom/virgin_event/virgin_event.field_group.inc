@@ -21,11 +21,11 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'CTA',
-    'weight' => '21',
+    'weight' => '14',
     'children' => array(
       0 => 'field_cta_link_announced',
-      1 => 'field_cta_link_open',
-      2 => 'field_cta_link_in_progress',
+      1 => 'field_cta_link_in_progress',
+      2 => 'field_cta_link_open',
       3 => 'field_cta_link_over',
     ),
     'format_type' => 'htab',
@@ -38,7 +38,7 @@ function virgin_event_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_cta|node|event|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -51,7 +51,7 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Global',
-    'weight' => '20',
+    'weight' => '13',
     'children' => array(
       0 => 'field_brand_color',
       1 => 'field_brand_pattern',
@@ -75,12 +75,12 @@ function virgin_event_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-global field-group-htab',
+        'classes' => '',
         'required_fields' => 1,
       ),
     ),
   );
-  $field_groups['group_global|node|event|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -93,7 +93,7 @@ function virgin_event_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Results',
-    'weight' => '22',
+    'weight' => '15',
     'children' => array(
       0 => 'field_description_results',
       1 => 'field_gameface_url',
@@ -113,7 +113,7 @@ function virgin_event_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_results|node|event|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -129,8 +129,8 @@ function virgin_event_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_global',
-      1 => 'group_results',
-      2 => 'group_cta',
+      1 => 'group_cta',
+      2 => 'group_results',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -141,7 +141,7 @@ function virgin_event_field_group_info() {
       ),
     ),
   );
-  $field_groups['group_tabs|node|event|form'] = $field_group;
+  $field_groups[''] = $field_group;
 
   // Translatables
   // Included for use with string extractors like potx.

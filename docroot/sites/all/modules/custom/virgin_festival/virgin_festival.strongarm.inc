@@ -168,7 +168,6 @@ function virgin_festival_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_festival';
   $strongarm->value = array(
     'status' => 1,
-    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -183,6 +182,12 @@ function virgin_festival_strongarm() {
         'choice' => 0,
       ),
       'teaser' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'alternate_teaser' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,

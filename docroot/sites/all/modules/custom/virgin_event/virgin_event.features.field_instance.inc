@@ -68,7 +68,7 @@ function virgin_event_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -130,7 +130,7 @@ function virgin_event_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -185,7 +185,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -253,7 +253,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -317,7 +317,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 18,
+      'weight' => 15,
     ),
   );
 
@@ -381,7 +381,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 20,
+      'weight' => 17,
     ),
   );
 
@@ -445,7 +445,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 19,
+      'weight' => 16,
     ),
   );
 
@@ -509,7 +509,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 21,
+      'weight' => 18,
     ),
   );
 
@@ -578,7 +578,7 @@ function virgin_event_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -647,7 +647,7 @@ function virgin_event_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 15,
+      'weight' => 8,
     ),
   );
 
@@ -675,6 +675,7 @@ function virgin_event_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -718,7 +719,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -780,7 +781,7 @@ function virgin_event_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -847,7 +848,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -911,7 +912,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 14,
+      'weight' => 7,
     ),
   );
 
@@ -978,7 +979,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -1046,7 +1047,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -1108,7 +1109,7 @@ function virgin_event_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -1164,7 +1165,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -1231,7 +1232,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -1295,7 +1296,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 13,
+      'weight' => 6,
     ),
   );
 
@@ -1348,7 +1349,7 @@ function virgin_event_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 10,
+      'weight' => 3,
     ),
   );
 
@@ -1401,7 +1402,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 9,
+      'weight' => 2,
     ),
   );
 
@@ -1452,7 +1453,7 @@ function virgin_event_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 11,
+      'weight' => 4,
     ),
   );
 
@@ -1516,7 +1517,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 12,
+      'weight' => 5,
     ),
   );
 
@@ -1570,7 +1571,7 @@ function virgin_event_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1620,7 +1621,7 @@ function virgin_event_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1686,7 +1687,7 @@ function virgin_event_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 1,
     ),
   );
 
@@ -1736,7 +1737,7 @@ function virgin_event_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_attendly_id',
     'label' => 'Attendly ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -1803,7 +1804,7 @@ function virgin_event_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_description',
     'label' => 'Description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -1990,6 +1991,7 @@ function virgin_event_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -2425,7 +2427,7 @@ function virgin_event_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sugar_id',
     'label' => 'SugarCRM ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -2451,7 +2453,7 @@ function virgin_event_field_default_field_instances() {
     'bundle' => 'event_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Choose from \'Europe/London\', \'America/Los_Angeles\', \'Australia/Melbourne\' etc. See here for a full list of all locations - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -2585,11 +2587,12 @@ function virgin_event_field_default_field_instances() {
   t('Brand Color');
   t('Brand Pattern');
   t('CTA Announced');
+  t('CTA End');
   t('CTA In Progress');
   t('CTA Open');
-  t('CTA End');
   t('Card Caption');
   t('Card Image');
+  t('Choose from \'Europe/London\', \'America/Los_Angeles\', \'Australia/Melbourne\' etc. See here for a full list of all locations - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.');
   t('Description');
   t('End Date');
   t('Event State');
@@ -2613,7 +2616,7 @@ function virgin_event_field_default_field_instances() {
   t('Overview Image');
   t('Replay URL');
   t('Show in festival menu');
-  t('Show time');
+  t('Show start time');
   t('Start Date');
   t('Status');
   t('SugarCRM ID');

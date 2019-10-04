@@ -1127,6 +1127,7 @@ function virgin_festival_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -1521,6 +1522,7 @@ function virgin_festival_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -1988,7 +1990,7 @@ function virgin_festival_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_attendly_id',
     'label' => 'Attendly ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -2055,7 +2057,7 @@ function virgin_festival_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_description',
     'label' => 'Description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'virgin_full',
@@ -2280,7 +2282,7 @@ function virgin_festival_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_sugar_id',
     'label' => 'Sugar ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'context' => 'title',
       'context_default' => 'sdl_editor_representation',
@@ -2306,7 +2308,7 @@ function virgin_festival_field_default_field_instances() {
     'bundle' => 'festival_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Choose from \'Europe/London\', \'America/Los_Angeles\', \'Australia/Melbourne\' etc. See here for a full list of all locations - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.',
     'display' => array(
       'alternate' => array(
         'label' => 'above',
@@ -2446,6 +2448,7 @@ function virgin_festival_field_default_field_instances() {
   t('CTA Over');
   t('Card Caption');
   t('Card Image');
+  t('Choose from \'Europe/London\', \'America/Los_Angeles\', \'Australia/Melbourne\' etc. See here for a full list of all locations - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.');
   t('Description');
   t('End Date');
   t('Festival List CTA');
