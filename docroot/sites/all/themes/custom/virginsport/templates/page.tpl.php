@@ -115,7 +115,7 @@
   <div class="vs-notification vs-notification--sticky">
     <?php print $messages; ?>
   </div>
-  
+
   <?php if ($logged_in): ?>
     <ul class="vs-user-dropdown">
       <li class="vs-user-dropdown__item vs-user-dropdown__item--header">
@@ -298,9 +298,6 @@
         </div>
 
         <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
-          <?php if (user_is_anonymous()): ?>
-            <?php print theme('virginsport_newsletter_form', array('title' => t('Keep up with Virgin Sport'), 'id' => $region_id, 'type' => 'footer', 'default_email' => $default_email, 'inline_button' => TRUE, 'wrapper_classes' => 'vs-newsletter-footer', 'cta_copy' => t('Submit'))); ?>
-          <?php endif; ?>
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">
