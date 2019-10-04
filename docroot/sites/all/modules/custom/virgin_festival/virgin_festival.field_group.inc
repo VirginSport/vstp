@@ -36,7 +36,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_call_to_action|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -66,7 +66,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_cta|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -103,35 +103,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_menu_tab|node|festival|form';
-  $field_group->group_name = 'group_menu_tab';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = 'festival';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Menu',
-    'weight' => '20',
-    'children' => array(
-      0 => 'group_menu',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'label' => 'Menu',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => 'group-menu-tab field-group-tab',
-        'description' => '',
-      ),
-      'formatter' => 'closed',
-    ),
-  );
-  $field_groups[''] = $field_group;
+  $field_groups['group_global|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -158,7 +130,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_menu|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -190,7 +162,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_past_state|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -220,7 +192,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_results|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -251,7 +223,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_tabs|node|festival|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -279,7 +251,7 @@ function virgin_festival_field_group_info() {
       ),
     ),
   );
-  $field_groups[''] = $field_group;
+  $field_groups['group_upcoming_state|node|festival|form'] = $field_group;
 
   // Translatables
   // Included for use with string extractors like potx.

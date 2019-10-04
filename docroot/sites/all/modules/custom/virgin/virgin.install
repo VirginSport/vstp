@@ -149,6 +149,13 @@ function virgin_update_7015 () {
 }
 
 /**
+ * Update Field Group paths.
+ */
+function virgin_update_7016 () {
+  _virgin_update_path('profiles/lightning/modules/contrib/field_group/', 'sites/all/modules/contrib/field_group/');
+}
+
+/**
  * Update a module/theme path
  *
  * @param $old_path
