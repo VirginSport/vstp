@@ -21,7 +21,6 @@ features[features_api][] = api:2
 features[field_group][] = group_call_to_action|node|festival|form
 features[field_group][] = group_cta|node|festival|form
 features[field_group][] = group_global|node|festival|form
-features[field_group][] = group_menu_tab|node|festival|form
 features[field_group][] = group_menu|node|festival|form
 features[field_group][] = group_past_state|node|festival|form
 features[field_group][] = group_results|node|festival|form

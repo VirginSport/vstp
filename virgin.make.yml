@@ -86,7 +86,7 @@ projects:
     version: "2.0-rc4"
 
   field_group:
-    version: "1.5"
+    version: "1.6"
 
   fieldable_panels_panes:
     version: "1.11"
