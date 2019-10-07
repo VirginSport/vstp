@@ -322,11 +322,11 @@ function virgin_base_cta_link_field_process($element, $form_state, $complete_for
     '#type' => 'select',
     '#title' => t('Type'),
     '#options' => $types,
-    '#default_value' => isset($attributes['virgin_type']) ? $attributes['virgin_type'] : '',
+    '#default_value' => isset($attributes['virgin_type']) ? $attributes['virgin_type'] : 'link',
     '#attributes' => array(
       'id' => $id,
+      'disabled' => TRUE,
     ),
-    '#disabled' => TRUE,
   );
 
   $element['attributes']['virgin_gtm_event'] = array(
