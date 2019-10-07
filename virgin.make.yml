@@ -97,6 +97,9 @@ projects:
   i18n:
     version: "1.15"
 
+  libraries:
+    version: "2.5"
+
   link:
     version: "1.6"
 
