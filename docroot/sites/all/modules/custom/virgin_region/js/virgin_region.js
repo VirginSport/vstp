@@ -1,7 +1,7 @@
 (function ($) {
 
   var VIRGIN_REGION_REGION_COOKIE = 'vs_region_hostname';
-  var VIRGIN_REGION_BASKET_REGION_COOKIE = 'vs_basket_region_hostname';
+  //var VIRGIN_REGION_BASKET_REGION_COOKIE = 'vs_basket_region_hostname';
 
   /**
    * Executes on document ready
@@ -17,10 +17,10 @@
 
     if (!region_cookie) {
       createCookie(VIRGIN_REGION_REGION_COOKIE, location.hostname, 365);
-      createCookie(VIRGIN_REGION_BASKET_REGION_COOKIE, location.hostname, 365);
+      //createCookie(VIRGIN_REGION_BASKET_REGION_COOKIE, location.hostname, 365);
     }
   });
-  
+
   /**
    * Create cookie function
    *
@@ -35,10 +35,10 @@
     // Convert days to timestamp
     var date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    
+
     // Global drupal cookie domain variable provided by virgin_Region
     var cookieDomain = Drupal.settings.virgin_region.cookie_domain;
-    
+
     // Set the cookie parameters
     var cookieParts = [
       (encodeURIComponent(name) + "=" + encodeURIComponent(value)),
@@ -46,11 +46,11 @@
       "; path=/",
       "; domain=" + cookieDomain
     ];
-    
+
     // Save the cookie
     document.cookie = cookieParts.join('');
   }
-  
+
   /**
    * Get a cookie value
    *
@@ -61,14 +61,14 @@
    */
   function getCookie(name) {
     var encodedName = encodeURIComponent(name) + "=";
-    
+
     // Split cookie list string into an array, by default cookies are
     // separated by a ; and white space
     var cookieList = document.cookie.split('; ');
-    
+
     for (var i = 0; i < cookieList.length; i++) {
       var cookie = cookieList[i];
-      
+
       // If encoded name exists return the value portion of cookie, that comes
       // after the encoded name
       if (cookie.indexOf(encodedName) === 0) {
@@ -76,7 +76,7 @@
         return decodeURIComponent(cookieValue);
       }
     }
-    
+
     // Default cookie value
     return null;
   }

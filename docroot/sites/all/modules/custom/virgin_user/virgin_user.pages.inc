@@ -349,14 +349,14 @@ function virgin_user_page_basket_post_checkout() {
 function virgin_user_page_user_edit($form, $account) {
 
   // Trigger the event that's going to sync the user profile
-  observer_notify(VirginUserEvents::BEFORE_USER_EDITS, $account);
+  //observer_notify(VirginUserEvents::BEFORE_USER_EDITS, $account);
 
   // And after the profile is synced render the user profile form
   module_load_include('inc', 'user', 'user.pages');
 
   return theme('virgin_user__edit', array(
     'profile_form' => drupal_get_form($form, $account),
-    'group_sales_url' => _virgin_user_get_group_sales_url(),
+    //'group_sales_url' => _virgin_user_get_group_sales_url(),
   ));
 }
 
@@ -373,19 +373,19 @@ function virgin_user_page_user_login() {
 
   // If the basket action parameter is for claiming a ticket
   // load the ticket and render the claim ticket widget.
-  $claim_ticket = '';
+  /*$claim_ticket = '';
   if (virgin_param('basket-action') == 'claim') {
     $rego = virgin_param('rego');
     $ticket = _virgin_user_get_ticket($rego);
     $claim_ticket = theme('virgin_user__claim_ticket', array('ticket' => $ticket));
-  }
+  }*/
 
   return theme('virgin_user__login', array(
     'login_form' => $login_form,
-    'claim_ticket' => $claim_ticket,
+    /*'claim_ticket' => $claim_ticket,
     'hybridauth_widget' => array(
       '#type' => 'hybridauth_widget'
-    )
+    )*/
   ));
 }
 
@@ -402,19 +402,19 @@ function virgin_user_page_user_register() {
 
   // If the basket action parameter is for claiming a ticket
   // load the ticket and render the claim ticket widget.
-  $claim_ticket = '';
+  /*$claim_ticket = '';
   if (virgin_param('basket-action') == 'claim') {
     $rego = virgin_param('rego');
     $ticket = _virgin_user_get_ticket($rego);
     $claim_ticket = theme('virgin_user__claim_ticket', array('ticket' => $ticket));
-  }
+  }*/
 
   return theme('virgin_user__register', array(
     'register_form' => $register_form,
-    'claim_ticket' => $claim_ticket,
+    /*'claim_ticket' => $claim_ticket,
     'hybridauth_widget' => array(
       '#type' => 'hybridauth_widget'
-    )
+    )*/
   ));
 }
 
