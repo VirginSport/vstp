@@ -24,8 +24,7 @@ $query = drupal_get_query_parameters();
   </div>
 </div>
 
-<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default" data-vs-region-overlap="<?php print empty($claim_ticket) ? 'none' : 'medium'; ?>">
-  <?php print $claim_ticket; ?>
+<div class="vs-region vs-region--gradient-default" data-vs-region-curved="1" data-vs-region-color="default" data-vs-region-overlap="none">
 
   <div class="container vs-user-login v-element">
     <div class="row">
@@ -40,7 +39,7 @@ $query = drupal_get_query_parameters();
         <div class="tab-content">
           <div class="tab-pane fade in active">
             <div class="vs-login-update-notice col-xs-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3">
-              <h3><?php print t('NOTICE'); ?></h3>
+              <h3><?php print t('Notice'); ?></h3>
               <p><?php print t('All event registrations are now handled using Race Roster.<br>Please use the registration links on the individual event pages to sign up.'); ?></p>
             </div>
             <div class="vs-user-login--form-drupal hidden-xs-up">
