@@ -183,10 +183,8 @@ function virgin_page_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_allowed_types';
   $strongarm->value = array(
-    'attendly_iframe-attendly_iframe' => TRUE,
-    'festival_subnav-festival_subnav' => TRUE,
     'results_table-results_table' => TRUE,
-    'contact_form-contact_form' => TRUE,
+    'festival_subnav-festival_subnav' => TRUE,
     'fieldable_panels_pane-vs_accordion' => TRUE,
     'fieldable_panels_pane-vs_basic_content_block' => TRUE,
     'fieldable_panels_pane-vs_carousel' => TRUE,
@@ -218,16 +216,16 @@ function virgin_page_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'panels_page_default';
   $strongarm->value = array(
-    'token' => 0,
-    'entity_form_field' => 0,
+    'block' => 0,
+    'custom' => 0,
     'entity_field' => 0,
     'entity_field_extra' => 0,
-    'custom' => 0,
-    'block' => 0,
+    'entity_form_field' => 0,
+    'token' => 0,
     'entity_view' => 0,
     'fieldable_panels_pane' => 0,
-    'views' => 0,
     'views_panes' => 0,
+    'views' => 0,
     'other' => 0,
   );
   $export['panels_page_default'] = $strongarm;

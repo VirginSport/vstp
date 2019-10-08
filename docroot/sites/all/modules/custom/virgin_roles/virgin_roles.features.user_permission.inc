@@ -882,8 +882,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['create fieldable vs_newsletter'] = array(
     'name' => 'create fieldable vs_newsletter',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
@@ -1273,8 +1271,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['delete fieldable vs_newsletter'] = array(
     'name' => 'delete fieldable vs_newsletter',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
@@ -1725,8 +1721,6 @@ function virgin_roles_user_default_permissions() {
   $permissions['edit fieldable vs_newsletter'] = array(
     'name' => 'edit fieldable vs_newsletter',
     'roles' => array(
-      'Content Editor' => 'Content Editor',
-      'Content Manager' => 'Content Manager',
       'administrator' => 'administrator',
     ),
     'module' => 'fieldable_panels_panes',
