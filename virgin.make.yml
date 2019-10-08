@@ -85,6 +85,9 @@ projects:
   expire:
     version: "2.0-rc4"
 
+  features:
+    version: "2.11"
+
   field_group:
     version: "1.6"
 
