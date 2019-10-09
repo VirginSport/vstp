@@ -1088,7 +1088,7 @@ function virgin_event_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_hide_ticket_link',
     'label' => 'Hide ticket link date',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
       'default_value2' => 'same',
