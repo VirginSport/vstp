@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_package.features.inc
