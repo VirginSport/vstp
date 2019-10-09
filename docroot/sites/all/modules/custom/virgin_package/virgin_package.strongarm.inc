@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_package.strongarm.inc
@@ -9,6 +10,27 @@
  */
 function virgin_package_strongarm() {
   $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_package_state';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_package_state'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_package_state';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_package_state'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_package_state';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_package_state'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -136,7 +158,8 @@ function virgin_package_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_package_state';
   $strongarm->value = array(
-    0 => 'revision',
+    0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_package_state'] = $strongarm;
 
