@@ -55,6 +55,8 @@ class VirginComponentPackageCardItem implements VirginComponentsInterface {
     $festival_grapher = new VirginEntityGrapher('node', $festival_nid);
     $variables['festival_nid'] = $festival_nid;
 
+    $variables['cta_ticket_link'] = $virgin->fieldRendered('field_cta_ticket_link');
+
     $products = array(
       'name' => $festival_grapher->property('title'),
       'id' => $package_state_graper->fieldGetOne('field_attendly_id'),

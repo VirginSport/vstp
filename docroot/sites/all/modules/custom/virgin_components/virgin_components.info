@@ -131,6 +131,7 @@ features[field_instance][] = paragraphs_item-vs_grid_row-title_field
 features[field_instance][] = paragraphs_item-vs_grid_row_6-field_component_heading
 features[field_instance][] = paragraphs_item-vs_grid_row_6-field_team
 features[field_instance][] = paragraphs_item-vs_grid_row_6-title_field
+features[field_instance][] = paragraphs_item-vs_package_card-field_cta_ticket_link
 features[field_instance][] = paragraphs_item-vs_package_card-field_description
 features[field_instance][] = paragraphs_item-vs_package_card-field_package_reference
 features[field_instance][] = paragraphs_item-vs_package_card-title_field

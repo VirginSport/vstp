@@ -5409,6 +5409,66 @@ function virgin_components_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-vs_package_card-field_cta_ticket_link'.
+  $field_instances['paragraphs_item-vs_package_card-field_cta_ticket_link'] = array(
+    'bundle' => 'vs_package_card',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_plain',
+        'weight' => 3,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_cta_ticket_link',
+    'label' => 'CTA Link',
+    'required' => 1,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 0,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_allowed_values' => '',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-vs_package_card-field_description'.
   $field_instances['paragraphs_item-vs_package_card-field_description'] = array(
     'bundle' => 'vs_package_card',
@@ -5419,11 +5479,7 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 2,
       ),
@@ -5475,9 +5531,6 @@ function virgin_components_field_default_field_instances() {
         'settings' => array(
           'bypass_access' => FALSE,
           'link' => FALSE,
-          'quickedit' => array(
-            'editor' => 'form',
-          ),
         ),
         'type' => 'entityreference_label',
         'weight' => 0,
@@ -5523,11 +5576,7 @@ function virgin_components_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'quickedit' => array(
-            'editor' => 'plain_text',
-          ),
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
       ),
