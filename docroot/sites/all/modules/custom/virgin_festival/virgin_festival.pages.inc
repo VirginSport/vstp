@@ -10,9 +10,12 @@
  */
 function virgin_festival_page_tickets($node) {
 
+  drupal_goto('node/' . $node->nid);
+  return;
+
   // If this isn't a festival node-type, redirect the user to the
   // node path.
-  if ($node->type != 'festival') {
+  /*if ($node->type != 'festival') {
     drupal_goto('node/' . $node->nid);
     return;
   }
@@ -43,5 +46,5 @@ function virgin_festival_page_tickets($node) {
     'header' => empty($header->content) ? '' : $header->content,
     'subnav' => empty($subnav->content) ? '' : $subnav->content,
     'brand_color' => $g->fieldGetOne('field_brand_color')
-  ));
+  ));*/
 }
