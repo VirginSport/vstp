@@ -53,7 +53,6 @@ features[field_instance][] = node-festival-field_region
 features[field_instance][] = node-festival-field_replay_url
 features[field_instance][] = node-festival-field_results_url
 features[field_instance][] = node-festival-field_review_url
-features[field_instance][] = node-festival-field_show_contact_form
 features[field_instance][] = node-festival-field_status
 features[field_instance][] = node-festival-title_field
 features[field_instance][] = node-festival_state-field_attendly_id

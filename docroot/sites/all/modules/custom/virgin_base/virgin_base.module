@@ -449,10 +449,10 @@ function virgin_base_festivals($exclude_status = array(), $contact_form_flagged 
     $query->condition('st.field_status_value', $exclude_status, 'NOT IN');
   }
 
-  if ($contact_form_flagged) {
+  /*if ($contact_form_flagged) {
     $query->join('field_data_field_show_contact_form', 'scf', 'n.nid = scf.entity_id');
     $query->condition('scf.field_show_contact_form_value', TRUE, '=');
-  }
+  }*/
 
   $years = array();
   if ($with_year) {

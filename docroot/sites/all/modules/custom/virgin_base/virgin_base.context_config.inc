@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_base.context_config.inc

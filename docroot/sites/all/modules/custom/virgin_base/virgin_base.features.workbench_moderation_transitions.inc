@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_base.features.workbench_moderation_transitions.inc

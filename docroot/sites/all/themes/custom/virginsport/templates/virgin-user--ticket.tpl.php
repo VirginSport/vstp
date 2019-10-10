@@ -47,16 +47,6 @@ $unit = 'km';
                     <?php print t("Recipient's name: @", array('@' => check_plain($ticket->first_name . ' ' . $ticket->last_name))); ?>
                   </p>
                 <?php endif; ?>
-
-                <?php if ($ticket_is_editable): ?>
-                  <a
-                    class="vs-ticket-card__edit-ticket"
-                    href="<?php print url(sprintf('basket/ticket/%s/personal', $ticket->attendly_rego_id)); ?>"
-                    interaction-type="Edit ticket"
-                  >
-                    <?php print t('Edit ticket'); ?>
-                  </a>
-                <?php endif; ?>
               </div>
             </div>
 
@@ -140,65 +130,6 @@ $unit = 'km';
                   </span>
                 </a>
               </div>
-            <?php else: ?>
-
-              <?php if (!empty($member_is_participant)): ?>
-                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_fans'))): ?>
-                  <div class="vs-ticket-card__cta-wrapper">
-                    <a
-                      class="vs-ticket-card__cta--invite-fans"
-                      href="<?php print url(sprintf('basket/ticket/%s/fans', $ticket->attendly_rego_id)); ?>"
-                      interaction-type="invite fans"
-                    >
-                      <i class="icon-high-five"></i>
-                      <?php print t('invite fans'); ?>
-                    </a>
-                  </div>
-                <?php endif; ?>
-
-                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_teams'))): ?>
-                  <div class="vs-ticket-card__cta-wrapper">
-                    <a
-                      class="vs-ticket-card__cta--join-team"
-                      href="<?php print url(sprintf('basket/ticket/%s/teams', $ticket->attendly_rego_id)); ?>"
-                      interaction-type="join / create team"
-                    >
-                      <i class="icon-join-team"></i>
-                      <?php if (empty($ticket->team_name)): ?>
-                        <?php print t('join / create crew'); ?>
-                      <?php else: ?>
-                        <?php print t('view your crew'); ?>
-                      <?php endif; ?>
-                    </a>
-                  </div>
-                <?php endif; ?>
-
-                <?php if (!empty($event_state_grapher->fieldGetOne('field_has_marketing_questions'))): ?>
-                  <div class="vs-ticket-card__cta-wrapper">
-                    <a
-                      class="vs-ticket-card__cta--about-yourself"
-                      href="<?php print url(sprintf('basket/ticket/%s/marketing', $ticket->attendly_rego_id)); ?>"
-                      interaction-type="tell us about yourself"
-                    >
-                      <i class="icon-tell-us"></i>
-                      <?php print t('bend our ear'); ?>
-                    </a>
-                  </div>
-                <?php endif; ?>
-              <?php endif; ?>
-
-              <?php if (!empty($event_state_grapher->fieldGetOne('field_has_merchandise'))): ?>
-              <div class="vs-ticket-card__cta-wrapper">
-                <a
-                  class="vs-ticket-card__cta--buy-gear"
-                  href="<?php print url(sprintf('basket/ticket/%s/merchandise', $ticket->attendly_rego_id)); ?>"
-                  interaction-type="buy gear"
-                >
-                  <i class="icon-buy-gear"></i>
-                  <?php print t('buy gear'); ?>
-                </a>
-              </div>
-              <?php endif; ?>
             <?php endif; ?>
             <div class="vs-ticket-card__social-wrapper">
               <?php print theme('virginsport_share_buttons', array('location' => 'User Ticket', 'subject' => $event_grapher->fieldGetOne('title_field'), 'url' => url('node/' . $event_grapher->property('nid'), array('absolute' => TRUE)))); ?>
