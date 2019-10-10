@@ -92,7 +92,7 @@ function bindRegionChangeTriggers() {
     }
     destinations.push(r);
   });
-  
+
   // If the origin is not set that means we're not within the context of a
   // region, set a fallback title text for a "global" region to be shown in the
   // region switch modals.
@@ -122,10 +122,10 @@ function bindRegionChangeTriggers() {
 
     // Also do a lookup for all the links that point to ticket
     // operations for content of different regions
-    $(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
+    /*$(`[vs-ticket-hostname="${destination.hostname}"]`).on('click', function (e) {
       e.preventDefault();
       showTicketsRegionChangeModal(origin, destination, $(this).attr('href'));
-    });
+    });*/
 
     // If there's a region change query parameter and it matches
     // one of the regions, show the region change modal to let

@@ -25,7 +25,7 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
     <div class="row">
       <div class="col-xs-12">
         <div class="vs-ticket-type__wrapper materialShadow">
-          <div class="vs-color vs-color--color-<?php print $card_color;?> vs-color--pattern-<?php print $card_pattern;?>">
+          <div class="vs-color vs-color--color-<?php print $card_color; ?> vs-color--pattern-<?php print $card_pattern; ?>">
             <div class="vs-color__layer-1"></div>
             <div class="vs-color__layer-2"></div>
             <div class="vs-color__layer-3"></div>
@@ -44,18 +44,17 @@ $vip_class = ($ticket_class == 'vip') ? 'vs-ticket-type__text--vip' : '';
           <span class="vs-ticket-type__price"><?php print virginsport_currency($currency, $price); ?></span>
           <?php endif; ?>
 
-          <a
-            href="<?php print url('node/' . $festival_nid . '/tickets'); ?>"
+          <a href="<?php print trim(check_plain($cta_ticket_link)); ?>"
             class="btn vs-btn vs-btn--sm vs-btn--transparent vs-ticket-type__cta"
+            target="_blank" rel="nofollow"
             vs-ticket-hostname="<?php print check_plain($ticket_hostname); ?>"
             vs-ticket-event="SelectTicketsCTA"
-            vs-ticket-level="<?php print $ticket_level; ?>"
-          >
-            <?php print check_plain($cta_copy);?>
+            vs-ticket-level="<?php print $ticket_level; ?>">
+            <?php print check_plain($cta_copy); ?>
           </a>
           <?php if(!empty($ticket_properties)): ?>
           <div class="vs-ticket-type__<?php print $ticket_class; ?>">
-              <span><?php print t($ticket_properties['desktop title']); ?></span>
+            <span><?php print t($ticket_properties['desktop title']); ?></span>
           </div>
           <?php endif; ?>
         </div>

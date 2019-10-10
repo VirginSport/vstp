@@ -77,7 +77,6 @@ class VirginEntityGrapher {
    */
   public function fieldGetOne($name, $default = '', $property = 'value', $index = 0) {
     $language = $this->fieldLanguage($name);
-
     $value = empty($this->entity->{$name}[$language][$index][$property]) ? $default : $this->entity->{$name}[$language][$index][$property];
 
     return $value;
@@ -96,7 +95,13 @@ class VirginEntityGrapher {
 
     // Creates a renderable array of the field, needs to be used to invoke
     // hooks related with field render
-    $elements = field_view_field($this->entity_type, $this->entity, $name, array(), $language);
+    if ($name === 'field_cta_ticket_link') {
+      $display = 'link_plain';
+    }
+    else {
+      $display = array();
+    }
+    $elements = field_view_field($this->entity_type, $this->entity, $name, $display, $language);
 
     // Get the rendered field
     return drupal_render($elements);
