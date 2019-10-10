@@ -46,7 +46,8 @@
             <div class="vs-package-card__price"><?php print virginsport_currency($package_currency, $package_price); ?></div>
             <?php endif; ?>
             <div class="vs-package-card__button-wrapper">
-              <?php print l(t('details'), 'node/' . $festival_nid . '/tickets', array('attributes' => array('class' => array('btn vs-btn vs-btn--sm vs-btn--transparent vs-package-card__button')))); ?>
+              <?php $attributes = array('class' => array('btn vs-btn vs-btn--sm vs-btn--transparent vs-package-card__button'), 'rel' => 'nofollow', 'target' => '_blank'); ?>
+              <?php print l(t('Details'),trim(check_plain($cta_ticket_link)), array('attributes' => $attributes)); ?>
             </div>
           </div>
         </div>
