@@ -309,9 +309,9 @@ function virgin_user_menu_alter(&$items) {
 
   // Override the user edit page callback to ensure the use profile is synced
   // with SugarCRM before the form is rendered.
-  /*$items['user/%user/edit']['page callback'] = 'virgin_user_page_user_edit';
+  $items['user/%user/edit']['page callback'] = 'virgin_user_page_user_edit';
   $items['user/%user/edit']['file'] = $file;
-  $items['user/%user/edit']['file path'] = $file_path;*/
+  $items['user/%user/edit']['file path'] = $file_path;
 
   // Only allow authenticated user to access user page
   $items['user']['access callback'] = 'user_is_logged_in';
