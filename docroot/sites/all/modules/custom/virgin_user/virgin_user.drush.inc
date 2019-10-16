@@ -20,17 +20,30 @@ function virgin_user_drush_command() {
  */
 function drush_virgin_user_obfuscate_users() {
   $result = db_query(
-    'SELECT * FROM users WHERE mail NOT LIKE \'%manifesto.co.uk%\' AND mail NOT LIKE \'%virginsport.com%\' AND uid <> 0 AND uid <> 1 LIMIT 100'
+    "SELECT u.uid FROM users u
+            LEFT JOIN users_roles ur ON u.uid = ur.uid
+            WHERE u.uid <> 0 AND u.uid <> 1
+            AND u.mail NOT LIKE '%@manifesto.co.uk%' AND u.mail NOT LIKE '%@virginsport.com%'
+            AND ur.uid IS NULL AND ur.rid IS NULL"
   );
 
   while ($row = $result->fetch()) {
     echo 'Obfuscating user ' . $row->uid . PHP_EOL;
-
     db_update('users')
       ->fields(array(
         'mail' => $row->uid . '@virginsport.test',
       ))
       ->condition('uid', $row->uid, '=')
       ->execute();
+
+    echo 'Deleting user ' . $row->uid . PHP_EOL;
+    user_cancel(
+      array('user_cancel_notify' => FALSE),
+      $row->uid,
+      'user_cancel_reassign'
+    );
+    $batch =& batch_get();
+    $batch['progressive'] = FALSE;
+    batch_process();
   }
 }
