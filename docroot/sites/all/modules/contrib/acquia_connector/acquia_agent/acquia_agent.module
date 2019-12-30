@@ -485,7 +485,11 @@ function acquia_agent_watchdog($log_entry) {
     'Attempting to re-run cron while it is already running.',
   );
   if (in_array($log_entry['message'], $cron_failure_messages, TRUE)) {
-    acquia_agent_check_subscription();
+    // Avoid doing this too frequently.
+    $subscription = acquia_agent_settings('acquia_subscription_data');
+    if (isset($subscription['timestamp']) && (REQUEST_TIME - $subscription['timestamp'] >= 60 * 60)) {
+      acquia_agent_check_subscription();
+    }
   }
 }
 
