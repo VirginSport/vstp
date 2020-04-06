@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_region.strongarm.inc
@@ -103,8 +104,13 @@ function virgin_region_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'alternate_teaser' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
     ),
-    'help' => '',
   );
   $export['panelizer_defaults_node_region'] = $strongarm;
 
