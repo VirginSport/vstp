@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_region.features.field_instance.inc
@@ -379,6 +380,7 @@ function virgin_region_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -462,52 +464,6 @@ function virgin_region_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-region-field_sugar_newsletter_list'.
-  $field_instances['node-region-field_sugar_newsletter_list'] = array(
-    'bundle' => 'region',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'alternate_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_sugar_newsletter_list',
-    'label' => 'Sugar Newsletter List',
-    'required' => 1,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 10,
-    ),
-  );
-
   // Exported field_instance: 'node-region-title_field'.
   $field_instances['node-region-title_field'] = array(
     'bundle' => 'region',
@@ -586,7 +542,6 @@ function virgin_region_field_default_field_instances() {
   t('Name');
   t('Privacy policy');
   t('Show cookies alert');
-  t('Sugar Newsletter List');
 
   return $field_instances;
 }
