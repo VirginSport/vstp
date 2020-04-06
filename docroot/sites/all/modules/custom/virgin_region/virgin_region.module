@@ -260,7 +260,7 @@ function virgin_region_regions() {
       $regions[$hostname] = array(
         'nid' => $node->nid,
         'title' => $node_wrapper->title_field->value(),
-        'sugar_newsletter' => $node_wrapper->field_sugar_newsletter_list->value(),
+        //'sugar_newsletter' => $node_wrapper->field_sugar_newsletter_list->value(),
         'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
         'flag' => $node_wrapper->field_flag_image->value(),
         'icon' => $node_wrapper->field_icon_image->value(),
@@ -516,14 +516,14 @@ function virgin_region_footer_links() {
  * Injects the sugar remote newsletter target lists into the form and
  * sets the stored value as default.
  */
-function virgin_region_form_region_node_form_alter(&$form, $form_state) {
+/*function virgin_region_form_region_node_form_alter(&$form, $form_state) {
   $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#options'] = virgin_base_get_newsletter_lists();
 
   if (!empty($form['#node_edit_form'])) {
     $grapher = new VirginEntityGrapher('node', $form['#entity']);
     $form['field_sugar_newsletter_list'][LANGUAGE_NONE]['#default_value'] = $grapher->fieldGetOne('field_sugar_newsletter_list');
   }
-}
+}*/
 
 /*
  * Get the current region footer newsletter target list
