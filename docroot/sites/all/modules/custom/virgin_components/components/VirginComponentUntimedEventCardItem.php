@@ -66,6 +66,7 @@ class VirginComponentUntimedEventCardItem implements VirginComponentsInterface {
     $variables['card_pattern'] = $event_grapher->fieldGetOne('field_brand_pattern');
     $variables['brand_color'] = $event_grapher->fieldGetOne('field_brand_color');
     $variables['start_date'] = virgin_date($start_date, $timezone)->format('d M');
+    $variables['hide_dates'] = $event_grapher->fieldGetOne('field_hide_dates');
     $variables['festival_id'] = $festival_grapher->property('nid');
     $price = $paragraph_grapher->fieldGetOne('field_price', '', 'amount');
     $variables['event_price'] = $price;

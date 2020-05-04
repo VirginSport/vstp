@@ -22,7 +22,7 @@ function virgin_festival_field_group_info() {
   $field_group->parent_name = 'group_past_state';
   $field_group->data = array(
     'label' => 'Call To action',
-    'weight' => '6',
+    'weight' => '19',
     'children' => array(
       0 => 'field_cta_link',
     ),
@@ -93,6 +93,8 @@ function virgin_festival_field_group_info() {
       8 => 'field_logo',
       9 => 'field_alert',
       10 => 'field_festival_list_cta',
+      11 => 'field_hide_festival_dates',
+      12 => 'field_hide_dates',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
