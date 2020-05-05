@@ -18,6 +18,8 @@
  *  The formatted date of the event start date
  * @var string $show_time
  *  If the date should be shown with time or not
+ * @var boolean $hide_dates
+ *  If the dates should be hidden from view.
  * @var int $end_date
  *  The timestamp of the end date of the event
  * @var string $timezone
@@ -46,12 +48,14 @@
 
   <div class="vs-hero-banner__background">
 
-    <div class="vs-hero-banner__days-left-wrapper hidden-sm-down" style="display: none">
-      <span class="vs-hero-banner__days-left"></span>
-      <span class="vs-hero-banner__days-label"></span>
-    </div>
+    <?php if ($hide_dates != 1): ?>
+      <div class="vs-hero-banner__days-left-wrapper hidden-sm-down" style="display: none">
+        <span class="vs-hero-banner__days-left"></span>
+        <span class="vs-hero-banner__days-label"></span>
+      </div>
+    <?php endif; ?>
 
-    <?php if ($variables['show_sharer']==1):?>
+    <?php if ($variables['show_sharer'] == 1):?>
       <div class="vs-hero-banner__social-wrapper <?php print (empty($color) ? '' : 'vs-share-button--gradient-' . $color); ?>">
         <?php print theme('virginsport_share_buttons', array('location' => 'Festival Header', 'subject' => $variables['title'], 'url' => url(current_path(), array('absolute' => TRUE)))); ?>
       </div>
@@ -67,12 +71,17 @@
           <?php else: ?>
             <h1 class="vs-hero-banner__title"><?php print check_plain($title); ?></h1>
           <?php endif; ?>
-          <div class="vs-hero-banner__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone, $timezone, $show_time); ?></div>
 
-          <div class="vs-hero-banner__days-left-wrapper hidden-md-up" style="display: none">
-            <span class="vs-hero-banner__days-left"></span>
-            <span class="vs-hero-banner__days-label"></span>
-          </div>
+          <?php if ($hide_dates != 1): ?>
+            <div class="vs-hero-banner__date">
+              <?php print virginsport_date_interval($start_date, $end_date, $timezone, $timezone, $show_time); ?>
+            </div>
+
+            <div class="vs-hero-banner__days-left-wrapper hidden-md-up" style="display: none">
+              <span class="vs-hero-banner__days-left"></span>
+              <span class="vs-hero-banner__days-label"></span>
+            </div>
+          <?php endif; ?>
 
           <?php
           /**

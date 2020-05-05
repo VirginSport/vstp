@@ -10,6 +10,7 @@
  *  @var $card_pattern - The card pattern of the event
  *  @var $card_color - The card color of the event
  *  @var $start_date - The start date of the event state. Related with event
+ *  @var $hide_dates - Whether to hide the event dates
  *  @var $festival_id - The id of festival related with the event
  *  @var $event_price - The event price
  *  @var $event_currency - The event currency
@@ -48,7 +49,7 @@
             <?php endif; ?>
 
           </div>
-          <?php if (!empty($start_date)): ?>
+          <?php if (!empty($start_date) && $hide_dates != 1): ?>
           <div class="vs-card-untimed-event__date-wrapper">
             <div class="vs-card-untimed-event__date">
               <?php print $start_date; ?>

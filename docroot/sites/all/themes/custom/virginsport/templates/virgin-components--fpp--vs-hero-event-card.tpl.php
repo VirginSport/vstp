@@ -8,6 +8,7 @@
  *  $brand_pattern - The event brand pattern
  *  $event_title - The event title
  *  $event_date - The event start date
+ *  $hide_dates - Whether to hide the event dates
  *  $event_description - The event description
  *  $cta_links - An array with links and its attributes
  */
@@ -30,7 +31,7 @@
           </h3>
         <?php endif; ?>
 
-        <?php if (!empty($event_date)): ?>
+        <?php if (!empty($event_date) && $hide_dates != 1): ?>
           <div class="vs-hero-event-card__date">
             <?php print $event_date; ?>
           </div>
@@ -41,7 +42,7 @@
             <?php print $event_description; ?>
           </div>
         <?php endif; ?>
-  
+
         <?php if(!empty($outline_title)): ?>
           <span class="vs-hero-event-card__outline-title vs-outline hidden-md-down"><?php print $outline_title; ?></span>
         <?php endif; ?>

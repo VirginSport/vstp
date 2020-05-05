@@ -58,7 +58,7 @@ function virgin_festival_field_default_field_instances() {
         'rows' => 2,
       ),
       'type' => 'text_textarea',
-      'weight' => 16,
+      'weight' => 13,
     ),
   );
 
@@ -373,7 +373,7 @@ function virgin_festival_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 2,
+      'weight' => 15,
     ),
   );
 
@@ -633,7 +633,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -761,7 +761,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -1036,7 +1036,7 @@ function virgin_festival_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 1,
+      'weight' => 14,
     ),
   );
 
@@ -1100,7 +1100,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 9,
     ),
   );
 
@@ -1172,7 +1172,7 @@ function virgin_festival_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -1376,6 +1376,56 @@ function virgin_festival_field_default_field_instances() {
       ),
       'type' => 'atom_reference_textfield',
       'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-festival-field_hide_dates'.
+  $field_instances['node-festival-field_hide_dates'] = array(
+    'bundle' => 'festival',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Prevent the festival dates and countdowns from being displayed.',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 35,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hide_dates',
+    'label' => 'Hide dates',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 11,
     ),
   );
 
@@ -1631,7 +1681,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 5,
+      'weight' => 18,
     ),
   );
 
@@ -1695,7 +1745,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 17,
     ),
   );
 
@@ -1759,7 +1809,7 @@ function virgin_festival_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 3,
+      'weight' => 16,
     ),
   );
 
@@ -2407,12 +2457,14 @@ function virgin_festival_field_default_field_instances() {
   t('Hashtag');
   t('Header Call to Action');
   t('Header Image');
+  t('Hide dates');
   t('If set an alert message will be shown to all users in all pages related to this festival.');
   t('Introduction');
   t('Introduction Image');
   t('Links');
   t('Logo');
   t('Name');
+  t('Prevent the festival dates and countdowns from being displayed.');
   t('Region');
   t('Replay URL');
   t('Results URL');
