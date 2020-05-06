@@ -68,8 +68,9 @@ function virgin_event_field_group_info() {
       11 => 'field_show_in_festival_menu',
       12 => 'title_field',
       13 => 'field_logo',
-      14 => 'field_hide_ticket_link',
-      15 => 'field_show_time',
+      14 => 'field_show_time',
+      15 => 'field_hide_event_dates',
+      16 => 'field_hide_dates',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -129,8 +130,8 @@ function virgin_event_field_group_info() {
     'label' => 'Tabs',
     'weight' => '0',
     'children' => array(
-      0 => 'group_global',
-      1 => 'group_cta',
+      0 => 'group_cta',
+      1 => 'group_global',
       2 => 'group_results',
     ),
     'format_type' => 'htabs',

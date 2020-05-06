@@ -318,7 +318,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 15,
+      'weight' => 21,
     ),
   );
 
@@ -382,7 +382,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 17,
+      'weight' => 23,
     ),
   );
 
@@ -446,7 +446,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 16,
+      'weight' => 22,
     ),
   );
 
@@ -510,7 +510,7 @@ function virgin_event_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 18,
+      'weight' => 24,
     ),
   );
 
@@ -1052,6 +1052,56 @@ function virgin_event_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_hide_dates'.
+  $field_instances['node-event-field_hide_dates'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Prevent the event dates and countdowns from being displayed.',
+    'display' => array(
+      'alternate_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 28,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hide_dates',
+    'label' => 'Hide dates',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 16,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_logo'.
   $field_instances['node-event-field_logo'] = array(
     'bundle' => 'event',
@@ -1104,7 +1154,7 @@ function virgin_event_field_default_field_instances() {
         'context' => 'virgin_full',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -1560,7 +1610,7 @@ function virgin_event_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -2278,12 +2328,14 @@ function virgin_event_field_default_field_instances() {
   t('Gameface URL');
   t('Hashtag');
   t('Header Image');
+  t('Hide dates');
   t('Introduction');
   t('Logo');
   t('MyLaps ID');
   t('Name');
   t('Overview Content');
   t('Overview Image');
+  t('Prevent the event dates and countdowns from being displayed.');
   t('Replay URL');
   t('Show in festival menu');
   t('Show start time');
