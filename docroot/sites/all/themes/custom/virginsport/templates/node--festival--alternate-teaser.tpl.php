@@ -93,6 +93,7 @@ $card_atom = $grapher->relation('field_card_image')->getEntity();
 $festival_state = $grapher->relation('field_festival_state');
 $start_date = $festival_state->fieldGetOne('field_start_date');
 $end_date = $festival_state->fieldGetOne('field_end_date');
+$hide_dates = $grapher->fieldGetOne('field_hide_dates');
 $timezone = $festival_state->fieldGetOne('field_timezone');
 
 $review_url = $grapher->fieldGetOne('field_review_url', '', 'url');
@@ -112,7 +113,9 @@ $replay_url = $grapher->fieldGetOne('field_replay_url', '', 'url');
 
           <div class="col-xs-12 col-md-7 col-lg-8 vs-card-past__content">
             <h4 class="vs-card-past__title"><?php print check_plain($title); ?></h4>
-            <div class="vs-card-past__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone); ?></div>
+            <?php if ($hide_dates != 1): ?>
+              <div class="vs-card-past__date"><?php print virginsport_date_interval($start_date, $end_date, $timezone); ?></div>
+            <?php endif; ?>
             <p class="vs-card-past__text"><?php print strip_tags($past_description,'<br>'); ?></p>
           </div>
 

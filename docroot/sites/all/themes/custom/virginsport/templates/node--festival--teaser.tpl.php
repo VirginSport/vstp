@@ -112,16 +112,18 @@ if (!empty($view) && isset($view->row_index)) {
             </h3>
           <?php endif; ?>
 
-          <div class="vs-card-upcoming__date">
-           <?php print virginsport_date_interval($grapher->relation('field_festival_state')->fieldGetOne('field_start_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_end_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_timezone')); ?>
-          </div>
+          <?php if ($grapher->fieldGetOne('field_hide_dates') != 1): ?>
+            <div class="vs-card-upcoming__date">
+              <?php print virginsport_date_interval($grapher->relation('field_festival_state')->fieldGetOne('field_start_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_end_date'), $grapher->relation('field_festival_state')->fieldGetOne('field_timezone')); ?>
+            </div>
+          <?php endif; ?>
 
           <?php if (!empty($grapher->fieldRendered('field_description'))): ?>
             <p class="vs-card-upcoming__text">
                 <?php print strip_tags($grapher->fieldRendered('field_description'),'<br>'); ?>
             </p>
           <?php endif; ?>
-          
+
           <div class="vs-card-upcoming__button-wrapper">
             <a
               class="hidden-md-up btn vs-btn vs-btn-sm vs-btn--transparent vs-card-upcoming__button"
@@ -129,14 +131,14 @@ if (!empty($view) && isset($view->row_index)) {
             >
               <?php print t('View details'); ?>
             </a>
-  
+
             <a
               class="hidden-sm-down btn vs-btn vs-btn-sm vs-btn--transparent vs-card-upcoming__button"
               href="<?php print url('node/' . $grapher->property('nid')); ?>"
             >
               <?php print t('Details'); ?>
             </a>
-  
+
             <?php if(!empty($grapher->fieldGetAll('field_festival_list_cta'))): ?>
               <?php print
                 theme('virginsport_cta_links',
