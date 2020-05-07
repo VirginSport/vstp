@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_roles.features.user_permission.inc
@@ -2038,15 +2039,6 @@ function virgin_roles_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'use hybridauth'.
-  $permissions['use hybridauth'] = array(
-    'name' => 'use hybridauth',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-    ),
-    'module' => 'hybridauth',
   );
 
   // Exported permission: 'use ipe with page manager'.

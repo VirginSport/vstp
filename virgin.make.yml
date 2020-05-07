@@ -38,7 +38,7 @@ projects:
       - "./patches/lightning/prevent-wbm_feature_export.patch"
 
   acquia_connector:
-    version: "3.5"
+    version: "3.6"
 
   acquia_geoip_vary_by_country:
     version: "1.0"

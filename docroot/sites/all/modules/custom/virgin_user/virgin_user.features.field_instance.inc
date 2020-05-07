@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_user.features.field_instance.inc
@@ -82,7 +83,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 20,
     ),
@@ -507,12 +510,14 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 4,
     ),
   );
-  
+
   // Exported field_instance: 'user-user-field_group_sales_access'.
   $field_instances['user-user-field_group_sales_access'] = array(
     'bundle' => 'user',
@@ -665,7 +670,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 9,
     ),
@@ -767,6 +774,7 @@ function virgin_user_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
+          'bypass_access' => FALSE,
           'link' => FALSE,
           'quickedit' => array(
             'editor' => 'form',
@@ -792,7 +800,9 @@ function virgin_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 23,
     ),

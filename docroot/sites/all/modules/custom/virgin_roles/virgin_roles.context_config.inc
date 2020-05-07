@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * virgin_roles.context_config.inc
