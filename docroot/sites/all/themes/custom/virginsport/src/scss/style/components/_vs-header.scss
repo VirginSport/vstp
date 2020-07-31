@@ -92,7 +92,7 @@ vs-header,
     margin-top: 0;
 
     .vs-header__nav-link {
-      font-size: rem(16);
+      font-size: rem(14);
       color: #C6C6C6;
       background-color: white;
       border-radius: rem(96);
@@ -127,7 +127,7 @@ vs-header,
   color: $c-white;
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: rem(14);
 
   &:hover,
   &:focus {
@@ -137,8 +137,8 @@ vs-header,
   }
 
   .active & {
-    border-bottom: 4px solid $c-white;
-    padding-bottom: 2px;
+    border-bottom: 2px solid $c-white;
+    padding-bottom: 4px;
   }
 }
 
