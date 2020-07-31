@@ -46,6 +46,7 @@ $c-yellow:                    #FBF13F;
 $c-green:                     #27C161;
 $c-green-light:               #BEDE19;
 $c-green-lighter:             #D3F7DB;
+$c-persimmon:                 #FF5555;
 
 // Brand color schemes
 $color-schemes: (
@@ -423,6 +424,20 @@ $color-schemes: (
     card-rotate: 135deg,
     outline-from: $c-pinky-red,
     outline-to: $c-pinky-red,
+    outline-rotate: -45%,
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
+  persimmon-solid: (
+    solid-color: $c-persimmon,
+    text-color: $c-white,
+    from: $c-persimmon,
+    to: $c-persimmon,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-persimmon,
+    outline-to: $c-persimmon,
     outline-rotate: -45%,
     is-solid: true,
     input-color: $c-white,
