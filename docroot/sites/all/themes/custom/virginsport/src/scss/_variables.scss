@@ -52,13 +52,13 @@ $c-pool-blue:                 #00C5DF;
 $c-putty:                     #F0F0F0;
 $c-graphite:                  #1E1E1E;
 $c-black:                     #000000;
-
+$c-body-text:                 #777777;
 
 // Brand color schemes
 $color-schemes: (
   default: (
     solid-color: $c-putty,
-    text-color: $c-black,
+    text-color: $c-body-text,
     from: $c-putty,
     to: $c-putty,
     rotate: 0deg,
@@ -86,7 +86,7 @@ $color-schemes: (
   ),
   gray: (
     solid-color: $c-putty,
-    text-color: $c-black,
+    text-color: $c-body-text,
     from: $c-putty,
     to: $c-putty,
     rotate: 0deg,
@@ -100,7 +100,7 @@ $color-schemes: (
   ),
   gray-dark: (
     solid-color: #E0E0E0,
-    text-color: $c-black,
+    text-color: $c-body-text,
     from: #E0E0E0,
     to: #E0E0E0,
     rotate: 0deg,
@@ -114,7 +114,7 @@ $color-schemes: (
   ),
   white: (
     solid-color: $c-white,
-    text-color: $c-black,
+    text-color: $c-body-text,
     text-color-focus: $c-black,
     from: $c-white,
     to: $c-white,
@@ -743,7 +743,7 @@ $enable-transitions:        true;
 // Settings for the `<body>` element.
 
 $body-bg:    $c-putty;
-$body-color: rgba($c-black, .6);
+$body-color: $c-body-text;
 
 
 // Links
