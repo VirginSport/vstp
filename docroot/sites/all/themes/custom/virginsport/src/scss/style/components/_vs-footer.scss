@@ -26,6 +26,16 @@ vs-footer,
   }
 }
 
+.vs-footer__lsg-member {
+  background: url(../img/lsc-logo-member.png) no-repeat 0 0;
+  background-size: contain;
+  display: inline-block;
+  height: 3.813rem;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 12.5rem;
+}
+
 .vs-picture.vs-footer__language__picture {
   display: inline;
 }

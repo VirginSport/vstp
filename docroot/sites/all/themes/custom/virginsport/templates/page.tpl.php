@@ -219,32 +219,11 @@
   <div class="vs-footer">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-2 col-lg-2">
-
-          <?php if ($regions['current']): ?>
-          <div class="btn-group vs-footer__language">
-
-            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm dropdown-toggle vs-footer__language-toggle" data-toggle="dropdown" type="button">
-              <?php print theme('virginsport_picture', array('atom_id' => $regions['current']['flag']->sid, 'image_style' => 'virgin_small_flag', 'placeholder' => FALSE, 'image_classes' => 'vs-footer__flags', 'classes' => 'vs-footer__language__picture')); ?>
-              <span class="vs-footer__region-label"><?php print $regions['current']['country_letter_code']; ?></span>
-            </button>
-
-            <div class="dropdown-menu vs-footer__language-list">
-              <?php foreach ($regions['other'] as $region): ?>
-              <a class="vs-footer__language-list__link" href="<?php print url(virgin_region_add_hostname_protocol($region['hostname'])); ?>">
-                <?php if (!empty($region['flag'])): ?>
-                  <?php print theme('virginsport_picture', array('atom_id' => $region['flag']->sid, 'image_style' => 'virgin_small_flag', 'placeholder' => FALSE, 'image_classes' => 'vs-footer__flags', 'classes' => 'vs-footer__language__picture')); ?>
-                  <?php print check_plain($region['country_letter_code']); ?>
-                <?php endif; ?>
-              </a>
-              <?php endforeach; ?>
-            </div>
-
-          </div>
-          <?php endif; ?>
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <a href="/" class="vs-footer__lsg-member">LimeLight Sports Club</a>
         </div>
 
-        <div class="col-xs-12 col-md-10 col-lg-6 col-xl-6">
+        <div class="col-xs-12 col-md-8 col-lg-6 col-xl-6">
           <ul class="vs-footer__menu">
             <?php foreach ($footer_menu as $item): ?>
               <?php if (!empty($item['visible'])): ?>
@@ -256,7 +235,7 @@
           </ul>
         </div>
 
-        <div class="col-xs-12 col-md-10 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
+        <div class="col-xs-12 col-md-10 offset-md-4 col-lg-3 offset-lg-0 col-xl-3">
           <ul class="list-inline vs-footer__social-list">
             <?php foreach ($social_networks as $network): ?>
               <li class="vs-footer__social-item">
