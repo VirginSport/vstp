@@ -42,10 +42,10 @@ vs-header,
 
 .vs-header__logo {
   position: absolute;
-  background: transparent url('../img/vs-logo.svg') no-repeat left center;
+  background: transparent url('../img/ll-logo.png') no-repeat left center;
   background-size: contain;
   width: 5.05625rem;
-  height: 1.875rem;
+  height: auto;
   top: .25rem;
   z-index: -1;
 
