@@ -43,6 +43,7 @@ vs-card-upcoming,
   font-family: $font-family-serif;
   color: $c-white;
   font-size: 1.125rem;
+  font-weight: bold;
   line-height: 1.250rem;
   text-transform: capitalize;
   margin-bottom: .25rem;
@@ -88,12 +89,13 @@ vs-card-upcoming,
 
   .vs-card-upcoming--color-#{$color} {
 
-    .vs-card-upcoming__title,
     .vs-card-upcoming__date,
     .vs-card-upcoming__text {
       color: map_get($map, 'text-color');
     }
-
+    .vs-card-upcoming__title {
+      color: map_get($map, 'title-color');
+    }
   }
 }
 
