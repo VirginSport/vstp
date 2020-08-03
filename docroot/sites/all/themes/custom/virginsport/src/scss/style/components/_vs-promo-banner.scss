@@ -45,6 +45,7 @@ vs-promo-banner,
 }
 
 .vs-promo-banner__title {
+  color: $c-black;
   position: relative;
   display: block;
   margin: 0 0 1.2rem 0;
@@ -52,7 +53,7 @@ vs-promo-banner,
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.25rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: center;
 }
 

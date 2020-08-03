@@ -61,7 +61,7 @@ vs-teaser,
   font-family: $font-family-serif;
   font-size: 3.4375rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: 0;
   line-height: 3.125rem;
   position: relative;
@@ -76,7 +76,7 @@ vs-teaser,
   font-family: $font-family-serif;
   font-size: 1.125rem;
   line-height: 1.5rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: 1.6875rem;
   position: relative;
 
