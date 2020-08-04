@@ -52427,7 +52427,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var VIRGIN_DEFAULT_COLOR = 'red';
+	var VIRGIN_DEFAULT_COLOR = 'default';
 
 	/**
 	 * This class list must be used on pictures.scss file to fix image loading on
