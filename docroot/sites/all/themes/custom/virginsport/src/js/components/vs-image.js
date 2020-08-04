@@ -1,6 +1,6 @@
 import $ from '../lib/jquery';
 
-const VIRGIN_DEFAULT_COLOR = 'red';
+const VIRGIN_DEFAULT_COLOR = 'default';
 
 /**
  * This class list must be used on pictures.scss file to fix image loading on
