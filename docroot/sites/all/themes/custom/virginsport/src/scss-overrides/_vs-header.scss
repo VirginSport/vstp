@@ -23,14 +23,10 @@
 }
 
 .vs-header__logo {
-  top: .55rem;
+  top: .6rem;
 
   @include media-breakpoint-up(md) {
-    top: -.5rem;
-  }
-
-  @include media-breakpoint-up(lg) {
-    top: -.5625rem;
+    top: .25rem;
   }
 }
 
