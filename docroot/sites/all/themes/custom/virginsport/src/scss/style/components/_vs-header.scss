@@ -101,7 +101,7 @@ vs-header,
       padding: rem(10) rem(18);
       border: rem(2) solid white;
       position: relative;
-      top: rem(-6);
+      top: rem(-3);
 
       &:hover {
         background-color: transparent;
@@ -111,7 +111,7 @@ vs-header,
 
       .vs-header--pinned &,
       .vs-header--unpinned & {
-        top: rem(-6);
+        top: rem(-3);
       }
 
       .vs-header--top & {
@@ -405,13 +405,14 @@ vs-header,
   }
 
   .vs-header--not-top {
+    min-height: rem(70);
     padding-top: .5625rem;
     padding-bottom: .5625rem;
 
     .vs-header__logo {
       width: 2.5625rem;
       height: 2.5625rem;
-      top: -0.125rem;
+      top: rem(5);
     }
   }
 }
@@ -424,7 +425,7 @@ vs-header,
   .vs-header__nav {
     display: inline-block;
     position: relative;
-    top: 6px;
+    top: 12px;
   }
 
   .vs-header__basket {
