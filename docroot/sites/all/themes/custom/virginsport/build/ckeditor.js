@@ -48,11 +48,11 @@
 	'use strict';
 
 	// Webpack JS entry file
-	__webpack_require__(303);
+	__webpack_require__(305);
 
 /***/ },
 
-/***/ 303:
+/***/ 305:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
