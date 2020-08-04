@@ -42,10 +42,10 @@ vs-header,
 
 .vs-header__logo {
   position: absolute;
-  background: transparent url('../img/vs-logo.svg') no-repeat left center;
+  background: transparent url('../img/lsc-logo-full.png') no-repeat left center;
   background-size: contain;
-  width: 5.05625rem;
-  height: 1.875rem;
+  height: 2.5625rem;
+  width: 9.375rem;
   top: .25rem;
   z-index: -1;
 
@@ -92,7 +92,7 @@ vs-header,
     margin-top: 0;
 
     .vs-header__nav-link {
-      font-size: rem(16);
+      font-size: rem(14);
       color: #C6C6C6;
       background-color: white;
       border-radius: rem(96);
@@ -101,7 +101,7 @@ vs-header,
       padding: rem(10) rem(18);
       border: rem(2) solid white;
       position: relative;
-      top: rem(-2);
+      top: rem(-3);
 
       &:hover {
         background-color: transparent;
@@ -111,11 +111,11 @@ vs-header,
 
       .vs-header--pinned &,
       .vs-header--unpinned & {
-        top: rem(-6);
+        top: rem(-3);
       }
 
       .vs-header--top & {
-        top: rem(-2);
+        top: rem(-4);
       }
     }
   }
@@ -126,7 +126,7 @@ vs-header,
   font-family: $font-family-serif;
   color: $c-white;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1rem;
 
   &:hover,
@@ -137,8 +137,8 @@ vs-header,
   }
 
   .active & {
-    border-bottom: 4px solid $c-white;
-    padding-bottom: 2px;
+    border-bottom: 2px solid $c-white;
+    padding-bottom: 4px;
   }
 }
 
@@ -348,11 +348,11 @@ vs-header,
 }
 
 .vs-header--not-top {
-  background-color: $c-black;
+  background-color: $c-lsc-red;
   top: 0;
 
   .vs-header__logo {
-    background-image: url('../img/vs-logo-alternate.png');
+    background-image: url('../img/lsc-logo-mark.png');
   }
 }
 
@@ -378,8 +378,8 @@ vs-header,
 
   .vs-header__logo {
     @include transition(all .5s ease-in-out);
-    height: 4.125rem;
-    width: 11.25rem;
+    height: 2.5625rem;
+    width: 9.375rem;
     top: -.8125rem;
   }
 
@@ -405,13 +405,14 @@ vs-header,
   }
 
   .vs-header--not-top {
+    min-height: rem(70);
     padding-top: .5625rem;
     padding-bottom: .5625rem;
 
     .vs-header__logo {
-      width: 7.75rem;
-      height: 2.8125rem;
-      top: -.1875rem;
+      width: 2.5625rem;
+      height: 2.5625rem;
+      top: rem(5);
     }
   }
 }
@@ -424,7 +425,7 @@ vs-header,
   .vs-header__nav {
     display: inline-block;
     position: relative;
-    top: 6px;
+    top: 12px;
   }
 
   .vs-header__basket {

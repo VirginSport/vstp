@@ -42,7 +42,6 @@ vsCountDown();
 vsHeader();
 vsIFrame();
 vsIPE();
-vsOutline();
 vsRegion();
 vsSharer();
 vsVideoBanner();

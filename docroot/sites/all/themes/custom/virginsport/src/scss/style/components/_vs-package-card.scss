@@ -135,18 +135,22 @@ vs-package-card,
       background-color: map_get($map, 'solid-color');
     }
 
-    .vs-package-card__title,
     .vs-package-card__description,
     .vs-package-card__price {
       color: map_get($map, 'text-color');
+    }
+    .vs-package-card__title {
+      color: map_get($map, 'title-color');
     }
   }
 
   .vs-region--gradient-#{$color} vs-package-card,
   .vs-region--gradient-#{$color} .vs-package-card {
-    .vs-package-card__descriptive-title,
     .vs-package-card__descriptive-content {
       color: map_get($map, 'text-color');
+    }
+    .vs-package-card__descriptive-title {
+      color: map_get($map, 'title-color');
     }
   }
 }

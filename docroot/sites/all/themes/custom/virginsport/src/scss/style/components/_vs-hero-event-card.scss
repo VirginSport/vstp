@@ -123,10 +123,12 @@ vs-hero-event-card,
     .vs-hero-event-card__content {
       @include gradient-directional(map_get($map, 'from'), map_get($map, 'to'), map_get($map, 'rotate'));
 
-      .vs-hero-event-card__title,
       .vs-hero-event-card__date,
       .vs-hero-event-card__text {
         color: map_get($map, 'text-color');
+      }
+      .vs-hero-event-card__title, {
+        color: map_get($map, 'title-color');
       }
 
       .vs-hero-event-card__button:first-child {

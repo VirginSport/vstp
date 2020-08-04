@@ -17,7 +17,7 @@ vs-accordion,
 .vs-accordion__title {
   padding: .938rem 0 .625rem 1.875rem;
   font-family: $font-family-serif;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: $c-black;
   font-size: 1.125rem;
   line-height: 1.125rem;
@@ -89,7 +89,7 @@ vs-accordion,
   min-height: 4.375rem;
   padding: .938rem 1.25rem .938rem 0;
   font-family: $font-family-serif;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: $c-black;
   font-size: .75rem;
   line-height: 1.25rem;

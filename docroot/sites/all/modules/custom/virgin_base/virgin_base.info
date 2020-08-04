@@ -178,6 +178,7 @@ features[variable][] = metatag_enable_node
 features[variable][] = metatag_enable_node__event
 features[variable][] = metatag_enable_node__festival
 features[variable][] = metatag_enable_node__page
+features[variable][] = site_name
 features[views_view][] = event_reference
 features[views_view][] = festival_event_reference
 features[views_view][] = festival_reference

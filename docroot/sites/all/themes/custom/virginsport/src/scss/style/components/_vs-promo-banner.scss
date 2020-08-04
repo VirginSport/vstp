@@ -45,6 +45,7 @@ vs-promo-banner,
 }
 
 .vs-promo-banner__title {
+  color: $c-black;
   position: relative;
   display: block;
   margin: 0 0 1.2rem 0;
@@ -52,7 +53,7 @@ vs-promo-banner,
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.25rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: center;
 }
 
@@ -131,10 +132,6 @@ vs-promo-banner,
   $map: map_get($color-schemes, $color);
 
   .vs-promo-banner--color-#{$color} {
-    .vs-promo-banner__title:after {
-      background-color: map_get($map, 'solid-color');
-    }
-
     .vs-promo-banner__caption {
       color: map_get($map, 'solid-color');
     }
@@ -174,16 +171,6 @@ vs-promo-banner,
     font-size: 3.125rem;
     line-height: 3.125rem;
     text-align: left;
-
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: -1.45rem;
-      left: 0;
-      width: 2.5rem;
-      height: 0.25rem;
-      background-color: $c-blue;
-    }
   }
 
   .vs-promo-banner__content {

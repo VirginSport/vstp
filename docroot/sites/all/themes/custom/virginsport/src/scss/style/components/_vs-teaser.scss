@@ -61,7 +61,7 @@ vs-teaser,
   font-family: $font-family-serif;
   font-size: 3.4375rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: 0;
   line-height: 3.125rem;
   position: relative;
@@ -75,20 +75,11 @@ vs-teaser,
 .vs-teaser__subtitle {
   font-family: $font-family-serif;
   font-size: 1.125rem;
+  font-weight: bold;
   line-height: 1.5rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: 1.6875rem;
   position: relative;
-
-  &:after {
-    content: '';
-    background-color: $c-orange;
-    height: .125rem;
-    width: 1.25rem;
-    position: absolute;
-    left: 0;
-    bottom: -.5625rem;
-  }
 }
 
 .vs-teaser__text {
@@ -121,10 +112,6 @@ vs-teaser,
 
   .vs-teaser__subtitle {
     padding: 0;
-
-    &:after {
-      left: 0;
-    }
   }
 
   .vs-teaser__text {
@@ -143,12 +130,6 @@ vs-teaser,
     font-size: 1.75rem;
     margin-bottom: 2.875rem;
     line-height: 2rem;
-
-    &:after {
-      height: .25rem;
-      width: 2.5rem;
-      bottom: -1.5rem;
-    }
   }
 }
 
@@ -161,7 +142,6 @@ vs-teaser,
   .vs-teaser__subtitle {
     font-size: 2.5rem;
     line-height: 3rem;
-    font-weight: 500;
   }
 
   .vs-teaser__text {
@@ -361,7 +341,6 @@ vs-teaser,
     .vs-teaser__subtitle {
       font-size: 1.75rem;
       line-height: 2rem;
-      font-weight: 500;
     }
 
     .vs-teaser__content {
@@ -1365,19 +1344,17 @@ vs-teaser,
   $map: map_get($color-schemes, $color);
 
   .vs-region--gradient-#{$color} {
-    .vs-teaser__subtitle,
     .vs-teaser__text {
       color: map_get($map, 'text-color');
+    }
+    .vs-teaser__subtitle {
+      color: map_get($map, 'title-color');
     }
   }
 
   .vs-introduction--gradient-#{$color} {
     .vs-teaser__title {
       color: map_get($map, 'from');
-    }
-
-    .vs-teaser__subtitle:after {
-      background-color: map_get($map, 'solid-color');
     }
   }
 }

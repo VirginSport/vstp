@@ -24,9 +24,9 @@ vs-card-past,
 .vs-card-past__past-title {
   font-family: $font-family-serif;
   font-size: 1.125rem;
-  color: rgba($c-black, .6);
+  color: $c-black;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .vs-card-past__container {
@@ -61,7 +61,7 @@ vs-card-past,
   color: $c-white;
   font-size: 1.125rem;
   line-height: 1.250rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: .25rem;
   position: relative;
 }
@@ -172,11 +172,13 @@ vs-card-past,
   $map: map_get($color-schemes, $color);
 
   .vs-card-past--color-#{$color} {
-    .vs-card-past__title,
     .vs-card-past__text,
     .vs-card-past__date,
     .vs-card-past__cta {
       color: map_get($map, 'text-color');
+    }
+    .vs-card-past__title {
+      color: map_get($map, 'title-color');
     }
   }
 }

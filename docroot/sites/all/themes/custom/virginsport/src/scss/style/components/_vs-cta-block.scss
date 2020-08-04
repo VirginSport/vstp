@@ -12,7 +12,7 @@ vs-cta-block,
 .vs-cta-block__row {
 
   .vs-cta-block--col-2 &:nth-child(even) {
-    margin-top: 0.625rem;  
+    margin-top: 0.625rem;
   }
 
 }
@@ -21,7 +21,7 @@ vs-cta-block,
   @include make-col(12);
 
   text-align: center;
-  color:$c-white; 
+  color:$c-white;
 
   position: relative;
   padding-left: 0;
@@ -34,7 +34,7 @@ vs-cta-block,
   overflow: hidden;
 
   &:first-child {
-    margin-top: 0;  
+    margin-top: 0;
   }
 
   &:hover .vs-cta-block__background--with-image {
@@ -73,23 +73,23 @@ vs-cta-block,
   display: block;
   padding: 0;
   margin-top: 5.125rem;
-  margin-bottom: 0; 
+  margin-bottom: 0;
 
   padding-left: 2.5rem;
   padding-right: 2.4375rem;
 
   font-family: $font-family-serif;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.25rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .vs-cta-block__content {
   display: block;
   position: absolute;
   bottom: 3.5rem;
-  
+
   padding: 0 2rem 0 2rem;
   margin: 0 0 0.9375rem 0;
   width: 100%;

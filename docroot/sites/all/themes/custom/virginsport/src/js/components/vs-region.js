@@ -76,7 +76,7 @@ export default () => {
   // interactions, as such run update at an interval to ensure the background
   // occupies the full size of the element.
   window.setInterval(update, 500);
-  
+
   // Register a behaviour handler to find if regions have been added via AJAX
   // or initial page load
   Drupal.behaviors.virginSportCurve = {
@@ -89,31 +89,31 @@ export default () => {
  */
 function findRegions() {
   let $regions = $('.vs-region').not('.vs-region--found');
-  
+
   $regions
     .addClass('vs-region--found')
     .each((idx, el) => {
-      
+
       // Create regions
       regions.push(new Region(el, regions[idx - 1]));
-      
+
       // Find if spacer needs to be hidden due to some components being the last
       // components in the region.
       let $region = $(el);
       let spacerless_components = SPACERLESS_LAST_COMPONENTS.concat(SELF_PADDED_COMPONENTS);
       let spacerless_component_selector = spacerless_components.join(',');
       let self_padded_components_selector = SELF_PADDED_COMPONENTS.join(',');
-      
+
       // Make sure the element preceding the region background, if it's one of
       // the spacerless components, mark them as such.
       let $prev = $region.find('.vs-region__bg').prev();
       let $prevChildren = $prev.find(spacerless_component_selector);
       let $prevComponent = $prev.filter(spacerless_component_selector);
-      
+
       // Find if the component is self padded, and if it is, mark it as such
       $prevChildren.filter(self_padded_components_selector).addClass('vs-region-self-padded');
       $prevComponent.filter(self_padded_components_selector).addClass('vs-region-self-padded');
-      
+
       if ($prevChildren.length || $prevComponent.length) {
         $region.addClass('vs-region--hide-bg-spacer');
       }
@@ -130,7 +130,7 @@ function findRegions() {
  * Region applies an SVG background to a given element
  */
 class Region {
-  
+
   /**
    * @param {Element} el
    */
@@ -138,7 +138,7 @@ class Region {
     this.el = el;
     this.lastWidth = 0;
     this.lastHeight = 0;
-    this.isCurved = el.getAttribute('data-vs-region-curved') == true;
+    this.isCurved = false;
     this.previousRegion = previousRegion;
     this.background = $(el).find('[data-vs-region-background]').first().attr('data-vs-region-background');
 
@@ -150,20 +150,20 @@ class Region {
    * Update the SVG element
    */
   update() {
-    
+
     // If the parent element is not visible, bailout
     if (this.el.offsetParent === null) {
       return;
     }
-    
+
     let width = this.el.offsetWidth;
     let height = this.el.offsetHeight;
-    
+
     // If the height did not change since last update, bailout
     if (this.lastWidth == width && this.lastHeight == height) {
       return;
     }
-    
+
     this.lastHeight = height;
     this.lastWidth = width;
 
@@ -172,13 +172,13 @@ class Region {
     let svgHeight = this.isCurved ? (height + curveHeight) : height;
     let offsetHeight = this.isCurved ? curveHeight * -1 : 0;
     let zIndex = 0;
-    
+
     // Hack: For IE <= 11 the SVG the offset must be 0 or the SVG is pushed
     // higher than the region it is in.
     if (currentIEVersion >= 10 && currentIEVersion <= 11) {
       offsetHeight = 0;
     }
-    
+
     // Hack: For IE 10 the z-index must be set to -1 or the rendering might
     // hide other elements in the page on the first pass render.
     if (currentIEVersion == 10) {
@@ -190,7 +190,7 @@ class Region {
       viewBox: `0 0 ${width} ${svgHeight}`,
       style: `position: absolute; top: ${offsetHeight}px; left: 0; bottom: 0; right: 0; z-index: ${zIndex}`
     });
-    
+
     setAttributes(this.spacer, {
       style: `height: ${curveHeight}px`
     });
@@ -202,7 +202,7 @@ class Region {
     if (!this.isCurved) {
       setAttributes(this.svg, { style: 'display: none' });
     }
-    
+
     if (this.previousRegion && this.previousRegion.spacer) {
       setAttributes(this.previousRegion.el, {
         'data-vs-next-region-overlap': this.el.getAttribute('data-vs-region-overlap'),
@@ -214,20 +214,20 @@ class Region {
         'data-vs-region-curved': this.el.getAttribute('data-vs-region-curved')
       });
     }
-  
+
     // Apply the background rotation
     let style = window.getComputedStyle(this.svg);
     let bgRotation = parseInt(style['backgroundSize'], 10);
-    
+
     // If for some reason rotation could not be parsed, fallback to 0
     bgRotation = isNaN(bgRotation) ? 0 : bgRotation;
-    
+
     if (bgRotation) {
       setAttributes(this.gradient, {
         gradientTransform: `rotate(${bgRotation + GRADIENT_ROTATE_ADJUST})`
       });
     }
-  
+
     // Once the region has been updated, fire an event to any listeners
     $('body').trigger('vs_region__finished');
   }
@@ -238,25 +238,25 @@ class Region {
   setup() {
     this.pathID = id();
     this.gradientID = id();
-    
+
     // Given the SVG is position absolutely inside the parent element
     // the parent element must be relatively positioned.
     setAttributes(this.el, {
       style: 'position: relative;'
     });
-    
+
     this.svg = element(null, 'svg', {
       version: '1.1',
       xmlns: 'http://www.w3.org/2000/svg',
       preserveAspectRatio: 'xMinYMax slice',
       class: 'vs-region__bg'
     });
-  
+
     this.path = element(this.svg, 'path', {
       id: this.pathID,
       fill: `url(#${this.gradientID})`
     });
-  
+
     // Setup the gradient in the SVG
     this.gradient = element(this.svg, 'linearGradient', {
       id: this.gradientID,
@@ -273,20 +273,20 @@ class Region {
       'stop-opacity': 1,
       class: 'stop-a'
     });
-  
+
     element(this.gradient, 'stop', {
       offset: '100%',
       'stop-color': '#fff',
       'stop-opacity': 1,
       class: 'stop-b'
     });
-    
+
     // Setup background image if the region has one
     if (this.background) {
       this.patternID = id();
-  
+
       this.defs = element(this.svg, 'defs');
-  
+
       this.pattern = element(this.defs, 'pattern', {
         id: this.patternID,
         patternUnits: 'userSpaceOnUse',
@@ -295,7 +295,7 @@ class Region {
         x: 0,
         y: 0
       });
-  
+
       this.image = element(this.pattern, 'image', {
         x: 0,
         y: 0,
@@ -303,11 +303,11 @@ class Region {
         height: '100%',
         preserveAspectRatio: 'xMinYMin slice'
       });
-  
+
       setAttributes(this.path, {
         fill: `url(#${this.patternID})`
       });
-  
+
       this.el.classList.add('vs-region--bg-image');
       this.svg.setAttributeNS( "http://www.w3.org/1999/xmlns", "xlink", "http://www.w3.org/1999/xlink");
       this.image.setAttributeNS( "http://www.w3.org/1999/xlink", "href", this.background);
@@ -315,7 +315,7 @@ class Region {
 
     // Create a spacer element to cover region spacing
     this.spacer = window.document.createElement('div');
-    
+
     setAttributes(this.spacer, {
       class: 'vs-region__bg-spacer'
     });
@@ -336,7 +336,7 @@ function getCurvePath(w, h) {
   let cx = w * cx_ratio;
   let cy = 0;
   let y = w * CURVE_WIDTH_HEIGHT_RATIO;
-  
+
   return `M0 ${y} C ${cx} ${cy}, ${w - cx} ${cy}, ${w} ${y} V ${h + y} H 0 V 0 Z`;
 }
 
@@ -360,15 +360,15 @@ function id() {
  */
 function element(parent, name, attrs) {
   let el = window.document.createElementNS('http://www.w3.org/2000/svg', name);
-  
+
   if (attrs) {
     setAttributes(el, attrs);
   }
-  
+
   if (parent) {
     parent.appendChild(el);
   }
-  
+
   return el;
 }
 

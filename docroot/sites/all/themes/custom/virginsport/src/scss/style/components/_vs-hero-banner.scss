@@ -21,11 +21,6 @@ vs-hero-banner,
   width: 100%;
 }
 
-.vs-hero-banner__default-background {
-  background: transparent url('../img/default-header-banner.jpg') no-repeat center top;
-  background-size: cover;
-}
-
 .vs-head-region .vs-hero-banner__background--fixed {
   position: fixed;
   max-height: 100%;
@@ -67,8 +62,9 @@ vs-hero-banner,
   @include transition(all .5s ease-in-out);
   font-family: $font-family-serif;
   font-size: 1.25rem;
+  font-weight: bold;
   margin-bottom: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   &:last-child {
     margin-bottom: 0;

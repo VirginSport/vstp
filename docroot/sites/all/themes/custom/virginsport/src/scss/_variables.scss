@@ -23,7 +23,6 @@
 
 // Custom theme colors
 $c-white:                     #FFFFFF;
-$c-black:                     #000000;
 $c-gray-dark:                 #303030;
 $c-gray:                      #b2b2b2;
 $c-gray-light:                #f0f0f0;
@@ -47,17 +46,26 @@ $c-green:                     #27C161;
 $c-green-light:               #BEDE19;
 $c-green-lighter:             #D3F7DB;
 
+$c-lsc-red:                   #FF5555;
+$c-yellow-brighter:           #FFE01C;
+$c-pool-blue:                 #00C5DF;
+$c-putty:                     #F0F0F0;
+$c-graphite:                  #1E1E1E;
+$c-black:                     #000000;
+$c-body-text:                 #777777;
+
 // Brand color schemes
 $color-schemes: (
   default: (
-    solid-color: #F0F0F0,
-    text-color: $c-black,
-    from: #F0F0F0,
-    to: #F0F0F0,
+    solid-color: $c-putty,
+    text-color: $c-body-text,
+    title-color: $c-black,
+    from: $c-putty,
+    to: $c-putty,
     rotate: 0deg,
     card-rotate: 135deg,
-    outline-from: #F0F0F0,
-    outline-to: #F0F0F0,
+    outline-from: $c-putty,
+    outline-to: $c-putty,
     outline-rotate: 0%,
     is-solid: true,
     input-color: transparent,
@@ -66,6 +74,7 @@ $color-schemes: (
   black: (
     solid-color: $c-black,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-black,
     to: $c-black,
     rotate: 0deg,
@@ -78,14 +87,15 @@ $color-schemes: (
     input-border-color: $c-white
   ),
   gray: (
-    solid-color: #F0F0F0,
-    text-color: $c-black,
-    from: #F0F0F0,
-    to: #F0F0F0,
+    solid-color: $c-putty,
+    text-color: $c-body-text,
+    title-color: $c-black,
+    from: $c-putty,
+    to: $c-putty,
     rotate: 0deg,
     card-rotate: 135deg,
-    outline-from: #F0F0F0,
-    outline-to: #F0F0F0,
+    outline-from: $c-putty,
+    outline-to: $c-putty,
     outline-rotate: 0%,
     is-solid: true,
     input-color: $c-white,
@@ -93,7 +103,8 @@ $color-schemes: (
   ),
   gray-dark: (
     solid-color: #E0E0E0,
-    text-color: $c-black,
+    text-color: $c-body-text,
+    title-color: $c-black,
     from: #E0E0E0,
     to: #E0E0E0,
     rotate: 0deg,
@@ -107,8 +118,9 @@ $color-schemes: (
   ),
   white: (
     solid-color: $c-white,
-    text-color: $c-black,
+    text-color: $c-body-text,
     text-color-focus: $c-black,
+    title-color: $c-black,
     from: $c-white,
     to: $c-white,
     rotate: 0deg,
@@ -123,6 +135,7 @@ $color-schemes: (
   blue: (
     solid-color: $c-blue,
     text-color: $c-white,
+    title-color: $c-white,
     from: #1F85FF,
     to: #4231CB,
     rotate: -45deg,
@@ -137,6 +150,7 @@ $color-schemes: (
   blue-solid: (
     solid-color: $c-blue,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-blue,
     to: $c-blue,
     rotate: -45deg,
@@ -151,6 +165,7 @@ $color-schemes: (
   teal: (
     solid-color: $c-teal,
     text-color: $c-white,
+    title-color: $c-white,
     from: #01B9C0,
     to: #001642,
     rotate: -45deg,
@@ -165,6 +180,7 @@ $color-schemes: (
   teal-solid: (
     solid-color: $c-teal,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-teal,
     to: $c-teal,
     rotate: -45deg,
@@ -179,6 +195,7 @@ $color-schemes: (
   orange: (
     solid-color: $c-orange,
     text-color: $c-white,
+    title-color: $c-white,
     to: #FFE386,
     from: #FF5858,
     rotate: -45deg,
@@ -193,6 +210,7 @@ $color-schemes: (
   orange-solid: (
     solid-color: $c-orange,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-orange,
     to: $c-orange,
     rotate: -45deg,
@@ -207,6 +225,7 @@ $color-schemes: (
   purple: (
     solid-color: $c-purple,
     text-color: $c-white,
+    title-color: $c-white,
     from: #9D50BB,
     to: #3A2899,
     rotate: -45deg,
@@ -221,6 +240,7 @@ $color-schemes: (
   purple-solid: (
     solid-color: $c-purple,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-purple,
     to: $c-purple,
     rotate: -45deg,
@@ -235,6 +255,7 @@ $color-schemes: (
   brown: (
     solid-color: $c-brown,
     text-color: $c-white,
+    title-color: $c-white,
     from: #840324,
     to: #061161,
     rotate: -45deg,
@@ -249,6 +270,7 @@ $color-schemes: (
   brown-solid: (
     solid-color: $c-brown,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-brown,
     to: $c-brown,
     rotate: -45deg,
@@ -263,6 +285,7 @@ $color-schemes: (
   rose: (
     solid-color: $c-rose,
     text-color: $c-white,
+    title-color: $c-white,
     from: #F857A6,
     to: #FF5858,
     rotate: -45deg,
@@ -277,6 +300,7 @@ $color-schemes: (
   rose-solid: (
     solid-color: $c-rose,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-rose,
     to: $c-rose,
     rotate: -45deg,
@@ -291,6 +315,7 @@ $color-schemes: (
   violet: (
     solid-color: $c-violet,
     text-color: $c-white,
+    title-color: $c-white,
     from: #FB8B5F,
     to: #504EA1,
     rotate: -45deg,
@@ -305,6 +330,7 @@ $color-schemes: (
   violet-solid: (
     solid-color: $c-violet,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-violet,
     to: $c-violet,
     rotate: -45deg,
@@ -319,6 +345,7 @@ $color-schemes: (
   red: (
     solid-color: #FF0040,
     text-color: $c-white,
+    title-color: $c-white,
     from: #FF0040,
     to: #830A2A,
     rotate: -45deg,
@@ -333,6 +360,7 @@ $color-schemes: (
   red-yellow: (
     solid-color: $c-red,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-red,
     to: $c-yellow,
     rotate: -45deg,
@@ -347,6 +375,7 @@ $color-schemes: (
   red-pinky-red: (
     solid-color: $c-red,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-red,
     to: $c-pinky-red,
     rotate: -45deg,
@@ -361,6 +390,7 @@ $color-schemes: (
   red-dark-red-darker: (
     solid-color: $c-red-dark,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-red-dark,
     to: $c-red-darker,
     rotate: 0deg,
@@ -373,8 +403,9 @@ $color-schemes: (
     input-border-color: $c-white
   ),
   festival-hackney: (
-    solid-color: #EA2322,
+    solid-color: #FF0400,
     text-color: $c-white,
+    title-color: $c-white,
     from: #EA2322,
     to: #232073,
     rotate: -90deg,
@@ -389,6 +420,7 @@ $color-schemes: (
   festival-british: (
     solid-color: #D60000,
     text-color: $c-white,
+    title-color: $c-white,
     from: #D60000,
     to: #FFE200,
     rotate: -90deg,
@@ -401,10 +433,26 @@ $color-schemes: (
     input-border-color: $c-white
   ),
   festival-sanfran: (
-    solid-color: #01B9C0,
+    solid-color: #00A7B1,
     text-color: $c-white,
+    title-color: $c-white,
     from: #01B9C0,
-    to: #00264F,
+    to: #001642,
+    rotate: -90deg,
+    card-rotate: 90deg,
+    outline-from: #01B9C0,
+    outline-to: #00264F,
+    outline-rotate: -45%,
+    is-solid: false,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
+  festival-oxford: (
+    solid-color: #00A7B1,
+    text-color: $c-white,
+    title-color: $c-white,
+    from: #01B9C0,
+    to: #001642,
     rotate: -90deg,
     card-rotate: 90deg,
     outline-from: #01B9C0,
@@ -417,6 +465,7 @@ $color-schemes: (
   pinky-red-solid: (
     solid-color: $c-pinky-red,
     text-color: $c-white,
+    title-color: $c-white,
     from: $c-pinky-red,
     to: $c-pinky-red,
     rotate: -45deg,
@@ -428,15 +477,31 @@ $color-schemes: (
     input-color: $c-white,
     input-border-color: $c-white
   ),
-  yellow-solid: (
-    solid-color: $c-yellow,
-    text-color: $c-black,
-    from: $c-yellow,
-    to: $c-yellow,
+  lsc-red-solid: (
+    solid-color: $c-lsc-red,
+    text-color: $c-white,
+    title-color: $c-white,
+    from: $c-lsc-red,
+    to: $c-lsc-red,
     rotate: -45deg,
     card-rotate: 135deg,
-    outline-from: $c-yellow,
-    outline-to: $c-yellow,
+    outline-from: $c-lsc-red,
+    outline-to: $c-lsc-red,
+    outline-rotate: -45%,
+    is-solid: true,
+    input-color: $c-white,
+    input-border-color: $c-white
+  ),
+  yellow-solid: (
+    solid-color: $c-yellow-brighter,
+    text-color: $c-black,
+    title-color: $c-black,
+    from: $c-yellow,
+    to: $c-yellow-brighter,
+    rotate: -45deg,
+    card-rotate: 135deg,
+    outline-from: $c-yellow-brighter,
+    outline-to: $c-yellow-brighter,
     outline-rotate: -45%,
     is-solid: true,
     input-color: $c-white,
@@ -445,6 +510,7 @@ $color-schemes: (
   asics-blue: (
     solid-color: #001E62,
     text-color: $c-white,
+    title-color: $c-white,
     from: #001E62,
     to: #001E62,
     rotate: -45deg,
@@ -459,6 +525,7 @@ $color-schemes: (
   asics-light-blue: (
     solid-color: #00BBDC,
     text-color: $c-white,
+    title-color: $c-white,
     from: #00BBDC,
     to: #00BBDC,
     rotate: -45deg,
@@ -473,6 +540,7 @@ $color-schemes: (
   asics-light-green: (
     solid-color: #D0DF00,
     text-color: $c-white,
+    title-color: $c-white,
     from: #D0DF00,
     to: #D0DF00,
     rotate: -45deg,
@@ -487,6 +555,7 @@ $color-schemes: (
   asics-coral: (
     solid-color: #F8485E,
     text-color: $c-white,
+    title-color: $c-white,
     from: #F8485E,
     to: #F8485E,
     rotate: -45deg,
@@ -501,6 +570,7 @@ $color-schemes: (
   asics-tertiary-green: (
     solid-color: #00B398,
     text-color: $c-white,
+    title-color: $c-white,
     from: #00B398,
     to: #00B398,
     rotate: -45deg,
@@ -515,6 +585,7 @@ $color-schemes: (
   asics-tertiary-orange: (
     solid-color: #FFA300,
     text-color: $c-white,
+    title-color: $c-white,
     from: #FFA300,
     to: #FFA300,
     rotate: -45deg,
@@ -529,6 +600,7 @@ $color-schemes: (
   asics-tertiary-purple: (
     solid-color: #9B26B6,
     text-color: $c-white,
+    title-color: $c-white,
     from: #9B26B6,
     to: #9B26B6,
     rotate: -45deg,
@@ -543,6 +615,7 @@ $color-schemes: (
   nike-red: (
     solid-color: #ff0400,
     text-color: $c-white,
+    title-color: $c-white,
     from: #ff0400,
     to: #ff0400,
     rotate: -45deg,
@@ -557,6 +630,7 @@ $color-schemes: (
   nike-blue: (
     solid-color: #1700FF,
     text-color: $c-white,
+    title-color: $c-white,
     from: #1700FF,
     to: #1700FF,
     rotate: -45deg,
@@ -571,6 +645,7 @@ $color-schemes: (
   nike-green: (
     solid-color: #BEFE04,
     text-color: $c-white,
+    title-color: $c-white,
     from: #BEFE04,
     to: #BEFE04,
     rotate: -45deg,
@@ -638,7 +713,7 @@ $state-danger:                #EA2322;
 $button-hover:                .7;
 $main-nav-breakpoint:         1240px;
 $sticky-basket-height:        6.25rem;
-$bar-height:        6.25rem;
+$bar-height:                  6.25rem;
 
 
 // Colors
@@ -707,8 +782,8 @@ $enable-transitions:        true;
 //
 // Settings for the `<body>` element.
 
-$body-bg:    #f0f0f0;
-$body-color: rgba($c-black, .6);
+$body-bg:    $c-putty;
+$body-color: $c-body-text;
 
 
 // Links
@@ -759,8 +834,8 @@ $link-hover-decoration: none;
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:    'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-$font-family-serif:         'EuclidFlex', Georgia, "Times New Roman", Times, serif;
+$font-family-sans-serif:    'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$font-family-serif:         'Montserrat', Georgia, "Times New Roman", Times, serif;
 // $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // $font-family-base:       $font-family-sans-serif;
 

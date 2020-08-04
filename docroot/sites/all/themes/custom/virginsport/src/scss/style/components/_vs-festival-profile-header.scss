@@ -120,18 +120,22 @@ vs-festival-profile-header,
   $map: map_get($color-schemes, $color);
 
   .vs-festival-profile-header--color-#{$color} {
-    .vs-festival-profile-header__title,
     .vs-festival-profile-header__date,
     .vs-festival-profile-header__content {
       color: map_get($map, 'solid-color');
     }
+    .vs-festival-profile-header__title {
+      color: map_get($map, 'title-color');
+    }
   }
 
   .vs-region--gradient-#{$color} .vs-festival-profile-header--upcoming {
-    .vs-festival-profile-header__title,
     .vs-festival-profile-header__date,
     .vs-festival-profile-header__content {
       color: map_get($map, 'text-color');
+    }
+    .vs-festival-profile-header__title {
+      color: map_get($map, 'title-color');
     }
   }
 }
