@@ -102,7 +102,6 @@
   line-height: 1.250rem;
   margin-bottom: .25rem;
   position: relative;
-  text-transform: capitalize;
 
   @include media-breakpoint-up(lg) {
     font-size: 1.875rem;
@@ -155,7 +154,6 @@
   font-family: $font-family-serif;
   font-weight: 500;
   font-size: .875rem;
-  text-transform: capitalize;
 
   @include media-breakpoint-up(lg) {
     font-size: 1.5rem;
