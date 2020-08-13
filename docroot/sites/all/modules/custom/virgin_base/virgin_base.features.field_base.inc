@@ -693,8 +693,13 @@ function virgin_base_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'white' => 'White',
+        'lsc-red-solid' => 'LSC Red',
+        'yellow-solid' => 'Brighter Yellow',
+        'pool-blue-solid' => 'Pool Blue',
+        'putty-solid' => 'Putty',
+        'graphite-solid' => 'Graphite',
         'black' => 'Black',
+        'white' => 'White',
         'gray' => 'Gray',
         'blue' => 'Blue',
         'blue-solid' => 'Blue (Solid)',
@@ -714,7 +719,6 @@ function virgin_base_field_default_field_bases() {
         'red-yellow' => 'Red / Yellow',
         'red-pinky-red' => 'Red / Pinky-Red',
         'red-dark-red-darker' => 'Red Dark / Red Darker',
-        'lsc-red-solid' => 'LSC Red (Solid)',
         'festival-hackney' => 'Festival: Hackney',
         'festival-british' => 'Festival: British',
         'festival-sanfran' => 'Festival: SanFran',

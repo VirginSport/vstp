@@ -26,7 +26,6 @@ vs-card-past,
   font-size: 1.125rem;
   color: $c-black;
   text-align: center;
-  text-transform: capitalize;
 }
 
 .vs-card-past__container {
@@ -61,7 +60,6 @@ vs-card-past,
   color: $c-white;
   font-size: 1.125rem;
   line-height: 1.250rem;
-  text-transform: capitalize;
   margin-bottom: .25rem;
   position: relative;
 }
@@ -70,10 +68,10 @@ vs-card-past,
   position: relative;
   padding-bottom: 0.938rem;
   color: $c-white;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-family: $font-family-serif;
   font-size: .75rem;
-  font-weight: 200;
+  font-weight: 300;
   line-height: 0.875rem;
 }
 
