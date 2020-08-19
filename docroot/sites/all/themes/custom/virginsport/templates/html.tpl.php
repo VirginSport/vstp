@@ -54,13 +54,15 @@
     <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php print $current_path; ?>/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?php print $current_path; ?>/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512"  href="<?php print $current_path; ?>/favicons/android-chrome-512x512.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php print $current_path; ?>/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php print $current_path; ?>/favicons/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#830A2A">
-    <meta name="msapplication-TileImage" content="<?php print $current_path;  ?>/favicons/ms-icon-144x144.png">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#830A2A">
-    <meta name="theme-color" content="#830A2A">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php print $current_path; ?>/favicons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FF5555">
+    <meta name="msapplication-TileColor" content="#FF5555">
+    <meta name="msapplication-TileImage" content="<?php print $current_path;  ?>/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#FF5555">
 
     <?php foreach ($gtm_metadata as $key => $value): ?>
       <meta name="<?php print $key; ?>" content="<?php print check_plain($value); ?>">
