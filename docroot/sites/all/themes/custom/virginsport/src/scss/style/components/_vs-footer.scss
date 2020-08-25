@@ -6,6 +6,7 @@ vs-footer,
 .vs-footer {
   @include clearfix();
   background-color: $c-white;
+  border-top: 2px solid $c-lsc-red;
   display: block;
   min-height: 15.625rem;
   position: relative;
