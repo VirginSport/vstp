@@ -1,6 +1,6 @@
 (function ($) {
 
-  var VIRGIN_REGION_REGION_COOKIE = 'vs_region_hostname';
+  //var VIRGIN_REGION_REGION_COOKIE = 'vs_region_hostname';
   //var VIRGIN_REGION_BASKET_REGION_COOKIE = 'vs_basket_region_hostname';
 
   /**
@@ -16,7 +16,7 @@
     var region_cookie = getCookie(VIRGIN_REGION_REGION_COOKIE);
 
     if (!region_cookie) {
-      createCookie(VIRGIN_REGION_REGION_COOKIE, location.hostname, 365);
+      //createCookie(VIRGIN_REGION_REGION_COOKIE, location.hostname, 365);
       //createCookie(VIRGIN_REGION_BASKET_REGION_COOKIE, location.hostname, 365);
     }
   });
