@@ -14,7 +14,7 @@
 
     // Check if the region cookie is set, and if it is redirect the user to
     // that hostname.
-    var regionHostname = getCookie('vs_region_hostname');
+    /*var regionHostname = getCookie('vs_region_hostname');
 
     if (regionHostname && location.hostname != regionHostname) {
       if (params.destination) {
@@ -24,11 +24,11 @@
       }
 
       return;
-    }
+    }*/
 
     // Check if there's a region marked as default, and if it is then redirect
     // the user to that region.
-    var $default = $('[vs-region-default="1"]').first();
+    /*var $default = $('[vs-region-default="1"]').first();
 
     if ($default.length) {
       createCookie('vs_region_hostname', $default.attr('vs-region-hostname'), 365);
@@ -41,16 +41,16 @@
       }
 
       return;
-    }
+    }*/
 
     // Finally register a click handler to all the region selection links in
     // the page, and ensure the user preferences are set before the user is
     // redirected to the region he selected.
-    $('a[vs-region-hostname]').click(function (e) {
+    /*$('a[vs-region-hostname]').click(function (e) {
       var $el = $(this);
 
       // Store the region preference cookie to last for a year
-      createCookie('vs_region_hostname', $el.attr('vs-region-hostname'), 365);
+      //createCookie('vs_region_hostname', $el.attr('vs-region-hostname'), 365);
       //createCookie('vs_basket_region_hostname', $el.attr('vs-region-hostname'), 365);
 
       // If there's a destination parameter in the URL stop the default link
@@ -60,7 +60,7 @@
         e.preventDefault();
         window.location = $el.attr('href') + params.destination + redirect_params;
       }
-    });
+    });*/
   });
 
   /**

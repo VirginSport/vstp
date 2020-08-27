@@ -87,7 +87,7 @@ function virgin_region_theme($existing, $type, $theme, $path) {
 /**
  * Implements hook_init().
  */
-function virgin_region_init() {
+/*function virgin_region_init() {
   global $cookie_domain;
 
   // Fetch the current active region
@@ -112,7 +112,7 @@ function virgin_region_init() {
   if ($_GET['q'] == variable_get('site_frontpage')) {
     $_GET['q'] = $front_page;
   }
-}
+}*/
 
 /**
  * Implements hook_node_insert().
@@ -257,17 +257,19 @@ function virgin_region_regions() {
       $node_wrapper = entity_metadata_wrapper('node', $node->nid);
       $hostname = $node_wrapper->field_hostname->value();
 
-      $regions[$hostname] = array(
-        'nid' => $node->nid,
-        'title' => $node_wrapper->title_field->value(),
-        'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
-        'flag' => $node_wrapper->field_flag_image->value(),
-        'icon' => $node_wrapper->field_icon_image->value(),
-        'is_default' => (variable_get(VIRGIN_REGION_VAR_DEFAULT_REGION) == $hostname),
-        'hostname' => $hostname,
-        'show_cookies_alert' => $node_wrapper->field_show_cookies_alert->value(),
-        'privacy_policy_node' => $node_wrapper->field_privacy_policy->value(),
-      );
+      if ($node_wrapper->field_country_letter_code->value() === 'UK') {
+        $regions[$hostname] = array(
+          'nid' => $node->nid,
+          'title' => $node_wrapper->title_field->value(),
+          'country_letter_code' => $node_wrapper->field_country_letter_code->value(),
+          'flag' => $node_wrapper->field_flag_image->value(),
+          'icon' => $node_wrapper->field_icon_image->value(),
+          'is_default' => (variable_get(VIRGIN_REGION_VAR_DEFAULT_REGION) == $hostname),
+          'hostname' => $hostname,
+          'show_cookies_alert' => $node_wrapper->field_show_cookies_alert->value(),
+          'privacy_policy_node' => $node_wrapper->field_privacy_policy->value(),
+        );
+      }
     }
 
     cache_set(VIRGIN_REGION_CACHE, $regions);
@@ -587,14 +589,16 @@ function virgin_region_boot() {
 
   $regions = virgin_region_get_geo_mapping();
 
-  // Flip the array to hostname be the key
-  $flipped_regions = array_flip($regions);
+  if (is_array($regions)) {
+    // Flip the array to hostname be the key
+    $flipped_regions = array_flip($regions);
 
-  $host = parse_url($base_url, PHP_URL_HOST);
+    $host = parse_url($base_url, PHP_URL_HOST);
 
-  // If the host is already valid bailout
-  if (isset($flipped_regions[$host])) {
-    return;
+    // If the host is already valid bailout
+    if (isset($flipped_regions[$host])) {
+      return;
+    }
   }
 
   // Fetch hostname cookie so the user is redirected to his preferred
