@@ -117,7 +117,7 @@ DirectoryIndex index.php index.html index.htm
   # Prevent hotlinking from external domains by forcing a 403 forbidden
   # for all requests to font assets to satisfy licensing requirements
   RewriteCond %{HTTP_REFERER} !^$
-  RewriteCond %{HTTP_REFERER} !^https?://([^.]+\.)*virginsport.com/.*$ [NC]
+  RewriteCond %{HTTP_REFERER} !^https?://([^.]+\.)*limelightsports.club/.*$ [NC]
   RewriteRule \.(woff2?|eot|otf|ttf)$ - [NC,F,L]
 
   # Pass all requests not referring directly to files in the filesystem to
