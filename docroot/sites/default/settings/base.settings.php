@@ -75,7 +75,7 @@ if ($ah_env) {
  * Support cross domain login and cookie sharing/integration with Attendly
 */
 if ($ah_env) {
-  $cookie_domain = ".virginsport.com";
+  $cookie_domain = ".limelightsports.club";
 }
 
 /**
