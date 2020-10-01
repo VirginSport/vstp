@@ -67,8 +67,8 @@ DirectoryIndex index.php index.html index.htm
   #RewriteRule ^ - [E=protossl]
   #RewriteCond %{HTTPS} on
   #RewriteRule ^ - [E=protossl:s]
-  RewriteCond %{HTTP_HOST} !^dev\.limelightsports\.club$ [NC]
-  RewriteCond %{HTTP_HOST} !^stg\.limelightsports\.club$ [NC]
+  #RewriteCond %{HTTP_HOST} !^dev\.limelightsports\.club$ [NC]
+  #RewriteCond %{HTTP_HOST} !^stg\.limelightsports\.club$ [NC]
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
